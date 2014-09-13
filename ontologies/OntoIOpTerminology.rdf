@@ -521,8 +521,8 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     
     <owl:Class rdf:about="&ontoiop-trm;Graph">
         <rdfs:label>graph</rdfs:label>
+        <skos:altLabel>diagram</skos:altLabel>
         <skos:definition>TBD</skos:definition>
-        <skos:editorialNote>synonym: diagram</skos:editorialNote>
     </owl:Class>
 
     <owl:Class rdf:about="&ontoiop-trm;HeterogeneousEnvironment">
@@ -615,7 +615,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Mapping"/>
-        <skos:definition>maorphism of the Category &apos;language&apos;.</skos:definition>
+        <skos:definition>mapping between languages</skos:definition>
     </owl:Class>
 
     <owl:Class rdf:about="&ontoiop-trm;LinkedData">
@@ -664,7 +664,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Mapping"/>
-        <skos:definition>morphism of the Category &apos;logic&apos;.</skos:definition>
+        <skos:definition>mapping between logics</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&ontoiop-trm;LogicReduction">
@@ -734,7 +734,8 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <skos:definition>morphism (from Category Theory).</skos:definition>
+        <skos:definition>TBD</skos:definition>
+        <skos:note>in some cases is a morphism, as in Category Theory.</skos:note>
     </owl:Class>
     
     <owl:Class rdf:about="&ontoiop-trm;Model">
@@ -775,12 +776,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
 
     <owl:Class rdf:about="&ontoiop-trm;NonLogicalSymbol">
         <rdfs:label>non-logical symbol</rdfs:label>
+        <skos:altLabel>OMS symbol</skos:altLabel>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Symbol"/>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Term"/>
         <skos:example> Non-logical symbols in Common Logic \nisref{ISO/IEC 24707:2007} comprise \begin{itemize} \item names (denoting objects from the domain of discourse), \item sequence markers (denoting sequences of objects). \end{itemize} This is opposed to logical symbols in Common Logic, e.g.\ logical connectives and quantifiers. </skos:example>
         <skos:example> Non-logical symbols in OWL \nisref{W3C/TR REC-owl2-syntax:2009} (there called ``entities&apos;&apos;) comprise \begin{itemize} \item individuals (denoting objects from the domain of discourse), \item classes (denoting sets of objects; also called concepts), and \item properties (denoting binary relations over objects; also called roles). \end{itemize} This is opposed to logical symbols in OWL, e.g.\ those for intersection and union of classes. </skos:example>
         <skos:note>The notion of ``atomic sentence&apos;&apos; used in logic is different, it usually may involve several non-logical symbols. </skos:note>
-        <skos:definition>\synonym OMS symbol atomic expression or syntactic constituent of an OMS that requires an interpretation through a model</skos:definition>
+        <skos:definition>OMS symbol atomic expression or syntactic constituent of an OMS that requires an interpretation through a model</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&ontoiop-trm;OMS">
@@ -822,7 +824,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <owl:Class rdf:about="&ontoiop-trm;OMSGraph">
         <rdfs:label>OMS graph</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Graph"/>
-        <skos:definition> graph with OMSs as nodes and OMS mappings as edges, showing how the OMS are interlinked </skos:definition><skos:note> An OMS graph is a diagram of OMS in the sense of category theory, but different from a diagram in the sense of model-driven architecture. </skos:note>
+        <skos:definition> graph with OMSs as nodes and OMS mappings as edges, showing how the OMS are interlinked </skos:definition><skos:note> An OMS graph is a diagram of OMS in the sense of category theory, but different from a diagram in the sense of model-driven architecture.</skos:note>
     </owl:Class>
     
     <owl:Class rdf:about="&ontoiop-trm;OMSLanguage">
@@ -895,7 +897,8 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     
     <owl:Class rdf:about="&ontoiop-trm;OMSNetwork">
         <rdfs:label>OMS network</rdfs:label>
-        <skos:definition>\synonym hyperontology} {collection of named OMSs, possibly written in different OMS languages, linked by named OMS mappings and named OMS graphs</skos:definition>
+        <skos:altLabel>hyperontology</skos:altLabel>
+        <skos:definition>collection of named OMSs, possibly written in different OMS languages, linked by named OMS mappings and named OMS graphs</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&ontoiop-trm;OMSSerialization">
@@ -1040,8 +1043,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <owl:Class rdf:about="&ontoiop-trm;StructuredOMS">
         <rdfs:label>structured OMS</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMS"/>
-        <skos:definition> {OMS that results from other OMSs by import, union, combination, renaming or other structuring operations} </skos:definition>
-        <skos:editorialNote>synonym: focused OMS</skos:editorialNote>
+        <skos:definition>OMS that results from other OMSs by import, union, combination, renaming or other structuring operations</skos:definition>
+    </owl:Class>
+
+    <owl:Class rdf:about="&ontoiop-trm;FocusedOMS">
+        <rdfs:label>focused OMS</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMS"/>
+        <skos:definition>TBD</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&ontoiop-trm;StructuringLanguageAspect">
@@ -1114,7 +1122,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <owl:NamedIndividual rdf:about="&ontoiop-trm;DOL">
         <rdf:type rdf:resource="&ontoiop-trm;OMSLanguage"/>
         <rdfs:label>DOL</rdfs:label>
-        <skos:definition>\termdefinition{distributed ontology, modeling and specification language\synonym DOL}{language for formalizing distributed OMSs, whose syntax and semantics are specified in this \IS} </skos:definition><skos:note> When viewed as an \termref{OMS language}, DOL has OMSs as its non-logical symbols, and OMS mappings as its sentences. </skos:note>
+        <skos:definition>language for formalizing distributed OMSs, whose syntax and semantics are specified in this \IS} </skos:definition><skos:note> When viewed as an \termref{OMS language}, DOL has OMSs as its non-logical symbols, and OMS mappings as its sentences.</skos:note>
     </owl:NamedIndividual>
     
 </rdf:RDF>
