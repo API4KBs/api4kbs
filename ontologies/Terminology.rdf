@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY dct "http://purl.org/dc/terms/" >
+    <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
+    <!ENTITY sm "http://www.omg.org/techprocess/ab/SpecificationMetadata/" >
+    <!ENTITY ontoiop-trm "http://www.omg.org/spec/OntoIOp/Terminology/" >
+]>
+
+<rdf:RDF xmlns="http://www.omg.org/spec/OntoIOp/Terminology/"
+xml:base="http://www.omg.org/spec/OntoIOp/Terminology/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:dct="http://purl.org/dc/terms/"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+xmlns:sm="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
+     xmlns:ontoiop-trm="http://www.omg.org/spec/OntoIOp/Terminology/">
+    
+    <owl:Ontology rdf:about="http://www.omg.org/spec/OntoIOp/Terminology/">
+        <rdfs:label>OntoIop Terminology Ontology</rdfs:label>
+
+        <owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
+        <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
+    </owl:Ontology>
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;approximantOf">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;OMS"/>
+        <rdfs:range rdf:resource="&ontoiop-trm;OMS"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;combinationOf">
+        <rdfs:range rdf:resource="&ontoiop-trm;SetOfOMS"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;StructuredOMS"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;documentationOf">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="&ontoiop-trm;OMS"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;OMSDocumentation"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;extensionOf">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;OMS"/>
+        <rdfs:range rdf:resource="&ontoiop-trm;OMS"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;formalizedBy">
+        <rdfs:range rdf:resource="&ontoiop-trm;Institution"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;Logic"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;formalizes">
+        <inverseOf rdf:resource="&ontoiop-trm;formalizedBy"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;hasAspect">
+        <rdfs:range rdf:resource="&ontoiop-trm;LanguageAspect"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;OMSLanguage"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;hasLogic">
+        <rdfs:range rdf:resource="&ontoiop-trm;Logic"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;OMSLanguage"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;logicallyInteroperableWith">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdfs:range rdf:resource="&ontoiop-trm;StructuredOMS"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;StructuredOMS"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;mappingFrom">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;Mapping"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;mappingTo">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;Mapping"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;profileOf">
+        <rdfs:range rdf:resource="&ontoiop-trm;OMSLanguage"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;Profile"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;serializationOf">
+        <rdfs:range rdf:resource="&ontoiop-trm;OMSLanguage"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;Serialization"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;subLanguageOf">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;OMSLanguage"/>
+        <rdfs:range rdf:resource="&ontoiop-trm;OMSLanguage"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;subLogicOf">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;Logic"/>
+        <rdfs:range rdf:resource="&ontoiop-trm;Logic"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;subOMSOf">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;OMS"/>
+        <rdfs:range rdf:resource="&ontoiop-trm;OMS"/>
+    </owl:ObjectProperty>
+    
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;isAUnionOf">
+        <rdfs:range rdf:resource="&ontoiop-trm;SetOfOMS"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;StructuredOMS"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;usesLanguage">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;Expression"/>
+        <rdfs:range rdf:resource="&ontoiop-trm;Language"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;usesSerialization">
+        <rdfs:domain rdf:resource="&ontoiop-trm;Manifestation"/>
+        <rdfs:range rdf:resource="&ontoiop-trm;Serialization"/>
+    </owl:ObjectProperty>
+    
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    <owl:Class rdf:about="&ontoiop-trm;AnnotationExpression">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Expression"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&ontoiop-trm;AnnotationExpressionLanguageAspect">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;LanguageAspect"/>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;BasicOMS">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMS"/>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;DistributedOMS">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMS"/>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;Expression">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;usesLanguage"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;Language"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;HeterogeneousOMS">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMS"/>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;Institution">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;formalizes"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;Logic"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;Language"/>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;LanguageAspect"/>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;LanguageMapping">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Mapping"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;mappingTo"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;OMSLanguage"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;mappingFrom"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;OMSLanguage"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;Logic">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;formalizedBy"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;Institution"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;LogicApproximation">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;LogicMapping"/>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;LogicMapping">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Mapping"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;mappingFrom"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;Logic"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;mappingTo"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;Logic"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;LogicReduction">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;LogicMapping"/>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;LogicTranslation">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;LogicMapping"/>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;LogicalLanguageAspect">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;LanguageAspect"/>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;Manifestation">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;usesSerialization"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;Serialization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;Mapping"/>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;OMS">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;SetOfExpressions"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;usesLanguage"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMSLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;usesLanguage"/>
+                <owl:allValuesFrom rdf:resource="&ontoiop-trm;OMSLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;OMSDocumentation">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;SetOfAnnotationExpressions"/>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;OMSLanguage">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Language"/>
+    </owl:Class>
+
+
+    <owl:Class rdf:about="&ontoiop-trm;OMSLanguageTranslation">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;LanguageMapping"/>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;OMSMapping">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Mapping"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;mappingTo"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;OMS"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;mappingFrom"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;OMS"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;OMSSerialization">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Serialization"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;serializationOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMSLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;Profile">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMSLanguage"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasLogic"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;Logic"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;Serialization">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;serializationOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;Language"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;SetOfAnnotationExpressions">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;SetOfExpressions"/>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;SetOfExpressions"/>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;SetOfOMS"/>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;StandoffMarkup">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Language"/>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;StructuredOMS">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMS"/>
+    </owl:Class>
+    
+
+    <owl:Class rdf:about="&ontoiop-trm;StructuringLanguageAspect">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;LanguageAspect"/>
+    </owl:Class>
+    
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    <owl:NamedIndividual rdf:about="&ontoiop-trm;DOL">
+        <rdf:type rdf:resource="&ontoiop-trm;OMSLanguage"/>
+    </owl:NamedIndividual>
+
+</rdf:RDF>
