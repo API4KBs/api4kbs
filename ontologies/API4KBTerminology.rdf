@@ -1422,4 +1422,51 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;Serialization"/>
     </owl:Class>
   
+  <!-- Script Input -->
+  
+  <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/QueryingAction">
+    <rdfs:label>querying action</rdfs:label>
+    <skos:definition>action that maps queries and focused OMS resource to collections of answer
+      substitutions.</skos:definition>
+    <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/Action"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsFromOne"/>
+        <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/QueryResource"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsFromTwo"/>
+        <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/FocusedOMSResource"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasOutput"/>
+        <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/AnswerSubstitutionCollection"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  
+  
+  <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/UnmarshallingAction">
+    <rdfs:label>unmarshalling action</rdfs:label>
+    <skos:definition>lifting action that maps knowledge encodings into knowledge manifestations.</skos:definition>
+    <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/LiftingAction"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsFrom"/>
+        <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeEncoding"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsTo"/>
+        <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeManifestation"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  
+
 </rdf:RDF>

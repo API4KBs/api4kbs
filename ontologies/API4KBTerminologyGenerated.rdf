@@ -11,21 +11,19 @@
 ]>
 
 
-<rdf:RDF xmlns="http://www.omg.org/spec/API4KB/TerminologyGenerated/"
-     xml:base="http://www.omg.org/spec/API4KB/TerminologyGenerated/"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:terms="http://purl.org/dc/terms/"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:skos="http://www.w3.org/2004/02/skos/core#">
-    <owl:Ontology rdf:about="http://www.omg.org/spec/API4KB/TerminologyGenerated/">
-        <owl:imports rdf:resource="http://www.omg.org/spec/API4KB/Terminology/"/>
-    </owl:Ontology>
-    
+<rdf:RDF xmlns="http://www.omg.org/spec/API4KB/API4KBTerminologyGenerated/"
+  xml:base="http://www.omg.org/spec/API4KB/API4KBTerminologyGenerated/"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:terms="http://purl.org/dc/terms/"
+  xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+  <owl:Ontology rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminologyGenerated/">
+    <owl:imports rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/"/>
+  </owl:Ontology>
 
 
-    <!-- 
+
+  <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Classes
@@ -33,399 +31,463 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
 
 
-    <!-- http://www.omg.org/spec/API4KB/Terminology/ActionEvent -->
 
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/Terminology/ActionEvent">
-        <rdfs:label>Action Event</rdfs:label>
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.omg.org/spec/API4KB/Terminology/InternalOperationEvent"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/isEventof"/>
-                        <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/Terminology/InternalOperation"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <skos:definition rdf:datatype="&xsd;string"> event of an Action.</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
+  <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/ActionEvent -->
 
-
-    <!-- http://www.omg.org/spec/API4KB/Terminology/Adding-FocusedOMSItemToImmutableKB -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/Terminology/Adding-FocusedOMSItemToImmutableKB">
-        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/Terminology/Adding-KnowledgeResourceToImmutableKB"/>
-        <skos:definition rdf:datatype="&xsd;string">Operation Event adding an FocusedOMS Item to a KB</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
+  <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/ActionEvent">
+    <rdfs:label>Action Event</rdfs:label>
+    <skos:note>This is the root of a class hierarchy that mirrors the action hierarchy.</skos:note>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description
+            rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/InternalOperationEvent"/>
+          <owl:Restriction>
+            <owl:onProperty
+              rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/isEventof"/>
+            <owl:onClass
+              rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/InternalOperation"/>
+            <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger"
+              >1</owl:qualifiedCardinality>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <skos:definition rdf:datatype="&xsd;string"> event of an Action.</skos:definition>
+    <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/API4KBTerminology</rdfs:isDefinedBy>
+  </owl:Class>
 
 
-    <!-- http://www.omg.org/spec/API4KB/Terminology/Adding-KnowledgeResourceToImmutableKB -->
 
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/Terminology/Adding-KnowledgeResourceToImmutableKB">
-        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/Terminology/PublicOperationEvent"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/actualizes"/>
-                <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/Terminology/AdditionOfKnowledgeResourceToImmutableKB"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/isEventof"/>
-                <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/Terminology/Add-KnowledgeResourceToImmutableKB"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">abstract class of Operation Events adding a Knowlede Resource to a KB</skos:definition>
-        <terms:abstract></terms:abstract>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-        <skos:note>Members of this class are Events of some Operation &apos;AddKnowledgeResourceToImmutableKB&apos;</skos:note>
-    </owl:Class>
-    
+  <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/Adding-FocusedOMSItemToImmutableKB -->
+
+  <owl:Class
+    rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/Adding-FocusedOMSItemToImmutableKB">
+    <rdfs:subClassOf
+      rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/Adding-KnowledgeResourceToImmutableKB"/>
+    <skos:definition rdf:datatype="&xsd;string">Operation Event adding an FocusedOMS Item to a
+      KB</skos:definition>
+    <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/API4KBTerminology</rdfs:isDefinedBy>
+  </owl:Class>
 
 
-    <!-- http://www.omg.org/spec/API4KB/Terminology/Adding-QueryItemToImmutableKB -->
 
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/Terminology/Adding-QueryItemToImmutableKB">
-        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/Terminology/Adding-KnowledgeResourceToImmutableKB"/>
-        <skos:definition rdf:datatype="&xsd;string">Operation Event adding a Query Item to a KB</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
+  <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/Adding-KnowledgeResourceToImmutableKB -->
 
-
-    <!-- http://www.omg.org/spec/API4KB/Terminology/Conceptualizing -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/Terminology/Conceptualizing">
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/isEventof"/>
-                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/Terminology/Conceptualize"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/isEventof"/>
-                <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/Terminology/Conceptualize"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-            </owl:Restriction>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/Terminology/Lifting"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/hasOutput"/>
-                <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/Terminology/KnowledgeAsset"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">event of a Conceptualize Operation.</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/TerminologyGenerated</rdfs:isDefinedBy>
-    </owl:Class>
-    
+  <owl:Class
+    rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/Adding-KnowledgeResourceToImmutableKB">
+    <rdfs:subClassOf
+      rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/PublicOperationEvent"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/actualizes"/>
+        <owl:onClass
+          rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/AdditionOfKnowledgeResourceToImmutableKB"/>
+        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger"
+          >1</owl:qualifiedCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/isEventof"/>
+        <owl:allValuesFrom
+          rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/Add-KnowledgeResourceToImmutableKB"
+        />
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <skos:definition rdf:datatype="&xsd;string">abstract class of Operation Events adding a Knowlede
+      Resource to a KB</skos:definition>
+    <terms:abstract/>
+    <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/API4KBTerminology</rdfs:isDefinedBy>
+    <skos:note>Members of this class are Events of some Operation
+      &apos;AddKnowledgeResourceToImmutableKB&apos;</skos:note>
+  </owl:Class>
 
 
-    <!-- http://www.omg.org/spec/API4KB/Terminology/Expressing -->
 
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/Terminology/Expressing">
-        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/Terminology/Lowering"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/hasOutput"/>
-                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/Terminology/GeneralizedExpression"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/hasInput"/>
-                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/Terminology/KnowledgeAsset"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">Action Event for transforming a knowledge asset into a generalized expression.</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
+  <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/Adding-QueryItemToImmutableKB -->
+
+  <owl:Class
+    rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/Adding-QueryItemToImmutableKB">
+    <rdfs:subClassOf
+      rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/Adding-KnowledgeResourceToImmutableKB"/>
+    <skos:definition rdf:datatype="&xsd;string">Operation Event adding a Query Item to a
+      KB</skos:definition>
+    <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/API4KBTerminology</rdfs:isDefinedBy>
+  </owl:Class>
 
 
-    <!-- http://www.omg.org/spec/API4KB/Terminology/InStreaming -->
 
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/Terminology/InStreaming">
-        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/Terminology/Lifting"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/hasInput"/>
-                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/Terminology/KnowledgeItem"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/hasOutput"/>
-                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/Terminology/KnowledgeEncoding"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">Action Event of transforming a knowledge item into a knowledge encoding.</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
+  <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/Conceptualizing -->
 
-
-    <!-- http://www.omg.org/spec/API4KB/Terminology/InternalOperationEvent -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/Terminology/InternalOperationEvent">
-        <rdfs:label>Internal Operation Event</rdfs:label>
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.omg.org/spec/API4KB/Terminology/OperationEvent"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/isEventof"/>
-                        <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/Terminology/InternalOperation"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <owl:disjointWith rdf:resource="http://www.omg.org/spec/API4KB/Terminology/PublicOperationEvent"/>
-        <skos:definition rdf:datatype="&xsd;string">event of an Internal Operation.</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
+  <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/Conceptualizing">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/isEventof"/>
+        <owl:someValuesFrom
+          rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/Conceptualize"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/isEventof"/>
+        <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/Conceptualize"/>
+        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger"
+          >1</owl:qualifiedCardinality>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/LiftingEvent"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasOutput"/>
+        <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeAsset"/>
+        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger"
+          >1</owl:qualifiedCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <skos:definition rdf:datatype="&xsd;string">event of a Conceptualize
+      Operation.</skos:definition>
+    <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/API4KBTerminologyGenerated</rdfs:isDefinedBy>
+  </owl:Class>
 
 
-    <!-- http://www.omg.org/spec/API4KB/Terminology/Lifting -->
 
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/Terminology/Lifting">
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/isEventof"/>
-                <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/Terminology/Lift"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-            </owl:Restriction>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/Terminology/ActionEvent"/>
-        <skos:definition rdf:datatype="&xsd;string">event of a Lift.</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
+  <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/Expressing -->
 
-
-    <!-- http://www.omg.org/spec/API4KB/Terminology/Lowering -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/Terminology/Lowering">
-        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/Terminology/ActionEvent"/>
-        <skos:definition rdf:datatype="&xsd;string">Action Event whose input is a Knowledge Resource and whose output is a Knowledge Resource of the same &quot;type&quot; (i.e. OMS, Query, Result) and belongs to the next lower level of abstraction in the Knowledge Resource hierarchy.</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
+  <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/Expressing">
+    <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/Lowering"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasOutput"/>
+        <owl:someValuesFrom
+          rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/GeneralizedExpression"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasInput"/>
+        <owl:someValuesFrom
+          rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeAsset"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <skos:definition rdf:datatype="&xsd;string">Action Event for transforming a knowledge asset into
+      a generalized expression.</skos:definition>
+    <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/API4KBTerminology</rdfs:isDefinedBy>
+  </owl:Class>
 
 
-    <!-- http://www.omg.org/spec/API4KB/Terminology/Manifesting -->
 
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/Terminology/Manifesting">
-        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/Terminology/Lowering"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/hasOutput"/>
-                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/Terminology/KnowledgeManifestation"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/hasInput"/>
-                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/Terminology/GeneralizedExpression"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">Action Event of transforming a generalized expression into a knowledge manifestation.</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
+  <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/InStreaming -->
 
-
-    <!-- http://www.omg.org/spec/API4KB/Terminology/Marshalling -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/Terminology/Marshalling">
-        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/Terminology/Lowering"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/hasInput"/>
-                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/Terminology/KnowledgeManifestation"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/hasOutput"/>
-                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/Terminology/KnowledgeEncoding"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">Action Event of transforming a knowledge manifestation into a knowledge encoding.</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
+  <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/InStreaming">
+    <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/LiftingEvent"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasInput"/>
+        <owl:someValuesFrom
+          rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeItem"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasOutput"/>
+        <owl:someValuesFrom
+          rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeEncoding"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <skos:definition rdf:datatype="&xsd;string">Action Event of transforming a knowledge item into a
+      knowledge encoding.</skos:definition>
+    <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/API4KBTerminology</rdfs:isDefinedBy>
+  </owl:Class>
 
 
-    <!-- http://www.omg.org/spec/API4KB/Terminology/OperationEvent -->
 
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/Terminology/OperationEvent">
-        <rdfs:label>OperationEvent</rdfs:label>
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/hasInput"/>
-                        <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/Terminology/KnowledgeSource"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/hasOutput"/>
-                        <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/Terminology/KnowledgeSource"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/isEventof"/>
-                <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/Terminology/Operation"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-            </owl:Restriction>
-        </owl:equivalentClass>
-        <skos:definition rdf:datatype="&xsd;string">event of an API4KB Operation.</skos:definition>
-        <skos:example>Example: the adding of an Asset to an immutable KB to generate a new immutable KB, executed by some application. </skos:example>
-        <terms:abstract></terms:abstract>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-        <owl:disjointUnionOf rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.omg.org/spec/API4KB/Terminology/InternalOperationEvent"/>
-            <rdf:Description rdf:about="http://www.omg.org/spec/API4KB/Terminology/PublicOperationEvent"/>
-        </owl:disjointUnionOf>
-    </owl:Class>
-    
+  <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/InternalOperationEvent -->
+
+  <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/InternalOperationEvent">
+    <rdfs:label>Internal Operation Event</rdfs:label>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description
+            rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/OperationEvent"/>
+          <owl:Restriction>
+            <owl:onProperty
+              rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/isEventof"/>
+            <owl:onClass
+              rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/InternalOperation"/>
+            <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger"
+              >1</owl:qualifiedCardinality>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <owl:disjointWith
+      rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/PublicOperationEvent"/>
+    <skos:definition rdf:datatype="&xsd;string">event of an Internal Operation.</skos:definition>
+    <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/API4KBTerminology</rdfs:isDefinedBy>
+  </owl:Class>
 
 
-    <!-- http://www.omg.org/spec/API4KB/Terminology/OutStreaming -->
 
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/Terminology/OutStreaming">
-        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/Terminology/Lowering"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/hasOutput"/>
-                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/Terminology/KnowledgeItem"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/hasInput"/>
-                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/Terminology/KnowledgeEncoding"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">Action Event of transforming a knowledge encoding into a knowledge item.</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
+  <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/LiftingEvent -->
+
+  <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/LiftingEvent">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/isEventof"/>
+        <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/Lift"/>
+        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger"
+          >1</owl:qualifiedCardinality>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/ActionEvent"/>
+    <skos:definition rdf:datatype="&xsd;string">event of a Lift.</skos:definition>
+    <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/API4KBTerminology</rdfs:isDefinedBy>
+  </owl:Class>
 
 
-    <!-- http://www.omg.org/spec/API4KB/Terminology/Parsing -->
 
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/Terminology/Parsing">
-        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/Terminology/Lifting"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/hasOutput"/>
-                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/Terminology/GeneralizedExpression"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/hasInput"/>
-                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/Terminology/KnowledgeManifestation"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">Action Event of transforming a knowledge manifestation into a generalized expression.</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
+  <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/Lowering -->
+
+  <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/Lowering">
+    <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/ActionEvent"/>
+    <skos:definition rdf:datatype="&xsd;string">Action Event whose input is a Knowledge Resource and
+      whose output is a Knowledge Resource of the same &quot;type&quot; (i.e. OMS, Query, Result)
+      and belongs to the next lower level of abstraction in the Knowledge Resource
+      hierarchy.</skos:definition>
+    <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/API4KBTerminology</rdfs:isDefinedBy>
+  </owl:Class>
 
 
-    <!-- http://www.omg.org/spec/API4KB/Terminology/PublicOperationEvent -->
 
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/Terminology/PublicOperationEvent">
-        <rdfs:label>Public Operation Event</rdfs:label>
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.omg.org/spec/API4KB/Terminology/OperationEvent"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/actualizes"/>
-                        <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/Terminology/Proficiency"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/isEventof"/>
-                        <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/Terminology/PublicOperation"/>
-                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <skos:definition rdf:datatype="&xsd;string">event of a Public Operation.</skos:definition>
-        <skos:example>Example: add Asset to an immutable KB to generate a new immutable KB. </skos:example>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
+  <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/Manifesting -->
+
+  <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/Manifesting">
+    <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/Lowering"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasOutput"/>
+        <owl:someValuesFrom
+          rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeManifestation"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasInput"/>
+        <owl:someValuesFrom
+          rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/GeneralizedExpression"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <skos:definition rdf:datatype="&xsd;string">Action Event of transforming a generalized
+      expression into a knowledge manifestation.</skos:definition>
+    <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/API4KBTerminology</rdfs:isDefinedBy>
+  </owl:Class>
 
 
-    <!-- http://www.omg.org/spec/API4KB/Terminology/Querying -->
 
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/Terminology/Querying">
-        <rdfs:label>Querying</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/Terminology/ActionEvent"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/hasInput"/>
-                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/Terminology/QueryResource"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/hasInput"/>
-                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/Terminology/FocusedOMSResource"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">action event of applying a query to a knowledge base.</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
+  <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/Marshalling -->
+
+  <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/Marshalling">
+    <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/Lowering"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasInput"/>
+        <owl:someValuesFrom
+          rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeManifestation"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasOutput"/>
+        <owl:someValuesFrom
+          rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeEncoding"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <skos:definition rdf:datatype="&xsd;string">Action Event of transforming a knowledge
+      manifestation into a knowledge encoding.</skos:definition>
+    <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/API4KBTerminology</rdfs:isDefinedBy>
+  </owl:Class>
 
 
-    <!-- http://www.omg.org/spec/API4KB/Terminology/Unmarshalling -->
 
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/Terminology/Unmarshalling">
-        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/Terminology/Lifting"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/hasOutput"/>
-                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/Terminology/KnowledgeManifestation"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/Terminology/hasInput"/>
-                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/Terminology/KnowledgeEncoding"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">action event that transforms a knowledge encoding into a knowledge manifestation.</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
+  <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/OperationEvent -->
+
+  <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/OperationEvent">
+    <rdfs:label>OperationEvent</rdfs:label>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasInput"/>
+            <owl:allValuesFrom
+              rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeSource"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty
+              rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasOutput"/>
+            <owl:onClass
+              rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeSource"/>
+            <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger"
+              >1</owl:qualifiedCardinality>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/isEventof"/>
+        <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/Operation"/>
+        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger"
+          >1</owl:qualifiedCardinality>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <skos:definition rdf:datatype="&xsd;string">event of an API4KB Operation.</skos:definition>
+    <skos:example>Example: the adding of an Asset to an immutable KB to generate a new immutable KB,
+      executed by some application. </skos:example>
+    <terms:abstract/>
+    <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/API4KBTerminology</rdfs:isDefinedBy>
+    <owl:disjointUnionOf rdf:parseType="Collection">
+      <rdf:Description
+        rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/InternalOperationEvent"/>
+      <rdf:Description
+        rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/PublicOperationEvent"/>
+    </owl:disjointUnionOf>
+  </owl:Class>
+
+
+
+  <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/OutStreaming -->
+
+  <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/OutStreaming">
+    <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/Lowering"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasOutput"/>
+        <owl:someValuesFrom
+          rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeItem"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasInput"/>
+        <owl:someValuesFrom
+          rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeEncoding"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <skos:definition rdf:datatype="&xsd;string">Action Event of transforming a knowledge encoding
+      into a knowledge item.</skos:definition>
+    <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/API4KBTerminology</rdfs:isDefinedBy>
+  </owl:Class>
+
+
+
+  <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/Parsing -->
+
+  <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/Parsing">
+    <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/LiftingEvent"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasOutput"/>
+        <owl:someValuesFrom
+          rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/GeneralizedExpression"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasInput"/>
+        <owl:someValuesFrom
+          rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeManifestation"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <skos:definition rdf:datatype="&xsd;string">Action Event of transforming a knowledge
+      manifestation into a generalized expression.</skos:definition>
+    <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/API4KBTerminology</rdfs:isDefinedBy>
+  </owl:Class>
+
+
+
+  <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/PublicOperationEvent">
+    <rdfs:label>Public Operation Event</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">event of a public operation.</skos:definition>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description
+            rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/OperationEvent"/>
+          <owl:Restriction>
+            <owl:onProperty
+              rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/actualizes"/>
+            <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/Proficiency"/>
+            <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger"
+              >1</owl:qualifiedCardinality>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty
+              rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/isEventof"/>
+            <owl:onClass
+              rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/PublicOperation"/>
+            <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger"
+              >1</owl:qualifiedCardinality>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <skos:example>Example: add Asset to an immutable KB to generate a new immutable KB. </skos:example>
+  </owl:Class>
+
+  <!-- script output -->
+  
+
+  <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/QueryingEvent">
+    <rdfs:label>querying event</rdfs:label>
+    <skos:definition>action event that applies a query to a focused OMS resource producing a collection of answer
+      substitutions.</skos:definition>
+    <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/ActionEvent"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasInputOne"/>
+        <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/QueryResource"/>
+        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasInputTwo"/>
+        <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/FocusedOMSResource"/>
+        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasOutput"/>
+        <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/AnswerSubstitutionCollection"/>
+        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+
+
+  <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/UnmarshallingEvent">
+    <rdfs:label>unmarshalling event</rdfs:label>
+    <skos:definition>lifting event that transforms knowledge encodings into knowledge manifestations.</skos:definition>
+    <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/LiftingEvent"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasInput"/>
+        <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeEncoding"/>
+        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasOutput"/>
+        <owl:onClass rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeManifestation"/>
+        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
 </rdf:RDF>
-
-
-
-<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
-
