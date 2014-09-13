@@ -51,6 +51,47 @@
         <rdfs:label>according to</rdfs:label>
         <skos:definition rdf:datatype="&xsd;string">logical environment in which the subject is embedded.</skos:definition>
         <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&apiforkb-trm;LogicalEnvironment"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/actualizes -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;actualizes">
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&apiforkb-trm;Proficiency"/>
+        <rdfs:domain rdf:resource="&apiforkb-trm;PublicOperation"/>
+        <owl:inverseOf rdf:resource="&apiforkb-trm;isActualizedBy"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/adds -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;adds">
+        <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeResource"/>
+        <rdfs:domain rdf:resource="&apiforkb-trm;Operation"/>
+        <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;hasInput"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/addsToImmutable -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;addsToImmutable">
+        <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeResource"/>
+        <rdfs:domain rdf:resource="&apiforkb-trm;Operation"/>
+        <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;hasInput"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/definesOperation -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;definesOperation">
+        <rdfs:domain rdf:resource="&apiforkb-trm;Interface"/>
+        <rdfs:range rdf:resource="&apiforkb-trm;Operation"/>
     </owl:ObjectProperty>
     
 
@@ -88,6 +129,16 @@
     
 
 
+    <!-- http://www.omg.org/spec/API4KB/Terminology/executes -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;executes">
+        <rdfs:domain rdf:resource="&apiforkb-trm;Application"/>
+        <rdfs:range rdf:resource="&apiforkb-trm;Operation"/>
+        <owl:inverseOf rdf:resource="&apiforkb-trm;isExecutedBy"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.omg.org/spec/API4KB/Terminology/expressedAs -->
 
     <owl:ObjectProperty rdf:about="&apiforkb-trm;expressedAs">
@@ -111,12 +162,44 @@
     
 
 
+    <!-- http://www.omg.org/spec/API4KB/Terminology/fillsRole -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;fillsRole">
+        <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgePlatformManager"/>
+        <rdfs:range rdf:resource="&apiforkb-trm;Role"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.omg.org/spec/API4KB/Terminology/hasInput -->
 
     <owl:ObjectProperty rdf:about="&apiforkb-trm;hasInput">
         <rdfs:label>has input</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">input of an action.</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">input of an Operation.</skos:definition>
         <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeSource"/>
+        <rdfs:domain rdf:resource="&apiforkb-trm;Operation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/hasInput-Conceptualize -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;hasInput-Conceptualize">
+        <rdfs:domain rdf:resource="&apiforkb-trm;Conceptualizing"/>
+        <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;hasInput"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/hasInput-api -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;hasInput-api">
+        <rdfs:domain rdf:resource="&apiforkb-trm;Interface"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&apiforkb-trm;definesOperation"/>
+            <rdf:Description rdf:about="&apiforkb-trm;hasInput"/>
+        </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
 
@@ -125,8 +208,24 @@
 
     <owl:ObjectProperty rdf:about="&apiforkb-trm;hasOutput">
         <rdfs:label>has output</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">output of an action.</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">output of an Operation.</skos:definition>
         <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeSource"/>
+        <rdfs:domain rdf:resource="&apiforkb-trm;Operation"/>
+        <owl:inverseOf rdf:resource="&apiforkb-trm;isOutputOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/hasOutput-api -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;hasOutput-api">
+        <rdfs:domain rdf:resource="&apiforkb-trm;Interface"/>
+        <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeSource"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&apiforkb-trm;definesOperation"/>
+            <rdf:Description rdf:about="&apiforkb-trm;hasOutput"/>
+        </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
 
@@ -135,6 +234,24 @@
 
     <owl:ObjectProperty rdf:about="&apiforkb-trm;hasPart">
         <rdfs:label>has part</rdfs:label>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/hasProficiency -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;hasProficiency">
+        <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgePlatformManager"/>
+        <rdfs:range rdf:resource="&apiforkb-trm;Proficiency"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/hasRegistrant -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;hasRegistrant">
+        <owl:inverseOf rdf:resource="&apiforkb-trm;isRegisteredWith"/>
     </owl:ObjectProperty>
     
 
@@ -143,6 +260,115 @@
 
     <owl:ObjectProperty rdf:about="&apiforkb-trm;hasSetOfMappings">
         <rdfs:label>has Set of Mappings</rdfs:label>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/implements -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;implements">
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <rdfs:domain rdf:resource="&apiforkb-trm;Application"/>
+        <rdfs:range rdf:resource="&apiforkb-trm;Interface"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/interactsWith -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;interactsWith">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdfs:label>interacts with</rdfs:label>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&apiforkb-trm;Application"/>
+        <rdfs:domain rdf:resource="&apiforkb-trm;Application"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&apiforkb-trm;executes"/>
+            <rdf:Description rdf:about="&apiforkb-trm;actualizes"/>
+            <rdf:Description rdf:about="&apiforkb-trm;isRequiredBy"/>
+            <rdf:Description rdf:about="&apiforkb-trm;isFilledBy"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/isActualizedBy -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;isActualizedBy">
+        <rdfs:label>is actualized by</rdfs:label>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/isDeployedWithin -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;isDeployedWithin">
+        <rdfs:domain rdf:resource="&apiforkb-trm;Component"/>
+        <rdfs:range rdf:resource="&apiforkb-trm;KnowledgePlatform"/>
+        <owl:inverseOf rdf:resource="&apiforkb-trm;supports"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/isExecutedBy -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;isExecutedBy"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/isFilledBy -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;isFilledBy">
+        <owl:inverseOf rdf:resource="&apiforkb-trm;fillsRole"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/isImplementedBy -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;isImplementedBy">
+        <owl:inverseOf rdf:resource="&apiforkb-trm;implements"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/isManagedBy -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;isManagedBy"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/isOperationDefinedBy -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;isOperationDefinedBy">
+        <owl:inverseOf rdf:resource="&apiforkb-trm;definesOperation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/isOutputOf -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;isOutputOf">
+        <rdfs:range rdf:resource="&apiforkb-trm;Operation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/isRegisteredWith -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;isRegisteredWith">
+        <rdfs:range rdf:resource="&apiforkb-trm;KnowledgePlatform"/>
+        <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeSource"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/isRequiredBy -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;isRequiredBy">
+        <owl:inverseOf rdf:resource="&apiforkb-trm;requires"/>
     </owl:ObjectProperty>
     
 
@@ -155,6 +381,15 @@
         <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
         <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
         <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeItem"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/manages -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;manages">
+        <rdfs:range rdf:resource="&apiforkb-trm;KnowledgePlatform"/>
+        <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgePlatformManager"/>
     </owl:ObjectProperty>
     
 
@@ -175,14 +410,37 @@
         <rdfs:label>is manifested as</rdfs:label>
         <skos:definition rdf:datatype="&xsd;string">see &apos;manifestation of&apos;</skos:definition>
         <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <rdfs:domain rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
+        <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
         <owl:inverseOf rdf:resource="&apiforkb-trm;manifestationOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/requires -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;requires">
+        <rdfs:range rdf:resource="&apiforkb-trm;Proficiency"/>
+        <rdfs:domain rdf:resource="&apiforkb-trm;Role"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.omg.org/spec/API4KB/Terminology/serializationOf -->
 
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;serializationOf"/>
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;serializationOf">
+        <rdfs:label>is serialization of</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">language that is manifested by the serialization.</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&apiforkb-trm;Serialization"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;Language"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/supports -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;supports"/>
     
 
 
@@ -194,6 +452,11 @@
         <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
         <rdfs:domain rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
         <rdfs:range rdf:resource="&ontoiop-trm;Language"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&apiforkb-trm;manifestedAs"/>
+            <rdf:Description rdf:about="&apiforkb-trm;usesSerialization"/>
+            <rdf:Description rdf:about="&apiforkb-trm;serializationOf"/>
+        </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
 
@@ -206,6 +469,18 @@
         <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
         <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
         <rdfs:range rdf:resource="&apiforkb-trm;Serialization"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/usesSpecification -->
+
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;usesSpecification">
+        <rdfs:label>uses specification</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">specification used by an application</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <rdfs:domain rdf:resource="&apiforkb-trm;Application"/>
+        <rdfs:range rdf:resource="&apiforkb-trm;Specification"/>
     </owl:ObjectProperty>
     
 
@@ -232,11 +507,71 @@
     
 
 
+    <!-- http://www.omg.org/spec/API4KB/Terminology/AdditionOfKnowledgeResourceToImmutableKB -->
+
+    <owl:Class rdf:about="&apiforkb-trm;AdditionOfKnowledgeResourceToImmutableKB">
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Proficiency"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;isActualizedBy"/>
+                <owl:allValuesFrom rdf:resource="&apiforkb-trm;addingKnowledgeResourceToImmutableKB"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/Application -->
+
+    <owl:Class rdf:about="&apiforkb-trm;Application">
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <dct:abstract></dct:abstract>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&apiforkb-trm;Client"/>
+            <rdf:Description rdf:about="&apiforkb-trm;KnowledgePlatformManager"/>
+            <rdf:Description rdf:about="&apiforkb-trm;Proxy"/>
+        </owl:disjointUnionOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/BasicLogicalEnvironment -->
+
+    <owl:Class rdf:about="&apiforkb-trm;BasicLogicalEnvironment">
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;ImmutableFocusedLogicalEnvironment"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.omg.org/spec/API4KB/Terminology/Client -->
 
     <owl:Class rdf:about="&apiforkb-trm;Client">
         <rdfs:label>Client</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&apiforkb-trm;Application"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;interactsWith"/>
+                        <owl:someValuesFrom rdf:resource="&apiforkb-trm;Proxy"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;interactsWith"/>
+                        <owl:allValuesFrom rdf:resource="&apiforkb-trm;Proxy"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;implements"/>
+                        <owl:onClass rdf:resource="&apiforkb-trm;Interface"/>
+                        <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:maxQualifiedCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="&apiforkb-trm;KnowledgePlatformManager"/>
+        <owl:disjointWith rdf:resource="&apiforkb-trm;Proxy"/>
         <skos:definition rdf:datatype="&xsd;string">application that needs to use API4KB. The Client will interact with the Proxy. </skos:definition>
+        <owl:versionInfo>0.1</owl:versionInfo>
         <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
     </owl:Class>
     
@@ -255,18 +590,37 @@
     <!-- http://www.omg.org/spec/API4KB/Terminology/Conceptualizing -->
 
     <owl:Class rdf:about="&apiforkb-trm;Conceptualizing">
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Action"/>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;hasInput-Conceptualize"/>
+                <owl:someValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;hasInput-Conceptualize"/>
+                <owl:onClass rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;isOperationDefinedBy"/>
+                <owl:onClass rdf:resource="&apiforkb-trm;IConceptualize"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;isOperationDefinedBy"/>
+                <owl:someValuesFrom rdf:resource="&apiforkb-trm;IConceptualize"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;LiftingAction"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&apiforkb-trm;hasOutput"/>
                 <owl:onClass rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;hasInput"/>
-                <owl:onClass rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -290,17 +644,17 @@
     <!-- http://www.omg.org/spec/API4KB/Terminology/Expressing -->
 
     <owl:Class rdf:about="&apiforkb-trm;Expressing">
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Action"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;hasOutput"/>
-                <owl:someValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;LoweringAction"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&apiforkb-trm;hasInput"/>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;hasOutput"/>
+                <owl:someValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <skos:definition rdf:datatype="&xsd;string">action for transforming a knowledge asset into a generalized expression.</skos:definition>
@@ -321,14 +675,173 @@
     
 
 
+    <!-- http://www.omg.org/spec/API4KB/Terminology/FocusedHeterogeneousOMS -->
+
+    <owl:Class rdf:about="&apiforkb-trm;FocusedHeterogeneousOMS">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&apiforkb-trm;FocusedOMS"/>
+                    <rdf:Description rdf:about="&ontoiop-trm;HeterogeneousOMS"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/FocusedLogicalEnvironment -->
+
+    <owl:Class rdf:about="&apiforkb-trm;FocusedLogicalEnvironment">
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;LogicalEnvironment"/>
+        <skos:definition>(API4KB): logical environment having a focus; that is, where a path exists from any node in the diagram to the focus.</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/FocusedOMS -->
+
+    <owl:Class rdf:about="&apiforkb-trm;FocusedOMS">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&apiforkb-trm;FocusedOMSResource"/>
+                    <rdf:Description rdf:about="&ontoiop-trm;OMS"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&apiforkb-trm;GeneralizedExpression"/>
+                    <rdf:Description rdf:about="&ontoiop-trm;OMS"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&apiforkb-trm;FocusedOMSResource"/>
+                    <rdf:Description rdf:about="&apiforkb-trm;GeneralizedExpression"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/FocusedOMSAsset -->
+
+    <owl:Class rdf:about="&apiforkb-trm;FocusedOMSAsset">
+        <rdfs:label>Focused OMS Asset</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&apiforkb-trm;FocusedOMSResource"/>
+                    <rdf:Description rdf:about="&apiforkb-trm;KnowledgeAsset"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;expressedAs"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMS"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <skos:definition rdf:datatype="&xsd;string">knowledge asset for Focused OMSs.</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/FocusedOMSEncoding -->
+
+    <owl:Class rdf:about="&apiforkb-trm;FocusedOMSEncoding">
+        <rdfs:label>Focused OMS Encoding</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;FocusedOMSResource"/>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;encodingOf"/>
+                <owl:someValuesFrom rdf:resource="&apiforkb-trm;FocusedOMSManifestation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">byte (or bit) sequence that is the encoding of a OMS Manifestation in some character encoding system(s).</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/FocusedOMSItem -->
+
+    <owl:Class rdf:about="&apiforkb-trm;FocusedOMSItem">
+        <rdfs:label>Focused OMS Item</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;FocusedOMSResource"/>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeItem"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;localCopyOf"/>
+                <owl:someValuesFrom rdf:resource="&apiforkb-trm;FocusedOMSEncoding"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">physical instance of an OMS Encoding, e.g. a file on a hard drive, a Java String in memory.</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/FocusedOMSManifestation -->
+
+    <owl:Class rdf:about="&apiforkb-trm;FocusedOMSManifestation">
+        <rdfs:label>Focused OMS Manifestation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;FocusedOMSResource"/>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;manifestationOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;FocusedOMS"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;usesSerialization"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMSSerialization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">character sequence, or collection of character sequences, each being the serialization of a basic OMS in an OMS Serialization (Formats), together with a manifestation of the logical environment.</skos:definition>
+        <skos:note>Note: if the OMS manifested is a basic OMS, then the logical environment may be specified as a part of the OMS language (e.g. as a Profile declaration), or may be implicit (e.g. if there is only one logic associated with the OMS language.)</skos:note>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/FocusedOMSResource -->
+
+    <owl:Class rdf:about="&apiforkb-trm;FocusedOMSResource">
+        <rdfs:label>Focused OMS Resource</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeResource"/>
+        <skos:definition rdf:datatype="&xsd;string">Focused OMS Asset, Focused OMS (Ontology, Specification or Model), FocusedOMS Manifestation, FocusedOMS Encoding, or FocusedOMS Item</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
     <!-- http://www.omg.org/spec/API4KB/Terminology/GeneralizedExpression -->
 
     <owl:Class rdf:about="&apiforkb-trm;GeneralizedExpression">
         <rdfs:label>GeneralizedExpression</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;usesLanguage"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;Language"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeResource"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;hasPart"/>
-                <owl:allValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasLogicalEnvironment"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;LogicalEnvironment"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -340,15 +853,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ontoiop-trm;hasLogicalEnvironment"/>
-                <owl:onClass rdf:resource="&ontoiop-trm;LogicalEnvironment"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;usesLanguage"/>
-                <owl:someValuesFrom rdf:resource="&ontoiop-trm;Language"/>
+                <owl:onProperty rdf:resource="&apiforkb-trm;hasPart"/>
+                <owl:allValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <skos:definition rdf:datatype="&xsd;string">Set of Expressions in one or more Languages, in the context of a Logical Environment determining how these Expressions are jointly interpreted.</skos:definition>
@@ -365,10 +871,184 @@ Example E: A and B, together with a mapping that allows OWL to be converted to C
     
 
 
+    <!-- http://www.omg.org/spec/API4KB/Terminology/IAddKnowledgeResourceToImmutableKB -->
+
+    <owl:Class rdf:about="&apiforkb-trm;IAddKnowledgeResourceToImmutableKB">
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;PublicInterface"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/IAddKnowledgeResourceToMutableKB -->
+
+    <owl:Class rdf:about="&apiforkb-trm;IAddKnowledgeResourceToMutableKB">
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;PublicInterface"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/IConceptualize -->
+
+    <owl:Class rdf:about="&apiforkb-trm;IConceptualize">
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;LiftingInterface"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;hasInput-api"/>
+                <owl:allValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;hasOutput-api"/>
+                <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition>Lifting Interface such that for every Operation X defined by it, X has a single input which is a Generalized Expression G, and has an output which is a Knowledge Asset H where H is expressed as G.</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/IFunction1 -->
+
+    <owl:Class rdf:about="&apiforkb-trm;IFunction1">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&apiforkb-trm;Interface"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;definesOperation"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="&apiforkb-trm;Operation"/>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="&apiforkb-trm;hasInput"/>
+                                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                                    </owl:Restriction>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="&apiforkb-trm;hasOutput"/>
+                                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                                    </owl:Restriction>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;definesOperation"/>
+                        <owl:allValuesFrom>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="&apiforkb-trm;Operation"/>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="&apiforkb-trm;hasInput"/>
+                                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                                    </owl:Restriction>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="&apiforkb-trm;hasOutput"/>
+                                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                                    </owl:Restriction>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/IParse -->
+
+    <owl:Class rdf:about="&apiforkb-trm;IParse">
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;LiftingInterface"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;hasInput-api"/>
+                <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;hasOutput-api"/>
+                <owl:allValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/IUnmarshall -->
+
+    <owl:Class rdf:about="&apiforkb-trm;IUnmarshall">
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;LiftingInterface"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/ImmutableFocusedLogicalEnvironment -->
+
+    <owl:Class rdf:about="&apiforkb-trm;ImmutableFocusedLogicalEnvironment">
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;FocusedLogicalEnvironment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/ImmutableKBFactory -->
+
+    <owl:Class rdf:about="&apiforkb-trm;ImmutableKBFactory">
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Role"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;requires"/>
+                <owl:someValuesFrom rdf:resource="&apiforkb-trm;AdditionOfKnowledgeResourceToImmutableKB"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/ImmutableKnowledgeBase -->
+
+    <owl:Class rdf:about="&apiforkb-trm;ImmutableKnowledgeBase">
+        <rdfs:label>Immutable Knowledge Base</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&apiforkb-trm;KnowledgeBase"/>
+                    <rdf:Description rdf:about="&apiforkb-trm;KnowledgeResource"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <skos:definition rdf:datatype="&xsd;string"> Knowledge Asset that is a collection of Knowledge Assets </skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/ImmutableView -->
+
+    <owl:Class rdf:about="&apiforkb-trm;ImmutableView">
+        <rdfs:label>Immutable View</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;ImmutableKnowledgeBase"/>
+        <skos:definition rdf:datatype="&xsd;string">Immutable knowledge base defined by substitution of a query results expression (e.g. obtained from an application of a query to a knowledge base) into a template expression whose vocabulary consists of distinguished query variables and non-logical symbols that are not contained in the vocabulary of the knowledge base.</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/InStreamAPI -->
+
+    <owl:Class rdf:about="&apiforkb-trm;InStreamAPI">
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;LiftingInterface"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.omg.org/spec/API4KB/Terminology/InStreaming -->
 
     <owl:Class rdf:about="&apiforkb-trm;InStreaming">
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Action"/>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;LiftingAction"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&apiforkb-trm;hasInput"/>
@@ -387,11 +1067,58 @@ Example E: A and B, together with a mapping that allows OWL to be converted to C
     
 
 
+    <!-- http://www.omg.org/spec/API4KB/Terminology/Interface -->
+
+    <owl:Class rdf:about="&apiforkb-trm;Interface">
+        <dct:abstract></dct:abstract>
+        <skos:note>is there a super-class for the OMG sense of &quot;Interface&quot; we can inherit from?</skos:note>
+        <skos:note>This class contains only API4KB Interfaces.</skos:note>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&apiforkb-trm;InternalInterface"/>
+            <rdf:Description rdf:about="&apiforkb-trm;PublicInterface"/>
+        </owl:disjointUnionOf>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&apiforkb-trm;SideEffectFreeInterface"/>
+            <rdf:Description rdf:about="&apiforkb-trm;SideEffectfulInterface"/>
+        </owl:disjointUnionOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/InternalInterface -->
+
+    <owl:Class rdf:about="&apiforkb-trm;InternalInterface">
+        <rdfs:label>internal interface</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Interface"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;definesOperation"/>
+                <owl:allValuesFrom rdf:resource="&apiforkb-trm;InternalOperation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
     <!-- http://www.omg.org/spec/API4KB/Terminology/InternalOperation -->
 
     <owl:Class rdf:about="&apiforkb-trm;InternalOperation">
         <rdfs:label>Internal Operation</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Operation"/>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&apiforkb-trm;Operation"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;isOperationDefinedBy"/>
+                        <owl:onClass rdf:resource="&apiforkb-trm;InternalInterface"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="&apiforkb-trm;PublicOperation"/>
         <skos:definition rdf:datatype="&xsd;string">Operations offered by the Knowledge Platform to the Proxy.</skos:definition>
         <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
     </owl:Class>
@@ -402,13 +1129,17 @@ Example E: A and B, together with a mapping that allows OWL to be converted to C
 
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeAsset">
         <rdfs:label>Knowledge Asset</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeResource"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;expressedAs"/>
-                <owl:someValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&apiforkb-trm;KnowledgeResource"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;expressedAs"/>
+                        <owl:someValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
         <skos:definition rdf:datatype="&xsd;string">equivalence class (according to a logical environment) of generalized expressions.
 
 Note:  intuitively, a knowledge asset is information that may be (equivalently) expressed in one or more KR Languages.</skos:definition>
@@ -424,10 +1155,11 @@ Example: a sequence of strings that are asserted to be names of philosphers in s
     <!-- http://www.omg.org/spec/API4KB/Terminology/KnowledgeBase -->
 
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeBase">
-        <rdfs:label>Knowledge Base</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
-        <skos:definition rdf:datatype="&xsd;string"> Knowledge Asset that is a collection of Knowledge Assets </skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeSource"/>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&apiforkb-trm;ImmutableKnowledgeBase"/>
+            <rdf:Description rdf:about="&apiforkb-trm;MutableKnowledgeBase"/>
+        </owl:disjointUnionOf>
     </owl:Class>
     
 
@@ -465,7 +1197,7 @@ Example B: the zip archive of
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">physical instance of a Knowledge Encoding, e.g. a file on a hard drive, a Java String in memory.</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">physical instance of a Knowledge Encoding, e.g. snapshot of a file on a hard drive, a Java String in memory.</skos:definition>
         <skos:example>Example: my copy in my Download folder of the encoding in UTF-8 of the serialization in Manchester syntax of an OWL ontology. </skos:example>
         <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
     </owl:Class>
@@ -505,6 +1237,20 @@ Example: SPARQL Query String for the names of philosphers.</skos:example>
 
     <owl:Class rdf:about="&apiforkb-trm;KnowledgePlatform">
         <rdfs:label>Knowledge Platform</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;supports"/>
+                        <owl:someValuesFrom rdf:resource="&apiforkb-trm;Component"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;isManagedBy"/>
+                        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgePlatformManager"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
         <skos:definition rdf:datatype="&xsd;string">software architecture that supports the Components and their interactions.
 
 Note: The Proxy will not have access to the KP except through the KP Manager.</skos:definition>
@@ -517,6 +1263,26 @@ Note: The Proxy will not have access to the KP except through the KP Manager.</s
 
     <owl:Class rdf:about="&apiforkb-trm;KnowledgePlatformManager">
         <rdfs:label>Knowledge Platform Manager</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&apiforkb-trm;Application"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;implements"/>
+                        <owl:someValuesFrom rdf:resource="&apiforkb-trm;InternalInterface"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;interactsWith"/>
+                        <owl:someValuesFrom rdf:resource="&apiforkb-trm;Proxy"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;manages"/>
+                        <owl:someValuesFrom rdf:resource="&apiforkb-trm;KnowledgePlatform"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="&apiforkb-trm;Proxy"/>
         <skos:definition rdf:datatype="&xsd;string">application that interacts with the Proxy and implements the API4KB internal interfaces..</skos:definition>
         <skos:scopeNote>Note: Optionally, a KP Manager can orchestrate the Components in the KP.
 Alternatively, the Components may coordinate among each other</skos:scopeNote>
@@ -529,6 +1295,8 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
 
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeRepresentationAndReasoningLanguage">
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Language"/>
+        <skos:definition rdf:datatype="&xsd;string">OMS Language, Query Language, or Result Language</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
     </owl:Class>
     
 
@@ -537,8 +1305,23 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
 
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeResource">
         <rdfs:label>Knowledge Resource</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">Knowledge Asset, Generalized Expression, Knowledge Manifestation, Knowledge Encoding, or Knowledge Item</skos:definition>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeSource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;accordingTo"/>
+                <owl:onClass rdf:resource="&apiforkb-trm;ImmutableFocusedLogicalEnvironment"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">Immutable Resource at one of the following levels of abstraction; Knowledge Asset, Generalized Expression, Knowledge Manifestation, Knowledge Encoding, or Knowledge Item.</skos:definition>
         <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&apiforkb-trm;GeneralizedExpression"/>
+            <rdf:Description rdf:about="&apiforkb-trm;KnowledgeAsset"/>
+            <rdf:Description rdf:about="&apiforkb-trm;KnowledgeEncoding"/>
+            <rdf:Description rdf:about="&apiforkb-trm;KnowledgeItem"/>
+            <rdf:Description rdf:about="&apiforkb-trm;KnowledgeManifestation"/>
+        </owl:disjointUnionOf>
     </owl:Class>
     
 
@@ -560,20 +1343,101 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     
 
 
+    <!-- http://www.omg.org/spec/API4KB/Terminology/KnowledgeSource -->
+
+    <owl:Class rdf:about="&apiforkb-trm;KnowledgeSource">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;accordingTo"/>
+                <owl:onClass rdf:resource="&apiforkb-trm;FocusedLogicalEnvironment"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/LiftingAction -->
+
+    <owl:Class rdf:about="&apiforkb-trm;LiftingAction">
+        <rdfs:label>Lifting Action</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;isOperationDefinedBy"/>
+                <owl:someValuesFrom rdf:resource="&apiforkb-trm;LiftingInterface"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;isOperationDefinedBy"/>
+                <owl:onClass rdf:resource="&apiforkb-trm;LiftingInterface"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Action"/>
+        <skos:definition rdf:datatype="&xsd;string">Action whose input is a Knowledge Resource and whose output is a Knowledge Resource of the same &quot;type&quot; (i.e. OMS, Query, Result) and belongs to the next higher level of abstraction in the Knowledge Resource hierarchy.</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/LiftingInterface -->
+
+    <owl:Class rdf:about="&apiforkb-trm;LiftingInterface">
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;IFunction1"/>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;InternalInterface"/>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;SideEffectFreeInterface"/>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&apiforkb-trm;IConceptualize"/>
+            <rdf:Description rdf:about="&apiforkb-trm;IParse"/>
+            <rdf:Description rdf:about="&apiforkb-trm;IUnmarshall"/>
+            <rdf:Description rdf:about="&apiforkb-trm;InStreamAPI"/>
+        </owl:disjointUnionOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/LogicalEnvironment -->
+
+    <owl:Class rdf:about="&apiforkb-trm;LogicalEnvironment">
+        <skos:definition>(API4KB) diagram (in the sense of category theory) of institutions.</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/LoweringAction -->
+
+    <owl:Class rdf:about="&apiforkb-trm;LoweringAction">
+        <rdfs:label>Lowering Action</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Action"/>
+        <skos:definition rdf:datatype="&xsd;string">Action whose input is a Knowledge Resource and whose output is a Knowledge Resource of the same &quot;type&quot; (i.e. OMS, Query, Result) and belongs to the next lower level of abstraction in the Knowledge Resource hierarchy.</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/LoweringInterface -->
+
+    <owl:Class rdf:about="&apiforkb-trm;LoweringInterface">
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;InternalInterface"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.omg.org/spec/API4KB/Terminology/Manifesting -->
 
     <owl:Class rdf:about="&apiforkb-trm;Manifesting">
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Action"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;hasOutput"/>
-                <owl:someValuesFrom rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;LoweringAction"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&apiforkb-trm;hasInput"/>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;hasOutput"/>
+                <owl:someValuesFrom rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <skos:definition rdf:datatype="&xsd;string">action of transforming a generalized expression into a knowledge manifestation.</skos:definition>
@@ -585,17 +1449,17 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     <!-- http://www.omg.org/spec/API4KB/Terminology/Marshalling -->
 
     <owl:Class rdf:about="&apiforkb-trm;Marshalling">
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Action"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;hasInput"/>
-                <owl:someValuesFrom rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;LoweringAction"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&apiforkb-trm;hasOutput"/>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;hasInput"/>
+                <owl:someValuesFrom rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <skos:definition rdf:datatype="&xsd;string">action of transforming a knowledge manifestation into a knowledge encoding.</skos:definition>
@@ -604,91 +1468,10 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/Terminology/OMSAsset -->
+    <!-- http://www.omg.org/spec/API4KB/Terminology/MutableKnowledgeBase -->
 
-    <owl:Class rdf:about="&apiforkb-trm;OMSAsset">
-        <rdfs:label>OMS Asset</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;OMSResource"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;expressedAs"/>
-                <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMS"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">knowledge asset for OMSs.</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
-
-
-    <!-- http://www.omg.org/spec/API4KB/Terminology/OMSEncoding -->
-
-    <owl:Class rdf:about="&apiforkb-trm;OMSEncoding">
-        <rdfs:label>OMS Encoding</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;OMSResource"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;encodingOf"/>
-                <owl:someValuesFrom rdf:resource="&apiforkb-trm;OMSManifestation"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">byte (or bit) sequence that is the encoding of a OMS Manifestation in some character encoding system(s).</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
-
-
-    <!-- http://www.omg.org/spec/API4KB/Terminology/OMSItem -->
-
-    <owl:Class rdf:about="&apiforkb-trm;OMSItem">
-        <rdfs:label>OMS Item</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeItem"/>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;OMSResource"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;localCopyOf"/>
-                <owl:someValuesFrom rdf:resource="&apiforkb-trm;OMSEncoding"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">physical instance of an OMS Encoding, e.g. a file on a hard drive, a Java String in memory.</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
-
-
-    <!-- http://www.omg.org/spec/API4KB/Terminology/OMSManifestation -->
-
-    <owl:Class rdf:about="&apiforkb-trm;OMSManifestation">
-        <rdfs:label>OMS Manifestation</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;OMSResource"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;manifestationOf"/>
-                <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMS"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;usesSerialization"/>
-                <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMSSerialization"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">character sequence, or collection of character sequences, each being the serialization of a basic OMS in an OMS Serialization (Formats).</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
-
-
-    <!-- http://www.omg.org/spec/API4KB/Terminology/OMSResource -->
-
-    <owl:Class rdf:about="&apiforkb-trm;OMSResource">
-        <rdfs:label>OMS Resource</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeResource"/>
-        <skos:definition rdf:datatype="&xsd;string">OMS Asset, OMS (Ontology, Specification or Model), OMS Manifestation, OMS Encoding, or OMS Item</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    <owl:Class rdf:about="&apiforkb-trm;MutableKnowledgeBase">
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeBase"/>
     </owl:Class>
     
 
@@ -697,9 +1480,15 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
 
     <owl:Class rdf:about="&apiforkb-trm;Operation">
         <rdfs:label>Operation</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">functions (possibly with side-effects) having inputs and outputs that are API4KB or OntoIOp concepts.</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">function (possibly with side-effects) having inputs and outputs that are API4KB or OntoIOp concepts.</skos:definition>
         <skos:example>Example: add Asset to an immutable KB to generate a new immutable KB. </skos:example>
         <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <skos:note>The definition of Operation is out of synch with the individuals in the Test ontology. These individuals are more like operation events - the application of a function to a particular (set of) input(s), rather than the function themselves.  The individuals in the Interface class are more like functions.</skos:note>
+        <dct:abstract></dct:abstract>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&apiforkb-trm;InternalOperation"/>
+            <rdf:Description rdf:about="&apiforkb-trm;PublicOperation"/>
+        </owl:disjointUnionOf>
     </owl:Class>
     
 
@@ -707,17 +1496,17 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     <!-- http://www.omg.org/spec/API4KB/Terminology/OutStreaming -->
 
     <owl:Class rdf:about="&apiforkb-trm;OutStreaming">
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Action"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;hasInput"/>
-                <owl:someValuesFrom rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;LoweringAction"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&apiforkb-trm;hasOutput"/>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;KnowledgeItem"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;hasInput"/>
+                <owl:someValuesFrom rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <skos:definition rdf:datatype="&xsd;string">action of transforming a knowledge encoding into a knowledge item.</skos:definition>
@@ -729,17 +1518,17 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     <!-- http://www.omg.org/spec/API4KB/Terminology/Parsing -->
 
     <owl:Class rdf:about="&apiforkb-trm;Parsing">
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Action"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;hasOutput"/>
-                <owl:someValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;LiftingAction"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&apiforkb-trm;hasInput"/>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;hasOutput"/>
+                <owl:someValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <skos:definition rdf:datatype="&xsd;string">action of transforming a knowledge manifestation into a generalized expression.</skos:definition>
@@ -752,9 +1541,16 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
 
     <owl:Class rdf:about="&apiforkb-trm;Proficiency">
         <rdfs:label>Proficiency</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">effect-free functionality whose inputs and outputs are of the following types: KP, Asset, Generalized Expression, KnowledgeManifestation, KnowledgeEncoding, KnowledgeItem.</skos:definition>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;isActualizedBy"/>
+                <owl:allValuesFrom rdf:resource="&apiforkb-trm;PublicOperation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">effect-free functionality that is actualized by one or more operations whose inputs and outputs are of the following types: KP, Asset, Generalized Expression, KnowledgeManifestation, KnowledgeEncoding, KnowledgeItem.</skos:definition>
         <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
         <skos:scopeNote>Note: In our architecture, Proficiencies are provided by a collection of Components (which may contain just one Component). Different collections of Components may provide the same Proficiency. The standard API4KB Proficiencies will be enumerated in the specification.</skos:scopeNote>
+        <dct:abstract></dct:abstract>
         <skos:example>TBD</skos:example>
     </owl:Class>
     
@@ -764,8 +1560,40 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
 
     <owl:Class rdf:about="&apiforkb-trm;Proxy">
         <rdfs:label>Proxy</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">application that implements the API4KB public interfaces so that on an external request from a Client, the Proxy will map the public Operations to the internal Operations and send the request to some KP manager, which then responds to the Client through the Proxy.</skos:definition>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&apiforkb-trm;Application"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;implements"/>
+                        <owl:someValuesFrom rdf:resource="&apiforkb-trm;PublicInterface"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <skos:definition rdf:datatype="&xsd;string">application that implements the API4KB public interfaces so that on an external request from a Client, the Proxy will map the public Operations to the internal Operations and send the request to some KP manager or another Proxy. The output is then delivered to the KP manager, which responds to the Client through the Proxy(ies).</skos:definition>
         <skos:scopeNote>The Proxy may play a security role.</skos:scopeNote>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <skos:note>This definition does not exclude other functionalities.</skos:note>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/PublicInterface -->
+
+    <owl:Class rdf:about="&apiforkb-trm;PublicInterface">
+        <rdfs:label>Public Interface</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&apiforkb-trm;Interface"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;definesOperation"/>
+                        <owl:allValuesFrom rdf:resource="&apiforkb-trm;PublicOperation"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
         <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
     </owl:Class>
     
@@ -775,7 +1603,23 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
 
     <owl:Class rdf:about="&apiforkb-trm;PublicOperation">
         <rdfs:label>Public Operation</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Operation"/>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&apiforkb-trm;Operation"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;actualizes"/>
+                        <owl:onClass rdf:resource="&apiforkb-trm;Proficiency"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;isOperationDefinedBy"/>
+                        <owl:onClass rdf:resource="&apiforkb-trm;PublicInterface"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
         <skos:definition rdf:datatype="&xsd;string">Operations that are exposed by the Proxy to the Client.</skos:definition>
         <skos:example>Example: add Asset to an immutable KB to generate a new immutable KB. </skos:example>
         <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
@@ -787,20 +1631,28 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
 
     <owl:Class rdf:about="&apiforkb-trm;Query">
         <rdfs:label>Query</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;QueryResource"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;usesLanguage"/>
-                <owl:allValuesFrom rdf:resource="&apiforkb-trm;QueryLanguage"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;usesLanguage"/>
-                <owl:someValuesFrom rdf:resource="&apiforkb-trm;QueryLanguage"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&apiforkb-trm;GeneralizedExpression"/>
+                    <rdf:Description rdf:about="&apiforkb-trm;QueryResource"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;usesLanguage"/>
+                        <owl:someValuesFrom rdf:resource="&apiforkb-trm;QueryLanguage"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;usesLanguage"/>
+                        <owl:allValuesFrom rdf:resource="&apiforkb-trm;QueryLanguage"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
         <skos:definition rdf:datatype="&xsd;string">generalized expression using query languages.</skos:definition>
         <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
     </owl:Class>
@@ -881,14 +1733,14 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;QueryResource"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;usesSerialization"/>
-                <owl:someValuesFrom rdf:resource="&apiforkb-trm;QuerySerialization"/>
+                <owl:onProperty rdf:resource="&apiforkb-trm;manifestationOf"/>
+                <owl:someValuesFrom rdf:resource="&apiforkb-trm;Query"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;manifestationOf"/>
-                <owl:someValuesFrom rdf:resource="&apiforkb-trm;Query"/>
+                <owl:onProperty rdf:resource="&apiforkb-trm;usesSerialization"/>
+                <owl:someValuesFrom rdf:resource="&apiforkb-trm;QuerySerialization"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <skos:definition rdf:datatype="&xsd;string">character sequence, or collection of character sequences, each being the serialization of a Query in a Query Serialization (Formats).</skos:definition>
@@ -932,13 +1784,13 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&apiforkb-trm;hasInput"/>
-                <owl:someValuesFrom rdf:resource="&apiforkb-trm;OMSResource"/>
+                <owl:someValuesFrom rdf:resource="&apiforkb-trm;QueryResource"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&apiforkb-trm;hasInput"/>
-                <owl:someValuesFrom rdf:resource="&apiforkb-trm;QueryResource"/>
+                <owl:someValuesFrom rdf:resource="&apiforkb-trm;FocusedOMSResource"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <skos:definition rdf:datatype="&xsd;string">action of applying a query to a knowledge base.</skos:definition>
@@ -956,13 +1808,13 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&apiforkb-trm;usesLanguage"/>
-                <owl:someValuesFrom rdf:resource="&apiforkb-trm;ResultLanguage"/>
+                <owl:allValuesFrom rdf:resource="&apiforkb-trm;ResultLanguage"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&apiforkb-trm;usesLanguage"/>
-                <owl:allValuesFrom rdf:resource="&apiforkb-trm;ResultLanguage"/>
+                <owl:someValuesFrom rdf:resource="&apiforkb-trm;ResultLanguage"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <skos:definition rdf:datatype="&xsd;string">sequence of bindings as a correspondence between distinguished query variables and derived symbols.</skos:definition>
@@ -1092,6 +1944,12 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
 
     <owl:Class rdf:about="&apiforkb-trm;Role">
         <rdfs:label>Role</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;requires"/>
+                <owl:someValuesFrom rdf:resource="&apiforkb-trm;Proficiency"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
         <skos:definition rdf:datatype="&xsd;string">set of required proficiencies.</skos:definition>
         <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
         <skos:example>TBD</skos:example>
@@ -1112,6 +1970,32 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
         </rdfs:subClassOf>
         <skos:definition rdf:datatype="&xsd;string">system for transforming from an expression to a character sequence.</skos:definition>
         <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/SideEffectFreeInterface -->
+
+    <owl:Class rdf:about="&apiforkb-trm;SideEffectFreeInterface">
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Interface"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/SideEffectfulInterface -->
+
+    <owl:Class rdf:about="&apiforkb-trm;SideEffectfulInterface">
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Interface"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/Specification -->
+
+    <owl:Class rdf:about="&apiforkb-trm;Specification">
+        <rdfs:label>Specification</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
     </owl:Class>
     
 
@@ -1138,6 +2022,17 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     
 
 
+    <!-- http://www.omg.org/spec/API4KB/Terminology/SuccessFocusedOMSAsset -->
+
+    <owl:Class rdf:about="&apiforkb-trm;SuccessFocusedOMSAsset">
+        <rdfs:label>Success for type FocusedOMS Asset</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;SuccessAsset"/>
+        <skos:definition rdf:datatype="&xsd;string">success of type FocusedOMS asset.</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
     <!-- http://www.omg.org/spec/API4KB/Terminology/SuccessKnowledgeResource -->
 
     <owl:Class rdf:about="&apiforkb-trm;SuccessKnowledgeResource">
@@ -1150,21 +2045,25 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/Terminology/SuccessOMSAsset -->
-
-    <owl:Class rdf:about="&apiforkb-trm;SuccessOMSAsset">
-        <rdfs:label>Success for type OMS Asset</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;SuccessAsset"/>
-        <skos:definition rdf:datatype="&xsd;string">success of type OMS asset.</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
-
-
     <!-- http://www.omg.org/spec/API4KB/Terminology/Try -->
 
     <owl:Class rdf:about="&apiforkb-trm;Try">
         <skos:definition rdf:datatype="&xsd;string">generic class for generic success or failure.</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&apiforkb-trm;Failure"/>
+            <rdf:Description rdf:about="&apiforkb-trm;Success"/>
+        </owl:disjointUnionOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/TryFocusedOMSAsset -->
+
+    <owl:Class rdf:about="&apiforkb-trm;TryFocusedOMSAsset">
+        <rdfs:label>Try for type FocusedOMS Asset</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;TryKnowledgeAsset"/>
+        <skos:definition rdf:datatype="&xsd;string">try of type &apos;FocusedOMS asset&apos;</skos:definition>
         <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
     </owl:Class>
     
@@ -1192,21 +2091,10 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/Terminology/TryOMSAsset -->
-
-    <owl:Class rdf:about="&apiforkb-trm;TryOMSAsset">
-        <rdfs:label>Try for type OMS Asset</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;TryKnowledgeAsset"/>
-        <skos:definition rdf:datatype="&xsd;string">try of type &apos;OMS asset&apos;</skos:definition>
-        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
-    </owl:Class>
-    
-
-
     <!-- http://www.omg.org/spec/API4KB/Terminology/Unmarshalling -->
 
     <owl:Class rdf:about="&apiforkb-trm;Unmarshalling">
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Action"/>
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;LiftingAction"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&apiforkb-trm;hasInput"/>
@@ -1225,14 +2113,68 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/Terminology/View -->
+    <!-- http://www.omg.org/spec/API4KB/Terminology/addingFocusedOMSItemToImmutableKB -->
 
-    <owl:Class rdf:about="&apiforkb-trm;View">
-        <rdfs:label>View</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeBase"/>
-        <skos:definition rdf:datatype="&xsd;string">knowledge base generated by substituting query results into a template expression whose vocabulary consists of distinguished query variables and non-logical symbols that are not contained in the vocabulary of the knowledge base.</skos:definition>
+    <owl:Class rdf:about="&apiforkb-trm;addingFocusedOMSItemToImmutableKB">
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;addingKnowledgeResourceToImmutableKB"/>
+        <skos:definition rdf:datatype="&xsd;string">Operation adding an FocusedOMS Item to a KB</skos:definition>
         <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
     </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/addingKnowledgeResourceToImmutableKB -->
+
+    <owl:Class rdf:about="&apiforkb-trm;addingKnowledgeResourceToImmutableKB">
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;PublicOperation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;actualizes"/>
+                <owl:onClass rdf:resource="&apiforkb-trm;AdditionOfKnowledgeResourceToImmutableKB"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&apiforkb-trm;isOperationDefinedBy"/>
+                <owl:allValuesFrom rdf:resource="&apiforkb-trm;IAddKnowledgeResourceToImmutableKB"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">abstract class of Operations adding a Knowlede Resource to a KB</skos:definition>
+        <skos:note>Members of this class are Operations defined by the Public Interface &apos;addKnowledgeResourceToImmutableKB&apos;</skos:note>
+        <dct:abstract></dct:abstract>
+        <skos:editorialNote>I haven&apos;t been able to figure out a clean way to express in OWL that every member of this class is an Operation defined by the same Interface, in particular &apos;IAddKnowledgeResourceToImmutableKB&apos;</skos:editorialNote>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/addingQueryItemToImmutableKB -->
+
+    <owl:Class rdf:about="&apiforkb-trm;addingQueryItemToImmutableKB">
+        <rdfs:subClassOf rdf:resource="&apiforkb-trm;addingKnowledgeResourceToImmutableKB"/>
+        <skos:definition rdf:datatype="&xsd;string">Operation adding a Query Item to a KB</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/BasicOMS -->
+
+    <rdf:Description rdf:about="&ontoiop-trm;BasicOMS">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&apiforkb-trm;FocusedOMS"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;accordingTo"/>
+                        <owl:onClass rdf:resource="&apiforkb-trm;BasicLogicalEnvironment"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </rdf:Description>
     
 
 
@@ -1244,12 +2186,9 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     
 
 
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMS -->
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/FocusedOMS -->
 
-    <owl:Class rdf:about="&ontoiop-trm;OMS">
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;OMSResource"/>
-    </owl:Class>
+    <owl:Class rdf:about="&ontoiop-trm;FocusedOMS"/>
     
 
 
@@ -1266,6 +2205,27 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     <owl:Class rdf:about="&ontoiop-trm;OMSSerialization">
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;Serialization"/>
     </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/Terminology/API4KB -->
+
+    <owl:NamedIndividual rdf:about="&apiforkb-trm;API4KB">
+        <rdf:type rdf:resource="&apiforkb-trm;Specification"/>
+        <skos:definition rdf:datatype="&xsd;string">the API4KB specificaiton</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:NamedIndividual>
 </rdf:RDF>
 
 
