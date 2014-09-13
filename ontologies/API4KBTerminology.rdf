@@ -135,7 +135,21 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeSource"/>
         <owl:inverseOf rdf:resource="&apiforkb-trm;isInputOf"/>
     </owl:ObjectProperty>
-    
+
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;hasFirstInput">
+    <rdfs:label>has first input</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">input of an operation  that appears second in the argument sequence</skos:definition>
+    <rdfs:subPropertyOf rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasInput"/>
+  </owl:ObjectProperty>
+  
+  
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;hasSecondInput">
+    <rdfs:label>has second input</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">input of an operation that appears second in the argument sequence</skos:definition>
+    <rdfs:subPropertyOf rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/hasInput"/>
+  </owl:ObjectProperty>
+  
+  
     <owl:ObjectProperty rdf:about="&apiforkb-trm;hasOutput">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label>has output</rdfs:label>
@@ -383,25 +397,6 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;InternalOperation"/>
     </owl:Class>
     
-    <owl:Class rdf:about="&apiforkb-trm;AddKnowledgeResourceToImmutableKB">
-        <rdfs:label>add knowledge resource to immutable KB</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;PublicOperation"/>
-    </owl:Class>
-    
-    <owl:Class rdf:about="&apiforkb-trm;AddKnowledgeResourceToMutableKB">
-        <rdfs:label>add knowledge resource to mutable KB</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;PublicOperation"/>
-    </owl:Class>
-    
-    <owl:Class rdf:about="&apiforkb-trm;AddFocusedOMSItemToImmutableKB">
-        <rdfs:label>add focused OMS item to immutable KB</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;AddKnowledgeResourceToImmutableKB"/>
-    </owl:Class>
-    
-    <owl:Class rdf:about="&apiforkb-trm;AddQueryItemToImmutableKB">
-        <rdfs:label>add query item to immutable KB</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;AddKnowledgeResourceToImmutableKB"/>
-    </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;AdditionOfKnowledgeResourceToImmutableKB">
         <rdfs:label>addition of knowledge resource to immutable KB</rdfs:label>
@@ -1423,6 +1418,8 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     </owl:Class>
   
   <!-- Script Input -->
+
+  <!-- Actions -->
   
   <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/QueryingAction">
     <rdfs:label>querying action</rdfs:label>
@@ -1467,6 +1464,39 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
+  
+  <!-- Operations -->
+
+  <!-- Public Operations -->
+  
+  <owl:Class rdf:about="&apiforkb-trm;AddingOperation-KnowledgeResourceToImmutableKB">
+    <rdfs:label>operation adding knowledge resources to immutable KBs</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">abstract class of operations adding knowlede
+      resources to immutable KBs</skos:definition>
+    <dct:abstract/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-trm;PublicOperation"/>
+  </owl:Class>
+  
+  <owl:Class rdf:about="&apiforkb-trm;AddingOperation-KnowledgeResourceToMutableKB">
+    <rdfs:label>operation adding knowledge resources to mutable KBs</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">abstract class of operations adding knowlede
+      resources to mutable KBs</skos:definition>
+    <dct:abstract/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-trm;PublicOperation"/>
+  </owl:Class>
+  
+  
+  <owl:Class rdf:about="&apiforkb-trm;AddingOperation-QueryItemToImmutableKB">
+    <rdfs:label>operation adding knowledge resources that are query items to immutable KBs</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&apiforkb-trm;AddingOperation-KnowledgeResourceToImmutableKB"/>
+  </owl:Class>
+  
+  
+  <owl:Class rdf:about="&apiforkb-trm;AddingOperation-FocusedOMSItemToImmutableKB">
+    <skos:definition rdf:datatype="&xsd;string">operation adding knowledge resources that are FocusedOMSs Item to immutable KBs</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-trm;AddingOperation-KnowledgeResourceToImmutableKB"/>
+  </owl:Class>
+  
   
 
 </rdf:RDF>
