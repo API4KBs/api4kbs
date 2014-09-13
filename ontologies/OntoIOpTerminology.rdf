@@ -1,0 +1,1867 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY dct "http://purl.org/dc/terms/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY ontoiop-trm "http://www.omg.org/spec/OntoIOp/Terminology/" >
+    <!ENTITY sm "http://www.omg.org/techprocess/ab/SpecificationMetadata/" >
+]>
+
+
+<rdf:RDF xmlns="http://www.omg.org/spec/OntoIOp/Terminology/"
+     xml:base="http://www.omg.org/spec/OntoIOp/Terminology/"
+     xmlns:ontoiop-trm="http://www.omg.org/spec/OntoIOp/Terminology/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:sm="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
+     xmlns:dct="http://purl.org/dc/terms/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+    <owl:Ontology rdf:about="http://www.omg.org/spec/OntoIOp/Terminology/">
+        <rdfs:label>OntoIop Terminology Ontology</rdfs:label>
+        <owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
+        <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/encodingOf -->
+
+    <owl:AnnotationProperty rdf:about="&ontoiop-trm;encodingOf">
+        <rdfs:label>is encoding of</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/inverseOf -->
+
+    <owl:AnnotationProperty rdf:about="&ontoiop-trm;inverseOf"/>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/localCopyOf -->
+
+    <owl:AnnotationProperty rdf:about="&ontoiop-trm;localCopyOf">
+        <rdfs:label>is local copy of</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/usesSerialization -->
+
+    <owl:AnnotationProperty rdf:about="&ontoiop-trm;usesSerialization">
+        <rdfs:label>uses Serialization</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSUnionOf -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;OMSUnionOf">
+        <rdfs:label>is union of OMSs</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&ontoiop-trm;SetOfOMS"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;StructuredOMS"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/accordingTo -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;accordingTo">
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/approximantOf -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;approximantOf">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:label>is approximant of</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&ontoiop-trm;OMS"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;OMS"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/combinationOf -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;combinationOf">
+        <rdfs:label>is combination of</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&ontoiop-trm;SetOfOMS"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;StructuredOMS"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/deliveredAs -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;deliveredAs">
+        <rdfs:label>is delivered as</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <owl:inverseOf rdf:resource="&ontoiop-trm;localCopyOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/documentationOf -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;documentationOf">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label>is documentation of</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&ontoiop-trm;OMS"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;OMSDocumentation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/encodedAs -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;encodedAs">
+        <rdfs:label>is encoded as</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <owl:inverseOf rdf:resource="&ontoiop-trm;encodingOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/encodingOf -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;encodingOf">
+        <rdfs:label>is encoding of</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <rdfs:domain rdf:resource="&ontoiop-trm;KnowledgeEncoding"/>
+        <rdfs:range rdf:resource="&ontoiop-trm;KnowledgeManifestation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/expressedAs -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;expressedAs">
+        <rdfs:label>is expressed as</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <owl:inverseOf rdf:resource="&ontoiop-trm;expressionOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/expressionOf -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;expressionOf">
+        <rdfs:label>is expression of</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <rdfs:domain rdf:resource="&ontoiop-trm;Expression"/>
+        <rdfs:range rdf:resource="&ontoiop-trm;KnowledgeAsset"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/extensionOf -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;extensionOf">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:label>is extension of</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&ontoiop-trm;OMS"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;OMS"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/formalizedBy -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;formalizedBy">
+        <rdfs:label>is formalized by</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&ontoiop-trm;Institution"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;Logic"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/formalizes -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;formalizes">
+        <rdfs:label>formalizes</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+        <inverseOf rdf:resource="&ontoiop-trm;formalizedBy"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/hasAspect -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;hasAspect">
+        <rdfs:label>has Aspect</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&ontoiop-trm;LanguageAspect"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;OMSLanguage"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/hasInput -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;hasInput">
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/hasLogic -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;hasLogic">
+        <rdfs:label>has Logic</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&ontoiop-trm;Logic"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;OMSLanguage"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/hasOutput -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;hasOutput">
+        <rdfs:label>has output</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/localCopyOf -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;localCopyOf">
+        <rdfs:label>is local copy of</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&ontoiop-trm;KnowledgeEncoding"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;KnowledgeItem"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/logicallyInteroperableWith -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;logicallyInteroperableWith">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdfs:label>is logically interoperable with</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&ontoiop-trm;StructuredOMS"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;StructuredOMS"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/manifestationOf -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;manifestationOf">
+        <rdfs:label>is manifestation of</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/manifestedAs -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;manifestedAs">
+        <rdfs:label>is manifested as</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/mappingCodomain -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;mappingCodomain">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label>has mapping codomain</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+        <rdfs:domain rdf:resource="&ontoiop-trm;Mapping"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/mappingDomain -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;mappingDomain">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label>has mapping domain</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+        <rdfs:domain rdf:resource="&ontoiop-trm;Mapping"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/profileOf -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;profileOf">
+        <rdfs:label>is profile of</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&ontoiop-trm;OMSLanguage"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;Profile"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/serializationOf -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;serializationOf">
+        <rdfs:label>is serialization of</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&ontoiop-trm;Language"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;Serialization"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/subLanguageOf -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;subLanguageOf">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:label>is sublanguage of</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&ontoiop-trm;Language"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;Language"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/subLogicOf -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;subLogicOf">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:label>is sublogic of</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+        <rdfs:range rdf:resource="&ontoiop-trm;Logic"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;Logic"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/subOMSOf -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;subOMSOf">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:label>is subOMS of</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+        <rdfs:domain rdf:resource="&ontoiop-trm;OMS"/>
+        <rdfs:range rdf:resource="&ontoiop-trm;OMS"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/usesLanguage -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;usesLanguage">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label>uses Language</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+        <rdfs:domain rdf:resource="&ontoiop-trm;GeneralizedExpression"/>
+        <rdfs:range rdf:resource="&ontoiop-trm;Language"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/usesSerialization -->
+
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;usesSerialization">
+        <rdfs:label>uses Serialization</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+        <rdfs:domain rdf:resource="&ontoiop-trm;KnowledgeManifestation"/>
+        <rdfs:range rdf:resource="&ontoiop-trm;Serialization"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Action -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Action">
+        <rdfs:label>Action</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Operation"/>
+        <skos:definition rdf:datatype="&xsd;string">atomic Operations.</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/AnnotationExpression -->
+
+    <owl:Class rdf:about="&ontoiop-trm;AnnotationExpression">
+        <rdfs:label>Annotation Expression</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Expression"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/AnnotationExpressionLanguageAspect -->
+
+    <owl:Class rdf:about="&ontoiop-trm;AnnotationExpressionLanguageAspect">
+        <rdfs:label>Annotation Expression Language Aspect</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;LanguageAspect"/>
+        <owl:disjointWith rdf:resource="&ontoiop-trm;LogicalLanguageAspect"/>
+        <owl:disjointWith rdf:resource="&ontoiop-trm;StructuringLanguageAspect"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/BasicOMS -->
+
+    <owl:Class rdf:about="&ontoiop-trm;BasicOMS">
+        <rdfs:label>Basic OMS</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMS"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;SetOfExpressions"/>
+        <owl:disjointWith rdf:resource="&ontoiop-trm;DistributedOMS"/>
+        <owl:disjointWith rdf:resource="&ontoiop-trm;HeterogeneousOMS"/>
+        <owl:disjointWith rdf:resource="&ontoiop-trm;StructuredOMS"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Client -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Client">
+        <rdfs:label>Client</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">application that needs to use API4KB.</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Component -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Component">
+        <rdfs:label>Component</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">software units deployed within a Knowledge Platform.</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Conceptualizing -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Conceptualizing">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Action"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;accordingTo"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;SetOfMappings"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasOutput"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;TryOMSAsset"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasInput"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;OMS"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Descriptor -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Descriptor">
+        <rdfs:label>Descriptor</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;GeneralizedExpression"/>
+        <skos:definition rdf:datatype="&xsd;string">Asset that describes a Knowledge Resource.</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/DistributedOMS -->
+
+    <owl:Class rdf:about="&ontoiop-trm;DistributedOMS">
+        <rdfs:label>Distributed OMS</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMS"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Expressing -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Expressing">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Action"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasOutput"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;GeneralizedExpression"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasInput"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;KnowledgeAsset"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Expression -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Expression">
+        <rdfs:label>Expression</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;GeneralizedExpression"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;usesLanguage"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;Language"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Failure -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Failure">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Try"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;TryAsset"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;TryKnowledgeResource"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/GeneralizedExpression -->
+
+    <owl:Class rdf:about="&ontoiop-trm;GeneralizedExpression">
+        <rdfs:label>GeneralizedExpression</rdfs:label>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;usesLanguage"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;Language"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasInput"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;KnowledgeResource"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/HeterogeneousOMS -->
+
+    <owl:Class rdf:about="&ontoiop-trm;HeterogeneousOMS">
+        <rdfs:label>Heterogeneous OMS</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMS"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/InStreaming -->
+
+    <owl:Class rdf:about="&ontoiop-trm;InStreaming">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Action"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasOutput"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;KnowledgeEncoding"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasInput"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;KnowledgeItem"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Institution -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Institution">
+        <rdfs:label>Institution</rdfs:label>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;formalizes"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;Logic"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/KnowledgeAsset -->
+
+    <owl:Class rdf:about="&ontoiop-trm;KnowledgeAsset">
+        <rdfs:label>Knowledge Asset</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;expressedAs"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;GeneralizedExpression"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/KnowledgeBase -->
+
+    <owl:Class rdf:about="&ontoiop-trm;KnowledgeBase">
+        <rdfs:label>Knowledge Base</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeAsset"/>
+        <skos:definition rdf:datatype="&xsd;string"> Knowledge Asset that is a collection of Knowledge Assets </skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/KnowledgeEncoding -->
+
+    <owl:Class rdf:about="&ontoiop-trm;KnowledgeEncoding">
+        <rdfs:label>Knowledge Encoding</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;encodingOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;KnowledgeManifestation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">byte (or bit) sequence that is the encoding of a Knowledge Manifestation in some character encoding system(s).</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/KnowledgeItem -->
+
+    <owl:Class rdf:about="&ontoiop-trm;KnowledgeItem">
+        <rdfs:label>Knowledge Item</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;localCopyOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;KnowledgeEncoding"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">physical instance of a Knowledge Encoding, e.g. a file on a hard drive, a Java String in memory.</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/KnowledgeManifestation -->
+
+    <owl:Class rdf:about="&ontoiop-trm;KnowledgeManifestation">
+        <rdfs:label>Knowledge Manifestation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;manifestationOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;GeneralizedExpression"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;usesSerialization"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;KnowledgeSerialization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">character sequence, or collection of character sequences, each being the serialization of a Generalized Expression in a Knowledge Serialization (Formats).</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/KnowledgePlatform -->
+
+    <owl:Class rdf:about="&ontoiop-trm;KnowledgePlatform">
+        <rdfs:label>Knowledge Platform</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/KnowledgePlatformManager -->
+
+    <owl:Class rdf:about="&ontoiop-trm;KnowledgePlatformManager">
+        <rdfs:label>Knowledge Platform Manager</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">software architecture that supports the Components and their interactions.</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/KnowledgeRepresentationAndReasoningLanguage -->
+
+    <owl:Class rdf:about="&ontoiop-trm;KnowledgeRepresentationAndReasoningLanguage">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Language"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/KnowledgeResource -->
+
+    <owl:Class rdf:about="&ontoiop-trm;KnowledgeResource">
+        <rdfs:label>Knowledge Resource</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">Knowledge Asset, Generalized Expression, Knowledge Manifestation, Knowledge Encoding, or Knowledge Item</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/KnowledgeSerialization -->
+
+    <owl:Class rdf:about="&ontoiop-trm;KnowledgeSerialization">
+        <rdfs:label>Serialization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Serialization"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;serializationOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;KnowledgeRepresentationAndReasoningLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Language -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Language">
+        <rdfs:label>Language</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/LanguageAspect -->
+
+    <owl:Class rdf:about="&ontoiop-trm;LanguageAspect">
+        <rdfs:label>Language Aspect</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/LanguageMapping -->
+
+    <owl:Class rdf:about="&ontoiop-trm;LanguageMapping">
+        <rdfs:label>Language Mapping</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Mapping"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;mappingDomain"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;Language"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;mappingCodomain"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;Language"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Logic -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Logic">
+        <rdfs:label>Logic</rdfs:label>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;formalizedBy"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;Institution"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/LogicApproximation -->
+
+    <owl:Class rdf:about="&ontoiop-trm;LogicApproximation">
+        <rdfs:label>Logic Approximation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;LogicMapping"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/LogicMapping -->
+
+    <owl:Class rdf:about="&ontoiop-trm;LogicMapping">
+        <rdfs:label>Logic Mapping</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Mapping"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;mappingCodomain"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;Logic"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;mappingDomain"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;Logic"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/LogicReduction -->
+
+    <owl:Class rdf:about="&ontoiop-trm;LogicReduction">
+        <rdfs:label>Logic Reduction</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;LogicMapping"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/LogicTranslation -->
+
+    <owl:Class rdf:about="&ontoiop-trm;LogicTranslation">
+        <rdfs:label>Logic Translation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;LogicMapping"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/LogicalLanguageAspect -->
+
+    <owl:Class rdf:about="&ontoiop-trm;LogicalLanguageAspect">
+        <rdfs:label>Logical Language Aspect</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;LanguageAspect"/>
+        <owl:disjointWith rdf:resource="&ontoiop-trm;StructuringLanguageAspect"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Manifesting -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Manifesting">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Action"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasInput"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;GeneralizedExpression"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasOutput"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;KnowledgeManifestation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Mapping -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Mapping">
+        <rdfs:label>Mapping</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">morphism (from Category Theory).</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Marshalling -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Marshalling">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Action"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasOutput"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;KnowledgeEncoding"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasInput"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;KnowledgeManifestation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMS -->
+
+    <owl:Class rdf:about="&ontoiop-trm;OMS">
+        <rdfs:label>OMS (Ontology, Specification or Model)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;GeneralizedExpression"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMSResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;usesLanguage"/>
+                <owl:allValuesFrom rdf:resource="&ontoiop-trm;OMSLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;usesLanguage"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMSLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSAsset -->
+
+    <owl:Class rdf:about="&ontoiop-trm;OMSAsset">
+        <rdfs:label>OMS Asset</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeAsset"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMSResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;expressedAs"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMS"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSDocumentation -->
+
+    <owl:Class rdf:about="&ontoiop-trm;OMSDocumentation">
+        <rdfs:label>OMS Documentation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;SetOfAnnotationExpressions"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSEncoding -->
+
+    <owl:Class rdf:about="&ontoiop-trm;OMSEncoding">
+        <rdfs:label>OMS Encoding</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeEncoding"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMSResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;encodingOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMSManifestation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">byte (or bit) sequence that is the encoding of a OMS Manifestation in some character encoding system(s).</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSItem -->
+
+    <owl:Class rdf:about="&ontoiop-trm;OMSItem">
+        <rdfs:label>OMS Item</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeItem"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMSResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;localCopyOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMSEncoding"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">physical instance of an OMS Encoding, e.g. a file on a hard drive, a Java String in memory.</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSLanguage -->
+
+    <owl:Class rdf:about="&ontoiop-trm;OMSLanguage">
+        <rdfs:label>OMS Language</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeRepresentationAndReasoningLanguage"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSLanguageTranslation -->
+
+    <owl:Class rdf:about="&ontoiop-trm;OMSLanguageTranslation">
+        <rdfs:label>OMS Language Translation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;LanguageMapping"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;mappingCodomain"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;OMSLanguage"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;mappingDomain"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;OMSLanguage"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSManifestation -->
+
+    <owl:Class rdf:about="&ontoiop-trm;OMSManifestation">
+        <rdfs:label>OMS Manifestation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeManifestation"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMSResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;usesSerialization"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMSSerialization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;manifestationOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMS"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">character sequence, or collection of character sequences, each being the serialization of a basic OMS in an OMS Serialization (Formats).</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSMapping -->
+
+    <owl:Class rdf:about="&ontoiop-trm;OMSMapping">
+        <rdfs:label>OMS Mapping</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Mapping"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;mappingCodomain"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;OMS"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;mappingDomain"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;OMS"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSResource -->
+
+    <owl:Class rdf:about="&ontoiop-trm;OMSResource">
+        <rdfs:label>OMS Resource</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeResource"/>
+        <skos:definition rdf:datatype="&xsd;string">OMS Asset, OMS (Ontology, Specification or Model), OMS Manifestation, OMS Encoding, or OMS Item</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSSerialization -->
+
+    <owl:Class rdf:about="&ontoiop-trm;OMSSerialization">
+        <rdfs:label>OMS Serialization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Serialization"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;serializationOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMSLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Operation -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Operation">
+        <rdfs:label>Operation</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">functions (possibly with side-effects) having inputs and outputs that are API4KB or OntoIOp concepts.</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OutStreaming -->
+
+    <owl:Class rdf:about="&ontoiop-trm;OutStreaming">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Action"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasInput"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;KnowledgeEncoding"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasOutput"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;KnowledgeItem"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Parsing -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Parsing">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Action"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasInput"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;KnowledgeManifestation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasOutput"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMS"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Proficiency -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Proficiency">
+        <rdfs:label>Proficiency</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">effect-free functionality whose inputs and outputs are of the following types: KP, Asset, Generalized Expression, KnowledgeManifestation, KnowledgeEncoding, KnowledgeItem.</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Profile -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Profile">
+        <rdfs:label>Profile</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMSLanguage"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasLogic"/>
+                <owl:onClass rdf:resource="&ontoiop-trm;Logic"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Proxy -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Proxy">
+        <rdfs:label>Proxy</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Query -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Query">
+        <rdfs:label>Query</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;GeneralizedExpression"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;QueryResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;usesLanguage"/>
+                <owl:allValuesFrom rdf:resource="&ontoiop-trm;QueryLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;usesLanguage"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;QueryLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/QueryAsset -->
+
+    <owl:Class rdf:about="&ontoiop-trm;QueryAsset">
+        <rdfs:label>Query Asset</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeAsset"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;QueryResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;expressedAs"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;Query"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/QueryEncoding -->
+
+    <owl:Class rdf:about="&ontoiop-trm;QueryEncoding">
+        <rdfs:label>Query Encoding</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeEncoding"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;QueryResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;encodingOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;QueryManifestation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">byte (or bit) sequence that is the encoding of a Query Manifestation in some character encoding system(s).</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/QueryItem -->
+
+    <owl:Class rdf:about="&ontoiop-trm;QueryItem">
+        <rdfs:label>Query Item</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeItem"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;QueryResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;localCopyOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;QueryEncoding"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">physical instance of an Encoding, e.g. a file on a hard drive, a Java String in memory.</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/QueryLanguage -->
+
+    <owl:Class rdf:about="&ontoiop-trm;QueryLanguage">
+        <rdfs:label>Query Language</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeRepresentationAndReasoningLanguage"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/QueryManifestation -->
+
+    <owl:Class rdf:about="&ontoiop-trm;QueryManifestation">
+        <rdfs:label>Query Manifestation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeManifestation"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;QueryResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;usesSerialization"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;QuerySerialization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;manifestationOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;Query"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">character sequence, or collection of character sequences, each being the serialization of a Query in a Query Serialization (Formats).</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/QueryResource -->
+
+    <owl:Class rdf:about="&ontoiop-trm;QueryResource">
+        <rdfs:label>Query Resource</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeResource"/>
+        <skos:definition rdf:datatype="&xsd;string">Query Asset, Query, Query Manifestation, Query Encoding, or Query Item</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/QuerySerialization -->
+
+    <owl:Class rdf:about="&ontoiop-trm;QuerySerialization">
+        <rdfs:label>Query Serialization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Serialization"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;serializationOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;QueryLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Querying -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Querying">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Action"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasInput"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;QueryResource"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasInput"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMSResource"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Result -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Result">
+        <rdfs:label>Result</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;GeneralizedExpression"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;ResultResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;usesLanguage"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;ResultLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;usesLanguage"/>
+                <owl:allValuesFrom rdf:resource="&ontoiop-trm;ResultLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/ResultAsset -->
+
+    <owl:Class rdf:about="&ontoiop-trm;ResultAsset">
+        <rdfs:label>Result Asset</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeAsset"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;ResultResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;expressedAs"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;Result"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/ResultEncoding -->
+
+    <owl:Class rdf:about="&ontoiop-trm;ResultEncoding">
+        <rdfs:label>Result Encoding</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeEncoding"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;ResultResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;encodingOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;ResultManifestation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">byte (or bit) sequence that is the encoding of a Result Manifestation in some character encoding system(s).</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/ResultItem -->
+
+    <owl:Class rdf:about="&ontoiop-trm;ResultItem">
+        <rdfs:label>Result Item</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeItem"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;ResultResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;localCopyOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;ResultEncoding"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">physical instance of an Encoding, e.g. a file on a hard drive, a Java String in memory.</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/ResultLanguage -->
+
+    <owl:Class rdf:about="&ontoiop-trm;ResultLanguage">
+        <rdfs:label>Result Language</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeRepresentationAndReasoningLanguage"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/ResultManifestation -->
+
+    <owl:Class rdf:about="&ontoiop-trm;ResultManifestation">
+        <rdfs:label>Result Manifestation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeManifestation"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;ResultResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;manifestationOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;Result"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;usesSerialization"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;ResultSerialization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">character sequence, or collection of character sequences, each being the serialization of a Result in a Result Serialization (Formats).</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/ResultResource -->
+
+    <owl:Class rdf:about="&ontoiop-trm;ResultResource">
+        <rdfs:label>Result Resource</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeResource"/>
+        <skos:definition rdf:datatype="&xsd;string">Result Asset, Result, Result Manifestation, Result Encoding, or Result Item</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/ResultSerialization -->
+
+    <owl:Class rdf:about="&ontoiop-trm;ResultSerialization">
+        <rdfs:label>Result Serialization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Serialization"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;serializationOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;ResultLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Role -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Role">
+        <rdfs:label>Role</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Serialization -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Serialization">
+        <rdfs:label>Serialization</rdfs:label>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;serializationOf"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;Language"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/SetOfAnnotationExpressions -->
+
+    <owl:Class rdf:about="&ontoiop-trm;SetOfAnnotationExpressions">
+        <rdfs:label>Set of Annotation Expressions</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;SetOfExpressions"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/SetOfExpressions -->
+
+    <owl:Class rdf:about="&ontoiop-trm;SetOfExpressions">
+        <rdfs:label>Set of Expressions</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/SetOfMappings -->
+
+    <owl:Class rdf:about="&ontoiop-trm;SetOfMappings">
+        <rdfs:label>Set of Mappings</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/SetOfOMS -->
+
+    <owl:Class rdf:about="&ontoiop-trm;SetOfOMS">
+        <rdfs:label>Set of OMSs</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/StandoffMarkup -->
+
+    <owl:Class rdf:about="&ontoiop-trm;StandoffMarkup">
+        <rdfs:label>Standoff Markup</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Language"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/StructuredOMS -->
+
+    <owl:Class rdf:about="&ontoiop-trm;StructuredOMS">
+        <rdfs:label>Structured OMS</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMS"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/StructuringLanguageAspect -->
+
+    <owl:Class rdf:about="&ontoiop-trm;StructuringLanguageAspect">
+        <rdfs:label>Structuring Language Aspect</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;LanguageAspect"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Success -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Success">
+        <rdfs:label>Success</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Try"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/SuccessAsset -->
+
+    <owl:Class rdf:about="&ontoiop-trm;SuccessAsset">
+        <rdfs:label>Success for type Asset</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;SuccessKnowledgeResource"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/SuccessKnowledgeResource -->
+
+    <owl:Class rdf:about="&ontoiop-trm;SuccessKnowledgeResource">
+        <rdfs:label>Success for type Knowledge Resource</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Success"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;TryKnowledgeResource"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/SuccessOMSAsset -->
+
+    <owl:Class rdf:about="&ontoiop-trm;SuccessOMSAsset">
+        <rdfs:label>Success for type OMS Asset</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;SuccessAsset"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Try -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Try">
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/TryAsset -->
+
+    <owl:Class rdf:about="&ontoiop-trm;TryAsset">
+        <rdfs:label>Try for type Asset</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;TryKnowledgeResource"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/TryKnowledgeResource -->
+
+    <owl:Class rdf:about="&ontoiop-trm;TryKnowledgeResource">
+        <rdfs:label>Try for type Knowledge Resource</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Try"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/TryOMSAsset -->
+
+    <owl:Class rdf:about="&ontoiop-trm;TryOMSAsset">
+        <rdfs:label>Try for type OMS Asset</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;TryAsset"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Unmarshalling -->
+
+    <owl:Class rdf:about="&ontoiop-trm;Unmarshalling">
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Action"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasInput"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;KnowledgeEncoding"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ontoiop-trm;hasOutput"/>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;KnowledgeManifestation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/View -->
+
+    <owl:Class rdf:about="&ontoiop-trm;View">
+        <rdfs:label>View</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;KnowledgeBase"/>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/API4KB/Terminology</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/Terminology/DOL -->
+
+    <owl:NamedIndividual rdf:about="&ontoiop-trm;DOL">
+        <rdf:type rdf:resource="&ontoiop-trm;OMSLanguage"/>
+        <rdfs:label>DOL</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+        <rdfs:isDefinedBy>http://www.omg.org/spec/OntoIOp/Terminology</rdfs:isDefinedBy>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
