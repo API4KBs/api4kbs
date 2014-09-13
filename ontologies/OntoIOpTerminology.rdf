@@ -1,52 +1,54 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 
 <!DOCTYPE rdf:RDF [
-    <!ENTITY dct "http://purl.org/dc/terms/" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY dct "http://purl.org/dc/terms/" >
     <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
-    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
-    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-    <!ENTITY ontoiop-trm "http://www.omg.org/spec/OntoIOp/Terminology/" >
     <!ENTITY sm "http://www.omg.org/techprocess/ab/SpecificationMetadata/" >
+    <!ENTITY ontoiop-trm "http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/" >
 ]>
 
 
-<rdf:RDF xmlns="http://www.omg.org/spec/OntoIOp/Terminology/"
-     xml:base="http://www.omg.org/spec/OntoIOp/Terminology/"
-     xmlns:ontoiop-trm="http://www.omg.org/spec/OntoIOp/Terminology/"
+<rdf:RDF      xml:base="http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:sm="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
-     xmlns:dct="http://purl.org/dc/terms/"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:skos="http://www.w3.org/2004/02/skos/core#">
-    <owl:Ontology rdf:about="http://www.omg.org/spec/OntoIOp/Terminology/">
+     xmlns:dct="http://purl.org/dc/terms/"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+xmlns:sm="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
+     xmlns:ontoiop-trm="http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/">
+
+    <owl:Ontology rdf:about="http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/">
         <rdfs:label>OntoIOp Terminology Ontology</rdfs:label>
+
+
+    <!-- Curation and Rights Metadata for the OntoIOp Terminology Ontology -->
+
+        <sm:copyright rdf:datatype="&xsd;string">Copyright (c) 2014 Athan Services
+Copyright (c) 2014 Thematix Partners LLC
+Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
+        <dct:license rdf:datatype="&xsd;anyURI">http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense</dct:license>
+
+
+    <!-- Ontology/File-Level Metadata for the OntoIOp Terminology Ontology -->
+
+        <sm:filename rdf:datatype="&xsd;string">OntoIOpTerminology.rdf</sm:filename>
+        <sm:fileAbbreviation rdf:datatype="&xsd;string">ontoiop-trm</sm:fileAbbreviation>
+        <owl:versionIRI rdf:resource="http://www.omg.org/spec/OntoIOp/20141101/OntoIOpTerminology/"/>
+        <sm:fileAbstract rdf:datatype="&xsd;string">This ontology covers terminology used for describing logics, ontology and rule languages, and related terms from the OntoIOp specification.</sm:fileAbstract>
+
+        <sm:contentLanguage rdf:datatype="&xsd;anyURI">http://www.w3.org/standards/techs/owl#w3c_all</sm:contentLanguage>
+        <sm:contentLanguage rdf:datatype="&xsd;anyURI">http://www.omg.org/spec/ODM/</sm:contentLanguage>
+
         <owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
-        <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
+
     </owl:Ontology>
     
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Annotation properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.w3.org/2000/01/rdf-schema#subClassOf -->
-
-    <owl:AnnotationProperty rdf:about="&rdfs;subClassOf"/>
-    
-
 
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -56,522 +58,320 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/conservativelyExtendsTo -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;conservativelyExtendsTo">
-        <skos:prefLabel xml:lang="en">conservatively extends to</skos:prefLabel>
-        <skos:altLabel xml:lang="en">has conservative extension mapping codomain</skos:altLabel>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <rdfs:label xml:lang="en">conservatively extends to</rdfs:label>
         <rdfs:domain rdf:resource="&ontoiop-trm;ConservativeExtensionMapping"/>
         <rdfs:subPropertyOf rdf:resource="&ontoiop-trm;extendsTo"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/definitionallyExtendsTo -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;definitionallyExtendsTo">
-        <skos:prefLabel xml:lang="en">definitionally extends to</skos:prefLabel>
+        <rdfs:label>definitionally extends to</rdfs:label>
+        <rdfs:domain rdf:resource="&ontoiop-trm;DefinitionalExtensionMapping"/>
         <rdfs:subPropertyOf rdf:resource="&ontoiop-trm;conservativelyExtendsTo"/>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&ontoiop-trm;isMappingDomainOf"/>
-            <rdf:Description rdf:about="&ontoiop-trm;definitionallyExtendsTo"/>
-        </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/documentsOMS -->
 
     <owl:ObjectProperty rdf:about="&ontoiop-trm;documentsOMS">
         <rdfs:label>documents OMS</rdfs:label>
         <owl:inverseOf rdf:resource="&ontoiop-trm;isOMSDocumentationOf"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/extends -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;extends">
         <rdf:type rdf:resource="&owl;TransitiveProperty"/>
-        <rdfs:label>extends</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string"></skos:definition>
-        <skos:prefLabel>is extension of</skos:prefLabel>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:prefLabel>extends</skos:prefLabel>
+        <skos:altLabel>is extension of</skos:altLabel>
+        <skos:definition>TBD</skos:definition>
         <rdfs:domain rdf:resource="&ontoiop-trm;OMS"/>
         <rdfs:range rdf:resource="&ontoiop-trm;OMS"/>
         <rdfs:subPropertyOf rdf:resource="&ontoiop-trm;isMappableTo"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&ontoiop-trm;isMappingDomainOf"/>
+            <rdf:Description rdf:about="&ontoiop-trm;isMappedBy"/>
             <rdf:Description rdf:about="&ontoiop-trm;extendsTo"/>
         </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/extendsTo -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;extendsTo">
-        <skos:prefLabel xml:lang="en">extends to</skos:prefLabel>
-        <skos:altLabel xml:lang="en">has extension mapping codomain</skos:altLabel>
+        <rdfs:label>extends to</rdfs:label>
         <rdfs:domain rdf:resource="&ontoiop-trm;ExtensionMapping"/>
+        <rdfs:range rdf:resource="&ontoiop-trm;OMS"/>
         <rdfs:subPropertyOf rdf:resource="&ontoiop-trm;mapsTo"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/formalizes -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;formalizes">
         <rdfs:label>formalizes</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">see Class &apos;institution&apos;</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>see Class &apos;institution&apos;</skos:definition>
         <owl:inverseOf rdf:resource="&ontoiop-trm;isFormalizedBy"/>
     </owl:ObjectProperty>
     
 
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/hasLanguageAspect -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;hasLanguageAspect">
         <rdfs:label>has language aspect</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">see Class &apos;language aspect&apos;</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>see Class &apos;language aspect&apos;</skos:definition>
         <rdfs:range rdf:resource="&ontoiop-trm;LanguageAspect"/>
         <rdfs:domain rdf:resource="&ontoiop-trm;OMSLanguage"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/hasLogic -->
-
-    <owl:ObjectProperty rdf:about="&ontoiop-trm;hasLogic">
-        <rdfs:label xml:lang="en">has logic</rdfs:label>
-        <rdfs:label xml:lang="en">supports logic</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">logic represented by a satisfaction relation of the language.</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;supportsLogic">
+        <rdfs:label>supports logic</rdfs:label>
+        <skos:definition>logic represented by a satisfaction relation of the language.</skos:definition>
         <rdfs:range rdf:resource="&ontoiop-trm;Logic"/>
         <rdfs:domain rdf:resource="&ontoiop-trm;OMSLanguage"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/hasLogicalEnvironment -->
-
-    <owl:ObjectProperty rdf:about="&ontoiop-trm;hasLogicalEnvironment">
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;hasHeterogeneousEnvironment">
         <rdfs:label>has logical environment</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">logical environment in which the subject is embedded or is associated with.</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>relationship between something and a heterogeneous environment in which it is embedded or is associated with.</skos:definition>
         <rdfs:range rdf:resource="&ontoiop-trm;HeterogeneousEnvironment"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/hasPart -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;hasPart">
         <rdfs:label>has part</rdfs:label>
         <skos:definition>relationship between two things were the second is a component of the first</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/hasSubset -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;hasSubset">
         <rdfs:label>has subset</rdfs:label>
         <skos:definition>relationship between two sets where every member of the second set belongs to the first set</skos:definition>
-        <rdfs:range rdf:resource="&ontoiop-trm;Set"/>
         <rdfs:domain rdf:resource="&ontoiop-trm;Set"/>
+        <rdfs:range rdf:resource="&ontoiop-trm;Set"/>
     </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/implicitlyExtendsTo -->
 
     <owl:ObjectProperty rdf:about="&ontoiop-trm;implicitlyExtendsTo">
-        <skos:prefLabel xml:lang="en">implicitly extends to</skos:prefLabel>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <rdfs:label>implicitly extends to</rdfs:label>
+        <rdfs:domain rdf:resource="&ontoiop-trm;ImpliedExtensionMapping"/>
         <rdfs:subPropertyOf rdf:resource="&ontoiop-trm;definitionallyExtendsTo"/>
     </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isAdjointOf -->
 
     <owl:ObjectProperty rdf:about="&ontoiop-trm;isAdjointOf">
-        <rdfs:label xml:lang="en">is adjoint of</rdfs:label>
-        <rdfs:range rdf:resource="&ontoiop-trm;Mapping"/>
+        <rdfs:label>is adjoint of</rdfs:label>
         <rdfs:domain rdf:resource="&ontoiop-trm;Mapping"/>
+        <rdfs:range rdf:resource="&ontoiop-trm;Mapping"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isApproximantOf -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;isApproximantOf">
         <rdf:type rdf:resource="&owl;TransitiveProperty"/>
         <rdfs:label>is approximant of</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">\termdefinition{approximant}{approximation (in the sense of a logically implied theory, possibly after
-suitable translation)
-of an OMS in a smaller \termref{signature} or
-\termref{OMS language}}
-\termdefinition{maximum approximant}{
-best possible (in the sense of a maximum set of logical consequences)
-\termref{approximant} of an OMS in a smaller \termref{signature} or \termref{OMS language}}
-\begin{note}
- Technically, a maximum approximant is a uniform interpolant, see \cite{DBLP:conf/ijcai/LutzW11}.
-\end{note}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>approximation (in the sense of a logically implied theory, possibly aftersuitable translation) of an OMS in a smaller signature or OMS language</skos:definition>
         <rdfs:domain rdf:resource="&ontoiop-trm;OMS"/>
         <rdfs:range rdf:resource="&ontoiop-trm;OMS"/>
     </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isConservativeExtensionOf -->
 
     <owl:ObjectProperty rdf:about="&ontoiop-trm;isConservativeExtensionOf">
-        <rdfs:label xml:lang="en">is conservative extension of</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <rdfs:label>is conservative extension of</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="&ontoiop-trm;extends"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&ontoiop-trm;isMappingDomainOf"/>
+            <rdf:Description rdf:about="&ontoiop-trm;isMappedBy"/>
             <rdf:Description rdf:about="&ontoiop-trm;conservativelyExtendsTo"/>
         </owl:propertyChainAxiom>
     </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isDefinitionalExtensionOf -->
 
     <owl:ObjectProperty rdf:about="&ontoiop-trm;isDefinitionalExtensionOf">
         <rdfs:label>is definitional extension of</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">\termdefinition{definitional extension}{\termref{extension} whose newly introduced
-   \termref{non-logical symbols} are interpreted in a unique way}
-  \begin{note}
-An \termref{extension} $O_2$ of an \termref{OMS} $O_1$ is a definitional extension, if each model of $O_1$ can be uniquely expanded to a model of $O_2$.
+        <skos:definition>extension whose newly introduced
+   non-logical symbols are interpreted in a unique way</skos:definition><skos:note>
+An extension $O_2$ of an OMS $O_1$ is a definitional extension, if each model of $O_1$ can be uniquely expanded to a model of $O_2$.
   \end{note}
   \begin{note}
     $O_2$ being a definitional extension of $O_1$ implies a bijective correspondence between the classes of models of $O_2$ and $O_1$.
   \end{note}
   \begin{note}
     Each definitional extension is also a monomorphic extension but not vice versa.
-  \end{note}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+  </skos:note>
         <rdfs:subPropertyOf rdf:resource="&ontoiop-trm;isConservativeExtensionOf"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&ontoiop-trm;isMappingDomainOf"/>
+            <rdf:Description rdf:about="&ontoiop-trm;isMappedBy"/>
             <rdf:Description rdf:about="&ontoiop-trm;definitionallyExtendsTo"/>
         </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isElementOf -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;isElementOf">
         <rdfs:label>is element of OMS</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">\termdefinition{element (of an OMS)}{any \termref{resource} in an \termref{OMS} (\eg a \termref{non-logical symbol}, a \termref{sentence}, a \termref{correspondence}, the \termref{OMS} itself, ...) or a named set of such \termref{resources}.}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>any resource in an OMS (\eg a non-logical symbol, a sentence, a correspondence, the OMS itself, ...) or a named set of such resources.</skos:definition>
         <rdfs:range rdf:resource="&ontoiop-trm;OMS"/>
         <rdfs:subPropertyOf rdf:resource="&ontoiop-trm;hasPart"/>
     </owl:ObjectProperty>
     
 
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isFormalizedBy -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;isFormalizedBy">
         <rdfs:label>is formalized by</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">institution that formalizes a logic</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>institution that formalizes a logic</skos:definition>
         <rdfs:range rdf:resource="&ontoiop-trm;Institution"/>
         <rdfs:domain rdf:resource="&ontoiop-trm;Logic"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isImpliedExtensionOf -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;isImpliedExtensionOf">
         <rdfs:label>is implied extension of</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string"> \termdefinition{implied extension}{\termref{model-theoretic conservative extension} that does not introduce new \termref{non-logical symbols}}
-  \begin{note}
-    A \termref{conservative extension} $O_2$ of an \termref{OMS}
+        <skos:definition>model-theoretic conservative extension that does not introduce new non-logical symbols}
+  </skos:definition><skos:note>
+    A conservative extension $O_2$ of an OMS
     $O_1$ is an implied extension, if and only if the signature of
     $O_2$ is the signature of $O_1$. $O_2$ is an implied extension of
     $O_1$ if and only if the model class of $O_2$ is the model class
     of $O_1$.
-  \end{note}
-  \begin{note}
+  </skos:note><skos:note>
     Each implied extension is also a definitional extension but not vice versa.
-  \end{note}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+  </skos:note>
         <rdfs:subPropertyOf rdf:resource="&ontoiop-trm;isDefinitionalExtensionOf"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&ontoiop-trm;isMappingDomainOf"/>
+            <rdf:Description rdf:about="&ontoiop-trm;isMappedBy"/>
             <rdf:Description rdf:about="&ontoiop-trm;implicitlyExtendsTo"/>
         </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isLanguageAspectOf -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;isLanguageAspectOf">
         <rdfs:label>is language aspect of</rdfs:label>
         <owl:inverseOf rdf:resource="&ontoiop-trm;hasLanguageAspect"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isLogicallyInteroperableWith -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;isLogicallyInteroperableWith">
         <rdf:type rdf:resource="&owl;SymmetricProperty"/>
         <rdfs:label>is logically interoperable with</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>TBD</skos:definition>
         <rdfs:range rdf:resource="&ontoiop-trm;StructuredOMS"/>
         <rdfs:domain rdf:resource="&ontoiop-trm;StructuredOMS"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isMappableTo -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;isMappableTo">
         <rdf:type rdf:resource="&owl;ReflexiveProperty"/>
         <rdf:type rdf:resource="&owl;SymmetricProperty"/>
         <rdf:type rdf:resource="&owl;TransitiveProperty"/>
-        <rdfs:label xml:lang="en">is mappable to</rdfs:label>
-        <skos:editorialNote xml:lang="en">reification of this property, and its subproperties, is illustrated by property chain</skos:editorialNote>
+        <rdfs:label>is mappable to</rdfs:label>
+        <skos:editorialNote>reification of this property, and its subproperties, is illustrated by property chain</skos:editorialNote>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&ontoiop-trm;isMappingDomainOf"/>
+            <rdf:Description rdf:about="&ontoiop-trm;isMappedBy"/>
             <rdf:Description rdf:about="&ontoiop-trm;mapsTo"/>
         </owl:propertyChainAxiom>
     </owl:ObjectProperty>
-    
 
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isMappingDomainOf -->
-
-    <owl:ObjectProperty rdf:about="&ontoiop-trm;isMappingDomainOf">
-        <skos:prefLabel xml:lang="en">is mapped by</skos:prefLabel>
-        <skos:altLabel xml:lang="en">is mapping domain of</skos:altLabel>
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;isMappedBy">
+        <rdfs:label>is mapped by</rdfs:label>
         <owl:inverseOf rdf:resource="&ontoiop-trm;mapsFrom"/>
     </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isModelOfOMS -->
-
-    <owl:ObjectProperty rdf:about="&ontoiop-trm;isModelOfOMS">
-        <rdfs:label xml:lang="en">is a model of the OMS</rdfs:label>
-        <skos:definition xml:lang="en">relationship between a model and an OMS where the model is a model of the signature of the OMS and further satisfies all sentences in the OMS.</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isModelOfSignature -->
 
     <owl:ObjectProperty rdf:about="&ontoiop-trm;isModelOfSignature">
-        <rdfs:label xml:lang="en">is a model of the signature</rdfs:label>
-        <skos:definition xml:lang="en">relationship between a model and a signature (vocabulary) such that the model provides a semantic interpretation of all non-logical symbols in the signature</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <rdfs:label>is a model of the signature</rdfs:label>
+        <skos:definition>relationship between a model and a signature (vocabulary) such that the model provides a semantic interpretation of all non-logical symbols in the signature</skos:definition>
         <rdfs:domain rdf:resource="&ontoiop-trm;Model"/>
         <rdfs:range rdf:resource="&ontoiop-trm;Vocabulary"/>
     </owl:ObjectProperty>
-    
 
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isModuleOf -->
+    <owl:ObjectProperty rdf:about="&ontoiop-trm;isModelOfOMS">
+        <rdfs:label>is a model of the OMS</rdfs:label>
+        <skos:definition>relationship between a model and an OMS where the model is a model of the signature of the OMS and further satisfies all sentences in the OMS.</skos:definition>
+        <rdfs:domain rdf:resource="&ontoiop-trm;Model"/>
+        <rdfs:range rdf:resource="&ontoiop-trm;OMS"/>
+    </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&ontoiop-trm;isModuleOf">
-        <rdfs:label xml:lang="en">is module of</rdfs:label>
-        <skos:definition xml:lang="en">relationship between two OMSs where the first \termref{conservatively extends to} the second \termref{OMS}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <rdfs:label>is module of</rdfs:label>
+        <skos:definition>relationship between two OMSs where the first conservatively extends to the second OMS</skos:definition>
         <owl:inverseOf rdf:resource="&ontoiop-trm;isConservativeExtensionOf"/>
         <rdfs:subPropertyOf rdf:resource="&ontoiop-trm;isSubOMSOf"/>
     </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isOMSCombinationOf -->
 
     <owl:ObjectProperty rdf:about="&ontoiop-trm;isOMSCombinationOf">
         <rdfs:label>is combination of OMSs</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string"> \termdefinition{combination}{aggregation of all the OMS in a \termref{OMS graph}, where \termref{non-logical symbol}s are shared according to the \termref{OMS mapping}s in the OMS graph}
+        <skos:definition>aggregation of all the OMS in a OMS graph, where non-logical symbols are shared according to the OMS mappings in the OMS graph}
 \begin{example}
 Consider an ontology involving a concept \texttt{Person},
-and another one involving \texttt{Human being}, and an \termref{alignment}
+and another one involving \texttt{Human being}, and an alignment
 that relates these to concepts. In the combination of the ontologies
 along the alignment, there is only one concept, representing both
 \texttt{Person} and \texttt{Human being}.
 \end{example}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
         <rdfs:range rdf:resource="&ontoiop-trm;SetOfOMSs"/>
         <rdfs:domain rdf:resource="&ontoiop-trm;StructuredOMS"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isOMSDocumentationOf -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;isOMSDocumentationOf">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label>is OMS documentation of</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">relationship between an OMS documentation and an OMS where TBD</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>relationship between an OMS documentation and an OMS where TBD</skos:definition>
         <rdfs:range rdf:resource="&ontoiop-trm;OMS"/>
         <rdfs:domain rdf:resource="&ontoiop-trm;OMSDocumentation"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isOMSUnionOf -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;isOMSUnionOf">
         <rdfs:label>is union of OMSs</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string"> \termdefinition{union}{aggregation of several \termref{OMSs}
-    to a new \termref{OMS}, without any renaming}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>aggregation of several OMSs
+    to a new OMS, without any renaming</skos:definition>
         <rdfs:range rdf:resource="&ontoiop-trm;SetOfOMSs"/>
         <rdfs:domain rdf:resource="&ontoiop-trm;StructuredOMS"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isSubLanguageOf -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;isSubLanguageOf">
         <rdf:type rdf:resource="&owl;TransitiveProperty"/>
         <rdfs:label>is sublanguage of</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">\termdefinition{sublanguage}{syntactically specified subset of a given language, consisting of a subset of its terminal and nonterminal symbols and grammar rules}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
-        <rdfs:domain rdf:resource="&ontoiop-trm;Language"/>
+        <skos:definition>syntactically specified subset of a given language, consisting of a subset of its terminal and nonterminal symbols and grammar rules</skos:definition>
         <rdfs:range rdf:resource="&ontoiop-trm;Language"/>
+        <rdfs:domain rdf:resource="&ontoiop-trm;Language"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isSubLogicOf -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;isSubLogicOf">
         <rdf:type rdf:resource="&owl;TransitiveProperty"/>
         <rdfs:label>is sublogic of</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">\termdefinition{sublogic}{a \termref{logic} that is a syntactic restriction of another logic, inheriting its semnatics}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>a logic that is a syntactic restriction of another logic, inheriting its semnatics</skos:definition>
         <rdfs:domain rdf:resource="&ontoiop-trm;Logic"/>
         <rdfs:range rdf:resource="&ontoiop-trm;Logic"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isSubOMSOf -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;isSubOMSOf">
         <rdf:type rdf:resource="&owl;TransitiveProperty"/>
         <rdfs:label>is subOMS of</rdfs:label>
-        <skos:definition xml:lang="en">\termref{OMS} whose sets of \termref{non-logical symbols} and \termref{sentences} are subsets of those present in a given larger \termref{OMS}
-
-</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>OMS whose sets of non-logical symbols and sentences are subsets of those present in a given larger OMS</skos:definition>
         <rdfs:range rdf:resource="&ontoiop-trm;OMS"/>
         <rdfs:domain rdf:resource="&ontoiop-trm;OMS"/>
         <owl:inverseOf rdf:resource="&ontoiop-trm;extends"/>
     </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/isVocabularyOfOMS -->
 
     <owl:ObjectProperty rdf:about="&ontoiop-trm;isVocabularyOfOMS">
-        <rdfs:label xml:lang="en">is the vocabulary of</rdfs:label>
-        <skos:note xml:lang="en">      \begin{note} The signature of an OMS is usually
-      uniquely determined. \end{note} </skos:note>
-        <skos:altLabel xml:lang="en">is the signature of</skos:altLabel>
-        <skos:definition xml:lang="en">relationship between a vocabulary and an OMS where the set of non-logical symbols in the vocabulary is exactly the set of non-logical symbols occurring in the OMS</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <rdfs:label>is the vocabulary of</rdfs:label>
+        <skos:note>The signature of an OMS is usually
+      uniquely determined.</skos:note>
+        <skos:altLabel>is the signature of</skos:altLabel>
+        <skos:definition>relationship between a vocabulary and an OMS where the set of non-logical symbols in the vocabulary is exactly the set of non-logical symbols occurring in the OMS</skos:definition>
     </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/mapsFrom -->
 
     <owl:ObjectProperty rdf:about="&ontoiop-trm;mapsFrom">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <skos:altLabel>has mapping domain</skos:altLabel>
-        <skos:prefLabel>maps from</skos:prefLabel>
-        <skos:definition xml:lang="en">relationship between a mapping and its domain</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <rdfs:label>maps from</rdfs:label>
+        <skos:definition>relationship between a mapping and its domain</skos:definition>
         <rdfs:domain rdf:resource="&ontoiop-trm;Mapping"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/mapsTo -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;mapsTo">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <skos:altLabel>has mapping codomain</skos:altLabel>
+        <rdfs:label>maps to</rdfs:label>
         <skos:definition>relationship between a mapping and its codomain</skos:definition>
-        <skos:prefLabel>maps to</skos:prefLabel>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
         <rdfs:domain rdf:resource="&ontoiop-trm;Mapping"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/profileOf -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;profileOf">
         <rdfs:label>is profile of</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">see Class &apos;profile&apos;</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>see Class &apos;profile&apos;</skos:definition>
         <rdfs:range rdf:resource="&ontoiop-trm;OMSLanguage"/>
         <rdfs:domain rdf:resource="&ontoiop-trm;Profile"/>
         <rdfs:subPropertyOf rdf:resource="&ontoiop-trm;isSubLanguageOf"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/satisfies -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;satisfies">
         <rdfs:label>satisfies</rdfs:label>
         <dct:abstract></dct:abstract>
-        <skos:definition xml:lang="en">relationship between a model and a sentence indicating that the sentence holds true in the model</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>relationship between a model and a sentence indicating that the sentence holds true in the model</skos:definition>
         <rdfs:domain rdf:resource="&ontoiop-trm;Model"/>
         <rdfs:seeAlso rdf:resource="&ontoiop-trm;SatisfactionRelation"/>
         <rdfs:range rdf:resource="&ontoiop-trm;Sentence"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/serializes -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;serializes">
-        <rdfs:label xml:lang="en">serializes</rdfs:label>
+        <rdfs:label>serializes</rdfs:label>
         <rdfs:range rdf:resource="&ontoiop-trm;Language"/>
         <rdfs:domain rdf:resource="&ontoiop-trm;OMSSerialization"/>
     </owl:ObjectProperty>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/usesLanguage -->
-
     <owl:ObjectProperty rdf:about="&ontoiop-trm;usesLanguage">
         <rdfs:label>uses language</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">relation between something and a language used by one or more components of it.</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>relation between something and a language used by one or more components of it.</skos:definition>
     </owl:ObjectProperty>
     
 
@@ -584,13 +384,8 @@ along the alignment, there is only one concept, representing both
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/AdjointEquivalence -->
-
     <owl:Class rdf:about="&ontoiop-trm;AdjointEquivalence">
-        <rdfs:label xml:lang="en">adjoint of equivalence</rdfs:label>
+        <rdfs:label>adjoint of equivalence</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ontoiop-trm;isAdjointOf"/>
@@ -600,76 +395,46 @@ along the alignment, there is only one concept, representing both
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Equivalence"/>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/AnnotationExpression -->
-
     <owl:Class rdf:about="&ontoiop-trm;AnnotationExpression">
         <rdfs:label>annotation expression</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Expression"/>
-        <skos:definition rdf:datatype="&xsd;string">\termdefinition{annotation}{additional information without a logical semantics that is attached to an \termref{element} of an \termref{OMS}}
-  \begin{note}\label{note:annotation-rdf}
-    Formally, an annotation is given as a $(\text{subject}, \text{predicate}, \text{object})$ triple as defined by \nisref{SOURCE: W3C/TR REC-rdf-concepts:2004, Section 6}. The subject of an annotation is an \termref{element} of an OMS. The predicate is an RDF property defined in an external OMS and describes in what way the annotation object is related to the annotation subject.
+        <skos:definition>additional information without a logical semantics that is attached to an element of an OMS</skos:definition><skos:note>\label{note:annotation-rdf}
+    Formally, an annotation is given as a $(\text{subject}, \text{predicate}, \text{object})$ triple as defined by \nisref{SOURCE: W3C/TR REC-rdf-concepts:2004, Section 6}. The subject of an annotation is an element of an OMS. The predicate is an RDF property defined in an external OMS and describes in what way the annotation object is related to the annotation subject.
   \end{note}
   \begin{note}
     According to note~\ref{note:annotation-rdf} it is possible to interpret annotations under an RDF semantics. ``Without a logical semantics&apos;&apos; in this definition means that annotations to an OMS are not considered sentences of that OMS.
-  \end{note}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+  </skos:note>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/AnnotationExpressionLanguageAspect -->
-
     <owl:Class rdf:about="&ontoiop-trm;AnnotationExpressionLanguageAspect">
         <rdfs:label>annotation expression language aspect</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;LanguageAspect"/>
         <owl:disjointWith rdf:resource="&ontoiop-trm;LogicalLanguageAspect"/>
         <owl:disjointWith rdf:resource="&ontoiop-trm;StructuringLanguageAspect"/>
-        <skos:definition rdf:datatype="&xsd;string">\termdefinition{annotation language aspect}{the (unique) \termref{language aspect} of an \termref{OMS language} that enables the expression of comments and annotations}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>the (unique) language aspect of an OMS language that enables the expression of comments and annotations</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/AnswerSubstitution -->
-
     <owl:Class rdf:about="&ontoiop-trm;AnswerSubstitution">
-        <rdfs:label xml:lang="en">answer substitution</rdfs:label>
+        <rdfs:label>answer substitution</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Substitution"/>
-        <skos:definition xml:lang="en">{\termref{substitution} that, when applied to
-a given \termref{query}, turns the latter into a logical consequence of a
-given \termref{OMS}}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <skos:definition>substitution that, when applied to
+a given query, turns the latter into a logical consequence of a
+given OMS</skos:definition>
     </owl:Class>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Approximation -->
 
     <owl:Class rdf:about="&ontoiop-trm;Approximation">
-        <rdfs:label xml:lang="en">approximation</rdfs:label>
+        <rdfs:label>approximation</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;LogicalOMSMapping"/>
-        <skos:definition xml:lang="en">logical OMS mapping to a logically implied theory (possibly after suitable translation) in a smaller \termref{signature} or \termref{OMS language}</skos:definition>
-        <skos:editorialNote xml:lang="en">this definition is derived from the defintion of approximant in the spec</skos:editorialNote>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <skos:definition>logical OMS mapping to a logically implied theory (possibly after suitable translation) in a smaller signature or OMS language</skos:definition>
+        <skos:editorialNote>this definition is derived from the defintion of approximant in the spec</skos:editorialNote>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/AxiomSentence -->
-
     <owl:Class rdf:about="&ontoiop-trm;AxiomSentence">
-        <rdfs:label xml:lang="en">axiom sentence</rdfs:label>
+        <rdfs:label>axiom sentence</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Sentence"/>
-        <skos:definition xml:lang="en">\termref{sentence} postulated to be valid (i.e.\ true in every \termref{model})</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <skos:definition>sentence postulated to be valid (i.e.\ true in every model)</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/BasicOMS -->
-
     <owl:Class rdf:about="&ontoiop-trm;BasicOMS">
         <rdfs:label>basic OMS</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;FlattenableOMS"/>
@@ -695,11 +460,10 @@ given \termref{OMS}}</skos:definition>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:note xml:lang="en">  \begin{note}
+        <skos:note> \begin{note}
     The sentences must use only those non-logical symbols that are present in the signature.
-  \end{note}</skos:note>
-        <skos:definition xml:lang="en">\termref{signature} equipped with a set of \termref{sentences} and \termref{annotations}, which may be used as a building block for a larger \termref{OMS}}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+ </skos:note>
+        <skos:definition>signature equipped with a set of sentences and annotations, which may be used as a building block for a larger OMS</skos:definition>
     </owl:Class>
     
 
@@ -707,13 +471,10 @@ given \termref{OMS}}</skos:definition>
     <!-- http://www.omg.org/spec/OntoIOp/Terminology/ConsequenceTheoreticConservativeExtensionMappin -->
 
     <owl:Class rdf:about="&ontoiop-trm;ConsequenceTheoreticConservativeExtensionMappin">
-        <rdfs:label xml:lang="en">consequence-theoretic conservative extension mapping</rdfs:label>
+        <rdfs:label>consequence-theoretic conservative extension mapping</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;ConservativeExtensionMapping"/>
-        <skos:note xml:lang="en">\begin{note}
-An extension $O_2$ of an OMS $O_1$ is a consequence-theoretic conservative extension, if all properties formulated in the signature of $O_1$ hold for $O_1$ whenever they hold for $O_2$.
-\end{note}</skos:note>
-        <skos:definition xml:lang="en">\termref{extension} that does not add new \termref{theorems} (in terms of the unextended \termref{signature})</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <skos:note>An extension $O_2$ of an OMS $O_1$ is a consequence-theoretic conservative extension, if all properties formulated in the signature of $O_1$ hold for $O_1$ whenever they hold for $O_2$.</skos:note>
+        <skos:definition>extension that does not add new theorems (in terms of the unextended signature)</skos:definition>
     </owl:Class>
     
 
@@ -721,12 +482,10 @@ An extension $O_2$ of an OMS $O_1$ is a consequence-theoretic conservative exten
     <!-- http://www.omg.org/spec/OntoIOp/Terminology/ConservativeExtensionMapping -->
 
     <owl:Class rdf:about="&ontoiop-trm;ConservativeExtensionMapping">
-        <rdfs:label xml:lang="en">conservative extension mapping</rdfs:label>
+        <rdfs:label>conservative extension mapping</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;ExtensionMapping"/>
-        <skos:note xml:lang="en">\begin{note}
-If used without qualification, the consequence-theoretic version is meant.
-\end{note}</skos:note>
-        <skos:definition xml:lang="en">\termref{consequence-theoretic} or \termref{model-theoretic conservative extension}</skos:definition>
+        <skos:note>If used without qualification, the consequence-theoretic version is meant.</skos:note>
+        <skos:definition>consequence-theoretic or model-theoretic conservative extension</skos:definition>
         <owl:disjointUnionOf rdf:parseType="Collection">
             <rdf:Description rdf:about="&ontoiop-trm;ConsequenceTheoreticConservativeExtensionMappin"/>
             <rdf:Description rdf:about="&ontoiop-trm;ModelTheoreticConservativeExtensionMapping"/>
@@ -737,8 +496,8 @@ If used without qualification, the consequence-theoretic version is meant.
 
     <!-- http://www.omg.org/spec/OntoIOp/Terminology/DefinitionalExtension -->
 
-    <owl:Class rdf:about="&ontoiop-trm;DefinitionalExtension">
-        <rdfs:label xml:lang="en">definitional extension</rdfs:label>
+    <owl:Class rdf:about="&ontoiop-trm;DefinitionalExtensionMapping">
+        <rdfs:label>definitional extension mapping</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -747,55 +506,31 @@ If used without qualification, the consequence-theoretic version is meant.
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&ontoiop-trm;MonomorphicExtension"/>
-        <skos:note xml:lang="en">\begin{note}
-$O_2$ being a definitional extension of $O_1$ implies a bijective correspondence between the classes of models of $O_2$ and $O_1$.
-\end{note}</skos:note>
-        <skos:note xml:lang="en">\begin{note}
-An \termref{extension} $O_2$ of an \termref{OMS} $O_1$ is a definitional extension, if each model of $O_1$ can be uniquely expanded to a model of $O_2$.
-\end{note}</skos:note>
-        <skos:note xml:lang="en">\begin{note}
-Each definitional extension is also a monomorphic extension but not vice versa.
-\end{note}</skos:note>
-        <skos:definition xml:lang="en">\termref{extension} whose newly introduced \termref{non-logical symbols} are interpreted in a unique way}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;MonomorphicExtensionMapping"/>
+        <skos:note>$O_2$ being a definitional extension of $O_1$ implies a bijective correspondence between the classes of models of $O_2$ and $O_1$.</skos:note>
+        <skos:note>An extension $O_2$ of an OMS $O_1$ is a definitional extension, if each model of $O_1$ can be uniquely expanded to a model of $O_2$.</skos:note>
+        <skos:note>Each definitional extension is also a monomorphic extension but not vice versa.</skos:note>
+        <skos:definition>extension whose newly introduced non-logical symbols are interpreted in a unique way</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/ElusiveOMS -->
-
     <owl:Class rdf:about="&ontoiop-trm;ElusiveOMS">
-        <rdfs:label xml:lang="en">elusive OMS</rdfs:label>
+        <rdfs:label>elusive OMS</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMS"/>
         <owl:disjointWith rdf:resource="&ontoiop-trm;FlattenableOMS"/>
-        <skos:definition xml:lang="en">OMS that is not flattenable</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <skos:definition>OMS that is not flattenable</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Equivalence -->
-
     <owl:Class rdf:about="&ontoiop-trm;Equivalence">
         <rdfs:label>equivalence</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;LogicalOMSMapping"/>
-        <skos:definition rdf:datatype="&xsd;string">        
-      \termdefinition{equivalence}
-      {\termref{logical OMS mapping} ensuring that two \termref{OMSs} share the
+        <skos:definition>logical OMS mapping ensuring that two OMSs share the
       same definable concepts}
-      \begin{note}
+      </skos:definition><skos:note>
       Two OMSs are equivalent if they have a common definitional extension.
       The OMSs may be written in different OMS languages.
-      \end{note}
-      </skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+      </skos:note>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Expression -->
-
     <owl:Class rdf:about="&ontoiop-trm;Expression">
         <rdfs:label>expression</rdfs:label>
         <rdfs:subClassOf>
@@ -805,14 +540,9 @@ Each definitional extension is also a monomorphic extension but not vice versa.
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">TBD see Class &apos;language&apos;</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>TBD see Class &apos;language&apos;</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/ExtensionMapping -->
-
     <owl:Class rdf:about="&ontoiop-trm;ExtensionMapping">
         <rdfs:label>extension mapping</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;LogicalOMSMapping"/>
@@ -820,37 +550,21 @@ Each definitional extension is also a monomorphic extension but not vice versa.
         <skos:editorialNote>This definition differs from that in the OntoIOp glossary by focussing on the mapping rather than the codomain of the mapping.</skos:editorialNote>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/FlattenableOMS -->
-
     <owl:Class rdf:about="&ontoiop-trm;FlattenableOMS">
-        <rdfs:label xml:lang="en">flattenable OMS</rdfs:label>
+        <rdfs:label>flattenable OMS</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMS"/>
-        <skos:note xml:lang="en">\begin{note}
-More precisely, an OMS is flattenable if and only if it is either a basic OMS or it is an \termref{extension}, \termref{union}, translation, \termref{module extraction}, \termref{approximation}, \termref{filtering}, or reference of named OMS involving only flattenable OMS.
-\end{note}</skos:note>
-        <skos:definition xml:lang="en">{OMS that can be seen, by purely syntactical means, to be logically equivalent to a basic OMS</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <skos:note>More precisely, an OMS is flattenable if and only if it is either a basic OMS or it is an extension, union, translation, module extraction, approximation, filtering, or reference of named OMS involving only flattenable OMS.</skos:note>
+        <skos:definition>OMS that can be seen, by purely syntactical means, to be logically equivalent to a basic OMS</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Graph -->
-
     <owl:Class rdf:about="&ontoiop-trm;Graph">
-        <rdfs:label xml:lang="en">graph</rdfs:label>
-        <skos:definition xml:lang="en">TBD</skos:definition>
-        <skos:editorialNote xml:lang="en">synonym: diagram</skos:editorialNote>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <rdfs:label>graph</rdfs:label>
+        <skos:definition>TBD</skos:definition>
+        <skos:editorialNote>synonym: diagram</skos:editorialNote>
     </owl:Class>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/HeterogeneousEnvironment -->
 
     <owl:Class rdf:about="&ontoiop-trm;HeterogeneousEnvironment">
-        <rdfs:label xml:lang="en">heterogeneous environment</rdfs:label>
+        <rdfs:label>heterogeneous environment</rdfs:label>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ontoiop-trm;hasPart"/>
@@ -869,57 +583,33 @@ More precisely, an OMS is flattenable if and only if it is either a basic OMS or
                 <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMSLanguageGraph"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition xml:lang="en">environment for the expression of homogeneous and \termref{heterogeneous OMS}, comprising a \termref{logic graph}, an \termref{OMS language graph} and a \termref{supports relation}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>environment for the expression of homogeneous and heterogeneous OMS, comprising a logic graph, an OMS language graph and a supports relation</skos:definition>
     </owl:Class>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/HeterogeneousOMS -->
 
     <owl:Class rdf:about="&ontoiop-trm;HeterogeneousOMS">
         <rdfs:label>heterogeneous OMS</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMS"/>
         <owl:disjointWith rdf:resource="&ontoiop-trm;HomogeneousOMS"/>
-        <skos:definition xml:lang="en">\termref{OMS} whose parts are supported by different \termref{logics}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>OMS whose parts are supported by different logics</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/HomogeneousOMS -->
-
     <owl:Class rdf:about="&ontoiop-trm;HomogeneousOMS">
-        <rdfs:label xml:lang="en">homogeneous OMS</rdfs:label>
+        <rdfs:label>homogeneous OMS</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMS"/>
-        <skos:definition xml:lang="en">  \termdefinition{homoogeneous OMS}{\termref{OMS} whose parts are supported by one \termref{logic}}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <skos:definition>OMS whose parts are supported by one logic</skos:definition>
     </owl:Class>
-    
 
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/ImpliedExtension -->
-
-    <owl:Class rdf:about="&ontoiop-trm;ImpliedExtension">
-        <rdfs:label xml:lang="en">implied extension</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&ontoiop-trm;DefinitionalExtension"/>
-        <skos:note xml:lang="en">\begin{note}
-A \termref{conservative extension} $O_2$ of an \termref{OMS}
+    <owl:Class rdf:about="&ontoiop-trm;ImpliedExtensionMapping">
+        <rdfs:label>implied extension mapping</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ontoiop-trm;DefinitionalExtensionMapping"/>
+        <skos:note>A conservative extension $O_2$ of an OMS
 $O_1$ is an implied extension, if and only if the signature of
 $O_2$ is the signature of $O_1$. $O_2$ is an implied extension of
 $O_1$ if and only if the model class of $O_2$ is the model class
-of $O_1$.
-\end{note}</skos:note>
-        <skos:note xml:lang="en">\begin{note}
-Each implied extension is also a definitional extension but not vice versa.
-\end{note}</skos:note>
-        <skos:definition xml:lang="en">\termref{model-theoretic conservative extension} that does not introduce new \termref{non-logical symbols}}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+of $O_1$.</skos:note>
+        <skos:note>Each implied extension is also a definitional extension but not vice versa.</skos:note>
+        <skos:definition>model-theoretic conservative extension that does not introduce new non-logical symbols</skos:definition>
     </owl:Class>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Institution -->
 
     <owl:Class rdf:about="&ontoiop-trm;Institution">
         <rdfs:label>institution</rdfs:label>
@@ -929,18 +619,9 @@ Each implied extension is also a definitional extension but not vice versa.
                 <owl:someValuesFrom rdf:resource="&ontoiop-trm;Logic"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string"> \termdefinition{institution}{metaframework mathematically formalising
-the notion of a \termref{logic}}
-\begin{note}
- See clause~\ref{c:semantics} for a formal definition.
-\end{note}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>metaframework mathematically formalising the notion of a logic</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Language -->
-
     <owl:Class rdf:about="&ontoiop-trm;Language">
         <rdfs:label>language</rdfs:label>
         <rdfs:subClassOf>
@@ -949,24 +630,14 @@ the notion of a \termref{logic}}
                 <owl:someValuesFrom rdf:resource="&ontoiop-trm;SetOfExpressions"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">collection of expressions</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>collection of expressions</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/LanguageAspect -->
-
     <owl:Class rdf:about="&ontoiop-trm;LanguageAspect">
         <rdfs:label>language aspect</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">\termdefinition{language aspect}{set of language constructs of a given language, not necessarily forming a sublanguage}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>set of language constructs of a given language, not necessarily forming a sublanguage</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/LanguageMapping -->
-
     <owl:Class rdf:about="&ontoiop-trm;LanguageMapping">
         <rdfs:label>language mapping</rdfs:label>
         <owl:equivalentClass>
@@ -986,18 +657,12 @@ the notion of a \termref{logic}}
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Mapping"/>
-        <skos:definition rdf:datatype="&xsd;string">maorphism of the Category &apos;language&apos;.</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>maorphism of the Category &apos;language&apos;.</skos:definition>
     </owl:Class>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/LinkedData -->
 
     <owl:Class rdf:about="&ontoiop-trm;LinkedData">
-        <rdfs:label xml:lang="en">linked data</rdfs:label>
-        <skos:definition xml:lang="en">structured data that is published on the Web in a machine-processable way, according to principles specified in \cite{BernersLee:LinkedData2006,BizerHeath09}}
-\begin{note}
+        <rdfs:label>linked data</rdfs:label>
+        <skos:definition>structured data that is published on the Web in a machine-processable way, according to principles specified in \cite{BernersLee:LinkedData2006,BizerHeath09}}</skos:definition><skos:note>
 The linked data principles (adapted from \cite{BernersLee:LinkedData2006} and its paraphrase at \cite{Wikipedia:LinkedData2011}) are the following:
 \begin{enumerate}
 \item Use IRIs as names for things.
@@ -1011,14 +676,9 @@ RDF, serialized as RDF/XML \cite{W3C:REC-rdf-syntax-grammar-20040210}, is the mo
 \end{note}
 \begin{note}
 Using HTTP content negotiation \cite{rfc2616} it is possible to serve representations in different formats from the same URL.
-\end{note}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+</skos:note>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Logic -->
-
     <owl:Class rdf:about="&ontoiop-trm;Logic">
         <rdfs:label>logic</rdfs:label>
         <rdfs:subClassOf>
@@ -1027,9 +687,8 @@ Using HTTP content negotiation \cite{rfc2616} it is possible to serve representa
                 <owl:someValuesFrom rdf:resource="&ontoiop-trm;Institution"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">  \termdefinition{logic}{specification of valid reasoning that comprises \termref{signatures}, \termref{sentences},
-  \termref{models}, and a \termref{satisfaction relation} between \termref{models} and \termref{sentences}}
-  \begin{note}
+        <skos:definition>specification of valid reasoning that comprises signatures, sentences,
+  models, and a satisfaction relation between models and sentences</skos:definition><skos:note>
     Most OMS languages have an underlying logic.
   \end{note}
   \begin{example}
@@ -1038,31 +697,20 @@ Using HTTP content negotiation \cite{rfc2616} it is possible to serve representa
   \begin{note}
    See annex~\ref{a:rdf-logic-vocab} for the organization of the
    relation between OMS languages and their logics and serializations.
-  \end{note}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+  </skos:note>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/LogicApproximation -->
-
     <owl:Class rdf:about="&ontoiop-trm;LogicApproximation">
         <rdfs:label>logic approximation</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;LogicMapping"/>
-        <skos:definition rdf:datatype="&xsd;string">\termdefinition{logic approximation}{mapping of a source \termref{logic}
-  onto a (usually less expressive) target \termref{logic} that tries
-  to approximate the OMSs expressed in the source \termref{logic} with
-  means of the expressivity of the target \termref{logic}}
-\begin{note}
+        <skos:definition>mapping of a source logic
+  onto a (usually less expressive) target logic that tries
+  to approximate the OMSs expressed in the source logic with
+  means of the expressivity of the target logic</skos:definition><skos:note>
   A unique maximal approximation need not exist.
-\end{note}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+</skos:note>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/LogicMapping -->
-
     <owl:Class rdf:about="&ontoiop-trm;LogicMapping">
         <rdfs:label>logic mapping</rdfs:label>
         <owl:equivalentClass>
@@ -1082,55 +730,36 @@ Using HTTP content negotiation \cite{rfc2616} it is possible to serve representa
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Mapping"/>
-        <skos:definition rdf:datatype="&xsd;string">morphism of the Category &apos;logic&apos;.</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>morphism of the Category &apos;logic&apos;.</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/LogicReduction -->
-
     <owl:Class rdf:about="&ontoiop-trm;LogicReduction">
         <rdfs:label>logic reduction</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;LogicMapping"/>
-        <skos:definition rdf:datatype="&xsd;string">  \termdefinition{logic reduction}{mapping of a source \termref{logic}
-    onto a (usually less expressive) target \termref{logic} (mapping
-    \termref{signatures}, \termref{sentences} and \termref{models})
+        <skos:definition>mapping of a source logic
+    onto a (usually less expressive) target logic (mapping
+    signatures, sentences and models)
     that simply forgets those parts of the logical structure not
-    fitting the target \termref{logic}}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+    fitting the target logic</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/LogicTranslation -->
-
     <owl:Class rdf:about="&ontoiop-trm;LogicTranslation">
         <rdfs:label>logic translation</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;LogicMapping"/>
-        <skos:definition rdf:datatype="&xsd;string">  \termdefinition{logic translation}{mapping of a source
-    \termref{logic} into a target \termref{logic} (mapping
-    \termref{signatures}, \termref{sentences} and \termref{models})
-    that keeps or encodes the logical content of \termref{OMSs}}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>mapping of a source
+    logic into a target logic (mapping
+    signatures, sentences and models)
+    that keeps or encodes the logical content of OMSs</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/LogicalLanguageAspect -->
 
     <owl:Class rdf:about="&ontoiop-trm;LogicalLanguageAspect">
         <rdfs:label>logical language aspect</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;LanguageAspect"/>
         <owl:disjointWith rdf:resource="&ontoiop-trm;StructuringLanguageAspect"/>
-        <skos:definition rdf:datatype="&xsd;string">\termdefinition{logical language aspect}{the (unique) \termref{language aspect} of an \termref{OMS language} that enables the expression of \termref{non-logical symbols} and \termref{sentences} in a logical language}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>the (unique) language aspect of an OMS language that enables the expression of non-logical symbols and sentences in a logical language</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/LogicalOMSMapping -->
-
     <owl:Class rdf:about="&ontoiop-trm;LogicalOMSMapping">
         <rdfs:label>logical OMS mapping</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMSMapping"/>
@@ -1140,19 +769,13 @@ Using HTTP content negotiation \cite{rfc2616} it is possible to serve representa
                 <owl:someValuesFrom rdf:resource="&ontoiop-trm;SetOfCorrespondences"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">  \termdefinition{logical OMS mapping}{\termref{OMS mapping} that has a formal, logic-based semantics}
-  \begin{note}
+        <skos:definition>OMS mapping that has a formal, logic-based semantics</skos:definition><skos:note>
     Logical OMS mappings are given as sets of correspondences, which are required to be \emph{signature morphisms}.
-  \end{note}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+  </skos:note>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/LogicalTheory -->
-
     <owl:Class rdf:about="&ontoiop-trm;LogicalTheory">
-        <rdfs:label xml:lang="en">logical theory</rdfs:label>
+        <rdfs:label>logical theory</rdfs:label>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ontoiop-trm;hasPart"/>
@@ -1167,14 +790,9 @@ Using HTTP content negotiation \cite{rfc2616} it is possible to serve representa
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition xml:lang="en">\termref{signature} equipped with a set of \termref{sentences} over the signature</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <skos:definition>signature equipped with a set of sentences over the signature</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Mapping -->
-
     <owl:Class rdf:about="&ontoiop-trm;Mapping">
         <rdfs:label>mapping</rdfs:label>
         <owl:equivalentClass>
@@ -1191,14 +809,9 @@ Using HTTP content negotiation \cite{rfc2616} it is possible to serve representa
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <skos:definition rdf:datatype="&xsd;string">morphism (from Category Theory).</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>morphism (from Category Theory).</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Model -->
-
     <owl:Class rdf:about="&ontoiop-trm;Model">
         <rdfs:label>model</rdfs:label>
         <rdfs:subClassOf>
@@ -1207,98 +820,60 @@ Using HTTP content negotiation \cite{rfc2616} it is possible to serve representa
                 <owl:someValuesFrom rdf:resource="&ontoiop-trm;Vocabulary"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition xml:lang="en"> semantic interpretation of a signature</skos:definition>
-        <skos:note xml:lang="en">\begin{note} A model of an OMS is
-      a model of the signature of the OMS that moreover \termref{satisfies} all the \termref{axioms}
-      of the OMS. \end{note} </skos:note>
-        <skos:scopeNote xml:lang="en">\begin{note} This term is not to be confused with model in the sense of
-      modeling (i.e., the ``M&apos;&apos; in OMS). \end{note} </skos:scopeNote>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition> semantic interpretation of a signature</skos:definition>
+        <skos:note>A model of an OMS is
+      a model of the signature of the OMS that moreover satisfies all the axioms
+      of the OMS.</skos:note>
+        <skos:scopeNote>This term is not to be confused with model in the sense of modeling (i.e., the ``M&apos;&apos; in OMS).</skos:scopeNote>
     </owl:Class>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/ModelTheoreticConservativeExtensionMapping -->
 
     <owl:Class rdf:about="&ontoiop-trm;ModelTheoreticConservativeExtensionMapping">
-        <rdfs:label xml:lang="en">model-theoretic conservative extension mapping</rdfs:label>
+        <rdfs:label>model-theoretic conservative extension mapping</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;ConservativeExtensionMapping"/>
-        <skos:note xml:lang="en">\begin{note}
-An extension $O_2$ of an OMS $O_1$ is a model-theoretic conservative extension, if all properties formulated in the signature of $O_1$ hold for $O_1$ whenever they hold for $O_2$.
-\end{note}</skos:note>
-        <skos:note xml:lang="en">\begin{note}
-Any model-theoretic conservative extension is also a consequence-theoretic one.
-\end{note}</skos:note>
-        <skos:definition xml:lang="en">\termref{extension mapping} that does not lead to a restriction of class of \termref{model}s of an \termref{OMS}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <skos:note>An extension $O_2$ of an OMS $O_1$ is a model-theoretic conservative extension, if all properties formulated in the signature of $O_1$ hold for $O_1$ whenever they hold for $O_2$.</skos:note>
+        <skos:note>Any model-theoretic conservative extension is also a consequence-theoretic one.</skos:note>
+        <skos:definition>extension mapping that does not lead to a restriction of class of models of an OMS</skos:definition>
     </owl:Class>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/ModuleExtraction -->
 
     <owl:Class rdf:about="&ontoiop-trm;ModuleExtraction">
-        <rdfs:label xml:lang="en">module extraction</rdfs:label>
-        <sm:informativeReference xml:lang="en">\begin{note}
-Cited and slightly adapted from \cite{SuarezFigueroaEtAl:OntologyGlossary2008}
-\end{note}</sm:informativeReference>
-        <skos:note xml:lang="en">\begin{note}
-The goal of module extraction is ``decomposing an OMS into smaller, more manageable modules with appropriate dependencies&apos;&apos; \cite{DBLP:series/lncs/5445}
-\end{note}</skos:note>
-        <skos:definition xml:lang="en">activity of obtaining from an \termref{OMS} concrete \termref{modules} to be used for a particular purpose (\eg to contain a particular sub-\termref{signature} of the original \termref{OMS})</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <rdfs:label>module extraction</rdfs:label>
+        <sm:informativeReference>Cited and slightly adapted from \cite{SuarezFigueroaEtAl:OntologyGlossary2008}</sm:informativeReference>
+        <skos:note>The goal of module extraction is ``decomposing an OMS into smaller, more manageable modules with appropriate dependencies&apos;&apos; \cite{DBLP:series/lncs/5445}</skos:note>
+        <skos:definition>activity of obtaining from an OMS concrete modules to be used for a particular purpose (\eg to contain a particular sub-signature of the original OMS)</skos:definition>
     </owl:Class>
-    
 
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/MonomorphicExtension -->
-
-    <owl:Class rdf:about="&ontoiop-trm;MonomorphicExtension">
-        <rdfs:label xml:lang="en">monomorphic extension</rdfs:label>
+    <owl:Class rdf:about="&ontoiop-trm;MonomorphicExtensionMapping">
+        <rdfs:label>monomorphic extension mapping</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;ModelTheoreticConservativeExtensionMapping"/>
-        <skos:note xml:lang="en">\begin{note}
-An \termref{extension} $O_2$ of an \termref{OMS} $O_1$ is a monomorphic extension, if each model of $O_1$ can be expanded to a model of $O_2$ that is unique up to isomorphism.
-\end{note}</skos:note>
-        <skos:note xml:lang="en">\begin{note}
-Each monomorphic extension is also a model-theoretic conservative extension but not vice versa.
-\end{note}</skos:note>
-        <skos:definition xml:lang="en">\termref{extension} whose newly introduced \termref{non-logical symbols} are interpreted in a way unique up to isomorphism}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <skos:note>An extension $O_2$ of an OMS $O_1$ is a monomorphic extension, if each model of $O_1$ can be expanded to a model of $O_2$ that is unique up to isomorphism.</skos:note>
+        <skos:note>Each monomorphic extension is also a model-theoretic conservative extension but not vice versa.</skos:note>
+        <skos:definition>extension whose newly introduced non-logical symbols are interpreted in a way unique up to isomorphism</skos:definition>
     </owl:Class>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/NonLogicalSymbol -->
 
     <owl:Class rdf:about="&ontoiop-trm;NonLogicalSymbol">
         <rdfs:label>non-logical symbol</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Symbol"/>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Term"/>
-        <skos:example xml:lang="en"> \begin{example} Non-logical symbols in Common
+        <skos:example> \begin{example} Non-logical symbols in Common
       Logic \nisref{ISO/IEC 24707:2007} comprise \begin{itemize} \item names (denoting objects from
       the domain of discourse), \item sequence markers (denoting sequences of objects).
       \end{itemize} This is opposed to logical symbols in Common Logic, e.g.\ logical connectives
       and quantifiers. \end{example} </skos:example>
-        <skos:example xml:lang="en">\begin{example} Non-logical symbols in OWL \nisref{W3C/TR
+        <skos:example>\begin{example} Non-logical symbols in OWL \nisref{W3C/TR
       REC-owl2-syntax:2009} (there called ``entities&apos;&apos;) comprise \begin{itemize} \item
       individuals (denoting objects from the domain of discourse), \item classes (denoting sets of
       objects; also called concepts), and \item properties (denoting binary relations over objects;
       also called roles). \end{itemize} This is opposed to logical symbols in OWL, e.g.\ those for
       intersection and union of classes. \end{example} </skos:example>
-        <skos:note xml:lang="en">\begin{note} The notion of ``atomic
+        <skos:note>The notion of ``atomic
       sentence&apos;&apos; used in logic is different, it usually may involve several non-logical
-      symbols. \end{note} } </skos:note>
-        <skos:definition xml:lang="en">\synonym OMS symbol
-{atomic expression or syntactic constituent of an \termref{OMS} that requires an interpretation through a \termref{model}}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+      symbols. \end{note} }</skos:note>
+        <skos:definition>\synonym OMS symbol
+{atomic expression or syntactic constituent of an OMS that requires an interpretation through a model</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMS -->
-
     <owl:Class rdf:about="&ontoiop-trm;OMS">
-        <rdfs:label xml:lang="en">OMS (ontology, specification or model)</rdfs:label>
+        <rdfs:label>OMS (ontology, specification or model)</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -1321,77 +896,50 @@ Each monomorphic extension is also a model-theoretic conservative extension but 
                 <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMSLanguage"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:note xml:lang="en">\begin{note} An
-      \termref{OMS} can be written in different \termref{OMS language} \termref{serializations}.
-      \end{note} </skos:note>
-        <skos:definition xml:lang="en">collection of expressions (like \termref{non-logical symbols}, \termref{sentences} and \termref{structuring} elements) in a given \termref{OMS language} (or several such languages)</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:note>An
+      OMS can be written in different OMS language serializations.</skos:note>
+        <skos:definition>collection of expressions (like non-logical symbols, sentences and structuring elements) in a given OMS language (or several such languages)</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSDocumentation -->
-
     <owl:Class rdf:about="&ontoiop-trm;OMSDocumentation">
         <rdfs:label>OMS documentation</rdfs:label>
-        <sm:informativeReference xml:lang="en">  \begin{note}
+        <sm:informativeReference>  \begin{note}
     Adapted from \cite{SuarezFigueroaEtAl:OntologyGlossary2008}
   \end{note}</sm:informativeReference>
-        <skos:definition xml:lang="en">set of all \termref{annotations} to an \termref{OMS}, plus any other documents and explanatory comments generated during the entire OMS building process</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>set of all annotations to an OMS, plus any other documents and explanatory comments generated during the entire OMS building process</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSGraph -->
-
     <owl:Class rdf:about="&ontoiop-trm;OMSGraph">
         <rdfs:label>OMS graph</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Graph"/>
-        <skos:definition rdf:datatype="&xsd;string">\termdefinition{OMS graph} graph with \termref{OMSs} as nodes and \termref{OMS mappings} as edges, showing how the OMS are interlinked
-  \ednote{add note with examples of what can be these links}
-  \begin{note}
+        <skos:definition> graph with OMSs as nodes and OMS mappings as edges, showing how the OMS are interlinked
+    </skos:definition><skos:note>
     An OMS graph is a diagram of OMS in the sense of category theory, but different from a diagram
     in the sense of model-driven architecture.
-  \end{note}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+  </skos:note>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSLanguage -->
-
     <owl:Class rdf:about="&ontoiop-trm;OMSLanguage">
         <rdfs:label>OMS language</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Language"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ontoiop-trm;hasLogic"/>
+                <owl:onProperty rdf:resource="&ontoiop-trm;supportsLogic"/>
                 <owl:someValuesFrom rdf:resource="&ontoiop-trm;Logic"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:note>      \begin{note} An OMS language is used for the formal specification of \termref{OMSs}.
-      \end{note} </skos:note>
-        <skos:example xml:lang="en">\begin{example} OMS languages include OWL, Common Logic, F-logic, UML class
+        <skos:note>     \begin{note} An OMS language is used for the formal specification of OMSs.</skos:note>
+        <skos:example>\begin{example} OMS languages include OWL, Common Logic, F-logic, UML class
       diagrams, RDFS, and OBO. \end{example}</skos:example>
-        <skos:definition xml:lang="en">{language equipped with a formal, declarative, logic-based semantics, plus non-logical \termref{annotations}}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>language equipped with a formal, declarative, logic-based semantics, plus non-logical annotations</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSLanguageGraph -->
-
     <owl:Class rdf:about="&ontoiop-trm;OMSLanguageGraph">
-        <rdfs:label xml:lang="en">OMS language graph</rdfs:label>
+        <rdfs:label>OMS language graph</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Graph"/>
-        <skos:definition xml:lang="en">TBD</skos:definition>
+        <skos:definition>TBD</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSLanguageTranslation -->
-
     <owl:Class rdf:about="&ontoiop-trm;OMSLanguageTranslation">
         <rdfs:label>OMS language translation</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;LanguageMapping"/>
@@ -1409,29 +957,19 @@ Each monomorphic extension is also a model-theoretic conservative extension but 
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">\termdefinition{OMS language translation}{mapping from constructs in the source \termref{OMS language} to their equivalents in the target \termref{OMS language}}
-\begin{note}
+        <skos:definition>mapping from constructs in the source OMS language to their equivalents in the target OMS language</skos:definition><skos:note>
   An OMS language translation shall satisfy the property that the
   result of a translation is a well-formed text in the target
   language.
-\end{note}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+</skos:note>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSLogicGraph -->
-
     <owl:Class rdf:about="&ontoiop-trm;OMSLogicGraph">
-        <rdfs:label xml:lang="en">OMS logic graph</rdfs:label>
+        <rdfs:label>OMS logic graph</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Graph"/>
-        <skos:definition xml:lang="en">TBD</skos:definition>
+        <skos:definition>TBD</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSMapping -->
-
     <owl:Class rdf:about="&ontoiop-trm;OMSMapping">
         <rdfs:label>OMS mapping</rdfs:label>
         <owl:equivalentClass>
@@ -1451,25 +989,15 @@ Each monomorphic extension is also a model-theoretic conservative extension but 
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Mapping"/>
-        <skos:definition rdf:datatype="&xsd;string">{relationship between two \termref{OMSs}, typically given as a set of \termref{correspondences}}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>relationship between two OMSs, typically given as a set of correspondences</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSNetwork -->
-
     <owl:Class rdf:about="&ontoiop-trm;OMSNetwork">
         <rdfs:label>OMS network</rdfs:label>
-        <skos:definition xml:lang="en">\synonym hyperontology}
-{collection of named \termref{OMSs,} possibly written in different \termref{OMS languages}, linked by named \termref{OMS mappings} and named \termref{OMS graphs}}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>\synonym hyperontology}
+{collection of named OMSs, possibly written in different OMS languages, linked by named OMS mappings and named OMS graphs</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMSSerialization -->
-
     <owl:Class rdf:about="&ontoiop-trm;OMSSerialization">
         <rdfs:label>OMS serialization</rdfs:label>
         <rdfs:subClassOf>
@@ -1478,7 +1006,7 @@ Each monomorphic extension is also a model-theoretic conservative extension but 
                 <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMSLanguage"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">  \termdefinition{serialization}{specific syntactic encoding of a given \termref{OMS language}}
+        <skos:definition>specific syntactic encoding of a given OMS language}
   \begin{note}
     Serializations serve as standard formats for exchanging OMSs between tools.
   \end{note}
@@ -1488,138 +1016,90 @@ Each monomorphic extension is also a model-theoretic conservative extension but 
   \begin{example}
     Common Logic uses the term ``dialect&apos;&apos;; the following are standard Common Logic dialects: Common Logic Interchange Format (CLIF), Conceptual Graph Interchange Format (GCIF), eXtended Common Logic Markup Language (XCL).
   \end{example}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Profile -->
-
     <owl:Class rdf:about="&ontoiop-trm;Profile">
         <rdfs:label>profile</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMSLanguage"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ontoiop-trm;hasLogic"/>
+                <owl:onProperty rdf:resource="&ontoiop-trm;supportsLogic"/>
                 <owl:onClass rdf:resource="&ontoiop-trm;Logic"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">\termdefinition{profile}{(syntactic) \termref{sublanguage} of an \termref{OMS language} interpreting according to a particular \termref{logic}
+        <skos:definition>(syntactic) sublanguage of an OMS language interpreting according to a particular logic
 that targets specific applications or reasoning methods}
   \begin{example}
     Profiles of OWL 2 include OWL 2 EL, OWL 2 QL, OWL 2 RL, OWL 2 DL, and OWL 2 Full.
   \end{example}
   \begin{note}
-  Profiles typically correspond to \termref{sublogics}.
+  Profiles typically correspond to sublogics.
   \end{note}
   \begin{note}
-  Profiles can have different \termref{logics}, even with completely
+  Profiles can have different logics, even with completely
   different semantics, e.g.\ OWL 2 DL versus OWL 2 Full.
   \end{note}
-  \begin{note}
+  </skos:definition><skos:note>
     The logic needs to support the language.
-  \end{note}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+  </skos:note>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Query -->
-
     <owl:Class rdf:about="&ontoiop-trm;Query">
-        <rdfs:label xml:lang="en">query</rdfs:label>
+        <rdfs:label>query</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Sentence"/>
-        <skos:definition xml:lang="en">{\termref{sentence} containing \termref{query variables} that can be instantiated by a \termref{substitution}}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <skos:definition>sentence containing query variables that can be instantiated by a substitution</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/QueryLanguage -->
-
     <owl:Class rdf:about="&ontoiop-trm;QueryLanguage">
-        <rdfs:label xml:lang="en">query language</rdfs:label>
+        <rdfs:label>query language</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMSLanguage"/>
-        <skos:example xml:lang="en">\begin{example}
+        <skos:example>\begin{example}
 SPARQL, Prolog
 \end{example}</skos:example>
-        <skos:scopeNote xml:lang="en">\begin{note}
-There are also general purpose OMS languages, which can express both \termref{OMS} and quries.
+        <skos:scopeNote>\begin{note}
+There are also general purpose OMS languages, which can express both OMS and quries.
 \end{note}</skos:scopeNote>
-        <skos:definition xml:lang="en">{\termref{OMS language} specifically dedicated to \termref{queries}}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <skos:definition>OMS language specifically dedicated to queries</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/QueryVariable -->
-
     <owl:Class rdf:about="&ontoiop-trm;QueryVariable">
-        <rdfs:label xml:lang="en">query variable</rdfs:label>
+        <rdfs:label>query variable</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Symbol"/>
-        <skos:note xml:lang="en">\begin{note}
-From an abstract point of view, query variables are just symbols;
+        <skos:note>From an abstract point of view, query variables are just symbols;
 they are used in a way
 that they will be substituted using a substitution.
-Many OMS languages have special notations for (query) variables.
-\end{note}
-</skos:note>
-        <skos:note xml:lang="en">\begin{note}
-If there are no variables in an OMS language, constants can be used as query
-variables.
-\end{note}</skos:note>
-        <skos:note xml:lang="en">\begin{note}
-Usually, query variables are the free variables of a sentence, whereas there
-can be other (bound) variables.
-\end{note}
-</skos:note>
-        <skos:definition xml:lang="en">{\termref{symbol} that will be used in a \termref{query} and a \termref{substitution}}
-</skos:definition>
+Many OMS languages have special notations for (query) variables.</skos:note>
+        <skos:note>If there are no variables in an OMS language, constants can be used as query
+variables.</skos:note>
+        <skos:note>Usually, query variables are the free variables of a sentence, whereas there
+can be other (bound) variables.</skos:note>
+        <skos:definition>symbol that will be used in a query and a substitution</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Reduction -->
-
     <owl:Class rdf:about="&ontoiop-trm;Reduction">
         <rdfs:label>reduction</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;LogicalOMSMapping"/>
-        <skos:definition rdf:datatype="&xsd;string">\termdefinition{reduction}{\termref{logical OMS mapping} reducing an \termref{OMS} to a smaller \termref{signature}}        
-      </skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>logical OMS mapping reducing an OMS to a smaller signature</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Renaming -->
-
     <owl:Class rdf:about="&ontoiop-trm;Renaming">
         <rdfs:label>renaming</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;LogicalOMSMapping"/>
-        <skos:definition rdf:datatype="&xsd;string">  \termdefinition{renaming}{assignment of new names
-        to some \termref{non-logical symbols} of an \termref{OMS}}
-        \begin{note}
-        A renaming results in a \termref{logical OMS mapping} between the
+        <skos:definition>assignment of new names
+        to some non-logical symbols of an OMS</skos:definition><skos:note>
+        A renaming results in a logical OMS mapping between the
         original and the renamed OMS.
-        \end{note}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        </skos:note>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Resource -->
-
     <owl:Class rdf:about="&ontoiop-trm;Resource">
-        <rdfs:label xml:lang="en">resource</rdfs:label>
-        <skos:definition xml:lang="en">something that can be globally identified}
+        <rdfs:label>resource</rdfs:label>
+        <skos:definition>something that can be globally identified}
 \begin{note}
 \nisref{IETF/RFC 3986:2005, Section 1.1} deliberately defines a resource as ``in a general sense \textelp{} whatever might be identified by \textins*{an IRI}&apos;&apos;. The original source refers to URIs, but DOL uses the compatible IRI standard \nisref{IETF/RFC 3987:2005} for identification.
 \end{note}
-\begin{example}
-Familiar examples include an electronic document, an image, a source of information with a consistent purpose (\eg, ``today&apos;s weather report for Los Angeles&apos;&apos;), a service (\eg, an HTTP-to-SMS gateway), and a collection of other resources. A resource is not necessarily accessible via the Internet; \eg, human beings, corporations, and bound books in a library can also be resources. Likewise, abstract concepts can be resources, such as the operators and operands of a mathematical equation, the types of a relationship (\eg, ``parent&apos;&apos; or ``employee&apos;&apos;), or numeric values (\eg, zero, one, and infinity). \nisref{IETF/RFC 3986:2005, Section 1.1}
-\end{example}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+</skos:definition><skos:example>Familiar examples include an electronic document, an image, a source of information with a consistent purpose (\eg, ``today&apos;s weather report for Los Angeles&apos;&apos;), a service (\eg, an HTTP-to-SMS gateway), and a collection of other resources. A resource is not necessarily accessible via the Internet; \eg, human beings, corporations, and bound books in a library can also be resources. Likewise, abstract concepts can be resources, such as the operators and operands of a mathematical equation, the types of a relationship (\eg, ``parent&apos;&apos; or ``employee&apos;&apos;), or numeric values (\eg, zero, one, and infinity). \nisref{IETF/RFC 3986:2005, Section 1.1}</skos:example>
     </owl:Class>
     
 
@@ -1627,229 +1107,134 @@ Familiar examples include an electronic document, an image, a source of informat
     <!-- http://www.omg.org/spec/OntoIOp/Terminology/SatisfactionRelation -->
 
     <owl:Class rdf:about="&ontoiop-trm;SatisfactionRelation">
-        <rdfs:label xml:lang="en">satisfaction relation</rdfs:label>
-        <skos:definition xml:lang="en">relation between models and sentences indicating which sentences hold true in the model</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <rdfs:label>satisfaction relation</rdfs:label>
+        <skos:definition>relation between models and sentences indicating which sentences hold true in the model</skos:definition>
         <rdfs:seeAlso rdf:resource="&ontoiop-trm;satisfies"/>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Sentence -->
-
     <owl:Class rdf:about="&ontoiop-trm;Sentence">
         <rdfs:label>sentence</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Term"/>
-        <skos:definition rdf:datatype="&xsd;string">{term that is either true or false in a given \termref{model}, i.e.\ which is assigned a truth value in this \termref{model}.
-</skos:definition>
-        <skos:note xml:lang="en"> \begin{note} A     sentence can conform to one or more signatures (namely those signatures containing all
-      non-logical symbols used in the sentence). \end{note} </skos:note>
-        <skos:note xml:lang="en">\CLnote[type=fyi]{From Common Logic, I changed ``unit of logical
+        <skos:definition>term that is either true or false in a given model, i.e.\ which is assigned a truth value in this model.</skos:definition>
+        <skos:note>A     sentence can conform to one or more signatures (namely those signatures containing all
+      non-logical symbols used in the sentence).</skos:note>
+        <skos:note>\CLnote[type=fyi]{From Common Logic, I changed ``unit of logical
       text&apos;&apos; to ``term&apos;&apos;.}}</skos:note>
-        <skos:note xml:lang="en">\begin{note} In a \termref{model}, on the one hand,
-      a sentence is always true or false. In an \termref{OMS}, on the other hand, a sentence can
+        <skos:note>In a model, on the one hand,
+      a sentence is always true or false. In an OMS, on the other hand, a sentence can
       have several logical statuses: it can be an axiom, if postulated to be true; a theorem, if
       proven from other axioms and theorems; a conjecture, if expecting to be proven from other
-      axioms and theorems; or have another of many possible statuses. \end{note} </skos:note>
-        <skos:note xml:lang="en">\begin{note} It is quite common that
+      axioms and theorems; or have another of many possible statuses.</skos:note>
+        <skos:note>It is quite common that
       sentences are required to be closed (i.e.\ have no free variables). However, this depends on
-      the OMS language at hand. \end{note}</skos:note>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+      the OMS language at hand.</skos:note>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Set -->
-
     <owl:Class rdf:about="&ontoiop-trm;Set">
         <rdfs:label>set</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">set whose members have a certain type, as specified by the type parameter.</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>set whose members have a certain type, as specified by the type parameter.</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/SetOfAnnotationExpressions -->
-
     <owl:Class rdf:about="&ontoiop-trm;SetOfAnnotationExpressions">
         <rdfs:label>set of annotation expressions</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;SetOfExpressions"/>
-        <skos:definition rdf:datatype="&xsd;string">set whose members are annotation expressions.</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>set whose members are annotation expressions.</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/SetOfCorrespondences -->
-
     <owl:Class rdf:about="&ontoiop-trm;SetOfCorrespondences">
         <rdfs:label>set of correspondences</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;SetOfMappings"/>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/SetOfExpressions -->
-
     <owl:Class rdf:about="&ontoiop-trm;SetOfExpressions">
         <rdfs:label>set of expressions</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Set"/>
-        <skos:definition xml:lang="en">set whose members are expressions</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>set whose members are expressions</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/SetOfMappings -->
-
     <owl:Class rdf:about="&ontoiop-trm;SetOfMappings">
         <rdfs:label>set of mappings</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Set"/>
-        <skos:definition rdf:datatype="&xsd;string">set whose members are mappings.</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>set whose members are mappings.</skos:definition>
     </owl:Class>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/SetOfNonlogicalSymbols -->
 
     <owl:Class rdf:about="&ontoiop-trm;SetOfNonlogicalSymbols">
-        <rdfs:label xml:lang="en">set of non-logical symbols</rdfs:label>
+        <rdfs:label>set of non-logical symbols</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;SetOfExpressions"/>
-        <skos:definition xml:lang="en">set whose members are non-logical symbols</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <skos:definition>set whose members are non-logical symbols</skos:definition>
     </owl:Class>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/SetOfOMSs -->
 
     <owl:Class rdf:about="&ontoiop-trm;SetOfOMSs">
         <rdfs:label>set of OMSs</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Set"/>
-        <skos:definition rdf:datatype="&xsd;string">set whose members are OMSs.</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>set whose members are OMSs.</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/SetOfSentences -->
-
     <owl:Class rdf:about="&ontoiop-trm;SetOfSentences">
-        <rdfs:label xml:lang="en">set of sentences</rdfs:label>
+        <rdfs:label>set of sentences</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;SetOfExpressions"/>
-        <skos:definition xml:lang="en">set whose members are sentences</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <skos:definition>set whose members are sentences</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/StandoffMarkup -->
-
     <owl:Class rdf:about="&ontoiop-trm;StandoffMarkup">
         <rdfs:label>standoff markup</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Language"/>
-        <skos:definition rdf:datatype="&xsd;string">\termdefinition{standoff markup}{way of providing \termref{annotations} to subjects in external resources, without embedding them into the original resource (here: \termref{OMS})}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>way of providing annotations to subjects in external resources, without embedding them into the original resource (here: OMS)</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/StructuredOMS -->
-
     <owl:Class rdf:about="&ontoiop-trm;StructuredOMS">
         <rdfs:label>structured OMS</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMS"/>
-        <skos:definition rdf:datatype="&xsd;string">\termdefinition{structured OMS}
-{\termref{OMS} that results from other \termref{OMSs} by \termref{import}, \termref{union}, \termref{combination}, \termref{renaming} or other structuring operations}
-
+        <skos:definition>
+{OMS that results from other OMSs by import, union, combination, renaming or other structuring operations}
 </skos:definition>
         <skos:editorialNote>synonym: focused OMS</skos:editorialNote>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/StructuringLanguageAspect -->
-
     <owl:Class rdf:about="&ontoiop-trm;StructuringLanguageAspect">
         <rdfs:label>structuring language aspect</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;LanguageAspect"/>
-        <skos:definition rdf:datatype="&xsd;string">\termdefinition{structuring language aspect}{the (unique) \termref{language aspect} of an \termref{OMS language} that covers \termref{structured OMSs} as well as the relations of \termref{basic OMSs} and \termref{structured OMSs} to each other, including, but not limited to \termref{imports}, \termref{OMS mappings}, \termref{conservative extensions}, and the handling of prefixes for CURIEs}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>the (unique) language aspect of an OMS language that covers structured OMSs as well as the relations of basic OMSs and structured OMSs to each other, including, but not limited to imports, OMS mappings, conservative extensions, and the handling of prefixes for CURIEs</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Substitution -->
-
     <owl:Class rdf:about="&ontoiop-trm;Substitution">
-        <rdfs:label xml:lang="en">substitution</rdfs:label>
+        <rdfs:label>substitution</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;LogicalOMSMapping"/>
-        <skos:definition xml:lang="en">{\termref{logical OMS mapping} that maps \termref{query variables} of one \termref{OMS} to complex \termref{terms} of another OMS}</skos:definition>
+        <skos:definition>logical OMS mapping that maps query variables of one OMS to complex terms of another OMS</skos:definition>
     </owl:Class>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/SupportsRelation -->
 
     <owl:Class rdf:about="&ontoiop-trm;SupportsRelation">
-        <rdfs:label xml:lang="en">supports relation</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <rdfs:label>supports relation</rdfs:label>
     </owl:Class>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Symbol -->
 
     <owl:Class rdf:about="&ontoiop-trm;Symbol">
-        <rdfs:label xml:lang="en">symbol</rdfs:label>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <rdfs:label>symbol</rdfs:label>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Term -->
-
     <owl:Class rdf:about="&ontoiop-trm;Term">
         <rdfs:label>term</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Expression"/>
-        <skos:definition xml:lang="en">{syntactic expression either consisting of a single \termref{non-logical symbol} or recursively composed of other terms (a.k.a. its subterms)} </skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>syntactic expression either consisting of a single non-logical symbol or recursively composed of other terms (a.k.a. its subterms)</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/TheoremSentence -->
-
     <owl:Class rdf:about="&ontoiop-trm;TheoremSentence">
-        <rdfs:label xml:lang="en">theorem sentence</rdfs:label>
+        <rdfs:label>theorem sentence</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Sentence"/>
-        <skos:definition xml:lang="en">\termref{sentence} that has been proven from other \termref{axiom}s and \termref{theorem}s</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <skos:definition>sentence that has been proven from other axioms and theorems</skos:definition>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/View -->
-
     <owl:Class rdf:about="&ontoiop-trm;View">
         <rdfs:label>view</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;LogicalOMSMapping"/>
-        <skos:definition rdf:datatype="&xsd;string">  \termdefinition{interpretation\synonym view}{\termref{logical OMS mapping} that postulates a relation between two \termref{OMSs}}
+        <skos:definition>logical OMS mapping that postulates a relation between two OMSs}
   \begin{note}
     An interpretation typically leads to proof obligations, \ie one has to prove that axioms of the source OMS of the mapping are theorems in the target OMS.
   \end{note}
-  \begin{note}
+  </skos:definition><skos:note>
     When an interpretation is given as a set of correspondences, these are given as tuples, where the type of relationship is given by the specific kind of interpretation.
-  \end{note}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+  </skos:note>
     </owl:Class>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Vocabulary -->
-
     <owl:Class rdf:about="&ontoiop-trm;Vocabulary">
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1857,40 +1242,22 @@ Familiar examples include an electronic document, an image, a source of informat
                 <owl:someValuesFrom rdf:resource="&ontoiop-trm;SetOfNonlogicalSymbols"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:note xml:lang="en">\begin{note} The signature of a term is the set of all non-logical symbols occuring in the
-      \termref{term}. The signature of an \termref{OMS language} is the set of all non-logical
-      symbols possible in that language. \end{note} </skos:note>
-        <skos:definition xml:lang="en">set (or otherwise structured entity) of \termref{non-logical symbols} of an \termref{OMS}</skos:definition>
-        <skos:altLabel xml:lang="en">signature</skos:altLabel>
-        <skos:prefLabel xml:lang="en">vocabulary</skos:prefLabel>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:note>The signature of a term is the set of all non-logical symbols occuring in the
+      term. The signature of an OMS language is the set of all non-logical
+      symbols possible in that language.</skos:note>
+        <skos:definition>set (or otherwise structured entity) of non-logical symbols of an OMS</skos:definition>
+        <skos:altLabel>signature</skos:altLabel>
+        <skos:prefLabel>vocabulary</skos:prefLabel>
     </owl:Class>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/WeakDefinitionalExtensionMapping -->
 
     <owl:Class rdf:about="&ontoiop-trm;WeakDefinitionalExtensionMapping">
-        <rdfs:label xml:lang="en">weak definitional extension mapping</rdfs:label>
+        <rdfs:label>weak definitional extension mapping</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;ExtensionMapping"/>
-        <skos:note xml:lang="en">\begin{note}
-An \termref{extension} $O_2$ of an \termref{OMS} $O_1$ is a weak definitional extension, if each model of $O_1$ can be expanded to at most one model of $O_2$.
-\end{note}</skos:note>
-        <skos:note xml:lang="en">\begin{note}
-An extension is definitional if and only if it is both weakly definitional
-and model-theoretically conservative.
-\end{note}</skos:note>
-        <skos:definition xml:lang="en">\termref{extension} whose newly introduced \termref{non-logical symbols} can be interpreted in at most one way}</skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
+        <skos:note>An extension $O_2$ of an OMS $O_1$ is a weak definitional extension, if each model of $O_1$ can be expanded to at most one model of $O_2$.</skos:note>
+        <skos:note>An extension is definitional if and only if it is both weakly definitional
+and model-theoretically conservative.</skos:note>
+        <skos:definition>extension whose newly introduced non-logical symbols can be interpreted in at most one way</skos:definition>
     </owl:Class>
-    
-
-
-    <!-- http://www.w3.org/2002/07/owl#Class -->
-
-    <owl:Class rdf:about="&owl;Class"/>
-    
-
 
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -1900,60 +1267,13 @@ and model-theoretically conservative.
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/DOL -->
-
     <owl:NamedIndividual rdf:about="&ontoiop-trm;DOL">
         <rdf:type rdf:resource="&ontoiop-trm;OMSLanguage"/>
         <rdfs:label>DOL</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">\termdefinition{distributed ontology, modeling and
-      specification language\synonym DOL}{language for formalizing \termref{distributed OMSs}, whose
-      syntax and semantics are specified in this \IS} \begin{note} When viewed as an \termref{OMS
-      language}, DOL has \termref{OMSs} as its \termref{non-logical symbols}, and \termref{OMS
-      mappings} as its \termref{sentences}. \end{note} </skos:definition>
-        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology"/>
+        <skos:definition>\termdefinition{distributed ontology, modeling and
+      specification language\synonym DOL}{language for formalizing distributed OMSs, whose
+      syntax and semantics are specified in this \IS} </skos:definition><skos:note> When viewed as an \termref{OMS
+      language}, DOL has OMSs as its non-logical symbols, and OMS mappings as its sentences. </skos:note>
     </owl:NamedIndividual>
     
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Expression -->
-
-    <owl:NamedIndividual rdf:about="&ontoiop-trm;Expression"/>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/Mapping -->
-
-    <owl:NamedIndividual rdf:about="&ontoiop-trm;Mapping"/>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/OMS -->
-
-    <owl:NamedIndividual rdf:about="&ontoiop-trm;OMS"/>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/SetOfExpressions -->
-
-    <owl:NamedIndividual rdf:about="&ontoiop-trm;SetOfExpressions"/>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/SetOfMappings -->
-
-    <owl:NamedIndividual rdf:about="&ontoiop-trm;SetOfMappings"/>
-    
-
-
-    <!-- http://www.omg.org/spec/OntoIOp/Terminology/SetOfOMSs -->
-
-    <owl:NamedIndividual rdf:about="&ontoiop-trm;SetOfOMSs"/>
 </rdf:RDF>
-
-
-
-<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
-
