@@ -593,7 +593,9 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;UnaryFunction">
-        <owl:equivalentClass>
+      <rdfs:label>unary function</rdfs:label>
+      <skos:definition rdf:datatype="&xsd;string">unary function</skos:definition>
+      <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&apiforkb-trm;Operation"/>
@@ -636,7 +638,6 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <skos:definition rdf:datatype="&xsd;string">unary function</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;GeneralizedExpression">
@@ -678,7 +679,8 @@ Example E: A and B, together with a mapping that allows OWL to be converted to C
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;ImmutableKBFactory">
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Role"/>
+      <rdfs:label>immutable knowledge base factory</rdfs:label>
+      <rdfs:subClassOf rdf:resource="&apiforkb-trm;Role"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&apiforkb-trm;requires"/>
@@ -840,7 +842,8 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeRepresentationAndReasoningLanguage">
-        <rdfs:subClassOf rdf:resource="&ontoiop-trm;Language"/>
+      <rdfs:label>knowledge representation and reasoning language</rdfs:label>
+      <rdfs:subClassOf rdf:resource="&ontoiop-trm;Language"/>
         <skos:definition rdf:datatype="&xsd;string">OMS language, query language, or result language</skos:definition>
     </owl:Class>
     
@@ -895,12 +898,13 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     </owl:Class>
     
   <owl:Class rdf:about="&apiforkb-trm;MutableKnowledgeBase">
+    <rdfs:label>mutable knowledge base</rdfs:label>
     <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeBase"/>
   </owl:Class>
   
     
     <owl:Class rdf:about="&apiforkb-trm;Proficiency">
-        <rdfs:label>Proficiency</rdfs:label>
+        <rdfs:label>proficiency</rdfs:label>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&apiforkb-trm;isActualizedBy"/>
@@ -1041,7 +1045,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;Result">
-        <rdfs:label>Result</rdfs:label>
+        <rdfs:label>result</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;ResultResource"/>
         <rdfs:subClassOf>
@@ -1142,7 +1146,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;Role">
-        <rdfs:label>Role</rdfs:label>
+        <rdfs:label>role</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&apiforkb-trm;requires"/>
@@ -1154,7 +1158,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;Serialization">
-        <rdfs:label>Serialization</rdfs:label>
+        <rdfs:label>serialization</rdfs:label>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&apiforkb-trm;isSerializationOf"/>
@@ -1167,15 +1171,17 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;SideEffectFreeOperation">
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Operation"/>
+      <rdfs:label>side-effect-free operation</rdfs:label>
+      <rdfs:subClassOf rdf:resource="&apiforkb-trm;Operation"/>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;SideEffectfulOperation">
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;Operation"/>
+      <rdfs:label>side-effectful operation</rdfs:label>
+      <rdfs:subClassOf rdf:resource="&apiforkb-trm;Operation"/>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;Specification">
-        <rdfs:label>Specification</rdfs:label>
+        <rdfs:label>specification</rdfs:label>
         <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
     </owl:Class>
     
@@ -1323,6 +1329,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
   <owl:Class rdf:about="&apiforkb-trm;PublicOperation">
     <rdfs:label>public operation</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">operation that is exposed by the proxy to the client.</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-trm;Operation"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
