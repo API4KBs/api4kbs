@@ -464,7 +464,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <owl:Class rdf:about="&apiforkb-trm;Descriptor">
         <rdfs:label>descriptor</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
-        <skos:definition rdf:datatype="&xsd;string">Generalized Expression that describes a knowledge resource.</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">generalised expression that describes a knowledge resource.</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;Failure">
@@ -494,7 +494,8 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;FocusedOMS">
-        <owl:equivalentClass>
+      <rdfs:label>focused OMS</rdfs:label>
+      <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&apiforkb-trm;FocusedOMSResource"/>
@@ -521,7 +522,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;FocusedOMSAsset">
-        <rdfs:label>Focused OMS Asset</rdfs:label>
+        <rdfs:label>focused OMS asset</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -536,11 +537,11 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
                 <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMS"/>
             </owl:Restriction>
         </owl:equivalentClass>
-        <skos:definition rdf:datatype="&xsd;string">knowledge asset for Focused OMSs.</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">knowledge asset forfocused OMSs.</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;FocusedOMSEncoding">
-        <rdfs:label>Focused OMS Encoding</rdfs:label>
+        <rdfs:label>focused OMS encoding</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;FocusedOMSResource"/>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
         <rdfs:subClassOf>
@@ -549,11 +550,11 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;FocusedOMSManifestation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">byte (or bit) sequence that is the encoding of a OMS Manifestation in some character encoding system(s).</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">byte (or bit) sequence that is the encoding of a OMS manifestation in some character encoding system(s).</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;FocusedOMSItem">
-        <rdfs:label>Focused OMS Item</rdfs:label>
+        <rdfs:label>focused OMS item</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;FocusedOMSResource"/>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeItem"/>
         <rdfs:subClassOf>
@@ -562,11 +563,11 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;FocusedOMSEncoding"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">physical instance of an OMS Encoding, e.g. a file on a hard drive, a Java String in memory.</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">physical instance of an OMS encoding, e.g. a file on a hard drive, a Java String in memory.</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;FocusedOMSManifestation">
-        <rdfs:label>Focused OMS Manifestation</rdfs:label>
+        <rdfs:label>focused OMS manifestation</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;FocusedOMSResource"/>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
         <rdfs:subClassOf>
@@ -581,14 +582,14 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
                 <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMSSerialization"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">character sequence, or collection of character sequences, each being the serialization of a basic OMS in an OMS Serialization (Formats), together with a manifestation of the logical environment.</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">character sequence, or collection of character sequences, each being the serialization of a basic OMS in an OMS serialization (Formats), together with a manifestation of the logical environment.</skos:definition>
         <skos:note rdf:datatype="&xsd;string">If the OMS manifested is a basic OMS, then the logical environment may be specified as a part of the OMS language (e.g. as a Profile declaration), or may be implicit (e.g. if there is only one logic associated with the OMS language.)</skos:note>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;FocusedOMSResource">
-        <rdfs:label>Focused OMS Resource</rdfs:label>
+        <rdfs:label>focused OMS resource</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeResource"/>
-        <skos:definition rdf:datatype="&xsd;string">Focused OMS Asset, Focused OMS (Ontology, Specification or Model), FocusedOMS Manifestation, FocusedOMS Encoding, or FocusedOMS Item</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">focused OMS asset,focused OMS (Ontology, Specification or Model), focused OMS manifestation, focused OMS encoding, or focused OMS item</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;UnaryFunction">
@@ -639,7 +640,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;GeneralizedExpression">
-        <rdfs:label>GeneralizedExpression</rdfs:label>
+        <rdfs:label>generalized expression</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&apiforkb-trm;usesLanguage"/>
@@ -660,14 +661,14 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">Set of Expressions in one or more Languages, in the context of a Logical Environment determining how these Expressions are jointly interpreted.</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">Set of Expressions in one or more languages, in the context of a Logical Environment determining how these Expressions are jointly interpreted.</skos:definition>
         <skos:example rdf:datatype="&xsd;string">Expression examples;
 Example A: OWL Ground fact expressing that Socrates is a philosopher.
 Example B: Common Logic sentence expressing that Socrates is a philosopher.
 Example C: RDF graph expressing that the author of Moby Dick is Herman Melville.
 Example D: SPARQL query for the names of philosphers.
 
-Generalized Expression examples;
+generalised expression examples;
 Example E: A and B, together with a mapping that allows OWL to be converted to Common Logic.</skos:example>
     </owl:Class>
     
@@ -687,7 +688,7 @@ Example E: A and B, together with a mapping that allows OWL to be converted to C
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;ImmutableKnowledgeBase">
-        <rdfs:label>Immutable Knowledge Base</rdfs:label>
+        <rdfs:label>immutable knowledge base</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -696,17 +697,17 @@ Example E: A and B, together with a mapping that allows OWL to be converted to C
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <skos:definition rdf:datatype="&xsd;string"> Knowledge Asset that is a collection of Knowledge Assets </skos:definition>
+        <skos:definition rdf:datatype="&xsd;string"> knowledge asset that is a collection of knowledge assets </skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;ImmutableView">
-        <rdfs:label>Immutable View</rdfs:label>
+        <rdfs:label>immutable view</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;ImmutableKnowledgeBase"/>
-        <skos:definition rdf:datatype="&xsd;string">Immutable knowledge base defined by substitution of a query results expression (e.g. obtained from an application of a query to a knowledge base) into a template expression whose vocabulary consists of distinguished query variables and non-logical symbols that are not contained in the vocabulary of the knowledge base.</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">immutable knowledge base defined by substitution of a query results expression (e.g. obtained from an application of a query to a knowledge base) into a template expression whose vocabulary consists of distinguished query variables and non-logical symbols that are not contained in the vocabulary of the knowledge base.</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeAsset">
-        <rdfs:label>Knowledge Asset</rdfs:label>
+        <rdfs:label>knowledge asset</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -720,7 +721,7 @@ Example E: A and B, together with a mapping that allows OWL to be converted to C
         </owl:equivalentClass>
         <skos:definition rdf:datatype="&xsd;string">equivalence class (according to a logical environment) of generalized expressions.
 
-Note:  intuitively, a knowledge asset is information that may be (equivalently) expressed in one or more KR Languages.</skos:definition>
+Note:  intuitively, a knowledge asset is information that may be (equivalently) expressed in one or more KR languages.</skos:definition>
         <skos:example rdf:datatype="&xsd;string">Example: assertion that Socrates is a philospher.
 Example: assertion that the author of Moby Dick is Herman Melville.
 Example: query for the names of philosphers.
@@ -728,7 +729,8 @@ Example: a sequence of strings that are asserted to be names of philosphers in s
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeBase">
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeSource"/>
+      <rdfs:label>knowledge base</rdfs:label>
+      <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeSource"/>
         <owl:disjointUnionOf rdf:parseType="Collection">
             <rdf:Description rdf:about="&apiforkb-trm;ImmutableKnowledgeBase"/>
             <rdf:Description rdf:about="&apiforkb-trm;MutableKnowledgeBase"/>
@@ -736,7 +738,7 @@ Example: a sequence of strings that are asserted to be names of philosphers in s
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeEncoding">
-        <rdfs:label>Knowledge Encoding</rdfs:label>
+        <rdfs:label>knowledge encoding</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeResource"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -744,7 +746,7 @@ Example: a sequence of strings that are asserted to be names of philosphers in s
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">byte (or bit) sequence that is the encoding of a Knowledge Manifestation in some format (e.g. character encoding system(s) together with an archive format).</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">byte (or bit) sequence that is the encoding of a knowledge manifestation in some format (e.g. character encoding system(s) together with an archive format).</skos:definition>
         <skos:example rdf:datatype="&xsd;string">Example A: the encoding in UTF-8 of the serialization in Manchester syntax of an OWL ontology. 
 Example B: the zip archive of
    -  the encoding in UTF-8 of the serialization in Manchester syntax of an OWL ontology.
@@ -753,7 +755,7 @@ Example B: the zip archive of
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeItem">
-        <rdfs:label>Knowledge Item</rdfs:label>
+        <rdfs:label>knowledge item</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeResource"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -761,12 +763,12 @@ Example B: the zip archive of
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">physical instance of a Knowledge Encoding, e.g. snapshot of a file on a hard drive, a Java String in memory.</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">physical instance of a knowledge encoding, e.g. snapshot of a file on a hard drive, a Java String in memory.</skos:definition>
         <skos:example rdf:datatype="&xsd;string">Example: my copy in my Download folder of the encoding in UTF-8 of the serialization in Manchester syntax of an OWL ontology. </skos:example>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeManifestation">
-        <rdfs:label>Knowledge Manifestation</rdfs:label>
+        <rdfs:label>knowledge manifestation</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeResource"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -780,13 +782,13 @@ Example B: the zip archive of
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">character sequence, or collection of character sequences, each being the serialization of a Generalized Expression in a Knowledge Serialization.</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">character sequence, or collection of character sequences, each being the serialization of a generalised expression in a knowledge serialization.</skos:definition>
         <skos:example rdf:datatype="&xsd;string">Example: character sequence in Manchester OWL syntax that is the serialization of an OWL Ground fact expressing that Socrates is a philosopher.
 Example: character sequence in OWL RDF/XML syntax that is the serialization of an OWL Ground fact expressing that Socrates is a philosopher.
 Example: character sequence in CLIF syntax that is the serialization of a Common Logic sentence expressing that Socrates is a philosopher.
 Example: character sequence in RDF/XML that is the serialization of an RDF graph expressing that the author of Moby Dick is Herman Melville.
 Example: character sequence in Turtle that is the serialization of an RDF graph expressing that the author of Moby Dick is Herman Melville.
-Example: SPARQL Query String for the names of philosphers.</skos:example>
+Example: SPARQL query String for the names of philosphers.</skos:example>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;KnowledgePlatform">
@@ -839,7 +841,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeRepresentationAndReasoningLanguage">
         <rdfs:subClassOf rdf:resource="&ontoiop-trm;Language"/>
-        <skos:definition rdf:datatype="&xsd;string">OMS Language, Query Language, or Result Language</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">OMS language, query language, or result language</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeResource">
@@ -852,7 +854,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">Immutable Resource at one of the following levels of abstraction; Knowledge Asset, Generalized Expression, Knowledge Manifestation, Knowledge Encoding, or Knowledge Item.</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">immutable resource at one of the following levels of abstraction; knowledge asset, generalised expression, knowledge manifestation, knowledge encoding, or knowledge item.</skos:definition>
         <owl:disjointUnionOf rdf:parseType="Collection">
             <rdf:Description rdf:about="&apiforkb-trm;GeneralizedExpression"/>
             <rdf:Description rdf:about="&apiforkb-trm;KnowledgeAsset"/>
@@ -863,7 +865,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeSerialization">
-        <rdfs:label>Knowledge Serialization</rdfs:label>
+        <rdfs:label>knowledge serialization</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;Serialization"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -905,7 +907,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
                 <owl:allValuesFrom rdf:resource="&apiforkb-trm;PublicOperationEvent"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">functionality that is actualized by one or more public operations whose inputs and outputs are of the following types: KP, Asset, Generalized Expression, KnowledgeManifestation, KnowledgeEncoding, KnowledgeItem.</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">functionality that is actualized by one or more public operations whose inputs and outputs are of the following types: KP, asset, generalised expression, KnowledgeManifestation, KnowledgeEncoding, KnowledgeItem.</skos:definition>
         <skos:note rdf:datatype="&xsd;string">Are all proficiencies side-effect free?</skos:note>
         <skos:scopeNote rdf:datatype="&xsd;string">Note: In our architecture, Proficiencies are provided by a collection of Components (which may contain just one Component). Different collections of Components may provide the same Proficiency. The standard API4KB Proficiencies will be enumerated in the specification.</skos:scopeNote>
     </owl:Class>
@@ -929,7 +931,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     </owl:Class>
 
   <owl:Class rdf:about="&apiforkb-trm;QueryAsset">
-    <rdfs:label>Query Asset</rdfs:label>
+    <rdfs:label>query asset</rdfs:label>
     <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
     <rdfs:subClassOf rdf:resource="&apiforkb-trm;QueryResource"/>
     <rdfs:subClassOf>
@@ -942,7 +944,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
   </owl:Class>
   
     <owl:Class rdf:about="&apiforkb-trm;QueryEncoding">
-        <rdfs:label>Query Encoding</rdfs:label>
+        <rdfs:label>query encoding</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;QueryResource"/>
         <rdfs:subClassOf>
@@ -951,11 +953,11 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;QueryManifestation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">byte (or bit) sequence that is the encoding of a Query Manifestation in some character encoding system(s).</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">byte (or bit) sequence that is the encoding of a query manifestation in some character encoding system(s).</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;QueryGeneralizedExpession">
-        <rdfs:label>Query Generalized Expression</rdfs:label>
+        <rdfs:label>query generalised expression</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -982,7 +984,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;QueryItem">
-        <rdfs:label>Query Item</rdfs:label>
+        <rdfs:label>query item</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeItem"/>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;QueryResource"/>
         <rdfs:subClassOf>
@@ -991,18 +993,18 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;QueryEncoding"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">physical instance of an Encoding, e.g. a file on a hard drive, a Java String in memory.</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">physical instance of an encoding, e.g. a file on a hard drive, a Java String in memory.</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;QueryLanguage">
-        <rdfs:label>Query Language</rdfs:label>
+        <rdfs:label>query language</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeRepresentationAndReasoningLanguage"/>
-        <skos:definition rdf:datatype="&xsd;string">language consisting of a set of Query expressions, one or more serializations of these Expressions, and one or more Entailment Regimes (http://www.w3.org/TR/sparql11-entailment/#entRegimeParts) defined in terms of formal, logic-based semantics. </skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">language consisting of a set of query expressions, one or more serializations of these Expressions, and one or more Entailment Regimes (http://www.w3.org/TR/sparql11-entailment/#entRegimeParts) defined in terms of formal, logic-based semantics. </skos:definition>
         <skos:scopeNote rdf:datatype="&xsd;string">Note: the set of expressions of a query language may be defined by a grammar, or it may be defined in terms of expressions of an OMS language together with a sequence of non-logical constants that will be treated as the distinguished query variables. Additional features of a query language are perfomatives used to indicate how query results should be returned.</skos:scopeNote>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;QueryManifestation">
-        <rdfs:label>Query Manifestation</rdfs:label>
+        <rdfs:label>query manifestation</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;QueryResource"/>
         <rdfs:subClassOf>
@@ -1017,17 +1019,17 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;QuerySerialization"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">character sequence, or collection of character sequences, each being the serialization of a Query in a Query Serialization (Formats).</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">character sequence, or collection of character sequences, each being the serialization of a query in a query serialization (Formats).</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;QueryResource">
-        <rdfs:label>Query Resource</rdfs:label>
+        <rdfs:label>query resource</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeResource"/>
-        <skos:definition rdf:datatype="&xsd;string">Query Asset, Query, Query Manifestation, Query Encoding, or Query Item</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">query asset, query, query manifestation, query encoding, or query item</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;QuerySerialization">
-        <rdfs:label>Query Serialization</rdfs:label>
+        <rdfs:label>query serialization</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;Serialization"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1058,7 +1060,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;ResultAsset">
-        <rdfs:label>Result Asset</rdfs:label>
+        <rdfs:label>result asset</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;ResultResource"/>
         <rdfs:subClassOf>
@@ -1071,7 +1073,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;ResultEncoding">
-        <rdfs:label>Result Encoding</rdfs:label>
+        <rdfs:label>result encoding</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;ResultResource"/>
         <rdfs:subClassOf>
@@ -1080,11 +1082,11 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;ResultManifestation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">byte (or bit) sequence that is the encoding of a Result Manifestation in some character encoding system(s).</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">byte (or bit) sequence that is the encoding of a result manifestation in some character encoding system(s).</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;ResultItem">
-        <rdfs:label>Result Item</rdfs:label>
+        <rdfs:label>result item</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeItem"/>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;ResultResource"/>
         <rdfs:subClassOf>
@@ -1093,17 +1095,17 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;ResultEncoding"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">physical instance of an Encoding, e.g. a file on a hard drive, a Java String in memory.</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">physical instance of an encoding, e.g. a file on a hard drive, a Java String in memory.</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;ResultLanguage">
-        <rdfs:label>Result Language</rdfs:label>
+        <rdfs:label>result language</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeRepresentationAndReasoningLanguage"/>
         <skos:definition rdf:datatype="&xsd;string">language for expressing query results.</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;ResultManifestation">
-        <rdfs:label>Result Manifestation</rdfs:label>
+        <rdfs:label>result manifestation</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;ResultResource"/>
         <rdfs:subClassOf>
@@ -1118,17 +1120,17 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;ResultSerialization"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">character sequence, or collection of character sequences, each being the serialization of a Result in a Result Serialization (Formats).</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">character sequence, or collection of character sequences, each being the serialization of a result in a result serialization (Formats).</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;ResultResource">
-        <rdfs:label>Result Resource</rdfs:label>
+        <rdfs:label>result resource</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeResource"/>
-        <skos:definition rdf:datatype="&xsd;string">Result Asset, Result, Result Manifestation, Result Encoding, or Result Item</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">result asset, Result, result manifestation, result encoding, or result item</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;ResultSerialization">
-        <rdfs:label>Result Serialization</rdfs:label>
+        <rdfs:label>result serialization</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;Serialization"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1184,13 +1186,13 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;SuccessAsset">
-        <rdfs:label>Success for type Asset</rdfs:label>
+        <rdfs:label>Success for type asset</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;SuccessKnowledgeResource"/>
         <skos:definition rdf:datatype="&xsd;string">success of type asset.</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;SuccessFocusedOMSAsset">
-        <rdfs:label>Success for type FocusedOMS Asset</rdfs:label>
+        <rdfs:label>Success for type focused OMS asset</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;SuccessAsset"/>
         <skos:definition rdf:datatype="&xsd;string">success of type FocusedOMS asset.</skos:definition>
     </owl:Class>
@@ -1211,13 +1213,13 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;TryFocusedOMSAsset">
-        <rdfs:label>Try for type FocusedOMS Asset</rdfs:label>
+        <rdfs:label>Try for type FocusedOMS asset</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;TryKnowledgeAsset"/>
         <skos:definition rdf:datatype="&xsd;string">try of type &apos;FocusedOMS asset&apos;</skos:definition>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;TryKnowledgeAsset">
-        <rdfs:label>Try for type Asset</rdfs:label>
+        <rdfs:label>Try for type asset</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;TryKnowledgeResource"/>
         <skos:definition rdf:datatype="&xsd;string">try of type &apos;asset&apos;</skos:definition>
     </owl:Class>
@@ -1346,7 +1348,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsFromSecond"/>
-        <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/FocusedOMSResource"/>
+        <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/FocusedResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -1608,7 +1610,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
   
   <owl:Class rdf:about="&apiforkb-trm;AddingOperation-FocusedOMSItemToImmutableKB">
     <rdfs:label>operation adding knowledge resources that are focused OMS items to immutable KBs</rdfs:label>
-    <skos:definition rdf:datatype="&xsd;string">operation adding knowledge resources that are FocusedOMSs Item to immutable KBs</skos:definition>
+    <skos:definition rdf:datatype="&xsd;string">operation adding knowledge resources that are Focused OMSs item to immutable KBs</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-trm;AddingOperation-KnowledgeResourceToImmutableKB"/>
     <rdfs:subClassOf>
       <owl:Restriction>
