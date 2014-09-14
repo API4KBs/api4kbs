@@ -88,10 +88,11 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;adds"/>
     </owl:ObjectProperty>
     
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;isDeliveredAs">
-        <rdfs:label>is delivered as</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">see &apos;is local copy of&apos;</skos:definition>
-        <owl:inverseOf rdf:resource="&apiforkb-trm;isLocalCopyOf"/>
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;characterizes">
+        <rdfs:label>characterizes</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">see &apos;reproduces&apos;</skos:definition>
+      <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;lifts"/>
+      <owl:inverseOf rdf:resource="&apiforkb-trm;reproduces"/>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;executes">
@@ -218,16 +219,22 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <owl:inverseOf rdf:resource="&apiforkb-trm;supports"/>
     </owl:ObjectProperty>
     
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;isEncodedAs">
-        <rdfs:label>is encoded as</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">see &apos; is encoding of&apos;</skos:definition>
-        <owl:inverseOf rdf:resource="&apiforkb-trm;isEncodingOf"/>
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;decodes">
+        <rdfs:label>decodes</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">inverse of &apos;encodes&apos;</skos:definition>
+      <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;lifts"/>
+      <owl:inverseOf rdf:resource="&apiforkb-trm;encodes"/>
     </owl:ObjectProperty>
     
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;isEncodingOf">
-        <rdfs:label>is encoding of</rdfs:label>
-        <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;encodes">
+        <rdfs:label>encodes</rdfs:label>
+      <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;lowers"/>
+      <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
         <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
+      <owl:propertyChainAxiom rdf:parseType="Collection">
+        <rdf:Description rdf:about="&apiforkb-trm;isInputOf"/>
+        <rdf:Description rdf:about="&apiforkb-trm;hasOutputDecode"/>
+      </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;isEventOf">
@@ -245,16 +252,19 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:range rdf:resource="&apiforkb-trm;Application"/>
     </owl:ObjectProperty>
     
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;isExpressedAs">
-        <rdfs:label>is expressed as</rdfs:label>
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;conceptualizes">
+        <rdfs:label>conceptualizes</rdfs:label>
         <skos:definition rdf:datatype="&xsd;string">see &apos;is expression of&apos;</skos:definition>
-        <owl:inverseOf rdf:resource="&apiforkb-trm;isExpressionOf"/>
+      <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;lifts"/>
+      <owl:inverseOf rdf:resource="&apiforkb-trm;expresses"/>
     </owl:ObjectProperty>
     
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;isExpressionOf">
-        <rdfs:label>is expression of</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">knowledge asset that would be obtained by conceptualizing the generalized expression.</skos:definition>
-        <rdfs:domain rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;expresses">
+      <rdfs:label>expresses</rdfs:label>
+      <skos:altLabel>is expression of</skos:altLabel>
+      <skos:definition rdf:datatype="&xsd;string">knowledge asset that would be obtained by conceptualizing the generalized expression.</skos:definition>
+      <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;lowers"/>
+      <rdfs:domain rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
         <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
             <rdf:Description rdf:about="&apiforkb-trm;isInputOf"/>
@@ -279,12 +289,17 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:label>is input of</rdfs:label>
      </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;isLocalCopyOf">
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;reproduces">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label>is local copy of</rdfs:label>
+        <rdfs:label>reproduces</rdfs:label>
         <skos:definition rdf:datatype="&xsd;string">knowledge encoding that would be obtained from instreaming the knowledge item</skos:definition>
-        <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeItem"/>
+      <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;lowers"/>
+      <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeItem"/>
         <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
+      <owl:propertyChainAxiom rdf:parseType="Collection">
+        <rdf:Description rdf:about="&apiforkb-trm;isInputOf"/>
+        <rdf:Description rdf:about="&apiforkb-trm;hasOutputInStream"/>
+      </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;isManagedBy">
@@ -292,18 +307,24 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <owl:inverseOf rdf:resource="&apiforkb-trm;manages"/>
     </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;isManifestationOf">
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;manifests">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label>is manifestation of</rdfs:label>
+        <rdfs:label>manifests</rdfs:label>
         <skos:definition rdf:datatype="&xsd;string">generalized expression that would be obtained from parsing the knowledge manifestation</skos:definition>
-        <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
+      <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;lowers"/>
+      <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
         <rdfs:range rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
+      <owl:propertyChainAxiom rdf:parseType="Collection">
+        <rdf:Description rdf:about="&apiforkb-trm;isInputOf"/>
+        <rdf:Description rdf:about="&apiforkb-trm;hasOutputParse"/>
+      </owl:propertyChainAxiom>
     </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;isManifestedAs">
-        <rdfs:label>is manifested as</rdfs:label>
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;parses">
+        <rdfs:label>parses</rdfs:label>
         <skos:definition rdf:datatype="&xsd;string">see &apos;manifestation of&apos;</skos:definition>
-        <owl:inverseOf rdf:resource="&apiforkb-trm;isManifestationOf"/>
+      <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;lifts"/>
+      <owl:inverseOf rdf:resource="&apiforkb-trm;manifests"/>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;isOutputOf">
@@ -357,7 +378,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:domain rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
         <rdfs:range rdf:resource="&ontoiop-trm;Language"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&apiforkb-trm;isManifestedAs"/>
+            <rdf:Description rdf:about="&apiforkb-trm;parses"/>
             <rdf:Description rdf:about="&apiforkb-trm;usesSerialization"/>
             <rdf:Description rdf:about="&apiforkb-trm;isSerializationOf"/>
         </owl:propertyChainAxiom>
@@ -533,7 +554,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         </owl:equivalentClass>
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;isExpressedAs"/>
+                <owl:onProperty rdf:resource="&apiforkb-trm;conceptualizes"/>
                 <owl:someValuesFrom rdf:resource="&ontoiop-trm;OMS"/>
             </owl:Restriction>
         </owl:equivalentClass>
@@ -546,7 +567,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;isEncodingOf"/>
+                <owl:onProperty rdf:resource="&apiforkb-trm;encodes"/>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;FocusedOMSManifestation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -559,7 +580,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;isLocalCopyOf"/>
+                <owl:onProperty rdf:resource="&apiforkb-trm;reproduces"/>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;FocusedOMSEncoding"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -572,7 +593,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;isManifestationOf"/>
+                <owl:onProperty rdf:resource="&apiforkb-trm;manifests"/>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;FocusedOMS"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -695,7 +716,7 @@ Example E: A and B, together with a mapping that allows OWL to be converted to C
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&apiforkb-trm;KnowledgeBase"/>
-                    <rdf:Description rdf:about="&apiforkb-trm;KnowledgeResource"/>
+                    <rdf:Description rdf:about="&apiforkb-trm;KnowledgeAsset"/>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
@@ -715,7 +736,7 @@ Example E: A and B, together with a mapping that allows OWL to be converted to C
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&apiforkb-trm;KnowledgeResource"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&apiforkb-trm;isExpressedAs"/>
+                        <owl:onProperty rdf:resource="&apiforkb-trm;conceptualizes"/>
                         <owl:someValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -744,7 +765,7 @@ Example: a sequence of strings that are asserted to be names of philosphers in s
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeResource"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;isEncodingOf"/>
+                <owl:onProperty rdf:resource="&apiforkb-trm;encodes"/>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -761,7 +782,7 @@ Example B: the zip archive of
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeResource"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;isLocalCopyOf"/>
+                <owl:onProperty rdf:resource="&apiforkb-trm;reproduces"/>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -780,7 +801,7 @@ Example B: the zip archive of
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;isManifestationOf"/>
+                <owl:onProperty rdf:resource="&apiforkb-trm;manifests"/>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -940,7 +961,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     <rdfs:subClassOf rdf:resource="&apiforkb-trm;QueryResource"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;isExpressedAs"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;conceptualizes"/>
         <owl:someValuesFrom rdf:resource="&apiforkb-trm;QueryGeneralizedExpession"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -953,7 +974,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;QueryResource"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;isEncodingOf"/>
+                <owl:onProperty rdf:resource="&apiforkb-trm;encodes"/>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;QueryManifestation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -993,7 +1014,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;QueryResource"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;isLocalCopyOf"/>
+                <owl:onProperty rdf:resource="&apiforkb-trm;reproduces"/>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;QueryEncoding"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1013,7 +1034,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;QueryResource"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;isManifestationOf"/>
+                <owl:onProperty rdf:resource="&apiforkb-trm;manifests"/>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;QueryGeneralizedExpession"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1069,7 +1090,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;ResultResource"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;isExpressedAs"/>
+                <owl:onProperty rdf:resource="&apiforkb-trm;conceptualizes"/>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;Result"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1082,7 +1103,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;ResultResource"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;isEncodingOf"/>
+                <owl:onProperty rdf:resource="&apiforkb-trm;encodes"/>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;ResultManifestation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1095,7 +1116,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;ResultResource"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;isLocalCopyOf"/>
+                <owl:onProperty rdf:resource="&apiforkb-trm;reproduces"/>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;ResultEncoding"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1114,7 +1135,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;ResultResource"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;isManifestationOf"/>
+                <owl:onProperty rdf:resource="&apiforkb-trm;manifests"/>
                 <owl:someValuesFrom rdf:resource="&apiforkb-trm;Result"/>
             </owl:Restriction>
         </rdfs:subClassOf>
