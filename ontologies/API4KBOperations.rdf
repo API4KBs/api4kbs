@@ -10,25 +10,31 @@
     <!ENTITY sm "http://www.omg.org/techprocess/ab/SpecificationMetadata/" >
     <!ENTITY ontoiop-trm "http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/" >
     <!ENTITY apiforkb-trm "http://www.omg.org/spec/API4KB/API4KBTerminology/" >
+    <!ENTITY apiforkb-op "http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperation/" >
+    <!ENTITY apiforkb-ev "http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/" >
+    <!ENTITY apiforkb-pro "http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/" >
 ]>
 
-<rdf:RDF      xml:base="http://www.omg.org/spec/API4KB/API4KBTerminology/"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:dct="http://purl.org/dc/terms/"
-     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-xmlns:sm="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
-     xmlns:ontoiop-trm="http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/"
-     xmlns:apiforkb-trm="http://www.omg.org/spec/API4KB/API4KBTerminology/">
+<rdf:RDF xml:base="&apiforkb-op;"
+  xmlns:rdf="&rdf;"
+  xmlns:rdfs="&rdfs;"
+  xmlns:owl="&owl;"
+  xmlns:xsd="&xsd;"
+  xmlns:dct="&dct;"
+  xmlns:skos="&skos;"
+  xmlns:sm="&sm;"
+  xmlns:ontoiop-trm="&ontoiop-trm;"
+  xmlns:apiforkb-trm="&apiforkb-trm;"
+  xmlns:apiforkb-op="&apiforkb-op;"
+  xmlns:apiforkb-ev="&apiforkb-ev;"
+  xmlns:apiforkb-pro="&apiforkb-pro;">
+  
+
+    <owl:Ontology rdf:about="&apiforkb-op;">
+        <rdfs:label>API4KB Operation Terminology Ontology</rdfs:label>
 
 
-    <owl:Ontology rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/">
-        <rdfs:label>API4KB Terminology Ontology</rdfs:label>
-
-
-    <!-- Curation and Rights Metadata for the API4KB Terminology Ontology -->
+    <!-- Curation and Rights Metadata for the API4KB Operation Terminology Ontology -->
 
         <sm:copyright rdf:datatype="&xsd;string">Copyright (c) 2014 Athan Services
 Copyright (c) 2014 Thematix Partners LLC
@@ -36,24 +42,25 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <dct:license rdf:datatype="&xsd;anyURI">http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense</dct:license>
 
 
-    <!-- Ontology/File-Level Metadata for the API4KB Terminology Ontology -->
+    <!-- Ontology/File-Level Metadata for the API4KB Operation Terminology Ontology -->
 
-        <sm:filename rdf:datatype="&xsd;string">API4KBOperations.rdf</sm:filename>
-        <sm:fileAbbreviation rdf:datatype="&xsd;string">api4kb-trm</sm:fileAbbreviation>
-        <owl:versionIRI rdf:resource="http://www.omg.org/spec/API4KB/20150201/API4KBTerminology/"/>
+        <sm:filename rdf:datatype="&xsd;string">API4KBTerminologyOperation.rdf</sm:filename>
+        <sm:fileAbbreviation rdf:datatype="&xsd;string">api4kb-op</sm:fileAbbreviation>
+        <owl:versionIRI rdf:resource="http://www.omg.org/spec/API4KB/20150201/API4KBTerminology/API4KBOperation/"/>
         <sm:fileAbstract rdf:datatype="&xsd;string">This ontology covers terminology used for describing the operations defined by the API4KB specification.</sm:fileAbstract>
 
         <sm:contentLanguage rdf:datatype="&xsd;anyURI">http://www.w3.org/standards/techs/owl#w3c_all</sm:contentLanguage>
         <sm:contentLanguage rdf:datatype="&xsd;anyURI">http://www.omg.org/spec/ODM/</sm:contentLanguage>
 
         <owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
+        <owl:imports rdf:resource="http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/"/>
       
     </owl:Ontology>
  
   
-  <!-- Operations -->
+  <!-- Operation -->
   
-  <owl:Class rdf:about="&apiforkb-trm;Operation">
+  <owl:Class rdf:about="&apiforkb-op;Operation">
     <rdfs:label>operation</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">function (possibly with side-effects) having inputs and outputs that are API4KB or OntoIOp concepts.</skos:definition>
     <skos:note rdf:datatype="&xsd;string">Option 1. the definition as &quot;function&quot; means that its a black-box standard. We may define the post-conditions by a reference decomposition into actions, but there is no normative requirement for applications to execute according to that decomposition.
@@ -62,120 +69,84 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
       
       Option 3. something in between.</skos:note>
     <skos:scopeNote rdf:datatype="&xsd;string">Each API4KB Interface is a subclass of Operation.</skos:scopeNote>
-    <skos:scopeNote rdf:datatype="&xsd;string">This class contains only API4KB Operations.</skos:scopeNote>
+    <skos:scopeNote rdf:datatype="&xsd;string">This class contains only API4KB Operation.</skos:scopeNote>
     <skos:editorialNote rdf:datatype="&xsd;string">is there a super-class for Operation in some OMG standard?</skos:editorialNote>
     <rdfs:subClassOf>
           <owl:Restriction>
             <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
-            <owl:allValuesFrom rdf:resource="&apiforkb-trm;OperationEvent"/>
+            <owl:allValuesFrom rdf:resource="&apiforkb-ev;OperationEvent"/>
           </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointUnionOf rdf:parseType="Collection">
-      <rdf:Description rdf:about="&apiforkb-trm;SideEffectFreeOperation"/>
-      <rdf:Description rdf:about="&apiforkb-trm;SideEffectfulOperation"/>
+      <rdf:Description rdf:about="&apiforkb-op;SideEffectFreeOperation"/>
+      <rdf:Description rdf:about="&apiforkb-op;SideEffectfulOperation"/>
     </owl:disjointUnionOf>
     <owl:disjointUnionOf rdf:parseType="Collection">
-      <rdf:Description rdf:about="&apiforkb-trm;InternalOperation"/>
-      <rdf:Description rdf:about="&apiforkb-trm;PublicOperation"/>
+      <rdf:Description rdf:about="&apiforkb-op;InternalOperation"/>
+      <rdf:Description rdf:about="&apiforkb-op;PublicOperation"/>
     </owl:disjointUnionOf>
   </owl:Class>
 
-  <owl:Class rdf:about="&apiforkb-trm;SideEffectFreeOperation">
+  <owl:Class rdf:about="&apiforkb-op;SideEffectFreeOperation">
     <rdfs:label>side-effect-free operation</rdfs:label>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;Operation"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Operation"/>
   </owl:Class>
   
-  <owl:Class rdf:about="&apiforkb-trm;SideEffectfulOperation">
+  <owl:Class rdf:about="&apiforkb-op;SideEffectfulOperation">
     <rdfs:label>side-effectful operation</rdfs:label>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;Operation"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Operation"/>
   </owl:Class>
-  <owl:Class rdf:about="&apiforkb-trm;UnaryOperation">
-    <rdfs:label>unary function</rdfs:label>
-    <skos:definition rdf:datatype="&xsd;string">unary function</skos:definition>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="&apiforkb-trm;Operation"/>
+  <owl:Class rdf:about="&apiforkb-op;UnaryOperation">
+    <rdfs:label>unary operation</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">unary operation</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Operation"/>
+    <rdfs:subClassOf>
           <owl:Restriction>
             <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
-            <owl:someValuesFrom>
-              <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                  <rdf:Description rdf:about="&apiforkb-trm;OperationEvent"/>
-                  <owl:Restriction>
-                    <owl:onProperty rdf:resource="&apiforkb-trm;hasInput"/>
-                    <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-                  </owl:Restriction>
-                  <owl:Restriction>
-                    <owl:onProperty rdf:resource="&apiforkb-trm;hasOutput"/>
-                    <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-                  </owl:Restriction>
-                </owl:intersectionOf>
-              </owl:Class>
-            </owl:someValuesFrom>
+            <owl:allValuesFrom rdf:resource="&apiforkb-ev;UnaryEvent"/>
           </owl:Restriction>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
-            <owl:allValuesFrom>
-              <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                  <rdf:Description rdf:about="&apiforkb-trm;OperationEvent"/>
-                  <owl:Restriction>
-                    <owl:onProperty rdf:resource="&apiforkb-trm;hasInput"/>
-                    <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-                  </owl:Restriction>
-                  <owl:Restriction>
-                    <owl:onProperty rdf:resource="&apiforkb-trm;hasOutput"/>
-                    <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-                  </owl:Restriction>
-                </owl:intersectionOf>
-              </owl:Class>
-            </owl:allValuesFrom>
-          </owl:Restriction>
-        </owl:intersectionOf>
-      </owl:Class>
-    </owl:equivalentClass>
+    </rdfs:subClassOf>
   </owl:Class> 
-  <!-- Internal Operations -->
+  <!-- Internal Operation -->
   
-  <owl:Class rdf:about="&apiforkb-trm;InternalOperation">
+  <owl:Class rdf:about="&apiforkb-op;InternalOperation">
     <rdfs:label>internal operation</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">operation offered by the knowledge platform to the proxy.</skos:definition>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;Operation"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Operation"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
-        <owl:allValuesFrom rdf:resource="&apiforkb-trm;InternalOperationEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;InternalOperationEvent"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointWith
-      rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/PublicOperation"/>
+      rdf:resource="&apiforkb-op;PublicOperation"/>
   </owl:Class>
   
   <!-- Actions -->
 
-  <owl:Class rdf:about="&apiforkb-trm;Action">
+  <owl:Class rdf:about="&apiforkb-op;Action">
     <rdfs:label>action</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">an atomic operation</skos:definition>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;InternalOperation"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;InternalOperation"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
-        <owl:allValuesFrom rdf:resource="&apiforkb-trm;ActionEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;ActionEvent"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
 
-  <!-- Public Operations -->
+  <!-- Public Operation -->
   
-  <owl:Class rdf:about="&apiforkb-trm;PublicOperation">
+  <owl:Class rdf:about="&apiforkb-op;PublicOperation">
     <rdfs:label>public operation</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">operation that is exposed by the proxy to the client.</skos:definition>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;Operation"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Operation"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
-        <owl:allValuesFrom rdf:resource="&apiforkb-trm;PublicOperationEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;PublicOperationEvent"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -183,27 +154,27 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
 
   <!-- Script Input -->
   
-  <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/QueryingAction">
+  <owl:Class rdf:about="&apiforkb-op;QueryingAction">
     <rdfs:label>querying action</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">action that maps queries and focused OMS resource to collections of answer
       substitutions.</skos:definition>
-    <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/Action"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Action"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsFromFirst"/>
-        <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/QueryResource"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromFirst"/>
+        <owl:someValuesFrom rdf:resource="&apiforkb-trm;QueryResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsFromSecond"/>
-        <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/FocusedResource"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromSecond"/>
+        <owl:someValuesFrom rdf:resource="&apiforkb-trm;FocusedResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsTo"/>
-        <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/AnswerSubstitutionCollection"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:someValuesFrom rdf:resource="&apiforkb-trm;AnswerSubstitutionCollection"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -211,170 +182,170 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
   
   <!-- Lowering Actions -->
   
-  <owl:Class rdf:about="&apiforkb-trm;LoweringAction">
+  <owl:Class rdf:about="&apiforkb-op;LoweringAction">
     <rdfs:label>lowering action</rdfs:label>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;Action"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Action"/>
     <skos:definition rdf:datatype="&xsd;string">action that maps a knowledge resource to another knowledge resource of the same &quot;type&quot; (i.e. OMS, Query, Result), belongs to the next lower level of abstraction in the knowledge resource hierarchy, and has the same information content.</skos:definition>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;Action"/>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;UnaryOperation"/>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;SideEffectFreeOperation"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Action"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;UnaryOperation"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;SideEffectFreeOperation"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
-        <owl:allValuesFrom rdf:resource="&apiforkb-trm;LoweringEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;LoweringEvent"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsFrom"/>
-        <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeResource"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsTo"/>
-        <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeResource"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointUnionOf rdf:parseType="Collection">
-      <rdf:Description rdf:about="&apiforkb-trm;OutStreamingAction"/>
-      <rdf:Description rdf:about="&apiforkb-trm;MarshallingAction"/>
-      <rdf:Description rdf:about="&apiforkb-trm;ManifestingAction"/>
-      <rdf:Description rdf:about="&apiforkb-trm;ExpressingAction"/>
+      <rdf:Description rdf:about="&apiforkb-op;OutStreamingAction"/>
+      <rdf:Description rdf:about="&apiforkb-op;MarshallingAction"/>
+      <rdf:Description rdf:about="&apiforkb-op;ManifestingAction"/>
+      <rdf:Description rdf:about="&apiforkb-op;ExpressingAction"/>
     </owl:disjointUnionOf>
   </owl:Class>
   
-  <owl:Class rdf:about="&apiforkb-trm;ExpressingAction">
+  <owl:Class rdf:about="&apiforkb-op;ExpressingAction">
     <rdfs:label>expressing action</rdfs:label>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;LoweringAction"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;LoweringAction"/>
   </owl:Class>
   
   
   
-  <owl:Class rdf:about="&apiforkb-trm;ManifestingAction">
+  <owl:Class rdf:about="&apiforkb-op;ManifestingAction">
     <rdfs:label>manifesting action</rdfs:label>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;LoweringAction"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;LoweringAction"/>
   </owl:Class>
   
-  <owl:Class rdf:about="&apiforkb-trm;MarshallingAction">
+  <owl:Class rdf:about="&apiforkb-op;MarshallingAction">
     <rdfs:label>marshalling action</rdfs:label>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;LoweringAction"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;LoweringAction"/>
   </owl:Class>
   
-  <owl:Class rdf:about="&apiforkb-trm;OutStreamingAction">
+  <owl:Class rdf:about="&apiforkb-op;OutStreamingAction">
     <rdfs:label>outstreaming action</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">lifting action that maps knowledge items into knowledge encodings.</skos:definition>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;LoweringAction"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;LoweringAction"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
-        <owl:allValuesFrom rdf:resource="&apiforkb-trm;OutStreamingEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;OutStreamingEvent"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsFrom"/>
-        <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeEncoding"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsTo"/>
-        <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeItem"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeItem"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
 
-  <!-- Lifting Events -->
+  <!-- Lifting Operation -->
   
-  <owl:Class rdf:about="&apiforkb-trm;LiftingAction">
+  <owl:Class rdf:about="&apiforkb-op;LiftingAction">
     <rdfs:label>lifting action</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">action whose input is a knowledge resource and whose output is a knowledge resource of the same &quot;type&quot; (i.e. OMS, Query, Result), belongs to the next higher level of abstraction in the knowledge resource hierarchy and has the same information content.</skos:definition>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;Action"/>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;UnaryOperation"/>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;SideEffectFreeOperation"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Action"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;UnaryOperation"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;SideEffectFreeOperation"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
-        <owl:allValuesFrom rdf:resource="&apiforkb-trm;LiftingEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;LiftingEvent"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsFrom"/>
-        <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeResource"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsTo"/>
-        <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeResource"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:disjointUnionOf rdf:parseType="Collection">
-      <rdf:Description rdf:about="&apiforkb-trm;InStreamingAction"/>
-      <rdf:Description rdf:about="&apiforkb-trm;UnmarshallingAction"/>
-      <rdf:Description rdf:about="&apiforkb-trm;ParsingAction"/>
-      <rdf:Description rdf:about="&apiforkb-trm;ConceptualizingAction"/>
+      <rdf:Description rdf:about="&apiforkb-op;InStreamingAction"/>
+      <rdf:Description rdf:about="&apiforkb-op;UnmarshallingAction"/>
+      <rdf:Description rdf:about="&apiforkb-op;ParsingAction"/>
+      <rdf:Description rdf:about="&apiforkb-op;ConceptualizingAction"/>
     </owl:disjointUnionOf>
   </owl:Class>
 
-  <owl:Class rdf:about="&apiforkb-trm;InStreamingAction">
+  <owl:Class rdf:about="&apiforkb-op;InStreamingAction">
     <rdfs:label>instreaming action</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">lifting action that maps knowledge items into knowledge encodings.</skos:definition>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;LiftingAction"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;LiftingAction"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
-        <owl:allValuesFrom rdf:resource="&apiforkb-trm;InStreamingEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;InStreamingEvent"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsFrom"/>
-        <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeItem"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeItem"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsTo"/>
-        <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeEncoding"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
   
   
-  <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/UnmarshallingAction">
+  <owl:Class rdf:about="&apiforkb-op;UnmarshallingAction">
     <rdfs:label>unmarshalling action</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">lifting action that maps knowledge encodings into knowledge manifestations.</skos:definition>
-    <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/LiftingAction"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;LiftingAction"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
-        <owl:allValuesFrom rdf:resource="&apiforkb-trm;UnmarshallingEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;UnmarshallingEvent"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsFrom"/>
-        <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeEncoding"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsTo"/>
-        <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeManifestation"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
   
-  <owl:Class rdf:about="&apiforkb-trm;ParsingAction">
+  <owl:Class rdf:about="&apiforkb-op;ParsingAction">
     <rdfs:label>parsing action</rdfs:label>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;LiftingAction"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;LiftingAction"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
-        <owl:allValuesFrom rdf:resource="&apiforkb-trm;ParsingEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;ParsingEvent"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -391,14 +362,14 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
   </owl:Class>
   
-  <owl:Class rdf:about="&apiforkb-trm;ConceptualizingAction">
+  <owl:Class rdf:about="&apiforkb-op;ConceptualizingAction">
     <rdfs:label>conceptualizing action</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">lifting action that transforms generalized expressions to knowledge assets.</skos:definition>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;LiftingAction"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;LiftingAction"/>
     <rdfs:subClassOf>
           <owl:Restriction>
             <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
-            <owl:allValuesFrom rdf:resource="&apiforkb-trm;ConceptualizingEvent"/>
+            <owl:allValuesFrom rdf:resource="&apiforkb-ev;ConceptualizingEvent"/>
           </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -418,75 +389,75 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
   
   
   
-  <!-- Public Operations -->
+  <!-- Public Operation -->
   
-  <owl:Class rdf:about="&apiforkb-trm;AddingOperation-KnowledgeResourceToImmutableKB">
+  <owl:Class rdf:about="&apiforkb-op;AddingOperation-KnowledgeResourceToImmutableKB">
     <rdfs:label>operation adding knowledge resources to immutable KBs</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">public operation adding knowlede
       resources to immutable knowledge bases</skos:definition>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;PublicOperation"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;PublicOperation"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsFromFirst"/>
-        <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeResource"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromFirst"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsFromSecond"/>
-        <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/ImmutableKnowledgeBase"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromSecond"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;ImmutableKnowledgeBase"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsTo"/>
-        <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/ImmutableKnowledgeBase"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;ImmutableKnowledgeBase"/>
       </owl:Restriction>
     </rdfs:subClassOf>    
   </owl:Class>  
   
-  <owl:Class rdf:about="&apiforkb-trm;AddingOperation-QueryItemToImmutableKB">
+  <owl:Class rdf:about="&apiforkb-op;AddingOperation-QueryItemToImmutableKB">
     <rdfs:label>operation adding knowledge resources that are query items to immutable KBs</rdfs:label>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;AddingOperation-KnowledgeResourceToImmutableKB"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;AddingOperation-KnowledgeResourceToImmutableKB"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsFromFirst"/>
-        <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/QueryItem"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromFirst"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;QueryItem"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
   
   
-  <owl:Class rdf:about="&apiforkb-trm;AddingOperation-FocusedOMSItemToImmutableKB">
+  <owl:Class rdf:about="&apiforkb-op;AddingOperation-FocusedOMSItemToImmutableKB">
     <rdfs:label>operation adding knowledge resources that are focused OMS items to immutable KBs</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">operation adding knowledge resources that are Focused OMSs item to immutable KBs</skos:definition>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;AddingOperation-KnowledgeResourceToImmutableKB"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;AddingOperation-KnowledgeResourceToImmutableKB"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsFromFirst"/>
-        <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/FocusedOMSItem"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromFirst"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;FocusedOMSItem"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     
   </owl:Class>
   
-  <owl:Class rdf:about="&apiforkb-trm;AddingOperation-KnowledgeResourceToMutableKB">
+  <owl:Class rdf:about="&apiforkb-op;AddingOperation-KnowledgeResourceToMutableKB">
     <rdfs:label>operation adding knowledge resources to mutable KBs</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">operation adding knowlede
       resources to mutable KBs</skos:definition>
     <dct:abstract/>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;PublicOperation"/>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;SideEffectfulOperation"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;PublicOperation"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;SideEffectfulOperation"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsFromFirst"/>
-        <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgeResource"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromFirst"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/mapsFromSecond"/>
-        <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/MutableKnowledgeBase"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromSecond"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;MutableKnowledgeBase"/>
       </owl:Restriction>
     </rdfs:subClassOf>
    </owl:Class>
