@@ -503,22 +503,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-    </owl:Class>
-
-  <owl:Class rdf:about="&apiforkb-trm;ImmutableFocusedGeneralizedExpression">
-    <rdfs:label>immutable focused generalized expression</rdfs:label>
-    <rdfs:subClassOf rdf:resource="&ontoiop-trm;OMS"/>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="&apiforkb-trm;ImmutableSource"/>
-          <rdf:Description rdf:about="&apiforkb-trm;FocusedGeneralizedExpression"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </owl:equivalentClass>
-  </owl:Class>
-  
-  
+    </owl:Class>  
     
     <owl:Class rdf:about="&apiforkb-trm;FocusedAsset">
         <rdfs:label>focused asset</rdfs:label>
@@ -587,7 +572,8 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <owl:Class rdf:about="&apiforkb-trm;FocusedResource">
         <rdfs:label>focused resource</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeResource"/>
-        <skos:definition rdf:datatype="&xsd;string">knowledge resource within a focused environment</skos:definition>
+      <rdfs:subClassOf rdf:resource="&apiforkb-trm;FocusedSource"/>
+      <skos:definition rdf:datatype="&xsd;string">knowledge resource within a focused environment</skos:definition>
     </owl:Class>    
     
     <owl:Class rdf:about="&apiforkb-trm;GeneralizedExpression">
@@ -680,23 +666,29 @@ Example: assertion that the author of Moby Dick is Herman Melville.
 Example: query for the names of philosphers.
 Example: a sequence of strings that are asserted to be names of philosphers in some KB.</skos:example>
     </owl:Class>
-    
+
+  <owl:Class rdf:about="&apiforkb-trm;FocusedSource">
+    <rdfs:label>focused source</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;accordingTo"/>
+        <owl:onClass rdf:resource="&apiforkb-trm;FocusedEnvironment"/>
+        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeBase">
       <rdfs:label>knowledge base</rdfs:label>
       <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeSource"/>
-      <rdfs:subClassOf>
-        <owl:Restriction>
-          <owl:onProperty rdf:resource="&apiforkb-trm;accordingTo"/>
-          <owl:onClass rdf:resource="&apiforkb-trm;FocusedEnvironment"/>
-          <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-        </owl:Restriction>
-      </rdfs:subClassOf>
+      <rdfs:subClassOf rdf:resource="&apiforkb-trm;FocusedSource"/>
       <owl:disjointUnionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="&apiforkb-trm;ImmutableKnowledgeBase"/>
           <rdf:Description rdf:about="&apiforkb-trm;MutableKnowledgeBase"/>
       </owl:disjointUnionOf>
     </owl:Class>
-    
+
+
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeEncoding">
         <rdfs:label>knowledge encoding</rdfs:label>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeResource"/>
@@ -807,15 +799,9 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeResource">
         <rdfs:label>knowledge resource</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeSource"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;accordingTo"/>
-                <owl:onClass rdf:resource="&apiforkb-trm;ImmutableFocusedEnvironment"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <skos:definition rdf:datatype="&xsd;string">immutable resource at one of the following levels of abstraction; knowledge asset, generalised expression, knowledge manifestation, knowledge encoding, or knowledge item.</skos:definition>
+      <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeSource"/>
+      <rdfs:subClassOf rdf:resource="&apiforkb-trm;ImmutableSource"/>
+        <skos:definition rdf:datatype="&xsd;string">immutable knowledge source, which may be identified to be at one of the following levels of abstraction; knowledge asset, generalised expression, knowledge manifestation, knowledge encoding, or knowledge item.</skos:definition>
         <owl:disjointUnionOf rdf:parseType="Collection">
             <rdf:Description rdf:about="&apiforkb-trm;GeneralizedExpression"/>
             <rdf:Description rdf:about="&apiforkb-trm;KnowledgeAsset"/>
