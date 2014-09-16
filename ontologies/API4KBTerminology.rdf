@@ -1146,10 +1146,17 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     <owl:Class rdf:about="&ontoiop-trm;OMSSerialization">
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeSerialization"/>
     </owl:Class>
-  <owl:Class rdf:about="&apiforkb-ev;UnaryEvent">
+
+  <owl:Class rdf:about="&apiforkb-trm;API4KBEvent/UnaryEvent">
     <rdfs:label>unary event</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">event of a unary operation</skos:definition>
-    <rdfs:subClassOf rdf:resource="&apiforkb-ev;Event"/>
-  </owl:Class>  
-    
+    <rdfs:subClassOf rdf:resource="&apiforkb-trm;API4KBEvent/Event"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasInput"/>
+        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  
 </rdf:RDF>
