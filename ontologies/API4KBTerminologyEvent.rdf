@@ -198,7 +198,7 @@
 
   <owl:Class rdf:about="&apiforkb-ev;QueryingEvent">
     <rdfs:label>querying event</rdfs:label>
-    <skos:definition rdf:datatype="&xsd;string">action event that applies a query to a focused OMS resource producing a collection of answer
+    <skos:definition rdf:datatype="&xsd;string">action event that applies a query to a focused resource producing a collection of answer
       substitutions.</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-ev;ActionEvent"/>
     <rdfs:subClassOf>
@@ -210,7 +210,7 @@
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;hasSecondInput"/>
-        <owl:someValuesFrom rdf:resource="&apiforkb-trm;FocusedOMSResource"/>
+        <owl:someValuesFrom rdf:resource="&apiforkb-trm;FocusedResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -682,15 +682,15 @@
   </owl:Class>
  
   <owl:Class
-    rdf:about="&apiforkb-ev;AddingEvent-FocusedOMSItemToImmutableKB">
-    <rdfs:label>adding event of a focused OMS item to an immutable knowledge base</rdfs:label>
-    <skos:definition rdf:datatype="&xsd;string">operation event adding a Knowledge Resource that is a focused OMS Item to an immutable KB</skos:definition>
+    rdf:about="&apiforkb-ev;AddingEvent-FocusedItemToImmutableKB">
+    <rdfs:label>adding event of a focused item to an immutable knowledge base</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">operation event adding a Knowledge Resource that is a focused Item to an immutable KB</skos:definition>
     <rdfs:subClassOf
       rdf:resource="&apiforkb-ev;AddingEvent-KnowledgeResourceToImmutableKB"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;actualizes"/>
-        <owl:someValuesFrom rdf:resource="&apiforkb-pro;AddingProficiency-FocusedOMSItemToImmutableKB"/>
+        <owl:someValuesFrom rdf:resource="&apiforkb-pro;AddingProficiency-FocusedItemToImmutableKB"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <owl:equivalentClass> 
@@ -701,7 +701,7 @@
             <owl:onProperty
               rdf:resource="&apiforkb-trm;isEventof"/>
             <owl:someValuesFrom
-              rdf:resource="&apiforkb-op;AddingOperation-FocusedOMSItemToImmutableKB"/>
+              rdf:resource="&apiforkb-op;AddingOperation-FocusedItemToImmutableKB"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -709,7 +709,7 @@
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;hasFirstInput"/>
-        <owl:someValuesFrom rdf:resource="&apiforkb-trm;FocusedOMSItem"/>
+        <owl:someValuesFrom rdf:resource="&apiforkb-trm;FocusedItem"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class> 
