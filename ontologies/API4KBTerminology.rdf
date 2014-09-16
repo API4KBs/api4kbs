@@ -684,10 +684,17 @@ Example: a sequence of strings that are asserted to be names of philosphers in s
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeBase">
       <rdfs:label>knowledge base</rdfs:label>
       <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeSource"/>
-        <owl:disjointUnionOf rdf:parseType="Collection">
-            <rdf:Description rdf:about="&apiforkb-trm;ImmutableKnowledgeBase"/>
-            <rdf:Description rdf:about="&apiforkb-trm;MutableKnowledgeBase"/>
-        </owl:disjointUnionOf>
+      <rdfs:subClassOf>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="&apiforkb-trm;accordingTo"/>
+          <owl:onClass rdf:resource="&apiforkb-trm;FocusedEnvironment"/>
+          <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+        </owl:Restriction>
+      </rdfs:subClassOf>
+      <owl:disjointUnionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="&apiforkb-trm;ImmutableKnowledgeBase"/>
+          <rdf:Description rdf:about="&apiforkb-trm;MutableKnowledgeBase"/>
+      </owl:disjointUnionOf>
     </owl:Class>
     
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeEncoding">
@@ -832,13 +839,6 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeSource">
       <rdfs:label>knowledge source</rdfs:label>
-      <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&apiforkb-trm;accordingTo"/>
-                <owl:onClass rdf:resource="&apiforkb-trm;FocusedEnvironment"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <skos:scopeNote rdf:datatype="&xsd;string">OntoIOp sensitive</skos:scopeNote>
     </owl:Class>
 
