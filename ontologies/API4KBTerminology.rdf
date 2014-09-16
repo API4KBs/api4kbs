@@ -113,7 +113,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <owl:ObjectProperty rdf:about="&apiforkb-trm;fillsRole">
         <rdfs:label>fills role</rdfs:label>
     </owl:ObjectProperty>
-    
+
     <owl:ObjectProperty rdf:about="&apiforkb-trm;hasCoDomainMember">
         <rdfs:label>has co-domain member</rdfs:label>
         <rdfs:domain rdf:resource="&apiforkb-op;Operation"/>
@@ -158,6 +158,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <rdfs:label>has second input</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">input of an operation that appears second in the argument sequence</skos:definition>
     <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;hasInput"/>
+  </owl:ObjectProperty>
+  
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;hasSnapshot">
+    <rdfs:label>has snapshot</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">relationship between a mutable source and its state at one timepoint.</skos:definition>
+    <rdfs:domain rdf:resource="&apiforkb-trm;MutableSource"/>
+    <rdfs:range rdf:resource="&ontoiop-trm;ImmutableSource"/>
   </owl:ObjectProperty>
   
   
@@ -218,6 +225,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
+    
     <owl:ObjectProperty rdf:about="&apiforkb-trm;isActualizedBy">
         <rdfs:label>is actualized by</rdfs:label>
     </owl:ObjectProperty>
@@ -268,7 +276,14 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
       <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;lifts"/>
       <owl:inverseOf rdf:resource="&apiforkb-trm;expresses"/>
     </owl:ObjectProperty>
-    
+
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;lifts">
+    <rdfs:label>lifts</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+    <skos:note>OWL does not let us declare this to be functional, while keeping the property chains that link Events and Operations.</skos:note>
+    <owl:inverseOf rdf:resource="&apiforkb-trm;lowers"/>
+  </owl:ObjectProperty>
+  
     <owl:ObjectProperty rdf:about="&apiforkb-trm;expresses">
       <rdfs:label>expresses</rdfs:label>
       <skos:altLabel>is expression of</skos:altLabel>
@@ -300,7 +315,6 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
      </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&apiforkb-trm;reproduces">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label>reproduces</rdfs:label>
         <skos:definition rdf:datatype="&xsd;string">knowledge encoding that would be obtained from instreaming the knowledge item</skos:definition>
       <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;lowers"/>
@@ -318,7 +332,6 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&apiforkb-trm;manifests">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label>manifests</rdfs:label>
         <skos:definition rdf:datatype="&xsd;string">generalized expression that would be obtained from parsing the knowledge manifestation</skos:definition>
       <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;lowers"/>
@@ -766,7 +779,7 @@ Note: The proxy will not have access to the KP except through the KP Manager.</s
     
     <owl:Class rdf:about="&apiforkb-trm;KnowledgePlatformManager">
         <rdfs:label>knowledge platform manager</rdfs:label>
-        <owl:equivalentClass>
+       <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&apiforkb-trm;Application"/>
@@ -790,6 +803,7 @@ Note: The proxy will not have access to the KP except through the KP Manager.</s
         <skos:scopeNote rdf:datatype="&xsd;string">Optionally, a KP Manager can orchestrate the Components in the KP.
 Alternatively, the Components may coordinate among each other</skos:scopeNote>
     </owl:Class>
+  
     
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeRepresentationAndReasoningLanguage">
       <rdfs:label>knowledge representation and reasoning language</rdfs:label>
@@ -852,7 +866,7 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
                     <rdf:Description rdf:about="&apiforkb-trm;Application"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="&apiforkb-trm;implements"/>
-                        <owl:someValuesFrom rdf:resource="&apiforkb-op;Operation"/>
+                        <owl:someValuesFrom rdf:resource="&apiforkb-op;PublicOperation"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
