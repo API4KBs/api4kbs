@@ -716,23 +716,23 @@
   
   <!-- Currying -->
   
-  <owl:Class rdf:about="&apiforkb-trm;API4KBEvent//HorizontalEvent">
+  <owl:Class rdf:about="&apiforkb-ev;HorizontalEvent">
     <rdfs:label xml:lang="en">horizontal event</rdfs:label>
-    <skos:definition rdf:datatype="&xsd;string">side-effect-free unary event that is a mapping between knowledge resources at the same level of abstraction</skos:definition>
+    <skos:definition rdf:datatype="&xsd;string">side-effect-free unary event whose input and output are knowledge resources at the same level of abstraction that are related by a mapping (sensu DOL)</skos:definition>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description rdf:about="&apiforkb-trm;API4KBEvent/ActionEvent"/>
+          <rdf:Description rdf:about="&apiforkb-ev;ActionEvent"/>
           <owl:Restriction>
             <owl:onProperty rdf:resource="&apiforkb-trm;isEventof"/>
-            <owl:someValuesFrom rdf:resource="&apiforkb-trm;API4KBOperation/HorizontalAction"/>
+            <owl:someValuesFrom rdf:resource="&apiforkb-op;HorizontalAction"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;API4KBEvent/SideEffectFreeEvent"/>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;API4KBEvent/UnaryEvent"/>
-    <rdfs:subClassOf rdf:resource="&ontoiop-trm;Mapping"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-ev;SideEffectFreeEvent"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-ev;UnaryEvent"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-ev;ActionEvent"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;hasFirstInput"/>
@@ -746,5 +746,23 @@
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
+    
+  <owl:Class rdf:about="&apiforkb-ev;ImmutableEvent-AdditionTo">
+    <rdfs:label xml:lang="en">immutable event - addition to</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">horizontal event whose output is an extension of the input (sensu DOL)</skos:definition>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="&apiforkb-ev;HorizontalEvent"/>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="&apiforkb-trm;isEventof"/>
+            <owl:someValuesFrom rdf:resource="&apiforkb-op;ImmutableAction-AdditionTo"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="&apiforkb-trm;API4KBEvent//HorizontalEvent"/>
+  </owl:Class>
+  
   
 </rdf:RDF>
