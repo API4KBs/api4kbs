@@ -290,6 +290,32 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </owl:disjointUnionOf>
   </owl:Class>
 
+  <owl:Class rdf:about="&apiforkb-op;HorizontalAction">
+    <rdfs:label>horizontal action</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">side-effect-free unary action whose input is a knowledge resource and whose output is a knowledge resource of the same level of abstraction in the knowledge resource hierarchy.</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Action"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;UnaryOperation"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;SideEffectFreeOperation"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;HorizontalEvent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
   <owl:Class rdf:about="&apiforkb-op;InStreamingAction">
     <rdfs:label>instreaming action</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">lifting action that maps knowledge items into knowledge encodings.</skos:definition>
