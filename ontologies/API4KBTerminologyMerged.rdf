@@ -276,9 +276,11 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
 
   <owl:ObjectProperty rdf:about="&apiforkb-trm;lifts">
     <rdfs:label>lifts</rdfs:label>
-    <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+    <skos:definition rdf:datatype="&xsd;string">relation between two knowledge resources where the first is an abstraction of the second by one level (e.g. if the first is an encoding, the second is an item, etc.).  Lifts relations are limited to one of the following: characterizes, decodes</skos:definition>
     <skos:note>OWL does not let us declare this to be functional, while keeping the property chains that link Events and Operations.</skos:note>
     <owl:inverseOf rdf:resource="&apiforkb-trm;lowers"/>
+    <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeReource"/>
+    <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeResource"/>
   </owl:ObjectProperty>
   
     <owl:ObjectProperty rdf:about="&apiforkb-trm;expresses">
@@ -657,7 +659,8 @@ Example E: A and B, together with a mapping that allows OWL to be converted to C
     
     <owl:Class rdf:about="&apiforkb-trm;KnowledgeAsset">
         <rdfs:label>knowledge asset</rdfs:label>
-        <owl:equivalentClass>
+      <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeResource"/>
+      <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&apiforkb-trm;KnowledgeResource"/>
@@ -668,7 +671,7 @@ Example E: A and B, together with a mapping that allows OWL to be converted to C
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <skos:definition rdf:datatype="&xsd;string">equivalence class (according to a logical environment) of generalized expressions.
+        <skos:definition rdf:datatype="&xsd;string">equivalence class (according to an environment) of generalized expressions.
 
 Note:  intuitively, a knowledge asset is information that may be (equivalently) expressed in one or more KR languages.</skos:definition>
         <skos:example rdf:datatype="&xsd;string">Example: assertion that Socrates is a philospher.
