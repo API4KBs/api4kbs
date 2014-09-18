@@ -1144,4 +1144,34 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     </rdfs:subClassOf>
   </owl:Class>
   
+  <!-- Currying -->
+  
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;liftsMapping">
+    <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeAssetMapping"/>
+    <rdfs:range rdf:resource="&ontoiop-trm;OMSMapping"/>
+  </owl:ObjectProperty>
+  
+  <owl:Class rdf:about="&apiforkb-trm;KnowledgeAssetMapping">
+    <rdfs:label xml:lang="en">knowledge asset mapping</rdfs:label>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="&ontoiop-trm;mapsFrom"/>
+            <owl:onClass rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
+            <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="&ontoiop-trm;mapsTo"/>
+            <owl:onClass rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
+            <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="&ontoiop-trm;Mapping"/>
+    <skos:definition rdf:datatype="&xsd;string">mapping from knowledge assets to knowledge assets</skos:definition>
+  </owl:Class>
+  
+  
 </rdf:RDF>
