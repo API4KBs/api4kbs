@@ -127,8 +127,9 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
 
   <owl:Class rdf:about="&apiforkb-op;Action">
     <rdfs:label>action</rdfs:label>
-    <skos:definition rdf:datatype="&xsd;string">an atomic operation</skos:definition>
+    <skos:definition rdf:datatype="&xsd;string">a unary atomic internal operation</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;InternalOperation"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;UnaryOperation"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
@@ -156,29 +157,40 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
   
   <owl:Class rdf:about="&apiforkb-op;QueryingAction">
     <rdfs:label>querying action</rdfs:label>
-    <skos:definition rdf:datatype="&xsd;string">action that maps queries and focused resource to collections of answer
-      substitutions.</skos:definition>
-    <rdfs:subClassOf rdf:resource="&apiforkb-op;Action"/>
+    <skos:definition rdf:datatype="&xsd;string">curried action that maps queries to horizontal operations that maps focused assets to result assests.</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;CurriedAction"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromFirst"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
         <owl:someValuesFrom rdf:resource="&apiforkb-trm;QueryResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromSecond"/>
-        <owl:someValuesFrom rdf:resource="&apiforkb-trm;FocusedResource"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:someValuesFrom rdf:resource="&apiforkb-op;HorizontalAction-FocusedAssetIn-ResultAssetOut"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="&apiforkb-op;HorizontalAction-FocusedAssetIn-ResultAssetOut">
+    <rdfs:label>horizontal action - focused asset in - answer substitution collection out</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">horizontal action that maps focused assets to result assets.</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;HorizontalAssetAction"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:someValuesFrom rdf:resource="&apiforkb-trm;FocusedAsset"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
-        <owl:someValuesFrom rdf:resource="&apiforkb-trm;AnswerSubstitutionCollection"/>
+        <owl:someValuesFrom rdf:resource="&apiforkb-trm;ResultAsset"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
-
+  
   
   <!-- Lowering Actions -->
   
@@ -187,7 +199,6 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;Action"/>
     <skos:definition rdf:datatype="&xsd;string">action that maps a knowledge resource to another knowledge resource of the same &quot;type&quot; (i.e. OMS, Query, Result), belongs to the next lower level of abstraction in the knowledge resource hierarchy, and has the same information content.</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;Action"/>
-    <rdfs:subClassOf rdf:resource="&apiforkb-op;UnaryOperation"/>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;SideEffectFreeOperation"/>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -218,6 +229,24 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
   <owl:Class rdf:about="&apiforkb-op;ExpressingAction">
     <rdfs:label>expressing action</rdfs:label>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;LoweringAction"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;ExpressingEvent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeExpression"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
   </owl:Class>
   
   
@@ -225,11 +254,47 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
   <owl:Class rdf:about="&apiforkb-op;ManifestingAction">
     <rdfs:label>manifesting action</rdfs:label>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;LoweringAction"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;ManifestingEvent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeExpression"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
   </owl:Class>
   
   <owl:Class rdf:about="&apiforkb-op;MarshallingAction">
     <rdfs:label>marshalling action</rdfs:label>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;LoweringAction"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;MarshallingEvent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
   </owl:Class>
   
   <owl:Class rdf:about="&apiforkb-op;OutStreamingAction">
@@ -262,7 +327,6 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <rdfs:label>lifting action</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">action whose input is a knowledge resource and whose output is a knowledge resource of the same &quot;type&quot; (i.e. OMS, Query, Result), belongs to the next higher level of abstraction in the knowledge resource hierarchy and has the same information content.</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;Action"/>
-    <rdfs:subClassOf rdf:resource="&apiforkb-op;UnaryOperation"/>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;SideEffectFreeOperation"/>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -292,9 +356,8 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
 
   <owl:Class rdf:about="&apiforkb-op;HorizontalAction">
     <rdfs:label>horizontal action</rdfs:label>
-    <skos:definition rdf:datatype="&xsd;string">side-effect-free unary action whose input is a knowledge resource and whose output is a knowledge resource of the same level of abstraction in the knowledge resource hierarchy.</skos:definition>
+    <skos:definition rdf:datatype="&xsd;string">side-effect-free action whose input is a knowledge resource and whose output is a knowledge resource of the same level of abstraction in the knowledge resource hierarchy.</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;Action"/>
-    <rdfs:subClassOf rdf:resource="&apiforkb-op;UnaryOperation"/>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;SideEffectFreeOperation"/>
     <rdfs:subClassOf>
       <owl:Restriction>
@@ -314,8 +377,284 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <owl:disjointUnionOf rdf:parseType="Collection">
+      <rdf:Description rdf:about="&apiforkb-op;HorizontalAssetAction"/>
+      <rdf:Description rdf:about="&apiforkb-op;HorizontalExpressionAction"/>
+      <rdf:Description rdf:about="&apiforkb-op;HorizontalManifestationAction"/>
+      <rdf:Description rdf:about="&apiforkb-op;HorizontalEncodingAction"/>
+      <rdf:Description rdf:about="&apiforkb-op;HorizontalItemAction"/>
+    </owl:disjointUnionOf>    
   </owl:Class>
 
+  <owl:Class rdf:about="&apiforkb-op;HorizontalAssetAction">
+    <rdfs:label>horizontal asset action</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">horizontal action whose inputs and outputs are knowledge assets.</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;HorizontalAction"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;HorizontalAssetEvent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  
+  <owl:Class rdf:about="&apiforkb-op;HorizontalExpressionAction">
+    <rdfs:label>horizontal expression action</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">horizontal action whose inputs and outputs are generalized expressions.</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;HorizontalAction"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;HorizontalExpressionEvent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="&apiforkb-op;HorizontalManifestationAction">
+    <rdfs:label>horizontal manifestation action</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">horizontal action whose inputs and outputs are knowledge expressions.</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;HorizontalAction"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;HorizontalManifestationEvent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="&apiforkb-op;HorizontalEncodingAction">
+    <rdfs:label>horizontal encoding action</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">horizontal action whose inputs and outputs are knowledge expressions.</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;HorizontalAction"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;HorizontalEncodingEvent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  
+  <owl:Class rdf:about="&apiforkb-op;HorizontalItemAction">
+    <rdfs:label>horizontal item action</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">horizontal action whose inputs and outputs are knowledge expressions.</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;HorizontalAction"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;HorizontalItemEvent"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeItem"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeItem"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  
+  
+  <owl:Class rdf:about="&apiforkb-op;Action-AdditionTo">
+    <rdfs:label>action - addition to</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">curried action that maps knowledge resources into extended knowledge resources.</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;HorizontalAction"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;Event-AdditionOf"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="&apiforkb-op;Action-AdditionToKnowledgeAsset">
+    <rdfs:label>action - addition to knowledge asset</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">'addition to' action that maps knowledge assets into knowledge assets.</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Action-AdditionTo"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;HorizontalAssetAction"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;Event-AdditionToKnowledgeAsset"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  
+  <!-- Currying -->
+
+  <owl:Class rdf:about="&apiforkb-op;Action-ResourceIn">
+    <rdfs:label>action - resource in</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">action that maps knowledge resources into other things.</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Action"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;Event-ResourceIn"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  
+
+  <owl:Class rdf:about="&apiforkb-op;Action-ItemIn">
+    <rdfs:label>action - item in</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">action that maps knowledge items into other actions.</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Action-ResourceIn"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;Event-ItemIn"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeItem"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  
+  <owl:Class rdf:about="&apiforkb-op;CurriedAction">
+    <rdfs:label xml:lang="en">curried action</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Action"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;SideEffectFreeOperation"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&ontoiop-trm;mapsTo"/>
+        <owl:someValuesFrom rdf:resource="&apiforkb-op;Action"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <skos:definition rdf:datatype="&xsd;string">side-effect free action that maps to another action</skos:definition>
+  </owl:Class>
+  
+
+  <owl:Class rdf:about="&apiforkb-op;CurriedAction-HorizontalAssetActionOut">
+    <rdfs:label xml:lang="en">curried action</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;CurriedAction"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&ontoiop-trm;mapsTo"/>
+        <owl:someValuesFrom rdf:resource="&apiforkb-op;HorizontalAssetAction"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <skos:definition rdf:datatype="&xsd;string">curried action that maps to a harizontal asset action</skos:definition>
+  </owl:Class>
+  
+  <owl:Class rdf:about="&apiforkb-op;Action-AdditionOf">
+    <rdfs:label>action - addition of</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">curried action that maps knowledge resources into 'addition to' actions.</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;CurriedAction"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Action-ResourceIn"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;Event-AdditionOf"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;Action-AdditionTo"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="&apiforkb-op;Action-AdditionOfItem">
+    <rdfs:label>action - addition of item</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">curried action that maps knowledge items into 'addition to' actions.</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Action-AdditionOf"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Action-ItemIn"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;Event-AdditionOf"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="&apiforkb-op;Action-AdditionOfItem-HorizontalAssetActionOut">
+    <rdfs:label>action - addition of item - asset action out</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">curried action that maps knowledge items into 'addition to' asset actions.</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Action-AdditionOfItem"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;CurriedAction-HarizontalAssetActionOut"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;Event-AdditionOfItem-HorizontalAssetEventOut"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  
+  <owl:Class rdf:about="&apiforkb-op;VoidAction">
+    <rdfs:label xml:lang="en">void action</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Action"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;SideEffectfulOperation"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&ontoiop-trm;mapsTo"/>
+        <owl:someValuesFrom rdf:resource="&apiforkb-op;Void"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <skos:definition rdf:datatype="&xsd;string">side-effectful action that maps to void</skos:definition>
+  </owl:Class>
+  
   <owl:Class rdf:about="&apiforkb-op;InStreamingAction">
     <rdfs:label>instreaming action</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">lifting action that maps knowledge items into knowledge encodings.</skos:definition>
