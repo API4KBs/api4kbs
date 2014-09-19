@@ -114,19 +114,18 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:label>fills role</rdfs:label>
     </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;hasCoDomainMember">
-        <rdfs:label>has co-domain member</rdfs:label>
-        <rdfs:domain rdf:resource="&apiforkb-op;Operation"/>
-        <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeSource"/>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&apiforkb-trm;hasEvent"/>
-            <rdf:Description rdf:about="&apiforkb-trm;hasOutput"/>
-        </owl:propertyChainAxiom>
-    </owl:ObjectProperty>
+  <owl:ObjectPropertyn rdf:about="&apiforkb-trm;mapsTo">
+    <rdfs:label xml:lang="en">maps to (sensu API4KB)</rdfs:label>
+    <rdfs:domain rdf:resource="&apiforkb-op;Operation"/>
+    <owl:propertyChainAxiom rdf:parseType="Collection">
+      <rdf:Description rdf:about="&apiforkb-trm;hasEvent"/>
+      <rdf:Description rdf:about="&apiforkb-trm;hasOutput"/>
+    </owl:propertyChainAxiom>
+  </owl:ObjectPropertyn>
     
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;hasDomainMember">
-        <rdfs:label>has domain member</rdfs:label>
-        <rdfs:domain rdf:resource="&apiforkb-op;Operation"/>
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;mapsFrom">
+      <rdfs:label xml:lang="en">maps from (sensu API4KB)</rdfs:label>
+      <rdfs:domain rdf:resource="&apiforkb-op;Operation"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
             <rdf:Description rdf:about="&apiforkb-trm;hasEvent"/>
             <rdf:Description rdf:about="&apiforkb-trm;hasInput"/>
