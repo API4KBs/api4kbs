@@ -2,40 +2,42 @@
 
 
 <!DOCTYPE rdf:RDF [
-    <!ENTITY dct "http://purl.org/dc/terms/" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY dct "http://purl.org/dc/terms/" >
     <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
-    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
-    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-    <!ENTITY apiforkb-trm "http://www.omg.org/spec/API4KB/Terminology/" >
-    <!ENTITY ontoiop-trm "http://www.omg.org/spec/OntoIOp/Terminology/" >
-    <!ENTITY apiforkb-test "http://www.omg.org/spec/API4KB/TerminologyTest/" >
     <!ENTITY sm "http://www.omg.org/techprocess/ab/SpecificationMetadata/" >
+    <!ENTITY ontoiop-trm "http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/" >
+    <!ENTITY apiforkb-trm "http://www.omg.org/spec/API4KB/API4KBTerminology/" >
+    <!ENTITY apiforkb-op "http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperation/" >
+    <!ENTITY apiforkb-ev "http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/" >
+    <!ENTITY apiforkb-pro "http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/" >
+    <!ENTITY apiforkb-st "http://www.omg.org/spec/API4KB/SmallTest/" >
 ]>
 
 
-<rdf:RDF xmlns="http://www.omg.org/spec/API4KB/Terminology/"
-     xml:base="http://www.omg.org/spec/API4KB/Terminology/"
-     xmlns:ontoiop-trm="http://www.omg.org/spec/OntoIOp/Terminology/"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:sm="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
-     xmlns:apiforkb-trm="http://www.omg.org/spec/API4KB/Terminology/"
-     xmlns:dct="http://purl.org/dc/terms/"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:apiforkb-test="http://www.omg.org/spec/API4KB/TerminologyTest/"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:skos="http://www.w3.org/2004/02/skos/core#">
-    <owl:Ontology rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/">
+<rdf:RDF xml:base="&apiforkb-st;"
+  xmlns:rdf="&rdf;"
+  xmlns:rdfs="&rdfs;"
+  xmlns:owl="&owl;"
+  xmlns:xsd="&xsd;"
+  xmlns:dct="&dct;"
+  xmlns:skos="&skos;"
+  xmlns:sm="&sm;"
+  xmlns:ontoiop-trm="&ontoiop-trm;"
+  xmlns:apiforkb-trm="&apiforkb-trm;"
+  xmlns:apiforkb-op="&apiforkb-op;"
+  xmlns:apiforkb-ev="&apiforkb-ev;"
+  xmlns:apiforkb-pro="&apiforkb-pro;"
+  xmlns:apiforkb-st="&apiforkb-st;">
+    <owl:Ontology rdf:about="&apiforkb-st;">
         <rdfs:label>API4KB Terminology Ontology</rdfs:label>
-        <owl:imports rdf:resource="http://www.omg.org/spec/API4KB/Terminology/"/>
-        <owl:imports rdf:resource="http://www.omg.org/spec/OntoIOp/Terminology/"/>
-        <owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
-        <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
+        <owl:imports rdf:resource="&apiforkb-trm;"/>
+        <owl:imports rdf:resource="&sm;"/>
     </owl:Ontology>
     
-
 
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -46,222 +48,277 @@
      -->
 
     
-
-
-    <!-- http://www.omg.org/spec/API4KB/Terminology/IAddKnowledgeResourceToImmutableKB -->
-
-    <owl:NamedIndividual rdf:about="&apiforkb-trm;IAddKnowledgeResourceToImmutableKB"/>
-    
-
-
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/AdditionOfKnowledgeResourceToImmutableKBbyKPManagerW -->
-
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/AdditionOfKnowledgeResourceToImmutableKBbyKPManagerW">
-        <rdf:type rdf:resource="&apiforkb-trm;AdditionOfKnowledgeResourceToImmutableKB"/>
-        <rdfs:label>Proficiency: Addition of Knowledge Resource to Immutable KB by KP Manager-W</rdfs:label>
+  <!--Proficiency-->
+  
+  <!-- Properties
+      isActualizedBy [Event]
+      isProficiencyOf [KPManager]
+      isRequiredBy [Role]
+  -->
+  
+  <owl:NamedIndividual rdf:about="&apiforkb-st;AddingProficiency-KnowledgeResourceToImmutableKByKPManagerW">
+        <rdf:type rdf:resource="&apiforkb-pro;AdditionOfKnowledgeResourceToImmutableKB"/>
+    <rdfs:label>proficiency adding knowledge resources to immutable KBs by KP Manager-W</rdfs:label>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/ClientZ -->
+  <!--Client -->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/ClientZ">
+  <!-- Properties
+       interactsWith [Proxy]
+       (requests)
+  -->
+  
+  <owl:NamedIndividual rdf:about="&apiforkb-st;ClientZ">
         <rdf:type rdf:resource="&apiforkb-trm;Client"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/FOMS2 -->
+    <!--Expression-->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/FOMS2">
+  <!-- Properties
+       accordingTo [Environment]
+       expresses [Asset]
+       isManifestedBy [Manifestation]
+       usesLanguage [Language]
+       isRegisteredWith [KP]
+       isInputOf [Event]
+       isOutputOf [Event]
+       isSnapshotOf [MutableSource]
+       (hasModel, inverse of isModelOfOMS) 
+       ontoiop-trm:hasSetOfExpressions
+  -->
+  
+    <owl:NamedIndividual rdf:about="&apiforkb-st;FOMS2">
         <rdf:type rdf:resource="&ontoiop-trm;BasicOMS"/>
-        <accordingTo rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/LE2"/>
-        <ontoiop-trm:hasSetOfExpressions rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/SetOfExpressions2"/>
+      <apiforkb-trm:accordingTo rdf:resource="&apiforkb-st;LE2"/>
+        <ontoiop-trm:hasSetOfExpressions rdf:resource="&apiforkb-st;SetOfExpressions2"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/FOMSEncoding2 -->
+    <!-- Encoding -->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/FOMSEncoding2">
+  <!-- Properties
+       accordingTo [Environment]
+       encodes [Manifestation]
+       characterizes [Item]
+       (usesCodingSystem [CodingSystem])
+       isRegisteredWith [KP]
+       isInputOf [Event]
+       isOutputOf [Event]
+       isSnapshotOf [MutableSource]
+  -->
+  
+    <owl:NamedIndividual rdf:about="&apiforkb-st;FOMSEncoding2">
         <rdf:type rdf:resource="&apiforkb-trm;FocusedOMSEncoding"/>
-        <encodingOf rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/FOMSManifestation2"/>
+      <apiforkb-trm:encodes rdf:resource="&apiforkb-st;FOMSManifestation2"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/FOMSManifestation2 -->
+    <!-- Manifestation -->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/FOMSManifestation2">
+  <!-- Properties
+       accordingTo [Environment]
+       manifests [Expression]
+       decodes [Encoding]
+       (usesSerialization [Serialization])
+       isRegisteredWith [KP]
+       isInputOf [Event]
+       isOutputOf [Event]
+       isSnapshotOf [MutableSource]
+  -->
+  
+    <owl:NamedIndividual rdf:about="&apiforkb-st;FOMSManifestation2">
         <rdf:type rdf:resource="&apiforkb-trm;FocusedOMSManifestation"/>
-        <manifestationOf rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/FOMS2"/>
+      <apiforkb-trm:manifestationOf rdf:resource="&apiforkb-st;FOMS2"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/FocusedOMSItem2 -->
+    <!-- Item -->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/FocusedOMSItem2">
+  <!-- Properties
+       accordingTo [Environment]
+       reproduces [Encoding]
+       isRegisteredWith [KP]
+       isInputOf [Event]
+       isOutputOf [Event]
+       isSnapshotOf [MutableSource]
+  -->
+  
+    <owl:NamedIndividual rdf:about="&apiforkb-st;FocusedOMSItem2">
         <rdf:type rdf:resource="&apiforkb-trm;FocusedOMSItem"/>
-        <localCopyOf rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/FOMSEncoding2"/>
+      <apiforkb-trm:localCopyOf rdf:resource="&apiforkb-st;FOMSEncoding2"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/GE-B -->
+    <!-- Expression -->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/GE-B">
+    <owl:NamedIndividual rdf:about="&apiforkb-st;GE-B">
         <rdf:type rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
-        <ontoiop-trm:hasSetOfExpressions rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/SetOfExpressions1"/>
+        <ontoiop-trm:hasSetOfExpressions rdf:resource="&apiforkb-st;SetOfExpressions1"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/GE-D -->
+    <!-- Expression -->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/GE-D">
+    <owl:NamedIndividual rdf:about="&apiforkb-st;GE-D">
         <rdf:type rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
-        <ontoiop-trm:hasSetOfExpressions rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/SetOfExpressions3"/>
+        <ontoiop-trm:hasSetOfExpressions rdf:resource="&apiforkb-st;SetOfExpressions3"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/ImmutableKBB -->
+    <!-- Asset -->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/ImmutableKBB">
+  <!-- Properties
+       accordingTo [Environment]
+       conceptualizes [Expression]
+       isRegisteredWith [KP]
+       isInputOf [Event]
+       isOutputOf [Event]
+       isSnapshotOf [MutableSource]
+  -->
+  
+    <owl:NamedIndividual rdf:about="&apiforkb-st;ImmutableKBB">
         <rdf:type rdf:resource="&apiforkb-trm;ImmutableKnowledgeBase"/>
         <rdfs:label>Immutable KB-B</rdfs:label>
-        <expressedAs rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/GE-B"/>
-        <isRegisteredWith rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/KPV"/>
-        <accordingTo rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/LEB"/>
+      <apiforkb-trm:conceptualizes rdf:resource="&apiforkb-st;GE-B"/>
+      <apiforkb-trm:isRegisteredWith rdf:resource="&apiforkb-st;KPV"/>
+      <apiforkb-trm:accordingTo rdf:resource="&apiforkb-st;LEB"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/ImmutableKBD -->
+    <!-- KB -->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/ImmutableKBD">
+    <owl:NamedIndividual rdf:about="&apiforkb-st;ImmutableKBD">
         <rdf:type rdf:resource="&apiforkb-trm;ImmutableKnowledgeBase"/>
         <rdfs:label>Immutable KB-D</rdfs:label>
-        <expressedAs rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/GE-D"/>
-        <accordingTo rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/LED"/>
+      <apiforkb-trm:expressedAs rdf:resource="&apiforkb-st;GE-D"/>
+      <apiforkb-trm:accordingTo rdf:resource="&apiforkb-st;LED"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/KPMWconceptualizingGED -->
+    <!-- Expression -->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/KPMWconceptualizingGED">
+    <owl:NamedIndividual rdf:about="&apiforkb-st;KPMWconceptualizingGED">
         <rdf:type rdf:resource="&apiforkb-trm;Conceptualizing"/>
         <rdfs:label>ActionEvent: KPM-W conceptualizing Generalized Expression D</rdfs:label>
-        <hasInput rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/GE-D"/>
-        <hasOutput-Conceptualize rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/ImmutableKBD"/>
+      <apiforkb-trm:hasInput rdf:resource="&apiforkb-st;GE-D"/>
+      <apiforkb-trm:hasOutput-Conceptualize rdf:resource="&apiforkb-st;ImmutableKBD"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/KPManagerW -->
+    <!-- KPManager -->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/KPManagerW">
+    <owl:NamedIndividual rdf:about="&apiforkb-st;KPManagerW">
         <rdf:type rdf:resource="&apiforkb-trm;KnowledgePlatformManager"/>
         <rdfs:label>Knowledge Platform Manager-W</rdfs:label>
-        <hasProficiency rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/AdditionOfKnowledgeResourceToImmutableKBbyKPManagerW"/>
-        <executes rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/KPMWconceptualizingGED"/>
-        <fillsRole rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/KPManagerWasImmutableKBFactory"/>
-        <manages rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/KPV"/>
+      <apiforkb-trm:hasProficiency rdf:resource="&apiforkb-st;AdditionOfKnowledgeResourceToImmutableKBbyKPManagerW"/>
+      <apiforkb-trm:executes rdf:resource="&apiforkb-st;KPMWconceptualizingGED"/>
+      <apiforkb-trm:fillsRole rdf:resource="&apiforkb-st;KPManagerWasImmutableKBFactory"/>
+      <apiforkb-trm:manages rdf:resource="&apiforkb-st;KPV"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/KPManagerWasImmutableKBFactory -->
+    <!-- Role -->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/KPManagerWasImmutableKBFactory">
+    <owl:NamedIndividual rdf:about="&apiforkb-st;KPManagerWasImmutableKBFactory">
         <rdf:type rdf:resource="&apiforkb-trm;ImmutableKBFactory"/>
         <rdfs:label>Role: KPM-W as Immutable KB Factory</rdfs:label>
-        <requires rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/AdditionOfKnowledgeResourceToImmutableKBbyKPManagerW"/>
+      <apiforkb-trm:requires rdf:resource="&apiforkb-st;AdditionOfKnowledgeResourceToImmutableKBbyKPManagerW"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/KPV -->
+    <!-- KP -->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/KPV">
+    <owl:NamedIndividual rdf:about="&apiforkb-st;KPV">
         <rdf:type rdf:resource="&apiforkb-trm;KnowledgePlatform"/>
         <rdfs:label>Knowledge Platform-V</rdfs:label>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/LE2 -->
+    <!-- Environment -->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/LE2">
+    <owl:NamedIndividual rdf:about="&apiforkb-st;LE2">
         <rdf:type rdf:resource="&apiforkb-trm;BasicLogicalEnvironment"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/LEB -->
+    <!-- Environment -->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/LEB">
+    <owl:NamedIndividual rdf:about="&apiforkb-st;LEB">
         <rdf:type rdf:resource="&apiforkb-trm;ImmutableFocusedLogicalEnvironment"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/LED -->
+    <!-- Environment -->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/LED">
+    <owl:NamedIndividual rdf:about="&apiforkb-st;LED">
         <rdf:type rdf:resource="&apiforkb-trm;ImmutableFocusedLogicalEnvironment"/>
     </owl:NamedIndividual>
     
 
+    <!-- Proxy -->
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/ProxyQ -->
-
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/ProxyQ">
+    <owl:NamedIndividual rdf:about="&apiforkb-st;ProxyQ">
         <rdf:type rdf:resource="&apiforkb-trm;Proxy"/>
-        <implements rdf:resource="&apiforkb-trm;IAddKnowledgeResourceToImmutableKB"/>
-        <interactsWith rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/ClientZ"/>
-        <executes rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/proxyQaddingFocusedOMSItem2ToImmutableKBB"/>
+      <apiforkb-trm:implements rdf:resource="&apiforkb-trm;IAddKnowledgeResourceToImmutableKB"/>
+      <apiforkb-trm:interactsWith rdf:resource="&apiforkb-st;ClientZ"/>
+        <executes rdf:resource="&apiforkb-st;proxyQaddingFocusedOMSItem2ToImmutableKBB"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/SetOfExpressions1 -->
+    <!-- SetOfExpressions -->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/SetOfExpressions1">
+    <owl:NamedIndividual rdf:about="&apiforkb-st;SetOfExpressions1">
         <rdf:type rdf:resource="&ontoiop-trm;SetOfExpressions"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/SetOfExpressions2 -->
+    <!-- SetOfExpressions -->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/SetOfExpressions2">
+    <owl:NamedIndividual rdf:about="&apiforkb-st;SetOfExpressions2">
         <rdf:type rdf:resource="&ontoiop-trm;SetOfExpressions"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/SetOfExpressions3 -->
+    <!-- SetOfExpressions -->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/SetOfExpressions3">
+    <owl:NamedIndividual rdf:about="&apiforkb-st;SetOfExpressions3">
         <rdf:type rdf:resource="&ontoiop-trm;SetOfExpressions"/>
-        <ontoiop-trm:hasSubset rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/SetOfExpressions1"/>
-        <ontoiop-trm:hasSubset rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/SetOfExpressions2"/>
+        <ontoiop-trm:hasSubset rdf:resource="&apiforkb-st;SetOfExpressions1"/>
+        <ontoiop-trm:hasSubset rdf:resource="&apiforkb-st;SetOfExpressions2"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.omg.org/spec/API4KB/TerminologySmallTest/proxyQaddingFocusedOMSItem2ToImmutableKBB -->
+    <!-- Event -->
 
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/TerminologySmallTest/proxyQaddingFocusedOMSItem2ToImmutableKBB">
+    <owl:NamedIndividual rdf:about="&apiforkb-st;proxyQaddingFocusedOMSItem2ToImmutableKBB">
         <rdf:type rdf:resource="&apiforkb-trm;Adding-FocusedOMSItemToImmutableKB"/>
         <rdfs:label>OperationEvent: Proxy Q adding OMS Item 2 to KB-B producing Immutable KB-D</rdfs:label>
-        <actualizes rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/AdditionOfKnowledgeResourceToImmutableKBbyKPManagerW"/>
-        <adds rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/FocusedOMSItem2"/>
-        <addsImmutable rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/ImmutableKBB"/>
-        <hasOutput rdf:resource="http://www.omg.org/spec/API4KB/TerminologySmallTest/ImmutableKBD"/>
+      <apiforkb-trm:actualizes rdf:resource="&apiforkb-st;AdditionOfKnowledgeResourceToImmutableKBbyKPManagerW"/>
+      <apiforkb-trm:adds rdf:resource="&apiforkb-st;FocusedOMSItem2"/>
+      <apiforkb-trm:addsImmutable rdf:resource="&apiforkb-st;ImmutableKBB"/>
+      <apiforkb-trm:hasOutput rdf:resource="&apiforkb-st;ImmutableKBD"/>
     </owl:NamedIndividual>
 </rdf:RDF>
 
