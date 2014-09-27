@@ -109,6 +109,12 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:range rdf:resource="&apiforkb-ev;OperationEvent"/>
         <owl:inverseOf rdf:resource="&apiforkb-trm;isExecutedBy"/>
     </owl:ObjectProperty>
+  
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;exposes">
+    <owl:inverseOf rdf:resource="&apiforkb-trm;isExposedBy"/>
+    <rdfs:domain rdf:resource="&apiforkb-trm;API4KBOperation/PublicOperation"/>
+    <rdfs:range rdf:resource="&apiforkb-trm;API4KBProficiency/Proficiency"/>
+  </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;fillsRole">
         <rdfs:label>fills role</rdfs:label>
@@ -272,7 +278,10 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:domain rdf:resource="&apiforkb-ev;OperationEvent"/>
         <rdfs:range rdf:resource="&apiforkb-trm;Application"/>
     </owl:ObjectProperty>
-    
+
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;isExposedBy"/>
+  
+  
     <owl:ObjectProperty rdf:about="&apiforkb-trm;conceptualizes">
         <rdfs:label>conceptualizes</rdfs:label>
         <skos:definition rdf:datatype="&xsd;string">see &apos;is expression of&apos;</skos:definition>
