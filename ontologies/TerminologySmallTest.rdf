@@ -76,8 +76,11 @@
   <owl:NamedIndividual rdf:about="&apiforkb-st;ProxyQ">
     <rdfs:label>knowledge manager W</rdfs:label>
     <rdf:type rdf:resource="&apiforkb-trm;Proxy"/>
-    <apiforkb-trm:implements rdf:resource="&apiforkb-st;AddingOperation-KnowledgeResourceToImmutableKBbyProxyQ"/>
     <apiforkb-trm:interactsWith rdf:resource="&apiforkb-st;ClientZ"/>
+    <!-- invert these 
+    <apiforkb-trm:interactsWith rdf:resource="&apiforkb-st;KPManagerW"/>
+    -->
+    <apiforkb-trm:implements rdf:resource="&apiforkb-st;AddingOperation-KnowledgeResourceToImmutableKBbyProxyQ"/>
     <apiforkb-trm:executes rdf:resource="&apiforkb-st;proxyQaddingFocusedItem2ToImmutableKBB"/>
   </owl:NamedIndividual>
   
@@ -96,19 +99,39 @@
   <owl:NamedIndividual rdf:about="&apiforkb-st;KPManagerW">
     <rdf:type rdf:resource="&apiforkb-trm;KnowledgePlatformManager"/>
     <rdfs:label>knowledge platform manager W</rdfs:label>
+    <apiforkb-trm:interactsWith rdf:resource="&apiforkb-st;ProxyQ"/>
+    <!-- invert 
     <apiforkb-trm:hasProficiency rdf:resource="&apiforkb-st;AddingProficiency-KnowledgeResourceToImmutableKBbyKPW"/>
     <apiforkb-trm:fillsRole rdf:resource="&apiforkb-st;KPManagerWasImmutableKBFactoryRole"/>
+    -->
     <apiforkb-trm:manages rdf:resource="&apiforkb-st;KPV"/>
     <apiforkb-trm:implements rdf:resource="&apiforkb-st;AddingOperation-FocusedItemToImmutableKBbyKPW"/>
 
     <apiforkb-trm:executes rdf:resource="&apiforkb-st;KPMWconceptualizingKED"/>
   </owl:NamedIndividual>
   
+
+  <!-- Role -->
+
+  <!-- Properties
+      isFilledBy [KPManager]
+      requires [Proficiency]
+  -->
+  
+  <owl:NamedIndividual rdf:about="&apiforkb-st;KPManagerWasImmutableKBFactoryRole">
+    <rdf:type rdf:resource="&apiforkb-trm;ImmutableKBFactoryRole"/>
+    <rdfs:label>role of knowledge platform manager W as an immutable knowledge base factory</rdfs:label>
+    <apiforkb-trm:isFilledBy rdf:resource="&apiforkb-st;KPManagerW"/>    
+    <!-- invert 
+    <apiforkb-trm:requires rdf:resource="&apiforkb-st;AddingProficiency-KnowledgeResourceToImmutableKBbyKPW"/> 
+    -->
+  </owl:NamedIndividual>
   
     
   <!--Proficiency-->
   
   <!-- Properties
+      isExposedBy [Operation]
       isActualizedBy [Event]
       isProficiencyOf [KPManager]
       isRequiredBy [Role]
@@ -117,7 +140,10 @@
   <owl:NamedIndividual rdf:about="&apiforkb-st;AddingProficiency-KnowledgeResourceToImmutableKBbyKPW">
           <rdf:type rdf:resource="&apiforkb-pro;AddingProficiency-KnowledgeResourceToImmutableKB"/>
     <rdfs:label>proficiency adding knowledge resources to immutable knowledge bases by knowledge manager W</rdfs:label>
-    </owl:NamedIndividual>
+    <apiforkb-trm:isRequiredBy rdf:resource="&apiforkb-st;KPManagerWasImmutableKBFactoryRole"/>
+    <!-- infer 
+    <apiforkb-trm:isProficiencyOf rdf:resource="&apiforkb-st;KPManagerW"/> -->
+  </owl:NamedIndividual>
     
 
 
@@ -263,13 +289,6 @@
 
 
 
-    <!-- Role -->
-
-    <owl:NamedIndividual rdf:about="&apiforkb-st;KPManagerWasImmutableKBFactoryRole">
-        <rdf:type rdf:resource="&apiforkb-trm;ImmutableKBFactoryRole"/>
-        <rdfs:label>role of knowledge platform manager W as an immutable knowledge base factory</rdfs:label>
-      <apiforkb-trm:requires rdf:resource="&apiforkb-st;AddingProficiency-KnowledgeResourceToImmutableKBbyKPW"/>
-    </owl:NamedIndividual>
     
 
 
