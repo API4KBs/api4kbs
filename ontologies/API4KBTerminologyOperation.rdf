@@ -244,7 +244,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
-        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeExpression"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -263,7 +263,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
-        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeExpression"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
@@ -599,9 +599,9 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
   
   <owl:Class rdf:about="&apiforkb-op;Action-AdditionOf">
     <rdfs:label>action - addition of</rdfs:label>
-    <skos:definition rdf:datatype="&xsd;string">curried action that maps knowledge resources into 'addition to' actions.</skos:definition>
+    <skos:definition rdf:datatype="&xsd;string">curried action that maps knowledge expressions into 'addition to' actions.</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;CurriedAction"/>
-    <rdfs:subClassOf rdf:resource="&apiforkb-op;Action-ResourceIn"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;Action-ExpressionIn"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
@@ -616,28 +616,15 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
   </owl:Class>
 
-  <owl:Class rdf:about="&apiforkb-op;Action-AdditionOfItem">
-    <rdfs:label>action - addition of item</rdfs:label>
-    <skos:definition rdf:datatype="&xsd;string">curried action that maps knowledge items into 'addition to' actions.</skos:definition>
+  <owl:Class rdf:about="&apiforkb-op;Action-AdditionOfExpression-HorizontalAssetActionOut">
+    <rdfs:label>action - addition of - asset action out</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">curried action that maps knowledge expressions into 'addition to' asset actions.</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;Action-AdditionOf"/>
-    <rdfs:subClassOf rdf:resource="&apiforkb-op;Action-ItemIn"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
-        <owl:allValuesFrom rdf:resource="&apiforkb-ev;Event-AdditionOf"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-
-  <owl:Class rdf:about="&apiforkb-op;Action-AdditionOfItem-HorizontalAssetActionOut">
-    <rdfs:label>action - addition of item - asset action out</rdfs:label>
-    <skos:definition rdf:datatype="&xsd;string">curried action that maps knowledge items into 'addition to' asset actions.</skos:definition>
-    <rdfs:subClassOf rdf:resource="&apiforkb-op;Action-AdditionOfItem"/>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;CurriedAction-HarizontalAssetActionOut"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
-        <owl:allValuesFrom rdf:resource="&apiforkb-ev;Event-AdditionOfItem-HorizontalAssetEventOut"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;Event-AdditionOf-HorizontalAssetEventOut"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -780,10 +767,39 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
       </owl:Restriction>
     </rdfs:subClassOf>    
   </owl:Class>  
+
+
+  <!-- Internal Operations -->
+
+  <owl:Class rdf:about="&apiforkb-op;InternalAddingOperation-KnowledgeResourceToImmutableKB">
+    <rdfs:label>internal operation adding knowledge resources to immutable KBs</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">internal operation adding knowlede
+      resources to immutable knowledge bases</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;InternalOperation"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromFirst"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromSecond"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;ImmutableKnowledgeBase"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;ImmutableKnowledgeBase"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>    
+  </owl:Class>  
   
+
   <owl:Class rdf:about="&apiforkb-op;AddingOperation-QueryItemToImmutableKB">
     <rdfs:label>operation adding knowledge resources that are query items to immutable KBs</rdfs:label>
-    <rdfs:subClassOf rdf:resource="&apiforkb-op;AddingOperation-KnowledgeResourceToImmutableKB"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;InternalAddingOperation-KnowledgeResourceToImmutableKB"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromFirst"/>
@@ -796,7 +812,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
   <owl:Class rdf:about="&apiforkb-op;AddingOperation-FocusedItemToImmutableKB">
     <rdfs:label>operation adding knowledge resources that are focused items to immutable KBs</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">operation adding knowledge resources that are focused items to immutable KBs</skos:definition>
-    <rdfs:subClassOf rdf:resource="&apiforkb-op;AddingOperation-KnowledgeResourceToImmutableKB"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-op;InternalAddingOperation-KnowledgeResourceToImmutableKB"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromFirst"/>

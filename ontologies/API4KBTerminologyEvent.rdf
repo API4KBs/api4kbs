@@ -600,7 +600,7 @@
     <skos:definition rdf:datatype="&xsd;string">public operation event adding a knowlede
       resource to an immutable knowledge base</skos:definition>
     <skos:note rdf:datatype="&xsd;string">Members of this class are events of some operation of type
-      &apos;AddKnowledgeResourceToImmutableKB&apos;</skos:note>
+      &apos;AddingOperation-KnowledgeResourceToImmutableKB"&apos;</skos:note>
     <rdfs:subClassOf
       rdf:resource="&apiforkb-ev;PublicOperationEvent"/>
     <rdfs:subClassOf>
@@ -644,7 +644,50 @@
   </owl:Class>
   
   
+  <!-- Internal Event -->
   
+  <owl:Class
+    rdf:about="&apiforkb-ev;InternalAddingEvent-KnowledgeResourceToImmutableKB">
+    <rdfs:label>internal adding event of a knowledge resource to an immutable knowledge base</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">internal operation event adding a knowlede
+      resource to an immutable knowledge base</skos:definition>
+    <skos:note rdf:datatype="&xsd;string">Members of this class are events of some operation of type
+      &apos;InternalAddingOperation-KnowledgeResourceToImmutableKB&apos;</skos:note>
+    <rdfs:subClassOf
+      rdf:resource="&apiforkb-ev;InternalOperationEvent"/>
+    <owl:equivalentClass> 
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description
+            rdf:about="&apiforkb-ev;InternalOperationEvent"/>
+          <owl:Restriction>
+            <owl:onProperty
+              rdf:resource="&apiforkb-trm;isEventof"/>
+            <owl:someValuesFrom
+              rdf:resource="&apiforkb-op;InternalAddingOperation-KnowledgeResourceToImmutableKB"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasFirstInput"/>
+        <owl:someValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasSecondInput"/>
+        <owl:someValuesFrom rdf:resource="&apiforkb-trm;ImmutableKnowledgeBase"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-trm;hasOutput"/>
+        <owl:someValuesFrom rdf:resource="&apiforkb-trm;ImmutableKnowledgeBase"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
   
   <owl:Class
     rdf:about="&apiforkb-ev;AddingEvent-QueryItemToImmutableKB">
@@ -652,18 +695,12 @@
     <skos:definition rdf:datatype="&xsd;string">operation event adding a Knowledge Resource that is a query item to a
       immutable KB</skos:definition>
     <rdfs:subClassOf
-      rdf:resource="&apiforkb-ev;AddingEvent-KnowledgeResourceToImmutableKB"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;actualizes"/>
-        <owl:someValuesFrom rdf:resource="&apiforkb-pro;AddingProficiency-QueryItemToImmutableKB"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+      rdf:resource="&apiforkb-ev;InternalAddingEvent-KnowledgeResourceToImmutableKB"/>
     <owl:equivalentClass> 
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description
-            rdf:about="&apiforkb-ev;AddingEvent-KnowledgeResourceToImmutableKB"/>
+            rdf:about="&apiforkb-ev;InternalAddingEvent-KnowledgeResourceToImmutableKB"/>
           <owl:Restriction>
             <owl:onProperty
               rdf:resource="&apiforkb-trm;isEventof"/>
@@ -681,27 +718,22 @@
     </rdfs:subClassOf>
   </owl:Class>
  
+ 
   <owl:Class
-    rdf:about="&apiforkb-ev;AddingEvent-FocusedItemToImmutableKB">
+    rdf:about="&apiforkb-ev;InternalAddingEvent-FocusedItemToImmutableKB">
     <rdfs:label>adding event of a focused item to an immutable knowledge base</rdfs:label>
-    <skos:definition rdf:datatype="&xsd;string">operation event adding a Knowledge Resource that is a focused Item to an immutable KB</skos:definition>
+    <skos:definition rdf:datatype="&xsd;string">internal event adding a Knowledge Resource that is a focused expression to an immutable KB</skos:definition>
     <rdfs:subClassOf
-      rdf:resource="&apiforkb-ev;AddingEvent-KnowledgeResourceToImmutableKB"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;actualizes"/>
-        <owl:someValuesFrom rdf:resource="&apiforkb-pro;AddingProficiency-FocusedItemToImmutableKB"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+      rdf:resource="&apiforkb-ev;InternalAddingEvent-KnowledgeResourceToImmutableKB"/>
     <owl:equivalentClass> 
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description            rdf:about="&apiforkb-ev;AddingEvent-KnowledgeResourceToImmutableKB"/>
+          <rdf:Description            rdf:about="&apiforkb-ev;InternalAddingEvent-KnowledgeResourceToImmutableKB"/>
           <owl:Restriction>
             <owl:onProperty
               rdf:resource="&apiforkb-trm;isEventof"/>
             <owl:someValuesFrom
-              rdf:resource="&apiforkb-op;AddingOperation-FocusedItemToImmutableKB"/>
+              rdf:resource="&apiforkb-op;AddingOperation-FocusedExpressionToImmutableKB"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
