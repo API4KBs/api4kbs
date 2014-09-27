@@ -190,6 +190,10 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <owl:ObjectProperty rdf:about="&apiforkb-trm;hasProficiency">
         <rdfs:label>has proficiency</rdfs:label>
         <owl:inverseOf rdf:resource="&apiforkb-trm;isProficiencyOf"/>
+      <owl:propertyChainAxiom rdf:parseType="Collection">
+        <rdf:Description rdf:about="&apiforkb-trm;fillsRole"/>
+        <rdf:Description rdf:about="&apiforkb-trm;requires"/>
+      </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;hasRegistrant">
@@ -356,7 +360,6 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
      </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;isProficiencyOf">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label>is proficiency of</rdfs:label>
         <rdfs:domain rdf:resource="&apiforkb-pro;Proficiency"/>
         <rdfs:range rdf:resource="&apiforkb-trm;KnowledgePlatformManager"/>
