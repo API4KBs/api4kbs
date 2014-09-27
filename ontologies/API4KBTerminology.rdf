@@ -114,14 +114,14 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:label>fills role</rdfs:label>
     </owl:ObjectProperty>
 
-  <owl:ObjectPropertyn rdf:about="&apiforkb-trm;mapsTo">
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;mapsTo">
     <rdfs:label xml:lang="en">maps to (sensu API4KB)</rdfs:label>
     <rdfs:domain rdf:resource="&apiforkb-op;Operation"/>
     <owl:propertyChainAxiom rdf:parseType="Collection">
       <rdf:Description rdf:about="&apiforkb-trm;hasEvent"/>
       <rdf:Description rdf:about="&apiforkb-trm;hasOutput"/>
     </owl:propertyChainAxiom>
-  </owl:ObjectPropertyn>
+  </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;mapsFrom">
       <rdfs:label xml:lang="en">maps from (sensu API4KB)</rdfs:label>
@@ -163,7 +163,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <rdfs:label>has snapshot</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">relationship between a mutable source and its state at one timepoint.</skos:definition>
     <rdfs:domain rdf:resource="&apiforkb-trm;MutableSource"/>
-    <rdfs:range rdf:resource="&ontoiop-trm;ImmutableSource"/>
+    <rdfs:range rdf:resource="&apiforkb-trm;ImmutableSource"/>
   </owl:ObjectProperty>
   
   
@@ -281,7 +281,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <skos:definition rdf:datatype="&xsd;string">relation between two knowledge resources where the first is an abstraction of the second by one level (e.g. if the first is an encoding, the second is an item, etc.).  Lifts relations are limited to one of the following: characterizes, decodes</skos:definition>
     <skos:note>OWL does not let us declare this to be functional, while keeping the property chains that link Events and Operations.</skos:note>
     <owl:inverseOf rdf:resource="&apiforkb-trm;lowers"/>
-    <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeReource"/>
+    <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeResource"/>
     <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeResource"/>
   </owl:ObjectProperty>
   
@@ -1123,9 +1123,9 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
     </owl:Class>
     
-    <owl:Class rdf:about="&ontoiop-trm;OMSLanguage">
+    <rdf:Description rdf:about="&ontoiop-trm;OMSLanguage">
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeRepresentationAndReasoningLanguage"/>
-    </owl:Class>
+    </rdf:Description>
     
     <owl:Class rdf:about="&ontoiop-trm;OMSSerialization">
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeSerialization"/>
