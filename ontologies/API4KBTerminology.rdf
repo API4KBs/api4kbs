@@ -13,6 +13,7 @@
     <!ENTITY apiforkb-op "http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperation/" >
     <!ENTITY apiforkb-ev "http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/" >
     <!ENTITY apiforkb-pro "http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/" >
+    <!ENTITY apiforkb-try "http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBTry/" >
 ]>
 <rdf:RDF xml:base="&apiforkb-trm;"
   xmlns:rdf="&rdf;"
@@ -26,7 +27,8 @@
   xmlns:apiforkb-trm="&apiforkb-trm;"
   xmlns:apiforkb-op="&apiforkb-op;"
   xmlns:apiforkb-ev="&apiforkb-ev;"
-  xmlns:apiforkb-pro="&apiforkb-pro;">
+  xmlns:apiforkb-pro="&apiforkb-pro;"
+  xmlns:apiforkb-try="&apiforkb-try;">
   
 
     <owl:Ontology rdf:about="&apiforkb-trm;">
@@ -87,21 +89,15 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
       </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;adds">
-        <rdfs:label>adds</rdfs:label>
-        <rdfs:domain rdf:resource="&apiforkb-ev;OperationEvent"/>
-        <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeSource"/>
-        <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;hasInput"/>
-    </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;addsImmutable">
         <rdfs:label>adds immutable</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;adds"/>
     </owl:ObjectProperty>
     
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;characterizes">
-        <rdfs:label>characterizes</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">see &apos;reproduces&apos;</skos:definition>
+    <owl:ObjectProperty rdf:about="&apiforkb-trm;prototypes">
+        <rdfs:label>prototypes</rdfs:label>
+        <skos:definition rdf:datatype="&xsd;string">inverse of &apos;reproduces&apos;</skos:definition>
       <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;lifts"/>
       <owl:inverseOf rdf:resource="&apiforkb-trm;reproduces"/>
     </owl:ObjectProperty>
@@ -131,7 +127,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
   <owl:ObjectProperty rdf:about="&apiforkb-trm;requests">
     <rdfs:label>requests</rdfs:label>
     <rdfs:domain rdf:resource="&apiforkb-trm;Application"/>
-    <rdfs:range rdf:resource="&apiforkb-ev;OperationEvent"/>
+    <rdfs:range rdf:resource="&apiforkb-try;Try"/>
     <owl:inverseOf rdf:resource="&apiforkb-trm;isRequestedBy"/>
   </owl:ObjectProperty>
   
@@ -146,52 +142,11 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <owl:ObjectProperty rdf:about="&apiforkb-trm;fillsRole">
         <rdfs:label>fills role</rdfs:label>
     </owl:ObjectProperty>
-
-  <owl:ObjectProperty rdf:about="&apiforkb-trm;mapsTo">
-    <rdfs:label xml:lang="en">maps to (sensu API4KB)</rdfs:label>
-    <rdfs:domain rdf:resource="&apiforkb-op;Operation"/>
-    <owl:propertyChainAxiom rdf:parseType="Collection">
-      <rdf:Description rdf:about="&apiforkb-trm;hasEvent"/>
-      <rdf:Description rdf:about="&apiforkb-trm;hasOutput"/>
-    </owl:propertyChainAxiom>
-  </owl:ObjectProperty>
-    
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;mapsFrom">
-      <rdfs:label xml:lang="en">maps from (sensu API4KB)</rdfs:label>
-      <rdfs:domain rdf:resource="&apiforkb-op;Operation"/>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&apiforkb-trm;hasEvent"/>
-            <rdf:Description rdf:about="&apiforkb-trm;hasInput"/>
-        </owl:propertyChainAxiom>
-    </owl:ObjectProperty>
-    
+        
     <owl:ObjectProperty rdf:about="&apiforkb-trm;hasEvent">
         <rdfs:label>has event</rdfs:label>
     </owl:ObjectProperty>
-    
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;hasInput">
-        <rdfs:label>has input</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">input of an operation</skos:definition>
-        <rdfs:domain rdf:resource="&apiforkb-ev;OperationEvent"/>
-        <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeSource"/>
-        <owl:inverseOf rdf:resource="&apiforkb-trm;isInputOf"/>
-    </owl:ObjectProperty>
-
-  <owl:ObjectProperty rdf:about="&apiforkb-trm;hasFirstInput">
-    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-    <rdfs:label>has first input</rdfs:label>
-    <skos:definition rdf:datatype="&xsd;string">input of an operation  that appears second in the argument sequence</skos:definition>
-    <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;hasInput"/>
-  </owl:ObjectProperty>
-  
-  
-  <owl:ObjectProperty rdf:about="&apiforkb-trm;hasSecondInput">
-    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-    <rdfs:label>has second input</rdfs:label>
-    <skos:definition rdf:datatype="&xsd;string">input of an operation that appears second in the argument sequence</skos:definition>
-    <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;hasInput"/>
-  </owl:ObjectProperty>
-  
+        
   <owl:ObjectProperty rdf:about="&apiforkb-trm;hasSnapshot">
     <rdfs:label>has snapshot</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">relationship between a mutable source and its state at one timepoint.</skos:definition>
@@ -200,19 +155,11 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
   </owl:ObjectProperty>
   
   
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;hasOutput">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label>has output</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">output of an operation</skos:definition>
-        <rdfs:domain rdf:resource="&apiforkb-ev;OperationEvent"/>
-        <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeSource"/>
-        <owl:inverseOf rdf:resource="&apiforkb-trm;isOutputOf"/>
-    </owl:ObjectProperty>
 
   <owl:ObjectProperty rdf:about="&apiforkb-trm;hasKPOutput">
     <rdfs:label>has knowledge platform output</rdfs:label>
     <rdfs:range rdf:resource="&apiforkb-trm;KnowledgePlatform"/>
-    <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;hasOutput"/>
+    <rdfs:subPropertyOf rdf:resource="&apiforkb-ev;hasOutput"/>
     <owl:inverseOf rdf:resource="&apiforkb-trm;isKPOutputOf"/>
   </owl:ObjectProperty>
 
@@ -220,13 +167,6 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <rdfs:label>is knowledge platform that is output of</rdfs:label>
   </owl:ObjectProperty>
   
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;hasOutputConceptualize">
-        <rdfs:label>has output conceptualize</rdfs:label>
-      <rdfs:domain rdf:resource="&apiforkb-ev;ConceptualizingEvent"/>
-        <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
-        <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;hasOutput"/>
-    </owl:ObjectProperty>
-    
     <owl:ObjectProperty rdf:about="&apiforkb-trm;hasPart">
         <rdfs:label>has part</rdfs:label>
     </owl:ObjectProperty>
@@ -295,14 +235,17 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
       <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
         <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
       <owl:propertyChainAxiom rdf:parseType="Collection">
-        <rdf:Description rdf:about="&apiforkb-trm;isInputOf"/>
-        <rdf:Description rdf:about="&apiforkb-trm;hasOutputDecode"/>
+        <rdf:Description rdf:about="&apiforkb-ev;isInputOf"/>
+        <rdf:Description rdf:about="&apiforkb-ev;hasOutputFromUnmarshalling"/>
       </owl:propertyChainAxiom>
     </owl:ObjectProperty>
 
-  <owl:ObjectProperty rdf:about="&apiforkb-trm;isConveyedBy"/>
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;isConveyedBy">
+    <rdfs:label>is conveyed by</rdfs:label>
+  </owl:ObjectProperty>
 
   <owl:ObjectProperty rdf:about="&apiforkb-trm;isRequestedBy">
+    <rdfs:label>is requested by</rdfs:label>
     <rdf:type rdf:resource="&owl;FunctionalProperty"/>    
   </owl:ObjectProperty>
   
@@ -320,23 +263,31 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:range rdf:resource="&apiforkb-trm;Application"/>
     </owl:ObjectProperty>
 
-  <owl:ObjectProperty rdf:about="&apiforkb-trm;isExposedBy"/>
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;isExposedBy">
+    <rdfs:label>is exposed by</rdfs:label>
+  </owl:ObjectProperty>
   
   
     <owl:ObjectProperty rdf:about="&apiforkb-trm;conceptualizes">
         <rdfs:label>conceptualizes</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">see &apos;is expression of&apos;</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">inverse of &apos;expresses&apos;</skos:definition>
       <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;lifts"/>
       <owl:inverseOf rdf:resource="&apiforkb-trm;expresses"/>
     </owl:ObjectProperty>
 
   <owl:ObjectProperty rdf:about="&apiforkb-trm;lifts">
     <rdfs:label>lifts</rdfs:label>
-    <skos:definition rdf:datatype="&xsd;string">relation between two knowledge resources where the first is an abstraction of the second by one level (e.g. if the first is an encoding, the second is an item, etc.).  Lifts relations are limited to one of the following: characterizes, decodes</skos:definition>
+    <skos:definition rdf:datatype="&xsd;string">relation between two knowledge resources where the first is an abstraction of the second by one level (e.g. if the first is an encoding, the second is an item, etc.).  Lifts relations are limited to one of the following: prototypes, decodes, parses, conceptualizes</skos:definition>
     <skos:note>OWL does not let us declare this to be functional, while keeping the property chains that link Events and Operations.</skos:note>
     <owl:inverseOf rdf:resource="&apiforkb-trm;lowers"/>
     <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeResource"/>
     <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeResource"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;lowers">
+    <rdfs:label>lowers</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">relation between two knowledge resources where the first is a deabstraction of the second by one level (e.g. if the first is an item, the second is an encoding, etc.).  Lowers relations are limited to one of the following: reproduces, encodes, manifests, expresses</skos:definition>
+    <skos:note>OWL does not let us declare this to be functional, while keeping the property chains that link Events and Operations.</skos:note>
   </owl:ObjectProperty>
   
     <owl:ObjectProperty rdf:about="&apiforkb-trm;expresses">
@@ -347,8 +298,8 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
       <rdfs:domain rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
         <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&apiforkb-trm;isInputOf"/>
-            <rdf:Description rdf:about="&apiforkb-trm;hasOutputConceptualize"/>
+            <rdf:Description rdf:about="&apiforkb-ev;isInputOf"/>
+            <rdf:Description rdf:about="&apiforkb-ev;hasOutputFromConceptualizing"/>
         </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
@@ -366,10 +317,6 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <owl:inverseOf rdf:resource="&apiforkb-trm;implements"/>
     </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;isInputOf">
-        <rdfs:label>is input of</rdfs:label>
-     </owl:ObjectProperty>
-
     <owl:ObjectProperty rdf:about="&apiforkb-trm;reproduces">
         <rdfs:label>reproduces</rdfs:label>
         <skos:definition rdf:datatype="&xsd;string">knowledge encoding that would be obtained from instreaming the knowledge item</skos:definition>
@@ -377,8 +324,8 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
       <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeItem"/>
         <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
       <owl:propertyChainAxiom rdf:parseType="Collection">
-        <rdf:Description rdf:about="&apiforkb-trm;isInputOf"/>
-        <rdf:Description rdf:about="&apiforkb-trm;hasOutputInStream"/>
+        <rdf:Description rdf:about="&apiforkb-ev;isInputOf"/>
+        <rdf:Description rdf:about="&apiforkb-ev;hasOutputFromInStreaming"/>
       </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
@@ -394,22 +341,18 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
       <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
         <rdfs:range rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
       <owl:propertyChainAxiom rdf:parseType="Collection">
-        <rdf:Description rdf:about="&apiforkb-trm;isInputOf"/>
-        <rdf:Description rdf:about="&apiforkb-trm;hasOutputParse"/>
+        <rdf:Description rdf:about="&apiforkb-ev;isInputOf"/>
+        <rdf:Description rdf:about="&apiforkb-ev;hasOutputFromParsing"/>
       </owl:propertyChainAxiom>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&apiforkb-trm;parses">
         <rdfs:label>parses</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">see &apos;manifestation of&apos;</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">inverse of &apos;manifests&apos;</skos:definition>
       <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;lifts"/>
       <owl:inverseOf rdf:resource="&apiforkb-trm;manifests"/>
     </owl:ObjectProperty>
-    
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;isOutputOf">
-        <rdfs:label>is output of</rdfs:label>
-     </owl:ObjectProperty>
-    
+        
     <owl:ObjectProperty rdf:about="&apiforkb-trm;isProficiencyOf">
         <rdfs:label>is proficiency of</rdfs:label>
         <rdfs:domain rdf:resource="&apiforkb-pro;Proficiency"/>
@@ -1196,15 +1139,16 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     <rdfs:subClassOf rdf:resource="&apiforkb-trm;API4KBEvent/Event"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;hasInput"/>
+        <owl:onProperty rdf:resource="&apiforkb-ev;hasInput"/>
         <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
   
-  <!-- Currying -->
-  
+  <!-- Mappings -->
+  <!--
   <owl:ObjectProperty rdf:about="&apiforkb-trm;liftsMapping">
+    <rdfs:label xml:lang="en">lifts mapping</rdfs:label>
     <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeAssetMapping"/>
     <rdfs:range rdf:resource="&ontoiop-trm;OMSMapping"/>
   </owl:ObjectProperty>
@@ -1235,6 +1179,6 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     <rdfs:subClassOf rdf:resource="&ontoiop-trm;Mapping"/>
     <skos:definition rdf:datatype="&xsd;string">mapping from knowledge assets to knowledge assets</skos:definition>
   </owl:Class>
-  
+  -->
   
 </rdf:RDF>

@@ -56,7 +56,105 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <owl:imports rdf:resource="http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/"/>
       
     </owl:Ontology>
- 
+
+  <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+   -->
+
+  <owl:ObjectProperty rdf:about="&apiforkb-op;hasInput">
+    <rdfs:label>has input</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">input of an operation</skos:definition>
+    <rdfs:domain rdf:resource="&apiforkb-op;Operation"/>
+    <owl:inverseOf rdf:resource="&apiforkb-op;isInputOf"/>
+    <owl:propertyChainAxiom rdf:parseType="Collection">
+      <rdf:Description rdf:about="&apiforkb-trm;hasEvent"/>
+      <rdf:Description rdf:about="&apiforkb-ev;hasInput"/>
+    </owl:propertyChainAxiom>
+  </owl:ObjectProperty>
+  
+  <owl:ObjectProperty rdf:about="&apiforkb-op;isInputOf">
+    <rdfs:label>is input of</rdfs:label>
+  </owl:ObjectProperty>  
+  
+  <owl:ObjectProperty rdf:about="&apiforkb-op;hasOutput">
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <rdfs:label>has output</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">output of an operation event</skos:definition>
+    <rdfs:domain rdf:resource="&apiforkb-op;Operation"/>
+    <owl:inverseOf rdf:resource="&apiforkb-op;isOutputOf"/>
+    <owl:propertyChainAxiom rdf:parseType="Collection">
+      <rdf:Description rdf:about="&apiforkb-trm;hasEvent"/>
+      <rdf:Description rdf:about="&apiforkb-ev;hasOutput"/>
+    </owl:propertyChainAxiom>
+  </owl:ObjectProperty>
+  
+  <owl:ObjectProperty rdf:about="&apiforkb-op;isOutputOf">
+    <rdfs:label>is output of</rdfs:label>
+  </owl:ObjectProperty>
+  
+  
+  <owl:ObjectProperty rdf:about="&apiforkb-op;appliesQuery">
+    <rdfs:label>applies query resource</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+    <rdfs:domain rdf:resource="&apiforkb-op;QueryingOperation"/>
+    <rdfs:range rdf:resource="&ontoiop-trm;QuerySource"/>    
+    <rdfs:subPropertyOf rdf:resource="&apiforkb-op;hasInput"/>
+  </owl:ObjectProperty>
+  
+  <owl:ObjectProperty rdf:about="&apiforkb-op;appliesQueryTo">
+    <rdfs:label>applies query to resource</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+    <rdfs:domain rdf:resource="&apiforkb-op;QueryingOperation"/>
+    <rdfs:range rdf:resource="&ontoiop-trm;KnowledgeSource"/>    
+    <rdfs:subPropertyOf rdf:resource="&apiforkb-op;hasInput"/>
+  </owl:ObjectProperty>
+  
+  <owl:ObjectProperty rdf:about="&apiforkb-op;adds">
+    <rdfs:label>adds resource</rdfs:label>
+    <rdfs:domain rdf:resource="&apiforkb-op;InternalAddingOperation"/>
+    <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeSource"/>
+    <rdfs:subPropertyOf rdf:resource="&apiforkb-op;hasInput"/>
+  </owl:ObjectProperty>
+  
+  <owl:ObjectProperty rdf:about="&apiforkb-op;addsTo">
+    <rdfs:label>adds resource</rdfs:label>
+    <rdfs:domain rdf:resource="&apiforkb-op;InternalAddingOperation"/>
+    <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeSource"/>
+    <rdfs:subPropertyOf rdf:resource="&apiforkb-op;hasInput"/>
+  </owl:ObjectProperty>
+  
+  <owl:ObjectProperty rdf:about="&apiforkb-op;hasOutputFromInStreaming">
+    <rdfs:label>has output from instreaming</rdfs:label>
+    <rdfs:domain rdf:resource="&apiforkb-op;InStreamAction"/>
+    <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
+    <rdfs:subPropertyOf rdf:resource="&apiforkb-op;hasOutput"/>
+  </owl:ObjectProperty>
+  
+  <owl:ObjectProperty rdf:about="&apiforkb-op;hasOutputFromUnmarshalling">
+    <rdfs:label>has output from unmarshalling</rdfs:label>
+    <rdfs:domain rdf:resource="&apiforkb-op;UnmarshallingAction"/>
+    <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
+    <rdfs:subPropertyOf rdf:resource="&apiforkb-op;hasOutput"/>
+  </owl:ObjectProperty>
+  
+  <owl:ObjectProperty rdf:about="&apiforkb-op;hasOutputFromParsing">
+    <rdfs:label>has output from parsing</rdfs:label>
+    <rdfs:domain rdf:resource="&apiforkb-op;ParsingAction"/>
+    <rdfs:range rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
+    <rdfs:subPropertyOf rdf:resource="&apiforkb-op;hasOutput"/>
+  </owl:ObjectProperty>
+  
+  <owl:ObjectProperty rdf:about="&apiforkb-op;hasOutputFromConceptualizing">
+    <rdfs:label>has output from conceptualizing</rdfs:label>
+    <rdfs:domain rdf:resource="&apiforkb-op;ConceptualizingAction"/>
+    <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
+    <rdfs:subPropertyOf rdf:resource="&apiforkb-op;hasOutput"/>
+  </owl:ObjectProperty>
+  
   
   <!-- Operation -->
   
@@ -161,13 +259,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;CurriedAction"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
         <owl:someValuesFrom rdf:resource="&apiforkb-trm;QueryResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:someValuesFrom rdf:resource="&apiforkb-op;HorizontalAction-FocusedAssetIn-ResultAssetOut"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -179,13 +277,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;HorizontalAssetAction"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
         <owl:someValuesFrom rdf:resource="&apiforkb-trm;FocusedAsset"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:someValuesFrom rdf:resource="&apiforkb-trm;ResultAsset"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -208,13 +306,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -237,13 +335,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -262,13 +360,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -285,13 +383,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -309,13 +407,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeItem"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -336,13 +434,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -367,13 +465,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -398,13 +496,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -422,13 +520,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -446,13 +544,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -470,13 +568,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -494,13 +592,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeItem"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeItem"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -546,27 +644,27 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
   
 
-  <owl:Class rdf:about="&apiforkb-op;Action-ItemIn">
+  <owl:Class rdf:about="&apiforkb-op;Action-ExpressionIn">
     <rdfs:label>action - item in</rdfs:label>
-    <skos:definition rdf:datatype="&xsd;string">action that maps knowledge items into other actions.</skos:definition>
+    <skos:definition rdf:datatype="&xsd;string">action that has inputs of only knowledge expressions.</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;Action-ResourceIn"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;hasEvent"/>
-        <owl:allValuesFrom rdf:resource="&apiforkb-ev;Event-ItemIn"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-ev;Event-ExpressionIn"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
-        <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeItem"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -577,7 +675,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;SideEffectFreeOperation"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&ontoiop-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:someValuesFrom rdf:resource="&apiforkb-op;Action"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -590,7 +688,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;CurriedAction"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&ontoiop-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:someValuesFrom rdf:resource="&apiforkb-op;HorizontalAssetAction"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -610,8 +708,8 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
-        <owl:allValuesFrom rdf:resource="&apiforkb-trm;Action-AdditionTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
+        <owl:allValuesFrom rdf:resource="&apiforkb-op;Action-AdditionTo"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -635,7 +733,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;SideEffectfulOperation"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&ontoiop-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:someValuesFrom rdf:resource="&apiforkb-op;Void"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -654,13 +752,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeItem"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -679,13 +777,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeEncoding"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -702,13 +800,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeManifestation"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -726,13 +824,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFrom"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasInput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeAsset"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -750,19 +848,19 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;PublicOperation"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromFirst"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;adds"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromSecond"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;adds"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;ImmutableKnowledgeBase"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;ImmutableKnowledgeBase"/>
       </owl:Restriction>
     </rdfs:subClassOf>    
@@ -778,31 +876,30 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;InternalOperation"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromFirst"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;adds"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromSecond"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;addsTo"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;ImmutableKnowledgeBase"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;hasOutput"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;ImmutableKnowledgeBase"/>
       </owl:Restriction>
     </rdfs:subClassOf>    
   </owl:Class>  
   
-
   <owl:Class rdf:about="&apiforkb-op;AddingOperation-QueryItemToImmutableKB">
     <rdfs:label>operation adding knowledge resources that are query items to immutable KBs</rdfs:label>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;InternalAddingOperation-KnowledgeResourceToImmutableKB"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromFirst"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;adds"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;QueryItem"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -815,7 +912,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;InternalAddingOperation-KnowledgeResourceToImmutableKB"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromFirst"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;adds"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;FocusedItem"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -831,13 +928,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <rdfs:subClassOf rdf:resource="&apiforkb-op;SideEffectfulOperation"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromFirst"/>
+        <owl:onProperty rdf:resource="&apiforkb-op;adds"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;KnowledgeResource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;mapsFromSecond"/>
+        <owl:onProperty rdf:resource="&apiforkb-trm;addsTo"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;MutableKnowledgeBase"/>
       </owl:Restriction>
     </rdfs:subClassOf>
