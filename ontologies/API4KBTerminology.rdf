@@ -77,11 +77,14 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;actualizes">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label>actualizes</rdfs:label>
         <rdfs:domain rdf:resource="&apiforkb-ev;PublicOperationEvent"/>
         <rdfs:range rdf:resource="&apiforkb-pro;Proficiency"/>
         <owl:inverseOf rdf:resource="&apiforkb-trm;isActualizedBy"/>
+      <owl:propertyChainAxiom rdf:parseType="Collection">
+        <rdf:Description rdf:about="&apiforkb-trm;isEventOf"/>
+        <rdf:Description rdf:about="&apiforkb-trm;exposes"/>
+      </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;adds">
@@ -102,18 +105,42 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
       <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;lifts"/>
       <owl:inverseOf rdf:resource="&apiforkb-trm;reproduces"/>
     </owl:ObjectProperty>
-    
+
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;conveys">
+    <rdfs:label>conveys</rdfs:label>
+    <owl:inverseOf rdf:resource="&apiforkb-trm;isConveyedBy"/>
+    <rdfs:domain rdf:resource="&apiforkb-trm;Proxy"/>
+    <rdfs:range rdf:resource="&apiforkb-pro;Proficiency"/>
+    <owl:propertyChainAxiom rdf:parseType="Collection">
+      <rdf:Description rdf:about="&apiforkb-trm;implements"/>
+      <rdf:Description rdf:about="&apiforkb-trm;exposes"/>
+    </owl:propertyChainAxiom>
+  </owl:ObjectProperty>
+  
     <owl:ObjectProperty rdf:about="&apiforkb-trm;executes">
         <rdfs:label>executes</rdfs:label>
         <rdfs:domain rdf:resource="&apiforkb-trm;Application"/>
         <rdfs:range rdf:resource="&apiforkb-ev;OperationEvent"/>
         <owl:inverseOf rdf:resource="&apiforkb-trm;isExecutedBy"/>
+      <owl:propertyChainAxiom rdf:parseType="Collection">
+        <rdf:Description rdf:about="&apiforkb-trm;implements"/>
+        <rdf:Description rdf:about="&apiforkb-trm;hasEvent"/>
+      </owl:propertyChainAxiom>
     </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;requests">
+    <rdfs:label>requests</rdfs:label>
+    <rdfs:domain rdf:resource="&apiforkb-trm;Application"/>
+    <rdfs:range rdf:resource="&apiforkb-ev;OperationEvent"/>
+    <owl:inverseOf rdf:resource="&apiforkb-trm;isRequestedBy"/>
+  </owl:ObjectProperty>
+  
   
   <owl:ObjectProperty rdf:about="&apiforkb-trm;exposes">
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
     <owl:inverseOf rdf:resource="&apiforkb-trm;isExposedBy"/>
-    <rdfs:domain rdf:resource="&apiforkb-trm;API4KBOperation/PublicOperation"/>
-    <rdfs:range rdf:resource="&apiforkb-trm;API4KBProficiency/Proficiency"/>
+    <rdfs:domain rdf:resource="&apiforkb-op;PublicOperation"/>
+    <rdfs:range rdf:resource="&apiforkb-pro;Proficiency"/>
   </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;fillsRole">
@@ -181,7 +208,18 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeSource"/>
         <owl:inverseOf rdf:resource="&apiforkb-trm;isOutputOf"/>
     </owl:ObjectProperty>
-    
+
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;hasKPOutput">
+    <rdfs:label>has knowledge platform output</rdfs:label>
+    <rdfs:range rdf:resource="&apiforkb-trm;KnowledgePlatform"/>
+    <rdfs:subPropertyOf rdf:resource="&apiforkb-trm;hasOutput"/>
+    <owl:inverseOf rdf:resource="&apiforkb-trm;isKPOutputOf"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;isKPOutputOf">
+    <rdfs:label>is knowledge platform that is output of</rdfs:label>
+  </owl:ObjectProperty>
+  
     <owl:ObjectProperty rdf:about="&apiforkb-trm;hasOutputConceptualize">
         <rdfs:label>has output conceptualize</rdfs:label>
       <rdfs:domain rdf:resource="&apiforkb-ev;ConceptualizingEvent"/>
@@ -215,10 +253,6 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:label>implements</rdfs:label>
         <rdfs:domain rdf:resource="&apiforkb-trm;Application"/>
         <rdfs:range rdf:resource="&apiforkb-op;Operation"/>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&apiforkb-trm;executes"/>
-            <rdf:Description rdf:about="&apiforkb-trm;isEventOf"/>
-        </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;interactsWith">
@@ -227,11 +261,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:domain rdf:resource="&apiforkb-trm;Application"/>
         <rdfs:range rdf:resource="&apiforkb-trm;Application"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&apiforkb-trm;executes"/>
-            <rdf:Description rdf:about="&apiforkb-trm;actualizes"/>
-            <rdf:Description rdf:about="&apiforkb-trm;isRequiredBy"/>
-            <rdf:Description rdf:about="&apiforkb-trm;isFilledBy"/>
+            <rdf:Description rdf:about="&apiforkb-trm;conveys"/>
+            <rdf:Description rdf:about="&apiforkb-trm;isProficiencyOf"/>
         </owl:propertyChainAxiom>
+      <owl:propertyChainAxiom rdf:parseType="Collection">
+        <rdf:Description rdf:about="&apiforkb-trm;requests"/>
+        <rdf:Description rdf:about="&apiforkb-trm;isExecutedBy"/>
+      </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
     
@@ -263,7 +299,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdf:Description rdf:about="&apiforkb-trm;hasOutputDecode"/>
       </owl:propertyChainAxiom>
     </owl:ObjectProperty>
-    
+
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;isConveyedBy"/>
+
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;isRequestedBy">
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>    
+  </owl:ObjectProperty>
+  
     <owl:ObjectProperty rdf:about="&apiforkb-trm;isEventOf">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label>is event of</rdfs:label>
@@ -273,7 +315,6 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;isExecutedBy">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label>is executed by</rdfs:label>
         <rdfs:domain rdf:resource="&apiforkb-ev;OperationEvent"/>
         <rdfs:range rdf:resource="&apiforkb-trm;Application"/>
@@ -320,7 +361,8 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;isImplementedBy">
-        <rdfs:label>is implemented by</rdfs:label>
+      <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+      <rdfs:label>is implemented by</rdfs:label>
         <owl:inverseOf rdf:resource="&apiforkb-trm;implements"/>
     </owl:ObjectProperty>
 
@@ -396,6 +438,11 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:label>manages</rdfs:label>
         <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgePlatformManager"/>
         <rdfs:range rdf:resource="&apiforkb-trm;KnowledgePlatform"/>
+      <owl:propertyChainAxiom rdf:parseType="Collection">
+        <rdf:Description rdf:about="&apiforkb-trm;hasProficiency"/>
+        <rdf:Description rdf:about="&apiforkb-trm;isActualizedBy"/>
+        <rdf:Description rdf:about="&apiforkb-trm;hasKPOutput"/>
+      </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;requires">
