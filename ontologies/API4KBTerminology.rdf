@@ -240,12 +240,12 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
 
   <owl:ObjectProperty rdf:about="&apiforkb-trm;isRequestedBy">
     <rdfs:label>is requested by</rdfs:label>
-    <rdf:type rdf:resource="&owl;FunctionalProperty"/>    
+      <rdf:type rdf:resource="&owl;FunctionalProperty"/>    
   </owl:ObjectProperty>
   
     <owl:ObjectProperty rdf:about="&apiforkb-trm;isEventOf">
         <rdfs:label>is event of</rdfs:label>
-        <rdfs:domain rdf:resource="&apiforkb-ev;Event"/>
+      <rdfs:domain rdf:resource="&apiforkb-ev;Event"/>
         <rdfs:range rdf:resource="&apiforkb-op;Operation"/>
         <owl:inverseOf rdf:resource="&apiforkb-trm;hasEvent"/>
       <owl:propertyChainAxiom rdf:parseType="Collection">
@@ -257,7 +257,8 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;isExecutedBy">
         <rdfs:label>is executed by</rdfs:label>
-        <rdfs:domain rdf:resource="&apiforkb-ev;Event"/>
+      <rdf:type rdf:resource="&owl;FunctionalProperty"/>    
+      <rdfs:domain rdf:resource="&apiforkb-ev;Event"/>
         <rdfs:range rdf:resource="&apiforkb-trm;Application"/>
     </owl:ObjectProperty>
 
@@ -286,6 +287,9 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <rdfs:label>lowers</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">relation between two knowledge resources where the first is a deabstraction of the second by one level (e.g. if the first is an item, the second is an encoding, etc.).  Lowers relations are limited to one of the following: reproduces, encodes, manifests, expresses</skos:definition>
     <skos:note>OWL does not let us declare this to be functional, while keeping the property chains that link Events and Operations.</skos:note>
+    <skos:note>
+      &lt;rdf:type rdf:resource="&owl;FunctionalProperty"/>            
+    </skos:note>    
   </owl:ObjectProperty>
   
     <owl:ObjectProperty rdf:about="&apiforkb-trm;expresses">
@@ -326,6 +330,11 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;isManagedBy">
+      <skos:note>OWL does not let us declare this to be functional, while keeping the property chain on its inverse.</skos:note>      
+      <skos:note>
+        &lt;rdf:type rdf:resource="&owl;FunctionalProperty"/>            
+      </skos:note>
+      
         <rdfs:label>is managed by</rdfs:label>
         <owl:inverseOf rdf:resource="&apiforkb-trm;manages"/>
     </owl:ObjectProperty>
