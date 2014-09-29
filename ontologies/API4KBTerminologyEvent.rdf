@@ -74,11 +74,22 @@
     <skos:definition rdf:datatype="&xsd;string">input of an event</skos:definition>
     <rdfs:domain rdf:resource="&apiforkb-ev;Event"/>
     <owl:inverseOf rdf:resource="&apiforkb-ev;isInputOf"/>
+    <owl:propertyChainAxiom rdf:parseType="Collection">
+      <rdf:Description rdf:about="&apiforkb-try;isEventOf"/>
+      <rdf:Description rdf:about="&apiforkb-try;hasInput"/>
+    </owl:propertyChainAxiom>
   </owl:ObjectProperty>
   
   <owl:ObjectProperty rdf:about="&apiforkb-ev;isInputOf">
     <rdfs:label>is input of</rdfs:label>
   </owl:ObjectProperty>  
+
+  <owl:ObjectProperty rdf:about="&apiforkb-ev;hasUnaryInput">
+    <rdfs:label>has unary input</rdfs:label>
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <rdfs:subPropertyOf rdf:resource="&apiforkb-ev;hasInput"/>
+    <owl:inverseOf rdf:resource="&apiforkb-ev;isUnaryInputOf"/>
+  </owl:ObjectProperty>
   
   <owl:ObjectProperty rdf:about="&apiforkb-ev;hasOutput">
     <rdf:type rdf:resource="&owl;FunctionalProperty"/>
@@ -272,9 +283,8 @@
     </owl:equivalentClass>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-ev;hasInput"/>
-        <owl:onClass rdf:resource="&owl;Thing"/>
-        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+        <owl:onProperty rdf:resource="&apiforkb-ev;hasUnaryInput"/>
+        <owl:someValuesFrom rdf:resource="&owl;Thing"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class> 
