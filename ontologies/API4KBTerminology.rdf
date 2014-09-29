@@ -58,6 +58,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
       <owl:imports rdf:resource="http://www.omg.org/spec/API4IB/API4KBTerminology/API4KBOperation/"/>
       <owl:imports rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/"/>
       <owl:imports rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/"/>
+      <owl:imports rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBTry/"/>
       
     </owl:Ontology>
 
@@ -70,17 +71,21 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <owl:ObjectProperty rdf:about="&apiforkb-trm;accordingTo">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label>according to</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">relationship between a knowledge source and the heterogeneous environment (sensu OntoIOp) in which it is embedded</skos:definition>
-        <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeSource"/>
-        <rdfs:range rdf:resource="&ontoiop-trm;HeterogeneousEnvironment"/>
-    </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;accordingTo">
+    <rdfs:label>according to</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">relationship between a knowledge source and the heterogeneous environment (sensu OntoIOp) in which it is embedded</skos:definition>
+    <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+    <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeSource"/>
+    <rdfs:range rdf:resource="&apiforkb-trm;Environment"/>
+    <owl:propertyChainAxiom rdf:parseType="Collection">
+      <rdf:Description rdf:about="&apiforkb-trm;accordingTo"/>
+      <rdf:Description rdf:about="&apiforkb-trm;isSubEnvironmentOf"/>
+    </owl:propertyChainAxiom>
+  </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;actualizes">
         <rdfs:label>actualizes</rdfs:label>
-        <rdfs:domain rdf:resource="&apiforkb-ev;PublicOperationEvent"/>
+        <rdfs:domain rdf:resource="&apiforkb-ev;PublicEvent"/>
         <rdfs:range rdf:resource="&apiforkb-pro;Proficiency"/>
         <owl:inverseOf rdf:resource="&apiforkb-trm;isActualizedBy"/>
       <owl:propertyChainAxiom rdf:parseType="Collection">
@@ -116,7 +121,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <owl:ObjectProperty rdf:about="&apiforkb-trm;executes">
         <rdfs:label>executes</rdfs:label>
         <rdfs:domain rdf:resource="&apiforkb-trm;Application"/>
-        <rdfs:range rdf:resource="&apiforkb-ev;OperationEvent"/>
+        <rdfs:range rdf:resource="&apiforkb-ev;Event"/>
         <owl:inverseOf rdf:resource="&apiforkb-trm;isExecutedBy"/>
       <owl:propertyChainAxiom rdf:parseType="Collection">
         <rdf:Description rdf:about="&apiforkb-trm;implements"/>
@@ -133,7 +138,6 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
   
   
   <owl:ObjectProperty rdf:about="&apiforkb-trm;exposes">
-    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
     <owl:inverseOf rdf:resource="&apiforkb-trm;isExposedBy"/>
     <rdfs:domain rdf:resource="&apiforkb-op;PublicOperation"/>
     <rdfs:range rdf:resource="&apiforkb-pro;Proficiency"/>
@@ -156,17 +160,6 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
   
   
 
-  <owl:ObjectProperty rdf:about="&apiforkb-trm;hasKPOutput">
-    <rdfs:label>has knowledge platform output</rdfs:label>
-    <rdfs:range rdf:resource="&apiforkb-trm;KnowledgePlatform"/>
-    <rdfs:subPropertyOf rdf:resource="&apiforkb-ev;hasOutput"/>
-    <owl:inverseOf rdf:resource="&apiforkb-trm;isKPOutputOf"/>
-  </owl:ObjectProperty>
-
-  <owl:ObjectProperty rdf:about="&apiforkb-trm;isKPOutputOf">
-    <rdfs:label>is knowledge platform that is output of</rdfs:label>
-  </owl:ObjectProperty>
-  
     <owl:ObjectProperty rdf:about="&apiforkb-trm;hasPart">
         <rdfs:label>has part</rdfs:label>
     </owl:ObjectProperty>
@@ -206,6 +199,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         </owl:propertyChainAxiom>
       <owl:propertyChainAxiom rdf:parseType="Collection">
         <rdf:Description rdf:about="&apiforkb-trm;requests"/>
+        <rdf:Description rdf:about="&apiforkb-try;hasEvent"/>
         <rdf:Description rdf:about="&apiforkb-trm;isExecutedBy"/>
       </owl:propertyChainAxiom>
     </owl:ObjectProperty>
@@ -250,16 +244,20 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
   </owl:ObjectProperty>
   
     <owl:ObjectProperty rdf:about="&apiforkb-trm;isEventOf">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label>is event of</rdfs:label>
-        <rdfs:domain rdf:resource="&apiforkb-ev;OperationEvent"/>
+        <rdfs:domain rdf:resource="&apiforkb-ev;Event"/>
         <rdfs:range rdf:resource="&apiforkb-op;Operation"/>
         <owl:inverseOf rdf:resource="&apiforkb-trm;hasEvent"/>
+      <owl:propertyChainAxiom rdf:parseType="Collection">
+        <rdf:Description rdf:about="&apiforkb-try;isEventOf"/>
+        <rdf:Description rdf:about="&apiforkb-try;isTryOf"/>
+      </owl:propertyChainAxiom>
+      
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;isExecutedBy">
         <rdfs:label>is executed by</rdfs:label>
-        <rdfs:domain rdf:resource="&apiforkb-ev;OperationEvent"/>
+        <rdfs:domain rdf:resource="&apiforkb-ev;Event"/>
         <rdfs:range rdf:resource="&apiforkb-trm;Application"/>
     </owl:ObjectProperty>
 
@@ -304,15 +302,13 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;isFilledBy">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label>is filled by</rdfs:label>
+       <rdfs:label>is filled by</rdfs:label>
         <rdfs:domain rdf:resource="&apiforkb-trm;Role"/>
         <rdfs:range rdf:resource="&apiforkb-trm;KnowledgePlatformManager"/>
         <owl:inverseOf rdf:resource="&apiforkb-trm;fillsRole"/>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;isImplementedBy">
-      <rdf:type rdf:resource="&owl;FunctionalProperty"/>
       <rdfs:label>is implemented by</rdfs:label>
         <owl:inverseOf rdf:resource="&apiforkb-trm;implements"/>
     </owl:ObjectProperty>
@@ -376,6 +372,14 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:domain rdf:resource="&ontoiop-trm;Language"/>
         <rdfs:range rdf:resource="&apiforkb-trm;Serialization"/>
     </owl:ObjectProperty>
+  
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;isSubEnvironmentOf">
+    <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+    <rdfs:label xml:lang="en">is subenvironment of</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">relationship between two environments that is a partial order where the language and logic graphs of the first enviroment are subgraphs, resp., of the language and logic graphs of the second environment</skos:definition>
+    <rdfs:domain rdf:resource="&apiforkb-trm;Environment"/>
+    <rdfs:range rdf:resource="&apiforkb-trm;Environment"/>
+  </owl:ObjectProperty>  
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;manages">
         <rdfs:label>manages</rdfs:label>
@@ -384,7 +388,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
       <owl:propertyChainAxiom rdf:parseType="Collection">
         <rdf:Description rdf:about="&apiforkb-trm;hasProficiency"/>
         <rdf:Description rdf:about="&apiforkb-trm;isActualizedBy"/>
-        <rdf:Description rdf:about="&apiforkb-trm;hasKPOutput"/>
+        <rdf:Description rdf:about="&apiforkb-ev;hasKPOutput"/>
       </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
@@ -627,7 +631,7 @@ Example E: A and B, together with a mapping that allows OWL to be converted to C
     
     <owl:Class rdf:about="&apiforkb-trm;ImmutableFocusedEnvironment">
       <rdfs:label>immutable focused environment</rdfs:label>
-      <rdfs:subClassOf rdf:resource="&ontoiop-trm;HeterogeneousEnvironment"/>
+      <rdfs:subClassOf rdf:resource="&apiforkb-trm;Environment"/>
       <rdfs:subClassOf rdf:resource="&apiforkb-trm;FocusedEnvironment"/>
     </owl:Class>
     
@@ -1180,5 +1184,6 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     <skos:definition rdf:datatype="&xsd;string">mapping from knowledge assets to knowledge assets</skos:definition>
   </owl:Class>
   -->
-  
+
+
 </rdf:RDF>
