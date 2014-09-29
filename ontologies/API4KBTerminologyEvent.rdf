@@ -90,6 +90,10 @@
     <rdfs:subPropertyOf rdf:resource="&apiforkb-ev;hasInput"/>
     <owl:inverseOf rdf:resource="&apiforkb-ev;isUnaryInputOf"/>
   </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&apiforkb-ev;isUnaryInputOf">
+    <rdfs:label>is unary input of</rdfs:label>
+  </owl:ObjectProperty>  
   
   <owl:ObjectProperty rdf:about="&apiforkb-ev;hasOutput">
     <rdf:type rdf:resource="&owl;FunctionalProperty"/>
@@ -97,6 +101,13 @@
     <skos:definition rdf:datatype="&xsd;string">output of an event</skos:definition>
     <rdfs:domain rdf:resource="&apiforkb-ev;Event"/>
     <owl:inverseOf rdf:resource="&apiforkb-ev;isOutputOf"/>
+    <skos:note>      
+    &lt;owl:propertyChainAxiom rdf:parseType="Collection">
+    &lt;rdf:Description rdf:about="&apiforkb-try;isEventOf"/>
+    &lt;rdf:Description rdf:about="&apiforkb-try;isDelegatedTo"/>
+    &lt;rdf:Description rdf:about="&apiforkb-try;hasOutput"/>
+    &lt;/owl:propertyChainAxiom>
+    </skos:note>
   </owl:ObjectProperty>
   
   <owl:ObjectProperty rdf:about="&apiforkb-ev;isOutputOf">

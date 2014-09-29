@@ -74,7 +74,7 @@
        interactsWith [Client, Proxy KPManager]
        (requests)
        (responds)
-       hasProficiency [Proficiency]
+       conveys [Proficiency]
        implements [PublicOperation]
        executes [PublicEvent]
   -->
@@ -225,29 +225,52 @@
        rdf:type [Success or Failure]
   -->
   <owl:NamedIndividual rdf:about="&apiforkb-st;ProxyQTryCreatingKPV">
-    <rdf:type rdf:resource="&apiforkb-try;Try"/>
+    <rdf:type rdf:resource="&apiforkb-try;CreatingTry"/>
     <rdfs:label>proxy Q try creating knowledge platform V</rdfs:label>
     <apiforkb-trm:isRequestedBy rdf:resource="&apiforkb-st;ClientZ"/>
     <apiforkb-trm:hasRequestee rdf:resource="&apiforkb-st;ProxyQ"/>
     <apiforkb-try:isTryOf rdf:resource="&apiforkb-st;CreateOperation-KPbyProxyQ"/>
     <apiforkb-try:hasInput rdf:resource="&apiforkb-st;ConfigurationItem"/>
-    <rdf:type rdf:resource="&apiforkb-try;Success"/>
     <!-- infer
+    <rdf:type rdf:resource="&apiforkb-try;Success"/>
     <apiforkb-try:hasOutput rdf:resource="&apiforkb-st;KPV"/> -->
   </owl:NamedIndividual>
   
   <owl:NamedIndividual rdf:about="&apiforkb-st;KPMWTryCreatingKPV">
-    <rdf:type rdf:resource="&apiforkb-try;Try"/>
+    <rdf:type rdf:resource="&apiforkb-try;InternalCreatingTry"/>
     <rdfs:label>knowledge platform manager W try creating knowledge platform V</rdfs:label>
     <apiforkb-trm:hasRequestee rdf:resource="&apiforkb-st;KPManagerW"/>
-    <rdf:type rdf:resource="&apiforkb-try;Success"/>
     <apiforkb-try:isTryOf rdf:resource="&apiforkb-st;CreateOperation-KPbyKPMW"/>
     <apiforkb-try:isDelegatedFrom rdf:resource="&apiforkb-st;ProxyQTryCreatingKPV"/> 
     <!-- 
+    <rdf:type rdf:resource="&apiforkb-try;Success"/>
     <apiforkb-trm:isRequestedBy rdf:resource="&apiforkb-st;ProxyQ"/>
     <apiforkb-try:hasOutput rdf:resource="&apiforkb-st;KPV"/>
      -->
+  
+  
   </owl:NamedIndividual>
+  
+  <owl:NamedIndividual rdf:about="&apiforkb-st;ProxyQTryCreatingKPX">
+    <rdf:type rdf:resource="&apiforkb-try;CreatingTry"/>
+    <rdfs:label>proxy Q try creating knowledge platform X</rdfs:label>
+    <apiforkb-trm:isRequestedBy rdf:resource="&apiforkb-st;ClientZ"/>
+    <apiforkb-trm:hasRequestee rdf:resource="&apiforkb-st;ProxyQ"/>
+    <apiforkb-try:isTryOf rdf:resource="&apiforkb-st;CreateOperation-KPbyProxyQ"/>
+    <apiforkb-try:hasInput rdf:resource="&apiforkb-st;ConfigurationItem1"/>
+    <apiforkb-try:hasInput rdf:resource="&apiforkb-st;ConfigurationItem2"/>
+    <rdf:type rdf:resource="&apiforkb-try;Failure"/>
+    <!-- infer
+    -->
+  </owl:NamedIndividual>
+  
+  <rdf:Description>
+    <rdf:type rdf:resource="&owl;AllDifferent"/>
+    <owl:distinctMembers rdf:parseType="Collection">
+      <rdf:Description rdf:about="&apiforkb-st;ConfigurationItem1"/>
+      <rdf:Description rdf:about="&apiforkb-st;ConfigurationItem2"/>
+    </owl:distinctMembers>
+  </rdf:Description>
   
   <!-- Public Events -->
   
@@ -283,9 +306,9 @@
     <rdfs:label>internal event by knowledge platform manager W creating knowledge platform V</rdfs:label>
     <apiforkb-try:isEventOf rdf:resource="&apiforkb-st;KPMWTryCreatingKPV"/>
     <!-- infer 
-    <apiforkb-ev:hasKPOutput rdf:resource="&apiforkb-st;KPV"/>
+    <apiforkb-trm:isImplementedBy rdf:resource="&apiforkb-st;KPM"/>
+    <apiforkb-ev:hasOutput rdf:resource="&apiforkb-st;KPV"/>
     <apiforkb-trm:isEventOf rdf:resource="&apiforkb-st;CreateOperation-KPbyKPMW"/>
-    <apiforkb-ev:useConfiguration>...some XML ...</apiforkb-trm:useConfiguration>
     -->
   </owl:NamedIndividual>
   
@@ -294,12 +317,14 @@
   <owl:NamedIndividual rdf:about="&apiforkb-st;KPV">
     <rdf:type rdf:resource="&apiforkb-trm;KnowledgePlatform"/>
     <rdfs:label>knowledge platform V</rdfs:label>
+    <apiforkb-ev:isOutputOf rdf:resource="&apiforkb-st;ProxyQCreatingKPV"/>
     <apiforkb-ev:isKPOutputOf rdf:resource="&apiforkb-st;KPMWCreatingKPV"/>
     <!-- infer
-    <apiforkb-ev:isOutputOf rdf:resource="&apiforkb-st;KPMWCreatingKPV"/>
     <apiforkb-trm:isManagedBy rdf:resource="&apiforkb-st;KPManagerW"/>
     -->
   </owl:NamedIndividual>
+  
+  <!-- End Here -->
   
   <!-- Item -->
   
@@ -310,21 +335,23 @@
        isInputOf [Event]
        isOutputOf [Event]
        isSnapshotOf [MutableSource]
-  -->
 
   <owl:NamedIndividual rdf:about="&apiforkb-st;FocusedItem1">
     <rdfs:label>focused item 1</rdfs:label>
     <rdf:type rdf:resource="&apiforkb-trm;FocusedItem"/>
+  -->
     <!-- infer
-      <apiforkb-trm:localCopyOf rdf:resource="&apiforkb-st;FocusedEncoding1"/> -->
+      <apiforkb-trm:localCopyOf rdf:resource="&apiforkb-st;FocusedEncoding1"/> 
   </owl:NamedIndividual>
   
   <owl:NamedIndividual rdf:about="&apiforkb-st;FocusedItem2">
     <rdfs:label>focused item 2</rdfs:label>
     <rdf:type rdf:resource="&apiforkb-trm;FocusedItem"/>
+    -->
     <!-- infer
-      <apiforkb-trm:localCopyOf rdf:resource="&apiforkb-st;FocusedEncoding2"/> -->
+      <apiforkb-trm:localCopyOf rdf:resource="&apiforkb-st;FocusedEncoding2"/> 
   </owl:NamedIndividual>
+    -->
   
 
 

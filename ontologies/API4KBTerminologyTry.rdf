@@ -113,6 +113,17 @@
   <owl:ObjectProperty rdf:about="&apiforkb-try;isInputOf">
     <rdfs:label>is input of</rdfs:label>
   </owl:ObjectProperty>  
+
+  <owl:ObjectProperty rdf:about="&apiforkb-try;hasUnaryInput">
+    <rdfs:label>has unary input</rdfs:label>
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <rdfs:subPropertyOf rdf:resource="&apiforkb-try;hasInput"/>
+    <owl:inverseOf rdf:resource="&apiforkb-try;isUnaryInputOf"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&apiforkb-try;isUnaryInputOf">
+    <rdfs:label>is unary input of</rdfs:label>
+  </owl:ObjectProperty>  
   
   <owl:ObjectProperty rdf:about="&apiforkb-try;hasOutput">
     <rdfs:label>has output</rdfs:label>
@@ -340,12 +351,18 @@
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description
-            rdf:about="&apiforkb-try;Try"/>
+            rdf:about="&apiforkb-try;UnaryTry"/>
           <rdf:Description
             rdf:about="&apiforkb-try;Success"/>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&apiforkb-try;hasUnaryInput"/>
+        <owl:someValuesFrom rdf:resource="&owl;Thing"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
   </owl:Class> 
   
 
@@ -1265,9 +1282,68 @@
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
+
+  <owl:Class rdf:about="&apiforkb-try;InternalCreatingTry">
+    <rdfs:label>internal creating try</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">internal creating try</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-try;CreatingTry"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-try;InternalTry"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description
+            rdf:about="&apiforkb-try;CreatingTry"/>
+          <rdf:Description
+            rdf:about="&apiforkb-try;InternalTry"/>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>  
+  
   
   <!-- Public Trys -->
 
+  <owl:Class rdf:about="&apiforkb-try;PublicCreatingTry">
+    <rdfs:label>public creating try</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">public creating try</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-try;CreatingTry"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-try;PublicTry"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description
+            rdf:about="&apiforkb-try;CreatingTry"/>
+          <rdf:Description
+            rdf:about="&apiforkb-try;PublicTry"/>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>  
+
+  <owl:Class rdf:about="&apiforkb-try;CreatingTry">
+    <rdfs:label>creating try</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">public or internal creating try</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-try;UnaryTry"/>
+    <owl:disjointUnionOf rdf:parseType="Collection">
+      <rdf:Description
+        rdf:about="&apiforkb-try;PublicCreatingTry"/>
+      <rdf:Description
+        rdf:about="&apiforkb-try;InternalCreatingTry"/>
+    </owl:disjointUnionOf>
+  </owl:Class>  
+
+  <owl:Class rdf:about="&apiforkb-try;CreatingSuccess">
+    <rdfs:label>public creating try</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">public or internal creating try</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-try;UnarySuccess"/>
+    <owl:disjointUnionOf rdf:parseType="Collection">
+      <rdf:Description
+        rdf:about="&apiforkb-try;PublicCreatingSuccess"/>
+      <rdf:Description
+        rdf:about="&apiforkb-try;InternalCreatingSuccess"/>
+    </owl:disjointUnionOf>
+  </owl:Class>  
+  
   <owl:Class rdf:about="&apiforkb-try;PublicAddingTry-KnowledgeResourceToImmutableKB">
     <rdfs:label>public try adding knowledge resources to immutable KBs</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">public try adding a knowlede
