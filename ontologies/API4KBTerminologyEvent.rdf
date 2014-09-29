@@ -118,6 +118,7 @@
   <owl:ObjectProperty rdf:about="&apiforkb-ev;appliesQueryTo">
     <rdfs:label>applies query to resource</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
     <rdfs:domain rdf:resource="&apiforkb-ev;QueryingEvent"/>
     <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeSource"/>    
     <rdfs:subPropertyOf rdf:resource="&apiforkb-ev;hasInput"/>
@@ -134,6 +135,7 @@
 
   <owl:ObjectProperty rdf:about="&apiforkb-ev;addsTo">
     <rdfs:label>adds resource</rdfs:label>
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
     <rdfs:domain rdf:resource="&apiforkb-ev;InternalAddingEvent"/>
     <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeSource"/>
     <rdfs:subPropertyOf rdf:resource="&apiforkb-ev;hasInput"/>
@@ -213,12 +215,40 @@
     <rdfs:label>side-effect-free event</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">event of a side-effect-free operation</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-ev;Event"/>
+    <owl:equivalentClass> 
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description
+            rdf:about="&owl;Thing"/>
+          <owl:Restriction>
+            <owl:onProperty
+              rdf:resource="&apiforkb-trm;isEventOf"/>
+            <owl:someValuesFrom
+              rdf:resource="&apiforkb-op;SideEffectFreeOperation"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
   </owl:Class>
   
   <owl:Class rdf:about="&apiforkb-ev;SideEffectfulEvent">
     <rdfs:label>side-effectful event</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">event of a side-effectful operation</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-ev;Event"/>
+    <owl:equivalentClass> 
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description
+            rdf:about="&owl;Thing"/>
+          <owl:Restriction>
+            <owl:onProperty
+              rdf:resource="&apiforkb-trm;isEventOf"/>
+            <owl:someValuesFrom
+              rdf:resource="&apiforkb-op;SideEffectfulOperation"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
   </owl:Class>
 
 
@@ -226,6 +256,20 @@
     <rdfs:label>unary event</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">unary operation</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-ev;Event"/>
+    <owl:equivalentClass> 
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description
+            rdf:about="&owl;Thing"/>
+          <owl:Restriction>
+            <owl:onProperty
+              rdf:resource="&apiforkb-trm;isEventOf"/>
+            <owl:someValuesFrom
+              rdf:resource="&apiforkb-op;UnaryOperation"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-ev;hasInput"/>
