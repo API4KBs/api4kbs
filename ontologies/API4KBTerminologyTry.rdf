@@ -259,6 +259,7 @@
     <skos:definition rdf:datatype="&xsd;string">failure of application of an API4KB Operation.</skos:definition>
     <skos:example rdf:datatype="&xsd;string">Example: the failure of adding of an Asset to an immutable KB to generate a new immutable KB,
       attemptec by some application. </skos:example>
+    <rdfs:subClassOf rdf:resource="&apiforkb-try;Try"/>
     <owl:subClassOf>      
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-try;hasEvent"/>
@@ -270,7 +271,7 @@
   </owl:Class>
 
   <owl:Class rdf:about="&apiforkb-try;SideEffectFreeTry">
-    <rdfs:label>side-effect-free event</rdfs:label>
+    <rdfs:label>side-effect-free try</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">try of a side-effect-free operation</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-try;Try"/>
     <owl:equivalentClass>
@@ -290,7 +291,7 @@
   </owl:Class>
   
   <owl:Class rdf:about="&apiforkb-try;SideEffectfulTry">
-    <rdfs:label>side-effectful event</rdfs:label>
+    <rdfs:label>side-effectful try</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">try of a side-effectful operation</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-try;Try"/>
     <owl:equivalentClass>
@@ -311,7 +312,7 @@
 
 
   <owl:Class rdf:about="&apiforkb-try;UnaryTry">
-    <rdfs:label>unary event</rdfs:label>
+    <rdfs:label>unary try</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">try of a unary operation</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-try;Try"/>
     <owl:equivalentClass>
@@ -329,10 +330,27 @@
       </owl:Class>
     </owl:equivalentClass>
   </owl:Class> 
+
+  <owl:Class rdf:about="&apiforkb-try;UnarySuccess">
+    <rdfs:label>unary success</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">try of a unary operation</skos:definition>
+    <rdfs:subClassOf rdf:resource="&apiforkb-try;UnaryTry"/>
+    <rdfs:subClassOf rdf:resource="&apiforkb-try;Success"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description
+            rdf:about="&apiforkb-try;Try"/>
+          <rdf:Description
+            rdf:about="&apiforkb-try;Success"/>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class> 
   
 
   <owl:Class rdf:about="&apiforkb-try;InternalTry">
-    <rdfs:label>internal operation event</rdfs:label>
+    <rdfs:label>internal try</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">try of an Internal Operation.</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-try;Try"/>
     <owl:equivalentClass>
@@ -376,7 +394,7 @@
 
 
   <owl:Class rdf:about="&apiforkb-try;PublicTry">
-    <rdfs:label>public operation try</rdfs:label>
+    <rdfs:label>public try</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">try of a public operation.</skos:definition>
     <skos:example rdf:datatype="&xsd;string">Example: add Asset to an immutable KB to generate a new immutable KB. </skos:example>
     <rdfs:subClassOf rdf:resource="&apiforkb-try;Try"/>
@@ -830,7 +848,7 @@
   <owl:Class
     rdf:about="&apiforkb-ev;AddingEvent-KnowledgeResourceToImmutableKB">
     <rdfs:label>adding event of a knowledge resource to an immutable knowledge base</rdfs:label>
-    <skos:definition rdf:datatype="&xsd;string">public operation event adding a knowlede
+    <skos:definition rdf:datatype="&xsd;string">public tryadding a knowlede
       resource to an immutable knowledge base</skos:definition>
     <skos:note rdf:datatype="&xsd;string">Members of this class are events of some operation of type
       &apos;AddingOperation-KnowledgeResourceToImmutableKB"&apos;</skos:note>
@@ -1315,7 +1333,7 @@
   
 
   <owl:Class rdf:about="&apiforkb-try;AddingTry">
-    <rdfs:label>adding operation</rdfs:label>
+    <rdfs:label>adding try</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">public or internal adding try</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-try;Try"/>
   </owl:Class>  
