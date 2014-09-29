@@ -167,6 +167,15 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:label>has registrant</rdfs:label>
         <owl:inverseOf rdf:resource="&apiforkb-trm;isRegisteredWith"/>
     </owl:ObjectProperty>
+  
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;hasRequestee">
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <rdfs:label xml:lang="en">has requestee</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">application that is the recipient of the request</skos:definition>
+    <rdfs:range rdf:resource="&apiforkb-trm;Application"/>
+    <owl:inverseOf rdf:resource="&apiforkb-trm;isRequesteeOf"/>
+    <rdfs:domain rdf:resource="&apiforkb-trm;API4KBTry/Try"/>
+  </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;hasSetOfMappings">
         <rdfs:label>has set of mappings</rdfs:label>
@@ -191,6 +200,10 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:label>interacts with</rdfs:label>
         <rdfs:domain rdf:resource="&apiforkb-trm;Application"/>
         <rdfs:range rdf:resource="&apiforkb-trm;Application"/>
+      <owl:propertyChainAxiom rdf:parseType="Collection">
+        <rdf:Description rdf:about="&apiforkb-trm;requests"/>
+        <rdf:Description rdf:about="&apiforkb-trm;hasRequestee"/>
+      </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
     
@@ -358,6 +371,11 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgeSource"/>
         <rdfs:range rdf:resource="&apiforkb-trm;KnowledgePlatform"/>
     </owl:ObjectProperty>
+  
+  
+  <owl:ObjectProperty rdf:about="&apiforkb-trm;isRequesteeOf">
+    <rdfs:label xml:lang="en">is requestee of</rdfs:label>
+  </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;isRequiredBy">
         <rdfs:label>is required by</rdfs:label>
@@ -622,8 +640,7 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&ontoiop-trm;hasPart"/>
-                <owl:onClass rdf:resource="&ontoiop-trm;SetOfExpressions"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:someValuesFrom rdf:resource="&ontoiop-trm;SetOfExpressions"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <skos:definition rdf:datatype="&xsd;string">Set of Expressions in one or more languages, in the context of a Logical Environment determining how these Expressions are jointly interpreted.</skos:definition>
@@ -701,8 +718,7 @@ Example: a sequence of strings that are asserted to be names of philosphers in s
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty rdf:resource="&apiforkb-trm;accordingTo"/>
-        <owl:onClass rdf:resource="&apiforkb-trm;FocusedEnvironment"/>
-        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+        <owl:someValuesFrom rdf:resource="&apiforkb-trm;FocusedEnvironment"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -1144,18 +1160,6 @@ Alternatively, the Components may coordinate among each other</skos:scopeNote>
     <owl:Class rdf:about="&ontoiop-trm;OMSSerialization">
         <rdfs:subClassOf rdf:resource="&apiforkb-trm;KnowledgeSerialization"/>
     </owl:Class>
-
-  <owl:Class rdf:about="&apiforkb-trm;API4KBEvent/UnaryEvent">
-    <rdfs:label>unary event</rdfs:label>
-    <skos:definition rdf:datatype="&xsd;string">event of a unary operation</skos:definition>
-    <rdfs:subClassOf rdf:resource="&apiforkb-trm;API4KBEvent/Event"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-ev;hasInput"/>
-        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
   
   <!-- Mappings -->
   <!--
