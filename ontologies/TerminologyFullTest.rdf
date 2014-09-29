@@ -232,17 +232,21 @@
     <apiforkb-try:isTryOf rdf:resource="&apiforkb-st;CreateOperation-KPbyProxyQ"/>
     <apiforkb-try:useConfiguration>...some XML ...</apiforkb-try:useConfiguration>
     <rdf:type rdf:resource="&apiforkb-try;Success"/>
-    <apiforkb-try:hasKPOutput rdf:resource="&apiforkb-st;KPV"/>
+    <!-- infer
+    <apiforkb-try:hasOutput rdf:resource="&apiforkb-st;KPV"/> -->
   </owl:NamedIndividual>
   
   <owl:NamedIndividual rdf:about="&apiforkb-st;KPMWTryCreatingKPV">
     <rdf:type rdf:resource="&apiforkb-try;Try"/>
     <rdfs:label>knowledge platform manager W try creating knowledge platform V</rdfs:label>
-    <apiforkb-trm:isRequestedBy rdf:resource="&apiforkb-st;ProxyQ"/>
+    <apiforkb-trm:hasRequestee rdf:resource="&apiforkb-st;KPManagerW"/>
     <rdf:type rdf:resource="&apiforkb-try;Success"/>
     <apiforkb-try:isTryOf rdf:resource="&apiforkb-st;CreateOperation-KPbyKPMW"/>
-    <apiforkb-try:isDelgatedFrom rdf:resource="&apiforkb-st;ProxyQTryCreatingKPV"/>      <apiforkb-try:hasKPOutput rdf:resource="&apiforkb-st;KPV"/>
-    
+    <apiforkb-try:isDelegatedFrom rdf:resource="&apiforkb-st;ProxyQTryCreatingKPV"/> 
+    <!-- 
+    <apiforkb-trm:isRequestedBy rdf:resource="&apiforkb-st;ProxyQ"/>
+    <apiforkb-try:hasOutput rdf:resource="&apiforkb-st;KPV"/>
+     -->
   </owl:NamedIndividual>
   
   <!-- Public Events -->
@@ -274,12 +278,12 @@
        isImplementedBy [Application]
     -->  
 
-  <owl:NamedIndividual rdf:about="&apiforkb-st;KPWCreatingKPV">
+  <owl:NamedIndividual rdf:about="&apiforkb-st;KPMWCreatingKPV">
     <rdf:type rdf:resource="&apiforkb-ev;InternalCreateEvent-KP"/>
     <rdfs:label>internal event by knowledge platform manager W creating knowledge platform V</rdfs:label>
     <apiforkb-try:isEventOf rdf:resource="&apiforkb-st;KPMWTryCreatingKPV"/>
-    <apiforkb-ev:hasKPOutput rdf:resource="&apiforkb-st;KPV"/>
     <!-- infer 
+    <apiforkb-ev:hasKPOutput rdf:resource="&apiforkb-st;KPV"/>
     <apiforkb-trm:isEventOf rdf:resource="&apiforkb-st;CreateOperation-KPbyKPMW"/>
     <apiforkb-ev:useConfiguration>...some XML ...</apiforkb-trm:useConfiguration>
     -->
@@ -292,6 +296,7 @@
     <rdfs:label>knowledge platform V</rdfs:label>
     <apiforkb-ev:isKPOutputOf rdf:resource="&apiforkb-st;KPMWCreatingKPV"/>
     <!-- infer
+    <apiforkb-ev:isOutputOf rdf:resource="&apiforkb-st;KPMWCreatingKPV"/>
     <apiforkb-trm:isManagedBy rdf:resource="&apiforkb-st;KPManagerW"/>
     -->
   </owl:NamedIndividual>
@@ -501,7 +506,7 @@
     <apiforkb-trm:actualizes rdf:resource="&apiforkb-st;AddingProficiency-KnowledgeResourceToImmutableKBbyKPMW"/>
     <apiforkb-trm:adds rdf:resource="&apiforkb-st;FocusedItem2"/>
     <apiforkb-trm:addsTo rdf:resource="&apiforkb-st;ImmutableKBB"/>
-    <apiforkb-trm:delgatesTo rdf:resource="&apiforkb-st;KPWAddingFocusedItem2ToImmutableKBB"/>
+    <apiforkb-trm:delgatesTo rdf:resource="&apiforkb-st;KPMWAddingFocusedItem2ToImmutableKBB"/>
     
   </owl:NamedIndividual>
   -->
@@ -512,19 +517,19 @@
  <!-- Internal Adding Event -->
   <!-- Properties
        hasOutput
-  <owl:NamedIndividual rdf:about="&apiforkb-st;KPWAddingFocusedItem2ToImmutableKBB">
+  <owl:NamedIndividual rdf:about="&apiforkb-st;KPMWAddingFocusedItem2ToImmutableKBB">
     <rdf:type rdf:resource="&apiforkb-ev;InternalAddingEvent-FocusedItemToImmutableKB"/>
     <rdfs:label>internal event by knowledge platform W adding focused item 2 to knowledge base B</rdfs:label>
     <apiforkb-trm:isEventOf rdf:resource="&apiforkb-st;InternalAddingOperation-FocusedItemToImmutableKBbyKPMW"/>
     <apiforkb-trm:adds rdf:resource="&apiforkb-st;FocusedItem2"/>
     <apiforkb-trm:addsTo rdf:resource="&apiforkb-st;ImmutableKBB"/>
-    <ontoiop-trm:hasPart rdf:resource="&apiforkb-st;KPWInStreamingFocusedItem2"/>
-    <ontoiop-trm:hasPart rdf:resource="&apiforkb-st;KPWUnmarshallingFocusedEncoding2"/>
-    <ontoiop-trm:hasPart rdf:resource="&apiforkb-st;KPWParsingFocusedManifestation2"/>
-    <ontoiop-trm:hasPart rdf:resource="&apiforkb-st;KPWAdditionOfFocusedManifestation2"/>
-    <ontoiop-trm:hasPart rdf:resource="&apiforkb-st;KPWExpressingKBB"/>
-    <ontoiop-trm:hasPart rdf:resource="&apiforkb-st;KPWAdditionOfFocusedExpression2ToKEB"/>
-    <ontoiop-trm:hasPart rdf:resource="&apiforkb-st;KPWConceptualizingKED"/>
+    <ontoiop-trm:hasPart rdf:resource="&apiforkb-st;KPMWInStreamingFocusedItem2"/>
+    <ontoiop-trm:hasPart rdf:resource="&apiforkb-st;KPMWUnmarshallingFocusedEncoding2"/>
+    <ontoiop-trm:hasPart rdf:resource="&apiforkb-st;KPMWParsingFocusedManifestation2"/>
+    <ontoiop-trm:hasPart rdf:resource="&apiforkb-st;KPMWAdditionOfFocusedManifestation2"/>
+    <ontoiop-trm:hasPart rdf:resource="&apiforkb-st;KPMWExpressingKBB"/>
+    <ontoiop-trm:hasPart rdf:resource="&apiforkb-st;KPMWAdditionOfFocusedExpression2ToKEB"/>
+    <ontoiop-trm:hasPart rdf:resource="&apiforkb-st;KPMWConceptualizingKED"/>
     <apiforkb-ev:hasOutput rdf:resource="&apiforkb-st;ImmutableKBD"/>
   </owl:NamedIndividual>
   
@@ -536,38 +541,38 @@
        hasInput
        hasOutput
 
-  <owl:NamedIndividual rdf:about="&apiforkb-st;KPWInStreamingFocusedItem2">
+  <owl:NamedIndividual rdf:about="&apiforkb-st;KPMWInStreamingFocusedItem2">
     <rdf:type rdf:resource="&apiforkb-ev;InStreamingEvent"/>
     <rdfs:label>action event: knowledge manager W instreaming focused item 2</rdfs:label>
     <apiforkb-ev:hasInput rdf:resource="&apiforkb-st;FocusedItem2"/>
     <apiforkb-ev:hasOutput rdf:resource="&apiforkb-st;FocusedEncoding2"/>
   </owl:NamedIndividual>
   
-  <owl:NamedIndividual rdf:about="&apiforkb-st;KPWUnmarshallingFocusedEncoding2">
+  <owl:NamedIndividual rdf:about="&apiforkb-st;KPMWUnmarshallingFocusedEncoding2">
     <rdf:type rdf:resource="&apiforkb-ev;UnmarshallingEvent"/>
     <rdfs:label>action event: knowledge manager W unmarshalling focused encoding 2</rdfs:label>
     <apiforkb-ev:hasInput rdf:resource="&apiforkb-st;FocusedEncoding2"/>
     <apiforkb-ev:hasOutput rdf:resource="&apiforkb-st;FocusedManifestation2"/>
   </owl:NamedIndividual>
   
-  <owl:NamedIndividual rdf:about="&apiforkb-st;KPWParsingFocusedManifestation2">
+  <owl:NamedIndividual rdf:about="&apiforkb-st;KPMWParsingFocusedManifestation2">
     <rdf:type rdf:resource="&apiforkb-ev;ParsingEvent"/>
     <rdfs:label>action event: knowledge manager W parsing focused manifestation 2</rdfs:label>
     <apiforkb-ev:hasInput rdf:resource="&apiforkb-st;FocusedManifestation2"/>
     <apiforkb-ev:hasOutput rdf:resource="&apiforkb-st;FocusedExpression2"/>
   </owl:NamedIndividual>
   
-  <owl:NamedIndividual rdf:about="&apiforkb-st;KPWAdditionOfFocusedExpression2">
+  <owl:NamedIndividual rdf:about="&apiforkb-st;KPMWAdditionOfFocusedExpression2">
     <rdf:type rdf:resource="&apiforkb-ev;ActionEvent-AdditionOf"/>
     <rdfs:label>action event: knowledge manager W addition of focused expression 2</rdfs:label>
     <apiforkb-ev:hasInput rdf:resource="&apiforkb-st;FocusedExpression2"/>
-    <apiforkb-ev:hasOutput rdf:resource="&apiforkb-st;KPWFocusedExpression2AdditionTo"/>
+    <apiforkb-ev:hasOutput rdf:resource="&apiforkb-st;KPMWFocusedExpression2AdditionTo"/>
   </owl:NamedIndividual>
 
-  <owl:NamedIndividual rdf:about="&apiforkb-st;KPWAdditionOfFocusedExpression2ToKBB">
+  <owl:NamedIndividual rdf:about="&apiforkb-st;KPMWAdditionOfFocusedExpression2ToKBB">
     <rdf:type rdf:resource="&apiforkb-ev;ActionEvent-AdditionTo"/>
     <rdfs:label>action event: knowledge manager W addition of focused expression 2 to knowledge base B</rdfs:label>
-    <apiforkb-trm:isEventOf rdf:resource="&apiforkb-st;KPWFocusedManifestation2AdditionTo"/>
+    <apiforkb-trm:isEventOf rdf:resource="&apiforkb-st;KPMWFocusedManifestation2AdditionTo"/>
     <apiforkb-ev:hasInput rdf:resource="&apiforkb-st;ImmutableKBB"/>
     <apiforkb-ev:hasOutput rdf:resource="&apiforkb-st;ImmutableKBD"/>
   </owl:NamedIndividual>

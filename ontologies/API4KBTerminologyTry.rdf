@@ -69,6 +69,19 @@
     ///////////////////////////////////////////////////////////////////////////////////////
    -->
 
+  <owl:ObjectProperty rdf:about="&apiforkb-try;isDelegatedTo">
+    <rdfs:label>is delegated to</rdfs:label>
+    <skos:definition rdf:datatype="&xsd;string">relation between to trys where the second has the same inputs and an equivalent operation as the first, and second try is requested by the requestee of the first</skos:definition>
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <rdfs:domain rdf:resource="&apiforkb-try;Try"/>    
+    <rdfs:range rdf:resource="&apiforkb-try;Try"/>    
+    <owl:inverseOf rdf:resource="&apiforkb-try;isDelegatedFrom"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&apiforkb-try;isDelegatedFrom">
+    <rdfs:label>is delegated from</rdfs:label>
+  </owl:ObjectProperty>  
+  
   <owl:ObjectProperty rdf:about="&apiforkb-try;hasEvent">
     <rdfs:label>has event</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">event of a success</skos:definition>
@@ -79,6 +92,10 @@
   
   <owl:ObjectProperty rdf:about="&apiforkb-try;isEventOf">
     <rdfs:label>is event of</rdfs:label>
+  </owl:ObjectProperty>  
+
+  <owl:ObjectProperty rdf:about="&apiforkb-try;isTryOf">
+    <rdfs:label>is try of</rdfs:label>
   </owl:ObjectProperty>  
   
   
@@ -391,7 +408,7 @@
             rdf:about="&apiforkb-try;ActionTry"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;LoweringAction"/>
           </owl:Restriction>
@@ -432,7 +449,7 @@
             rdf:about="&apiforkb-try;LoweringTry"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;ExpressingAction"/>
           </owl:Restriction>
@@ -467,7 +484,7 @@
             rdf:about="&apiforkb-try;LoweringTry"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;ManifestingAction"/>
           </owl:Restriction>
@@ -502,7 +519,7 @@
             rdf:about="&apiforkb-try;LoweringTry"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;MarshallingAction"/>
           </owl:Restriction>
@@ -537,7 +554,7 @@
             rdf:about="&apiforkb-try;LoweringTry"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;OutStreamingAction"/>
           </owl:Restriction>
@@ -573,7 +590,7 @@
             rdf:about="&apiforkb-try;ActionTry"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;LiftingAction"/>
           </owl:Restriction>
@@ -614,7 +631,7 @@
             rdf:about="&apiforkb-try;LiftingTry"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;InStreamingAction"/>
           </owl:Restriction>
@@ -651,7 +668,7 @@
             rdf:about="&apiforkb-try;LiftingTry"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;UnmarshallingAction"/>
           </owl:Restriction>
@@ -684,7 +701,7 @@
             rdf:about="&apiforkb-try;LiftingTry"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;ParsingAction"/>
           </owl:Restriction>
@@ -720,7 +737,7 @@
             rdf:about="&apiforkb-try;LiftingTry"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;ConceptualizingAction"/>
           </owl:Restriction>
@@ -752,7 +769,7 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="&apiforkb-try;ActionTry"/>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="&apiforkb-trm;isTryOf"/>
+            <owl:onProperty rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom rdf:resource="&apiforkb-op;HorizontalAction"/>
           </owl:Restriction>
         </owl:intersectionOf>
@@ -876,7 +893,7 @@
             rdf:about="&apiforkb-try;InternalTry"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;InternalAddingOperation-KnowledgeResourceToImmutableKB"/>
           </owl:Restriction>
@@ -917,7 +934,7 @@
             rdf:about="&apiforkb-try;InternalAddingTry-KnowledgeResourceToImmutableKB"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;InternalAddingOperation-QueryItemToImmutableKB"/>
           </owl:Restriction>
@@ -941,7 +958,7 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <rdf:Description rdf:about="&apiforkb-try;HorizontalTry"/>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="&apiforkb-trm;isTryOf"/>
+            <owl:onProperty rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom rdf:resource="&apiforkb-op;Action-AdditionTo"/>
           </owl:Restriction>
         </owl:intersectionOf>
@@ -967,7 +984,7 @@
             rdf:about="&apiforkb-try;ActionTry-AdditionTo"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;Action-AdditionToKnowledgeExpression"/>
           </owl:Restriction>
@@ -993,7 +1010,7 @@
             rdf:about="&apiforkb-try;ActionTry"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;Action-ResourceIn"/>
           </owl:Restriction>
@@ -1019,7 +1036,7 @@
             rdf:about="&apiforkb-try;ActionTry-ResourceIn"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;Action-ExpressionIn"/>
           </owl:Restriction>
@@ -1046,7 +1063,7 @@
             rdf:about="&apiforkb-try;ActionTry"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;CurriedAction"/>
           </owl:Restriction>
@@ -1072,7 +1089,7 @@
             rdf:about="&apiforkb-try;CurriedActionTry"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;CurriedAction-HorizontalExpressionActionOut"/>
           </owl:Restriction>
@@ -1099,7 +1116,7 @@
             rdf:about="&apiforkb-try;CurriedActionTry"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;Action-AdditionOf"/>
           </owl:Restriction>
@@ -1126,7 +1143,7 @@
             rdf:about="&apiforkb-try;ActionTry"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;VoidAction"/>
           </owl:Restriction>
@@ -1154,7 +1171,7 @@
             rdf:about="&apiforkb-try;InternalTry"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;InternalAddingOperation-KnowledgeResourceToImmutableKB"/>
           </owl:Restriction>
@@ -1194,7 +1211,7 @@
           <rdf:Description            rdf:about="&apiforkb-try;InternalAddingTry-KnowledgeResourceToImmutableKB"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;InternalAddingOperation-FocusedItemToImmutableKB"/>
           </owl:Restriction>
@@ -1225,7 +1242,7 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-trm;addsTo"/>
+        <owl:onProperty rdf:resource="&apiforkb-try;addsTo"/>
         <owl:allValuesFrom rdf:resource="&apiforkb-trm;MutableKnowledgeBase"/>
       </owl:Restriction>
     </rdfs:subClassOf>
@@ -1246,7 +1263,7 @@
             rdf:about="&apiforkb-try;PublicTry"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;PublicAddingOperation-KnowledgeResourceToImmutableKB"/>
           </owl:Restriction>

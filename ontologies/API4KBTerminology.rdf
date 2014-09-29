@@ -124,6 +124,10 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
     <rdfs:domain rdf:resource="&apiforkb-trm;Application"/>
     <rdfs:range rdf:resource="&apiforkb-try;Try"/>
     <owl:inverseOf rdf:resource="&apiforkb-trm;isRequestedBy"/>
+    <owl:propertyChainAxiom rdf:parseType="Collection">
+      <rdf:Description rdf:about="&apiforkb-trm;isRequesteeOf"/>
+      <rdf:Description rdf:about="&apiforkb-try;isDelegatedTo"/>
+    </owl:propertyChainAxiom>    
   </owl:ObjectProperty>
   
   
@@ -242,7 +246,10 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
 
   <owl:ObjectProperty rdf:about="&apiforkb-trm;isRequestedBy">
     <rdfs:label>is requested by</rdfs:label>
-      <rdf:type rdf:resource="&owl;FunctionalProperty"/>    
+    <skos:note>OWL does not let us declare this to be functional, while keeping the property chain for its inverse.</skos:note>
+    <skos:note>
+      &lt;rdf:type rdf:resource="&owl;FunctionalProperty"/>            
+    </skos:note>          
   </owl:ObjectProperty>
   
     <owl:ObjectProperty rdf:about="&apiforkb-trm;isEventOf">
@@ -418,11 +425,12 @@ Copyright (c) 2014 Object Management Group, Inc.</sm:copyright>
         <rdfs:domain rdf:resource="&apiforkb-trm;KnowledgePlatformManager"/>
         <rdfs:range rdf:resource="&apiforkb-trm;KnowledgePlatform"/>
       <owl:propertyChainAxiom rdf:parseType="Collection">
-        <rdf:Description rdf:about="&apiforkb-trm;hasRequesteeOf"/>
+        <rdf:Description rdf:about="&apiforkb-trm;isRequesteeOf"/>
         <rdf:Description rdf:about="&apiforkb-try;hasEvent"/>
         <rdf:Description rdf:about="&apiforkb-ev;hasKPOutput"/>
       </owl:propertyChainAxiom>
     </owl:ObjectProperty>
+    
     
     <owl:ObjectProperty rdf:about="&apiforkb-trm;requires">
         <rdfs:label>requires</rdfs:label>
