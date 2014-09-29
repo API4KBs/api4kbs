@@ -72,6 +72,7 @@
   <owl:ObjectProperty rdf:about="&apiforkb-try;hasEvent">
     <rdfs:label>has event</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">event of a success</skos:definition>
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
     <rdfs:domain rdf:resource="&apiforkb-try;Success"/>    
     <owl:inverseOf rdf:resource="&apiforkb-try;isEventOf"/>
   </owl:ObjectProperty>
@@ -86,6 +87,10 @@
     <skos:definition rdf:datatype="&xsd;string">input of a try</skos:definition>
     <rdfs:domain rdf:resource="&apiforkb-try;Try"/>
     <owl:inverseOf rdf:resource="&apiforkb-try;isInputOf"/>
+    <owl:propertyChainAxiom rdf:parseType="Collection">
+      <rdf:Description rdf:about="&apiforkb-try;hasEvent"/>
+      <rdf:Description rdf:about="&apiforkb-ev;hasInput"/>
+    </owl:propertyChainAxiom>
   </owl:ObjectProperty>
   
   <owl:ObjectProperty rdf:about="&apiforkb-try;isInputOf">
@@ -95,28 +100,21 @@
   <owl:ObjectProperty rdf:about="&apiforkb-try;hasOutput">
     <rdfs:label>has output</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">output of a successful try</skos:definition>
-    <rdfs:domain rdf:resource="&apiforkb-try;Success"/>
+    <skos:note>
+      &lt;rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    </skos:note>
+      <rdfs:domain rdf:resource="&apiforkb-try;Success"/>
     <owl:inverseOf rdf:resource="&apiforkb-try;isOutputOf"/>
+    <owl:propertyChainAxiom rdf:parseType="Collection">
+      <rdf:Description rdf:about="&apiforkb-try;hasEvent"/>
+      <rdf:Description rdf:about="&apiforkb-ev;hasOutput"/>
+    </owl:propertyChainAxiom>
   </owl:ObjectProperty>
   
   <owl:ObjectProperty rdf:about="&apiforkb-try;isOutputOf">
     <rdfs:label>is output of</rdfs:label>
   </owl:ObjectProperty>
-  
-  <owl:ObjectProperty rdf:about="&apiforkb-try;hasKPOutput">
-    <rdfs:label>has knowledge platform output</rdfs:label>
-    <rdfs:range rdf:resource="&apiforkb-trm;KnowledgePlatform"/>
-    <rdfs:subPropertyOf rdf:resource="&apiforkb-try;hasOutput"/>
-    <owl:inverseOf rdf:resource="&apiforkb-try;isKPOutputOf"/>
-  </owl:ObjectProperty>
-  
-  <owl:ObjectProperty rdf:about="&apiforkb-try;isKPOutputOf">
-    <rdfs:label>is knowledge platform that is output of</rdfs:label>
-  </owl:ObjectProperty>
-  
-  
-  
-  
+    
   <owl:ObjectProperty rdf:about="&apiforkb-try;appliesQuery">
     <rdfs:label>applies query resource</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
@@ -129,6 +127,8 @@
   <owl:ObjectProperty rdf:about="&apiforkb-try;appliesQueryTo">
     <rdfs:label>applies query to resource</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">TBD</skos:definition>
+    <skos:note>
+      &lt;rdf:type rdf:resource="&owl;FunctionalProperty"/>                  </skos:note>
     <rdfs:domain rdf:resource="&apiforkb-try;QueryingTry"/>
     <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeSource"/>    
     <rdfs:subPropertyOf rdf:resource="&apiforkb-try;hasInput"/>
@@ -145,6 +145,9 @@
 
   <owl:ObjectProperty rdf:about="&apiforkb-try;addsTo">
     <rdfs:label>adds resource</rdfs:label>
+    <skos:note>
+      &lt;rdf:type rdf:resource="&owl;FunctionalProperty"/>            
+    </skos:note>
     <rdfs:domain rdf:resource="&apiforkb-try;InternalAddingTry"/>
     <rdfs:range rdf:resource="&apiforkb-trm;KnowledgeSource"/>
     <rdfs:subPropertyOf rdf:resource="&apiforkb-try;hasInput"/>
@@ -204,13 +207,6 @@
         <owl:someValuesFrom rdf:resource="&apiforkb-op;Operation"/>
       </owl:Restriction>
     </owl:subClassOf>
-    <owl:subClassOf>      
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-try;hasEvent"/>
-        <owl:onClass rdf:resource="&apiforkb-ev;Event"/>
-        <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
-      </owl:Restriction>    
-    </owl:subClassOf>
     <owl:disjointUnionOf rdf:parseType="Collection">
       <rdf:Description
         rdf:about="&apiforkb-try;Success"/>
@@ -260,12 +256,40 @@
     <rdfs:label>side-effect-free event</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">try of a side-effect-free operation</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-try;Try"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description
+            rdf:about="&apiforkb-try;Try"/>
+          <owl:Restriction>
+            <owl:onProperty
+              rdf:resource="&apiforkb-try;isTryOf"/>
+            <owl:someValuesFrom
+              rdf:resource="&apiforkb-op;SideEffectFreeOperation"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>    
   </owl:Class>
   
   <owl:Class rdf:about="&apiforkb-try;SideEffectfulTry">
     <rdfs:label>side-effectful event</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">try of a side-effectful operation</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-try;Try"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description
+            rdf:about="&apiforkb-try;Try"/>
+          <owl:Restriction>
+            <owl:onProperty
+              rdf:resource="&apiforkb-try;isTryOf"/>
+            <owl:someValuesFrom
+              rdf:resource="&apiforkb-op;SideEffectfulOperation"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>    
   </owl:Class>
 
 
@@ -273,13 +297,20 @@
     <rdfs:label>unary event</rdfs:label>
     <skos:definition rdf:datatype="&xsd;string">try of a unary operation</skos:definition>
     <rdfs:subClassOf rdf:resource="&apiforkb-try;Try"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="&apiforkb-try;hasInput"/>
-        <owl:onClass rdf:resource="&owl;Thing"/>
-        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <rdf:Description
+            rdf:about="&apiforkb-try;Try"/>
+          <owl:Restriction>
+            <owl:onProperty
+              rdf:resource="&apiforkb-try;isTryOf"/>
+            <owl:someValuesFrom
+              rdf:resource="&apiforkb-op;UnaryOperation"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
   </owl:Class> 
   
 
@@ -294,7 +325,7 @@
             rdf:about="&apiforkb-try;Try"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;InternalOperation"/>
           </owl:Restriction>
@@ -317,7 +348,7 @@
             rdf:about="&apiforkb-try;InternalTry"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;Action"/>
           </owl:Restriction>
@@ -332,19 +363,6 @@
     <skos:definition rdf:datatype="&xsd;string">try of a public operation.</skos:definition>
     <skos:example rdf:datatype="&xsd;string">Example: add Asset to an immutable KB to generate a new immutable KB. </skos:example>
     <rdfs:subClassOf rdf:resource="&apiforkb-try;Try"/>
-    <owl:subClassOf>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <rdf:Description
-            rdf:about="&apiforkb-try;Try"/>
-          <owl:Restriction>
-            <owl:onProperty
-              rdf:resource="&apiforkb-trm;actualizes"/>
-            <owl:someValuesFrom rdf:resource="&apiforkb-pro;Proficiency"/>
-          </owl:Restriction>
-        </owl:intersectionOf>
-      </owl:Class>
-    </owl:subClassOf>
     <owl:equivalentClass> 
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -352,7 +370,7 @@
             rdf:about="&apiforkb-try;Try"/>
           <owl:Restriction>
             <owl:onProperty
-              rdf:resource="&apiforkb-trm;isTryOf"/>
+              rdf:resource="&apiforkb-try;isTryOf"/>
             <owl:someValuesFrom
               rdf:resource="&apiforkb-op;PublicOperation"/>
           </owl:Restriction>
