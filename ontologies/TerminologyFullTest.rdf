@@ -56,7 +56,7 @@
   
   <!-- Properties
        interactsWith only [Proxy]
-       (requests) [Try[
+       (requests) [Try]
   -->
   
   <owl:NamedIndividual rdf:about="&apiforkb-st;ClientZ">
@@ -64,14 +64,14 @@
     <rdf:type rdf:resource="&apiforkb-trm;Client"/>
     <!-- infer
     <apiforkb-trm:interactsWith rdf:resource="&apiforkb-st;ProxyQ"/>
-    <apiforkb-trm:requests rdf:resource="&apiforkb-st;ProxyQCreatingKPV"/>
+    <apiforkb-trm:requests rdf:resource="&apiforkb-st;ProxyQTryCreatingKPV"/>
       -->
   </owl:NamedIndividual>
   
   <!-- Proxy -->
 
   <!-- Properties
-       interactsWith [Client, Proxy KPManager]
+       interactsWith [Client, Proxy, KPManager]
        (requests)
        (responds)
        conveys [Proficiency]
@@ -84,11 +84,13 @@
     <rdf:type rdf:resource="&apiforkb-trm;Proxy"/>
     <!-- infer 
     <apiforkb-trm:interactsWith rdf:resource="&apiforkb-st;ClientZ"/>
-    <apiforkb-trm:requests rdf:resource="&apiforkb-st;KPMWTryCreatingKPV"/>
     <apiforkb-trm:interactsWith rdf:resource="&apiforkb-st;KPManagerW"/>
-    <apiforkb-trm:implements rdf:resource="&apiforkb-st;AddingOperation-KnowledgeResourceToImmutableKBbyProxyQ"/>
-    <apiforkb-trm:conveys rdf:resource="&apiforkb-st;CreatingProficiency-KPbyKPMW"/>
-    <apiforkb-trm:executes rdf:resource="&apiforkb-st;proxyQaddingFocusedItem2ToImmutableKBB"/>
+    <apiforkb-trm:requests rdf:resource="&apiforkb-st;KPMWTryCreatingKPV"/>
+    <apiforkb-trm:isRequesteeOf rdf:resource="&apiforkb-st;ProxyQTryCreatingKPV"/>
+    <apiforkb-trm:isRequesteeOf rdf:resource="&apiforkb-st;ProxyQTryCreatingKPX"/>
+    <apiforkb-trm:implements rdf:resource="&apiforkb-st;PublicCreateOperation-KP"/>
+    <apiforkb-trm:conveys rdf:resource="&apiforkb-st;CreatingProficiency-KPforRDF"/>
+    <apiforkb-trm:executes rdf:resource="&apiforkb-st;ProxyQCreatingKPV"/>
     -->
   </owl:NamedIndividual>
   
@@ -125,23 +127,24 @@
       requires [Proficiency]
   -->
 
-  <owl:NamedIndividual rdf:about="&apiforkb-st;KPManagerWasKPFactoryRole">
+  <owl:NamedIndividual rdf:about="&apiforkb-st;RDFKPFactoryRole">
     <rdf:type rdf:resource="&apiforkb-trm;KPFactoryRole"/>
-    <rdfs:label>role of knowledge platform manager W as a knowledge platform factory</rdfs:label>
+    <rdfs:label>role of RDF knowledge platform factory</rdfs:label>
     <apiforkb-trm:isFilledBy rdf:resource="&apiforkb-st;KPManagerW"/>    
     <!-- infer 
-    <apiforkb-trm:requires rdf:resource="&apiforkb-st;CreatingProficiency-KPbyKPMW"/> 
+    <apiforkb-trm:requires rdf:resource="&apiforkb-st;CreatingProficiency-KPforRDF"/> 
     -->
   </owl:NamedIndividual>
-  
+  <!-- 
   <owl:NamedIndividual rdf:about="&apiforkb-st;KPManagerWasImmutableKBFactoryRole">
     <rdf:type rdf:resource="&apiforkb-trm;ImmutableKBFactoryRole"/>
     <rdfs:label>role of knowledge platform manager W as an immutable knowledge base factory</rdfs:label>
     <apiforkb-trm:isFilledBy rdf:resource="&apiforkb-st;KPManagerW"/>    
-    <!-- infer 
+      -->
+<!-- infer 
     <apiforkb-trm:requires rdf:resource="&apiforkb-st;AddingProficiency-KnowledgeResourceToImmutableKBbyKPMW"/> 
-    -->
   </owl:NamedIndividual>
+    -->
   
     
   <!--Proficiency-->
@@ -153,31 +156,34 @@
       isRequiredBy [Role]
   -->
 
-  <owl:NamedIndividual rdf:about="&apiforkb-st;CreatingProficiency-KPbyKPMW">
+  <owl:NamedIndividual rdf:about="&apiforkb-st;CreatingProficiency-KPforRDF">
     <rdf:type rdf:resource="&apiforkb-pro;CreatingProficiency-KP"/>
-    <rdfs:label>proficiency creating knowledge platforms by knowledge manager W</rdfs:label>
-    <apiforkb-trm:isRequiredBy rdf:resource="&apiforkb-st;KPManagerWasKPFactoryRole"/>
+    <rdfs:label>proficiency creating RDF knowledge platforms</rdfs:label>
+    <apiforkb-trm:isRequiredBy rdf:resource="&apiforkb-st;RDFKPFactoryRole"/>
     <!-- infer 
-    <apiforkb-trm:isExposedBy rdf:resource="&apiforkb-st;CreateOperation-KPbyProxyQ"/> 
+    <apiforkb-trm:isExposedBy rdf:resource="&apiforkb-st;PublicCreateOperation-KP"/> 
     <apiforkb-trm:isProficiencyOf rdf:resource="&apiforkb-st;KPManagerW"/> 
     -->
   </owl:NamedIndividual>
-  
+  <!-- 
   <owl:NamedIndividual rdf:about="&apiforkb-st;CreatingProficiency-ImmutableKBbyKPMW">
     <rdf:type rdf:resource="&apiforkb-pro;CreatingProficiency-immutableKB"/>
     <rdfs:label>proficiency creating immutableknowledge bases by knowledge manager W</rdfs:label>
-    <apiforkb-trm:isRequiredBy rdf:resource="&apiforkb-st;KPManagerWasKPFactoryRole"/>
+    <apiforkb-trm:isRequiredBy rdf:resource="&apiforkb-st;RDFKPFactoryRole"/>
+  -->
     <!-- infer 
-    <apiforkb-trm:isProficiencyOf rdf:resource="&apiforkb-st;KPManagerW"/> -->
+    <apiforkb-trm:isProficiencyOf rdf:resource="&apiforkb-st;KPManagerW"/> 
   </owl:NamedIndividual>
   
   <owl:NamedIndividual rdf:about="&apiforkb-st;AddingProficiency-KnowledgeResourceToImmutableKBbyKPMW">
           <rdf:type rdf:resource="&apiforkb-pro;AddingProficiency-KnowledgeResourceToImmutableKB"/>
     <rdfs:label>proficiency adding knowledge resources to immutable knowledge bases by knowledge manager W</rdfs:label>
     <apiforkb-trm:isRequiredBy rdf:resource="&apiforkb-st;KPManagerWasImmutableKBFactoryRole"/>
+    -->
     <!-- infer 
-    <apiforkb-trm:isProficiencyOf rdf:resource="&apiforkb-st;KPManagerW"/> -->
+    <apiforkb-trm:isProficiencyOf rdf:resource="&apiforkb-st;KPManagerW"/> 
   </owl:NamedIndividual>
+    -->
   
   <!-- Public Operations -->
 
@@ -188,22 +194,22 @@
        hasOutput []
        isImplementedBy [Application]
    -->    
-  <owl:NamedIndividual rdf:about="&apiforkb-st;CreateOperation-KPbyProxyQ">
-    <rdf:type rdf:resource="&apiforkb-op;CreateOperation-KP"/>
-    <rdfs:label>operation of proxy Q creating a knowledge platform</rdfs:label>
-    <apiforkb-trm:exposes rdf:resource="&apiforkb-st;CreatingProficiency-KPbyKPMW"/>
+  <owl:NamedIndividual rdf:about="&apiforkb-st;PublicCreateOperation-KP">
+    <rdf:type rdf:resource="&apiforkb-op;PublicCreateOperation-KP"/>
+    <rdfs:label>operation of creating a knowledge platform</rdfs:label>
+    <apiforkb-trm:exposes rdf:resource="&apiforkb-st;CreatingProficiency-KPforRDF"/>
     <apiforkb-trm:isImplementedBy rdf:resource="&apiforkb-st;ProxyQ"/>
     <!-- infer
      --> 
   </owl:NamedIndividual>
-
+  <!--  
   <owl:NamedIndividual rdf:about="&apiforkb-st;CreateOperation-ImmutableKBbyProxyQ">
     <rdf:type rdf:resource="&apiforkb-op;CreateOperation-ImmutableKB"/>
     <rdfs:label>operation of proxy Q creating an immutable knowledge base</rdfs:label>
     <apiforkb-trm:exposes rdf:resource="&apiforkb-st;CreatingProficiency-ImmutableKBbyKPMW"/>
     <apiforkb-trm:isImplementedBy rdf:resource="&apiforkb-st;ProxyQ"/>
+  -->
     <!-- infer
-     --> 
   </owl:NamedIndividual>
   
   <owl:NamedIndividual rdf:about="&apiforkb-st;PublicAddingOperation-KnowledgeResourceToImmutableKBbyProxyQ">
@@ -211,9 +217,10 @@
     <rdfs:label>operation of proxy Q adding knowledge resources to immutable knowledge bases</rdfs:label>
     <apiforkb-trm:exposes rdf:resource="&apiforkb-st;AddingProficiency-KnowledgeResourceToImmutableKBbyKPMW"/>
     <apiforkb-trm:isImplementedBy rdf:resource="&apiforkb-st;ProxyQ"/>
-    <!-- infer
      --> 
+    <!-- infer
   </owl:NamedIndividual>
+     --> 
   
   <!-- Try -->
   <!-- Properties
@@ -229,7 +236,7 @@
     <rdfs:label>proxy Q try creating knowledge platform V</rdfs:label>
     <apiforkb-trm:isRequestedBy rdf:resource="&apiforkb-st;ClientZ"/>
     <apiforkb-trm:hasRequestee rdf:resource="&apiforkb-st;ProxyQ"/>
-    <apiforkb-try:isTryOf rdf:resource="&apiforkb-st;CreateOperation-KPbyProxyQ"/>
+    <apiforkb-try:isTryOf rdf:resource="&apiforkb-st;PublicCreateOperation-KP"/>
     <apiforkb-try:hasInput rdf:resource="&apiforkb-st;ConfigurationItem"/>
     <!-- infer
     <rdf:type rdf:resource="&apiforkb-try;Success"/>
@@ -240,7 +247,7 @@
     <rdf:type rdf:resource="&apiforkb-try;InternalCreatingTry"/>
     <rdfs:label>knowledge platform manager W try creating knowledge platform V</rdfs:label>
     <apiforkb-trm:hasRequestee rdf:resource="&apiforkb-st;KPManagerW"/>
-    <apiforkb-try:isTryOf rdf:resource="&apiforkb-st;CreateOperation-KPbyKPMW"/>
+    <apiforkb-try:isTryOf rdf:resource="&apiforkb-st;InternalCreateOperation-KP"/>
     <apiforkb-try:isDelegatedFrom rdf:resource="&apiforkb-st;ProxyQTryCreatingKPV"/> 
     <!-- 
     <rdf:type rdf:resource="&apiforkb-try;Success"/>
@@ -256,10 +263,11 @@
     <rdfs:label>proxy Q try creating knowledge platform X</rdfs:label>
     <apiforkb-trm:isRequestedBy rdf:resource="&apiforkb-st;ClientZ"/>
     <apiforkb-trm:hasRequestee rdf:resource="&apiforkb-st;ProxyQ"/>
-    <apiforkb-try:isTryOf rdf:resource="&apiforkb-st;CreateOperation-KPbyProxyQ"/>
+    <apiforkb-try:isTryOf rdf:resource="&apiforkb-st;PublicCreateOperation-KP"/>
     <apiforkb-try:hasInput rdf:resource="&apiforkb-st;ConfigurationItem1"/>
     <apiforkb-try:hasInput rdf:resource="&apiforkb-st;ConfigurationItem2"/>
     <rdf:type rdf:resource="&apiforkb-try;Failure"/>
+    <apiforkb-try:hasError rdf:resource="&apiforkb-trm;InvalidInputError"/>
     <!-- infer
     -->
   </owl:NamedIndividual>
@@ -286,10 +294,10 @@
     <rdfs:label>public event by proxy Q creating knowledge platform V</rdfs:label>
     <apiforkb-try:isEventOf rdf:resource="&apiforkb-st;ProxyQTryCreatingKPV"/>
     <!-- infer 
-    <apiforkb-trm:isEventOf rdf:resource="&apiforkb-st;CreateOperation-KPbyProxyQ"/>
+    <apiforkb-trm:isEventOf rdf:resource="&apiforkb-st;PublicCreateOperation-KP"/>
     <apiforkb-ev:useConfiguration>...some XML ...</apiforkb-trm:useConfiguration>
     <apiforkb-ev:hasKPOutput rdf:resource="&apiforkb-st;KPV"/>
-    <apiforkb-trm:actualizes rdf:resource="&apiforkb-st;CreatingProficiency-KPbyKPMW"/>
+    <apiforkb-trm:actualizes rdf:resource="&apiforkb-st;CreatingProficiency-KPforRDF"/>
     -->
   </owl:NamedIndividual>
 
@@ -308,7 +316,7 @@
     <!-- infer 
     <apiforkb-trm:isImplementedBy rdf:resource="&apiforkb-st;KPM"/>
     <apiforkb-ev:hasOutput rdf:resource="&apiforkb-st;KPV"/>
-    <apiforkb-trm:isEventOf rdf:resource="&apiforkb-st;CreateOperation-KPbyKPMW"/>
+    <apiforkb-trm:isEventOf rdf:resource="&apiforkb-st;InternalCreateOperation-KP"/>
     -->
   </owl:NamedIndividual>
   
@@ -323,6 +331,31 @@
     <apiforkb-trm:isManagedBy rdf:resource="&apiforkb-st;KPManagerW"/>
     -->
   </owl:NamedIndividual>
+  
+  <!-- Response -->
+
+  <owl:NamedIndividual rdf:about="&apiforkb-st;ResponseCreateKPVbyKPMW">
+    <rdf:type rdf:resource="&apiforkb-trm;Response"/>
+    <rdfs:label>response about creation of KP V by KP Manager W</rdfs:label>
+    <apiforkb-trm:about rdf:resource="&apiforkb-st;ProxyQTryCreatingKPV"/>
+    <apiforkb-trm:hasContent rdf:resource="&apiforkb-st;KPVSnapshot-Description"/>
+    <!-- infer
+    <apiforkb-trm:hasSender rdf:resource="&apiforkb-st;KPManagerW"/>
+    <apiforkb-trm:hasRecipient rdf:resource="&apiforkb-st;ProxyQ"/>
+    -->
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:about="&apiforkb-st;ResponseCreateKPVbyProxyQ">
+    <rdf:type rdf:resource="&apiforkb-trm;Response"/>
+    <rdfs:label>response about creation of KP V by Proxy Q</rdfs:label>
+    <apiforkb-trm:about rdf:resource="&apiforkb-st;KPMWTryCreatingKPV"/>
+    <apiforkb-trm:hasContent rdf:resource="&apiforkb-st;KPVSnapshot-Description"/>
+    <!-- infer
+    <apiforkb-trm:hasSender rdf:resource="&apiforkb-st;ProxyQ"/>
+    <apiforkb-trm:hasRecipient rdf:resource="&apiforkb-st;ClientZ"/>
+    -->
+  </owl:NamedIndividual>
+  
   
   <!-- End Here -->
   
