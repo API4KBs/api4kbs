@@ -12,9 +12,9 @@ Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/fileAbbrevia
 Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/filename> "API4KBTerminologyProficiency.rdf"^^xsd:string)
 Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/fileAbstract> "This ontology covers terminology used for describing the proficiencies defined by the API4KB specification."^^xsd:string)
 Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/contentLanguage> "http://www.w3.org/standards/techs/owl#w3c_all"^^xsd:anyURI)
-Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/contentLanguage> "http://www.omg.org/spec/ODM/"^^xsd:anyURI)
-Annotation(<http://purl.org/dc/terms/license> "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
 Annotation(rdfs:label "API4KB Proficiency Terminology Ontology")
+Annotation(<http://purl.org/dc/terms/license> "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
+Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/contentLanguage> "http://www.omg.org/spec/ODM/"^^xsd:anyURI)
 Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/copyright> "Copyright (c) 2014 Athan Services
 Copyright (c) 2014 Thematix Partners LLC
 Copyright (c) 2014 Object Management Group, Inc."^^xsd:string)
@@ -33,10 +33,14 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> <http://www
 SubClassOf(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/AddingProficiency-KnowledgeSourceToMutableKB> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/Proficiency>)
 SubClassOf(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/AddingProficiency-KnowledgeSourceToMutableKB> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/SideEffectfulProficiency>)
 Declaration(Class(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/Proficiency>))
-AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/Proficiency> "Note: In our architecture, roficiencies are provided by a collection of components (which may contain just one component). Different collections of components may provide the same proficiency. The standard API4KB proficiencies will be enumerated in the specification."^^xsd:string)
 AnnotationAssertion(rdfs:label <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/Proficiency> "proficiency")
-AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/Proficiency> "functionality that is actualized by the events of one or more public operations."^^xsd:string)
-SubClassOf(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/Proficiency> ObjectAllValuesFrom(<http://www.omg.org/spec/API4KB/API4KBTerminology/isActualizedBy> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/PublicEvent>))
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#note> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/Proficiency> "Knowledge Platform is in the middle between Components and Proficiencies.
+The (externally developed) Components each implement some set of operations.
+The Knowledge Platform is built from a number of Components, and so has the functionality of all operations of those Components, plus the functionality captured by all compositions of these operations.
+A Proficiency of the KP is a subset of the operations supported by its collection of Components that are exposed through its public API to \"clients\".")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/Proficiency> "functionality that is actualized by the events of one or more knowledge operations."^^xsd:string)
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/Proficiency> "Note: In our architecture, proficiencies are provided by a collection of components (which may contain just one component). Different collections of components may provide the same proficiency. The standard API4KB proficiencies will be enumerated in the specification."^^xsd:string)
+SubClassOf(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/Proficiency> ObjectAllValuesFrom(<http://www.omg.org/spec/API4KB/API4KBTerminology/isActualizedBy> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/KnowledgeEvent>))
 Declaration(Class(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/SideEffectFreeProficiency>))
 AnnotationAssertion(rdfs:label <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/SideEffectFreeProficiency> "side-effect-free proficiency")
 SubClassOf(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/SideEffectFreeProficiency> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/Proficiency>)
