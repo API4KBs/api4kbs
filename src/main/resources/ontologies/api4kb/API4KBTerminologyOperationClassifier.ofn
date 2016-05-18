@@ -1,3 +1,4 @@
+Prefix(:=<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#>)
 Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
 Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
 Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
@@ -8,24 +9,58 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 Ontology(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier>
 Import(<http://www.w3.org/2004/02/skos/core>)
 
-Declaration(Class(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#ArityClassifier>))
-Declaration(Class(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#Classifier>))
-Declaration(Class(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#InputOutputTypeRelationClassifier>))
-Declaration(Class(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#InputTypeClassifier>))
-Declaration(Class(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#OutputTypeClassifier>))
-Declaration(Class(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#SemanticClassifier>))
-Declaration(Class(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#SideEffectClassifier>))
-Declaration(Class(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#SyntacticClassifier>))
-Declaration(Class(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#SystemLevelClassifier>))
-Declaration(Class(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#TypeClassifier>))
-SubClassOf(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#ArityClassifier> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#SyntacticClassifier>)
-SubClassOf(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#InputOutputTypeRelationClassifier> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#TypeClassifier>)
-SubClassOf(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#InputTypeClassifier> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#TypeClassifier>)
-SubClassOf(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#OutputTypeClassifier> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#TypeClassifier>)
-SubClassOf(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#SemanticClassifier> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#Classifier>)
-SubClassOf(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#SideEffectClassifier> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#SemanticClassifier>)
-SubClassOf(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#SyntacticClassifier> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#Classifier>)
-SubClassOf(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#SystemLevelClassifier> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#Classifier>)
-AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#TypeClassifier> "Syntactic classifier that specifies the type of input and/or output.")
-SubClassOf(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#TypeClassifier> <http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier#SyntacticClassifier>)
+Declaration(Class(:ArityClassifier))
+Declaration(Class(:Classifier))
+Declaration(Class(:InputOutputTypeRelationClassifier))
+Declaration(Class(:InputTypeClassifier))
+Declaration(Class(:OutputTypeClassifier))
+Declaration(Class(:SemanticClassifier))
+Declaration(Class(:SideEffectClassifier))
+Declaration(Class(:SyntacticClassifier))
+Declaration(Class(:SystemLevelClassifier))
+Declaration(Class(:TypeClassifier))
+
+
+############################
+#   Classes
+############################
+
+# Class: :ArityClassifier (:ArityClassifier)
+
+SubClassOf(:ArityClassifier :SyntacticClassifier)
+
+# Class: :InputOutputTypeRelationClassifier (:InputOutputTypeRelationClassifier)
+
+SubClassOf(:InputOutputTypeRelationClassifier :TypeClassifier)
+
+# Class: :InputTypeClassifier (:InputTypeClassifier)
+
+SubClassOf(:InputTypeClassifier :TypeClassifier)
+
+# Class: :OutputTypeClassifier (:OutputTypeClassifier)
+
+SubClassOf(:OutputTypeClassifier :TypeClassifier)
+
+# Class: :SemanticClassifier (:SemanticClassifier)
+
+SubClassOf(:SemanticClassifier :Classifier)
+
+# Class: :SideEffectClassifier (:SideEffectClassifier)
+
+SubClassOf(:SideEffectClassifier :SemanticClassifier)
+
+# Class: :SyntacticClassifier (:SyntacticClassifier)
+
+SubClassOf(:SyntacticClassifier :Classifier)
+
+# Class: :SystemLevelClassifier (:SystemLevelClassifier)
+
+SubClassOf(:SystemLevelClassifier :Classifier)
+
+# Class: :TypeClassifier (:TypeClassifier)
+
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> :TypeClassifier "Syntactic classifier that specifies the type of input and/or output.")
+SubClassOf(:TypeClassifier :SyntacticClassifier)
+
+
 )

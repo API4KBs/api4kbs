@@ -1,3 +1,4 @@
+Prefix(:=<http://www.omg.org/spec/API4KB/API4KBTerminology/CPTest#>)
 Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
 Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
 Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
@@ -25,18 +26,49 @@ Declaration(NamedIndividual(cptest:DestroyingProficiency-KP-KPM_A))
 Declaration(NamedIndividual(cptest:KPMRoleA))
 Declaration(NamedIndividual(cptest:KnowledgePlatformManagerA))
 Declaration(NamedIndividual(cptest:ModifyingProficiency-KP-KPM_A))
+
+
+############################
+#   Named Individuals
+############################
+
+# Individual: cptest:CreateEmptyKPEventA (cptest:CreateEmptyKPEventA)
+
 ClassAssertion(api4kbevent:NullaryEvent cptest:CreateEmptyKPEventA)
 ObjectPropertyAssertion(api4kbterminology:isEventOf cptest:CreateEmptyKPEventA cptest:CreateEmptyKPOperationA)
+
+# Individual: cptest:CreateEmptyKPFunctionalityA (cptest:CreateEmptyKPFunctionalityA)
+
 ClassAssertion(api4kbterminology:CreateEmptyKPFunctionality cptest:CreateEmptyKPFunctionalityA)
+
+# Individual: cptest:CreateEmptyKPOperationA (cptest:CreateEmptyKPOperationA)
+
 ClassAssertion(api4kboperation:CreateEmptyKPOperation cptest:CreateEmptyKPOperationA)
+
+# Individual: cptest:CreatingProficiency-KP-KPM_A (cptest:CreatingProficiency-KP-KPM_A)
+
 ClassAssertion(api4kbproficiency:CreatingProficiency-KnowledgePlatform cptest:CreatingProficiency-KP-KPM_A)
 ObjectPropertyAssertion(api4kbterminology:exposes cptest:CreatingProficiency-KP-KPM_A cptest:CreateEmptyKPFunctionalityA)
+
+# Individual: cptest:DestroyingProficiency-KP-KPM_A (cptest:DestroyingProficiency-KP-KPM_A)
+
 ClassAssertion(api4kbproficiency:DestroyingProficiency-KnowledgePlatform cptest:DestroyingProficiency-KP-KPM_A)
+
+# Individual: cptest:KPMRoleA (cptest:KPMRoleA)
+
 ClassAssertion(api4kbterminology:KnowledgePlatformManagerRole cptest:KPMRoleA)
 ObjectPropertyAssertion(api4kbterminology:requires cptest:KPMRoleA cptest:CreatingProficiency-KP-KPM_A)
-ObjectPropertyAssertion(api4kbterminology:requires cptest:KPMRoleA cptest:ModifyingProficiency-KP-KPM_A)
 ObjectPropertyAssertion(api4kbterminology:requires cptest:KPMRoleA cptest:DestroyingProficiency-KP-KPM_A)
+ObjectPropertyAssertion(api4kbterminology:requires cptest:KPMRoleA cptest:ModifyingProficiency-KP-KPM_A)
+
+# Individual: cptest:KnowledgePlatformManagerA (cptest:KnowledgePlatformManagerA)
+
 ClassAssertion(api4kbterminology:CommunicatingEntity cptest:KnowledgePlatformManagerA)
 ObjectPropertyAssertion(api4kbterminology:fillsRole cptest:KnowledgePlatformManagerA cptest:KPMRoleA)
+
+# Individual: cptest:ModifyingProficiency-KP-KPM_A (cptest:ModifyingProficiency-KP-KPM_A)
+
 ClassAssertion(api4kbproficiency:ModifyingProficiency-KnowledgePlatform cptest:ModifyingProficiency-KP-KPM_A)
+
+
 )

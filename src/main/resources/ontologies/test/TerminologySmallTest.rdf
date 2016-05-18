@@ -1,44 +1,207 @@
 <?xml version="1.0"?>
-
-
-<!DOCTYPE rdf:RDF [
-    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
-    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
-    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
-    <!ENTITY dct "http://purl.org/dc/terms/" >
-    <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
-    <!ENTITY sm "http://www.omg.org/techprocess/ab/SpecificationMetadata/" >
-    <!ENTITY ontoiop-trm "http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/" >
-    <!ENTITY apiforkb-trm "http://www.omg.org/spec/API4KB/API4KBTerminology/" >
-    <!ENTITY apiforkb-op "http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperation/" >
-    <!ENTITY apiforkb-ev "http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/" >
-    <!ENTITY apiforkb-pro "http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/" >
-    <!ENTITY apiforkb-st "http://www.omg.org/spec/API4KB/SmallTest/" >
-]>
-
-<!-- This is example is out-of-date -->
-
-<rdf:RDF xml:base="&apiforkb-st;"
-  xmlns:rdf="&rdf;"
-  xmlns:rdfs="&rdfs;"
-  xmlns:owl="&owl;"
-  xmlns:xsd="&xsd;"
-  xmlns:dct="&dct;"
-  xmlns:skos="&skos;"
-  xmlns:sm="&sm;"
-  xmlns:ontoiop-trm="&ontoiop-trm;"
-  xmlns:apiforkb-trm="&apiforkb-trm;"
-  xmlns:apiforkb-op="&apiforkb-op;"
-  xmlns:apiforkb-ev="&apiforkb-ev;"
-  xmlns:apiforkb-pro="&apiforkb-pro;"
-  xmlns:apiforkb-st="&apiforkb-st;">
-    <owl:Ontology rdf:about="&apiforkb-st;">
+<rdf:RDF xmlns="http://www.omg.org/spec/API4KB/SmallTest/"
+     xml:base="http://www.omg.org/spec/API4KB/SmallTest/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:ontoiop-trm="http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/"
+     xmlns:apiforkb-ev="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:API4KBClassifier="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBClassifier#"
+     xmlns:apiforkb-trm="http://www.omg.org/spec/API4KB/API4KBTerminology/"
+     xmlns:dct="http://purl.org/dc/terms/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:apiforkb-st="http://www.omg.org/spec/API4KB/SmallTest/"
+     xmlns:apiforkb-op="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperation/"
+     xmlns:sm="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
+     xmlns:apiforkb-pro="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/"
+     xmlns:DOL-terms="http://www.omg.org/spec/DOL/DOL-terms/">
+    <owl:Ontology rdf:about="http://www.omg.org/spec/API4KB/SmallTest/">
+        <owl:imports rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/"/>
+        <owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
         <rdfs:label>API4KB Terminology Ontology</rdfs:label>
-        <owl:imports rdf:resource="&apiforkb-trm;"/>
-        <owl:imports rdf:resource="&sm;"/>
     </owl:Ontology>
     
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/adds -->
+
+    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/adds"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/addsTo -->
+
+    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/addsTo"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/delgatesTo -->
+
+    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/delgatesTo"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/expressedAs -->
+
+    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/expressedAs"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/hasInput -->
+
+    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/hasInput"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/hasOutput -->
+
+    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/hasOutput"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/hasOutput-Conceptualize -->
+
+    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/hasOutput-Conceptualize"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/localCopyOf -->
+
+    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/localCopyOf"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/manifestationOf -->
+
+    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/manifestationOf"/>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/hasPart -->
+
+    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/hasPart"/>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/hasSetOfExpressions -->
+
+    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/hasSetOfExpressions"/>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/hasSubset -->
+
+    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/hasSubset"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/FocusedEncoding -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/FocusedEncoding"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/FocusedGeneralizedExpression -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/FocusedGeneralizedExpression"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/FocusedItem -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/FocusedItem"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/FocusedManifestation -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/FocusedManifestation"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/GeneralizedExpression -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/GeneralizedExpression"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/ImmutableFocusedEnvironment -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/ImmutableFocusedEnvironment"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgePlatformManager -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgePlatformManager"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/AddingEvent-KnowledgeResourceToImmutableKB -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/AddingEvent-KnowledgeResourceToImmutableKB"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/Event-AdditionOf-HorizontalAssetEventOut -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/Event-AdditionOf-HorizontalAssetEventOut"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/ImmutableEvent-AdditionTo -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/ImmutableEvent-AdditionTo"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/InternalAddingEvent-FocusedItemToImmutableKB -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/InternalAddingEvent-FocusedItemToImmutableKB"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperation/AddingOperation-KnowledgeResourceToImmutableKB -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperation/AddingOperation-KnowledgeResourceToImmutableKB"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperation/InternalAddingOperation-FocusedItemToImmutableKB -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperation/InternalAddingOperation-FocusedItemToImmutableKB"/>
+    
+
+
+    <!-- http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/SetOfExpressions -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/SetOfExpressions"/>
+    
+
 
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -47,433 +210,345 @@
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
-<!-- Applications 
-  interactsWith [Application]
--->
-  
-  <!--Client -->
-  
-  <!-- Properties
-       interactsWith only [Proxy]
-       (requests)
-  -->
-  
-  <owl:NamedIndividual rdf:about="&apiforkb-st;ClientZ">
-    <rdfs:label>client Z</rdfs:label>
-    <rdf:type rdf:resource="&apiforkb-trm;Client"/>
-  </owl:NamedIndividual>
-  
-  <!-- Proxy -->
 
-  <!-- Properties
-       interactsWith [Client, Proxy KPManager]
-       (requests)
-       (responds)
-       hasProficiency [Proficiency]
-       implements [PublicOperation]
-       executes [PublicEvent]
-  -->
-  
-  <owl:NamedIndividual rdf:about="&apiforkb-st;ProxyQ">
-    <rdfs:label>knowledge manager W</rdfs:label>
-    <rdf:type rdf:resource="&apiforkb-trm;Proxy"/>
-    <apiforkb-trm:interactsWith rdf:resource="&apiforkb-st;ClientZ"/>
-    <!-- invert these 
-    <apiforkb-trm:interactsWith rdf:resource="&apiforkb-st;KPManagerW"/>
-    -->
-    <apiforkb-trm:implements rdf:resource="&apiforkb-st;AddingOperation-KnowledgeResourceToImmutableKBbyProxyQ"/>
-    <apiforkb-trm:executes rdf:resource="&apiforkb-st;proxyQaddingFocusedItem2ToImmutableKBB"/>
-  </owl:NamedIndividual>
-  
-  <!-- KPManager -->
-
-  <!-- Properties
-       interactsWith exactly one [Proxy]
-       (requests)
-       (responds)
-       fillsRole
-       manages
-       implements [InternalOperation]
-       executes [InternalEvent]
-  -->
-  
-  <owl:NamedIndividual rdf:about="&apiforkb-st;KPManagerW">
-    <rdf:type rdf:resource="&apiforkb-trm;KnowledgePlatformManager"/>
-    <rdfs:label>knowledge platform manager W</rdfs:label>
-    <apiforkb-trm:interactsWith rdf:resource="&apiforkb-st;ProxyQ"/>
-    <!-- invert 
-    <apiforkb-trm:hasProficiency rdf:resource="&apiforkb-st;AddingProficiency-KnowledgeResourceToImmutableKBbyKPMW"/>
-    <apiforkb-trm:fillsRole rdf:resource="&apiforkb-st;KPManagerWasImmutableKBFactoryRole"/>
-    -->
-    <apiforkb-trm:manages rdf:resource="&apiforkb-st;KPV"/>
-    <apiforkb-trm:implements rdf:resource="&apiforkb-st;AddingOperation-FocusedItemToImmutableKBbyKPMW"/>
-
-    <apiforkb-trm:executes rdf:resource="&apiforkb-st;KPMWconceptualizingKED"/>
-  </owl:NamedIndividual>
-  
-
-  <!-- Role -->
-
-  <!-- Properties
-      isFilledBy [KPManager]
-      requires [Proficiency]
-  -->
-  
-  <owl:NamedIndividual rdf:about="&apiforkb-st;KPManagerWasImmutableKBFactoryRole">
-    <rdf:type rdf:resource="&apiforkb-trm;ImmutableKBFactoryRole"/>
-    <rdfs:label>role of knowledge platform manager W as an immutable knowledge base factory</rdfs:label>
-    <apiforkb-trm:isFilledBy rdf:resource="&apiforkb-st;KPManagerW"/>    
-    <!-- invert 
-    <apiforkb-trm:requires rdf:resource="&apiforkb-st;AddingProficiency-KnowledgeResourceToImmutableKBbyKPMW"/> 
-    -->
-  </owl:NamedIndividual>
-  
-    
-  <!--Proficiency-->
-  
-  <!-- Properties
-      isExposedBy [Operation]
-      isActualizedBy [Event]
-      isProficiencyOf [KPManager]
-      isRequiredBy [Role]
-  -->
-  
-  <owl:NamedIndividual rdf:about="&apiforkb-st;AddingProficiency-KnowledgeResourceToImmutableKBbyKPMW">
-          <rdf:type rdf:resource="&apiforkb-pro;AddingProficiency-KnowledgeResourceToImmutableKB"/>
-    <rdfs:label>proficiency adding knowledge resources to immutable knowledge bases by knowledge manager W</rdfs:label>
-    <apiforkb-trm:isRequiredBy rdf:resource="&apiforkb-st;KPManagerWasImmutableKBFactoryRole"/>
-    <!-- infer 
-    <apiforkb-trm:isProficiencyOf rdf:resource="&apiforkb-st;KPManagerW"/> -->
-  </owl:NamedIndividual>
     
 
 
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/AddingOperation-FocusedItemToImmutableKBbyKPMW -->
 
-
-    <!--Expression-->
-
-  <!-- Properties
-       accordingTo [Environment]
-       expresses [Asset]
-       isManifestedBy [Manifestation]
-       usesLanguage [Language]
-       isRegisteredWith [KP]
-       isInputOf [Event]
-       isOutputOf [Event]
-       isSnapshotOf [MutableSource]
-       (hasModel, inverse of isModelOfOMS) 
-       ontoiop-trm:hasSetOfExpressions
-  -->
-  
-    <owl:NamedIndividual rdf:about="&apiforkb-st;FocusedExpression2">
-      <rdfs:label>focused expression 2</rdfs:label>
-      <rdf:type rdf:resource="&apiforkb-trm;FocusedGeneralizedExpression"/>
-      <apiforkb-trm:accordingTo rdf:resource="&apiforkb-st;LE2"/>
-        <ontoiop-trm:hasSetOfExpressions rdf:resource="&apiforkb-st;SetOfExpressions2"/>
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/AddingOperation-FocusedItemToImmutableKBbyKPMW">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperation/InternalAddingOperation-FocusedItemToImmutableKB"/>
+        <rdfs:label>internal operation of knowledge knowledge manager W adding focused items to immutable knowledge bases</rdfs:label>
     </owl:NamedIndividual>
     
 
 
-    <!-- Encoding -->
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/AddingOperation-KnowledgeResourceToImmutableKBbyProxyQ -->
 
-  <!-- Properties
-       accordingTo [Environment]
-       encodes [Manifestation]
-       characterizes [Item]
-       (usesCodingSystem [CodingSystem])
-       isRegisteredWith [KP]
-       isInputOf [Event]
-       isOutputOf [Event]
-       isSnapshotOf [MutableSource]
-  -->
-  
-    <owl:NamedIndividual rdf:about="&apiforkb-st;FocusedEncoding2">
-      <rdfs:label>focused encoding 2</rdfs:label>
-      <rdf:type rdf:resource="&apiforkb-trm;FocusedEncoding"/>
-      <apiforkb-trm:encodes rdf:resource="&apiforkb-st;FocusedManifestation2"/>
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/AddingOperation-KnowledgeResourceToImmutableKBbyProxyQ">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperation/AddingOperation-KnowledgeResourceToImmutableKB"/>
+        <rdfs:label>operation of proxy Q adding knowledge resources to immutable knowledge bases</rdfs:label>
     </owl:NamedIndividual>
     
 
 
-    <!-- Manifestation -->
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/AddingProficiency-KnowledgeResourceToImmutableKBbyKPMW -->
 
-  <!-- Properties
-       accordingTo [Environment]
-       manifests [Expression]
-       decodes [Encoding]
-       (usesSerialization [Serialization])
-       isRegisteredWith [KP]
-       isInputOf [Event]
-       isOutputOf [Event]
-       isSnapshotOf [MutableSource]
-  -->
-  
-    <owl:NamedIndividual rdf:about="&apiforkb-st;FocusedManifestation2">
-      <rdfs:label>focused manifestation 2</rdfs:label>
-      <rdf:type rdf:resource="&apiforkb-trm;FocusedManifestation"/>
-      <apiforkb-trm:manifestationOf rdf:resource="&apiforkb-st;FocusedExpression2"/>
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/AddingProficiency-KnowledgeResourceToImmutableKBbyKPMW">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/AddingProficiency-KnowledgeResourceToImmutableKB"/>
+        <apiforkb-trm:isRequiredBy rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/KPManagerWasImmutableKBFactoryRole"/>
+        <rdfs:label>proficiency adding knowledge resources to immutable knowledge bases by knowledge manager W</rdfs:label>
     </owl:NamedIndividual>
     
 
 
-    <!-- Item -->
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/ClientZ -->
 
-  <!-- Properties
-       accordingTo [Environment]
-       reproduces [Encoding]
-       isRegisteredWith [KP]
-       isInputOf [Event]
-       isOutputOf [Event]
-       isSnapshotOf [MutableSource]
-  -->
-  
-    <owl:NamedIndividual rdf:about="&apiforkb-st;FocusedItem2">
-      <rdfs:label>focused item 2</rdfs:label>
-      <rdf:type rdf:resource="&apiforkb-trm;FocusedItem"/>
-      <apiforkb-trm:localCopyOf rdf:resource="&apiforkb-st;FocusedEncoding2"/>
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/ClientZ">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/Client"/>
+        <rdfs:label>client Z</rdfs:label>
     </owl:NamedIndividual>
     
 
 
-    <!-- Expression -->
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/FocusedEncoding2 -->
 
-    <owl:NamedIndividual rdf:about="&apiforkb-st;KEB">
-      <rdfs:label>knowledge expression B</rdfs:label>
-      <rdf:type rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
-        <ontoiop-trm:hasSetOfExpressions rdf:resource="&apiforkb-st;SetOfExpressions1"/>
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/FocusedEncoding2">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/FocusedEncoding"/>
+        <apiforkb-trm:encodes rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/FocusedManifestation2"/>
+        <rdfs:label>focused encoding 2</rdfs:label>
     </owl:NamedIndividual>
     
 
 
-    <!-- Expression -->
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/FocusedExpression2 -->
 
-    <owl:NamedIndividual rdf:about="&apiforkb-st;KE-D">
-      <rdfs:label>knowledge expression D</rdfs:label>
-      <rdf:type rdf:resource="&apiforkb-trm;GeneralizedExpression"/>
-        <ontoiop-trm:hasSetOfExpressions rdf:resource="&apiforkb-st;SetOfExpressions3"/>
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/FocusedExpression2">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/FocusedGeneralizedExpression"/>
+        <apiforkb-trm:accordingTo rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/LE2"/>
+        <ontoiop-trm:hasSetOfExpressions rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/SetOfExpressions2"/>
+        <rdfs:label>focused expression 2</rdfs:label>
     </owl:NamedIndividual>
     
 
 
-    <!-- Asset -->
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/FocusedItem2 -->
 
-  <!-- Properties
-       accordingTo [Environment]
-       conceptualizes [Expression]
-       isRegisteredWith [KP]
-       isInputOf [Event]
-       isOutputOf [Event]
-       isSnapshotOf [MutableSource]
-  -->
-  
-    <owl:NamedIndividual rdf:about="&apiforkb-st;ImmutableKBB">
-        <rdf:type rdf:resource="&apiforkb-trm;ImmutableKnowledgeBase"/>
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/FocusedItem2">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/FocusedItem"/>
+        <apiforkb-trm:localCopyOf rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/FocusedEncoding2"/>
+        <rdfs:label>focused item 2</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/FocusedManifestation2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/FocusedManifestation2">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/FocusedManifestation"/>
+        <apiforkb-trm:manifestationOf rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/FocusedExpression2"/>
+        <rdfs:label>focused manifestation 2</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/ImmutableKBB -->
+
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/ImmutableKBB">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/ImmutableKnowledgeBase"/>
+        <apiforkb-trm:accordingTo rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/LEB"/>
+        <apiforkb-trm:conceptualizes rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/KE-B"/>
+        <apiforkb-trm:isRegisteredWith rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/KPV"/>
         <rdfs:label>immutable knowledge base B</rdfs:label>
-      <apiforkb-trm:conceptualizes rdf:resource="&apiforkb-st;KE-B"/>
-      <apiforkb-trm:isRegisteredWith rdf:resource="&apiforkb-st;KPV"/>
-      <apiforkb-trm:accordingTo rdf:resource="&apiforkb-st;LEB"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- KB -->
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/ImmutableKBD -->
 
-    <owl:NamedIndividual rdf:about="&apiforkb-st;ImmutableKBD">
-        <rdf:type rdf:resource="&apiforkb-trm;ImmutableKnowledgeBase"/>
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/ImmutableKBD">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/ImmutableKnowledgeBase"/>
+        <apiforkb-trm:accordingTo rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/LED"/>
+        <apiforkb-trm:expressedAs rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/KE-D"/>
         <rdfs:label>immutable knowledge base D</rdfs:label>
-      <apiforkb-trm:expressedAs rdf:resource="&apiforkb-st;KE-D"/>
-      <apiforkb-trm:accordingTo rdf:resource="&apiforkb-st;LED"/>
     </owl:NamedIndividual>
     
 
 
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/KE-B -->
 
-
-
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/KE-B"/>
     
 
 
-    <!-- KP -->
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/KE-D -->
 
-    <owl:NamedIndividual rdf:about="&apiforkb-st;KPV">
-        <rdf:type rdf:resource="&apiforkb-trm;KnowledgePlatform"/>
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/KE-D">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/GeneralizedExpression"/>
+        <ontoiop-trm:hasSetOfExpressions rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/SetOfExpressions3"/>
+        <rdfs:label>knowledge expression D</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/KEB -->
+
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/KEB">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/GeneralizedExpression"/>
+        <ontoiop-trm:hasSetOfExpressions rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/SetOfExpressions1"/>
+        <rdfs:label>knowledge expression B</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/KPMWconceptualizingKEB -->
+
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/KPMWconceptualizingKEB">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/ConceptualizingEvent"/>
+        <apiforkb-trm:hasInput rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/KEB"/>
+        <apiforkb-trm:hasOutput-Conceptualize rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/ImmutableKBB"/>
+        <rdfs:label>action event: knowledge platform manager W conceptualizing generalized expression B</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/KPMWconceptualizingKED -->
+
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/KPMWconceptualizingKED"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/KPManagerW -->
+
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/KPManagerW">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgePlatformManager"/>
+        <apiforkb-trm:executes rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/KPMWconceptualizingKED"/>
+        <apiforkb-trm:implements rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/AddingOperation-FocusedItemToImmutableKBbyKPMW"/>
+        <apiforkb-trm:interactsWith rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/ProxyQ"/>
+        <apiforkb-trm:manages rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/KPV"/>
+        <rdfs:label>knowledge platform manager W</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/KPManagerWasImmutableKBFactoryRole -->
+
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/KPManagerWasImmutableKBFactoryRole">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/ImmutableKBFactoryRole"/>
+        <apiforkb-trm:isFilledBy rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/KPManagerW"/>
+        <rdfs:label>role of knowledge platform manager W as an immutable knowledge base factory</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/KPV -->
+
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/KPV">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/KnowledgePlatform"/>
         <rdfs:label>knowledge platform V</rdfs:label>
     </owl:NamedIndividual>
     
 
 
-    <!-- Environment -->
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/KPWAddingFocusedItem2ToImmutableKBB -->
 
-    <owl:NamedIndividual rdf:about="&apiforkb-st;LE2">
-      <rdfs:label>environment 2</rdfs:label>
-      <rdf:type rdf:resource="&apiforkb-trm;BasicEnvironment"/>
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/KPWAddingFocusedItem2ToImmutableKBB">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/InternalAddingEvent-FocusedItemToImmutableKB"/>
+        <apiforkb-trm:isEventOf rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/AddingOperation-FocusedItemToImmutableKBbyKPMW"/>
+        <apiforkb-trm:adds rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/FocusedItem2"/>
+        <apiforkb-trm:addsTo rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/ImmutableKBB"/>
+        <apiforkb-trm:hasOutput rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/ImmutableKBD"/>
+        <ontoiop-trm:hasPart rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/KPWAdditionOfFocusedExpression2ToKBB"/>
+        <ontoiop-trm:hasPart rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/KPWAdditionOfFocusedManifestation2"/>
+        <ontoiop-trm:hasPart rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/KPWInStreamingFocusedItem2"/>
+        <ontoiop-trm:hasPart rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/KPWParsingFocusedManifestation2"/>
+        <ontoiop-trm:hasPart rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/KPWUnmarshallingFocusedEncoding2"/>
+        <rdfs:label>internal event by knowledge platform W adding focused item 2 to knowledge base B</rdfs:label>
     </owl:NamedIndividual>
     
 
 
-    <!-- Environment -->
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/KPWAdditionOfFocusedExpression2ToKBB -->
 
-    <owl:NamedIndividual rdf:about="&apiforkb-st;LEB">
-      <rdfs:label>environment B</rdfs:label>
-      <rdf:type rdf:resource="&apiforkb-trm;ImmutableFocusedEnvironment"/>
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/KPWAdditionOfFocusedExpression2ToKBB">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/ImmutableEvent-AdditionTo"/>
+        <apiforkb-trm:isEventOf rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/KPWFocusedManifestation2AdditionTo"/>
+        <apiforkb-trm:hasInput rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/ImmutableKBB"/>
+        <apiforkb-trm:hasOutput rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/ImmutableKBD"/>
+        <rdfs:label>action event: knowledge manager W addition of focused expression 2 to knowledge base B</rdfs:label>
     </owl:NamedIndividual>
     
 
 
-    <!-- Environment -->
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/KPWAdditionOfFocusedManifestation2 -->
 
-    <owl:NamedIndividual rdf:about="&apiforkb-st;LED">
-      <rdfs:label>environment D</rdfs:label>
-      <rdf:type rdf:resource="&apiforkb-trm;ImmutableFocusedEnvironment"/>
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/KPWAdditionOfFocusedManifestation2">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/Event-AdditionOf-HorizontalAssetEventOut"/>
+        <apiforkb-trm:hasInput rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/FocusedExpression2"/>
+        <apiforkb-trm:hasOutput rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/KPWFocusedManifestation2AdditionTo"/>
+        <rdfs:label>action event: knowledge manager W addition of focused expression 2</rdfs:label>
     </owl:NamedIndividual>
     
 
 
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/KPWFocusedManifestation2AdditionTo -->
 
-    <!-- SetOfExpressions -->
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/KPWFocusedManifestation2AdditionTo"/>
+    
 
-    <owl:NamedIndividual rdf:about="&apiforkb-st;SetOfExpressions1">
-        <rdf:type rdf:resource="&ontoiop-trm;SetOfExpressions"/>
+
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/KPWInStreamingFocusedItem2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/KPWInStreamingFocusedItem2">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/InStreamingEvent"/>
+        <apiforkb-trm:hasInput rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/FocusedItem2"/>
+        <apiforkb-trm:hasOutput rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/FocusedEncoding2"/>
+        <rdfs:label>action event: knowledge manager W instreaming focused item 2</rdfs:label>
     </owl:NamedIndividual>
     
 
 
-    <!-- SetOfExpressions -->
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/KPWParsingFocusedManifestation2 -->
 
-    <owl:NamedIndividual rdf:about="&apiforkb-st;SetOfExpressions2">
-        <rdf:type rdf:resource="&ontoiop-trm;SetOfExpressions"/>
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/KPWParsingFocusedManifestation2">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/ParsingEvent"/>
+        <apiforkb-trm:hasInput rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/FocusedManifestation2"/>
+        <apiforkb-trm:hasOutput rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/FocusedExpression2"/>
+        <rdfs:label>action event: knowledge manager W parsing focused manifestation 2</rdfs:label>
     </owl:NamedIndividual>
     
 
 
-    <!-- SetOfExpressions -->
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/KPWUnmarshallingFocusedEncoding2 -->
 
-    <owl:NamedIndividual rdf:about="&apiforkb-st;SetOfExpressions3">
-        <rdf:type rdf:resource="&ontoiop-trm;SetOfExpressions"/>
-        <ontoiop-trm:hasSubset rdf:resource="&apiforkb-st;SetOfExpressions1"/>
-        <ontoiop-trm:hasSubset rdf:resource="&apiforkb-st;SetOfExpressions2"/>
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/KPWUnmarshallingFocusedEncoding2">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/UnmarshallingEvent"/>
+        <apiforkb-trm:hasInput rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/FocusedEncoding2"/>
+        <apiforkb-trm:hasOutput rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/FocusedManifestation2"/>
+        <rdfs:label>action event: knowledge manager W unmarshalling focused encoding 2</rdfs:label>
     </owl:NamedIndividual>
-
-<!-- Operations -->
-  <!-- Properties
-  -->
-
-  <!-- Public Operations -->
-  
-  <owl:NamedIndividual rdf:about="&apiforkb-st;AddingOperation-KnowledgeResourceToImmutableKBbyProxyQ">
-    <rdf:type rdf:resource="&apiforkb-op;AddingOperation-KnowledgeResourceToImmutableKB"/>
-    <rdfs:label>operation of proxy Q adding knowledge resources to immutable knowledge bases</rdfs:label>
-  </owl:NamedIndividual>
-  
-  <!-- Internal Operations -->
-  
-  <owl:NamedIndividual rdf:about="&apiforkb-st;AddingOperation-FocusedItemToImmutableKBbyKPMW">
-    <rdf:type rdf:resource="&apiforkb-op;InternalAddingOperation-FocusedItemToImmutableKB"/>
-    <rdfs:label>internal operation of knowledge knowledge manager W adding focused items to immutable knowledge bases</rdfs:label>
-  </owl:NamedIndividual>
-  
-<!-- Events -->
-  <!-- Properties
-       actualizes [Proficiency]
-       isEventOf [Operation]
-       hasOutput
-  -->
-  
-    <!-- Public Events -->
-
-  <!-- Public Adding Event -->
-  <!-- Properties
-       adds
-       addsTo
-       delegatesTo
-  -->
-
-  <owl:NamedIndividual rdf:about="&apiforkb-st;proxyQaddingFocusedItem2ToImmutableKBB">
-    <rdf:type rdf:resource="&apiforkb-ev;AddingEvent-KnowledgeResourceToImmutableKB"/>
-    <rdfs:label>public event by proxy Q adding focused item 2 to knowledge base B producing knowledge base D</rdfs:label>
-    <apiforkb-trm:isEventOf rdf:resource="&apiforkb-st;AddingOperation-KnowledgeResourceToImmutableKBbyProxyQ"/>
-    <apiforkb-trm:actualizes rdf:resource="&apiforkb-st;AddingProficiency-KnowledgeResourceToImmutableKBbyKPMW"/>
-    <apiforkb-trm:adds rdf:resource="&apiforkb-st;FocusedItem2"/>
-    <apiforkb-trm:addsTo rdf:resource="&apiforkb-st;ImmutableKBB"/>
-    <apiforkb-trm:delgatesTo rdf:resource="&apiforkb-st;KPWAddingFocusedItem2ToImmutableKBB"/>
     
-  </owl:NamedIndividual>
-  
-  
 
 
- <!-- Internal Adding Event -->
-  <!-- Properties
-       hasOutput
-  -->
-  <owl:NamedIndividual rdf:about="&apiforkb-st;KPWAddingFocusedItem2ToImmutableKBB">
-    <rdf:type rdf:resource="&apiforkb-ev;InternalAddingEvent-FocusedItemToImmutableKB"/>
-    <rdfs:label>internal event by knowledge platform W adding focused item 2 to knowledge base B</rdfs:label>
-    <apiforkb-trm:isEventOf rdf:resource="&apiforkb-st;AddingOperation-FocusedItemToImmutableKBbyKPMW"/>
-    <apiforkb-trm:adds rdf:resource="&apiforkb-st;FocusedItem2"/>
-    <apiforkb-trm:addsTo rdf:resource="&apiforkb-st;ImmutableKBB"/>
-    <ontoiop-trm:hasPart rdf:resource="&apiforkb-st;KPWInStreamingFocusedItem2"/>
-    <ontoiop-trm:hasPart rdf:resource="&apiforkb-st;KPWUnmarshallingFocusedEncoding2"/>
-    <ontoiop-trm:hasPart rdf:resource="&apiforkb-st;KPWParsingFocusedManifestation2"/>
-    <ontoiop-trm:hasPart rdf:resource="&apiforkb-st;KPWAdditionOfFocusedManifestation2"/>
-    <ontoiop-trm:hasPart rdf:resource="&apiforkb-st;KPWAdditionOfFocusedExpression2ToKBB"/>
-    <apiforkb-trm:hasOutput rdf:resource="&apiforkb-st;ImmutableKBD"/>
-  </owl:NamedIndividual>
-  
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/LE2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/LE2">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/BasicEnvironment"/>
+        <rdfs:label>environment 2</rdfs:label>
+    </owl:NamedIndividual>
+    
 
 
-    <!-- Action Events -->
-  <!-- Properties
-       hasInput
-       hasOutput
-  -->
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/LEB -->
 
-  <owl:NamedIndividual rdf:about="&apiforkb-st;KPWInStreamingFocusedItem2">
-    <rdf:type rdf:resource="&apiforkb-ev;InStreamingEvent"/>
-    <rdfs:label>action event: knowledge manager W instreaming focused item 2</rdfs:label>
-    <apiforkb-trm:hasInput rdf:resource="&apiforkb-st;FocusedItem2"/>
-    <apiforkb-trm:hasOutput rdf:resource="&apiforkb-st;FocusedEncoding2"/>
-  </owl:NamedIndividual>
-  
-  <owl:NamedIndividual rdf:about="&apiforkb-st;KPWUnmarshallingFocusedEncoding2">
-    <rdf:type rdf:resource="&apiforkb-ev;UnmarshallingEvent"/>
-    <rdfs:label>action event: knowledge manager W unmarshalling focused encoding 2</rdfs:label>
-    <apiforkb-trm:hasInput rdf:resource="&apiforkb-st;FocusedEncoding2"/>
-    <apiforkb-trm:hasOutput rdf:resource="&apiforkb-st;FocusedManifestation2"/>
-  </owl:NamedIndividual>
-  
-  <owl:NamedIndividual rdf:about="&apiforkb-st;KPWParsingFocusedManifestation2">
-    <rdf:type rdf:resource="&apiforkb-ev;ParsingEvent"/>
-    <rdfs:label>action event: knowledge manager W parsing focused manifestation 2</rdfs:label>
-    <apiforkb-trm:hasInput rdf:resource="&apiforkb-st;FocusedManifestation2"/>
-    <apiforkb-trm:hasOutput rdf:resource="&apiforkb-st;FocusedExpression2"/>
-  </owl:NamedIndividual>
-  
-  <owl:NamedIndividual rdf:about="&apiforkb-st;KPWAdditionOfFocusedManifestation2">
-    <rdf:type rdf:resource="&apiforkb-ev;Event-AdditionOf-HorizontalAssetEventOut"/>
-    <rdfs:label>action event: knowledge manager W addition of focused expression 2</rdfs:label>
-    <apiforkb-trm:hasInput rdf:resource="&apiforkb-st;FocusedExpression2"/>
-    <apiforkb-trm:hasOutput rdf:resource="&apiforkb-st;KPWFocusedManifestation2AdditionTo"/>
-  </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/LEB">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/ImmutableFocusedEnvironment"/>
+        <rdfs:label>environment B</rdfs:label>
+    </owl:NamedIndividual>
+    
 
-  <owl:NamedIndividual rdf:about="&apiforkb-st;KPWAdditionOfFocusedExpression2ToKBB">
-    <rdf:type rdf:resource="&apiforkb-ev;ImmutableEvent-AdditionTo"/>
-    <rdfs:label>action event: knowledge manager W addition of focused expression 2 to knowledge base B</rdfs:label>
-    <apiforkb-trm:isEventOf rdf:resource="&apiforkb-st;KPWFocusedManifestation2AdditionTo"/>
-    <apiforkb-trm:hasInput rdf:resource="&apiforkb-st;ImmutableKBB"/>
-    <apiforkb-trm:hasOutput rdf:resource="&apiforkb-st;ImmutableKBD"/>
-  </owl:NamedIndividual>
-  
 
-<owl:NamedIndividual rdf:about="&apiforkb-st;KPMWconceptualizingKEB">
-  <rdf:type rdf:resource="&apiforkb-ev;ConceptualizingEvent"/>
-  <rdfs:label>action event: knowledge platform manager W conceptualizing generalized expression B</rdfs:label>
-  <apiforkb-trm:hasInput rdf:resource="&apiforkb-st;KEB"/>
-  <apiforkb-trm:hasOutput-Conceptualize rdf:resource="&apiforkb-st;ImmutableKBB"/>
-</owl:NamedIndividual>
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/LED -->
 
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/LED">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/ImmutableFocusedEnvironment"/>
+        <rdfs:label>environment D</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/ProxyQ -->
+
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/ProxyQ">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/Proxy"/>
+        <apiforkb-trm:executes rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/proxyQaddingFocusedItem2ToImmutableKBB"/>
+        <apiforkb-trm:implements rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/AddingOperation-KnowledgeResourceToImmutableKBbyProxyQ"/>
+        <apiforkb-trm:interactsWith rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/ClientZ"/>
+        <rdfs:label>knowledge manager W</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/SetOfExpressions1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/SetOfExpressions1">
+        <rdf:type rdf:resource="http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/SetOfExpressions"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/SetOfExpressions2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/SetOfExpressions2">
+        <rdf:type rdf:resource="http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/SetOfExpressions"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/SetOfExpressions3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/SetOfExpressions3">
+        <rdf:type rdf:resource="http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/SetOfExpressions"/>
+        <ontoiop-trm:hasSubset rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/SetOfExpressions1"/>
+        <ontoiop-trm:hasSubset rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/SetOfExpressions2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KB/SmallTest/proxyQaddingFocusedItem2ToImmutableKBB -->
+
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KB/SmallTest/proxyQaddingFocusedItem2ToImmutableKBB">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/AddingEvent-KnowledgeResourceToImmutableKB"/>
+        <apiforkb-trm:actualizes rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/AddingProficiency-KnowledgeResourceToImmutableKBbyKPMW"/>
+        <apiforkb-trm:isEventOf rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/AddingOperation-KnowledgeResourceToImmutableKBbyProxyQ"/>
+        <apiforkb-trm:adds rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/FocusedItem2"/>
+        <apiforkb-trm:addsTo rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/ImmutableKBB"/>
+        <apiforkb-trm:delgatesTo rdf:resource="http://www.omg.org/spec/API4KB/SmallTest/KPWAddingFocusedItem2ToImmutableKBB"/>
+        <rdfs:label>public event by proxy Q adding focused item 2 to knowledge base B producing knowledge base D</rdfs:label>
+    </owl:NamedIndividual>
 </rdf:RDF>
 
 
-<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
+<!-- Generated by the OWL API (version 4.2.3.20160319-0906) https://github.com/owlcs/owlapi -->
 

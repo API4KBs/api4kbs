@@ -18,23 +18,23 @@ Prefix(api4kboperationclassifier:=<http://www.omg.org/spec/API4KB/API4KBTerminol
 
 Ontology(<http://www.omg.org/spec/API4KB/API4KBTerminology/>
 <http://www.omg.org/spec/API4KB/20150201/API4KBTerminology/>
-Import(<http://www.omg.org/spec/DOL/DOL-terms/>)
-Import(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBTry/>)
 Import(<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
-Import(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperation/>)
 Import(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperationClassifier>)
-Import(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/>)
+Import(<http://www.omg.org/spec/DOL/DOL-terms/>)
 Import(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/>)
-Annotation(specificationmetadata:fileAbbreviation "api4kb-trm"^^xsd:string)
-Annotation(rdfs:label "API4KB Terminology Ontology")
-Annotation(specificationmetadata:contentLanguage "http://www.w3.org/standards/techs/owl#w3c_all"^^xsd:anyURI)
-Annotation(specificationmetadata:filename "API4KBTerminology.rdf"^^xsd:string)
-Annotation(specificationmetadata:contentLanguage "http://www.omg.org/spec/ODM/"^^xsd:anyURI)
+Import(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperation/>)
+Import(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/>)
+Import(<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBTry/>)
 Annotation(<http://purl.org/dc/terms/license> "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
+Annotation(specificationmetadata:contentLanguage "http://www.omg.org/spec/ODM/"^^xsd:anyURI)
+Annotation(specificationmetadata:contentLanguage "http://www.w3.org/standards/techs/owl#w3c_all"^^xsd:anyURI)
 Annotation(specificationmetadata:copyright "Copyright (c) 2014 Athan Services
 Copyright (c) 2014 Thematix Partners LLC
 Copyright (c) 2014 Object Management Group, Inc."^^xsd:string)
+Annotation(specificationmetadata:fileAbbreviation "api4kb-trm"^^xsd:string)
 Annotation(specificationmetadata:fileAbstract "This ontology covers terminology used for describing the main concepts used by the API4KB specification."^^xsd:string)
+Annotation(specificationmetadata:filename "API4KBTerminology.rdf"^^xsd:string)
+Annotation(rdfs:label "API4KB Terminology Ontology")
 
 Declaration(Class(api4kbterminology:API4KP))
 Declaration(Class(api4kbterminology:AssetEnvironment))
@@ -57,6 +57,7 @@ Declaration(Class(api4kbterminology:ComposableEnvironment))
 Declaration(Class(api4kbterminology:CreateEmptyKPFunctionality))
 Declaration(Class(api4kbterminology:Description))
 Declaration(Class(api4kbterminology:EmptyEnvironment))
+Declaration(Class(api4kbterminology:Environment))
 Declaration(Class(api4kbterminology:EnvironmentWithIdentities))
 Declaration(Class(api4kbterminology:EquivalenceRelation))
 Declaration(Class(api4kbterminology:Event))
@@ -70,6 +71,7 @@ Declaration(Class(api4kbterminology:FocusedEnvironment))
 Declaration(Class(api4kbterminology:Functionality))
 Declaration(Class(api4kbterminology:Immutable))
 Declaration(Class(api4kbterminology:ImmutableKBFactoryRole))
+Declaration(Class(api4kbterminology:ImmutableKnowledgeBase))
 Declaration(Class(api4kbterminology:ImmutableSource))
 Declaration(Class(api4kbterminology:ImmutableView))
 Declaration(Class(api4kbterminology:KPlatformDesign))
@@ -91,6 +93,7 @@ Declaration(Class(api4kbterminology:KnowledgeSource))
 Declaration(Class(api4kbterminology:KnowledgeSourceDescription))
 Declaration(Class(api4kbterminology:LanguageEnvironment))
 Declaration(Class(api4kbterminology:LanguageMapping))
+Declaration(Class(api4kbterminology:Mapping))
 Declaration(Class(api4kbterminology:Message))
 Declaration(Class(api4kbterminology:MessageType))
 Declaration(Class(api4kbterminology:Mutable))
@@ -121,6 +124,7 @@ Declaration(Class(api4kbterminology:QueryManifestation))
 Declaration(Class(api4kbterminology:QueryResource))
 Declaration(Class(api4kbterminology:QuerySerialization))
 Declaration(Class(api4kbterminology:Request))
+Declaration(Class(api4kbterminology:Response))
 Declaration(Class(api4kbterminology:ResultAsset))
 Declaration(Class(api4kbterminology:ResultEncoding))
 Declaration(Class(api4kbterminology:ResultGeneralizedExpression))
@@ -142,6 +146,8 @@ Declaration(Class(api4kbterminology:StructuredKnowledgeManifestation))
 Declaration(Class(api4kbterminology:StructuredKnowledgeResource))
 Declaration(Class(api4kbterminology:Success))
 Declaration(Class(api4kbterminology:SuccessMonad))
+Declaration(Class(dol-terms:OMSSerialization))
+Declaration(Class(dol-terms:SetOfExpressions))
 Declaration(ObjectProperty(api4kbterminology:about))
 Declaration(ObjectProperty(api4kbterminology:accordingTo))
 Declaration(ObjectProperty(api4kbterminology:actualizes))
@@ -203,142 +209,672 @@ Declaration(ObjectProperty(api4kbterminology:supports))
 Declaration(ObjectProperty(api4kbterminology:usesLanguage))
 Declaration(ObjectProperty(api4kbterminology:usesSerialization))
 Declaration(ObjectProperty(api4kbterminology:usesSpecification))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: api4kbterminology:about (about)
+
+AnnotationAssertion(rdfs:label api4kbterminology:about "about")
+ObjectPropertyDomain(api4kbterminology:about api4kbterminology:Response)
+
+# Object Property: api4kbterminology:accordingTo (according to)
+
+AnnotationAssertion(rdfs:label api4kbterminology:accordingTo "according to")
+AnnotationAssertion(core:definition api4kbterminology:accordingTo "relationship between a collection and an environment whereby the results of application of a mapping of the environment to a member of the collection are also members of the environment"^^xsd:string)
+ObjectPropertyRange(api4kbterminology:accordingTo api4kbterminology:Environment)
+
+# Object Property: api4kbterminology:actualizes (actualizes)
+
+AnnotationAssertion(rdfs:label api4kbterminology:actualizes "actualizes")
+InverseObjectProperties(api4kbterminology:actualizes api4kbterminology:isActualizedBy)
+ObjectPropertyDomain(api4kbterminology:actualizes api4kbevent:KnowledgeEvent)
+ObjectPropertyRange(api4kbterminology:actualizes api4kbproficiency:Proficiency)
+
+# Object Property: api4kbterminology:allPreserve (all preserve)
+
+AnnotationAssertion(rdfs:label api4kbterminology:allPreserve "all preserve")
+ObjectPropertyDomain(api4kbterminology:allPreserve api4kbterminology:PreservingEnvironment)
+ObjectPropertyRange(api4kbterminology:allPreserve api4kbterminology:EquivalenceRelation)
+
+# Object Property: api4kbterminology:conceptualizes (conceptualizes)
+
+AnnotationAssertion(rdfs:label api4kbterminology:conceptualizes "conceptualizes")
+AnnotationAssertion(core:definition api4kbterminology:conceptualizes "inverse of 'expresses'"^^xsd:string)
+SubObjectPropertyOf(api4kbterminology:conceptualizes api4kbterminology:lifts)
+InverseObjectProperties(api4kbterminology:conceptualizes api4kbterminology:expresses)
+
+# Object Property: api4kbterminology:conveys (conveys)
+
+AnnotationAssertion(rdfs:label api4kbterminology:conveys "conveys")
+InverseObjectProperties(api4kbterminology:conveys api4kbterminology:isConveyedBy)
+ObjectPropertyDomain(api4kbterminology:conveys api4kbterminology:Proxy)
+ObjectPropertyRange(api4kbterminology:conveys api4kbproficiency:Proficiency)
+
+# Object Property: api4kbterminology:decodes (decodes)
+
+AnnotationAssertion(rdfs:label api4kbterminology:decodes "decodes")
+AnnotationAssertion(core:definition api4kbterminology:decodes "inverse of 'encodes'"^^xsd:string)
+SubObjectPropertyOf(api4kbterminology:decodes api4kbterminology:lifts)
+InverseObjectProperties(api4kbterminology:decodes api4kbterminology:encodes)
+
+# Object Property: api4kbterminology:encodes (encodes)
+
+AnnotationAssertion(rdfs:label api4kbterminology:encodes "encodes")
+SubObjectPropertyOf(api4kbterminology:encodes api4kbterminology:lowers)
+ObjectPropertyDomain(api4kbterminology:encodes api4kbterminology:KnowledgeEncoding)
+ObjectPropertyRange(api4kbterminology:encodes api4kbterminology:KnowledgeManifestation)
+
+# Object Property: api4kbterminology:executes (executes)
+
+AnnotationAssertion(rdfs:label api4kbterminology:executes "executes")
+InverseObjectProperties(api4kbterminology:executes api4kbterminology:isExecutedBy)
+ObjectPropertyDomain(api4kbterminology:executes api4kbterminology:CommunicatingEntity)
+ObjectPropertyRange(api4kbterminology:executes api4kbevent:KnowledgeEvent)
+
+# Object Property: api4kbterminology:exposes (api4kbterminology:exposes)
+
+InverseObjectProperties(api4kbterminology:exposes api4kbterminology:isExposedBy)
+ObjectPropertyDomain(api4kbterminology:exposes api4kbterminology:Functionality)
+ObjectPropertyRange(api4kbterminology:exposes api4kbproficiency:Proficiency)
+
+# Object Property: api4kbterminology:expresses (expresses)
+
+AnnotationAssertion(rdfs:label api4kbterminology:expresses "expresses")
+AnnotationAssertion(core:altLabel api4kbterminology:expresses "is expression of")
+AnnotationAssertion(core:definition api4kbterminology:expresses "knowledge asset that would be obtained by conceptualizing the generalized expression."^^xsd:string)
+SubObjectPropertyOf(api4kbterminology:expresses api4kbterminology:lowers)
+ObjectPropertyDomain(api4kbterminology:expresses api4kbterminology:KnowledgeExpression)
+ObjectPropertyRange(api4kbterminology:expresses api4kbterminology:KnowledgeAsset)
+
+# Object Property: api4kbterminology:fillsRole (fills role)
+
+AnnotationAssertion(rdfs:label api4kbterminology:fillsRole "fills role")
+InverseObjectProperties(api4kbterminology:fillsRole api4kbterminology:isFilledBy)
+
+# Object Property: api4kbterminology:hasContent (has content)
+
+AnnotationAssertion(rdfs:label api4kbterminology:hasContent "has content")
+ObjectPropertyDomain(api4kbterminology:hasContent api4kbterminology:Response)
+
+# Object Property: api4kbterminology:hasEnvironmentMapping (has environment mapping)
+
+AnnotationAssertion(rdfs:label api4kbterminology:hasEnvironmentMapping "has environment mapping")
+InverseObjectProperties(api4kbterminology:hasEnvironmentMapping api4kbterminology:isEnvironmentMappingOf)
+ObjectPropertyRange(api4kbterminology:hasEnvironmentMapping api4kbterminology:Mapping)
+
+# Object Property: api4kbterminology:hasEnvironmentMember (has environment member)
+
+AnnotationAssertion(rdfs:label api4kbterminology:hasEnvironmentMember "has environment member")
+ObjectPropertyDomain(api4kbterminology:hasEnvironmentMember api4kbterminology:NonemptyEnvironment)
+ObjectPropertyRange(api4kbterminology:hasEnvironmentMember owl:Thing)
+
+# Object Property: api4kbterminology:hasEvent (has event)
+
+AnnotationAssertion(rdfs:label api4kbterminology:hasEvent "has event")
+InverseObjectProperties(api4kbterminology:hasEvent api4kbterminology:isEventOf)
+
+# Object Property: api4kbterminology:hasFocusMember (api4kbterminology:hasFocusMember)
+
+SubObjectPropertyOf(api4kbterminology:hasFocusMember api4kbterminology:hasEnvironmentMember)
+
+# Object Property: api4kbterminology:hasPart (has part)
+
+AnnotationAssertion(rdfs:label api4kbterminology:hasPart "has part")
+
+# Object Property: api4kbterminology:hasProficiency (has proficiency)
+
+AnnotationAssertion(rdfs:label api4kbterminology:hasProficiency "has proficiency")
+InverseObjectProperties(api4kbterminology:hasProficiency api4kbterminology:isProficiencyOf)
+
+# Object Property: api4kbterminology:hasRegistrant (has registrant)
+
+AnnotationAssertion(rdfs:label api4kbterminology:hasRegistrant "has registrant")
+InverseObjectProperties(api4kbterminology:hasRegistrant api4kbterminology:isRegisteredWith)
+
+# Object Property: api4kbterminology:hasRequestee (has requestee)
+
+AnnotationAssertion(rdfs:label api4kbterminology:hasRequestee "has requestee"@en)
+AnnotationAssertion(core:definition api4kbterminology:hasRequestee "application that is the recipient of the request"^^xsd:string)
+InverseObjectProperties(api4kbterminology:hasRequestee api4kbterminology:isRequesteeOf)
+FunctionalObjectProperty(api4kbterminology:hasRequestee)
+ObjectPropertyDomain(api4kbterminology:hasRequestee api4kbtry:Try)
+ObjectPropertyRange(api4kbterminology:hasRequestee api4kbterminology:CommunicatingEntity)
+
+# Object Property: api4kbterminology:hasSetOfMappings (has set of mappings)
+
+AnnotationAssertion(rdfs:label api4kbterminology:hasSetOfMappings "has set of mappings")
+
+# Object Property: api4kbterminology:hasSnapshot (has snapshot)
+
+AnnotationAssertion(rdfs:label api4kbterminology:hasSnapshot "has snapshot")
+AnnotationAssertion(core:definition api4kbterminology:hasSnapshot "relationship between a mutable source and its state at one timepoint."^^xsd:string)
+ObjectPropertyDomain(api4kbterminology:hasSnapshot api4kbterminology:Mutable)
+ObjectPropertyRange(api4kbterminology:hasSnapshot api4kbterminology:Immutable)
+
+# Object Property: api4kbterminology:hasStructuralComponent (api4kbterminology:hasStructuralComponent)
+
+SubObjectPropertyOf(api4kbterminology:hasStructuralComponent api4kbterminology:hasPart)
+ObjectPropertyDomain(api4kbterminology:hasStructuralComponent api4kbterminology:Structured)
+
+# Object Property: api4kbterminology:hasSubenvironment (has subenvironment)
+
+AnnotationAssertion(rdfs:label api4kbterminology:hasSubenvironment "has subenvironment")
+InverseObjectProperties(api4kbterminology:hasSubenvironment api4kbterminology:isSubenvironmentOf)
+
+# Object Property: api4kbterminology:hasSubproficiency (has subproficiency)
+
+AnnotationAssertion(rdfs:label api4kbterminology:hasSubproficiency "has subproficiency")
+InverseObjectProperties(api4kbterminology:hasSubproficiency api4kbterminology:isSubproficiencyOf)
+
+# Object Property: api4kbterminology:implements (implements)
+
+AnnotationAssertion(rdfs:label api4kbterminology:implements "implements")
+InverseObjectProperties(api4kbterminology:implements api4kbterminology:isImplementedBy)
+ObjectPropertyDomain(api4kbterminology:implements api4kbterminology:CommunicatingEntity)
+ObjectPropertyRange(api4kbterminology:implements api4kboperation:KnowledgeOperation)
+
+# Object Property: api4kbterminology:interactsWith (interacts with)
+
+AnnotationAssertion(rdfs:label api4kbterminology:interactsWith "interacts with")
+SymmetricObjectProperty(api4kbterminology:interactsWith)
+ObjectPropertyDomain(api4kbterminology:interactsWith api4kbterminology:CommunicatingEntity)
+ObjectPropertyRange(api4kbterminology:interactsWith api4kbterminology:CommunicatingEntity)
+
+# Object Property: api4kbterminology:isActualizedBy (is actualized by)
+
+AnnotationAssertion(rdfs:label api4kbterminology:isActualizedBy "is actualized by")
+
+# Object Property: api4kbterminology:isConveyedBy (is conveyed by)
+
+AnnotationAssertion(rdfs:label api4kbterminology:isConveyedBy "is conveyed by")
+
+# Object Property: api4kbterminology:isDeployedWithin (is deployed within)
+
+AnnotationAssertion(rdfs:label api4kbterminology:isDeployedWithin "is deployed within")
+InverseObjectProperties(api4kbterminology:isDeployedWithin api4kbterminology:supports)
+ObjectPropertyDomain(api4kbterminology:isDeployedWithin api4kbterminology:Component)
+ObjectPropertyRange(api4kbterminology:isDeployedWithin api4kbterminology:KnowledgePlatform)
+
+# Object Property: api4kbterminology:isEnvironmentMappingOf (is environment mapping of)
+
+AnnotationAssertion(rdfs:label api4kbterminology:isEnvironmentMappingOf "is environment mapping of")
+
+# Object Property: api4kbterminology:isEventOf (is event of)
+
+AnnotationAssertion(rdfs:label api4kbterminology:isEventOf "is event of")
+ObjectPropertyDomain(api4kbterminology:isEventOf api4kbevent:KnowledgeEvent)
+ObjectPropertyRange(api4kbterminology:isEventOf api4kboperation:KnowledgeOperation)
+
+# Object Property: api4kbterminology:isExecutedBy (is executed by)
+
+AnnotationAssertion(rdfs:label api4kbterminology:isExecutedBy "is executed by")
+AnnotationAssertion(core:note api4kbterminology:isExecutedBy "
+        <rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#FunctionalProperty\"/>            
+      ")
+AnnotationAssertion(core:note api4kbterminology:isExecutedBy "OWL does not let us declare this to be functional, while keeping the property chain for its inverse.")
+ObjectPropertyDomain(api4kbterminology:isExecutedBy api4kbevent:KnowledgeEvent)
+ObjectPropertyRange(api4kbterminology:isExecutedBy api4kbterminology:CommunicatingEntity)
+
+# Object Property: api4kbterminology:isExposedBy (is exposed by)
+
+AnnotationAssertion(rdfs:label api4kbterminology:isExposedBy "is exposed by")
+
+# Object Property: api4kbterminology:isFilledBy (is filled by)
+
+AnnotationAssertion(rdfs:label api4kbterminology:isFilledBy "is filled by")
+ObjectPropertyDomain(api4kbterminology:isFilledBy api4kbterminology:Role)
+ObjectPropertyRange(api4kbterminology:isFilledBy api4kbterminology:CommunicatingEntity)
+
+# Object Property: api4kbterminology:isImplementedBy (is implemented by)
+
+AnnotationAssertion(rdfs:label api4kbterminology:isImplementedBy "is implemented by")
+
+# Object Property: api4kbterminology:isManagedBy (is managed by)
+
+AnnotationAssertion(rdfs:label api4kbterminology:isManagedBy "is managed by")
+AnnotationAssertion(core:note api4kbterminology:isManagedBy "
+        <rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#FunctionalProperty\"/>            
+      ")
+AnnotationAssertion(core:note api4kbterminology:isManagedBy "OWL does not let us declare this to be functional, while keeping the property chain on its inverse.")
+InverseObjectProperties(api4kbterminology:isManagedBy api4kbterminology:manages)
+
+# Object Property: api4kbterminology:isProficiencyOf (is proficiency of)
+
+AnnotationAssertion(rdfs:label api4kbterminology:isProficiencyOf "is proficiency of")
+ObjectPropertyDomain(api4kbterminology:isProficiencyOf api4kbproficiency:Proficiency)
+ObjectPropertyRange(api4kbterminology:isProficiencyOf api4kbterminology:CommunicatingEntity)
+
+# Object Property: api4kbterminology:isRegisteredWith (is registered with)
+
+AnnotationAssertion(rdfs:label api4kbterminology:isRegisteredWith "is registered with")
+ObjectPropertyDomain(api4kbterminology:isRegisteredWith api4kbterminology:KnowledgeSource)
+ObjectPropertyRange(api4kbterminology:isRegisteredWith api4kbterminology:KnowledgePlatform)
+
+# Object Property: api4kbterminology:isRequestedBy (is requested by)
+
+AnnotationAssertion(rdfs:label api4kbterminology:isRequestedBy "is requested by")
+AnnotationAssertion(core:note api4kbterminology:isRequestedBy "
+      <rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#FunctionalProperty\"/>            
+    ")
+AnnotationAssertion(core:note api4kbterminology:isRequestedBy "OWL does not let us declare this to be functional, while keeping the property chain for its inverse.")
+InverseObjectProperties(api4kbterminology:isRequestedBy api4kbterminology:requests)
+
+# Object Property: api4kbterminology:isRequesteeOf (is requestee of)
+
+AnnotationAssertion(rdfs:label api4kbterminology:isRequesteeOf "is requestee of"@en)
+
+# Object Property: api4kbterminology:isRequiredBy (is required by)
+
+AnnotationAssertion(rdfs:label api4kbterminology:isRequiredBy "is required by")
+InverseObjectProperties(api4kbterminology:isRequiredBy api4kbterminology:requires)
+
+# Object Property: api4kbterminology:isSerializationOf (is serialization of)
+
+AnnotationAssertion(rdfs:label api4kbterminology:isSerializationOf "is serialization of")
+AnnotationAssertion(core:definition api4kbterminology:isSerializationOf "language that is manifested by the serialization"^^xsd:string)
+ObjectPropertyDomain(api4kbterminology:isSerializationOf dol-terms:Language)
+ObjectPropertyRange(api4kbterminology:isSerializationOf api4kbterminology:Serialization)
+
+# Object Property: api4kbterminology:isSubenvironmentOf (is subenvironment of)
+
+AnnotationAssertion(rdfs:label api4kbterminology:isSubenvironmentOf "is subenvironment of"@en)
+AnnotationAssertion(core:definition api4kbterminology:isSubenvironmentOf "relationship between two environments that is a partial order where the language and logic graphs of the first enviroment are subgraphs, resp., of the language and logic graphs of the second environment"^^xsd:string)
+TransitiveObjectProperty(api4kbterminology:isSubenvironmentOf)
+ObjectPropertyDomain(api4kbterminology:isSubenvironmentOf api4kbterminology:Environment)
+ObjectPropertyRange(api4kbterminology:isSubenvironmentOf api4kbterminology:Environment)
+
+# Object Property: api4kbterminology:isSubproficiencyOf (is subproficiency of)
+
+AnnotationAssertion(rdfs:label api4kbterminology:isSubproficiencyOf "is subproficiency of"@en)
+AnnotationAssertion(core:definition api4kbterminology:isSubproficiencyOf "relationship between two proficiencies that is a partial order such that any operation that exposes a proficiency also exposes any subproficiency of it"^^xsd:string)
+TransitiveObjectProperty(api4kbterminology:isSubproficiencyOf)
+ObjectPropertyDomain(api4kbterminology:isSubproficiencyOf api4kbproficiency:Proficiency)
+ObjectPropertyRange(api4kbterminology:isSubproficiencyOf api4kbproficiency:Proficiency)
+
+# Object Property: api4kbterminology:lifts (lifts)
+
+AnnotationAssertion(rdfs:label api4kbterminology:lifts "lifts")
+AnnotationAssertion(core:definition api4kbterminology:lifts "relation between two knowledge resources where the first is an abstraction of the second by one level (e.g. if the first is an encoding, the second is an item, etc.).  Lifts relations are limited to one of the following: prototypes, decodes, parses, conceptualizes"^^xsd:string)
+AnnotationAssertion(core:note api4kbterminology:lifts "OWL does not let us declare this to be functional, while keeping the property chains that link Events and Operations.")
+InverseObjectProperties(api4kbterminology:lifts api4kbterminology:lowers)
+ObjectPropertyDomain(api4kbterminology:lifts api4kbterminology:KnowledgeResource)
+ObjectPropertyRange(api4kbterminology:lifts api4kbterminology:KnowledgeResource)
+
+# Object Property: api4kbterminology:lowers (lowers)
+
+AnnotationAssertion(rdfs:label api4kbterminology:lowers "lowers")
+AnnotationAssertion(core:definition api4kbterminology:lowers "relation between two knowledge resources where the first is a deabstraction of the second by one level (e.g. if the first is an item, the second is an encoding, etc.).  Lowers relations are limited to one of the following: reproduces, encodes, manifests, expresses"^^xsd:string)
+AnnotationAssertion(core:note api4kbterminology:lowers "
+      <rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#FunctionalProperty\"/>            
+    ")
+AnnotationAssertion(core:note api4kbterminology:lowers "OWL does not let us declare this to be functional, while keeping the property chains that link Events and Operations.")
+
+# Object Property: api4kbterminology:manages (manages)
+
+AnnotationAssertion(rdfs:label api4kbterminology:manages "manages")
+ObjectPropertyDomain(api4kbterminology:manages api4kbterminology:KnowledgePlatformManagerRole)
+ObjectPropertyRange(api4kbterminology:manages api4kbterminology:KnowledgePlatform)
+
+# Object Property: api4kbterminology:manifests (manifests)
+
+AnnotationAssertion(rdfs:label api4kbterminology:manifests "manifests")
+AnnotationAssertion(core:definition api4kbterminology:manifests "generalized expression that would be obtained from parsing the knowledge manifestation"^^xsd:string)
+SubObjectPropertyOf(api4kbterminology:manifests api4kbterminology:lowers)
+InverseObjectProperties(api4kbterminology:manifests api4kbterminology:parses)
+ObjectPropertyDomain(api4kbterminology:manifests api4kbterminology:KnowledgeManifestation)
+ObjectPropertyRange(api4kbterminology:manifests api4kbterminology:KnowledgeExpression)
+
+# Object Property: api4kbterminology:parses (parses)
+
+AnnotationAssertion(rdfs:label api4kbterminology:parses "parses")
+AnnotationAssertion(core:definition api4kbterminology:parses "inverse of 'manifests'"^^xsd:string)
+SubObjectPropertyOf(api4kbterminology:parses api4kbterminology:lifts)
+
+# Object Property: api4kbterminology:preserves (preserves)
+
+AnnotationAssertion(rdfs:label api4kbterminology:preserves "preserves")
+ObjectPropertyDomain(api4kbterminology:preserves api4kbterminology:Mapping)
+ObjectPropertyRange(api4kbterminology:preserves api4kbterminology:EquivalenceRelation)
+
+# Object Property: api4kbterminology:prototypes (prototypes)
+
+AnnotationAssertion(rdfs:label api4kbterminology:prototypes "prototypes")
+AnnotationAssertion(core:definition api4kbterminology:prototypes "inverse of 'reproduces'"^^xsd:string)
+SubObjectPropertyOf(api4kbterminology:prototypes api4kbterminology:lifts)
+InverseObjectProperties(api4kbterminology:prototypes api4kbterminology:reproduces)
+
+# Object Property: api4kbterminology:reproduces (reproduces)
+
+AnnotationAssertion(rdfs:label api4kbterminology:reproduces "reproduces")
+AnnotationAssertion(core:definition api4kbterminology:reproduces "knowledge encoding that would be obtained from instreaming the knowledge item"^^xsd:string)
+SubObjectPropertyOf(api4kbterminology:reproduces api4kbterminology:lowers)
+ObjectPropertyDomain(api4kbterminology:reproduces api4kbterminology:KnowledgeItem)
+ObjectPropertyRange(api4kbterminology:reproduces api4kbterminology:KnowledgeEncoding)
+
+# Object Property: api4kbterminology:requests (requests)
+
+AnnotationAssertion(rdfs:label api4kbterminology:requests "requests")
+ObjectPropertyDomain(api4kbterminology:requests api4kbterminology:CommunicatingEntity)
+ObjectPropertyRange(api4kbterminology:requests api4kbtry:Try)
+
+# Object Property: api4kbterminology:requires (requires)
+
+AnnotationAssertion(rdfs:label api4kbterminology:requires "requires")
+ObjectPropertyDomain(api4kbterminology:requires api4kbterminology:Role)
+ObjectPropertyRange(api4kbterminology:requires api4kbproficiency:Proficiency)
+
+# Object Property: api4kbterminology:responds (responds)
+
+AnnotationAssertion(rdfs:label api4kbterminology:responds "responds")
+ObjectPropertyDomain(api4kbterminology:responds api4kbterminology:CommunicatingEntity)
+ObjectPropertyRange(api4kbterminology:responds api4kbterminology:Response)
+
+# Object Property: api4kbterminology:supports (supports)
+
+AnnotationAssertion(rdfs:label api4kbterminology:supports "supports")
+
+# Object Property: api4kbterminology:usesLanguage (uses language)
+
+AnnotationAssertion(rdfs:label api4kbterminology:usesLanguage "uses language")
+AnnotationAssertion(core:definition api4kbterminology:usesLanguage "language used by a generalized expression."^^xsd:string)
+ObjectPropertyDomain(api4kbterminology:usesLanguage api4kbterminology:KnowledgeExpression)
+ObjectPropertyRange(api4kbterminology:usesLanguage dol-terms:Language)
+
+# Object Property: api4kbterminology:usesSerialization (uses serialization)
+
+AnnotationAssertion(rdfs:label api4kbterminology:usesSerialization "uses serialization")
+AnnotationAssertion(core:definition api4kbterminology:usesSerialization "serialization used by a knowledge manifestation"^^xsd:string)
+ObjectPropertyDomain(api4kbterminology:usesSerialization api4kbterminology:KnowledgeManifestation)
+ObjectPropertyRange(api4kbterminology:usesSerialization api4kbterminology:Serialization)
+
+# Object Property: api4kbterminology:usesSpecification (uses specification)
+
+AnnotationAssertion(rdfs:label api4kbterminology:usesSpecification "uses specification")
+AnnotationAssertion(core:definition api4kbterminology:usesSpecification "specification used by an application"^^xsd:string)
+ObjectPropertyDomain(api4kbterminology:usesSpecification api4kbterminology:CommunicatingEntity)
+ObjectPropertyRange(api4kbterminology:usesSpecification api4kbterminology:Specification)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: api4kbterminology:API4KP (API4KP)
+
 AnnotationAssertion(rdfs:label api4kbterminology:API4KP "API4KP")
 SubClassOf(api4kbterminology:API4KP api4kbterminology:Specification)
+
+# Class: api4kbterminology:AssetEnvironment (asset environment)
+
+AnnotationAssertion(rdfs:label api4kbterminology:AssetEnvironment "asset environment")
 AnnotationAssertion(core:definition api4kbterminology:AssetEnvironment "focused, categorical, preserving language environment where the focus is a KRR language")
 AnnotationAssertion(core:scopeNote api4kbterminology:AssetEnvironment "The special case where all languages in an asset environment are KRR languages supporting model-theoretic semantics without side-effects (logics), and the preserving property is characterized by a logical graph reduces to a heterogeneous logical environment as defined in DOL.")
-AnnotationAssertion(rdfs:label api4kbterminology:AssetEnvironment "asset environment")
 SubClassOf(api4kbterminology:AssetEnvironment api4kbterminology:CategoricalEnvironment)
 SubClassOf(api4kbterminology:AssetEnvironment api4kbterminology:FocusedEnvironment)
 SubClassOf(api4kbterminology:AssetEnvironment api4kbterminology:LanguageEnvironment)
 SubClassOf(api4kbterminology:AssetEnvironment api4kbterminology:PreservingEnvironment)
-AnnotationAssertion(core:definition api4kbterminology:BasicEnvironment "a focused environment having exactly one member")
+
+# Class: api4kbterminology:BasicEnvironment (basic environment)
+
 AnnotationAssertion(rdfs:label api4kbterminology:BasicEnvironment "basic environment")
+AnnotationAssertion(core:definition api4kbterminology:BasicEnvironment "a focused environment having exactly one member")
 SubClassOf(api4kbterminology:BasicEnvironment api4kbterminology:FocusedEnvironment)
 SubClassOf(api4kbterminology:BasicEnvironment ObjectExactCardinality(1 api4kbterminology:hasEnvironmentMapping))
+
+# Class: api4kbterminology:BasicKnowledgeAsset (basic knowledge asset)
+
+AnnotationAssertion(rdfs:label api4kbterminology:BasicKnowledgeAsset "basic knowledge asset")
 AnnotationAssertion(core:definition api4kbterminology:BasicKnowledgeAsset "equivalence class of basic expressions determined by the equivalence relation of an asset environment")
 AnnotationAssertion(core:example api4kbterminology:BasicKnowledgeAsset "KA1: an OWL2 DL series for a biomedical ontology, viewed as an equivalence class of basic knowledge expressions, including example KE1, according to a semantics-preserving environment for the OWL2 DL language where the mapping to the focus language strips the natural language definitions from the axioms")
-AnnotationAssertion(rdfs:label api4kbterminology:BasicKnowledgeAsset "basic knowledge asset")
-EquivalentClasses(api4kbterminology:BasicKnowledgeAsset ObjectIntersectionOf(api4kbterminology:KnowledgeAsset api4kbterminology:BasicKnowledgeResource))
+EquivalentClasses(api4kbterminology:BasicKnowledgeAsset ObjectIntersectionOf(api4kbterminology:BasicKnowledgeResource api4kbterminology:KnowledgeAsset))
 DisjointClasses(api4kbterminology:BasicKnowledgeAsset api4kbterminology:StructuredKnowledgeAsset)
+
+# Class: api4kbterminology:BasicKnowledgeEncoding (basic knowledge encoding)
+
 AnnotationAssertion(rdfs:label api4kbterminology:BasicKnowledgeEncoding "basic knowledge encoding")
-EquivalentClasses(api4kbterminology:BasicKnowledgeEncoding ObjectIntersectionOf(api4kbterminology:KnowledgeEncoding api4kbterminology:BasicKnowledgeResource))
+EquivalentClasses(api4kbterminology:BasicKnowledgeEncoding ObjectIntersectionOf(api4kbterminology:BasicKnowledgeResource api4kbterminology:KnowledgeEncoding))
 DisjointClasses(api4kbterminology:BasicKnowledgeEncoding api4kbterminology:StructuredKnowledgeEncoding)
-AnnotationAssertion(core:scopeNote api4kbterminology:BasicKnowledgeExpression "The use of \"basic\" in API4KP differs from its usage in DOL - a DOL basic OMS  (ontologies, models and specifications) is a set, and corresponds to a Set-structured knowledge asset in API4KP.")
+
+# Class: api4kbterminology:BasicKnowledgeExpression (basic knowledge expression)
+
+AnnotationAssertion(rdfs:label api4kbterminology:BasicKnowledgeExpression "basic knowledge expression")
 AnnotationAssertion(core:definition api4kbterminology:BasicKnowledgeExpression "well-formed, stand-alone formula in the abstract syntax of a machine-readable language")
 AnnotationAssertion(core:example api4kbterminology:BasicKnowledgeExpression "KE1: the instance of the OWL 2 DL abstract syntax for the latest version of a biomedical ontology from an ontology series KA1 defining observable entities, such as the 2015 international version of the SNOMED-CT knowledge base\\footnote{http://browser.ihtsdotools.org/} (see also the definition of Basic Knowledge Asset). 
 This ontology differs from other versions of the series only in the natural language definitions.")
-AnnotationAssertion(rdfs:label api4kbterminology:BasicKnowledgeExpression "basic knowledge expression")
-EquivalentClasses(api4kbterminology:BasicKnowledgeExpression ObjectIntersectionOf(api4kbterminology:KnowledgeExpression api4kbterminology:BasicKnowledgeResource))
+AnnotationAssertion(core:scopeNote api4kbterminology:BasicKnowledgeExpression "The use of \"basic\" in API4KP differs from its usage in DOL - a DOL basic OMS  (ontologies, models and specifications) is a set, and corresponds to a Set-structured knowledge asset in API4KP.")
+EquivalentClasses(api4kbterminology:BasicKnowledgeExpression ObjectIntersectionOf(api4kbterminology:BasicKnowledgeResource api4kbterminology:KnowledgeExpression))
 DisjointClasses(api4kbterminology:BasicKnowledgeExpression api4kbterminology:StructuredKnowledgeExpression)
-AnnotationAssertion(core:example api4kbterminology:BasicKnowledgeItem "KI1: a file on a network server embodying example KM1")
+
+# Class: api4kbterminology:BasicKnowledgeItem (basic knowledge item)
+
 AnnotationAssertion(rdfs:label api4kbterminology:BasicKnowledgeItem "basic knowledge item")
 AnnotationAssertion(core:definition api4kbterminology:BasicKnowledgeItem "single exemplar of a basic knowledge manifestation in a particular location")
-EquivalentClasses(api4kbterminology:BasicKnowledgeItem ObjectIntersectionOf(api4kbterminology:KnowledgeItem api4kbterminology:BasicKnowledgeResource))
+AnnotationAssertion(core:example api4kbterminology:BasicKnowledgeItem "KI1: a file on a network server embodying example KM1")
+EquivalentClasses(api4kbterminology:BasicKnowledgeItem ObjectIntersectionOf(api4kbterminology:BasicKnowledgeResource api4kbterminology:KnowledgeItem))
 DisjointClasses(api4kbterminology:BasicKnowledgeItem api4kbterminology:StructuredKnowledgeItem)
+
+# Class: api4kbterminology:BasicKnowledgeManifestation (basic knowledge manifestation)
+
 AnnotationAssertion(rdfs:label api4kbterminology:BasicKnowledgeManifestation "basic knowledge manifestation")
 AnnotationAssertion(core:definition api4kbterminology:BasicKnowledgeManifestation "character-based embodiment of a basic knowledge expression in a concrete dialect.")
 AnnotationAssertion(core:example api4kbterminology:BasicKnowledgeManifestation "KM1: the OWL/RDF XML Document Object Model (DOM) document instance of example KE1")
-EquivalentClasses(api4kbterminology:BasicKnowledgeManifestation ObjectIntersectionOf(api4kbterminology:KnowledgeManifestation api4kbterminology:BasicKnowledgeResource))
+EquivalentClasses(api4kbterminology:BasicKnowledgeManifestation ObjectIntersectionOf(api4kbterminology:BasicKnowledgeResource api4kbterminology:KnowledgeManifestation))
 DisjointClasses(api4kbterminology:BasicKnowledgeManifestation api4kbterminology:StructuredKnowledgeManifestation)
+
+# Class: api4kbterminology:BasicKnowledgeResource (basic knowledge resource)
+
 AnnotationAssertion(rdfs:label api4kbterminology:BasicKnowledgeResource "basic knowledge resource")
 SubClassOf(api4kbterminology:BasicKnowledgeResource api4kbterminology:KnowledgeResource)
 DisjointClasses(api4kbterminology:BasicKnowledgeResource api4kbterminology:StructuredKnowledgeResource)
+
+# Class: api4kbterminology:Callable (api4kbterminology:Callable)
+
 SubClassOf(api4kbterminology:Callable api4kbterminology:MessageType)
-AnnotationAssertion(core:definition api4kbterminology:CategoricalEnvironment "environment with an associative composition operation for mappings, that is closed under composition and contains an identity mapping for every member")
-AnnotationAssertion(core:definition api4kbterminology:CategoricalEnvironment "a composable environment with identies whose composition operation is associative")
+
+# Class: api4kbterminology:CategoricalEnvironment (categorical environment)
+
 AnnotationAssertion(rdfs:label api4kbterminology:CategoricalEnvironment "categorical environment")
+AnnotationAssertion(core:definition api4kbterminology:CategoricalEnvironment "a composable environment with identies whose composition operation is associative")
+AnnotationAssertion(core:definition api4kbterminology:CategoricalEnvironment "environment with an associative composition operation for mappings, that is closed under composition and contains an identity mapping for every member")
 SubClassOf(api4kbterminology:CategoricalEnvironment api4kbterminology:EnvironmentWithIdentities)
-AnnotationAssertion(core:definition api4kbterminology:Client "role filled by an application that needs to make API4KP requests"^^xsd:string)
+
+# Class: api4kbterminology:Client (client)
+
 AnnotationAssertion(rdfs:label api4kbterminology:Client "client")
+AnnotationAssertion(core:definition api4kbterminology:Client "role filled by an application that needs to make API4KP requests"^^xsd:string)
 SubClassOf(api4kbterminology:Client api4kbterminology:Role)
+
+# Class: api4kbterminology:CollectionOfAlgorithms (api4kbterminology:CollectionOfAlgorithms)
+
 SubClassOf(api4kbterminology:CollectionOfAlgorithms api4kbterminology:Component)
+
+# Class: api4kbterminology:CollectionOfFunctionalities (api4kbterminology:CollectionOfFunctionalities)
+
 SubClassOf(api4kbterminology:CollectionOfFunctionalities api4kbterminology:Component)
+
+# Class: api4kbterminology:CollectionOfProcesses (api4kbterminology:CollectionOfProcesses)
+
 SubClassOf(api4kbterminology:CollectionOfProcesses api4kbterminology:Component)
+
+# Class: api4kbterminology:CommunicatingEntity (communicating entity)
+
 AnnotationAssertion(rdfs:label api4kbterminology:CommunicatingEntity "communicating entity")
+
+# Class: api4kbterminology:Component (component)
+
 AnnotationAssertion(rdfs:label api4kbterminology:Component "component")
 AnnotationAssertion(core:definition api4kbterminology:Component "software unit deployed within a knowledge platform"^^xsd:string)
 EquivalentClasses(api4kbterminology:Component ObjectSomeValuesFrom(api4kbterminology:isDeployedWithin api4kbterminology:KnowledgePlatform))
 SubClassOf(api4kbterminology:Component api4kbterminology:CommunicatingEntity)
-AnnotationAssertion(core:editorialNote api4kbterminology:ComposableEnvironment "The composition M2 o M1 of two mappings M1 and M2 is well-defined when M1 maps to the same thing that M2 maps from. (The codomain of M1 is the domain of M2).")
+
+# Class: api4kbterminology:ComposableEnvironment (composable environment)
+
 AnnotationAssertion(rdfs:label api4kbterminology:ComposableEnvironment "composable environment")
 AnnotationAssertion(core:definition api4kbterminology:ComposableEnvironment "an environment having a composition operation where the composition of its mappings is a mapping of the environment whenever the composition is well-defined")
+AnnotationAssertion(core:editorialNote api4kbterminology:ComposableEnvironment "The composition M2 o M1 of two mappings M1 and M2 is well-defined when M1 maps to the same thing that M2 maps from. (The codomain of M1 is the domain of M2).")
 SubClassOf(api4kbterminology:ComposableEnvironment api4kbterminology:Environment)
+
+# Class: api4kbterminology:CreateEmptyKPFunctionality (api4kbterminology:CreateEmptyKPFunctionality)
+
 SubClassOf(api4kbterminology:CreateEmptyKPFunctionality api4kbterminology:Functionality)
+
+# Class: api4kbterminology:Description (description)
+
 AnnotationAssertion(rdfs:label api4kbterminology:Description "description")
 AnnotationAssertion(core:definition api4kbterminology:Description "generalised expression that describes a knowledge resource."^^xsd:string)
 SubClassOf(api4kbterminology:Description api4kbterminology:KnowledgeExpression)
+
+# Class: api4kbterminology:EmptyEnvironment (empty environment)
+
 AnnotationAssertion(rdfs:label api4kbterminology:EmptyEnvironment "empty environment")
 SubClassOf(api4kbterminology:EmptyEnvironment api4kbterminology:Environment)
 SubClassOf(api4kbterminology:EmptyEnvironment ObjectExactCardinality(0 api4kbterminology:hasEnvironmentMapping))
 DisjointClasses(api4kbterminology:EmptyEnvironment api4kbterminology:NonemptyEnvironment)
-AnnotationAssertion(core:example api4kbterminology:Environment "a KRR language environment containing semantics-preserving translations from RDF and OWL into CL, assisting in the integrated interpretation of a stream of RDF graphs and OWL ontologies")
-AnnotationAssertion(core:definition api4kbterminology:Environment "mathematical structure of mappings and members, where the domain and codomains of the mappings are members of the environment")
+
+# Class: api4kbterminology:Environment (environment)
+
 AnnotationAssertion(rdfs:label api4kbterminology:Environment "environment")
+AnnotationAssertion(core:definition api4kbterminology:Environment "mathematical structure of mappings and members, where the domain and codomains of the mappings are members of the environment")
+AnnotationAssertion(core:example api4kbterminology:Environment "a KRR language environment containing semantics-preserving translations from RDF and OWL into CL, assisting in the integrated interpretation of a stream of RDF graphs and OWL ontologies")
 SubClassOf(api4kbterminology:Environment api4kbterminology:Immutable)
-AnnotationAssertion(core:editorialNote api4kbterminology:EnvironmentWithIdentities "an identity mapping is a mapping whose domain and codomain are the same, and when composed with another mapping is equal to the original mapping")
-AnnotationAssertion(core:definition api4kbterminology:EnvironmentWithIdentities "a composable environment having an identity mapping for each member")
+
+# Class: api4kbterminology:EnvironmentWithIdentities (environment with identity)
+
 AnnotationAssertion(rdfs:label api4kbterminology:EnvironmentWithIdentities "environment with identity")
+AnnotationAssertion(core:definition api4kbterminology:EnvironmentWithIdentities "a composable environment having an identity mapping for each member")
+AnnotationAssertion(core:editorialNote api4kbterminology:EnvironmentWithIdentities "an identity mapping is a mapping whose domain and codomain are the same, and when composed with another mapping is equal to the original mapping")
 SubClassOf(api4kbterminology:EnvironmentWithIdentities api4kbterminology:ComposableEnvironment)
+
+# Class: api4kbterminology:EquivalenceRelation (equivalence relation)
+
 AnnotationAssertion(rdfs:label api4kbterminology:EquivalenceRelation "equivalence relation")
 SubClassOf(api4kbterminology:EquivalenceRelation api4kboperation:KnowledgeOperation)
+
+# Class: api4kbterminology:Event (api4kbterminology:Event)
+
 SubClassOf(api4kbterminology:Event api4kbterminology:Success)
+
+# Class: api4kbterminology:EventType (api4kbterminology:EventType)
+
 SubClassOf(api4kbterminology:EventType api4kbterminology:Success)
+
+# Class: api4kbterminology:Expression (API4KB Expression)
+
 AnnotationAssertion(rdfs:label api4kbterminology:Expression "API4KB Expression")
+
+# Class: api4kbterminology:Failure (api4kbterminology:Failure)
+
 SubClassOf(api4kbterminology:Failure api4kbterminology:Request)
+
+# Class: api4kbterminology:FailureInstance (api4kbterminology:FailureInstance)
+
 SubClassOf(api4kbterminology:FailureInstance api4kbterminology:Failure)
+
+# Class: api4kbterminology:FailureMonad (api4kbterminology:FailureMonad)
+
 SubClassOf(api4kbterminology:FailureMonad api4kbterminology:FailureType)
+
+# Class: api4kbterminology:FailureType (api4kbterminology:FailureType)
+
 SubClassOf(api4kbterminology:FailureType api4kbterminology:Failure)
-AnnotationAssertion(core:definition api4kbterminology:FocusedEnvironment "a nonempty environment which has a member F (called the focus or focus member) such that for every other member A, there is a mapping in the environment from A to F"^^xsd:string)
+
+# Class: api4kbterminology:FocusedEnvironment (focused environment)
+
 AnnotationAssertion(rdfs:label api4kbterminology:FocusedEnvironment "focused environment")
+AnnotationAssertion(core:definition api4kbterminology:FocusedEnvironment "a nonempty environment which has a member F (called the focus or focus member) such that for every other member A, there is a mapping in the environment from A to F"^^xsd:string)
 SubClassOf(api4kbterminology:FocusedEnvironment api4kbterminology:NonemptyEnvironment)
+
+# Class: api4kbterminology:Functionality (api4kbterminology:Functionality)
+
 SubClassOf(api4kbterminology:Functionality api4kbterminology:MessageType)
+
+# Class: api4kbterminology:Immutable (immutable)
+
 AnnotationAssertion(rdfs:label api4kbterminology:Immutable "immutable")
 DisjointClasses(api4kbterminology:Immutable api4kbterminology:Mutable)
+
+# Class: api4kbterminology:ImmutableKBFactoryRole (role immutable knowledge base factory)
+
 AnnotationAssertion(rdfs:label api4kbterminology:ImmutableKBFactoryRole "role immutable knowledge base factory")
 SubClassOf(api4kbterminology:ImmutableKBFactoryRole api4kbterminology:KnowledgePlatformManagerRole)
 SubClassOf(api4kbterminology:ImmutableKBFactoryRole ObjectSomeValuesFrom(api4kbterminology:requires api4kbproficiency:AddingProficiency-KnowledgeResourceToImmutableKB))
+
+# Class: api4kbterminology:ImmutableKnowledgeBase (immutable knowledgebase)
+
 AnnotationAssertion(rdfs:label api4kbterminology:ImmutableKnowledgeBase "immutable knowledgebase")
 EquivalentClasses(api4kbterminology:ImmutableKnowledgeBase api4kbterminology:StructuredKnowledgeAsset)
 SubClassOf(api4kbterminology:ImmutableKnowledgeBase api4kbterminology:KnowledgeAsset)
 SubClassOf(api4kbterminology:ImmutableKnowledgeBase api4kbterminology:KnowledgeBase)
-AnnotationAssertion(core:scopeNote api4kbterminology:ImmutableSource "All OntoIOp concepts are immutable."^^xsd:string)
+
+# Class: api4kbterminology:ImmutableSource (immutable source)
+
 AnnotationAssertion(rdfs:label api4kbterminology:ImmutableSource "immutable source")
-EquivalentClasses(api4kbterminology:ImmutableSource ObjectIntersectionOf(api4kbterminology:Source api4kbterminology:Immutable))
+AnnotationAssertion(core:scopeNote api4kbterminology:ImmutableSource "All OntoIOp concepts are immutable."^^xsd:string)
+EquivalentClasses(api4kbterminology:ImmutableSource ObjectIntersectionOf(api4kbterminology:Immutable api4kbterminology:Source))
+
+# Class: api4kbterminology:ImmutableView (immuable view)
+
 AnnotationAssertion(rdfs:label api4kbterminology:ImmutableView "immuable view")
 SubClassOf(api4kbterminology:ImmutableView api4kbterminology:Immutable)
+
+# Class: api4kbterminology:KPlatformDesign (api4kbterminology:KPlatformDesign)
+
 SubClassOf(api4kbterminology:KPlatformDesign api4kbterminology:KnowledgePlatform)
 SubClassOf(api4kbterminology:KPlatformDesign api4kbterminology:PlatformDesign)
+
+# Class: api4kbterminology:KPlatformImplementation (api4kbterminology:KPlatformImplementation)
+
 SubClassOf(api4kbterminology:KPlatformImplementation api4kbterminology:KnowledgePlatform)
 SubClassOf(api4kbterminology:KPlatformImplementation api4kbterminology:PlatformImplementation)
+
+# Class: api4kbterminology:KPlatformInstallation (api4kbterminology:KPlatformInstallation)
+
 SubClassOf(api4kbterminology:KPlatformInstallation api4kbterminology:KnowledgePlatform)
 SubClassOf(api4kbterminology:KPlatformInstallation api4kbterminology:PlatformInstallation)
+
+# Class: api4kbterminology:KPlatformSpecification (api4kbterminology:KPlatformSpecification)
+
 SubClassOf(api4kbterminology:KPlatformSpecification api4kbterminology:KnowledgePlatform)
 SubClassOf(api4kbterminology:KPlatformSpecification api4kbterminology:PlatformSpecification)
+
+# Class: api4kbterminology:KnowledgeAsset (knowledge asset)
+
+AnnotationAssertion(rdfs:label api4kbterminology:KnowledgeAsset "knowledge asset")
 AnnotationAssertion(core:definition api4kbterminology:KnowledgeAsset "equivalence class (according to an environment) of generalized expressions.
 
 Note:  intuitively, a knowledge asset is information that may be (equivalently) expressed in one or more KR languages."^^xsd:string)
-AnnotationAssertion(rdfs:label api4kbterminology:KnowledgeAsset "knowledge asset")
 AnnotationAssertion(core:example api4kbterminology:KnowledgeAsset "Example: assertion that Socrates is a philospher.
 Example: assertion that the author of Moby Dick is Herman Melville.
 Example: query for the names of philosphers.
 Example: a sequence of strings that are asserted to be names of philosphers in some KB."^^xsd:string)
-EquivalentClasses(api4kbterminology:KnowledgeAsset ObjectIntersectionOf(ObjectSomeValuesFrom(api4kbterminology:conceptualizes api4kbterminology:KnowledgeExpression) api4kbterminology:KnowledgeResource))
+EquivalentClasses(api4kbterminology:KnowledgeAsset ObjectIntersectionOf(api4kbterminology:KnowledgeResource ObjectSomeValuesFrom(api4kbterminology:conceptualizes api4kbterminology:KnowledgeExpression)))
 SubClassOf(api4kbterminology:KnowledgeAsset api4kbterminology:KnowledgeResource)
 SubClassOf(api4kbterminology:KnowledgeAsset ObjectExactCardinality(1 api4kbterminology:accordingTo api4kbterminology:AssetEnvironment))
+
+# Class: api4kbterminology:KnowledgeBase (knowledge base)
+
 AnnotationAssertion(rdfs:label api4kbterminology:KnowledgeBase "knowledge base")
 SubClassOf(api4kbterminology:KnowledgeBase api4kbterminology:KnowledgeSource)
+
+# Class: api4kbterminology:KnowledgeEncoding (knowledge encoding)
+
+AnnotationAssertion(rdfs:label api4kbterminology:KnowledgeEncoding "knowledge encoding")
+AnnotationAssertion(core:definition api4kbterminology:KnowledgeEncoding "byte (or bit) sequence that is the encoding of a knowledge manifestation in some format (e.g. character encoding system(s) together with an archive format)."^^xsd:string)
 AnnotationAssertion(core:example api4kbterminology:KnowledgeEncoding "Example A: the encoding in UTF-8 of the serialization in Manchester syntax of an OWL ontology. 
 Example B: the zip archive of
    -  the encoding in UTF-8 of the serialization in Manchester syntax of an OWL ontology.
    - the encoding in UTF-16 of the serialization in XCL of a Common Logic text.
    - the encoding in UTF-8 of the serialization in standard syntax of a DOL text providing the details of how the above two files should be jointly interpreted. "^^xsd:string)
-AnnotationAssertion(core:definition api4kbterminology:KnowledgeEncoding "byte (or bit) sequence that is the encoding of a knowledge manifestation in some format (e.g. character encoding system(s) together with an archive format)."^^xsd:string)
-AnnotationAssertion(rdfs:label api4kbterminology:KnowledgeEncoding "knowledge encoding")
 SubClassOf(api4kbterminology:KnowledgeEncoding api4kbterminology:KnowledgeResource)
 SubClassOf(api4kbterminology:KnowledgeEncoding ObjectSomeValuesFrom(api4kbterminology:encodes api4kbterminology:KnowledgeManifestation))
-AnnotationAssertion(core:definition api4kbterminology:KnowledgeExpression "Set of Expressions in one or more languages, in the context of a Logical Environment determining how these Expressions are jointly interpreted."^^xsd:string)
+
+# Class: api4kbterminology:KnowledgeExpression (knowledge expression)
+
 AnnotationAssertion(rdfs:label api4kbterminology:KnowledgeExpression "knowledge expression")
+AnnotationAssertion(core:definition api4kbterminology:KnowledgeExpression "Set of Expressions in one or more languages, in the context of a Logical Environment determining how these Expressions are jointly interpreted."^^xsd:string)
 AnnotationAssertion(core:example api4kbterminology:KnowledgeExpression "Expression examples;
 Example A: OWL Ground fact expressing that Socrates is a philosopher.
 Example B: Common Logic sentence expressing that Socrates is a philosopher.
@@ -352,435 +888,433 @@ SubClassOf(api4kbterminology:KnowledgeExpression api4kbterminology:Expression)
 SubClassOf(api4kbterminology:KnowledgeExpression api4kbterminology:KnowledgeResource)
 SubClassOf(api4kbterminology:KnowledgeExpression ObjectSomeValuesFrom(dol-terms:hasPart dol-terms:SetOfExpressions))
 SubClassOf(api4kbterminology:KnowledgeExpression ObjectAllValuesFrom(api4kbterminology:hasPart api4kbterminology:KnowledgeExpression))
+
+# Class: api4kbterminology:KnowledgeItem (knowledge item)
+
+AnnotationAssertion(rdfs:label api4kbterminology:KnowledgeItem "knowledge item")
 AnnotationAssertion(core:definition api4kbterminology:KnowledgeItem "physical instance of a knowledge encoding, e.g. snapshot of a file on a hard drive, a Java String in memory."^^xsd:string)
 AnnotationAssertion(core:example api4kbterminology:KnowledgeItem "Example: my copy in my Download folder of the encoding in UTF-8 of the serialization in Manchester syntax of an OWL ontology. "^^xsd:string)
-AnnotationAssertion(rdfs:label api4kbterminology:KnowledgeItem "knowledge item")
 SubClassOf(api4kbterminology:KnowledgeItem api4kbterminology:KnowledgeResource)
 SubClassOf(api4kbterminology:KnowledgeItem ObjectSomeValuesFrom(api4kbterminology:reproduces api4kbterminology:KnowledgeEncoding))
+
+# Class: api4kbterminology:KnowledgeManifestation (knowledge manifestation)
+
+AnnotationAssertion(rdfs:label api4kbterminology:KnowledgeManifestation "knowledge manifestation")
+AnnotationAssertion(core:definition api4kbterminology:KnowledgeManifestation "character sequence, or collection of character sequences, each being the serialization of a generalised expression in a knowledge serialization."^^xsd:string)
 AnnotationAssertion(core:example api4kbterminology:KnowledgeManifestation "Example: character sequence in Manchester OWL syntax that is the serialization of an OWL Ground fact expressing that Socrates is a philosopher.
 Example: character sequence in OWL RDF/XML syntax that is the serialization of an OWL Ground fact expressing that Socrates is a philosopher.
 Example: character sequence in CLIF syntax that is the serialization of a Common Logic sentence expressing that Socrates is a philosopher.
 Example: character sequence in RDF/XML that is the serialization of an RDF graph expressing that the author of Moby Dick is Herman Melville.
 Example: character sequence in Turtle that is the serialization of an RDF graph expressing that the author of Moby Dick is Herman Melville.
 Example: SPARQL query String for the names of philosphers."^^xsd:string)
-AnnotationAssertion(rdfs:label api4kbterminology:KnowledgeManifestation "knowledge manifestation")
-AnnotationAssertion(core:definition api4kbterminology:KnowledgeManifestation "character sequence, or collection of character sequences, each being the serialization of a generalised expression in a knowledge serialization."^^xsd:string)
 SubClassOf(api4kbterminology:KnowledgeManifestation api4kbterminology:KnowledgeResource)
 SubClassOf(api4kbterminology:KnowledgeManifestation ObjectSomeValuesFrom(api4kbterminology:manifests api4kbterminology:KnowledgeExpression))
 SubClassOf(api4kbterminology:KnowledgeManifestation ObjectSomeValuesFrom(api4kbterminology:usesSerialization api4kbterminology:KnowledgeSerialization))
+
+# Class: api4kbterminology:KnowledgePlatform (knowledge platform)
+
+AnnotationAssertion(rdfs:label api4kbterminology:KnowledgePlatform "knowledge platform")
 AnnotationAssertion(core:note api4kbterminology:KnowledgePlatform "Original Definition: software architecture that supports the Components and their interactions.
 
 Note: The proxy will not have access to the KP except through the KP Manager."^^xsd:string)
-AnnotationAssertion(rdfs:label api4kbterminology:KnowledgePlatform "knowledge platform")
-EquivalentClasses(api4kbterminology:KnowledgePlatform ObjectIntersectionOf(ObjectAllValuesFrom(api4kbterminology:isManagedBy api4kbterminology:KnowledgePlatformManagerRole) ObjectSomeValuesFrom(api4kbterminology:supports api4kbterminology:Component)))
+EquivalentClasses(api4kbterminology:KnowledgePlatform ObjectIntersectionOf(ObjectSomeValuesFrom(api4kbterminology:supports api4kbterminology:Component) ObjectAllValuesFrom(api4kbterminology:isManagedBy api4kbterminology:KnowledgePlatformManagerRole)))
 SubClassOf(api4kbterminology:KnowledgePlatform api4kbterminology:Platform)
-AnnotationAssertion(core:note api4kbterminology:KnowledgePlatformManagerRole "should this be a role?")
+
+# Class: api4kbterminology:KnowledgePlatformManagerRole (knowledge platform manager role)
+
 AnnotationAssertion(rdfs:label api4kbterminology:KnowledgePlatformManagerRole "knowledge platform manager role")
+AnnotationAssertion(core:definition api4kbterminology:KnowledgePlatformManagerRole "role filled by a knowledge platform that creates, modifies and deletes knowledge platforms (possibly including itself)"^^xsd:string)
+AnnotationAssertion(core:note api4kbterminology:KnowledgePlatformManagerRole "should this be a role?")
 AnnotationAssertion(core:scopeNote api4kbterminology:KnowledgePlatformManagerRole "Optionally, a KP Manager can orchestrate the Components in the KP.
 Alternatively, the Components may coordinate among each other"^^xsd:string)
-AnnotationAssertion(core:definition api4kbterminology:KnowledgePlatformManagerRole "role filled by a knowledge platform that creates, modifies and deletes knowledge platforms (possibly including itself)"^^xsd:string)
 SubClassOf(api4kbterminology:KnowledgePlatformManagerRole api4kbterminology:Role)
-AnnotationAssertion(core:definition api4kbterminology:KnowledgeRepresentationAndReasoningLanguage "OMS language, query language, or result language"^^xsd:string)
+
+# Class: api4kbterminology:KnowledgeRepresentationAndReasoningLanguage (knowledge representation and reasoning language)
+
 AnnotationAssertion(rdfs:label api4kbterminology:KnowledgeRepresentationAndReasoningLanguage "knowledge representation and reasoning language")
+AnnotationAssertion(core:definition api4kbterminology:KnowledgeRepresentationAndReasoningLanguage "OMS language, query language, or result language"^^xsd:string)
 SubClassOf(api4kbterminology:KnowledgeRepresentationAndReasoningLanguage dol-terms:Language)
-AnnotationAssertion(core:definition api4kbterminology:KnowledgeResource "immutable knowledge source, which may be identified to be at one of the following levels of abstraction; knowledge asset, generalised expression, knowledge manifestation, knowledge encoding, or knowledge item."^^xsd:string)
+
+# Class: api4kbterminology:KnowledgeResource (knowledge resource)
+
 AnnotationAssertion(rdfs:label api4kbterminology:KnowledgeResource "knowledge resource")
+AnnotationAssertion(core:definition api4kbterminology:KnowledgeResource "immutable knowledge source, which may be identified to be at one of the following levels of abstraction; knowledge asset, generalised expression, knowledge manifestation, knowledge encoding, or knowledge item."^^xsd:string)
 SubClassOf(api4kbterminology:KnowledgeResource api4kbterminology:ImmutableSource)
 SubClassOf(api4kbterminology:KnowledgeResource api4kbterminology:KnowledgeSource)
 DisjointUnion(api4kbterminology:KnowledgeResource api4kbterminology:KnowledgeAsset api4kbterminology:KnowledgeEncoding api4kbterminology:KnowledgeExpression api4kbterminology:KnowledgeItem api4kbterminology:KnowledgeManifestation)
+
+# Class: api4kbterminology:KnowledgeSerialization (knowledge serialization)
+
 AnnotationAssertion(rdfs:label api4kbterminology:KnowledgeSerialization "knowledge serialization")
 AnnotationAssertion(core:definition api4kbterminology:KnowledgeSerialization "system of converting an expression into an character sequence."^^xsd:string)
 SubClassOf(api4kbterminology:KnowledgeSerialization api4kbterminology:Serialization)
 SubClassOf(api4kbterminology:KnowledgeSerialization ObjectSomeValuesFrom(api4kbterminology:isSerializationOf api4kbterminology:KnowledgeRepresentationAndReasoningLanguage))
-AnnotationAssertion(core:example api4kbterminology:KnowledgeSource "a database with a mapping to an ontology")
-AnnotationAssertion(core:definition api4kbterminology:KnowledgeSource "source of machine-readable information with (possibly ambiguous) semantics")
+
+# Class: api4kbterminology:KnowledgeSource (knowledge source)
+
 AnnotationAssertion(rdfs:label api4kbterminology:KnowledgeSource "knowledge source")
+AnnotationAssertion(core:definition api4kbterminology:KnowledgeSource "source of machine-readable information with (possibly ambiguous) semantics")
+AnnotationAssertion(core:example api4kbterminology:KnowledgeSource "a database with a mapping to an ontology")
+AnnotationAssertion(core:example api4kbterminology:KnowledgeSource "a stateful representation of a patient's history with OWL snapshots")
 AnnotationAssertion(core:example api4kbterminology:KnowledgeSource "a stream of RDF graphs providing data from biomedical devices")
 AnnotationAssertion(core:scopeNote api4kbterminology:KnowledgeSource "OntoIOp sensitive"^^xsd:string)
-AnnotationAssertion(core:example api4kbterminology:KnowledgeSource "a stateful representation of a patient's history with OWL snapshots")
-AnnotationAssertion(core:definition api4kbterminology:KnowledgeSourceDescription "knowledge resource whose subject matter is another knowledge source")
+
+# Class: api4kbterminology:KnowledgeSourceDescription (knowledge source description)
+
 AnnotationAssertion(rdfs:label api4kbterminology:KnowledgeSourceDescription "knowledge source description")
+AnnotationAssertion(core:definition api4kbterminology:KnowledgeSourceDescription "knowledge resource whose subject matter is another knowledge source")
 SubClassOf(api4kbterminology:KnowledgeSourceDescription api4kbterminology:KnowledgeResource)
+
+# Class: api4kbterminology:LanguageEnvironment (language environment)
+
 AnnotationAssertion(rdfs:label api4kbterminology:LanguageEnvironment "language environment")
 AnnotationAssertion(core:definition api4kbterminology:LanguageEnvironment "environment whose members are languages")
 SubClassOf(api4kbterminology:LanguageEnvironment api4kbterminology:Environment)
 SubClassOf(api4kbterminology:LanguageEnvironment ObjectAllValuesFrom(api4kbterminology:hasEnvironmentMember api4kbterminology:KnowledgeRepresentationAndReasoningLanguage))
+
+# Class: api4kbterminology:LanguageMapping (api4kbterminology:LanguageMapping)
+
 EquivalentClasses(api4kbterminology:LanguageMapping dol-terms:LanguageMapping)
 SubClassOf(api4kbterminology:LanguageMapping api4kbterminology:Mapping)
+
+# Class: api4kbterminology:Mapping (api4kbterminology:Mapping)
+
 EquivalentClasses(api4kbterminology:Mapping dol-terms:Mapping)
+
+# Class: api4kbterminology:Message (api4kbterminology:Message)
+
 SubClassOf(api4kbterminology:Message api4kbterminology:OperationColumn)
+
+# Class: api4kbterminology:MessageType (api4kbterminology:MessageType)
+
 SubClassOf(api4kbterminology:MessageType api4kbterminology:OperationColumn)
+
+# Class: api4kbterminology:Mutable (mutable)
+
 AnnotationAssertion(rdfs:label api4kbterminology:Mutable "mutable")
 SubClassOf(api4kbterminology:Mutable ObjectSomeValuesFrom(api4kbterminology:hasSnapshot api4kbterminology:Immutable))
+
+# Class: api4kbterminology:MutableKnowledgeBase (mutable knowledge base)
+
 AnnotationAssertion(rdfs:label api4kbterminology:MutableKnowledgeBase "mutable knowledge base")
-EquivalentClasses(api4kbterminology:MutableKnowledgeBase ObjectIntersectionOf(ObjectSomeValuesFrom(api4kbterminology:hasSnapshot api4kbterminology:ImmutableKnowledgeBase) api4kbterminology:MutableSource))
+EquivalentClasses(api4kbterminology:MutableKnowledgeBase ObjectIntersectionOf(api4kbterminology:MutableSource ObjectSomeValuesFrom(api4kbterminology:hasSnapshot api4kbterminology:ImmutableKnowledgeBase)))
 SubClassOf(api4kbterminology:MutableKnowledgeBase api4kbterminology:KnowledgeSource)
+
+# Class: api4kbterminology:MutableSource (mutable source)
+
 AnnotationAssertion(rdfs:label api4kbterminology:MutableSource "mutable source")
-AnnotationAssertion(core:scopeNote api4kbterminology:MutableSource "API4KP does not commit to any particular topology of time. E.g. Linear, branching and braided time indices are possible.")
 AnnotationAssertion(core:definition api4kbterminology:MutableSource "container that has, at any point in time, an explicit state that is fully represented by a knowledge resource. The language, structure and content of a mutable knowledge source may change over time, but the abstraction level is unchanging.")
 AnnotationAssertion(core:example api4kbterminology:MutableSource "the snapshot of a patient's current condition (with timestamp)")
+AnnotationAssertion(core:scopeNote api4kbterminology:MutableSource "API4KP does not commit to any particular topology of time. E.g. Linear, branching and braided time indices are possible.")
 EquivalentClasses(api4kbterminology:MutableSource ObjectIntersectionOf(api4kbterminology:Mutable api4kbterminology:Source ObjectSomeValuesFrom(api4kbterminology:hasSnapshot api4kbterminology:ImmutableSource)))
+
+# Class: api4kbterminology:NonemptyEnvironment (nonempty environment)
+
 AnnotationAssertion(rdfs:label api4kbterminology:NonemptyEnvironment "nonempty environment")
 SubClassOf(api4kbterminology:NonemptyEnvironment api4kbterminology:Environment)
 SubClassOf(api4kbterminology:NonemptyEnvironment ObjectSomeValuesFrom(api4kbterminology:hasEnvironmentMapping api4kbterminology:Mapping))
+
+# Class: api4kbterminology:Operation (api4kbterminology:Operation)
+
 SubClassOf(api4kbterminology:Operation api4kbterminology:MessageType)
+
+# Class: api4kbterminology:PIEventType (api4kbterminology:PIEventType)
+
 SubClassOf(api4kbterminology:PIEventType api4kbterminology:EventType)
+
+# Class: api4kbterminology:PIFailureType (api4kbterminology:PIFailureType)
+
 SubClassOf(api4kbterminology:PIFailureType api4kbterminology:FailureType)
+
+# Class: api4kbterminology:PSEventType (api4kbterminology:PSEventType)
+
 SubClassOf(api4kbterminology:PSEventType api4kbterminology:EventType)
+
+# Class: api4kbterminology:PSFailureType (api4kbterminology:PSFailureType)
+
 SubClassOf(api4kbterminology:PSFailureType api4kbterminology:FailureType)
+
+# Class: api4kbterminology:Platform (api4kbterminology:Platform)
+
 SubClassOf(api4kbterminology:Platform api4kbterminology:CommunicatingEntity)
+
+# Class: api4kbterminology:PlatformDesign (api4kbterminology:PlatformDesign)
+
 SubClassOf(api4kbterminology:PlatformDesign api4kbterminology:PlatformType)
+
+# Class: api4kbterminology:PlatformImplementation (api4kbterminology:PlatformImplementation)
+
 SubClassOf(api4kbterminology:PlatformImplementation api4kbterminology:PlatformType)
+
+# Class: api4kbterminology:PlatformInstallation (api4kbterminology:PlatformInstallation)
+
 SubClassOf(api4kbterminology:PlatformInstallation api4kbterminology:Platform)
+
+# Class: api4kbterminology:PlatformSpecification (api4kbterminology:PlatformSpecification)
+
 AnnotationAssertion(core:editorialNote api4kbterminology:PlatformSpecification "we already have a class called specification")
 SubClassOf(api4kbterminology:PlatformSpecification api4kbterminology:PlatformType)
+
+# Class: api4kbterminology:PlatformType (api4kbterminology:PlatformType)
+
 SubClassOf(api4kbterminology:PlatformType api4kbterminology:Platform)
+
+# Class: api4kbterminology:PreservingEnvironment (preserving environment)
+
 AnnotationAssertion(rdfs:label api4kbterminology:PreservingEnvironment "preserving environment")
 AnnotationAssertion(core:definition api4kbterminology:PreservingEnvironment "environment where every mapping preserves a specified property")
 SubClassOf(api4kbterminology:PreservingEnvironment api4kbterminology:Environment)
 SubClassOf(api4kbterminology:PreservingEnvironment ObjectSomeValuesFrom(api4kbterminology:allPreserve api4kbterminology:EquivalenceRelation))
+
+# Class: api4kbterminology:Program (api4kbterminology:Program)
+
 SubClassOf(api4kbterminology:Program api4kbterminology:Component)
-AnnotationAssertion(core:scopeNote api4kbterminology:Proxy "The proxy may play a security role."^^xsd:string)
-AnnotationAssertion(core:editorialNote api4kbterminology:Proxy "should this be a subclass of role?")
+
+# Class: api4kbterminology:Proxy (proxy)
+
 AnnotationAssertion(rdfs:label api4kbterminology:Proxy "proxy")
-AnnotationAssertion(core:note api4kbterminology:Proxy "This definition does not exclude other functionalities."^^xsd:string)
 AnnotationAssertion(core:definition api4kbterminology:Proxy "role filled by a knowledge platform that receives certain API4KP operations but does not execute these requests directly. The proxy will forward the request to another proxy or a KP, possibly mapping the request to other operations before forwarding. The proxy may also relay the response back to the requestor."^^xsd:string)
+AnnotationAssertion(core:editorialNote api4kbterminology:Proxy "should this be a subclass of role?")
+AnnotationAssertion(core:note api4kbterminology:Proxy "This definition does not exclude other functionalities."^^xsd:string)
+AnnotationAssertion(core:scopeNote api4kbterminology:Proxy "The proxy may play a security role."^^xsd:string)
 SubClassOf(api4kbterminology:Proxy api4kbterminology:Role)
-AnnotationAssertion(core:definition api4kbterminology:QueryAsset "knowledge asset of queries."^^xsd:string)
+
+# Class: api4kbterminology:QueryAsset (query asset)
+
 AnnotationAssertion(rdfs:label api4kbterminology:QueryAsset "query asset")
+AnnotationAssertion(core:definition api4kbterminology:QueryAsset "knowledge asset of queries."^^xsd:string)
 SubClassOf(api4kbterminology:QueryAsset api4kbterminology:KnowledgeAsset)
 SubClassOf(api4kbterminology:QueryAsset api4kbterminology:QueryResource)
 SubClassOf(api4kbterminology:QueryAsset ObjectSomeValuesFrom(api4kbterminology:conceptualizes api4kbterminology:QueryGeneralizedExpession))
+
+# Class: api4kbterminology:QueryEncoding (query encoding)
+
 AnnotationAssertion(rdfs:label api4kbterminology:QueryEncoding "query encoding")
 AnnotationAssertion(core:definition api4kbterminology:QueryEncoding "byte (or bit) sequence that is the encoding of a query manifestation in some character encoding system(s)."^^xsd:string)
 SubClassOf(api4kbterminology:QueryEncoding api4kbterminology:KnowledgeEncoding)
 SubClassOf(api4kbterminology:QueryEncoding api4kbterminology:QueryResource)
 SubClassOf(api4kbterminology:QueryEncoding ObjectSomeValuesFrom(api4kbterminology:encodes api4kbterminology:QueryManifestation))
+
+# Class: api4kbterminology:QueryGeneralizedExpession (query generalised expression)
+
 AnnotationAssertion(rdfs:label api4kbterminology:QueryGeneralizedExpession "query generalised expression")
 AnnotationAssertion(core:definition api4kbterminology:QueryGeneralizedExpession "generalized expression using query languages."^^xsd:string)
-EquivalentClasses(api4kbterminology:QueryGeneralizedExpession ObjectIntersectionOf(api4kbterminology:QueryResource api4kbterminology:KnowledgeExpression))
-EquivalentClasses(api4kbterminology:QueryGeneralizedExpession ObjectIntersectionOf(ObjectAllValuesFrom(api4kbterminology:usesLanguage api4kbterminology:QueryLanguage) ObjectSomeValuesFrom(api4kbterminology:usesLanguage api4kbterminology:QueryLanguage)))
+EquivalentClasses(api4kbterminology:QueryGeneralizedExpession ObjectIntersectionOf(api4kbterminology:KnowledgeExpression api4kbterminology:QueryResource))
+EquivalentClasses(api4kbterminology:QueryGeneralizedExpession ObjectIntersectionOf(ObjectSomeValuesFrom(api4kbterminology:usesLanguage api4kbterminology:QueryLanguage) ObjectAllValuesFrom(api4kbterminology:usesLanguage api4kbterminology:QueryLanguage)))
+
+# Class: api4kbterminology:QueryItem (query item)
+
 AnnotationAssertion(rdfs:label api4kbterminology:QueryItem "query item")
 AnnotationAssertion(core:definition api4kbterminology:QueryItem "physical instance of an encoding, e.g. a file on a hard drive, a Java String in memory."^^xsd:string)
 SubClassOf(api4kbterminology:QueryItem api4kbterminology:KnowledgeItem)
 SubClassOf(api4kbterminology:QueryItem api4kbterminology:QueryResource)
 SubClassOf(api4kbterminology:QueryItem ObjectSomeValuesFrom(api4kbterminology:reproduces api4kbterminology:QueryEncoding))
+
+# Class: api4kbterminology:QueryLanguage (query language)
+
 AnnotationAssertion(rdfs:label api4kbterminology:QueryLanguage "query language")
 AnnotationAssertion(core:definition api4kbterminology:QueryLanguage "language consisting of a set of query expressions, one or more serializations of these Expressions, and one or more Entailment Regimes (http://www.w3.org/TR/sparql11-entailment/#entRegimeParts) defined in terms of formal, logic-based semantics. "^^xsd:string)
 AnnotationAssertion(core:scopeNote api4kbterminology:QueryLanguage "Note: the set of expressions of a query language may be defined by a grammar, or it may be defined in terms of expressions of an OMS language together with a sequence of non-logical constants that will be treated as the distinguished query variables. Additional features of a query language are perfomatives used to indicate how query results should be returned."^^xsd:string)
 SubClassOf(api4kbterminology:QueryLanguage api4kbterminology:KnowledgeRepresentationAndReasoningLanguage)
-AnnotationAssertion(core:definition api4kbterminology:QueryManifestation "character sequence, or collection of character sequences, each being the serialization of a query in a query serialization (Formats)."^^xsd:string)
+
+# Class: api4kbterminology:QueryManifestation (query manifestation)
+
 AnnotationAssertion(rdfs:label api4kbterminology:QueryManifestation "query manifestation")
+AnnotationAssertion(core:definition api4kbterminology:QueryManifestation "character sequence, or collection of character sequences, each being the serialization of a query in a query serialization (Formats)."^^xsd:string)
 SubClassOf(api4kbterminology:QueryManifestation api4kbterminology:KnowledgeManifestation)
 SubClassOf(api4kbterminology:QueryManifestation api4kbterminology:QueryResource)
 SubClassOf(api4kbterminology:QueryManifestation ObjectSomeValuesFrom(api4kbterminology:manifests api4kbterminology:QueryGeneralizedExpession))
 SubClassOf(api4kbterminology:QueryManifestation ObjectSomeValuesFrom(api4kbterminology:usesSerialization api4kbterminology:QuerySerialization))
-AnnotationAssertion(core:definition api4kbterminology:QueryResource "query asset, query, query manifestation, query encoding, or query item"^^xsd:string)
+
+# Class: api4kbterminology:QueryResource (query resource)
+
 AnnotationAssertion(rdfs:label api4kbterminology:QueryResource "query resource")
+AnnotationAssertion(core:definition api4kbterminology:QueryResource "query asset, query, query manifestation, query encoding, or query item"^^xsd:string)
 SubClassOf(api4kbterminology:QueryResource api4kbterminology:KnowledgeResource)
+
+# Class: api4kbterminology:QuerySerialization (query serialization)
+
 AnnotationAssertion(rdfs:label api4kbterminology:QuerySerialization "query serialization")
 AnnotationAssertion(core:definition api4kbterminology:QuerySerialization "serialization of a query language."^^xsd:string)
 SubClassOf(api4kbterminology:QuerySerialization api4kbterminology:KnowledgeSerialization)
 SubClassOf(api4kbterminology:QuerySerialization ObjectSomeValuesFrom(api4kbterminology:isSerializationOf api4kbterminology:QueryLanguage))
-AnnotationAssertion(core:definition api4kbterminology:ResultAsset "knowledge asset for query results."^^xsd:string)
+
+# Class: api4kbterminology:ResultAsset (result asset)
+
 AnnotationAssertion(rdfs:label api4kbterminology:ResultAsset "result asset")
+AnnotationAssertion(core:definition api4kbterminology:ResultAsset "knowledge asset for query results."^^xsd:string)
 SubClassOf(api4kbterminology:ResultAsset api4kbterminology:KnowledgeAsset)
 SubClassOf(api4kbterminology:ResultAsset api4kbterminology:ResultResource)
 SubClassOf(api4kbterminology:ResultAsset ObjectSomeValuesFrom(api4kbterminology:conceptualizes api4kbterminology:ResultGeneralizedExpression))
+
+# Class: api4kbterminology:ResultEncoding (result encoding)
+
 AnnotationAssertion(rdfs:label api4kbterminology:ResultEncoding "result encoding")
 AnnotationAssertion(core:definition api4kbterminology:ResultEncoding "byte (or bit) sequence that is the encoding of a result manifestation in some character encoding system(s)."^^xsd:string)
 SubClassOf(api4kbterminology:ResultEncoding api4kbterminology:KnowledgeEncoding)
 SubClassOf(api4kbterminology:ResultEncoding api4kbterminology:ResultResource)
 SubClassOf(api4kbterminology:ResultEncoding ObjectSomeValuesFrom(api4kbterminology:encodes api4kbterminology:ResultManifestation))
-AnnotationAssertion(core:definition api4kbterminology:ResultGeneralizedExpression "sequence of bindings as a correspondence between distinguished query variables and derived symbols."^^xsd:string)
+
+# Class: api4kbterminology:ResultGeneralizedExpression (result generalized expression)
+
 AnnotationAssertion(rdfs:label api4kbterminology:ResultGeneralizedExpression "result generalized expression")
+AnnotationAssertion(core:definition api4kbterminology:ResultGeneralizedExpression "sequence of bindings as a correspondence between distinguished query variables and derived symbols."^^xsd:string)
 SubClassOf(api4kbterminology:ResultGeneralizedExpression api4kbterminology:KnowledgeExpression)
 SubClassOf(api4kbterminology:ResultGeneralizedExpression api4kbterminology:ResultResource)
 SubClassOf(api4kbterminology:ResultGeneralizedExpression ObjectSomeValuesFrom(api4kbterminology:usesLanguage api4kbterminology:ResultLanguage))
 SubClassOf(api4kbterminology:ResultGeneralizedExpression ObjectAllValuesFrom(api4kbterminology:usesLanguage api4kbterminology:ResultLanguage))
+
+# Class: api4kbterminology:ResultItem (result item)
+
 AnnotationAssertion(rdfs:label api4kbterminology:ResultItem "result item")
 AnnotationAssertion(core:definition api4kbterminology:ResultItem "physical instance of an encoding, e.g. a file on a hard drive, a Java String in memory."^^xsd:string)
 SubClassOf(api4kbterminology:ResultItem api4kbterminology:KnowledgeItem)
 SubClassOf(api4kbterminology:ResultItem api4kbterminology:ResultResource)
 SubClassOf(api4kbterminology:ResultItem ObjectSomeValuesFrom(api4kbterminology:reproduces api4kbterminology:ResultEncoding))
+
+# Class: api4kbterminology:ResultLanguage (result language)
+
 AnnotationAssertion(rdfs:label api4kbterminology:ResultLanguage "result language")
 AnnotationAssertion(core:definition api4kbterminology:ResultLanguage "language for expressing query results."^^xsd:string)
 SubClassOf(api4kbterminology:ResultLanguage api4kbterminology:KnowledgeRepresentationAndReasoningLanguage)
-AnnotationAssertion(core:definition api4kbterminology:ResultManifestation "character sequence, or collection of character sequences, each being the serialization of a result in a result serialization (Formats)."^^xsd:string)
+
+# Class: api4kbterminology:ResultManifestation (result manifestation)
+
 AnnotationAssertion(rdfs:label api4kbterminology:ResultManifestation "result manifestation")
+AnnotationAssertion(core:definition api4kbterminology:ResultManifestation "character sequence, or collection of character sequences, each being the serialization of a result in a result serialization (Formats)."^^xsd:string)
 SubClassOf(api4kbterminology:ResultManifestation api4kbterminology:KnowledgeManifestation)
 SubClassOf(api4kbterminology:ResultManifestation api4kbterminology:ResultResource)
 SubClassOf(api4kbterminology:ResultManifestation ObjectSomeValuesFrom(api4kbterminology:manifests api4kbterminology:ResultGeneralizedExpression))
 SubClassOf(api4kbterminology:ResultManifestation ObjectSomeValuesFrom(api4kbterminology:usesSerialization api4kbterminology:ResultSerialization))
-AnnotationAssertion(core:editorialNote api4kbterminology:ResultResource "Should we rename this to QueryResultResource, since Result could be confused with Output.")
-AnnotationAssertion(core:definition api4kbterminology:ResultResource "result asset, Result, result manifestation, result encoding, or result item"^^xsd:string)
+
+# Class: api4kbterminology:ResultResource (result resource)
+
 AnnotationAssertion(rdfs:label api4kbterminology:ResultResource "result resource")
+AnnotationAssertion(core:definition api4kbterminology:ResultResource "result asset, Result, result manifestation, result encoding, or result item"^^xsd:string)
+AnnotationAssertion(core:editorialNote api4kbterminology:ResultResource "Should we rename this to QueryResultResource, since Result could be confused with Output.")
 SubClassOf(api4kbterminology:ResultResource api4kbterminology:KnowledgeResource)
+
+# Class: api4kbterminology:ResultSerialization (result serialization)
+
 AnnotationAssertion(rdfs:label api4kbterminology:ResultSerialization "result serialization")
 AnnotationAssertion(core:definition api4kbterminology:ResultSerialization "serialization of a result language."^^xsd:string)
 SubClassOf(api4kbterminology:ResultSerialization api4kbterminology:KnowledgeSerialization)
 SubClassOf(api4kbterminology:ResultSerialization ObjectSomeValuesFrom(api4kbterminology:isSerializationOf api4kbterminology:ResultLanguage))
+
+# Class: api4kbterminology:Role (role)
+
+AnnotationAssertion(rdfs:label api4kbterminology:Role "role")
 AnnotationAssertion(core:definition api4kbterminology:Role "set of required proficiencies."^^xsd:string)
 AnnotationAssertion(core:scopeNote api4kbterminology:Role "Certain standard API4KB Roles will be enumerated in the specification. The specification will also allow user-defined Roles."^^xsd:string)
-AnnotationAssertion(rdfs:label api4kbterminology:Role "role")
 SubClassOf(api4kbterminology:Role ObjectSomeValuesFrom(api4kbterminology:requires api4kbproficiency:CreatingProficiency-KnowledgePlatform))
 SubClassOf(api4kbterminology:Role ObjectSomeValuesFrom(api4kbterminology:requires api4kbproficiency:DestroyingProficiency-KnowledgePlatform))
 SubClassOf(api4kbterminology:Role ObjectSomeValuesFrom(api4kbterminology:requires api4kbproficiency:ModifyingProficiency-KnowledgePlatform))
+
+# Class: api4kbterminology:Serialization (serialization)
+
 AnnotationAssertion(rdfs:isDefinedBy api4kbterminology:Serialization "http://www.omg.org/spec/OntoIOp/Terminology")
-AnnotationAssertion(core:scopeNote api4kbterminology:Serialization "OntoIOp sensitive"^^xsd:string)
-AnnotationAssertion(core:definition api4kbterminology:Serialization "system for transforming from an expression to a character sequence"^^xsd:string)
 AnnotationAssertion(rdfs:label api4kbterminology:Serialization "serialization")
+AnnotationAssertion(core:definition api4kbterminology:Serialization "system for transforming from an expression to a character sequence"^^xsd:string)
+AnnotationAssertion(core:scopeNote api4kbterminology:Serialization "OntoIOp sensitive"^^xsd:string)
 SubClassOf(api4kbterminology:Serialization ObjectSomeValuesFrom(api4kbterminology:isSerializationOf dol-terms:Language))
+
+# Class: api4kbterminology:Source (source)
+
 AnnotationAssertion(rdfs:label api4kbterminology:Source "source")
+
+# Class: api4kbterminology:Specification (specification)
+
 AnnotationAssertion(rdfs:label api4kbterminology:Specification "specification")
 AnnotationAssertion(core:definition api4kbterminology:Specification "TBD"^^xsd:string)
+
+# Class: api4kbterminology:Structured (structured)
+
 AnnotationAssertion(rdfs:label api4kbterminology:Structured "structured")
+
+# Class: api4kbterminology:StructuredKnowledgeAsset (structured knowledge asset)
+
+AnnotationAssertion(rdfs:label api4kbterminology:StructuredKnowledgeAsset "structured knowledge asset")
 AnnotationAssertion(core:definition api4kbterminology:StructuredKnowledgeAsset "collection of knowledge assets  (either structured or basic), which are not necessarily according to the same environment, but where there is a unique language that is the focus of the environment of each component")
 AnnotationAssertion(core:example api4kbterminology:StructuredKnowledgeAsset "KA2: a heterogeneous structure of assets conceptualized from the RDF, OWL and CL expressions of example KE2 according to an environment that provides translations from RDF or OWL into CL, and an ontology-based data access (OBDA) source schema providing a mapping from XMPP schemas to OWL")
-AnnotationAssertion(rdfs:label api4kbterminology:StructuredKnowledgeAsset "structured knowledge asset")
-EquivalentClasses(api4kbterminology:StructuredKnowledgeAsset ObjectIntersectionOf(api4kbterminology:StructuredKnowledgeResource api4kbterminology:KnowledgeAsset))
+EquivalentClasses(api4kbterminology:StructuredKnowledgeAsset ObjectIntersectionOf(api4kbterminology:KnowledgeAsset api4kbterminology:StructuredKnowledgeResource))
 SubClassOf(api4kbterminology:StructuredKnowledgeAsset ObjectAllValuesFrom(api4kbterminology:hasStructuralComponent api4kbterminology:KnowledgeAsset))
+
+# Class: api4kbterminology:StructuredKnowledgeEncoding (structured knowledge encoding)
+
 AnnotationAssertion(rdfs:label api4kbterminology:StructuredKnowledgeEncoding "structured knowledge encoding")
-EquivalentClasses(api4kbterminology:StructuredKnowledgeEncoding ObjectIntersectionOf(api4kbterminology:StructuredKnowledgeResource api4kbterminology:KnowledgeEncoding))
+EquivalentClasses(api4kbterminology:StructuredKnowledgeEncoding ObjectIntersectionOf(api4kbterminology:KnowledgeEncoding api4kbterminology:StructuredKnowledgeResource))
 SubClassOf(api4kbterminology:StructuredKnowledgeEncoding ObjectAllValuesFrom(api4kbterminology:hasStructuralComponent api4kbterminology:KnowledgeEncoding))
+
+# Class: api4kbterminology:StructuredKnowledgeExpression (structured knowledge expression)
+
 AnnotationAssertion(rdfs:label api4kbterminology:StructuredKnowledgeExpression "structured knowledge expression")
 AnnotationAssertion(core:definition api4kbterminology:StructuredKnowledgeExpression "collection of knowledge expressions (either structured or basic), which are not necessarily in the same language and may themselves have structure.")
 AnnotationAssertion(core:example api4kbterminology:StructuredKnowledgeExpression "KE2: a heterogeneous collection of streaming data and RDF graphs, together with static OWL ontologies and CL texts, and ECA rules describing actions of a CDS")
 AnnotationAssertion(core:example api4kbterminology:StructuredKnowledgeExpression "KE3: the OWL 2 DL ontology series KA1, viewed as a collection of expressions rather than an equivalence class")
-EquivalentClasses(api4kbterminology:StructuredKnowledgeExpression ObjectIntersectionOf(api4kbterminology:StructuredKnowledgeResource api4kbterminology:KnowledgeExpression))
+EquivalentClasses(api4kbterminology:StructuredKnowledgeExpression ObjectIntersectionOf(api4kbterminology:KnowledgeExpression api4kbterminology:StructuredKnowledgeResource))
 SubClassOf(api4kbterminology:StructuredKnowledgeExpression ObjectAllValuesFrom(api4kbterminology:hasStructuralComponent api4kbterminology:KnowledgeExpression))
-AnnotationAssertion(core:example api4kbterminology:StructuredKnowledgeItem "KI2:  a heterogeneous structure of an RDF triple store, network connections to binary input streams cached in a MySQL database, RuleML XML files on a local hard drive and CL XCL2 files on a network server in a content management system, exemplifying example KM2")
-AnnotationAssertion(core:definition api4kbterminology:StructuredKnowledgeItem "collection of knowledge items  (either structured or basic), which are not necessarily in the same language, dialect, format or location, and may themselves have structure")
+
+# Class: api4kbterminology:StructuredKnowledgeItem (structured knowledge item)
+
 AnnotationAssertion(rdfs:label api4kbterminology:StructuredKnowledgeItem "structured knowledge item")
-EquivalentClasses(api4kbterminology:StructuredKnowledgeItem ObjectIntersectionOf(api4kbterminology:StructuredKnowledgeResource api4kbterminology:KnowledgeItem))
+AnnotationAssertion(core:definition api4kbterminology:StructuredKnowledgeItem "collection of knowledge items  (either structured or basic), which are not necessarily in the same language, dialect, format or location, and may themselves have structure")
+AnnotationAssertion(core:example api4kbterminology:StructuredKnowledgeItem "KI2:  a heterogeneous structure of an RDF triple store, network connections to binary input streams cached in a MySQL database, RuleML XML files on a local hard drive and CL XCL2 files on a network server in a content management system, exemplifying example KM2")
+EquivalentClasses(api4kbterminology:StructuredKnowledgeItem ObjectIntersectionOf(api4kbterminology:KnowledgeItem api4kbterminology:StructuredKnowledgeResource))
 SubClassOf(api4kbterminology:StructuredKnowledgeItem ObjectAllValuesFrom(api4kbterminology:hasStructuralComponent api4kbterminology:KnowledgeItem))
+
+# Class: api4kbterminology:StructuredKnowledgeManifestation (structured knowledge manifestation)
+
 AnnotationAssertion(rdfs:label api4kbterminology:StructuredKnowledgeManifestation "structured knowledge manifestation")
-AnnotationAssertion(core:example api4kbterminology:StructuredKnowledgeManifestation "KM2: a heterogeneous structure of RDF Turtle, OWL Manchester as sequences of string tokens, and XMPP, OWL/XML, ECA RuleML and CL XCL2 (the XML-based dialect of Common Logic Edition 2) as XML DOM documents embodying example KE2")
 AnnotationAssertion(core:definition api4kbterminology:StructuredKnowledgeManifestation "collection of knowledge manifestations (either structured or basic), which are not necessarily in the same language or dialect and may themselves have structure")
-EquivalentClasses(api4kbterminology:StructuredKnowledgeManifestation ObjectIntersectionOf(api4kbterminology:StructuredKnowledgeResource api4kbterminology:KnowledgeManifestation))
+AnnotationAssertion(core:example api4kbterminology:StructuredKnowledgeManifestation "KM2: a heterogeneous structure of RDF Turtle, OWL Manchester as sequences of string tokens, and XMPP, OWL/XML, ECA RuleML and CL XCL2 (the XML-based dialect of Common Logic Edition 2) as XML DOM documents embodying example KE2")
+EquivalentClasses(api4kbterminology:StructuredKnowledgeManifestation ObjectIntersectionOf(api4kbterminology:KnowledgeManifestation api4kbterminology:StructuredKnowledgeResource))
 SubClassOf(api4kbterminology:StructuredKnowledgeManifestation ObjectAllValuesFrom(api4kbterminology:hasStructuralComponent api4kbterminology:KnowledgeManifestation))
+
+# Class: api4kbterminology:StructuredKnowledgeResource (structured knowledge resource)
+
 AnnotationAssertion(rdfs:label api4kbterminology:StructuredKnowledgeResource "structured knowledge resource")
-EquivalentClasses(api4kbterminology:StructuredKnowledgeResource ObjectIntersectionOf(api4kbterminology:Structured api4kbterminology:KnowledgeResource))
+EquivalentClasses(api4kbterminology:StructuredKnowledgeResource ObjectIntersectionOf(api4kbterminology:KnowledgeResource api4kbterminology:Structured))
 SubClassOf(api4kbterminology:StructuredKnowledgeResource ObjectAllValuesFrom(api4kbterminology:hasStructuralComponent api4kbterminology:KnowledgeResource))
+
+# Class: api4kbterminology:Success (api4kbterminology:Success)
+
 SubClassOf(api4kbterminology:Success api4kbterminology:Request)
+
+# Class: api4kbterminology:SuccessMonad (api4kbterminology:SuccessMonad)
+
 SubClassOf(api4kbterminology:SuccessMonad api4kbterminology:EventType)
+
+# Class: api4kbevent:KnowledgeEvent (knowledge event)
+
 SubClassOf(api4kbevent:KnowledgeEvent api4kbterminology:Event)
+
+# Class: dol-terms:Expression (expression)
+
 SubClassOf(dol-terms:Expression api4kbterminology:KnowledgeExpression)
+
+# Class: dol-terms:OMSLanguage (OMS language)
+
 SubClassOf(dol-terms:OMSLanguage api4kbterminology:KnowledgeRepresentationAndReasoningLanguage)
+
+# Class: dol-terms:OMSSerialization (dol-terms:OMSSerialization)
+
 SubClassOf(dol-terms:OMSSerialization api4kbterminology:KnowledgeSerialization)
-AnnotationAssertion(rdfs:label api4kbterminology:about "about")
-ObjectPropertyDomain(api4kbterminology:about api4kbterminology:Response)
-AnnotationAssertion(rdfs:label api4kbterminology:accordingTo "according to")
-AnnotationAssertion(core:definition api4kbterminology:accordingTo "relationship between a collection and an environment whereby the results of application of a mapping of the environment to a member of the collection are also members of the environment"^^xsd:string)
-ObjectPropertyRange(api4kbterminology:accordingTo api4kbterminology:Environment)
-AnnotationAssertion(rdfs:label api4kbterminology:actualizes "actualizes")
-InverseObjectProperties(api4kbterminology:actualizes api4kbterminology:isActualizedBy)
-ObjectPropertyDomain(api4kbterminology:actualizes api4kbevent:KnowledgeEvent)
-ObjectPropertyRange(api4kbterminology:actualizes api4kbproficiency:Proficiency)
-AnnotationAssertion(rdfs:label api4kbterminology:allPreserve "all preserve")
-ObjectPropertyDomain(api4kbterminology:allPreserve api4kbterminology:PreservingEnvironment)
-ObjectPropertyRange(api4kbterminology:allPreserve api4kbterminology:EquivalenceRelation)
-AnnotationAssertion(rdfs:label api4kbterminology:conceptualizes "conceptualizes")
-AnnotationAssertion(core:definition api4kbterminology:conceptualizes "inverse of 'expresses'"^^xsd:string)
-SubObjectPropertyOf(api4kbterminology:conceptualizes api4kbterminology:lifts)
-InverseObjectProperties(api4kbterminology:conceptualizes api4kbterminology:expresses)
-AnnotationAssertion(rdfs:label api4kbterminology:conveys "conveys")
-InverseObjectProperties(api4kbterminology:conveys api4kbterminology:isConveyedBy)
-ObjectPropertyDomain(api4kbterminology:conveys api4kbterminology:Proxy)
-ObjectPropertyRange(api4kbterminology:conveys api4kbproficiency:Proficiency)
-AnnotationAssertion(core:definition api4kbterminology:decodes "inverse of 'encodes'"^^xsd:string)
-AnnotationAssertion(rdfs:label api4kbterminology:decodes "decodes")
-SubObjectPropertyOf(api4kbterminology:decodes api4kbterminology:lifts)
-InverseObjectProperties(api4kbterminology:decodes api4kbterminology:encodes)
-AnnotationAssertion(rdfs:label api4kbterminology:encodes "encodes")
-SubObjectPropertyOf(api4kbterminology:encodes api4kbterminology:lowers)
-ObjectPropertyDomain(api4kbterminology:encodes api4kbterminology:KnowledgeEncoding)
-ObjectPropertyRange(api4kbterminology:encodes api4kbterminology:KnowledgeManifestation)
-AnnotationAssertion(rdfs:label api4kbterminology:executes "executes")
-InverseObjectProperties(api4kbterminology:executes api4kbterminology:isExecutedBy)
-ObjectPropertyDomain(api4kbterminology:executes api4kbterminology:CommunicatingEntity)
-ObjectPropertyRange(api4kbterminology:executes api4kbevent:KnowledgeEvent)
-InverseObjectProperties(api4kbterminology:exposes api4kbterminology:isExposedBy)
-ObjectPropertyDomain(api4kbterminology:exposes api4kbterminology:Functionality)
-ObjectPropertyRange(api4kbterminology:exposes api4kbproficiency:Proficiency)
-AnnotationAssertion(core:altLabel api4kbterminology:expresses "is expression of")
-AnnotationAssertion(core:definition api4kbterminology:expresses "knowledge asset that would be obtained by conceptualizing the generalized expression."^^xsd:string)
-AnnotationAssertion(rdfs:label api4kbterminology:expresses "expresses")
-SubObjectPropertyOf(api4kbterminology:expresses api4kbterminology:lowers)
-ObjectPropertyDomain(api4kbterminology:expresses api4kbterminology:KnowledgeExpression)
-ObjectPropertyRange(api4kbterminology:expresses api4kbterminology:KnowledgeAsset)
-AnnotationAssertion(rdfs:label api4kbterminology:fillsRole "fills role")
-InverseObjectProperties(api4kbterminology:isFilledBy api4kbterminology:fillsRole)
-AnnotationAssertion(rdfs:label api4kbterminology:hasContent "has content")
-ObjectPropertyDomain(api4kbterminology:hasContent api4kbterminology:Response)
-AnnotationAssertion(rdfs:label api4kbterminology:hasEnvironmentMapping "has environment mapping")
-InverseObjectProperties(api4kbterminology:hasEnvironmentMapping api4kbterminology:isEnvironmentMappingOf)
-ObjectPropertyRange(api4kbterminology:hasEnvironmentMapping api4kbterminology:Mapping)
-AnnotationAssertion(rdfs:label api4kbterminology:hasEnvironmentMember "has environment member")
-ObjectPropertyDomain(api4kbterminology:hasEnvironmentMember api4kbterminology:NonemptyEnvironment)
-ObjectPropertyRange(api4kbterminology:hasEnvironmentMember owl:Thing)
-AnnotationAssertion(rdfs:label api4kbterminology:hasEvent "has event")
-InverseObjectProperties(api4kbterminology:isEventOf api4kbterminology:hasEvent)
-SubObjectPropertyOf(api4kbterminology:hasFocusMember api4kbterminology:hasEnvironmentMember)
-AnnotationAssertion(rdfs:label api4kbterminology:hasPart "has part")
-AnnotationAssertion(rdfs:label api4kbterminology:hasProficiency "has proficiency")
-InverseObjectProperties(api4kbterminology:hasProficiency api4kbterminology:isProficiencyOf)
-AnnotationAssertion(rdfs:label api4kbterminology:hasRegistrant "has registrant")
-InverseObjectProperties(api4kbterminology:hasRegistrant api4kbterminology:isRegisteredWith)
-AnnotationAssertion(rdfs:label api4kbterminology:hasRequestee "has requestee"@en)
-AnnotationAssertion(core:definition api4kbterminology:hasRequestee "application that is the recipient of the request"^^xsd:string)
-InverseObjectProperties(api4kbterminology:hasRequestee api4kbterminology:isRequesteeOf)
-FunctionalObjectProperty(api4kbterminology:hasRequestee)
-ObjectPropertyDomain(api4kbterminology:hasRequestee api4kbtry:Try)
-ObjectPropertyRange(api4kbterminology:hasRequestee api4kbterminology:CommunicatingEntity)
-AnnotationAssertion(rdfs:label api4kbterminology:hasSetOfMappings "has set of mappings")
-AnnotationAssertion(core:definition api4kbterminology:hasSnapshot "relationship between a mutable source and its state at one timepoint."^^xsd:string)
-AnnotationAssertion(rdfs:label api4kbterminology:hasSnapshot "has snapshot")
-ObjectPropertyDomain(api4kbterminology:hasSnapshot api4kbterminology:Mutable)
-ObjectPropertyRange(api4kbterminology:hasSnapshot api4kbterminology:Immutable)
-SubObjectPropertyOf(api4kbterminology:hasStructuralComponent api4kbterminology:hasPart)
-ObjectPropertyDomain(api4kbterminology:hasStructuralComponent api4kbterminology:Structured)
-AnnotationAssertion(rdfs:label api4kbterminology:hasSubenvironment "has subenvironment")
-InverseObjectProperties(api4kbterminology:isSubenvironmentOf api4kbterminology:hasSubenvironment)
-AnnotationAssertion(rdfs:label api4kbterminology:hasSubproficiency "has subproficiency")
-InverseObjectProperties(api4kbterminology:isSubproficiencyOf api4kbterminology:hasSubproficiency)
-AnnotationAssertion(rdfs:label api4kbterminology:implements "implements")
-InverseObjectProperties(api4kbterminology:isImplementedBy api4kbterminology:implements)
-ObjectPropertyDomain(api4kbterminology:implements api4kbterminology:CommunicatingEntity)
-ObjectPropertyRange(api4kbterminology:implements api4kboperation:KnowledgeOperation)
-AnnotationAssertion(rdfs:label api4kbterminology:interactsWith "interacts with")
-SymmetricObjectProperty(api4kbterminology:interactsWith)
-ObjectPropertyDomain(api4kbterminology:interactsWith api4kbterminology:CommunicatingEntity)
-ObjectPropertyRange(api4kbterminology:interactsWith api4kbterminology:CommunicatingEntity)
-AnnotationAssertion(rdfs:label api4kbterminology:isActualizedBy "is actualized by")
-AnnotationAssertion(rdfs:label api4kbterminology:isConveyedBy "is conveyed by")
-AnnotationAssertion(rdfs:label api4kbterminology:isDeployedWithin "is deployed within")
-InverseObjectProperties(api4kbterminology:isDeployedWithin api4kbterminology:supports)
-ObjectPropertyDomain(api4kbterminology:isDeployedWithin api4kbterminology:Component)
-ObjectPropertyRange(api4kbterminology:isDeployedWithin api4kbterminology:KnowledgePlatform)
-AnnotationAssertion(rdfs:label api4kbterminology:isEnvironmentMappingOf "is environment mapping of")
-AnnotationAssertion(rdfs:label api4kbterminology:isEventOf "is event of")
-ObjectPropertyDomain(api4kbterminology:isEventOf api4kbevent:KnowledgeEvent)
-ObjectPropertyRange(api4kbterminology:isEventOf api4kboperation:KnowledgeOperation)
-AnnotationAssertion(rdfs:label api4kbterminology:isExecutedBy "is executed by")
-AnnotationAssertion(core:note api4kbterminology:isExecutedBy "
-        <rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#FunctionalProperty\"/>            
-      ")
-AnnotationAssertion(core:note api4kbterminology:isExecutedBy "OWL does not let us declare this to be functional, while keeping the property chain for its inverse.")
-ObjectPropertyDomain(api4kbterminology:isExecutedBy api4kbevent:KnowledgeEvent)
-ObjectPropertyRange(api4kbterminology:isExecutedBy api4kbterminology:CommunicatingEntity)
-AnnotationAssertion(rdfs:label api4kbterminology:isExposedBy "is exposed by")
-AnnotationAssertion(rdfs:label api4kbterminology:isFilledBy "is filled by")
-ObjectPropertyDomain(api4kbterminology:isFilledBy api4kbterminology:Role)
-ObjectPropertyRange(api4kbterminology:isFilledBy api4kbterminology:CommunicatingEntity)
-AnnotationAssertion(rdfs:label api4kbterminology:isImplementedBy "is implemented by")
-AnnotationAssertion(core:note api4kbterminology:isManagedBy "OWL does not let us declare this to be functional, while keeping the property chain on its inverse.")
-AnnotationAssertion(core:note api4kbterminology:isManagedBy "
-        <rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#FunctionalProperty\"/>            
-      ")
-AnnotationAssertion(rdfs:label api4kbterminology:isManagedBy "is managed by")
-InverseObjectProperties(api4kbterminology:isManagedBy api4kbterminology:manages)
-AnnotationAssertion(rdfs:label api4kbterminology:isProficiencyOf "is proficiency of")
-ObjectPropertyDomain(api4kbterminology:isProficiencyOf api4kbproficiency:Proficiency)
-ObjectPropertyRange(api4kbterminology:isProficiencyOf api4kbterminology:CommunicatingEntity)
-AnnotationAssertion(rdfs:label api4kbterminology:isRegisteredWith "is registered with")
-ObjectPropertyDomain(api4kbterminology:isRegisteredWith api4kbterminology:KnowledgeSource)
-ObjectPropertyRange(api4kbterminology:isRegisteredWith api4kbterminology:KnowledgePlatform)
-AnnotationAssertion(core:note api4kbterminology:isRequestedBy "
-      <rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#FunctionalProperty\"/>            
-    ")
-AnnotationAssertion(core:note api4kbterminology:isRequestedBy "OWL does not let us declare this to be functional, while keeping the property chain for its inverse.")
-AnnotationAssertion(rdfs:label api4kbterminology:isRequestedBy "is requested by")
-InverseObjectProperties(api4kbterminology:requests api4kbterminology:isRequestedBy)
-AnnotationAssertion(rdfs:label api4kbterminology:isRequesteeOf "is requestee of"@en)
-AnnotationAssertion(rdfs:label api4kbterminology:isRequiredBy "is required by")
-InverseObjectProperties(api4kbterminology:isRequiredBy api4kbterminology:requires)
-AnnotationAssertion(rdfs:label api4kbterminology:isSerializationOf "is serialization of")
-AnnotationAssertion(core:definition api4kbterminology:isSerializationOf "language that is manifested by the serialization"^^xsd:string)
-ObjectPropertyDomain(api4kbterminology:isSerializationOf dol-terms:Language)
-ObjectPropertyRange(api4kbterminology:isSerializationOf api4kbterminology:Serialization)
-AnnotationAssertion(rdfs:label api4kbterminology:isSubenvironmentOf "is subenvironment of"@en)
-AnnotationAssertion(core:definition api4kbterminology:isSubenvironmentOf "relationship between two environments that is a partial order where the language and logic graphs of the first enviroment are subgraphs, resp., of the language and logic graphs of the second environment"^^xsd:string)
-TransitiveObjectProperty(api4kbterminology:isSubenvironmentOf)
-ObjectPropertyDomain(api4kbterminology:isSubenvironmentOf api4kbterminology:Environment)
-ObjectPropertyRange(api4kbterminology:isSubenvironmentOf api4kbterminology:Environment)
-AnnotationAssertion(rdfs:label api4kbterminology:isSubproficiencyOf "is subproficiency of"@en)
-AnnotationAssertion(core:definition api4kbterminology:isSubproficiencyOf "relationship between two proficiencies that is a partial order such that any operation that exposes a proficiency also exposes any subproficiency of it"^^xsd:string)
-TransitiveObjectProperty(api4kbterminology:isSubproficiencyOf)
-ObjectPropertyDomain(api4kbterminology:isSubproficiencyOf api4kbproficiency:Proficiency)
-ObjectPropertyRange(api4kbterminology:isSubproficiencyOf api4kbproficiency:Proficiency)
-AnnotationAssertion(core:definition api4kbterminology:lifts "relation between two knowledge resources where the first is an abstraction of the second by one level (e.g. if the first is an encoding, the second is an item, etc.).  Lifts relations are limited to one of the following: prototypes, decodes, parses, conceptualizes"^^xsd:string)
-AnnotationAssertion(core:note api4kbterminology:lifts "OWL does not let us declare this to be functional, while keeping the property chains that link Events and Operations.")
-AnnotationAssertion(rdfs:label api4kbterminology:lifts "lifts")
-InverseObjectProperties(api4kbterminology:lifts api4kbterminology:lowers)
-ObjectPropertyDomain(api4kbterminology:lifts api4kbterminology:KnowledgeResource)
-ObjectPropertyRange(api4kbterminology:lifts api4kbterminology:KnowledgeResource)
-AnnotationAssertion(rdfs:label api4kbterminology:lowers "lowers")
-AnnotationAssertion(core:definition api4kbterminology:lowers "relation between two knowledge resources where the first is a deabstraction of the second by one level (e.g. if the first is an item, the second is an encoding, etc.).  Lowers relations are limited to one of the following: reproduces, encodes, manifests, expresses"^^xsd:string)
-AnnotationAssertion(core:note api4kbterminology:lowers "
-      <rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#FunctionalProperty\"/>            
-    ")
-AnnotationAssertion(core:note api4kbterminology:lowers "OWL does not let us declare this to be functional, while keeping the property chains that link Events and Operations.")
-AnnotationAssertion(rdfs:label api4kbterminology:manages "manages")
-ObjectPropertyDomain(api4kbterminology:manages api4kbterminology:KnowledgePlatformManagerRole)
-ObjectPropertyRange(api4kbterminology:manages api4kbterminology:KnowledgePlatform)
-AnnotationAssertion(rdfs:label api4kbterminology:manifests "manifests")
-AnnotationAssertion(core:definition api4kbterminology:manifests "generalized expression that would be obtained from parsing the knowledge manifestation"^^xsd:string)
-SubObjectPropertyOf(api4kbterminology:manifests api4kbterminology:lowers)
-InverseObjectProperties(api4kbterminology:parses api4kbterminology:manifests)
-ObjectPropertyDomain(api4kbterminology:manifests api4kbterminology:KnowledgeManifestation)
-ObjectPropertyRange(api4kbterminology:manifests api4kbterminology:KnowledgeExpression)
-AnnotationAssertion(rdfs:label api4kbterminology:parses "parses")
-AnnotationAssertion(core:definition api4kbterminology:parses "inverse of 'manifests'"^^xsd:string)
-SubObjectPropertyOf(api4kbterminology:parses api4kbterminology:lifts)
-AnnotationAssertion(rdfs:label api4kbterminology:preserves "preserves")
-ObjectPropertyDomain(api4kbterminology:preserves api4kbterminology:Mapping)
-ObjectPropertyRange(api4kbterminology:preserves api4kbterminology:EquivalenceRelation)
-AnnotationAssertion(core:definition api4kbterminology:prototypes "inverse of 'reproduces'"^^xsd:string)
-AnnotationAssertion(rdfs:label api4kbterminology:prototypes "prototypes")
-SubObjectPropertyOf(api4kbterminology:prototypes api4kbterminology:lifts)
-InverseObjectProperties(api4kbterminology:prototypes api4kbterminology:reproduces)
-AnnotationAssertion(core:definition api4kbterminology:reproduces "knowledge encoding that would be obtained from instreaming the knowledge item"^^xsd:string)
-AnnotationAssertion(rdfs:label api4kbterminology:reproduces "reproduces")
-SubObjectPropertyOf(api4kbterminology:reproduces api4kbterminology:lowers)
-ObjectPropertyDomain(api4kbterminology:reproduces api4kbterminology:KnowledgeItem)
-ObjectPropertyRange(api4kbterminology:reproduces api4kbterminology:KnowledgeEncoding)
-AnnotationAssertion(rdfs:label api4kbterminology:requests "requests")
-ObjectPropertyDomain(api4kbterminology:requests api4kbterminology:CommunicatingEntity)
-ObjectPropertyRange(api4kbterminology:requests api4kbtry:Try)
-AnnotationAssertion(rdfs:label api4kbterminology:requires "requires")
-ObjectPropertyDomain(api4kbterminology:requires api4kbterminology:Role)
-ObjectPropertyRange(api4kbterminology:requires api4kbproficiency:Proficiency)
-AnnotationAssertion(rdfs:label api4kbterminology:responds "responds")
-ObjectPropertyDomain(api4kbterminology:responds api4kbterminology:CommunicatingEntity)
-ObjectPropertyRange(api4kbterminology:responds api4kbterminology:Response)
-AnnotationAssertion(rdfs:label api4kbterminology:supports "supports")
-AnnotationAssertion(core:definition api4kbterminology:usesLanguage "language used by a generalized expression."^^xsd:string)
-AnnotationAssertion(rdfs:label api4kbterminology:usesLanguage "uses language")
-ObjectPropertyDomain(api4kbterminology:usesLanguage api4kbterminology:KnowledgeExpression)
-ObjectPropertyRange(api4kbterminology:usesLanguage dol-terms:Language)
-AnnotationAssertion(core:definition api4kbterminology:usesSerialization "serialization used by a knowledge manifestation"^^xsd:string)
-AnnotationAssertion(rdfs:label api4kbterminology:usesSerialization "uses serialization")
-ObjectPropertyDomain(api4kbterminology:usesSerialization api4kbterminology:KnowledgeManifestation)
-ObjectPropertyRange(api4kbterminology:usesSerialization api4kbterminology:Serialization)
-AnnotationAssertion(core:definition api4kbterminology:usesSpecification "specification used by an application"^^xsd:string)
-AnnotationAssertion(rdfs:label api4kbterminology:usesSpecification "uses specification")
-ObjectPropertyDomain(api4kbterminology:usesSpecification api4kbterminology:CommunicatingEntity)
-ObjectPropertyRange(api4kbterminology:usesSpecification api4kbterminology:Specification)
+
+
+SubObjectPropertyOf(ObjectPropertyChain(api4kbterminology:actualizes api4kbterminology:isExposedBy) api4kbterminology:isEventOf)
 SubObjectPropertyOf(ObjectPropertyChain(api4kbterminology:fillsRole api4kbterminology:requires) api4kbterminology:hasProficiency)
+SubObjectPropertyOf(ObjectPropertyChain(api4kbterminology:hasEnvironmentMapping dol-terms:mapsFrom) api4kbterminology:hasEnvironmentMember)
 SubObjectPropertyOf(ObjectPropertyChain(api4kbterminology:hasEnvironmentMapping dol-terms:mapsTo) api4kbterminology:hasEnvironmentMember)
-SubObjectPropertyOf(ObjectPropertyChain(api4kbevent:isInputOf api4kbevent:hasOutputFromInStreaming) api4kbterminology:reproduces)
+SubObjectPropertyOf(ObjectPropertyChain(api4kbterminology:implements api4kbterminology:exposes) api4kbterminology:conveys)
 SubObjectPropertyOf(ObjectPropertyChain(api4kbterminology:isEnvironmentMappingOf api4kbterminology:allPreserve) api4kbterminology:preserves)
 SubObjectPropertyOf(ObjectPropertyChain(api4kbterminology:isRequesteeOf api4kbtry:hasEvent) api4kbterminology:executes)
-SubObjectPropertyOf(ObjectPropertyChain(api4kbterminology:hasEnvironmentMapping dol-terms:mapsFrom) api4kbterminology:hasEnvironmentMember)
-SubObjectPropertyOf(ObjectPropertyChain(api4kbevent:isInputOf api4kbevent:hasOutputFromParsing) api4kbterminology:manifests)
-SubObjectPropertyOf(ObjectPropertyChain(api4kbterminology:requests api4kbterminology:hasRequestee) api4kbterminology:interactsWith)
 SubObjectPropertyOf(ObjectPropertyChain(api4kbterminology:isRequesteeOf api4kbtry:hasEvent api4kbevent:hasKPOutput) api4kbterminology:manages)
-SubObjectPropertyOf(ObjectPropertyChain(api4kbtry:isEventOf api4kbtry:isTryOf) api4kbterminology:isEventOf)
-SubObjectPropertyOf(ObjectPropertyChain(api4kbterminology:actualizes api4kbterminology:isExposedBy) api4kbterminology:isEventOf)
-SubObjectPropertyOf(ObjectPropertyChain(api4kbevent:isInputOf api4kbevent:hasOutputFromConceptualizing) api4kbterminology:expresses)
-SubObjectPropertyOf(ObjectPropertyChain(api4kbterminology:parses api4kbterminology:usesSerialization api4kbterminology:isSerializationOf) api4kbterminology:usesLanguage)
-SubObjectPropertyOf(ObjectPropertyChain(api4kbevent:isInputOf api4kbevent:hasOutputFromUnmarshalling) api4kbterminology:encodes)
-SubObjectPropertyOf(ObjectPropertyChain(api4kbterminology:implements api4kbterminology:exposes) api4kbterminology:conveys)
 SubObjectPropertyOf(ObjectPropertyChain(api4kbterminology:isRequesteeOf api4kbtry:isDelegatedTo) api4kbterminology:requests)
+SubObjectPropertyOf(ObjectPropertyChain(api4kbterminology:parses api4kbterminology:usesSerialization api4kbterminology:isSerializationOf) api4kbterminology:usesLanguage)
+SubObjectPropertyOf(ObjectPropertyChain(api4kbterminology:requests api4kbterminology:hasRequestee) api4kbterminology:interactsWith)
+SubObjectPropertyOf(ObjectPropertyChain(api4kbevent:isInputOf api4kbevent:hasOutputFromConceptualizing) api4kbterminology:expresses)
+SubObjectPropertyOf(ObjectPropertyChain(api4kbevent:isInputOf api4kbevent:hasOutputFromInStreaming) api4kbterminology:reproduces)
+SubObjectPropertyOf(ObjectPropertyChain(api4kbevent:isInputOf api4kbevent:hasOutputFromParsing) api4kbterminology:manifests)
+SubObjectPropertyOf(ObjectPropertyChain(api4kbevent:isInputOf api4kbevent:hasOutputFromUnmarshalling) api4kbterminology:encodes)
+SubObjectPropertyOf(ObjectPropertyChain(api4kbtry:isEventOf api4kbtry:isTryOf) api4kbterminology:isEventOf)
 )
