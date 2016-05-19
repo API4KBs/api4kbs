@@ -72,7 +72,6 @@ Declaration(Class(api4kbterminology:Functionality))
 Declaration(Class(api4kbterminology:Immutable))
 Declaration(Class(api4kbterminology:ImmutableKBFactoryRole))
 Declaration(Class(api4kbterminology:ImmutableKnowledgeBase))
-Declaration(Class(api4kbterminology:ImmutableSource))
 Declaration(Class(api4kbterminology:ImmutableView))
 Declaration(Class(api4kbterminology:KPlatformDesign))
 Declaration(Class(api4kbterminology:KPlatformImplementation))
@@ -809,12 +808,6 @@ EquivalentClasses(api4kbterminology:ImmutableKnowledgeBase api4kbterminology:Str
 SubClassOf(api4kbterminology:ImmutableKnowledgeBase api4kbterminology:KnowledgeAsset)
 SubClassOf(api4kbterminology:ImmutableKnowledgeBase api4kbterminology:KnowledgeBase)
 
-# Class: api4kbterminology:ImmutableSource (immutable source)
-
-AnnotationAssertion(rdfs:label api4kbterminology:ImmutableSource "immutable source")
-AnnotationAssertion(core:scopeNote api4kbterminology:ImmutableSource "All OntoIOp concepts are immutable."^^xsd:string)
-EquivalentClasses(api4kbterminology:ImmutableSource ObjectIntersectionOf(api4kbterminology:Immutable api4kbterminology:Source))
-
 # Class: api4kbterminology:ImmutableView (immuable view)
 
 AnnotationAssertion(rdfs:label api4kbterminology:ImmutableView "immuable view")
@@ -938,10 +931,11 @@ SubClassOf(api4kbterminology:KnowledgeRepresentationAndReasoningLanguage dol-ter
 # Class: api4kbterminology:KnowledgeResource (knowledge resource)
 
 AnnotationAssertion(rdfs:label api4kbterminology:KnowledgeResource "knowledge resource")
-AnnotationAssertion(core:definition api4kbterminology:KnowledgeResource "immutable knowledge source, which may be identified to be at one of the following levels of abstraction; knowledge asset, generalised expression, knowledge manifestation, knowledge encoding, or knowledge item."^^xsd:string)
-SubClassOf(api4kbterminology:KnowledgeResource api4kbterminology:ImmutableSource)
-SubClassOf(api4kbterminology:KnowledgeResource api4kbterminology:KnowledgeSource)
-DisjointUnion(api4kbterminology:KnowledgeResource api4kbterminology:KnowledgeAsset api4kbterminology:KnowledgeEncoding api4kbterminology:KnowledgeExpression api4kbterminology:KnowledgeItem api4kbterminology:KnowledgeManifestation)
+AnnotationAssertion(core:definition api4kbterminology:KnowledgeResource "immutable knowledge source"^^xsd:string)
+AnnotationAssertion(core:note api4kbterminology:KnowledgeResource "May be identified to be at one of the following levels of abstraction; knowledge asset, generalized expression, knowledge manifestation, or knowledge item.")
+EquivalentClasses(api4kbterminology:KnowledgeResource ObjectIntersectionOf(api4kbterminology:Immutable api4kbterminology:KnowledgeSource))
+DisjointUnion(api4kbterminology:KnowledgeResource api4kbterminology:BasicKnowledgeResource api4kbterminology:StructuredKnowledgeResource)
+DisjointUnion(api4kbterminology:KnowledgeResource api4kbterminology:KnowledgeAsset api4kbterminology:KnowledgeExpression api4kbterminology:KnowledgeItem api4kbterminology:KnowledgeManifestation)
 
 # Class: api4kbterminology:KnowledgeSerialization (knowledge serialization)
 
@@ -957,7 +951,9 @@ AnnotationAssertion(core:definition api4kbterminology:KnowledgeSource "source of
 AnnotationAssertion(core:example api4kbterminology:KnowledgeSource "a database with a mapping to an ontology")
 AnnotationAssertion(core:example api4kbterminology:KnowledgeSource "a stateful representation of a patient's history with OWL snapshots")
 AnnotationAssertion(core:example api4kbterminology:KnowledgeSource "a stream of RDF graphs providing data from biomedical devices")
+AnnotationAssertion(core:scopeNote api4kbterminology:KnowledgeSource "May be either mutable or immutable (unlike DOL OMSs, which are all immutable).")
 AnnotationAssertion(core:scopeNote api4kbterminology:KnowledgeSource "OntoIOp sensitive"^^xsd:string)
+SubClassOf(api4kbterminology:KnowledgeSource api4kbterminology:Source)
 
 # Class: api4kbterminology:KnowledgeSourceDescription (knowledge source description)
 
@@ -998,7 +994,7 @@ SubClassOf(api4kbterminology:Mutable ObjectSomeValuesFrom(api4kbterminology:hasS
 
 AnnotationAssertion(rdfs:label api4kbterminology:MutableKnowledgeBase "mutable knowledge base")
 EquivalentClasses(api4kbterminology:MutableKnowledgeBase ObjectIntersectionOf(api4kbterminology:MutableSource ObjectSomeValuesFrom(api4kbterminology:hasSnapshot api4kbterminology:ImmutableKnowledgeBase)))
-SubClassOf(api4kbterminology:MutableKnowledgeBase api4kbterminology:KnowledgeSource)
+SubClassOf(api4kbterminology:MutableKnowledgeBase api4kbterminology:KnowledgeBase)
 
 # Class: api4kbterminology:MutableSource (mutable source)
 
@@ -1006,7 +1002,7 @@ AnnotationAssertion(rdfs:label api4kbterminology:MutableSource "mutable source")
 AnnotationAssertion(core:definition api4kbterminology:MutableSource "container that has, at any point in time, an explicit state that is fully represented by a knowledge resource. The language, structure and content of a mutable knowledge source may change over time, but the abstraction level is unchanging.")
 AnnotationAssertion(core:example api4kbterminology:MutableSource "the snapshot of a patient's current condition (with timestamp)")
 AnnotationAssertion(core:scopeNote api4kbterminology:MutableSource "API4KP does not commit to any particular topology of time. E.g. Linear, branching and braided time indices are possible.")
-EquivalentClasses(api4kbterminology:MutableSource ObjectIntersectionOf(api4kbterminology:Mutable api4kbterminology:Source ObjectSomeValuesFrom(api4kbterminology:hasSnapshot api4kbterminology:ImmutableSource)))
+EquivalentClasses(api4kbterminology:MutableSource ObjectIntersectionOf(api4kbterminology:Mutable api4kbterminology:Source ObjectSomeValuesFrom(api4kbterminology:hasSnapshot ObjectIntersectionOf(api4kbterminology:Immutable api4kbterminology:Source))))
 
 # Class: api4kbterminology:NonemptyEnvironment (nonempty environment)
 
