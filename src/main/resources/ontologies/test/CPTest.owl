@@ -1,22 +1,22 @@
-Prefix(:=<http://www.omg.org/spec/API4KB/API4KBTerminology/CPTest#>)
+Prefix(:=<http://www.omg.org/spec/API4KP/API4KPTerminology/CPTest#>)
 Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
 Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
 Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
 Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
 Prefix(core:=<http://www.w3.org/2004/02/skos/core#>)
 Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
-Prefix(cptest:=<http://www.omg.org/spec/API4KB/API4KBTerminology/CPTest#>)
-Prefix(api4kbtry:=<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBTry/>)
-Prefix(api4kbevent:=<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBEvent/>)
-Prefix(api4kboperation:=<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBOperation/>)
-Prefix(api4kbproficiency:=<http://www.omg.org/spec/API4KB/API4KBTerminology/API4KBProficiency/>)
-Prefix(api4kbterminology:=<http://www.omg.org/spec/API4KB/API4KBTerminology/>)
+Prefix(cptest:=<http://www.omg.org/spec/API4KP/API4KPTerminology/CPTest#>)
+Prefix(api4kptry:=<http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPTry/>)
+Prefix(api4kpevent:=<http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPEvent/>)
+Prefix(api4kpoperation:=<http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPOperation/>)
+Prefix(api4kpproficiency:=<http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPProficiency/>)
+Prefix(api4kpterminology:=<http://www.omg.org/spec/API4KP/API4KPTerminology/>)
 Prefix(ontoiopterminology:=<http://www.omg.org/spec/DOL/DOL-terms/>)
 Prefix(specificationmetadata:=<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
 
 
-Ontology(<http://www.omg.org/spec/API4KB/API4KBTerminology/CPTest>
-Import(<http://www.omg.org/spec/API4KB/20150201/API4KBTerminology/>)
+Ontology(<http://www.omg.org/spec/API4KP/API4KPTerminology/CPTest>
+Import(<http://www.omg.org/spec/API4KP/20150201/API4KPTerminology/>)
 
 Declaration(NamedIndividual(cptest:CreateEmptyKPEventA))
 Declaration(NamedIndividual(cptest:CreateEmptyKPFunctionalityA))
@@ -34,41 +34,41 @@ Declaration(NamedIndividual(cptest:ModifyingProficiency-KP-KPM_A))
 
 # Individual: cptest:CreateEmptyKPEventA (cptest:CreateEmptyKPEventA)
 
-ClassAssertion(api4kbevent:NullaryEvent cptest:CreateEmptyKPEventA)
-ObjectPropertyAssertion(api4kbterminology:isEventOf cptest:CreateEmptyKPEventA cptest:CreateEmptyKPOperationA)
+ClassAssertion(api4kpevent:NullaryEvent cptest:CreateEmptyKPEventA)
+ObjectPropertyAssertion(api4kpterminology:isEventOf cptest:CreateEmptyKPEventA cptest:CreateEmptyKPOperationA)
 
 # Individual: cptest:CreateEmptyKPFunctionalityA (cptest:CreateEmptyKPFunctionalityA)
 
-ClassAssertion(api4kbterminology:CreateEmptyKPFunctionality cptest:CreateEmptyKPFunctionalityA)
+ClassAssertion(api4kpterminology:CreateEmptyKPFunctionality cptest:CreateEmptyKPFunctionalityA)
 
 # Individual: cptest:CreateEmptyKPOperationA (cptest:CreateEmptyKPOperationA)
 
-ClassAssertion(api4kboperation:CreateEmptyKPOperation cptest:CreateEmptyKPOperationA)
+ClassAssertion(api4kpoperation:CreateEmptyKPOperation cptest:CreateEmptyKPOperationA)
 
 # Individual: cptest:CreatingProficiency-KP-KPM_A (cptest:CreatingProficiency-KP-KPM_A)
 
-ClassAssertion(api4kbproficiency:CreatingProficiency-KnowledgePlatform cptest:CreatingProficiency-KP-KPM_A)
-ObjectPropertyAssertion(api4kbterminology:exposes cptest:CreatingProficiency-KP-KPM_A cptest:CreateEmptyKPFunctionalityA)
+ClassAssertion(api4kpproficiency:CreatingProficiency-KnowledgePlatform cptest:CreatingProficiency-KP-KPM_A)
+ObjectPropertyAssertion(api4kpterminology:exposes cptest:CreatingProficiency-KP-KPM_A cptest:CreateEmptyKPFunctionalityA)
 
 # Individual: cptest:DestroyingProficiency-KP-KPM_A (cptest:DestroyingProficiency-KP-KPM_A)
 
-ClassAssertion(api4kbproficiency:DestroyingProficiency-KnowledgePlatform cptest:DestroyingProficiency-KP-KPM_A)
+ClassAssertion(api4kpproficiency:DestroyingProficiency-KnowledgePlatform cptest:DestroyingProficiency-KP-KPM_A)
 
 # Individual: cptest:KPMRoleA (cptest:KPMRoleA)
 
-ClassAssertion(api4kbterminology:KnowledgePlatformManagerRole cptest:KPMRoleA)
-ObjectPropertyAssertion(api4kbterminology:requires cptest:KPMRoleA cptest:CreatingProficiency-KP-KPM_A)
-ObjectPropertyAssertion(api4kbterminology:requires cptest:KPMRoleA cptest:DestroyingProficiency-KP-KPM_A)
-ObjectPropertyAssertion(api4kbterminology:requires cptest:KPMRoleA cptest:ModifyingProficiency-KP-KPM_A)
+ClassAssertion(api4kpterminology:KnowledgePlatformManagerRole cptest:KPMRoleA)
+ObjectPropertyAssertion(api4kpterminology:requires cptest:KPMRoleA cptest:CreatingProficiency-KP-KPM_A)
+ObjectPropertyAssertion(api4kpterminology:requires cptest:KPMRoleA cptest:DestroyingProficiency-KP-KPM_A)
+ObjectPropertyAssertion(api4kpterminology:requires cptest:KPMRoleA cptest:ModifyingProficiency-KP-KPM_A)
 
 # Individual: cptest:KnowledgePlatformManagerA (cptest:KnowledgePlatformManagerA)
 
-ClassAssertion(api4kbterminology:CommunicatingEntity cptest:KnowledgePlatformManagerA)
-ObjectPropertyAssertion(api4kbterminology:fillsRole cptest:KnowledgePlatformManagerA cptest:KPMRoleA)
+ClassAssertion(api4kpterminology:CommunicatingEntity cptest:KnowledgePlatformManagerA)
+ObjectPropertyAssertion(api4kpterminology:fillsRole cptest:KnowledgePlatformManagerA cptest:KPMRoleA)
 
 # Individual: cptest:ModifyingProficiency-KP-KPM_A (cptest:ModifyingProficiency-KP-KPM_A)
 
-ClassAssertion(api4kbproficiency:ModifyingProficiency-KnowledgePlatform cptest:ModifyingProficiency-KP-KPM_A)
+ClassAssertion(api4kpproficiency:ModifyingProficiency-KnowledgePlatform cptest:ModifyingProficiency-KP-KPM_A)
 
 
 )
