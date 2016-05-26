@@ -18,13 +18,14 @@ Prefix(api4kpoperationclassifier:=<http://www.omg.org/spec/API4KP/API4KPTerminol
 
 Ontology(<http://www.omg.org/spec/API4KP/API4KPTerminology/>
 <http://www.omg.org/spec/API4KP/20150201/API4KPTerminology/>
+Import(<http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPEvent/>)
 Import(<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
+Import(<http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPOperation/>)
 Import(<http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPOperationClassifier>)
 Import(<http://www.omg.org/spec/DOL/DOL-terms/>)
-Import(<http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPEvent/>)
-Import(<http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPOperation/>)
-Import(<http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPProficiency/>)
+Import(<http://www.omg.org/spec/EDMC-FIBO/FND/20141101/Utilities/AnnotationVocabulary/>)
 Import(<http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPTry/>)
+Import(<http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPProficiency/>)
 Annotation(<http://purl.org/dc/terms/license> "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
 Annotation(specificationmetadata:contentLanguage "http://www.omg.org/spec/ODM/"^^xsd:anyURI)
 Annotation(specificationmetadata:contentLanguage "http://www.w3.org/standards/techs/owl#w3c_all"^^xsd:anyURI)
@@ -98,7 +99,13 @@ Declaration(Class(api4kpterminology:MessageType))
 Declaration(Class(api4kpterminology:Mutable))
 Declaration(Class(api4kpterminology:MutableKnowledgeBase))
 Declaration(Class(api4kpterminology:MutableSource))
+Declaration(Class(api4kpterminology:NativeKnowledgeAsset))
+Declaration(Class(api4kpterminology:NativeKnowledgeExpression))
+Declaration(Class(api4kpterminology:NativeKnowledgeItem))
+Declaration(Class(api4kpterminology:NativeKnowledgeManifestation))
+Declaration(Class(api4kpterminology:NativeKnowledgeResource))
 Declaration(Class(api4kpterminology:NonemptyEnvironment))
+Declaration(Class(api4kpterminology:OMSNativeKnowledgeExpression))
 Declaration(Class(api4kpterminology:Operation))
 Declaration(Class(api4kpterminology:OperationColumn))
 Declaration(Class(api4kpterminology:PIEventType))
@@ -145,6 +152,14 @@ Declaration(Class(api4kpterminology:StructuredKnowledgeManifestation))
 Declaration(Class(api4kpterminology:StructuredKnowledgeResource))
 Declaration(Class(api4kpterminology:Success))
 Declaration(Class(api4kpterminology:SuccessMonad))
+Declaration(Class(api4kpevent:KnowledgeEvent))
+Declaration(Class(api4kpoperation:KnowledgeOperation))
+Declaration(Class(api4kpproficiency:AddingProficiency-KnowledgeResourceToImmutableKB))
+Declaration(Class(api4kpproficiency:CreatingProficiency-KnowledgePlatform))
+Declaration(Class(api4kpproficiency:DestroyingProficiency-KnowledgePlatform))
+Declaration(Class(api4kpproficiency:ModifyingProficiency-KnowledgePlatform))
+Declaration(Class(api4kpproficiency:Proficiency))
+Declaration(Class(api4kptry:Try))
 Declaration(Class(dol-terms:OMSSerialization))
 Declaration(Class(dol-terms:SetOfExpressions))
 Declaration(ObjectProperty(api4kpterminology:about))
@@ -208,6 +223,16 @@ Declaration(ObjectProperty(api4kpterminology:supports))
 Declaration(ObjectProperty(api4kpterminology:usesLanguage))
 Declaration(ObjectProperty(api4kpterminology:usesSerialization))
 Declaration(ObjectProperty(api4kpterminology:usesSpecification))
+Declaration(ObjectProperty(api4kpevent:hasKPOutput))
+Declaration(ObjectProperty(api4kpevent:hasOutputFromConceptualizing))
+Declaration(ObjectProperty(api4kpevent:hasOutputFromInStreaming))
+Declaration(ObjectProperty(api4kpevent:hasOutputFromParsing))
+Declaration(ObjectProperty(api4kpevent:hasOutputFromUnmarshalling))
+Declaration(ObjectProperty(api4kpevent:isInputOf))
+Declaration(ObjectProperty(api4kptry:hasEvent))
+Declaration(ObjectProperty(api4kptry:isDelegatedTo))
+Declaration(ObjectProperty(api4kptry:isEventOf))
+Declaration(ObjectProperty(api4kptry:isTryOf))
 
 ############################
 #   Object Properties
@@ -640,9 +665,10 @@ DisjointClasses(api4kpterminology:BasicKnowledgeEncoding api4kpterminology:Struc
 # Class: api4kpterminology:BasicKnowledgeExpression (basic knowledge expression)
 
 AnnotationAssertion(rdfs:label api4kpterminology:BasicKnowledgeExpression "basic knowledge expression")
-AnnotationAssertion(core:definition api4kpterminology:BasicKnowledgeExpression "well-formed, stand-alone formula in the abstract syntax of a machine-readable language")
+AnnotationAssertion(core:definition api4kpterminology:BasicKnowledgeExpression "unstructured native knowledge expression")
 AnnotationAssertion(core:example api4kpterminology:BasicKnowledgeExpression "KE1: the instance of the OWL 2 DL abstract syntax for the latest version of a biomedical ontology from an ontology series KA1 defining observable entities, such as the 2015 international version of the SNOMED-CT knowledge base\\footnote{http://browser.ihtsdotools.org/} (see also the definition of Basic Knowledge Asset). 
 This ontology differs from other versions of the series only in the natural language definitions.")
+AnnotationAssertion(core:note api4kpterminology:BasicKnowledgeExpression "well-formed, stand-alone formula in the abstract syntax of a machine-readable language")
 AnnotationAssertion(core:scopeNote api4kpterminology:BasicKnowledgeExpression "The use of \"basic\" in API4KP differs from its usage in DOL - a DOL basic OMS  (ontologies, models and specifications) is a set, and corresponds to a Set-structured knowledge asset in API4KP.")
 EquivalentClasses(api4kpterminology:BasicKnowledgeExpression ObjectIntersectionOf(api4kpterminology:BasicKnowledgeResource api4kpterminology:KnowledgeExpression))
 DisjointClasses(api4kpterminology:BasicKnowledgeExpression api4kpterminology:StructuredKnowledgeExpression)
@@ -666,7 +692,8 @@ DisjointClasses(api4kpterminology:BasicKnowledgeManifestation api4kpterminology:
 # Class: api4kpterminology:BasicKnowledgeResource (basic knowledge resource)
 
 AnnotationAssertion(rdfs:label api4kpterminology:BasicKnowledgeResource "basic knowledge resource")
-SubClassOf(api4kpterminology:BasicKnowledgeResource api4kpterminology:KnowledgeResource)
+AnnotationAssertion(core:editorialNote api4kpterminology:BasicKnowledgeResource "TODO: Decide whether we should keep this aligned with DOL's notion of basic vs. structured or not.")
+SubClassOf(api4kpterminology:BasicKnowledgeResource api4kpterminology:NativeKnowledgeResource)
 DisjointClasses(api4kpterminology:BasicKnowledgeResource api4kpterminology:StructuredKnowledgeResource)
 
 # Class: api4kpterminology:Callable (api4kpterminology:Callable)
@@ -1004,11 +1031,38 @@ AnnotationAssertion(core:example api4kpterminology:MutableSource "the snapshot o
 AnnotationAssertion(core:scopeNote api4kpterminology:MutableSource "API4KP does not commit to any particular topology of time. E.g. Linear, branching and braided time indices are possible.")
 EquivalentClasses(api4kpterminology:MutableSource ObjectIntersectionOf(api4kpterminology:Mutable api4kpterminology:Source ObjectSomeValuesFrom(api4kpterminology:hasSnapshot ObjectIntersectionOf(api4kpterminology:Immutable api4kpterminology:Source))))
 
+# Class: api4kpterminology:NativeKnowledgeAsset (api4kpterminology:NativeKnowledgeAsset)
+
+SubClassOf(api4kpterminology:NativeKnowledgeAsset api4kpterminology:NativeKnowledgeResource)
+
+# Class: api4kpterminology:NativeKnowledgeExpression (api4kpterminology:NativeKnowledgeExpression)
+
+AnnotationAssertion(core:definition api4kpterminology:NativeKnowledgeExpression "sequence of expressions (like non-logical symbols, sentences and structuring elements) from a given KR language.")
+EquivalentClasses(api4kpterminology:NativeKnowledgeExpression ObjectIntersectionOf(api4kpterminology:KnowledgeExpression api4kpterminology:NativeKnowledgeResource))
+SubClassOf(api4kpterminology:NativeKnowledgeExpression ObjectExactCardinality(1 api4kpterminology:usesLanguage api4kpterminology:KnowledgeRepresentationAndReasoningLanguage))
+
+# Class: api4kpterminology:NativeKnowledgeItem (api4kpterminology:NativeKnowledgeItem)
+
+SubClassOf(api4kpterminology:NativeKnowledgeItem api4kpterminology:NativeKnowledgeResource)
+
+# Class: api4kpterminology:NativeKnowledgeManifestation (api4kpterminology:NativeKnowledgeManifestation)
+
+SubClassOf(api4kpterminology:NativeKnowledgeManifestation api4kpterminology:NativeKnowledgeResource)
+
+# Class: api4kpterminology:NativeKnowledgeResource (api4kpterminology:NativeKnowledgeResource)
+
+SubClassOf(api4kpterminology:NativeKnowledgeResource api4kpterminology:KnowledgeResource)
+
 # Class: api4kpterminology:NonemptyEnvironment (nonempty environment)
 
 AnnotationAssertion(rdfs:label api4kpterminology:NonemptyEnvironment "nonempty environment")
 SubClassOf(api4kpterminology:NonemptyEnvironment api4kpterminology:Environment)
 SubClassOf(api4kpterminology:NonemptyEnvironment ObjectSomeValuesFrom(api4kpterminology:hasEnvironmentMapping api4kpterminology:Mapping))
+
+# Class: api4kpterminology:OMSNativeKnowledgeExpression (api4kpterminology:OMSNativeKnowledgeExpression)
+
+EquivalentClasses(api4kpterminology:OMSNativeKnowledgeExpression dol-terms:NativeOMS)
+SubClassOf(api4kpterminology:OMSNativeKnowledgeExpression api4kpterminology:NativeKnowledgeExpression)
 
 # Class: api4kpterminology:Operation (api4kpterminology:Operation)
 
@@ -1269,6 +1323,7 @@ SubClassOf(api4kpterminology:StructuredKnowledgeManifestation ObjectAllValuesFro
 # Class: api4kpterminology:StructuredKnowledgeResource (structured knowledge resource)
 
 AnnotationAssertion(rdfs:label api4kpterminology:StructuredKnowledgeResource "structured knowledge resource")
+AnnotationAssertion(core:editorialNote api4kpterminology:StructuredKnowledgeResource "TODO: Decide whether we should keep this aligned with DOL's notion of basic vs. structured or not.")
 EquivalentClasses(api4kpterminology:StructuredKnowledgeResource ObjectIntersectionOf(api4kpterminology:KnowledgeResource api4kpterminology:Structured))
 SubClassOf(api4kpterminology:StructuredKnowledgeResource ObjectAllValuesFrom(api4kpterminology:hasStructuralComponent api4kpterminology:KnowledgeResource))
 
@@ -1280,7 +1335,7 @@ SubClassOf(api4kpterminology:Success api4kpterminology:Request)
 
 SubClassOf(api4kpterminology:SuccessMonad api4kpterminology:EventType)
 
-# Class: api4kpevent:KnowledgeEvent (knowledge event)
+# Class: api4kpevent:KnowledgeEvent (api4kpevent:KnowledgeEvent)
 
 SubClassOf(api4kpevent:KnowledgeEvent api4kpterminology:Event)
 
