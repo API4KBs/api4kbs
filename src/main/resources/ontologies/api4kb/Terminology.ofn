@@ -39,13 +39,9 @@ Annotation(rdfs:label "API4KP Terminology Ontology")
 
 Declaration(Class(api4kpterminology:API4KP))
 Declaration(Class(api4kpterminology:AssetEnvironment))
+Declaration(Class(api4kpterminology:Basic))
 Declaration(Class(api4kpterminology:BasicEnvironment))
-Declaration(Class(api4kpterminology:BasicKnowledgeAsset))
-Declaration(Class(api4kpterminology:BasicKnowledgeEncoding))
 Declaration(Class(api4kpterminology:BasicKnowledgeExpression))
-Declaration(Class(api4kpterminology:BasicKnowledgeItem))
-Declaration(Class(api4kpterminology:BasicKnowledgeManifestation))
-Declaration(Class(api4kpterminology:BasicKnowledgeResource))
 Declaration(Class(api4kpterminology:Callable))
 Declaration(Class(api4kpterminology:CategoricalEnvironment))
 Declaration(Class(api4kpterminology:Client))
@@ -144,12 +140,7 @@ Declaration(Class(api4kpterminology:Serialization))
 Declaration(Class(api4kpterminology:Source))
 Declaration(Class(api4kpterminology:Specification))
 Declaration(Class(api4kpterminology:Structured))
-Declaration(Class(api4kpterminology:StructuredKnowledgeAsset))
-Declaration(Class(api4kpterminology:StructuredKnowledgeEncoding))
 Declaration(Class(api4kpterminology:StructuredKnowledgeExpression))
-Declaration(Class(api4kpterminology:StructuredKnowledgeItem))
-Declaration(Class(api4kpterminology:StructuredKnowledgeManifestation))
-Declaration(Class(api4kpterminology:StructuredKnowledgeResource))
 Declaration(Class(api4kpterminology:Success))
 Declaration(Class(api4kpterminology:SuccessMonad))
 Declaration(Class(api4kpevent:KnowledgeEvent))
@@ -186,6 +177,7 @@ Declaration(ObjectProperty(api4kpterminology:hasRequestee))
 Declaration(ObjectProperty(api4kpterminology:hasSetOfMappings))
 Declaration(ObjectProperty(api4kpterminology:hasSnapshot))
 Declaration(ObjectProperty(api4kpterminology:hasStructuralComponent))
+Declaration(ObjectProperty(api4kpterminology:hasStructureType))
 Declaration(ObjectProperty(api4kpterminology:hasSubenvironment))
 Declaration(ObjectProperty(api4kpterminology:hasSubproficiency))
 Declaration(ObjectProperty(api4kpterminology:implements))
@@ -641,26 +633,18 @@ SubClassOf(api4kpterminology:AssetEnvironment api4kpterminology:FocusedEnvironme
 SubClassOf(api4kpterminology:AssetEnvironment api4kpterminology:LanguageEnvironment)
 SubClassOf(api4kpterminology:AssetEnvironment api4kpterminology:PreservingEnvironment)
 
+# Class: api4kpterminology:Basic (api4kpterminology:Basic)
+
+AnnotationAssertion(core:editorialNote api4kpterminology:Basic "There is possibly something questionable about the equivalence class for Basic, as it is based on the absence of a property, and this is very broad.")
+EquivalentClasses(api4kpterminology:Basic ObjectExactCardinality(0 api4kpterminology:hasStructureType))
+DisjointClasses(api4kpterminology:Basic api4kpterminology:Structured)
+
 # Class: api4kpterminology:BasicEnvironment (basic environment)
 
 AnnotationAssertion(rdfs:label api4kpterminology:BasicEnvironment "basic environment")
 AnnotationAssertion(core:definition api4kpterminology:BasicEnvironment "a focused environment having exactly one member")
 SubClassOf(api4kpterminology:BasicEnvironment api4kpterminology:FocusedEnvironment)
 SubClassOf(api4kpterminology:BasicEnvironment ObjectExactCardinality(1 api4kpterminology:hasEnvironmentMapping))
-
-# Class: api4kpterminology:BasicKnowledgeAsset (basic knowledge asset)
-
-AnnotationAssertion(rdfs:label api4kpterminology:BasicKnowledgeAsset "basic knowledge asset")
-AnnotationAssertion(core:definition api4kpterminology:BasicKnowledgeAsset "equivalence class of basic expressions determined by the equivalence relation of an asset environment")
-AnnotationAssertion(core:example api4kpterminology:BasicKnowledgeAsset "KA1: an OWL2 DL series for a biomedical ontology, viewed as an equivalence class of basic knowledge expressions, including example KE1, according to a semantics-preserving environment for the OWL2 DL language where the mapping to the focus language strips the natural language definitions from the axioms")
-EquivalentClasses(api4kpterminology:BasicKnowledgeAsset ObjectIntersectionOf(api4kpterminology:BasicKnowledgeResource api4kpterminology:KnowledgeAsset))
-DisjointClasses(api4kpterminology:BasicKnowledgeAsset api4kpterminology:StructuredKnowledgeAsset)
-
-# Class: api4kpterminology:BasicKnowledgeEncoding (basic knowledge encoding)
-
-AnnotationAssertion(rdfs:label api4kpterminology:BasicKnowledgeEncoding "basic knowledge encoding")
-EquivalentClasses(api4kpterminology:BasicKnowledgeEncoding ObjectIntersectionOf(api4kpterminology:BasicKnowledgeResource api4kpterminology:KnowledgeEncoding))
-DisjointClasses(api4kpterminology:BasicKnowledgeEncoding api4kpterminology:StructuredKnowledgeEncoding)
 
 # Class: api4kpterminology:BasicKnowledgeExpression (basic knowledge expression)
 
@@ -670,31 +654,9 @@ AnnotationAssertion(core:example api4kpterminology:BasicKnowledgeExpression "KE1
 This ontology differs from other versions of the series only in the natural language definitions.")
 AnnotationAssertion(core:note api4kpterminology:BasicKnowledgeExpression "well-formed, stand-alone formula in the abstract syntax of a machine-readable language")
 AnnotationAssertion(core:scopeNote api4kpterminology:BasicKnowledgeExpression "The use of \"basic\" in API4KP differs from its usage in DOL - a DOL basic OMS  (ontologies, models and specifications) is a set, and corresponds to a Set-structured knowledge asset in API4KP.")
-EquivalentClasses(api4kpterminology:BasicKnowledgeExpression ObjectIntersectionOf(api4kpterminology:BasicKnowledgeResource api4kpterminology:KnowledgeExpression))
+EquivalentClasses(api4kpterminology:BasicKnowledgeExpression ObjectIntersectionOf(api4kpterminology:KnowledgeExpression ObjectExactCardinality(0 api4kpterminology:hasStructureType)))
+SubClassOf(api4kpterminology:BasicKnowledgeExpression api4kpterminology:Basic)
 DisjointClasses(api4kpterminology:BasicKnowledgeExpression api4kpterminology:StructuredKnowledgeExpression)
-
-# Class: api4kpterminology:BasicKnowledgeItem (basic knowledge item)
-
-AnnotationAssertion(rdfs:label api4kpterminology:BasicKnowledgeItem "basic knowledge item")
-AnnotationAssertion(core:definition api4kpterminology:BasicKnowledgeItem "single exemplar of a basic knowledge manifestation in a particular location")
-AnnotationAssertion(core:example api4kpterminology:BasicKnowledgeItem "KI1: a file on a network server embodying example KM1")
-EquivalentClasses(api4kpterminology:BasicKnowledgeItem ObjectIntersectionOf(api4kpterminology:BasicKnowledgeResource api4kpterminology:KnowledgeItem))
-DisjointClasses(api4kpterminology:BasicKnowledgeItem api4kpterminology:StructuredKnowledgeItem)
-
-# Class: api4kpterminology:BasicKnowledgeManifestation (basic knowledge manifestation)
-
-AnnotationAssertion(rdfs:label api4kpterminology:BasicKnowledgeManifestation "basic knowledge manifestation")
-AnnotationAssertion(core:definition api4kpterminology:BasicKnowledgeManifestation "character-based embodiment of a basic knowledge expression in a concrete dialect.")
-AnnotationAssertion(core:example api4kpterminology:BasicKnowledgeManifestation "KM1: the OWL/RDF XML Document Object Model (DOM) document instance of example KE1")
-EquivalentClasses(api4kpterminology:BasicKnowledgeManifestation ObjectIntersectionOf(api4kpterminology:BasicKnowledgeResource api4kpterminology:KnowledgeManifestation))
-DisjointClasses(api4kpterminology:BasicKnowledgeManifestation api4kpterminology:StructuredKnowledgeManifestation)
-
-# Class: api4kpterminology:BasicKnowledgeResource (basic knowledge resource)
-
-AnnotationAssertion(rdfs:label api4kpterminology:BasicKnowledgeResource "basic knowledge resource")
-AnnotationAssertion(core:editorialNote api4kpterminology:BasicKnowledgeResource "TODO: Decide whether we should keep this aligned with DOL's notion of basic vs. structured or not.")
-SubClassOf(api4kpterminology:BasicKnowledgeResource api4kpterminology:NativeKnowledgeResource)
-DisjointClasses(api4kpterminology:BasicKnowledgeResource api4kpterminology:StructuredKnowledgeResource)
 
 # Class: api4kpterminology:Callable (api4kpterminology:Callable)
 
@@ -831,8 +793,7 @@ SubClassOf(api4kpterminology:ImmutableKBFactoryRole ObjectSomeValuesFrom(api4kpt
 # Class: api4kpterminology:ImmutableKnowledgeBase (immutable knowledgebase)
 
 AnnotationAssertion(rdfs:label api4kpterminology:ImmutableKnowledgeBase "immutable knowledgebase")
-EquivalentClasses(api4kpterminology:ImmutableKnowledgeBase api4kpterminology:StructuredKnowledgeAsset)
-SubClassOf(api4kpterminology:ImmutableKnowledgeBase api4kpterminology:KnowledgeAsset)
+EquivalentClasses(api4kpterminology:ImmutableKnowledgeBase api4kpterminology:KnowledgeAsset)
 SubClassOf(api4kpterminology:ImmutableKnowledgeBase api4kpterminology:KnowledgeBase)
 
 # Class: api4kpterminology:ImmutableView (immuable view)
@@ -961,7 +922,6 @@ AnnotationAssertion(rdfs:label api4kpterminology:KnowledgeResource "knowledge re
 AnnotationAssertion(core:definition api4kpterminology:KnowledgeResource "immutable knowledge source"^^xsd:string)
 AnnotationAssertion(core:note api4kpterminology:KnowledgeResource "May be identified to be at one of the following levels of abstraction; knowledge asset, generalized expression, knowledge manifestation, or knowledge item.")
 EquivalentClasses(api4kpterminology:KnowledgeResource ObjectIntersectionOf(api4kpterminology:Immutable api4kpterminology:KnowledgeSource))
-DisjointUnion(api4kpterminology:KnowledgeResource api4kpterminology:BasicKnowledgeResource api4kpterminology:StructuredKnowledgeResource)
 DisjointUnion(api4kpterminology:KnowledgeResource api4kpterminology:KnowledgeAsset api4kpterminology:KnowledgeExpression api4kpterminology:KnowledgeItem api4kpterminology:KnowledgeManifestation)
 
 # Class: api4kpterminology:KnowledgeSerialization (knowledge serialization)
@@ -1280,20 +1240,7 @@ AnnotationAssertion(core:definition api4kpterminology:Specification "TBD"^^xsd:s
 # Class: api4kpterminology:Structured (structured)
 
 AnnotationAssertion(rdfs:label api4kpterminology:Structured "structured")
-
-# Class: api4kpterminology:StructuredKnowledgeAsset (structured knowledge asset)
-
-AnnotationAssertion(rdfs:label api4kpterminology:StructuredKnowledgeAsset "structured knowledge asset")
-AnnotationAssertion(core:definition api4kpterminology:StructuredKnowledgeAsset "collection of knowledge assets  (either structured or basic), which are not necessarily according to the same environment, but where there is a unique language that is the focus of the environment of each component")
-AnnotationAssertion(core:example api4kpterminology:StructuredKnowledgeAsset "KA2: a heterogeneous structure of assets conceptualized from the RDF, OWL and CL expressions of example KE2 according to an environment that provides translations from RDF or OWL into CL, and an ontology-based data access (OBDA) source schema providing a mapping from XMPP schemas to OWL")
-EquivalentClasses(api4kpterminology:StructuredKnowledgeAsset ObjectIntersectionOf(api4kpterminology:KnowledgeAsset api4kpterminology:StructuredKnowledgeResource))
-SubClassOf(api4kpterminology:StructuredKnowledgeAsset ObjectAllValuesFrom(api4kpterminology:hasStructuralComponent api4kpterminology:KnowledgeAsset))
-
-# Class: api4kpterminology:StructuredKnowledgeEncoding (structured knowledge encoding)
-
-AnnotationAssertion(rdfs:label api4kpterminology:StructuredKnowledgeEncoding "structured knowledge encoding")
-EquivalentClasses(api4kpterminology:StructuredKnowledgeEncoding ObjectIntersectionOf(api4kpterminology:KnowledgeEncoding api4kpterminology:StructuredKnowledgeResource))
-SubClassOf(api4kpterminology:StructuredKnowledgeEncoding ObjectAllValuesFrom(api4kpterminology:hasStructuralComponent api4kpterminology:KnowledgeEncoding))
+EquivalentClasses(api4kpterminology:Structured ObjectExactCardinality(1 api4kpterminology:hasStructureType))
 
 # Class: api4kpterminology:StructuredKnowledgeExpression (structured knowledge expression)
 
@@ -1301,31 +1248,9 @@ AnnotationAssertion(rdfs:label api4kpterminology:StructuredKnowledgeExpression "
 AnnotationAssertion(core:definition api4kpterminology:StructuredKnowledgeExpression "collection of knowledge expressions (either structured or basic), which are not necessarily in the same language and may themselves have structure.")
 AnnotationAssertion(core:example api4kpterminology:StructuredKnowledgeExpression "KE2: a heterogeneous collection of streaming data and RDF graphs, together with static OWL ontologies and CL texts, and ECA rules describing actions of a CDS")
 AnnotationAssertion(core:example api4kpterminology:StructuredKnowledgeExpression "KE3: the OWL 2 DL ontology series KA1, viewed as a collection of expressions rather than an equivalence class")
-EquivalentClasses(api4kpterminology:StructuredKnowledgeExpression ObjectIntersectionOf(api4kpterminology:KnowledgeExpression api4kpterminology:StructuredKnowledgeResource))
+EquivalentClasses(api4kpterminology:StructuredKnowledgeExpression ObjectIntersectionOf(api4kpterminology:KnowledgeExpression ObjectExactCardinality(1 api4kpterminology:hasStructureType)))
+SubClassOf(api4kpterminology:StructuredKnowledgeExpression api4kpterminology:Structured)
 SubClassOf(api4kpterminology:StructuredKnowledgeExpression ObjectAllValuesFrom(api4kpterminology:hasStructuralComponent api4kpterminology:KnowledgeExpression))
-
-# Class: api4kpterminology:StructuredKnowledgeItem (structured knowledge item)
-
-AnnotationAssertion(rdfs:label api4kpterminology:StructuredKnowledgeItem "structured knowledge item")
-AnnotationAssertion(core:definition api4kpterminology:StructuredKnowledgeItem "collection of knowledge items  (either structured or basic), which are not necessarily in the same language, dialect, format or location, and may themselves have structure")
-AnnotationAssertion(core:example api4kpterminology:StructuredKnowledgeItem "KI2:  a heterogeneous structure of an RDF triple store, network connections to binary input streams cached in a MySQL database, RuleML XML files on a local hard drive and CL XCL2 files on a network server in a content management system, exemplifying example KM2")
-EquivalentClasses(api4kpterminology:StructuredKnowledgeItem ObjectIntersectionOf(api4kpterminology:KnowledgeItem api4kpterminology:StructuredKnowledgeResource))
-SubClassOf(api4kpterminology:StructuredKnowledgeItem ObjectAllValuesFrom(api4kpterminology:hasStructuralComponent api4kpterminology:KnowledgeItem))
-
-# Class: api4kpterminology:StructuredKnowledgeManifestation (structured knowledge manifestation)
-
-AnnotationAssertion(rdfs:label api4kpterminology:StructuredKnowledgeManifestation "structured knowledge manifestation")
-AnnotationAssertion(core:definition api4kpterminology:StructuredKnowledgeManifestation "collection of knowledge manifestations (either structured or basic), which are not necessarily in the same language or dialect and may themselves have structure")
-AnnotationAssertion(core:example api4kpterminology:StructuredKnowledgeManifestation "KM2: a heterogeneous structure of RDF Turtle, OWL Manchester as sequences of string tokens, and XMPP, OWL/XML, ECA RuleML and CL XCL2 (the XML-based dialect of Common Logic Edition 2) as XML DOM documents embodying example KE2")
-EquivalentClasses(api4kpterminology:StructuredKnowledgeManifestation ObjectIntersectionOf(api4kpterminology:KnowledgeManifestation api4kpterminology:StructuredKnowledgeResource))
-SubClassOf(api4kpterminology:StructuredKnowledgeManifestation ObjectAllValuesFrom(api4kpterminology:hasStructuralComponent api4kpterminology:KnowledgeManifestation))
-
-# Class: api4kpterminology:StructuredKnowledgeResource (structured knowledge resource)
-
-AnnotationAssertion(rdfs:label api4kpterminology:StructuredKnowledgeResource "structured knowledge resource")
-AnnotationAssertion(core:editorialNote api4kpterminology:StructuredKnowledgeResource "TODO: Decide whether we should keep this aligned with DOL's notion of basic vs. structured or not.")
-EquivalentClasses(api4kpterminology:StructuredKnowledgeResource ObjectIntersectionOf(api4kpterminology:KnowledgeResource api4kpterminology:Structured))
-SubClassOf(api4kpterminology:StructuredKnowledgeResource ObjectAllValuesFrom(api4kpterminology:hasStructuralComponent api4kpterminology:KnowledgeResource))
 
 # Class: api4kpterminology:Success (api4kpterminology:Success)
 
@@ -1335,7 +1260,7 @@ SubClassOf(api4kpterminology:Success api4kpterminology:Request)
 
 SubClassOf(api4kpterminology:SuccessMonad api4kpterminology:EventType)
 
-# Class: api4kpevent:KnowledgeEvent (api4kpevent:KnowledgeEvent)
+# Class: api4kpevent:KnowledgeEvent (knowledge event)
 
 SubClassOf(api4kpevent:KnowledgeEvent api4kpterminology:Event)
 
