@@ -1,4 +1,4 @@
-Prefix(:=<http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPProficiency/>)
+Prefix(:=<http://www.omg.org/spec/API4KP/Proficiencies/>)
 Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
 Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
 Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
@@ -6,8 +6,8 @@ Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
 Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 
 
-Ontology(<http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPProficiency/>
-<http://www.omg.org/spec/API4KP/20150201/API4KPTerminology/API4KPProficiency/>
+Ontology(<http://www.omg.org/spec/API4KP/Proficiencies/>
+<http://www.omg.org/spec/API4KP/20160801/Proficiencies/>
 Import(<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
 Annotation(<http://purl.org/dc/terms/license> "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
 Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/contentLanguage> "http://www.omg.org/spec/ODM/"^^xsd:anyURI)
@@ -20,11 +20,11 @@ Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/fileAbstract
 Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/filename> "API4KPTerminologyProficiency.rdf"^^xsd:string)
 Annotation(rdfs:label "API4KP Proficiency Terminology Ontology")
 
-Declaration(Class(<http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPEvent/KnowledgeEvent>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPEvent/PublicAddingEvent-KnowledgeResourceToImmutableKB>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPEvent/SideEffectFreeEvent>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPEvent/SideEffectfulEvent>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPEvent/UnaryEvent>))
+Declaration(Class(<http://www.omg.org/spec/API4KP/EventsKnowledgeEvent>))
+Declaration(Class(<http://www.omg.org/spec/API4KP/EventsPublicAddingEvent-KnowledgeResourceToImmutableKB>))
+Declaration(Class(<http://www.omg.org/spec/API4KP/EventsSideEffectFreeEvent>))
+Declaration(Class(<http://www.omg.org/spec/API4KP/EventsSideEffectfulEvent>))
+Declaration(Class(<http://www.omg.org/spec/API4KP/EventsUnaryEvent>))
 Declaration(Class(:AddingProficiency-KnowledgeResourceToImmutableKB))
 Declaration(Class(:AddingProficiency-KnowledgeSourceToMutableKB))
 Declaration(Class(:CreatingProficiency-KnowledgePlatform))
@@ -34,7 +34,7 @@ Declaration(Class(:Proficiency))
 Declaration(Class(:SideEffectFreeProficiency))
 Declaration(Class(:SideEffectfulProficiency))
 Declaration(Class(:UnaryProficiency))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/API4KPTerminology/isActualizedBy>))
+Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/Terminology/isActualizedBy>))
 
 
 
@@ -48,7 +48,7 @@ AnnotationAssertion(rdfs:label :AddingProficiency-KnowledgeResourceToImmutableKB
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> :AddingProficiency-KnowledgeResourceToImmutableKB "proficiency of adding knowlede
       resources to immutable knowledge bases"^^xsd:string)
 SubClassOf(:AddingProficiency-KnowledgeResourceToImmutableKB :Proficiency)
-SubClassOf(:AddingProficiency-KnowledgeResourceToImmutableKB ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/API4KPTerminology/isActualizedBy> <http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPEvent/PublicAddingEvent-KnowledgeResourceToImmutableKB>))
+SubClassOf(:AddingProficiency-KnowledgeResourceToImmutableKB ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/Terminology/isActualizedBy> <http://www.omg.org/spec/API4KP/EventsPublicAddingEvent-KnowledgeResourceToImmutableKB>))
 
 # Class: :AddingProficiency-KnowledgeSourceToMutableKB (proficiency of adding knowledge resources to mutable KBs)
 
@@ -80,26 +80,26 @@ The (externally developed) Components each implement some set of operations.
 The Knowledge Platform is built from a number of Components, and so has the functionality of all operations of those Components, plus the functionality captured by all compositions of these operations.
 A Proficiency of the KP is a subset of the operations supported by its collection of Components that are exposed through its public API to \"clients\".")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> :Proficiency "Note: In our architecture, proficiencies are provided by a collection of components (which may contain just one component). Different collections of components may provide the same proficiency. The standard API4KP proficiencies will be enumerated in the specification."^^xsd:string)
-SubClassOf(:Proficiency ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/API4KPTerminology/isActualizedBy> <http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPEvent/KnowledgeEvent>))
+SubClassOf(:Proficiency ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/Terminology/isActualizedBy> <http://www.omg.org/spec/API4KP/EventsKnowledgeEvent>))
 
 # Class: :SideEffectFreeProficiency (side-effect-free proficiency)
 
 AnnotationAssertion(rdfs:label :SideEffectFreeProficiency "side-effect-free proficiency")
 SubClassOf(:SideEffectFreeProficiency :Proficiency)
-SubClassOf(:SideEffectFreeProficiency ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/API4KPTerminology/isActualizedBy> <http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPEvent/SideEffectFreeEvent>))
+SubClassOf(:SideEffectFreeProficiency ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/Terminology/isActualizedBy> <http://www.omg.org/spec/API4KP/EventsSideEffectFreeEvent>))
 
 # Class: :SideEffectfulProficiency (side-effectful proficiency)
 
 AnnotationAssertion(rdfs:label :SideEffectfulProficiency "side-effectful proficiency")
 SubClassOf(:SideEffectfulProficiency :Proficiency)
-SubClassOf(:SideEffectfulProficiency ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/API4KPTerminology/isActualizedBy> <http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPEvent/SideEffectfulEvent>))
+SubClassOf(:SideEffectfulProficiency ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/Terminology/isActualizedBy> <http://www.omg.org/spec/API4KP/EventsSideEffectfulEvent>))
 
 # Class: :UnaryProficiency (unary proficiency)
 
 AnnotationAssertion(rdfs:label :UnaryProficiency "unary proficiency")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> :UnaryProficiency "unary proficiency"^^xsd:string)
 SubClassOf(:UnaryProficiency :Proficiency)
-SubClassOf(:UnaryProficiency ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/API4KPTerminology/isActualizedBy> <http://www.omg.org/spec/API4KP/API4KPTerminology/API4KPEvent/UnaryEvent>))
+SubClassOf(:UnaryProficiency ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/Terminology/isActualizedBy> <http://www.omg.org/spec/API4KP/EventsUnaryEvent>))
 
 
 )
