@@ -1,26 +1,25 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://www.omg.org/spec/API4KP/FullTest/"
      xml:base="http://www.omg.org/spec/API4KP/FullTest/"
+     xmlns:dol="http://www.omg.org/spec/DOL/DOL-terms/"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:ontoiop-trm="http://www.omg.org/spec/OntoIOp/OntoIOpTerminology/"
-     xmlns:apiforkb-ev="http://www.omg.org/spec/API4KP/Events"
+     xmlns:api4kp-cls="http://www.omg.org/spec/API4KP/Classifiers/"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:apiforkb-try="http://www.omg.org/spec/API4KP/Tries/"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:API4KPClassifier="http://www.omg.org/spec/API4KP/Classifiers#"
-     xmlns:apiforkb-trm="http://www.omg.org/spec/API4KP/Terminology/"
+     xmlns:api4kp-prf="http://www.omg.org/spec/API4KP/Proficiencies/"
+     xmlns:api4kp-evt="http://www.omg.org/spec/API4KP/Events/"
      xmlns:dct="http://purl.org/dc/terms/"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:apiforkb-op="http://www.omg.org/spec/API4KP/Operations/"
-     xmlns:apiforkb-st="http://www.omg.org/spec/API4KP/FullTest/"
      xmlns:sm="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
-     xmlns:apiforkb-pro="http://www.omg.org/spec/API4KP/Proficiencies/"
-     xmlns:DOL-terms="http://www.omg.org/spec/DOL/DOL-terms/">
+     xmlns:AnnotationVocabulary="http://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/"
+     xmlns:api4kp-term="http://www.omg.org/spec/API4KP/Terminology/"
+     xmlns:api4kp-op="http://www.omg.org/spec/API4KP/Operations/"
+     xmlns:api4kp-tr="http://www.omg.org/spec/API4KP/Tries/">
     <owl:Ontology rdf:about="http://www.omg.org/spec/API4KP/FullTest/">
-        <owl:imports rdf:resource="http://www.omg.org/spec/API4KP/Terminology/"/>
         <owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
+        <owl:imports rdf:resource="http://www.omg.org/spec/API4KP/Terminology/"/>
         <rdfs:label>API4KP Terminology Ontology</rdfs:label>
     </owl:Ontology>
     
@@ -54,27 +53,15 @@
     
 
 
-    <!-- http://www.omg.org/spec/API4KP/Terminology/KPFactoryRole -->
+    <!-- http://www.omg.org/spec/API4KP/Events/InternalCreateEvent-KP -->
 
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KP/Terminology/KPFactoryRole"/>
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KP/Events/InternalCreateEvent-KP"/>
     
 
 
-    <!-- http://www.omg.org/spec/API4KP/Terminology/KnowledgePlatformManager -->
+    <!-- http://www.omg.org/spec/API4KP/Events/PublicCreateEvent-KP -->
 
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KP/Terminology/KnowledgePlatformManager"/>
-    
-
-
-    <!-- http://www.omg.org/spec/API4KP/EventsInternalCreateEvent-KP -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KP/EventsInternalCreateEvent-KP"/>
-    
-
-
-    <!-- http://www.omg.org/spec/API4KP/EventsPublicCreateEvent-KP -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KP/EventsPublicCreateEvent-KP"/>
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KP/Events/PublicCreateEvent-KP"/>
     
 
 
@@ -87,6 +74,18 @@
     <!-- http://www.omg.org/spec/API4KP/Proficiencies/CreatingProficiency-KP -->
 
     <owl:Class rdf:about="http://www.omg.org/spec/API4KP/Proficiencies/CreatingProficiency-KP"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KP/Terminology/KPFactoryRole -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KP/Terminology/KPFactoryRole"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KP/Terminology/KnowledgePlatformManager -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KP/Terminology/KnowledgePlatformManager"/>
     
 
 
@@ -132,7 +131,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/FullTest/CreatingProficiency-KPforRDF">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/Proficiencies/CreatingProficiency-KP"/>
-        <apiforkb-trm:isRequiredBy rdf:resource="http://www.omg.org/spec/API4KP/FullTest/RDFKPFactoryRole"/>
+        <api4kp-term:isRequiredBy rdf:resource="http://www.omg.org/spec/API4KP/FullTest/RDFKPFactoryRole"/>
         <rdfs:label>proficiency creating RDF knowledge platforms</rdfs:label>
     </owl:NamedIndividual>
     
@@ -147,8 +146,8 @@
     <!-- http://www.omg.org/spec/API4KP/FullTest/KPMWCreatingKPV -->
 
     <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/FullTest/KPMWCreatingKPV">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/EventsInternalCreateEvent-KP"/>
-        <apiforkb-try:isEventOf rdf:resource="http://www.omg.org/spec/API4KP/FullTest/KPMWTryCreatingKPV"/>
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/Events/InternalCreateEvent-KP"/>
+        <api4kp-tr:isEventOf rdf:resource="http://www.omg.org/spec/API4KP/FullTest/KPMWTryCreatingKPV"/>
         <rdfs:label>internal event by knowledge platform manager W creating knowledge platform V</rdfs:label>
     </owl:NamedIndividual>
     
@@ -158,9 +157,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/FullTest/KPMWTryCreatingKPV">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/Tries/InternalCreatingTry"/>
-        <apiforkb-trm:hasRequestee rdf:resource="http://www.omg.org/spec/API4KP/FullTest/KPManagerW"/>
-        <apiforkb-try:isDelegatedFrom rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ProxyQTryCreatingKPV"/>
-        <apiforkb-try:isTryOf rdf:resource="http://www.omg.org/spec/API4KP/FullTest/InternalCreateOperation-KP"/>
+        <api4kp-term:hasRequestee rdf:resource="http://www.omg.org/spec/API4KP/FullTest/KPManagerW"/>
+        <api4kp-tr:isDelegatedFrom rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ProxyQTryCreatingKPV"/>
+        <api4kp-tr:isTryOf rdf:resource="http://www.omg.org/spec/API4KP/FullTest/InternalCreateOperation-KP"/>
         <rdfs:label>knowledge platform manager W try creating knowledge platform V</rdfs:label>
     </owl:NamedIndividual>
     
@@ -179,8 +178,8 @@
 
     <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/FullTest/KPV">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/Terminology/KnowledgePlatform"/>
-        <apiforkb-ev:isKPOutputOf rdf:resource="http://www.omg.org/spec/API4KP/FullTest/KPMWCreatingKPV"/>
-        <apiforkb-ev:isOutputOf rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ProxyQCreatingKPV"/>
+        <api4kp-evt:isKPOutputOf rdf:resource="http://www.omg.org/spec/API4KP/FullTest/KPMWCreatingKPV"/>
+        <api4kp-evt:isOutputOf rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ProxyQCreatingKPV"/>
         <rdfs:label>knowledge platform V</rdfs:label>
     </owl:NamedIndividual>
     
@@ -204,8 +203,8 @@
     <!-- http://www.omg.org/spec/API4KP/FullTest/ProxyQCreatingKPV -->
 
     <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/FullTest/ProxyQCreatingKPV">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/EventsPublicCreateEvent-KP"/>
-        <apiforkb-try:isEventOf rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ProxyQTryCreatingKPV"/>
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/Events/PublicCreateEvent-KP"/>
+        <api4kp-tr:isEventOf rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ProxyQTryCreatingKPV"/>
         <rdfs:label>public event by proxy Q creating knowledge platform V</rdfs:label>
     </owl:NamedIndividual>
     
@@ -215,10 +214,10 @@
 
     <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/FullTest/ProxyQTryCreatingKPV">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/Tries/CreatingTry"/>
-        <apiforkb-trm:hasRequestee rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ProxyQ"/>
-        <apiforkb-trm:isRequestedBy rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ClientZ"/>
-        <apiforkb-try:hasInput rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ConfigurationItem"/>
-        <apiforkb-try:isTryOf rdf:resource="http://www.omg.org/spec/API4KP/FullTest/PublicCreateOperation-KP"/>
+        <api4kp-term:hasRequestee rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ProxyQ"/>
+        <api4kp-term:isRequestedBy rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ClientZ"/>
+        <api4kp-tr:hasInput rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ConfigurationItem"/>
+        <api4kp-tr:isTryOf rdf:resource="http://www.omg.org/spec/API4KP/FullTest/PublicCreateOperation-KP"/>
         <rdfs:label>proxy Q try creating knowledge platform V</rdfs:label>
     </owl:NamedIndividual>
     
@@ -229,12 +228,12 @@
     <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/FullTest/ProxyQTryCreatingKPX">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/Tries/CreatingTry"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/Tries/Failure"/>
-        <apiforkb-trm:hasRequestee rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ProxyQ"/>
-        <apiforkb-trm:isRequestedBy rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ClientZ"/>
-        <apiforkb-try:hasInput rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ConfigurationItem1"/>
-        <apiforkb-try:hasInput rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ConfigurationItem2"/>
-        <apiforkb-try:isTryOf rdf:resource="http://www.omg.org/spec/API4KP/FullTest/PublicCreateOperation-KP"/>
-        <apiforkb-try:hasError rdf:resource="http://www.omg.org/spec/API4KP/Terminology/InvalidInputError"/>
+        <api4kp-term:hasRequestee rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ProxyQ"/>
+        <api4kp-term:isRequestedBy rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ClientZ"/>
+        <api4kp-tr:hasInput rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ConfigurationItem1"/>
+        <api4kp-tr:hasInput rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ConfigurationItem2"/>
+        <api4kp-tr:isTryOf rdf:resource="http://www.omg.org/spec/API4KP/FullTest/PublicCreateOperation-KP"/>
+        <api4kp-tr:hasError rdf:resource="http://www.omg.org/spec/API4KP/Terminology/InvalidInputError"/>
         <rdfs:label>proxy Q try creating knowledge platform X</rdfs:label>
     </owl:NamedIndividual>
     
@@ -244,8 +243,8 @@
 
     <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/FullTest/PublicCreateOperation-KP">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/Operations/PublicCreateOperation-KP"/>
-        <apiforkb-trm:exposes rdf:resource="http://www.omg.org/spec/API4KP/FullTest/CreatingProficiency-KPforRDF"/>
-        <apiforkb-trm:isImplementedBy rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ProxyQ"/>
+        <api4kp-term:exposes rdf:resource="http://www.omg.org/spec/API4KP/FullTest/CreatingProficiency-KPforRDF"/>
+        <api4kp-term:isImplementedBy rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ProxyQ"/>
         <rdfs:label>operation of creating a knowledge platform</rdfs:label>
     </owl:NamedIndividual>
     
@@ -255,7 +254,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/FullTest/RDFKPFactoryRole">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/Terminology/KPFactoryRole"/>
-        <apiforkb-trm:isFilledBy rdf:resource="http://www.omg.org/spec/API4KP/FullTest/KPManagerW"/>
+        <api4kp-term:isFilledBy rdf:resource="http://www.omg.org/spec/API4KP/FullTest/KPManagerW"/>
         <rdfs:label>role of RDF knowledge platform factory</rdfs:label>
     </owl:NamedIndividual>
     
@@ -265,8 +264,8 @@
 
     <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/FullTest/ResponseCreateKPVbyKPMW">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/Terminology/Response"/>
-        <apiforkb-trm:about rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ProxyQTryCreatingKPV"/>
-        <apiforkb-trm:hasContent rdf:resource="http://www.omg.org/spec/API4KP/FullTest/KPVSnapshot-Description"/>
+        <api4kp-term:about rdf:resource="http://www.omg.org/spec/API4KP/FullTest/ProxyQTryCreatingKPV"/>
+        <api4kp-term:hasContent rdf:resource="http://www.omg.org/spec/API4KP/FullTest/KPVSnapshot-Description"/>
         <rdfs:label>response about creation of KP V by KP Manager W</rdfs:label>
     </owl:NamedIndividual>
     
@@ -276,8 +275,8 @@
 
     <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/FullTest/ResponseCreateKPVbyProxyQ">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/Terminology/Response"/>
-        <apiforkb-trm:about rdf:resource="http://www.omg.org/spec/API4KP/FullTest/KPMWTryCreatingKPV"/>
-        <apiforkb-trm:hasContent rdf:resource="http://www.omg.org/spec/API4KP/FullTest/KPVSnapshot-Description"/>
+        <api4kp-term:about rdf:resource="http://www.omg.org/spec/API4KP/FullTest/KPMWTryCreatingKPV"/>
+        <api4kp-term:hasContent rdf:resource="http://www.omg.org/spec/API4KP/FullTest/KPVSnapshot-Description"/>
         <rdfs:label>response about creation of KP V by Proxy Q</rdfs:label>
     </owl:NamedIndividual>
     
@@ -302,5 +301,5 @@
 
 
 
-<!-- Generated by the OWL API (version 4.2.3.20160319-0906) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.2.5.20160517-0735) https://github.com/owlcs/owlapi -->
 
