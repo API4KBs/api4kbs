@@ -45,7 +45,7 @@ Declaration(Class(api4kp-prf:ModifyingProficiency-KnowledgePlatform))
 Declaration(Class(api4kp-prf:Proficiency))
 Declaration(Class(:API4KP))
 Declaration(Class(:AssetEnvironment))
-Declaration(Class(:Basic))
+Declaration(Class(:BasicEntity))
 Declaration(Class(:BasicEnvironment))
 Declaration(Class(:BasicKnowledgeExpression))
 Declaration(Class(:Callable))
@@ -72,7 +72,7 @@ Declaration(Class(:FailureMonad))
 Declaration(Class(:FailureType))
 Declaration(Class(:FocusedEnvironment))
 Declaration(Class(:Functionality))
-Declaration(Class(:Immutable))
+Declaration(Class(:ImmutableEntity))
 Declaration(Class(:ImmutableKBFactoryRole))
 Declaration(Class(:ImmutableKnowledgeBase))
 Declaration(Class(:ImmutableView))
@@ -366,7 +366,7 @@ AnnotationAssertion(rdfs:label :hasSetOfMappings "has set of mappings")
 AnnotationAssertion(rdfs:label :hasSnapshot "has snapshot")
 AnnotationAssertion(skos:definition :hasSnapshot "relationship between a mutable source and its state at one timepoint."^^xsd:string)
 ObjectPropertyDomain(:hasSnapshot :Mutable)
-ObjectPropertyRange(:hasSnapshot :Immutable)
+ObjectPropertyRange(:hasSnapshot :ImmutableEntity)
 
 # Object Property: :hasStructuralComponent (:hasStructuralComponent)
 
@@ -636,11 +636,11 @@ SubClassOf(:AssetEnvironment :FocusedEnvironment)
 SubClassOf(:AssetEnvironment :LanguageEnvironment)
 SubClassOf(:AssetEnvironment :PreservingEnvironment)
 
-# Class: :Basic (:Basic)
+# Class: :BasicEntity (:BasicEntity)
 
-AnnotationAssertion(skos:editorialNote :Basic "There is possibly something questionable about the equivalence class for Basic, as it is based on the absence of a property, and this is very broad.")
-EquivalentClasses(:Basic ObjectExactCardinality(0 :hasStructureType))
-DisjointClasses(:Basic :Structured)
+AnnotationAssertion(skos:editorialNote :BasicEntity "There is possibly something questionable about the equivalence class for Basic, as it is based on the absence of a property, and this is very broad.")
+EquivalentClasses(:BasicEntity ObjectExactCardinality(0 :hasStructureType))
+DisjointClasses(:BasicEntity :Structured)
 
 # Class: :BasicEnvironment (basic environment)
 
@@ -658,7 +658,7 @@ This ontology differs from other versions of the series only in the natural lang
 AnnotationAssertion(skos:note :BasicKnowledgeExpression "well-formed, stand-alone formula in the abstract syntax of a machine-readable language")
 AnnotationAssertion(skos:scopeNote :BasicKnowledgeExpression "The use of \"basic\" in API4KP differs from its usage in DOL - a DOL basic OMS  (ontologies, models and specifications) is a set, and corresponds to a Set-structured knowledge asset in API4KP.")
 EquivalentClasses(:BasicKnowledgeExpression ObjectIntersectionOf(:KnowledgeExpression ObjectExactCardinality(0 :hasStructureType)))
-SubClassOf(:BasicKnowledgeExpression :Basic)
+SubClassOf(:BasicKnowledgeExpression :BasicEntity)
 DisjointClasses(:BasicKnowledgeExpression :StructuredKnowledgeExpression)
 
 # Class: :Callable (:Callable)
@@ -730,7 +730,7 @@ DisjointClasses(:EmptyEnvironment :NonemptyEnvironment)
 AnnotationAssertion(rdfs:label :Environment "environment")
 AnnotationAssertion(skos:definition :Environment "mathematical structure of mappings and members, where the domain and codomains of the mappings are members of the environment")
 AnnotationAssertion(skos:example :Environment "a KRR language environment containing semantics-preserving translations from RDF and OWL into CL, assisting in the integrated interpretation of a stream of RDF graphs and OWL ontologies")
-SubClassOf(:Environment :Immutable)
+SubClassOf(:Environment :ImmutableEntity)
 
 # Class: :EnvironmentWithIdentities (environment with identity)
 
@@ -782,10 +782,12 @@ SubClassOf(:FocusedEnvironment :NonemptyEnvironment)
 
 SubClassOf(:Functionality :MessageType)
 
-# Class: :Immutable (immutable)
+# Class: :ImmutableEntity (immutable entity)
 
-AnnotationAssertion(rdfs:label :Immutable "immutable")
-DisjointClasses(:Immutable :Mutable)
+AnnotationAssertion(sm:specificationURL :ImmutableEntity "http://www.oed.com/view/Entry/92020")
+AnnotationAssertion(rdfs:label :ImmutableEntity "immutable entity")
+AnnotationAssertion(skos:definition :ImmutableEntity "an entity that is not subject to or susceptible of change")
+DisjointClasses(:ImmutableEntity :Mutable)
 
 # Class: :ImmutableKBFactoryRole (role immutable knowledge base factory)
 
@@ -802,7 +804,7 @@ SubClassOf(:ImmutableKnowledgeBase :KnowledgeBase)
 # Class: :ImmutableView (immuable view)
 
 AnnotationAssertion(rdfs:label :ImmutableView "immuable view")
-SubClassOf(:ImmutableView :Immutable)
+SubClassOf(:ImmutableView :ImmutableEntity)
 
 # Class: :KPlatformDesign (:KPlatformDesign)
 
@@ -884,7 +886,7 @@ SubClassOf(:KnowledgeItem ObjectSomeValuesFrom(:reproduces :KnowledgeEncoding))
 # Class: :KnowledgeManifestation (knowledge manifestation)
 
 AnnotationAssertion(rdfs:label :KnowledgeManifestation "knowledge manifestation")
-AnnotationAssertion(skos:definition :KnowledgeManifestation "character sequence, or collection of character sequences, each being the serialization of a generalised expression in a knowledge serialization."^^xsd:string)
+AnnotationAssertion(skos:definition :KnowledgeManifestation "character sequence, or collection of character sequences, each being the serialization of a knowledge expression in a knowledge serialization."^^xsd:string)
 AnnotationAssertion(skos:example :KnowledgeManifestation "Example: character sequence in Manchester OWL syntax that is the serialization of an OWL Ground fact expressing that Socrates is a philosopher.
 Example: character sequence in OWL RDF/XML syntax that is the serialization of an OWL Ground fact expressing that Socrates is a philosopher.
 Example: character sequence in CLIF syntax that is the serialization of a Common Logic sentence expressing that Socrates is a philosopher.
@@ -922,9 +924,9 @@ SubClassOf(:KnowledgeRepresentationAndReasoningLanguage dol:Language)
 # Class: :KnowledgeResource (knowledge resource)
 
 AnnotationAssertion(rdfs:label :KnowledgeResource "knowledge resource")
-AnnotationAssertion(skos:definition :KnowledgeResource "immutable knowledge source"^^xsd:string)
+AnnotationAssertion(skos:definition :KnowledgeResource "a knowledge source that is an immutable entity"^^xsd:string)
 AnnotationAssertion(skos:note :KnowledgeResource "May be identified to be at one of the following levels of abstraction; knowledge asset, generalized expression, knowledge manifestation, or knowledge item.")
-EquivalentClasses(:KnowledgeResource ObjectIntersectionOf(:Immutable :KnowledgeSource))
+EquivalentClasses(:KnowledgeResource ObjectIntersectionOf(:ImmutableEntity :KnowledgeSource))
 DisjointUnion(:KnowledgeResource :KnowledgeAsset :KnowledgeExpression :KnowledgeItem :KnowledgeManifestation)
 
 # Class: :KnowledgeSerialization (knowledge serialization)
@@ -937,7 +939,7 @@ SubClassOf(:KnowledgeSerialization ObjectSomeValuesFrom(:isSerializationOf :Know
 # Class: :KnowledgeSource (knowledge source)
 
 AnnotationAssertion(rdfs:label :KnowledgeSource "knowledge source")
-AnnotationAssertion(skos:definition :KnowledgeSource "source of machine-readable information with (possibly ambiguous) semantics")
+AnnotationAssertion(skos:definition :KnowledgeSource "a source of machine-readable information that has (possibly ambiguous) semantics")
 AnnotationAssertion(skos:example :KnowledgeSource "a database with a mapping to an ontology")
 AnnotationAssertion(skos:example :KnowledgeSource "a stateful representation of a patient's history with OWL snapshots")
 AnnotationAssertion(skos:example :KnowledgeSource "a stream of RDF graphs providing data from biomedical devices")
@@ -978,7 +980,7 @@ SubClassOf(:MessageType :OperationColumn)
 # Class: :Mutable (mutable)
 
 AnnotationAssertion(rdfs:label :Mutable "mutable")
-SubClassOf(:Mutable ObjectSomeValuesFrom(:hasSnapshot :Immutable))
+SubClassOf(:Mutable ObjectSomeValuesFrom(:hasSnapshot :ImmutableEntity))
 
 # Class: :MutableKnowledgeBase (mutable knowledge base)
 
@@ -992,7 +994,7 @@ AnnotationAssertion(rdfs:label :MutableSource "mutable source")
 AnnotationAssertion(skos:definition :MutableSource "container that has, at any point in time, an explicit state that is fully represented by a knowledge resource. The language, structure and content of a mutable knowledge source may change over time, but the abstraction level is unchanging.")
 AnnotationAssertion(skos:example :MutableSource "the snapshot of a patient's current condition (with timestamp)")
 AnnotationAssertion(skos:scopeNote :MutableSource "API4KP does not commit to any particular topology of time. E.g. Linear, branching and braided time indices are possible.")
-EquivalentClasses(:MutableSource ObjectIntersectionOf(:Mutable :Source ObjectSomeValuesFrom(:hasSnapshot ObjectIntersectionOf(:Immutable :Source))))
+EquivalentClasses(:MutableSource ObjectIntersectionOf(:Mutable :Source ObjectSomeValuesFrom(:hasSnapshot ObjectIntersectionOf(:ImmutableEntity :Source))))
 
 # Class: :NativeKnowledgeAsset (:NativeKnowledgeAsset)
 
