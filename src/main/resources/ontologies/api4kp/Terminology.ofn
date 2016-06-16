@@ -298,7 +298,7 @@ ObjectPropertyRange(:exposes api4kp-prf:Proficiency)
 
 AnnotationAssertion(rdfs:label :expresses "expresses")
 AnnotationAssertion(skos:altLabel :expresses "is expression of")
-AnnotationAssertion(skos:definition :expresses "knowledge asset that would be obtained by conceptualizing the generalized expression."^^xsd:string)
+AnnotationAssertion(skos:definition :expresses "knowledge asset that would be obtained by conceptualizing the knowledge expression."^^xsd:string)
 SubObjectPropertyOf(:expresses :lowers)
 ObjectPropertyDomain(:expresses :KnowledgeExpression)
 ObjectPropertyRange(:expresses :KnowledgeAsset)
@@ -535,7 +535,7 @@ ObjectPropertyRange(:manages :KnowledgePlatform)
 # Object Property: :manifests (manifests)
 
 AnnotationAssertion(rdfs:label :manifests "manifests")
-AnnotationAssertion(skos:definition :manifests "generalized expression that would be obtained from parsing the knowledge manifestation"^^xsd:string)
+AnnotationAssertion(skos:definition :manifests "knowledge expression that would be obtained from parsing the knowledge manifestation"^^xsd:string)
 SubObjectPropertyOf(:manifests :lowers)
 InverseObjectProperties(:manifests :parses)
 ObjectPropertyDomain(:manifests :KnowledgeManifestation)
@@ -593,7 +593,7 @@ AnnotationAssertion(rdfs:label :supports "supports")
 # Object Property: :usesLanguage (uses language)
 
 AnnotationAssertion(rdfs:label :usesLanguage "uses language")
-AnnotationAssertion(skos:definition :usesLanguage "language used by a generalized expression."^^xsd:string)
+AnnotationAssertion(skos:definition :usesLanguage "language used by a knowledge expression."^^xsd:string)
 ObjectPropertyDomain(:usesLanguage :KnowledgeExpression)
 ObjectPropertyRange(:usesLanguage dol:Language)
 
@@ -715,7 +715,7 @@ SubClassOf(:CreateEmptyKPFunctionality :Functionality)
 # Class: :Description (description)
 
 AnnotationAssertion(rdfs:label :Description "description")
-AnnotationAssertion(skos:definition :Description "generalised expression that describes a knowledge resource."^^xsd:string)
+AnnotationAssertion(skos:definition :Description "knowledge expression that describes a knowledge resource."^^xsd:string)
 SubClassOf(:Description :KnowledgeExpression)
 
 # Class: :EmptyEnvironment (empty environment)
@@ -829,7 +829,7 @@ SubClassOf(:KPlatformSpecification :PlatformSpecification)
 # Class: :KnowledgeAsset (knowledge asset)
 
 AnnotationAssertion(rdfs:label :KnowledgeAsset "knowledge asset")
-AnnotationAssertion(skos:definition :KnowledgeAsset "equivalence class (according to an environment) of generalized expressions.
+AnnotationAssertion(skos:definition :KnowledgeAsset "equivalence class (according to an environment) of knowledge expressions.
 
 Note:  intuitively, a knowledge asset is information that may be (equivalently) expressed in one or more KR languages."^^xsd:string)
 AnnotationAssertion(skos:example :KnowledgeAsset "Example: assertion that Socrates is a philospher.
@@ -867,7 +867,7 @@ Example B: Common Logic sentence expressing that Socrates is a philosopher.
 Example C: RDF graph expressing that the author of Moby Dick is Herman Melville.
 Example D: SPARQL query for the names of philosphers.
 
-generalised expression examples;
+knowledge expression examples;
 Example E: A and B, together with a mapping that allows OWL to be converted to Common Logic."^^xsd:string)
 EquivalentClasses(:KnowledgeExpression ObjectSomeValuesFrom(:usesLanguage dol:Language))
 SubClassOf(:KnowledgeExpression :Expression)
@@ -925,7 +925,7 @@ SubClassOf(:KnowledgeRepresentationAndReasoningLanguage dol:Language)
 
 AnnotationAssertion(rdfs:label :KnowledgeResource "knowledge resource")
 AnnotationAssertion(skos:definition :KnowledgeResource "a knowledge source that is an immutable entity"^^xsd:string)
-AnnotationAssertion(skos:note :KnowledgeResource "May be identified to be at one of the following levels of abstraction; knowledge asset, generalized expression, knowledge manifestation, or knowledge item.")
+AnnotationAssertion(skos:note :KnowledgeResource "May be identified to be at one of the following levels of abstraction; knowledge asset, knowledge expression, knowledge manifestation, or knowledge item.")
 EquivalentClasses(:KnowledgeResource ObjectIntersectionOf(:ImmutableEntity :KnowledgeSource))
 DisjointUnion(:KnowledgeResource :KnowledgeAsset :KnowledgeExpression :KnowledgeItem :KnowledgeManifestation)
 
