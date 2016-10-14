@@ -7,7 +7,6 @@ Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
 Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 Prefix(skos:=<http://www.w3.org/2004/02/skos/core#>)
 Prefix(api4kp-tr:=<http://www.omg.org/spec/API4KP/Tries/>)
-Prefix(api4kp-cls:=<http://www.omg.org/spec/API4KP/Classifiers/>)
 Prefix(api4kp-evt:=<http://www.omg.org/spec/API4KP/Events/>)
 Prefix(api4kp-term:=<http://www.omg.org/spec/API4KP/Terminology/>)
 Prefix(api4kp-opcls:=<http://www.omg.org/spec/API4KP/OperationClassifiers/>)
@@ -18,13 +17,12 @@ Ontology(<http://www.omg.org/spec/API4KP/Operations/>
 Import(<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
 Import(<http://www.omg.org/spec/API4KP/OperationClassifiers/>)
 Import(<http://www.omg.org/spec/DOL/DOL-terms/>)
-Import(<http://www.omg.org/spec/API4KP/Classifiers/>)
 Annotation(<http://purl.org/dc/terms/license> "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
 Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/contentLanguage> "http://www.omg.org/spec/ODM/"^^xsd:anyURI)
 Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/contentLanguage> "http://www.w3.org/standards/techs/owl#w3c_all"^^xsd:anyURI)
-Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/copyright> "Copyright (c) 2014 Athan Services
-Copyright (c) 2014 Thematix Partners LLC
-Copyright (c) 2014 Object Management Group, Inc."^^xsd:string)
+Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/copyright> "Copyright (c) 2014-2016 Athan Services
+Copyright (c) 2014-2017 Thematix Partners LLC
+Copyright (c) 2014-2017 Object Management Group, Inc."^^xsd:string)
 Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/fileAbbreviation> "api4kp-op"^^xsd:string)
 Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/fileAbstract> "This ontology covers terminology used for describing the operations defined by the API4KP specification."^^xsd:string)
 Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/filename> "API4KPTerminologyOperation.rdf"^^xsd:string)
@@ -142,7 +140,7 @@ Declaration(ObjectProperty(:isOutputOf))
 Declaration(ObjectProperty(api4kp-term:hasEvent))
 Declaration(ObjectProperty(api4kp-tr:hasEvent))
 Declaration(ObjectProperty(api4kp-tr:hasOutput))
-Declaration(AnnotationProperty(api4kp-cls:metatype))
+Declaration(AnnotationProperty(:metatype))
 
 ############################
 #   Object Properties
@@ -253,7 +251,7 @@ AnnotationAssertion(rdfs:label :isOutputOf "is output of")
 
 # Class: :AddingKOperation (adding operation)
 
-AnnotationAssertion(api4kp-cls:metatype :AddingKOperation api4kp-opcls:SemanticClassifier)
+AnnotationAssertion(:metatype :AddingKOperation api4kp-opcls:SemanticClassifier)
 AnnotationAssertion(rdfs:label :AddingKOperation "adding operation")
 AnnotationAssertion(skos:definition :AddingKOperation "KnowledgeOperation having only events of type AddingKEvent.")
 SubClassOf(:AddingKOperation :BinaryOperation)
@@ -261,7 +259,7 @@ SubClassOf(:AddingKOperation :KnowledgeOperation)
 
 # Class: :AdditionOperation (:AdditionOperation)
 
-AnnotationAssertion(api4kp-cls:metatype :AdditionOperation api4kp-opcls:SemanticClassifier)
+AnnotationAssertion(:metatype :AdditionOperation api4kp-opcls:SemanticClassifier)
 SubClassOf(:AdditionOperation api4kp-term:Operation)
 
 # Class: :AdditionToKnowledgeExpressionOperation (atomic operation - addition to knowledge expression)
@@ -278,7 +276,7 @@ SubClassOf(:AdditionToKnowledgeExpressionOperation ObjectAllValuesFrom(api4kp-te
 
 # Class: :AtomicKOperation (action)
 
-AnnotationAssertion(api4kp-cls:metatype :AtomicKOperation api4kp-opcls:SystemLevelClassifier)
+AnnotationAssertion(:metatype :AtomicKOperation api4kp-opcls:SystemLevelClassifier)
 AnnotationAssertion(rdfs:label :AtomicKOperation "action")
 AnnotationAssertion(skos:note :AtomicKOperation "nullary or unary atomic knowledge operation"^^xsd:string)
 SubClassOf(:AtomicKOperation :KnowledgeOperation)
@@ -286,12 +284,12 @@ SubClassOf(:AtomicKOperation ObjectAllValuesFrom(api4kp-term:hasEvent api4kp-evt
 
 # Class: :AtomicOperation (:AtomicOperation)
 
-AnnotationAssertion(api4kp-cls:metatype :AtomicOperation api4kp-opcls:SystemLevelClassifier)
+AnnotationAssertion(:metatype :AtomicOperation api4kp-opcls:SystemLevelClassifier)
 SubClassOf(:AtomicOperation api4kp-term:Operation)
 
 # Class: :BinaryOperation (:BinaryOperation)
 
-AnnotationAssertion(api4kp-cls:metatype :BinaryOperation api4kp-opcls:ArityClassifier)
+AnnotationAssertion(:metatype :BinaryOperation api4kp-opcls:ArityClassifier)
 SubClassOf(:BinaryOperation api4kp-term:Operation)
 
 # Class: :ConceptualizingAction (conceptualizing action)
@@ -328,7 +326,7 @@ SubClassOf(:ExpressingAction ObjectAllValuesFrom(api4kp-term:hasEvent api4kp-evt
 
 # Class: :ExpressionInputOperation (:ExpressionInputOperation)
 
-AnnotationAssertion(api4kp-cls:metatype :ExpressionInputOperation api4kp-opcls:InputTypeClassifier)
+AnnotationAssertion(:metatype :ExpressionInputOperation api4kp-opcls:InputTypeClassifier)
 SubClassOf(:ExpressionInputOperation :UnaryOperation)
 SubClassOf(:ExpressionInputOperation ObjectAllValuesFrom(:hasInput api4kp-term:Expression))
 
@@ -402,7 +400,7 @@ SubClassOf(:HorizontalItemAction ObjectAllValuesFrom(api4kp-term:hasEvent api4kp
 
 # Class: :HorizontalKnowledgeExpressionOperation (:HorizontalKnowledgeExpressionOperation)
 
-AnnotationAssertion(api4kp-cls:metatype :HorizontalKnowledgeExpressionOperation api4kp-opcls:InputOutputTypeRelationClassifier)
+AnnotationAssertion(:metatype :HorizontalKnowledgeExpressionOperation api4kp-opcls:InputOutputTypeRelationClassifier)
 SubClassOf(:HorizontalKnowledgeExpressionOperation :HorizontalOperation)
 SubClassOf(:HorizontalKnowledgeExpressionOperation ObjectAllValuesFrom(:hasInput api4kp-term:KnowledgeExpression))
 SubClassOf(:HorizontalKnowledgeExpressionOperation ObjectAllValuesFrom(:hasOutput api4kp-term:KnowledgeExpression))
@@ -418,21 +416,21 @@ SubClassOf(:HorizontalManifestationAction ObjectAllValuesFrom(api4kp-term:hasEve
 
 # Class: :HorizontalOperation (:HorizontalOperation)
 
-AnnotationAssertion(api4kp-cls:metatype :HorizontalOperation api4kp-opcls:InputOutputTypeRelationClassifier)
+AnnotationAssertion(:metatype :HorizontalOperation api4kp-opcls:InputOutputTypeRelationClassifier)
 AnnotationAssertion(skos:definition :HorizontalOperation "Unary operation where the input and output are on the same abstraction level.")
 SubClassOf(:HorizontalOperation :NonVoidOperation)
 SubClassOf(:HorizontalOperation :UnaryOperation)
 
 # Class: :IdempotentOperation (idempotent action)
 
-AnnotationAssertion(api4kp-cls:metatype :IdempotentOperation api4kp-opcls:SemanticClassifier)
+AnnotationAssertion(:metatype :IdempotentOperation api4kp-opcls:SemanticClassifier)
 AnnotationAssertion(rdfs:label :IdempotentOperation "idempotent action")
 AnnotationAssertion(skos:definition :IdempotentOperation "side-effect free (?) unary operation that  is equal to its composition with itself (A = A o A)")
 SubClassOf(:IdempotentOperation :UnaryOperation)
 
 # Class: :ImmutableKBaseOutputOperation (:ImmutableKBaseOutputOperation)
 
-AnnotationAssertion(api4kp-cls:metatype :ImmutableKBaseOutputOperation api4kp-opcls:OutputTypeClassifier)
+AnnotationAssertion(:metatype :ImmutableKBaseOutputOperation api4kp-opcls:OutputTypeClassifier)
 SubClassOf(:ImmutableKBaseOutputOperation :KnowledgeOperation)
 SubClassOf(:ImmutableKBaseOutputOperation :NonVoidOperation)
 
@@ -447,7 +445,7 @@ SubClassOf(:InStreamingAction ObjectAllValuesFrom(api4kp-term:hasEvent api4kp-ev
 
 # Class: :KPlatformOutputOperation (:KPlatformOutputOperation)
 
-AnnotationAssertion(api4kp-cls:metatype :KPlatformOutputOperation api4kp-opcls:OutputTypeClassifier)
+AnnotationAssertion(:metatype :KPlatformOutputOperation api4kp-opcls:OutputTypeClassifier)
 AnnotationAssertion(skos:definition :KPlatformOutputOperation "An operation that has a Knowledge Platform as output.")
 SubClassOf(:KPlatformOutputOperation :KnowledgeOperation)
 SubClassOf(:KPlatformOutputOperation :NonVoidOperation)
@@ -474,13 +472,13 @@ SubClassOf(:KnowledgeOperation api4kp-term:Operation)
 
 # Class: :KnowledgeSourceInputOperation (:KnowledgeSourceInputOperation)
 
-AnnotationAssertion(api4kp-cls:metatype :KnowledgeSourceInputOperation api4kp-opcls:InputTypeClassifier)
+AnnotationAssertion(:metatype :KnowledgeSourceInputOperation api4kp-opcls:InputTypeClassifier)
 SubClassOf(:KnowledgeSourceInputOperation :UnaryOperation)
 SubClassOf(:KnowledgeSourceInputOperation ObjectAllValuesFrom(:hasInput dol:KnowledgeSource))
 
 # Class: :KnowledgeSourceOutputOperation (:KnowledgeSourceOutputOperation)
 
-AnnotationAssertion(api4kp-cls:metatype :KnowledgeSourceOutputOperation api4kp-opcls:OutputTypeClassifier)
+AnnotationAssertion(:metatype :KnowledgeSourceOutputOperation api4kp-opcls:OutputTypeClassifier)
 SubClassOf(:KnowledgeSourceOutputOperation api4kp-term:Operation)
 SubClassOf(:KnowledgeSourceOutputOperation ObjectAllValuesFrom(:hasOutput api4kp-term:KnowledgeSource))
 
@@ -496,7 +494,7 @@ DisjointUnion(:LiftingAtomicKOperation :ConceptualizingAction :InStreamingAction
 
 # Class: :LiftingOperation (:LiftingOperation)
 
-AnnotationAssertion(api4kp-cls:metatype :LiftingOperation api4kp-opcls:InputOutputTypeRelationClassifier)
+AnnotationAssertion(:metatype :LiftingOperation api4kp-opcls:InputOutputTypeRelationClassifier)
 AnnotationAssertion(skos:definition :LiftingOperation "unary operation where the output is at a higher abstraction level than the input")
 SubClassOf(:LiftingOperation :NonVoidOperation)
 SubClassOf(:LiftingOperation :UnaryOperation)
@@ -513,7 +511,7 @@ DisjointUnion(:LoweringAtomicKOperation :ExpressingAction :ManifestingAction :Ma
 
 # Class: :LoweringOperation (:LoweringOperation)
 
-AnnotationAssertion(api4kp-cls:metatype :LoweringOperation api4kp-opcls:InputOutputTypeRelationClassifier)
+AnnotationAssertion(:metatype :LoweringOperation api4kp-opcls:InputOutputTypeRelationClassifier)
 SubClassOf(:LoweringOperation :NonVoidOperation)
 SubClassOf(:LoweringOperation :UnaryOperation)
 
@@ -539,13 +537,13 @@ SubClassOf(:MoreThanBinaryOperation api4kp-term:Operation)
 
 # Class: :NonVoidOperation (:NonVoidOperation)
 
-AnnotationAssertion(api4kp-cls:metatype :NonVoidOperation api4kp-opcls:OutputTypeClassifier)
+AnnotationAssertion(:metatype :NonVoidOperation api4kp-opcls:OutputTypeClassifier)
 SubClassOf(:NonVoidOperation api4kp-term:Operation)
 DisjointClasses(:NonVoidOperation :VoidOperation)
 
 # Class: :NullaryOperation (nullary operation)
 
-AnnotationAssertion(api4kp-cls:metatype :NullaryOperation api4kp-opcls:ArityClassifier)
+AnnotationAssertion(:metatype :NullaryOperation api4kp-opcls:ArityClassifier)
 AnnotationAssertion(rdfs:label :NullaryOperation "nullary operation"@en)
 SubClassOf(:NullaryOperation api4kp-term:Operation)
 SubClassOf(:NullaryOperation ObjectAllValuesFrom(api4kp-tr:hasEvent api4kp-evt:NullaryEvent))
@@ -600,12 +598,12 @@ SubClassOf(:QueryingResourceAction ObjectSomeValuesFrom(:hasOutput :HorizontalAc
 
 # Class: :ResultResourceOutputOperation (:ResultResourceOutputOperation)
 
-AnnotationAssertion(api4kp-cls:metatype :ResultResourceOutputOperation api4kp-opcls:OutputTypeClassifier)
+AnnotationAssertion(:metatype :ResultResourceOutputOperation api4kp-opcls:OutputTypeClassifier)
 SubClassOf(:ResultResourceOutputOperation :KnowledgeOperation)
 
 # Class: :SideEffectFreeOperation (side-effect-free operation)
 
-AnnotationAssertion(api4kp-cls:metatype :SideEffectFreeOperation api4kp-opcls:SideEffectClassifier)
+AnnotationAssertion(:metatype :SideEffectFreeOperation api4kp-opcls:SideEffectClassifier)
 AnnotationAssertion(rdfs:label :SideEffectFreeOperation "side-effect-free operation")
 AnnotationAssertion(skos:definition :SideEffectFreeOperation "knowledge operation with no effects beyond the output value returned")
 AnnotationAssertion(skos:editorialNote :SideEffectFreeOperation "TODO: Use the same pattern as we did with SideEffectfulOperation/SideEffectfulKnowledgeOperation")
@@ -620,14 +618,14 @@ SubClassOf(:SideEffectfulKOperation :VoidOperation)
 
 # Class: :SideEffectfulOperation (side-effectful operation)
 
-AnnotationAssertion(api4kp-cls:metatype :SideEffectfulOperation api4kp-opcls:SideEffectClassifier)
+AnnotationAssertion(:metatype :SideEffectfulOperation api4kp-opcls:SideEffectClassifier)
 AnnotationAssertion(rdfs:label :SideEffectfulOperation "side-effectful operation")
 AnnotationAssertion(skos:definition :SideEffectfulOperation "knowledge operation with effects beyond the output value returned")
 SubClassOf(:SideEffectfulOperation ObjectAllValuesFrom(api4kp-term:hasEvent api4kp-evt:SideEffectfulEvent))
 
 # Class: :UnaryOperation (unary operation)
 
-AnnotationAssertion(api4kp-cls:metatype :UnaryOperation api4kp-opcls:ArityClassifier)
+AnnotationAssertion(:metatype :UnaryOperation api4kp-opcls:ArityClassifier)
 AnnotationAssertion(rdfs:label :UnaryOperation "unary operation")
 AnnotationAssertion(skos:definition :UnaryOperation "knowledge operation with one input"^^xsd:string)
 SubClassOf(:UnaryOperation api4kp-term:Operation)
@@ -650,7 +648,7 @@ SubClassOf(:Update :VoidOperation)
 
 # Class: :VoidOperation (void action)
 
-AnnotationAssertion(api4kp-cls:metatype :VoidOperation api4kp-opcls:OutputTypeClassifier)
+AnnotationAssertion(:metatype :VoidOperation api4kp-opcls:OutputTypeClassifier)
 AnnotationAssertion(rdfs:label :VoidOperation "void action"@en)
 AnnotationAssertion(skos:definition :VoidOperation "side-effectful action with no output"^^xsd:string)
 SubClassOf(:VoidOperation api4kp-term:Operation)

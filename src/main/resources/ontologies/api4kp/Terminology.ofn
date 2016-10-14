@@ -9,9 +9,7 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 Prefix(skos:=<http://www.w3.org/2004/02/skos/core#>)
 Prefix(api4kp-op:=<http://www.omg.org/spec/API4KP/Operations/>)
 Prefix(api4kp-tr:=<http://www.omg.org/spec/API4KP/Tries/>)
-Prefix(api4kp-cls:=<http://www.omg.org/spec/API4KP/Classifiers/>)
 Prefix(api4kp-evt:=<http://www.omg.org/spec/API4KP/Events/>)
-Prefix(api4kp-prf:=<http://www.omg.org/spec/API4KP/Proficiencies/>)
 Prefix(api4kp-opcls:=<http://www.omg.org/spec/API4KP/OperationClassifiers/>)
 
 
@@ -24,7 +22,6 @@ Import(<http://www.omg.org/spec/API4KP/Tries/>)
 Import(<http://www.omg.org/spec/API4KP/OperationClassifiers/>)
 Import(<http://www.omg.org/spec/DOL/DOL-terms/>)
 Import(<http://www.omg.org/spec/API4KP/Events/>)
-Import(<http://www.omg.org/spec/API4KP/Proficiencies/>)
 Annotation(<http://purl.org/dc/terms/license> "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
 Annotation(sm:contentLanguage "http://www.omg.org/spec/ODM/"^^xsd:anyURI)
 Annotation(sm:contentLanguage "http://www.w3.org/standards/techs/owl#w3c_all"^^xsd:anyURI)
@@ -38,11 +35,6 @@ Annotation(rdfs:label "API4KP Terminology Ontology")
 
 Declaration(Class(api4kp-evt:KnowledgeEvent))
 Declaration(Class(api4kp-op:KnowledgeOperation))
-Declaration(Class(api4kp-prf:AddingProficiency-KnowledgeResourceToImmutableKB))
-Declaration(Class(api4kp-prf:CreatingProficiency-KnowledgePlatform))
-Declaration(Class(api4kp-prf:DestroyingProficiency-KnowledgePlatform))
-Declaration(Class(api4kp-prf:ModifyingProficiency-KnowledgePlatform))
-Declaration(Class(api4kp-prf:Proficiency))
 Declaration(Class(:API4KP))
 Declaration(Class(:AssetEnvironment))
 Declaration(Class(:BasicEntity))
@@ -121,6 +113,7 @@ Declaration(Class(:PlatformInstallation))
 Declaration(Class(:PlatformSpecification))
 Declaration(Class(:PlatformType))
 Declaration(Class(:PreservingEnvironment))
+Declaration(Class(:Proficiency))
 Declaration(Class(:Program))
 Declaration(Class(:Proxy))
 Declaration(Class(:QueryAsset))
@@ -245,7 +238,7 @@ ObjectPropertyRange(:accordingTo :Environment)
 AnnotationAssertion(rdfs:label :actualizes "actualizes")
 InverseObjectProperties(:actualizes :isActualizedBy)
 ObjectPropertyDomain(:actualizes api4kp-evt:KnowledgeEvent)
-ObjectPropertyRange(:actualizes api4kp-prf:Proficiency)
+ObjectPropertyRange(:actualizes :Proficiency)
 
 # Object Property: :allPreserve (all preserve)
 
@@ -265,7 +258,7 @@ InverseObjectProperties(:conceptualizes :expresses)
 AnnotationAssertion(rdfs:label :conveys "conveys")
 InverseObjectProperties(:conveys :isConveyedBy)
 ObjectPropertyDomain(:conveys :Proxy)
-ObjectPropertyRange(:conveys api4kp-prf:Proficiency)
+ObjectPropertyRange(:conveys :Proficiency)
 
 # Object Property: :decodes (decodes)
 
@@ -292,7 +285,7 @@ ObjectPropertyRange(:executes api4kp-evt:KnowledgeEvent)
 
 InverseObjectProperties(:exposes :isExposedBy)
 ObjectPropertyDomain(:exposes :Functionality)
-ObjectPropertyRange(:exposes api4kp-prf:Proficiency)
+ObjectPropertyRange(:exposes :Proficiency)
 
 # Object Property: :expresses (expresses)
 
@@ -458,7 +451,7 @@ InverseObjectProperties(:isManagedBy :manages)
 # Object Property: :isProficiencyOf (is proficiency of)
 
 AnnotationAssertion(rdfs:label :isProficiencyOf "is proficiency of")
-ObjectPropertyDomain(:isProficiencyOf api4kp-prf:Proficiency)
+ObjectPropertyDomain(:isProficiencyOf :Proficiency)
 ObjectPropertyRange(:isProficiencyOf :CommunicatingEntity)
 
 # Object Property: :isRegisteredWith (is registered with)
@@ -505,8 +498,8 @@ ObjectPropertyRange(:isSubenvironmentOf :Environment)
 AnnotationAssertion(rdfs:label :isSubproficiencyOf "is subproficiency of"@en)
 AnnotationAssertion(skos:definition :isSubproficiencyOf "relationship between two proficiencies that is a partial order such that any operation that exposes a proficiency also exposes any subproficiency of it"^^xsd:string)
 TransitiveObjectProperty(:isSubproficiencyOf)
-ObjectPropertyDomain(:isSubproficiencyOf api4kp-prf:Proficiency)
-ObjectPropertyRange(:isSubproficiencyOf api4kp-prf:Proficiency)
+ObjectPropertyDomain(:isSubproficiencyOf :Proficiency)
+ObjectPropertyRange(:isSubproficiencyOf :Proficiency)
 
 # Object Property: :lifts (lifts)
 
@@ -578,7 +571,7 @@ ObjectPropertyRange(:requests api4kp-tr:Try)
 
 AnnotationAssertion(rdfs:label :requires "requires")
 ObjectPropertyDomain(:requires :Role)
-ObjectPropertyRange(:requires api4kp-prf:Proficiency)
+ObjectPropertyRange(:requires :Proficiency)
 
 # Object Property: :responds (responds)
 
@@ -793,7 +786,6 @@ DisjointClasses(:ImmutableEntity :Mutable)
 
 AnnotationAssertion(rdfs:label :ImmutableKBFactoryRole "role immutable knowledge base factory")
 SubClassOf(:ImmutableKBFactoryRole :KnowledgePlatformManagerRole)
-SubClassOf(:ImmutableKBFactoryRole ObjectSomeValuesFrom(:requires api4kp-prf:AddingProficiency-KnowledgeResourceToImmutableKB))
 
 # Class: :ImmutableKnowledgeBase (immutable knowledgebase)
 
@@ -1041,6 +1033,16 @@ SubClassOf(:PIEventType :EventType)
 
 SubClassOf(:PIFailureType :FailureType)
 
+# Class: :Proficiency (proficiency)
+
+AnnotationAssertion(rdfs:label :Proficiency "proficiency")
+AnnotationAssertion(skos:definition :Proficiency "functionality that is actualized by the events of one or more knowledge operations."^^xsd:string)
+AnnotationAssertion(skos:note :Proficiency "Knowledge Platform is in the middle between Components and Proficiencies.
+The (externally developed) Components each implement some set of operations.
+The Knowledge Platform is built from a number of Components, and so has the functionality of all operations of those Components, plus the functionality captured by all compositions of these operations.
+A Proficiency of the KP is a subset of the operations supported by its collection of Components that are exposed through its public API to \"clients\".")
+AnnotationAssertion(skos:scopeNote :Proficiency "Note: In our architecture, proficiencies are provided by a collection of components (which may contain just one component). Different collections of components may provide the same proficiency. The standard API4KP proficiencies will be enumerated in the specification."^^xsd:string)
+
 # Class: :PSEventType (:PSEventType)
 
 SubClassOf(:PSEventType :EventType)
@@ -1221,9 +1223,6 @@ SubClassOf(:ResultSerialization ObjectSomeValuesFrom(:isSerializationOf :ResultL
 AnnotationAssertion(rdfs:label :Role "role")
 AnnotationAssertion(skos:definition :Role "set of required proficiencies."^^xsd:string)
 AnnotationAssertion(skos:scopeNote :Role "Certain standard API4KP Roles will be enumerated in the specification. The specification will also allow user-defined Roles."^^xsd:string)
-SubClassOf(:Role ObjectSomeValuesFrom(:requires api4kp-prf:CreatingProficiency-KnowledgePlatform))
-SubClassOf(:Role ObjectSomeValuesFrom(:requires api4kp-prf:DestroyingProficiency-KnowledgePlatform))
-SubClassOf(:Role ObjectSomeValuesFrom(:requires api4kp-prf:ModifyingProficiency-KnowledgePlatform))
 
 # Class: :Serialization (serialization)
 
