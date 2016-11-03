@@ -9,7 +9,9 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 Prefix(skos:=<http://www.w3.org/2004/02/skos/core#>)
 Prefix(api4kp-op:=<http://www.omg.org/spec/API4KP/Operations/>)
 Prefix(api4kp-tr:=<http://www.omg.org/spec/API4KP/Tries/>)
+Prefix(api4kp-cls:=<http://www.omg.org/spec/API4KP/Classifiers/>)
 Prefix(api4kp-evt:=<http://www.omg.org/spec/API4KP/Events/>)
+Prefix(api4kp-prf:=<http://www.omg.org/spec/API4KP/Proficiencies/>)
 Prefix(api4kp-opcls:=<http://www.omg.org/spec/API4KP/OperationClassifiers/>)
 
 
@@ -1033,16 +1035,6 @@ SubClassOf(:PIEventType :EventType)
 
 SubClassOf(:PIFailureType :FailureType)
 
-# Class: :Proficiency (proficiency)
-
-AnnotationAssertion(rdfs:label :Proficiency "proficiency")
-AnnotationAssertion(skos:definition :Proficiency "functionality that is actualized by the events of one or more knowledge operations."^^xsd:string)
-AnnotationAssertion(skos:note :Proficiency "Knowledge Platform is in the middle between Components and Proficiencies.
-The (externally developed) Components each implement some set of operations.
-The Knowledge Platform is built from a number of Components, and so has the functionality of all operations of those Components, plus the functionality captured by all compositions of these operations.
-A Proficiency of the KP is a subset of the operations supported by its collection of Components that are exposed through its public API to \"clients\".")
-AnnotationAssertion(skos:scopeNote :Proficiency "Note: In our architecture, proficiencies are provided by a collection of components (which may contain just one component). Different collections of components may provide the same proficiency. The standard API4KP proficiencies will be enumerated in the specification."^^xsd:string)
-
 # Class: :PSEventType (:PSEventType)
 
 SubClassOf(:PSEventType :EventType)
@@ -1082,6 +1074,16 @@ AnnotationAssertion(rdfs:label :PreservingEnvironment "preserving environment")
 AnnotationAssertion(skos:definition :PreservingEnvironment "environment where every mapping preserves a specified property")
 SubClassOf(:PreservingEnvironment :Environment)
 SubClassOf(:PreservingEnvironment ObjectSomeValuesFrom(:allPreserve :EquivalenceRelation))
+
+# Class: :Proficiency (proficiency)
+
+AnnotationAssertion(rdfs:label :Proficiency "proficiency")
+AnnotationAssertion(skos:definition :Proficiency "functionality that is actualized by the events of one or more knowledge operations."^^xsd:string)
+AnnotationAssertion(skos:note :Proficiency "Knowledge Platform is in the middle between Components and Proficiencies.
+The (externally developed) Components each implement some set of operations.
+The Knowledge Platform is built from a number of Components, and so has the functionality of all operations of those Components, plus the functionality captured by all compositions of these operations.
+A Proficiency of the KP is a subset of the operations supported by its collection of Components that are exposed through its public API to \"clients\".")
+AnnotationAssertion(skos:scopeNote :Proficiency "Note: In our architecture, proficiencies are provided by a collection of components (which may contain just one component). Different collections of components may provide the same proficiency. The standard API4KP proficiencies will be enumerated in the specification."^^xsd:string)
 
 # Class: :Program (:Program)
 
