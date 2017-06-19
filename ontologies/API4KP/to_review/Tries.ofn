@@ -1,0 +1,627 @@
+Prefix(:=<http://www.omg.org/spec/API4KP/Tries/>)
+Prefix(dct:=<http://purl.org/dc/terms/>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+Prefix(skos:=<http://www.w3.org/2004/02/skos/core#>)
+Prefix(api4kp-op:=<http://www.omg.org/spec/API4KP/Operations/>)
+Prefix(api4kp-evt:=<http://www.omg.org/spec/API4KP/Events/>)
+Prefix(api4kp-term:=<http://www.omg.org/spec/API4KP/Terminology/>)
+
+
+Ontology(<http://www.omg.org/spec/API4KP/Tries/>
+<http://www.omg.org/spec/API4KP/20160801/Tries/>
+Import(<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
+Import(<http://www.omg.org/spec/DOL/DOL-terms/>)
+Annotation(dct:license "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
+Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/contentLanguage> "http://www.omg.org/spec/ODM/"^^xsd:anyURI)
+Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/contentLanguage> "http://www.w3.org/standards/techs/owl#w3c_all"^^xsd:anyURI)
+Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/copyright> "Copyright (c) 2014 Athan Services
+      Copyright (c) 2014 Thematix Partners LLC
+      Copyright (c) 2014 Object Management Group, Inc."^^xsd:string)
+Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/fileAbbreviation> "api4kp-try"^^xsd:string)
+Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/fileAbstract> "This ontology covers terminology used for describing events defined by the API4KP specification."^^xsd:string)
+Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/filename> "API4KPTerminologyTry.rdf"^^xsd:string)
+Annotation(rdfs:label "API4KP Try Terminology Ontology")
+
+Declaration(Class(api4kp-evt:KnowledgeEvent))
+Declaration(Class(api4kp-op:AdditionToKnowledgeExpressionOperation))
+Declaration(Class(api4kp-op:AtomicKOperation))
+Declaration(Class(api4kp-op:ConceptualizingAction))
+Declaration(Class(api4kp-op:ExpressingAction))
+Declaration(Class(api4kp-op:HigherOrderAtomicKOperation))
+Declaration(Class(api4kp-op:HorizontalAtomicKOperation))
+Declaration(Class(api4kp-op:HorizontalExpressionAction))
+Declaration(Class(api4kp-op:InStreamingAction))
+Declaration(Class(api4kp-op:InternalAddingOperation-QueryItemToImmutableKB))
+Declaration(Class(api4kp-op:LiftingAtomicKOperation))
+Declaration(Class(api4kp-op:LoweringAtomicKOperation))
+Declaration(Class(api4kp-op:ManifestingAction))
+Declaration(Class(api4kp-op:MarshallingAction))
+Declaration(Class(api4kp-op:OutStreamingAction))
+Declaration(Class(api4kp-op:ParsingAction))
+Declaration(Class(api4kp-op:SideEffectFreeOperation))
+Declaration(Class(api4kp-op:SideEffectfulOperation))
+Declaration(Class(api4kp-op:UnaryOperation))
+Declaration(Class(api4kp-op:UnmarshallingAction))
+Declaration(Class(api4kp-op:Void))
+Declaration(Class(api4kp-op:VoidOperation))
+Declaration(Class(api4kp-term:AnswerSubstitutionCollectionResource))
+Declaration(Class(api4kp-term:ExtensionExpressionMapping))
+Declaration(Class(api4kp-term:ImmutableKnowledgeBase))
+Declaration(Class(api4kp-term:KnowledgeAsset))
+Declaration(Class(api4kp-term:KnowledgeEncoding))
+Declaration(Class(api4kp-term:KnowledgeExpression))
+Declaration(Class(api4kp-term:KnowledgeItem))
+Declaration(Class(api4kp-term:KnowledgeManifestation))
+Declaration(Class(api4kp-term:KnowledgeResource))
+Declaration(Class(api4kp-term:KnowledgeSource))
+Declaration(Class(api4kp-term:Mapping))
+Declaration(Class(api4kp-term:MutableKnowledgeBase))
+Declaration(Class(api4kp-term:QueryItem))
+Declaration(Class(api4kp-term:QueryResource))
+Declaration(Class(api4kp-term:QuerySource))
+Declaration(Class(:ActionTry))
+Declaration(Class(:ActionTry-AdditionToKnowledgeExpression))
+Declaration(Class(:ActionTry-ExpressionIn))
+Declaration(Class(:ActionTry-ResourceIn))
+Declaration(Class(:AddingTry))
+Declaration(Class(:AddingTry-QueryItemToImmutableKB))
+Declaration(Class(:ConceptualizingTry))
+Declaration(Class(:CreatingSuccess))
+Declaration(Class(:CreatingTry))
+Declaration(Class(:CurriedActionTry))
+Declaration(Class(:CurriedActionTry-HorizontalExpressionActionOut))
+Declaration(Class(:ExpressingTry))
+Declaration(Class(:Failure))
+Declaration(Class(:HorizontalAssetSuccess))
+Declaration(Class(:HorizontalAssetTry))
+Declaration(Class(:HorizontalEncodingSuccess))
+Declaration(Class(:HorizontalEncodingTry))
+Declaration(Class(:HorizontalExpressionSuccess))
+Declaration(Class(:HorizontalExpressionTry))
+Declaration(Class(:HorizontalItemSuccess))
+Declaration(Class(:HorizontalItemTry))
+Declaration(Class(:HorizontalManifestationSuccess))
+Declaration(Class(:HorizontalManifestationTry))
+Declaration(Class(:HorizontalSuccess))
+Declaration(Class(:HorizontalTry))
+Declaration(Class(:InStreamTry))
+Declaration(Class(:InStreamingTry))
+Declaration(Class(:InternalAddingTry))
+Declaration(Class(:InternalAddingTry-KnowledgeResourceToImmutableKB))
+Declaration(Class(:InternalCreatingSuccess))
+Declaration(Class(:InternalCreatingTry))
+Declaration(Class(:InternalTry))
+Declaration(Class(:LiftingTry))
+Declaration(Class(:LoweringTry))
+Declaration(Class(:ManifestingTry))
+Declaration(Class(:MarshallingTry))
+Declaration(Class(:OutStreamingTry))
+Declaration(Class(:ParsingTry))
+Declaration(Class(:PublicAddingTry-KnowledgeResourceToImmutableKB))
+Declaration(Class(:PublicAddingTry-KnowledgeSourceToMutableKB))
+Declaration(Class(:PublicCreatingSuccess))
+Declaration(Class(:PublicCreatingTry))
+Declaration(Class(:PublicQueryingResourceTry))
+Declaration(Class(:PublicTry))
+Declaration(Class(:QueryingTry))
+Declaration(Class(:SideEffectFreeTry))
+Declaration(Class(:SideEffectfulTry))
+Declaration(Class(:Success))
+Declaration(Class(:Try))
+Declaration(Class(:UnarySuccess))
+Declaration(Class(:UnaryTry))
+Declaration(Class(:UnmarshallingTry))
+Declaration(Class(:VoidActionTry))
+Declaration(ObjectProperty(api4kp-evt:hasOutput))
+Declaration(ObjectProperty(api4kp-term:matchesMapping))
+Declaration(ObjectProperty(:adds))
+Declaration(ObjectProperty(:addsTo))
+Declaration(ObjectProperty(:appliesQuery))
+Declaration(ObjectProperty(:appliesQueryTo))
+Declaration(ObjectProperty(:hasEvent))
+Declaration(ObjectProperty(:hasInput))
+Declaration(ObjectProperty(:hasOutput))
+Declaration(ObjectProperty(:hasOutputFromConceptualizing))
+Declaration(ObjectProperty(:hasOutputFromInStreaming))
+Declaration(ObjectProperty(:hasOutputFromParsing))
+Declaration(ObjectProperty(:hasOutputFromUnmarshalling))
+Declaration(ObjectProperty(:hasUnaryInput))
+Declaration(ObjectProperty(:isDelegatedFrom))
+Declaration(ObjectProperty(:isDelegatedTo))
+Declaration(ObjectProperty(:isEventOf))
+Declaration(ObjectProperty(:isInputOf))
+Declaration(ObjectProperty(:isOutputOf))
+Declaration(ObjectProperty(:isTryOf))
+Declaration(ObjectProperty(:isUnaryInputOf))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: :adds (adds resource)
+
+AnnotationAssertion(rdfs:label :adds "adds resource")
+AnnotationAssertion(skos:note :adds "need inverse")
+SubObjectPropertyOf(:adds :hasInput)
+ObjectPropertyDomain(:adds :InternalAddingTry)
+ObjectPropertyRange(:adds api4kp-term:KnowledgeSource)
+
+# Object Property: :addsTo (adds resource)
+
+AnnotationAssertion(rdfs:label :addsTo "adds resource")
+AnnotationAssertion(skos:note :addsTo "
+      <rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#FunctionalProperty\"/>            
+    ")
+AnnotationAssertion(skos:note :addsTo "need inverse")
+SubObjectPropertyOf(:addsTo :hasInput)
+ObjectPropertyDomain(:addsTo :InternalAddingTry)
+ObjectPropertyRange(:addsTo api4kp-term:KnowledgeSource)
+
+# Object Property: :appliesQuery (applies query resource)
+
+AnnotationAssertion(rdfs:label :appliesQuery "applies query resource")
+AnnotationAssertion(skos:definition :appliesQuery "TBD"^^xsd:string)
+AnnotationAssertion(skos:note :appliesQuery "need inverse")
+SubObjectPropertyOf(:appliesQuery :hasInput)
+ObjectPropertyDomain(:appliesQuery :QueryingTry)
+ObjectPropertyRange(:appliesQuery api4kp-term:QuerySource)
+
+# Object Property: :appliesQueryTo (applies query to resource)
+
+AnnotationAssertion(rdfs:label :appliesQueryTo "applies query to resource")
+AnnotationAssertion(skos:definition :appliesQueryTo "TBD"^^xsd:string)
+AnnotationAssertion(skos:note :appliesQueryTo "
+      <rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#FunctionalProperty\"/>                  ")
+AnnotationAssertion(skos:note :appliesQueryTo "need inverse")
+SubObjectPropertyOf(:appliesQueryTo :hasInput)
+ObjectPropertyDomain(:appliesQueryTo :QueryingTry)
+ObjectPropertyRange(:appliesQueryTo api4kp-term:KnowledgeSource)
+
+# Object Property: :hasEvent (has event)
+
+AnnotationAssertion(rdfs:label :hasEvent "has event")
+AnnotationAssertion(skos:definition :hasEvent "event of a success"^^xsd:string)
+InverseObjectProperties(:hasEvent :isEventOf)
+FunctionalObjectProperty(:hasEvent)
+ObjectPropertyDomain(:hasEvent :Success)
+
+# Object Property: :hasInput (has input)
+
+AnnotationAssertion(rdfs:label :hasInput "has input")
+AnnotationAssertion(skos:definition :hasInput "input of a try"^^xsd:string)
+InverseObjectProperties(:hasInput :isInputOf)
+ObjectPropertyDomain(:hasInput :Try)
+
+# Object Property: :hasOutput (has output)
+
+AnnotationAssertion(rdfs:label :hasOutput "has output")
+AnnotationAssertion(skos:definition :hasOutput "output of a successful try"^^xsd:string)
+AnnotationAssertion(skos:note :hasOutput "
+      <rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#FunctionalProperty\"/>
+    ")
+InverseObjectProperties(:hasOutput :isOutputOf)
+ObjectPropertyDomain(:hasOutput :Success)
+
+# Object Property: :hasOutputFromConceptualizing (has output from conceptualizing)
+
+AnnotationAssertion(rdfs:label :hasOutputFromConceptualizing "has output from conceptualizing")
+AnnotationAssertion(skos:note :hasOutputFromConceptualizing "need inverse")
+SubObjectPropertyOf(:hasOutputFromConceptualizing :hasOutput)
+ObjectPropertyDomain(:hasOutputFromConceptualizing :ConceptualizingTry)
+ObjectPropertyRange(:hasOutputFromConceptualizing api4kp-term:KnowledgeAsset)
+
+# Object Property: :hasOutputFromInStreaming (has output from instreaming)
+
+AnnotationAssertion(rdfs:label :hasOutputFromInStreaming "has output from instreaming")
+AnnotationAssertion(skos:note :hasOutputFromInStreaming "need inverse")
+SubObjectPropertyOf(:hasOutputFromInStreaming :hasOutput)
+ObjectPropertyDomain(:hasOutputFromInStreaming :InStreamTry)
+ObjectPropertyRange(:hasOutputFromInStreaming api4kp-term:KnowledgeEncoding)
+
+# Object Property: :hasOutputFromParsing (has output from parsing)
+
+AnnotationAssertion(rdfs:label :hasOutputFromParsing "has output from parsing")
+AnnotationAssertion(skos:note :hasOutputFromParsing "need inverse")
+SubObjectPropertyOf(:hasOutputFromParsing :hasOutput)
+ObjectPropertyDomain(:hasOutputFromParsing :ParsingTry)
+ObjectPropertyRange(:hasOutputFromParsing api4kp-term:KnowledgeExpression)
+
+# Object Property: :hasOutputFromUnmarshalling (has output from unmarshalling)
+
+AnnotationAssertion(rdfs:label :hasOutputFromUnmarshalling "has output from unmarshalling")
+AnnotationAssertion(skos:note :hasOutputFromUnmarshalling "need inverse")
+SubObjectPropertyOf(:hasOutputFromUnmarshalling :hasOutput)
+ObjectPropertyDomain(:hasOutputFromUnmarshalling :UnmarshallingTry)
+ObjectPropertyRange(:hasOutputFromUnmarshalling api4kp-term:KnowledgeManifestation)
+
+# Object Property: :hasUnaryInput (has unary input)
+
+AnnotationAssertion(rdfs:label :hasUnaryInput "has unary input")
+SubObjectPropertyOf(:hasUnaryInput :hasInput)
+InverseObjectProperties(:hasUnaryInput :isUnaryInputOf)
+FunctionalObjectProperty(:hasUnaryInput)
+
+# Object Property: :isDelegatedFrom (is delegated from)
+
+AnnotationAssertion(rdfs:label :isDelegatedFrom "is delegated from")
+InverseObjectProperties(:isDelegatedFrom :isDelegatedTo)
+
+# Object Property: :isDelegatedTo (is delegated to)
+
+AnnotationAssertion(rdfs:label :isDelegatedTo "is delegated to")
+AnnotationAssertion(skos:definition :isDelegatedTo "relation between to trys where the second has the same inputs and an equivalent operation as the first, and second try is requested by the requestee of the first"^^xsd:string)
+FunctionalObjectProperty(:isDelegatedTo)
+ObjectPropertyDomain(:isDelegatedTo :Try)
+ObjectPropertyRange(:isDelegatedTo :Try)
+
+# Object Property: :isEventOf (is event of)
+
+AnnotationAssertion(rdfs:label :isEventOf "is event of")
+
+# Object Property: :isInputOf (is input of)
+
+AnnotationAssertion(rdfs:label :isInputOf "is input of")
+
+# Object Property: :isOutputOf (is output of)
+
+AnnotationAssertion(rdfs:label :isOutputOf "is output of")
+
+# Object Property: :isTryOf (is try of)
+
+AnnotationAssertion(rdfs:label :isTryOf "is try of")
+
+# Object Property: :isUnaryInputOf (is unary input of)
+
+AnnotationAssertion(rdfs:label :isUnaryInputOf "is unary input of")
+
+
+
+############################
+#   Classes
+############################
+
+# Class: :ActionTry (action try)
+
+AnnotationAssertion(rdfs:label :ActionTry "action try")
+AnnotationAssertion(skos:definition :ActionTry "try of an Action."^^xsd:string)
+EquivalentClasses(:ActionTry ObjectIntersectionOf(:InternalTry ObjectSomeValuesFrom(:isTryOf api4kp-op:AtomicKOperation)))
+SubClassOf(:ActionTry :InternalTry)
+SubClassOf(:ActionTry :UnaryTry)
+
+# Class: :ActionTry-AdditionToKnowledgeExpression (action try - addition to knowledge expression)
+
+AnnotationAssertion(rdfs:label :ActionTry-AdditionToKnowledgeExpression "action try - addition to knowledge expression")
+AnnotationAssertion(skos:definition :ActionTry-AdditionToKnowledgeExpression "'addition to' action try that maps knowledge expressions into knowledge expressions."^^xsd:string)
+EquivalentClasses(:ActionTry-AdditionToKnowledgeExpression ObjectIntersectionOf(:ActionTry :AddingTry ObjectSomeValuesFrom(:isTryOf api4kp-op:AdditionToKnowledgeExpressionOperation)))
+SubClassOf(:ActionTry-AdditionToKnowledgeExpression :ActionTry)
+SubClassOf(:ActionTry-AdditionToKnowledgeExpression :AddingTry)
+SubClassOf(:ActionTry-AdditionToKnowledgeExpression :HorizontalExpressionTry)
+SubClassOf(:ActionTry-AdditionToKnowledgeExpression ObjectSomeValuesFrom(api4kp-term:matchesMapping api4kp-term:ExtensionExpressionMapping))
+
+# Class: :ActionTry-ExpressionIn (action try - resource in)
+
+AnnotationAssertion(rdfs:label :ActionTry-ExpressionIn "action try - resource in")
+AnnotationAssertion(skos:definition :ActionTry-ExpressionIn "action try whose input is a knowledge expression"^^xsd:string)
+SubClassOf(:ActionTry-ExpressionIn :ActionTry-ResourceIn)
+SubClassOf(:ActionTry-ExpressionIn ObjectSomeValuesFrom(:hasInput api4kp-term:KnowledgeExpression))
+
+# Class: :ActionTry-ResourceIn (action try - resource in)
+
+AnnotationAssertion(rdfs:label :ActionTry-ResourceIn "action try - resource in")
+AnnotationAssertion(skos:definition :ActionTry-ResourceIn "action try whose input is a knowledge resources"^^xsd:string)
+SubClassOf(:ActionTry-ResourceIn :ActionTry)
+SubClassOf(:ActionTry-ResourceIn ObjectSomeValuesFrom(:hasInput api4kp-term:KnowledgeResource))
+
+# Class: :AddingTry (adding try)
+
+AnnotationAssertion(rdfs:label :AddingTry "adding try")
+AnnotationAssertion(skos:definition :AddingTry "public or internal adding try"^^xsd:string)
+SubClassOf(:AddingTry :Try)
+
+# Class: :AddingTry-QueryItemToImmutableKB (adding try of a query item to an immutable knowledge base)
+
+AnnotationAssertion(rdfs:label :AddingTry-QueryItemToImmutableKB "adding try of a query item to an immutable knowledge base")
+AnnotationAssertion(skos:definition :AddingTry-QueryItemToImmutableKB "operation try adding a Knowledge Resource that is a query item to a
+      immutable KB"^^xsd:string)
+EquivalentClasses(:AddingTry-QueryItemToImmutableKB ObjectIntersectionOf(:InternalAddingTry-KnowledgeResourceToImmutableKB ObjectSomeValuesFrom(:isTryOf api4kp-op:InternalAddingOperation-QueryItemToImmutableKB)))
+SubClassOf(:AddingTry-QueryItemToImmutableKB :InternalAddingTry-KnowledgeResourceToImmutableKB)
+SubClassOf(:AddingTry-QueryItemToImmutableKB ObjectSomeValuesFrom(:hasInput api4kp-term:QueryItem))
+
+# Class: :ConceptualizingTry (conceptualizinging try)
+
+AnnotationAssertion(rdfs:label :ConceptualizingTry "conceptualizinging try")
+AnnotationAssertion(skos:definition :ConceptualizingTry "try of a conceptualizing operation."^^xsd:string)
+EquivalentClasses(:ConceptualizingTry ObjectIntersectionOf(:LiftingTry ObjectSomeValuesFrom(:isTryOf api4kp-op:ConceptualizingAction)))
+SubClassOf(:ConceptualizingTry :LiftingTry)
+SubClassOf(:ConceptualizingTry ObjectSomeValuesFrom(:hasInput api4kp-term:KnowledgeExpression))
+SubClassOf(:ConceptualizingTry ObjectSomeValuesFrom(:hasOutput api4kp-term:KnowledgeAsset))
+
+# Class: :CreatingSuccess (public creating try)
+
+AnnotationAssertion(rdfs:label :CreatingSuccess "public creating try")
+AnnotationAssertion(skos:definition :CreatingSuccess "public or internal creating try"^^xsd:string)
+SubClassOf(:CreatingSuccess :UnarySuccess)
+DisjointUnion(:CreatingSuccess :InternalCreatingSuccess :PublicCreatingSuccess)
+
+# Class: :CreatingTry (creating try)
+
+AnnotationAssertion(rdfs:label :CreatingTry "creating try")
+AnnotationAssertion(skos:definition :CreatingTry "public or internal creating try"^^xsd:string)
+SubClassOf(:CreatingTry :UnaryTry)
+DisjointUnion(:CreatingTry :InternalCreatingTry :PublicCreatingTry)
+
+# Class: :CurriedActionTry (curried action try)
+
+AnnotationAssertion(rdfs:label :CurriedActionTry "curried action try"@en)
+AnnotationAssertion(skos:definition :CurriedActionTry "side-effect free action try that maps to an action"^^xsd:string)
+EquivalentClasses(:CurriedActionTry ObjectIntersectionOf(:ActionTry ObjectSomeValuesFrom(:isTryOf api4kp-op:HigherOrderAtomicKOperation)))
+SubClassOf(:CurriedActionTry :ActionTry)
+SubClassOf(:CurriedActionTry :SideEffectFreeTry)
+SubClassOf(:CurriedActionTry ObjectSomeValuesFrom(:hasOutput api4kp-op:AtomicKOperation))
+
+# Class: :CurriedActionTry-HorizontalExpressionActionOut (curried action try - horizontal expression action out)
+
+AnnotationAssertion(rdfs:label :CurriedActionTry-HorizontalExpressionActionOut "curried action try - horizontal expression action out"@en)
+AnnotationAssertion(skos:definition :CurriedActionTry-HorizontalExpressionActionOut "curried action try whose output is a horizontal expression action")
+SubClassOf(:CurriedActionTry-HorizontalExpressionActionOut :CurriedActionTry)
+SubClassOf(:CurriedActionTry-HorizontalExpressionActionOut ObjectSomeValuesFrom(:hasOutput api4kp-op:HorizontalExpressionAction))
+
+# Class: :ExpressingTry (expressing try)
+
+AnnotationAssertion(rdfs:label :ExpressingTry "expressing try")
+AnnotationAssertion(skos:definition :ExpressingTry "lowering try transforming a knowledge asset into
+      a knowledge expression."^^xsd:string)
+EquivalentClasses(:ExpressingTry ObjectIntersectionOf(:LoweringTry ObjectSomeValuesFrom(:isTryOf api4kp-op:ExpressingAction)))
+SubClassOf(:ExpressingTry :LoweringTry)
+SubClassOf(:ExpressingTry ObjectSomeValuesFrom(:hasInput api4kp-term:KnowledgeAsset))
+SubClassOf(:ExpressingTry ObjectSomeValuesFrom(:hasOutput api4kp-term:KnowledgeExpression))
+
+# Class: :Failure (failure)
+
+AnnotationAssertion(rdfs:label :Failure "failure")
+AnnotationAssertion(skos:definition :Failure "failure of application of an API4KP Operation."^^xsd:string)
+AnnotationAssertion(skos:example :Failure "Example: the failure of adding of an Asset to an immutable KB to generate a new immutable KB,
+      attemptec by some application. "^^xsd:string)
+SubClassOf(:Failure :Try)
+
+# Class: :HorizontalSuccess (horizontal success)
+
+AnnotationAssertion(rdfs:label :HorizontalSuccess "horizontal success"@en)
+AnnotationAssertion(skos:definition :HorizontalSuccess "success of horizontal try"^^xsd:string)
+EquivalentClasses(:HorizontalSuccess ObjectIntersectionOf(:HorizontalTry :Success))
+SubClassOf(:HorizontalSuccess ObjectSomeValuesFrom(:hasOutput api4kp-term:KnowledgeResource))
+DisjointUnion(:HorizontalSuccess :HorizontalAssetSuccess :HorizontalEncodingSuccess :HorizontalExpressionSuccess :HorizontalItemSuccess :HorizontalManifestationSuccess)
+
+# Class: :HorizontalTry (horizontal try)
+
+AnnotationAssertion(rdfs:label :HorizontalTry "horizontal try"@en)
+AnnotationAssertion(skos:definition :HorizontalTry "side-effect-free unary try whose input and output are knowledge resources at the same level of abstraction that are related by a mapping (sensu DOL)"^^xsd:string)
+EquivalentClasses(:HorizontalTry ObjectIntersectionOf(:ActionTry ObjectSomeValuesFrom(:isTryOf api4kp-op:HorizontalAtomicKOperation)))
+SubClassOf(:HorizontalTry :ActionTry)
+SubClassOf(:HorizontalTry :SideEffectFreeTry)
+SubClassOf(:HorizontalTry ObjectSomeValuesFrom(api4kp-term:matchesMapping api4kp-term:Mapping))
+SubClassOf(:HorizontalTry ObjectSomeValuesFrom(:hasInput api4kp-term:KnowledgeResource))
+DisjointUnion(:HorizontalTry :HorizontalAssetTry :HorizontalEncodingTry :HorizontalExpressionTry :HorizontalItemTry :HorizontalManifestationTry)
+
+# Class: :InStreamingTry (instreaming try)
+
+AnnotationAssertion(rdfs:label :InStreamingTry "instreaming try")
+AnnotationAssertion(skos:definition :InStreamingTry "lifting try transforming a knowledge item into a
+      knowledge encoding."^^xsd:string)
+EquivalentClasses(:InStreamingTry ObjectIntersectionOf(:LiftingTry ObjectSomeValuesFrom(:isTryOf api4kp-op:InStreamingAction)))
+SubClassOf(:InStreamingTry :LiftingTry)
+SubClassOf(:InStreamingTry ObjectSomeValuesFrom(:hasInput api4kp-term:KnowledgeItem))
+SubClassOf(:InStreamingTry ObjectSomeValuesFrom(:hasOutput api4kp-term:KnowledgeEncoding))
+
+# Class: :InternalAddingTry-KnowledgeResourceToImmutableKB (internal adding try of a knowledge resource to an immutable knowledge base)
+
+AnnotationAssertion(rdfs:label :InternalAddingTry-KnowledgeResourceToImmutableKB "internal adding try of a knowledge resource to an immutable knowledge base")
+AnnotationAssertion(rdfs:label :InternalAddingTry-KnowledgeResourceToImmutableKB "internal try adding knowledge resources to immutable KBs")
+AnnotationAssertion(skos:definition :InternalAddingTry-KnowledgeResourceToImmutableKB "internal operation try adding a knowlede
+      resource to an immutable knowledge base"^^xsd:string)
+AnnotationAssertion(skos:definition :InternalAddingTry-KnowledgeResourceToImmutableKB "internal try adding a knowlede
+      resource to an immutable knowledge base producing an immutable knowledge base"^^xsd:string)
+AnnotationAssertion(skos:note :InternalAddingTry-KnowledgeResourceToImmutableKB "Members of this class are trys of some operation of type
+      'InternalAddingOperation-KnowledgeResourceToImmutableKB'"^^xsd:string)
+SubClassOf(:InternalAddingTry-KnowledgeResourceToImmutableKB :AddingTry)
+SubClassOf(:InternalAddingTry-KnowledgeResourceToImmutableKB :InternalTry)
+SubClassOf(:InternalAddingTry-KnowledgeResourceToImmutableKB ObjectSomeValuesFrom(:adds api4kp-term:KnowledgeResource))
+SubClassOf(:InternalAddingTry-KnowledgeResourceToImmutableKB ObjectSomeValuesFrom(:addsTo api4kp-term:ImmutableKnowledgeBase))
+SubClassOf(:InternalAddingTry-KnowledgeResourceToImmutableKB ObjectSomeValuesFrom(:hasOutput api4kp-term:ImmutableKnowledgeBase))
+
+# Class: :InternalCreatingTry (internal creating try)
+
+AnnotationAssertion(rdfs:label :InternalCreatingTry "internal creating try")
+AnnotationAssertion(skos:definition :InternalCreatingTry "internal creating try"^^xsd:string)
+EquivalentClasses(:InternalCreatingTry ObjectIntersectionOf(:CreatingTry :InternalTry))
+SubClassOf(:InternalCreatingTry :CreatingTry)
+SubClassOf(:InternalCreatingTry :InternalTry)
+
+# Class: :InternalTry (internal try)
+
+AnnotationAssertion(rdfs:label :InternalTry "internal try")
+AnnotationAssertion(skos:definition :InternalTry "try of an Internal Operation."^^xsd:string)
+SubClassOf(:InternalTry :Try)
+DisjointClasses(:InternalTry :PublicTry)
+
+# Class: :LiftingTry (lifting try)
+
+AnnotationAssertion(rdfs:label :LiftingTry "lifting try")
+AnnotationAssertion(skos:definition :LiftingTry "try of a lifting action."^^xsd:string)
+EquivalentClasses(:LiftingTry ObjectIntersectionOf(:ActionTry ObjectSomeValuesFrom(:isTryOf api4kp-op:LiftingAtomicKOperation)))
+SubClassOf(:LiftingTry :ActionTry)
+SubClassOf(:LiftingTry :SideEffectFreeTry)
+SubClassOf(:LiftingTry ObjectSomeValuesFrom(:hasInput api4kp-term:KnowledgeResource))
+SubClassOf(:LiftingTry ObjectSomeValuesFrom(:hasOutput api4kp-term:KnowledgeResource))
+DisjointUnion(:LiftingTry :ConceptualizingTry :InStreamingTry :ParsingTry :UnmarshallingTry)
+
+# Class: :LoweringTry (lowering try)
+
+AnnotationAssertion(rdfs:label :LoweringTry "lowering try")
+AnnotationAssertion(skos:definition :LoweringTry "try of a lowering action."^^xsd:string)
+EquivalentClasses(:LoweringTry ObjectIntersectionOf(:ActionTry ObjectSomeValuesFrom(:isTryOf api4kp-op:LoweringAtomicKOperation)))
+SubClassOf(:LoweringTry :ActionTry)
+SubClassOf(:LoweringTry :SideEffectFreeTry)
+SubClassOf(:LoweringTry ObjectSomeValuesFrom(:hasInput api4kp-term:KnowledgeResource))
+SubClassOf(:LoweringTry ObjectSomeValuesFrom(:hasOutput api4kp-term:KnowledgeResource))
+DisjointUnion(:LoweringTry :ExpressingTry :ManifestingTry :MarshallingTry :OutStreamingTry)
+
+# Class: :ManifestingTry (manifesting try)
+
+AnnotationAssertion(rdfs:label :ManifestingTry "manifesting try")
+AnnotationAssertion(skos:definition :ManifestingTry "lowering try transforming a generalized
+      expression into a knowledge manifestation."^^xsd:string)
+EquivalentClasses(:ManifestingTry ObjectIntersectionOf(:LoweringTry ObjectSomeValuesFrom(:isTryOf api4kp-op:ManifestingAction)))
+SubClassOf(:ManifestingTry :LoweringTry)
+SubClassOf(:ManifestingTry ObjectSomeValuesFrom(:hasInput api4kp-term:KnowledgeExpression))
+SubClassOf(:ManifestingTry ObjectSomeValuesFrom(:hasOutput api4kp-term:KnowledgeManifestation))
+
+# Class: :MarshallingTry (marshalling try)
+
+AnnotationAssertion(rdfs:label :MarshallingTry "marshalling try")
+AnnotationAssertion(skos:definition :MarshallingTry "lowering try transforming a knowledge
+      manifestation into a knowledge encoding."^^xsd:string)
+EquivalentClasses(:MarshallingTry ObjectIntersectionOf(:LoweringTry ObjectSomeValuesFrom(:isTryOf api4kp-op:MarshallingAction)))
+SubClassOf(:MarshallingTry :LoweringTry)
+SubClassOf(:MarshallingTry ObjectSomeValuesFrom(:hasInput api4kp-term:KnowledgeManifestation))
+SubClassOf(:MarshallingTry ObjectSomeValuesFrom(:hasOutput api4kp-term:KnowledgeEncoding))
+
+# Class: :OutStreamingTry (outstreaming try)
+
+AnnotationAssertion(rdfs:label :OutStreamingTry "outstreaming try")
+AnnotationAssertion(skos:definition :OutStreamingTry "lowering try transforming a knowledge encoding into a
+      knowledge item."^^xsd:string)
+EquivalentClasses(:OutStreamingTry ObjectIntersectionOf(:LoweringTry ObjectSomeValuesFrom(:isTryOf api4kp-op:OutStreamingAction)))
+SubClassOf(:OutStreamingTry :LoweringTry)
+SubClassOf(:OutStreamingTry ObjectSomeValuesFrom(:hasInput api4kp-term:KnowledgeEncoding))
+SubClassOf(:OutStreamingTry ObjectSomeValuesFrom(:hasOutput api4kp-term:KnowledgeItem))
+
+# Class: :ParsingTry (parsing try)
+
+AnnotationAssertion(rdfs:label :ParsingTry "parsing try")
+AnnotationAssertion(skos:definition :ParsingTry "action try of transforming a knowledge
+      manifestation into a knowledge expression."^^xsd:string)
+EquivalentClasses(:ParsingTry ObjectIntersectionOf(:LiftingTry ObjectSomeValuesFrom(:isTryOf api4kp-op:ParsingAction)))
+SubClassOf(:ParsingTry :LiftingTry)
+SubClassOf(:ParsingTry ObjectSomeValuesFrom(:hasInput api4kp-term:KnowledgeManifestation))
+SubClassOf(:ParsingTry ObjectSomeValuesFrom(:hasOutput api4kp-term:KnowledgeExpression))
+
+# Class: :PublicAddingTry-KnowledgeResourceToImmutableKB (public try adding knowledge resources to immutable KBs)
+
+AnnotationAssertion(rdfs:label :PublicAddingTry-KnowledgeResourceToImmutableKB "public try adding knowledge resources to immutable KBs")
+AnnotationAssertion(skos:definition :PublicAddingTry-KnowledgeResourceToImmutableKB "public try adding a knowlede
+      resource to an immutable knowledge base producing an immutable knowledge base"^^xsd:string)
+SubClassOf(:PublicAddingTry-KnowledgeResourceToImmutableKB :AddingTry)
+SubClassOf(:PublicAddingTry-KnowledgeResourceToImmutableKB :PublicTry)
+SubClassOf(:PublicAddingTry-KnowledgeResourceToImmutableKB ObjectSomeValuesFrom(:adds api4kp-term:KnowledgeResource))
+SubClassOf(:PublicAddingTry-KnowledgeResourceToImmutableKB ObjectSomeValuesFrom(:addsTo api4kp-term:ImmutableKnowledgeBase))
+SubClassOf(:PublicAddingTry-KnowledgeResourceToImmutableKB ObjectSomeValuesFrom(:hasOutput api4kp-term:ImmutableKnowledgeBase))
+
+# Class: :PublicAddingTry-KnowledgeSourceToMutableKB (public try adding knowledge sources to mutable KBs)
+
+AnnotationAssertion(dct:abstract :PublicAddingTry-KnowledgeSourceToMutableKB "")
+AnnotationAssertion(rdfs:label :PublicAddingTry-KnowledgeSourceToMutableKB "public try adding knowledge sources to mutable KBs")
+AnnotationAssertion(skos:definition :PublicAddingTry-KnowledgeSourceToMutableKB "public try adding knowledge
+      sources to mutable KBs"^^xsd:string)
+SubClassOf(:PublicAddingTry-KnowledgeSourceToMutableKB :AddingTry)
+SubClassOf(:PublicAddingTry-KnowledgeSourceToMutableKB :PublicTry)
+SubClassOf(:PublicAddingTry-KnowledgeSourceToMutableKB :SideEffectfulTry)
+SubClassOf(:PublicAddingTry-KnowledgeSourceToMutableKB ObjectAllValuesFrom(:adds api4kp-term:KnowledgeSource))
+SubClassOf(:PublicAddingTry-KnowledgeSourceToMutableKB ObjectAllValuesFrom(:addsTo api4kp-term:MutableKnowledgeBase))
+
+# Class: :PublicCreatingTry (public creating try)
+
+AnnotationAssertion(rdfs:label :PublicCreatingTry "public creating try")
+AnnotationAssertion(skos:definition :PublicCreatingTry "public creating try"^^xsd:string)
+EquivalentClasses(:PublicCreatingTry ObjectIntersectionOf(:CreatingTry :PublicTry))
+SubClassOf(:PublicCreatingTry :CreatingTry)
+SubClassOf(:PublicCreatingTry :PublicTry)
+
+# Class: :PublicQueryingResourceTry (public querying resource try)
+
+AnnotationAssertion(rdfs:label :PublicQueryingResourceTry "public querying resource try")
+AnnotationAssertion(skos:definition :PublicQueryingResourceTry "public try that applies a query resource to a focused resource producing a (resource) collection of answer
+      substitutions."^^xsd:string)
+SubClassOf(:PublicQueryingResourceTry :QueryingTry)
+SubClassOf(:PublicQueryingResourceTry ObjectSomeValuesFrom(:appliesQuery api4kp-term:QueryResource))
+SubClassOf(:PublicQueryingResourceTry ObjectSomeValuesFrom(:appliesQueryTo api4kp-term:KnowledgeAsset))
+SubClassOf(:PublicQueryingResourceTry ObjectSomeValuesFrom(:hasOutput api4kp-term:AnswerSubstitutionCollectionResource))
+
+# Class: :PublicTry (public try)
+
+AnnotationAssertion(rdfs:label :PublicTry "public try")
+AnnotationAssertion(skos:definition :PublicTry "try of a public operation."^^xsd:string)
+AnnotationAssertion(skos:example :PublicTry "Example: add Asset to an immutable KB to generate a new immutable KB. "^^xsd:string)
+SubClassOf(:PublicTry :Try)
+
+# Class: :SideEffectFreeTry (side-effect-free try)
+
+AnnotationAssertion(rdfs:label :SideEffectFreeTry "side-effect-free try")
+AnnotationAssertion(skos:definition :SideEffectFreeTry "try of a side-effect-free operation"^^xsd:string)
+EquivalentClasses(:SideEffectFreeTry ObjectIntersectionOf(:Try ObjectSomeValuesFrom(:isTryOf api4kp-op:SideEffectFreeOperation)))
+SubClassOf(:SideEffectFreeTry :Try)
+
+# Class: :SideEffectfulTry (side-effectful try)
+
+AnnotationAssertion(rdfs:label :SideEffectfulTry "side-effectful try")
+AnnotationAssertion(skos:definition :SideEffectfulTry "try of a side-effectful operation"^^xsd:string)
+EquivalentClasses(:SideEffectfulTry ObjectIntersectionOf(:Try ObjectSomeValuesFrom(:isTryOf api4kp-op:SideEffectfulOperation)))
+SubClassOf(:SideEffectfulTry :Try)
+
+# Class: :Success (success)
+
+AnnotationAssertion(rdfs:label :Success "success")
+AnnotationAssertion(skos:definition :Success "success of application of an API4KP Operation."^^xsd:string)
+AnnotationAssertion(skos:example :Success "Example: the success of adding of an Asset to an immutable KB to generate a new immutable KB,
+      executed by some application. "^^xsd:string)
+EquivalentClasses(:Success ObjectIntersectionOf(:Try ObjectSomeValuesFrom(:hasEvent api4kp-evt:KnowledgeEvent)))
+
+# Class: :Try (try)
+
+AnnotationAssertion(rdfs:label :Try "try")
+AnnotationAssertion(skos:definition :Try "try of an API4KP Operation."^^xsd:string)
+AnnotationAssertion(skos:example :Try "Example: the try of some applications to execute the adding of an Asset to an immutable KB to generate a new immutable KB. "^^xsd:string)
+DisjointUnion(:Try :Failure :Success)
+
+# Class: :UnarySuccess (unary success)
+
+AnnotationAssertion(rdfs:label :UnarySuccess "unary success")
+AnnotationAssertion(skos:definition :UnarySuccess "try of a unary operation"^^xsd:string)
+EquivalentClasses(:UnarySuccess ObjectIntersectionOf(:Success :UnaryTry))
+SubClassOf(:UnarySuccess :Success)
+SubClassOf(:UnarySuccess :UnaryTry)
+SubClassOf(:UnarySuccess ObjectSomeValuesFrom(:hasUnaryInput owl:Thing))
+
+# Class: :UnaryTry (unary try)
+
+AnnotationAssertion(rdfs:label :UnaryTry "unary try")
+AnnotationAssertion(skos:definition :UnaryTry "try of a unary operation"^^xsd:string)
+EquivalentClasses(:UnaryTry ObjectIntersectionOf(:Try ObjectSomeValuesFrom(:isTryOf api4kp-op:UnaryOperation)))
+SubClassOf(:UnaryTry :Try)
+
+# Class: :UnmarshallingTry (unmarshalling try)
+
+AnnotationAssertion(rdfs:label :UnmarshallingTry "unmarshalling try")
+AnnotationAssertion(skos:definition :UnmarshallingTry "lifting try that transforms knowledge encodings into knowledge manifestations."^^xsd:string)
+EquivalentClasses(:UnmarshallingTry ObjectIntersectionOf(:LiftingTry ObjectSomeValuesFrom(:isTryOf api4kp-op:UnmarshallingAction)))
+SubClassOf(:UnmarshallingTry :LiftingTry)
+SubClassOf(:UnmarshallingTry ObjectSomeValuesFrom(:hasInput api4kp-term:KnowledgeEncoding))
+SubClassOf(:UnmarshallingTry ObjectSomeValuesFrom(:hasOutput api4kp-term:KnowledgeManifestation))
+
+# Class: :VoidActionTry (void action try)
+
+AnnotationAssertion(rdfs:label :VoidActionTry "void action try"@en)
+AnnotationAssertion(skos:definition :VoidActionTry "side-effectful action try whose output is void"^^xsd:string)
+EquivalentClasses(:VoidActionTry ObjectIntersectionOf(:ActionTry ObjectSomeValuesFrom(:isTryOf api4kp-op:VoidOperation)))
+SubClassOf(:VoidActionTry :ActionTry)
+SubClassOf(:VoidActionTry :SideEffectfulTry)
+SubClassOf(:VoidActionTry ObjectSomeValuesFrom(:hasOutput api4kp-op:Void))
+
+
+SubObjectPropertyOf(ObjectPropertyChain(:hasEvent api4kp-evt:hasOutput) :hasOutput)
+SubObjectPropertyOf(ObjectPropertyChain(:isDelegatedFrom :hasInput) :hasInput)
+)

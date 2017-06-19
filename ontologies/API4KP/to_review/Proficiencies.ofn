@@ -1,0 +1,109 @@
+Prefix(:=<http://www.omg.org/spec/API4KP/Proficiencies/>)
+Prefix(dct:=<http://purl.org/dc/terms/>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+Prefix(skos:=<http://www.w3.org/2004/02/skos/core#>)
+Prefix(api4kp-evt:=<http://www.omg.org/spec/API4KP/Events/>)
+Prefix(api4kp-term:=<http://www.omg.org/spec/API4KP/Terminology/>)
+
+
+Ontology(<http://www.omg.org/spec/API4KP/Proficiencies/>
+<http://www.omg.org/spec/API4KP/20160801/Proficiencies/>
+Import(<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
+Annotation(dct:license "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
+Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/contentLanguage> "http://www.omg.org/spec/ODM/"^^xsd:anyURI)
+Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/contentLanguage> "http://www.w3.org/standards/techs/owl#w3c_all"^^xsd:anyURI)
+Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/copyright> "Copyright (c) 2014 Athan Services
+Copyright (c) 2014 Thematix Partners LLC
+Copyright (c) 2014 Object Management Group, Inc."^^xsd:string)
+Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/fileAbbreviation> "api4kp-op"^^xsd:string)
+Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/fileAbstract> "This ontology covers terminology used for describing the proficiencies defined by the API4KP specification."^^xsd:string)
+Annotation(<http://www.omg.org/techprocess/ab/SpecificationMetadata/filename> "API4KPTerminologyProficiency.rdf"^^xsd:string)
+Annotation(rdfs:label "API4KP Proficiency Terminology Ontology")
+
+Declaration(Class(api4kp-evt:KnowledgeEvent))
+Declaration(Class(api4kp-evt:PublicAddingEvent-KnowledgeResourceToImmutableKB))
+Declaration(Class(api4kp-evt:SideEffectFreeEvent))
+Declaration(Class(api4kp-evt:SideEffectfulEvent))
+Declaration(Class(api4kp-evt:UnaryEvent))
+Declaration(Class(:AddingProficiency-KnowledgeResourceToImmutableKB))
+Declaration(Class(:AddingProficiency-KnowledgeSourceToMutableKB))
+Declaration(Class(:CreatingProficiency-KnowledgePlatform))
+Declaration(Class(:DestroyingProficiency-KnowledgePlatform))
+Declaration(Class(:ModifyingProficiency-KnowledgePlatform))
+Declaration(Class(:Proficiency))
+Declaration(Class(:SideEffectFreeProficiency))
+Declaration(Class(:SideEffectfulProficiency))
+Declaration(Class(:UnaryProficiency))
+Declaration(ObjectProperty(api4kp-term:isActualizedBy))
+
+
+
+############################
+#   Classes
+############################
+
+# Class: :AddingProficiency-KnowledgeResourceToImmutableKB (proficiency adding knowledge resources to immutable KBs)
+
+AnnotationAssertion(rdfs:label :AddingProficiency-KnowledgeResourceToImmutableKB "proficiency adding knowledge resources to immutable KBs")
+AnnotationAssertion(skos:definition :AddingProficiency-KnowledgeResourceToImmutableKB "proficiency of adding knowlede
+      resources to immutable knowledge bases"^^xsd:string)
+SubClassOf(:AddingProficiency-KnowledgeResourceToImmutableKB :Proficiency)
+SubClassOf(:AddingProficiency-KnowledgeResourceToImmutableKB ObjectAllValuesFrom(api4kp-term:isActualizedBy api4kp-evt:PublicAddingEvent-KnowledgeResourceToImmutableKB))
+
+# Class: :AddingProficiency-KnowledgeSourceToMutableKB (proficiency of adding knowledge resources to mutable KBs)
+
+AnnotationAssertion(dct:abstract :AddingProficiency-KnowledgeSourceToMutableKB "")
+AnnotationAssertion(rdfs:label :AddingProficiency-KnowledgeSourceToMutableKB "proficiency of adding knowledge resources to mutable KBs")
+AnnotationAssertion(skos:definition :AddingProficiency-KnowledgeSourceToMutableKB "proficiency of adding knowlede
+      resources to mutable KBs"^^xsd:string)
+SubClassOf(:AddingProficiency-KnowledgeSourceToMutableKB :Proficiency)
+SubClassOf(:AddingProficiency-KnowledgeSourceToMutableKB :SideEffectfulProficiency)
+
+# Class: :CreatingProficiency-KnowledgePlatform (:CreatingProficiency-KnowledgePlatform)
+
+SubClassOf(:CreatingProficiency-KnowledgePlatform :Proficiency)
+
+# Class: :DestroyingProficiency-KnowledgePlatform (:DestroyingProficiency-KnowledgePlatform)
+
+SubClassOf(:DestroyingProficiency-KnowledgePlatform :Proficiency)
+
+# Class: :ModifyingProficiency-KnowledgePlatform (:ModifyingProficiency-KnowledgePlatform)
+
+SubClassOf(:ModifyingProficiency-KnowledgePlatform :Proficiency)
+
+# Class: :Proficiency (proficiency)
+
+AnnotationAssertion(rdfs:label :Proficiency "proficiency")
+AnnotationAssertion(skos:definition :Proficiency "functionality that is actualized by the events of one or more knowledge operations."^^xsd:string)
+AnnotationAssertion(skos:note :Proficiency "Knowledge Platform is in the middle between Components and Proficiencies.
+The (externally developed) Components each implement some set of operations.
+The Knowledge Platform is built from a number of Components, and so has the functionality of all operations of those Components, plus the functionality captured by all compositions of these operations.
+A Proficiency of the KP is a subset of the operations supported by its collection of Components that are exposed through its public API to \"clients\".")
+AnnotationAssertion(skos:scopeNote :Proficiency "Note: In our architecture, proficiencies are provided by a collection of components (which may contain just one component). Different collections of components may provide the same proficiency. The standard API4KP proficiencies will be enumerated in the specification."^^xsd:string)
+SubClassOf(:Proficiency ObjectAllValuesFrom(api4kp-term:isActualizedBy api4kp-evt:KnowledgeEvent))
+
+# Class: :SideEffectFreeProficiency (side-effect-free proficiency)
+
+AnnotationAssertion(rdfs:label :SideEffectFreeProficiency "side-effect-free proficiency")
+SubClassOf(:SideEffectFreeProficiency :Proficiency)
+SubClassOf(:SideEffectFreeProficiency ObjectAllValuesFrom(api4kp-term:isActualizedBy api4kp-evt:SideEffectFreeEvent))
+
+# Class: :SideEffectfulProficiency (side-effectful proficiency)
+
+AnnotationAssertion(rdfs:label :SideEffectfulProficiency "side-effectful proficiency")
+SubClassOf(:SideEffectfulProficiency :Proficiency)
+SubClassOf(:SideEffectfulProficiency ObjectAllValuesFrom(api4kp-term:isActualizedBy api4kp-evt:SideEffectfulEvent))
+
+# Class: :UnaryProficiency (unary proficiency)
+
+AnnotationAssertion(rdfs:label :UnaryProficiency "unary proficiency")
+AnnotationAssertion(skos:definition :UnaryProficiency "unary proficiency"^^xsd:string)
+SubClassOf(:UnaryProficiency :Proficiency)
+SubClassOf(:UnaryProficiency ObjectAllValuesFrom(api4kp-term:isActualizedBy api4kp-evt:UnaryEvent))
+
+
+)

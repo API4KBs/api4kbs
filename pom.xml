@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <artifactId>API4KP</artifactId>
+    <groupId>org.omg.spec</groupId>
+    <version>1.0</version>
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>API for Knowledge Base Ontology and Terminology</name>
+
+    <build>
+
+        <resources>
+            <resource>
+                <directory>ontologies</directory>
+                <excludes>
+                    <exclude>API4KP/deprecated/*.*</exclude>
+                    <exclude>API4KP/to_review/*.*</exclude>
+                </excludes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-remote-resources-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>bundle</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <resourcesDirectory>ontologies</resourcesDirectory>
+                    <includes>
+                        <include>**/*.owl</include>
+                        <include>**/*.ofn</include>
+                        <include>**/*.rdf</include>
+                        <include>**/*.rdfs</include>
+                        <include>**/catalog-dist.xml</include>
+                    </includes>
+                    <excludes>
+                        <exclude>API4KP/deprecated/*.*</exclude>
+                        <exclude>API4KP/to_review/*.*</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>de.csw</groupId>
+                <artifactId>ontomaven</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <id>import-omg</id>
+                        <goals>
+                            <goal>ImportOntologies</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <owlDirectory>ontologies/OMG</owlDirectory>
+                            <importDirectory>../W3C</importDirectory>
+                            <owlFileName>SpecificationMetadata.rdf</owlFileName>
+                            <owlFileURL>http://www.omg.org/techprocess/ab/SpecificationMetadata</owlFileURL>
+                            <catalogFileName>catalog-dist.xml</catalogFileName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>import-ontoiop</id>
+                        <goals>
+                            <goal>ImportOntologies</goal>
+                        </goals>
+                        <configuration>
+                            <owlDirectory>ontologies/OntoIOp</owlDirectory>
+                            <importDirectory>../W3C</importDirectory>
+                            <owlFileName>DOL-terms.rdf</owlFileName>
+                            <owlFileURL>http://www.omg.org/spec/DOL/DOL-terms/</owlFileURL>
+                            <catalogFileName>catalog-dist.xml</catalogFileName>
+                        </configuration>
+                    </execution>
+
+
+                    <!--execution>
+                        <id>check</id>
+                        <goals>
+                            <goal>TestOntology</goal>
+                        </goals>
+                        <configuration>
+                            <owlFileName>api4kp-krr.ofn</owlFileName>
+                            <owlDirectory>API4KP</owlDirectory>
+                            <catalogURL>API4KP/catalog-dist.xml</catalogURL>
+
+                        </configuration>
+                    </execution-->
+                </executions>
+            </plugin>
+        </plugins>
+
+    </build>
+
+</project>

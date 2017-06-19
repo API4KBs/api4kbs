@@ -1,0 +1,543 @@
+Prefix(:=<http://www.omg.org/spec/API4KP/KR/>)
+Prefix(kr:=<http://www.omg.org/spec/API4KP/KR/>)
+Prefix(sm:=<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
+Prefix(dol:=<http://www.omg.org/spec/DOL/DOL-terms/>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+Prefix(skos:=<http://www.w3.org/2004/02/skos/core#>)
+
+
+Ontology(<http://www.omg.org/spec/API4KP/KR/>
+<http://www.omg.org/spec/API4KP/20170201/KR/>
+Import(<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
+Import(<http://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/>)
+Import(<http://www.omg.org/spec/DOL/DOL-terms/>)
+Annotation(<http://purl.org/dc/terms/license> "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
+Annotation(sm:contentLanguage "http://www.omg.org/spec/ODM/"^^xsd:anyURI)
+Annotation(sm:contentLanguage "http://www.w3.org/standards/techs/owl#w3c_all"^^xsd:anyURI)
+Annotation(sm:copyright "Copyright (c) 2014-2017 Arizona State University
+Copyright (c) 2014-2017 Athan Services
+Copyright (c) 2014-2017 Mayo Clinic
+Copyright (c) 2014-2017 Thematix Partners LLC
+Copyright (c) 2014-2017 Object Management Group, Inc."^^xsd:string)
+Annotation(sm:fileAbbreviation "api4kp-krt"^^xsd:string)
+Annotation(sm:fileAbstract "This ontology covers the primary knowledge representation terminology used for describing the  concepts used by the API4KP specification."^^xsd:string)
+Annotation(sm:filename "KnowledgeRepresentationTerminology.rdf"^^xsd:string)
+Annotation(rdfs:label "API4KP Knowledge Representation Terminology Ontology")
+
+Declaration(Class(kr:AssetEnvironment))
+Declaration(Class(kr:BasicEnvironment))
+Declaration(Class(kr:BasicKnowledgeExpression))
+Declaration(Class(kr:CategoricalEnvironment))
+Declaration(Class(kr:ComposableEnvironment))
+Declaration(Class(kr:EmptyEnvironment))
+Declaration(Class(kr:Environment))
+Declaration(Class(kr:EnvironmentWithIdentities))
+Declaration(Class(kr:FocusedEnvironment))
+Declaration(Class(kr:ImmutableEntity))
+Declaration(Class(kr:ImmutableKnowledgeBase))
+Declaration(Class(kr:ImmutableView))
+Declaration(Class(kr:KnowledgeAsset))
+Declaration(Class(kr:KnowledgeAssetSurrogate))
+Declaration(Class(kr:KnowledgeBase))
+Declaration(Class(kr:KnowledgeExpression))
+Declaration(Class(kr:KnowledgeItem))
+Declaration(Class(kr:KnowledgeManifestation))
+Declaration(Class(kr:KnowledgeRepresentationAndReasoningLanguage))
+Declaration(Class(kr:KnowledgeResource))
+Declaration(Class(kr:KnowledgeSerialization))
+Declaration(Class(kr:KnowledgeSource))
+Declaration(Class(kr:LanguageEnvironment))
+Declaration(Class(kr:Mutable))
+Declaration(Class(kr:MutableKnowledgeBase))
+Declaration(Class(kr:MutableSource))
+Declaration(Class(kr:NativeKnowledgeExpression))
+Declaration(Class(kr:NativeKnowledgeResource))
+Declaration(Class(kr:NonemptyEnvironment))
+Declaration(Class(kr:PreservingEnvironment))
+Declaration(Class(kr:QueryLanguage))
+Declaration(Class(kr:Serialization))
+Declaration(Class(kr:Source))
+Declaration(Class(kr:StructuredKnowledgeExpression))
+Declaration(Class(dol:OMSSerialization))
+Declaration(Class(dol:SetOfExpressions))
+Declaration(ObjectProperty(kr:accordingTo))
+Declaration(ObjectProperty(kr:allPreserve))
+Declaration(ObjectProperty(kr:conceptualizes))
+Declaration(ObjectProperty(kr:expresses))
+Declaration(ObjectProperty(kr:hasEnvironmentMapping))
+Declaration(ObjectProperty(kr:hasEnvironmentMember))
+Declaration(ObjectProperty(kr:hasFocusMember))
+Declaration(ObjectProperty(kr:hasPart))
+Declaration(ObjectProperty(kr:hasSetOfMappings))
+Declaration(ObjectProperty(kr:hasSnapshot))
+Declaration(ObjectProperty(kr:hasStructuralComponent))
+Declaration(ObjectProperty(kr:hasStructureType))
+Declaration(ObjectProperty(kr:hasSubenvironment))
+Declaration(ObjectProperty(kr:isEnvironmentMappingOf))
+Declaration(ObjectProperty(kr:isSerializationOf))
+Declaration(ObjectProperty(kr:isSubenvironmentOf))
+Declaration(ObjectProperty(kr:lifts))
+Declaration(ObjectProperty(kr:lowers))
+Declaration(ObjectProperty(kr:manifests))
+Declaration(ObjectProperty(kr:parses))
+Declaration(ObjectProperty(kr:preserves))
+Declaration(ObjectProperty(kr:prototypes))
+Declaration(ObjectProperty(kr:reproduces))
+Declaration(ObjectProperty(kr:usesLanguage))
+Declaration(ObjectProperty(kr:usesSerialization))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: kr:accordingTo (according to)
+
+AnnotationAssertion(rdfs:label kr:accordingTo "according to")
+AnnotationAssertion(skos:definition kr:accordingTo "relationship between a collection and an environment whereby the results of application of a mapping of the environment to a member of the collection are also members of the environment"^^xsd:string)
+ObjectPropertyRange(kr:accordingTo kr:Environment)
+
+# Object Property: kr:allPreserve (all preserve)
+
+AnnotationAssertion(rdfs:label kr:allPreserve "all preserve")
+ObjectPropertyDomain(kr:allPreserve kr:PreservingEnvironment)
+
+# Object Property: kr:conceptualizes (conceptualizes)
+
+AnnotationAssertion(rdfs:label kr:conceptualizes "conceptualizes")
+AnnotationAssertion(skos:definition kr:conceptualizes "inverse of 'expresses'"^^xsd:string)
+SubObjectPropertyOf(kr:conceptualizes kr:lifts)
+InverseObjectProperties(kr:conceptualizes kr:expresses)
+
+# Object Property: kr:expresses (expresses)
+
+AnnotationAssertion(rdfs:label kr:expresses "expresses")
+AnnotationAssertion(skos:altLabel kr:expresses "is expression of")
+AnnotationAssertion(skos:definition kr:expresses "knowledge asset that would be obtained by conceptualizing the knowledge expression."^^xsd:string)
+SubObjectPropertyOf(kr:expresses kr:lowers)
+ObjectPropertyDomain(kr:expresses kr:KnowledgeExpression)
+ObjectPropertyRange(kr:expresses kr:KnowledgeAsset)
+
+# Object Property: kr:hasEnvironmentMapping (has environment mapping)
+
+AnnotationAssertion(rdfs:label kr:hasEnvironmentMapping "has environment mapping")
+InverseObjectProperties(kr:hasEnvironmentMapping kr:isEnvironmentMappingOf)
+ObjectPropertyRange(kr:hasEnvironmentMapping dol:Mapping)
+
+# Object Property: kr:hasEnvironmentMember (has environment member)
+
+AnnotationAssertion(rdfs:label kr:hasEnvironmentMember "has environment member")
+ObjectPropertyDomain(kr:hasEnvironmentMember kr:NonemptyEnvironment)
+ObjectPropertyRange(kr:hasEnvironmentMember owl:Thing)
+
+# Object Property: kr:hasFocusMember (kr:hasFocusMember)
+
+SubObjectPropertyOf(kr:hasFocusMember kr:hasEnvironmentMember)
+
+# Object Property: kr:hasPart (has part)
+
+AnnotationAssertion(rdfs:label kr:hasPart "has part")
+
+# Object Property: kr:hasSetOfMappings (has set of mappings)
+
+AnnotationAssertion(rdfs:label kr:hasSetOfMappings "has set of mappings")
+
+# Object Property: kr:hasSnapshot (has snapshot)
+
+AnnotationAssertion(rdfs:label kr:hasSnapshot "has snapshot")
+AnnotationAssertion(skos:definition kr:hasSnapshot "relationship between a mutable source and its state at one timepoint."^^xsd:string)
+ObjectPropertyDomain(kr:hasSnapshot kr:Mutable)
+ObjectPropertyRange(kr:hasSnapshot kr:ImmutableEntity)
+
+# Object Property: kr:hasStructuralComponent (kr:hasStructuralComponent)
+
+SubObjectPropertyOf(kr:hasStructuralComponent kr:hasPart)
+
+# Object Property: kr:hasSubenvironment (has subenvironment)
+
+AnnotationAssertion(rdfs:label kr:hasSubenvironment "has subenvironment")
+InverseObjectProperties(kr:hasSubenvironment kr:isSubenvironmentOf)
+
+# Object Property: kr:isEnvironmentMappingOf (is environment mapping of)
+
+AnnotationAssertion(rdfs:label kr:isEnvironmentMappingOf "is environment mapping of")
+
+# Object Property: kr:isSerializationOf (is serialization of)
+
+AnnotationAssertion(rdfs:label kr:isSerializationOf "is serialization of")
+AnnotationAssertion(skos:definition kr:isSerializationOf "language that is manifested by the serialization"^^xsd:string)
+ObjectPropertyDomain(kr:isSerializationOf dol:Language)
+ObjectPropertyRange(kr:isSerializationOf kr:Serialization)
+
+# Object Property: kr:isSubenvironmentOf (is subenvironment of)
+
+AnnotationAssertion(rdfs:label kr:isSubenvironmentOf "is subenvironment of"@en)
+AnnotationAssertion(skos:definition kr:isSubenvironmentOf "relationship between two environments that is a partial order where the language and logic graphs of the first enviroment are subgraphs, resp., of the language and logic graphs of the second environment"^^xsd:string)
+TransitiveObjectProperty(kr:isSubenvironmentOf)
+ObjectPropertyDomain(kr:isSubenvironmentOf kr:Environment)
+ObjectPropertyRange(kr:isSubenvironmentOf kr:Environment)
+
+# Object Property: kr:lifts (lifts)
+
+AnnotationAssertion(rdfs:label kr:lifts "lifts")
+AnnotationAssertion(skos:definition kr:lifts "relation between two knowledge resources where the first is an abstraction of the second by one level (e.g. if the first is an encoding, the second is an item, etc.).  Lifts relations are limited to one of the following: prototypes, decodes, parses, conceptualizes"^^xsd:string)
+AnnotationAssertion(skos:note kr:lifts "OWL does not let us declare this to be functional, while keeping the property chains that link Events and Operations.")
+InverseObjectProperties(kr:lifts kr:lowers)
+ObjectPropertyDomain(kr:lifts kr:KnowledgeResource)
+ObjectPropertyRange(kr:lifts kr:KnowledgeResource)
+
+# Object Property: kr:lowers (lowers)
+
+AnnotationAssertion(rdfs:label kr:lowers "lowers")
+AnnotationAssertion(skos:definition kr:lowers "relation between two knowledge resources where the first is a deabstraction of the second by one level (e.g. if the first is an item, the second is an encoding, etc.).  Lowers relations are limited to one of the following: reproduces, encodes, manifests, expresses"^^xsd:string)
+AnnotationAssertion(skos:note kr:lowers "
+      <rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#FunctionalProperty\"/>            
+    ")
+AnnotationAssertion(skos:note kr:lowers "OWL does not let us declare this to be functional, while keeping the property chains that link Events and Operations.")
+
+# Object Property: kr:manifests (manifests)
+
+AnnotationAssertion(rdfs:label kr:manifests "manifests")
+AnnotationAssertion(skos:definition kr:manifests "knowledge expression that would be obtained from parsing the knowledge manifestation"^^xsd:string)
+SubObjectPropertyOf(kr:manifests kr:lowers)
+InverseObjectProperties(kr:manifests kr:parses)
+ObjectPropertyDomain(kr:manifests kr:KnowledgeManifestation)
+ObjectPropertyRange(kr:manifests kr:KnowledgeExpression)
+
+# Object Property: kr:parses (parses)
+
+AnnotationAssertion(rdfs:label kr:parses "parses")
+AnnotationAssertion(skos:definition kr:parses "inverse of 'manifests'"^^xsd:string)
+SubObjectPropertyOf(kr:parses kr:lifts)
+
+# Object Property: kr:preserves (preserves)
+
+AnnotationAssertion(rdfs:label kr:preserves "preserves")
+ObjectPropertyDomain(kr:preserves dol:Mapping)
+
+# Object Property: kr:prototypes (prototypes)
+
+AnnotationAssertion(rdfs:label kr:prototypes "prototypes")
+AnnotationAssertion(skos:definition kr:prototypes "inverse of 'reproduces'"^^xsd:string)
+SubObjectPropertyOf(kr:prototypes kr:lifts)
+InverseObjectProperties(kr:prototypes kr:reproduces)
+
+# Object Property: kr:reproduces (reproduces)
+
+AnnotationAssertion(rdfs:label kr:reproduces "reproduces")
+AnnotationAssertion(skos:definition kr:reproduces "knowledge encoding that would be obtained from instreaming the knowledge item"^^xsd:string)
+SubObjectPropertyOf(kr:reproduces kr:lowers)
+ObjectPropertyDomain(kr:reproduces kr:KnowledgeItem)
+ObjectPropertyRange(kr:reproduces kr:KnowledgeManifestation)
+
+# Object Property: kr:usesLanguage (uses language)
+
+AnnotationAssertion(rdfs:label kr:usesLanguage "uses language")
+AnnotationAssertion(skos:definition kr:usesLanguage "language used by a knowledge expression."^^xsd:string)
+ObjectPropertyDomain(kr:usesLanguage kr:KnowledgeExpression)
+ObjectPropertyRange(kr:usesLanguage dol:Language)
+
+# Object Property: kr:usesSerialization (uses serialization)
+
+AnnotationAssertion(rdfs:label kr:usesSerialization "uses serialization")
+AnnotationAssertion(skos:definition kr:usesSerialization "serialization used by a knowledge manifestation"^^xsd:string)
+ObjectPropertyDomain(kr:usesSerialization kr:KnowledgeManifestation)
+ObjectPropertyRange(kr:usesSerialization kr:Serialization)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: kr:AssetEnvironment (asset environment)
+
+AnnotationAssertion(rdfs:label kr:AssetEnvironment "asset environment")
+AnnotationAssertion(skos:definition kr:AssetEnvironment "focused, categorical, preserving language environment where the focus is a KRR language")
+AnnotationAssertion(skos:scopeNote kr:AssetEnvironment "The special case where all languages in an asset environment are KRR languages supporting model-theoretic semantics without side-effects (logics), and the preserving property is characterized by a logical graph reduces to a heterogeneous logical environment as defined in DOL.")
+SubClassOf(kr:AssetEnvironment kr:CategoricalEnvironment)
+SubClassOf(kr:AssetEnvironment kr:FocusedEnvironment)
+SubClassOf(kr:AssetEnvironment kr:LanguageEnvironment)
+SubClassOf(kr:AssetEnvironment kr:PreservingEnvironment)
+
+# Class: kr:BasicEnvironment (basic environment)
+
+AnnotationAssertion(rdfs:label kr:BasicEnvironment "basic environment")
+AnnotationAssertion(skos:definition kr:BasicEnvironment "a focused environment having exactly one member")
+SubClassOf(kr:BasicEnvironment kr:FocusedEnvironment)
+SubClassOf(kr:BasicEnvironment ObjectExactCardinality(1 kr:hasEnvironmentMapping))
+
+# Class: kr:BasicKnowledgeExpression (basic knowledge expression)
+
+AnnotationAssertion(rdfs:label kr:BasicKnowledgeExpression "basic knowledge expression")
+AnnotationAssertion(skos:definition kr:BasicKnowledgeExpression "unstructured native knowledge expression")
+AnnotationAssertion(skos:example kr:BasicKnowledgeExpression "KE1: the instance of the OWL 2 DL abstract syntax for the latest version of a biomedical ontology from an ontology series KA1 defining observable entities, such as the 2015 international version of the SNOMED-CT knowledge base\\footnote{http://browser.ihtsdotools.org/} (see also the definition of Basic Knowledge Asset). 
+This ontology differs from other versions of the series only in the natural language definitions.")
+AnnotationAssertion(skos:note kr:BasicKnowledgeExpression "well-formed, stand-alone formula in the abstract syntax of a machine-readable language")
+AnnotationAssertion(skos:scopeNote kr:BasicKnowledgeExpression "The use of \"basic\" in API4KP differs from its usage in DOL - a DOL basic OMS  (ontologies, models and specifications) is a set, and corresponds to a Set-structured knowledge asset in API4KP.")
+EquivalentClasses(kr:BasicKnowledgeExpression ObjectIntersectionOf(kr:KnowledgeExpression ObjectExactCardinality(0 kr:hasStructureType)))
+DisjointClasses(kr:BasicKnowledgeExpression kr:StructuredKnowledgeExpression)
+
+# Class: kr:CategoricalEnvironment (categorical environment)
+
+AnnotationAssertion(rdfs:label kr:CategoricalEnvironment "categorical environment")
+AnnotationAssertion(skos:definition kr:CategoricalEnvironment "a composable environment with identies whose composition operation is associative")
+AnnotationAssertion(skos:definition kr:CategoricalEnvironment "environment with an associative composition operation for mappings, that is closed under composition and contains an identity mapping for every member")
+SubClassOf(kr:CategoricalEnvironment kr:EnvironmentWithIdentities)
+
+# Class: kr:ComposableEnvironment (composable environment)
+
+AnnotationAssertion(rdfs:label kr:ComposableEnvironment "composable environment")
+AnnotationAssertion(skos:definition kr:ComposableEnvironment "an environment having a composition operation where the composition of its mappings is a mapping of the environment whenever the composition is well-defined")
+AnnotationAssertion(skos:editorialNote kr:ComposableEnvironment "The composition M2 o M1 of two mappings M1 and M2 is well-defined when M1 maps to the same thing that M2 maps from. (The codomain of M1 is the domain of M2).")
+SubClassOf(kr:ComposableEnvironment kr:Environment)
+
+# Class: kr:EmptyEnvironment (empty environment)
+
+AnnotationAssertion(rdfs:label kr:EmptyEnvironment "empty environment")
+SubClassOf(kr:EmptyEnvironment kr:Environment)
+SubClassOf(kr:EmptyEnvironment ObjectExactCardinality(0 kr:hasEnvironmentMapping))
+DisjointClasses(kr:EmptyEnvironment kr:NonemptyEnvironment)
+
+# Class: kr:Environment (environment)
+
+AnnotationAssertion(rdfs:label kr:Environment "environment")
+AnnotationAssertion(skos:definition kr:Environment "mathematical structure of mappings and members, where the domain and codomains of the mappings are members of the environment")
+AnnotationAssertion(skos:example kr:Environment "a KRR language environment containing semantics-preserving translations from RDF and OWL into CL, assisting in the integrated interpretation of a stream of RDF graphs and OWL ontologies")
+SubClassOf(kr:Environment kr:ImmutableEntity)
+
+# Class: kr:EnvironmentWithIdentities (environment with identity)
+
+AnnotationAssertion(rdfs:label kr:EnvironmentWithIdentities "environment with identity")
+AnnotationAssertion(skos:definition kr:EnvironmentWithIdentities "a composable environment having an identity mapping for each member")
+AnnotationAssertion(skos:editorialNote kr:EnvironmentWithIdentities "an identity mapping is a mapping whose domain and codomain are the same, and when composed with another mapping is equal to the original mapping")
+SubClassOf(kr:EnvironmentWithIdentities kr:ComposableEnvironment)
+
+# Class: kr:FocusedEnvironment (focused environment)
+
+AnnotationAssertion(rdfs:label kr:FocusedEnvironment "focused environment")
+AnnotationAssertion(skos:definition kr:FocusedEnvironment "a nonempty environment which has a member F (called the focus or focus member) such that for every other member A, there is a mapping in the environment from A to F"^^xsd:string)
+SubClassOf(kr:FocusedEnvironment kr:NonemptyEnvironment)
+
+# Class: kr:ImmutableEntity (immutable entity)
+
+AnnotationAssertion(sm:specificationURL kr:ImmutableEntity "http://www.oed.com/view/Entry/92020")
+AnnotationAssertion(rdfs:label kr:ImmutableEntity "immutable entity")
+AnnotationAssertion(skos:definition kr:ImmutableEntity "an entity that is not subject to or susceptible of change")
+DisjointClasses(kr:ImmutableEntity kr:Mutable)
+
+# Class: kr:ImmutableKnowledgeBase (immutable knowledgebase)
+
+AnnotationAssertion(rdfs:label kr:ImmutableKnowledgeBase "immutable knowledgebase")
+EquivalentClasses(kr:ImmutableKnowledgeBase kr:KnowledgeAsset)
+SubClassOf(kr:ImmutableKnowledgeBase kr:KnowledgeBase)
+
+# Class: kr:ImmutableView (immutable view)
+
+AnnotationAssertion(rdfs:label kr:ImmutableView "immutable view")
+SubClassOf(kr:ImmutableView kr:ImmutableEntity)
+
+# Class: kr:KnowledgeAsset (knowledge asset)
+
+AnnotationAssertion(rdfs:label kr:KnowledgeAsset "knowledge asset")
+AnnotationAssertion(skos:definition kr:KnowledgeAsset "equivalence class (according to an environment) of knowledge expressions.
+
+Note:  intuitively, a knowledge asset is information that may be (equivalently) expressed in one or more KR languages."^^xsd:string)
+AnnotationAssertion(skos:example kr:KnowledgeAsset "Example: assertion that Socrates is a philospher.
+Example: assertion that the author of Moby Dick is Herman Melville.
+Example: query for the names of philosphers.
+Example: a sequence of strings that are asserted to be names of philosphers in some KB."^^xsd:string)
+EquivalentClasses(kr:KnowledgeAsset ObjectIntersectionOf(kr:KnowledgeResource ObjectSomeValuesFrom(kr:conceptualizes kr:KnowledgeExpression)))
+SubClassOf(kr:KnowledgeAsset kr:KnowledgeResource)
+SubClassOf(kr:KnowledgeAsset ObjectExactCardinality(1 kr:accordingTo kr:AssetEnvironment))
+
+# Class: kr:KnowledgeAssetSurrogate (knowledge asset surrogate)
+
+AnnotationAssertion(rdfs:label kr:KnowledgeAssetSurrogate "knowledge asset surrogate")
+AnnotationAssertion(skos:definition kr:KnowledgeAssetSurrogate "knowledge expression that describes a knowledge resource."^^xsd:string)
+SubClassOf(kr:KnowledgeAssetSurrogate kr:KnowledgeExpression)
+
+# Class: kr:KnowledgeBase (knowledge base)
+
+AnnotationAssertion(rdfs:label kr:KnowledgeBase "knowledge base")
+SubClassOf(kr:KnowledgeBase kr:KnowledgeSource)
+
+# Class: kr:KnowledgeExpression (knowledge expression)
+
+AnnotationAssertion(rdfs:label kr:KnowledgeExpression "knowledge expression")
+AnnotationAssertion(skos:definition kr:KnowledgeExpression "Set of Expressions in one or more languages, in the context of a Logical Environment determining how these Expressions are jointly interpreted."^^xsd:string)
+AnnotationAssertion(skos:example kr:KnowledgeExpression "Expression examples;
+Example A: OWL Ground fact expressing that Socrates is a philosopher.
+Example B: Common Logic sentence expressing that Socrates is a philosopher.
+Example C: RDF graph expressing that the author of Moby Dick is Herman Melville.
+Example D: SPARQL query for the names of philosphers.
+
+knowledge expression examples;
+Example E: A and B, together with a mapping that allows OWL to be converted to Common Logic."^^xsd:string)
+EquivalentClasses(kr:KnowledgeExpression ObjectSomeValuesFrom(kr:usesLanguage dol:Language))
+SubClassOf(kr:KnowledgeExpression kr:KnowledgeResource)
+SubClassOf(kr:KnowledgeExpression ObjectSomeValuesFrom(dol:hasPart dol:SetOfExpressions))
+SubClassOf(kr:KnowledgeExpression ObjectAllValuesFrom(kr:hasPart kr:KnowledgeExpression))
+
+# Class: kr:KnowledgeItem (knowledge item)
+
+AnnotationAssertion(rdfs:label kr:KnowledgeItem "knowledge item")
+AnnotationAssertion(skos:definition kr:KnowledgeItem "physical instance of a knowledge encoding, e.g. snapshot of a file on a hard drive, a Java String in memory."^^xsd:string)
+AnnotationAssertion(skos:example kr:KnowledgeItem "Example: my copy in my Download folder of the encoding in UTF-8 of the serialization in Manchester syntax of an OWL ontology. "^^xsd:string)
+SubClassOf(kr:KnowledgeItem kr:KnowledgeResource)
+
+# Class: kr:KnowledgeManifestation (knowledge manifestation)
+
+AnnotationAssertion(rdfs:label kr:KnowledgeManifestation "knowledge manifestation")
+AnnotationAssertion(skos:definition kr:KnowledgeManifestation "character sequence, or collection of character sequences, each being the serialization of a knowledge expression in a knowledge serialization."^^xsd:string)
+AnnotationAssertion(skos:example kr:KnowledgeManifestation "Example: character sequence in Manchester OWL syntax that is the serialization of an OWL Ground fact expressing that Socrates is a philosopher.
+Example: character sequence in OWL RDF/XML syntax that is the serialization of an OWL Ground fact expressing that Socrates is a philosopher.
+Example: character sequence in CLIF syntax that is the serialization of a Common Logic sentence expressing that Socrates is a philosopher.
+Example: character sequence in RDF/XML that is the serialization of an RDF graph expressing that the author of Moby Dick is Herman Melville.
+Example: character sequence in Turtle that is the serialization of an RDF graph expressing that the author of Moby Dick is Herman Melville.
+Example: SPARQL query String for the names of philosphers."^^xsd:string)
+SubClassOf(kr:KnowledgeManifestation kr:KnowledgeResource)
+SubClassOf(kr:KnowledgeManifestation ObjectSomeValuesFrom(kr:manifests kr:KnowledgeExpression))
+SubClassOf(kr:KnowledgeManifestation ObjectSomeValuesFrom(kr:usesSerialization kr:KnowledgeSerialization))
+
+# Class: kr:KnowledgeRepresentationAndReasoningLanguage (knowledge representation and reasoning language)
+
+AnnotationAssertion(rdfs:label kr:KnowledgeRepresentationAndReasoningLanguage "knowledge representation and reasoning language")
+AnnotationAssertion(skos:definition kr:KnowledgeRepresentationAndReasoningLanguage "OMS language, query language, or result language"^^xsd:string)
+SubClassOf(kr:KnowledgeRepresentationAndReasoningLanguage dol:Language)
+
+# Class: kr:KnowledgeResource (knowledge resource)
+
+AnnotationAssertion(rdfs:label kr:KnowledgeResource "knowledge resource")
+AnnotationAssertion(skos:definition kr:KnowledgeResource "a knowledge source that is an immutable entity"^^xsd:string)
+AnnotationAssertion(skos:note kr:KnowledgeResource "May be identified to be at one of the following levels of abstraction; knowledge asset, knowledge expression, knowledge manifestation, or knowledge item.")
+EquivalentClasses(kr:KnowledgeResource ObjectIntersectionOf(kr:ImmutableEntity kr:KnowledgeSource))
+DisjointUnion(kr:KnowledgeResource kr:KnowledgeAsset kr:KnowledgeExpression kr:KnowledgeItem kr:KnowledgeManifestation)
+
+# Class: kr:KnowledgeSerialization (knowledge serialization)
+
+AnnotationAssertion(rdfs:label kr:KnowledgeSerialization "knowledge serialization")
+AnnotationAssertion(skos:definition kr:KnowledgeSerialization "system of converting an expression into an character sequence."^^xsd:string)
+SubClassOf(kr:KnowledgeSerialization kr:Serialization)
+SubClassOf(kr:KnowledgeSerialization ObjectSomeValuesFrom(kr:isSerializationOf kr:KnowledgeRepresentationAndReasoningLanguage))
+
+# Class: kr:KnowledgeSource (knowledge source)
+
+AnnotationAssertion(rdfs:label kr:KnowledgeSource "knowledge source")
+AnnotationAssertion(skos:definition kr:KnowledgeSource "a source of machine-readable information that has (possibly ambiguous) semantics")
+AnnotationAssertion(skos:example kr:KnowledgeSource "a database with a mapping to an ontology")
+AnnotationAssertion(skos:example kr:KnowledgeSource "a stateful representation of a patient's history with OWL snapshots")
+AnnotationAssertion(skos:example kr:KnowledgeSource "a stream of RDF graphs providing data from biomedical devices")
+AnnotationAssertion(skos:scopeNote kr:KnowledgeSource "May be either mutable or immutable (unlike DOL OMSs, which are all immutable).")
+AnnotationAssertion(skos:scopeNote kr:KnowledgeSource "OntoIOp sensitive"^^xsd:string)
+SubClassOf(kr:KnowledgeSource kr:Source)
+
+# Class: kr:LanguageEnvironment (language environment)
+
+AnnotationAssertion(rdfs:label kr:LanguageEnvironment "language environment")
+AnnotationAssertion(skos:definition kr:LanguageEnvironment "environment whose members are languages")
+SubClassOf(kr:LanguageEnvironment kr:Environment)
+SubClassOf(kr:LanguageEnvironment ObjectAllValuesFrom(kr:hasEnvironmentMember kr:KnowledgeRepresentationAndReasoningLanguage))
+
+# Class: kr:Mutable (mutable)
+
+AnnotationAssertion(rdfs:label kr:Mutable "mutable")
+SubClassOf(kr:Mutable ObjectSomeValuesFrom(kr:hasSnapshot kr:ImmutableEntity))
+
+# Class: kr:MutableKnowledgeBase (mutable knowledge base)
+
+AnnotationAssertion(rdfs:label kr:MutableKnowledgeBase "mutable knowledge base")
+EquivalentClasses(kr:MutableKnowledgeBase ObjectIntersectionOf(kr:MutableSource ObjectSomeValuesFrom(kr:hasSnapshot kr:ImmutableKnowledgeBase)))
+SubClassOf(kr:MutableKnowledgeBase kr:KnowledgeBase)
+
+# Class: kr:MutableSource (mutable source)
+
+AnnotationAssertion(rdfs:label kr:MutableSource "mutable source")
+AnnotationAssertion(skos:definition kr:MutableSource "container that has, at any point in time, an explicit state that is fully represented by a knowledge resource. The language, structure and content of a mutable knowledge source may change over time, but the abstraction level is unchanging.")
+AnnotationAssertion(skos:example kr:MutableSource "the snapshot of a patient's current condition (with timestamp)")
+AnnotationAssertion(skos:scopeNote kr:MutableSource "API4KP does not commit to any particular topology of time. E.g. Linear, branching and braided time indices are possible.")
+EquivalentClasses(kr:MutableSource ObjectIntersectionOf(kr:Mutable kr:Source ObjectSomeValuesFrom(kr:hasSnapshot ObjectIntersectionOf(kr:ImmutableEntity kr:Source))))
+
+# Class: kr:NativeKnowledgeExpression (native knowledge expression)
+
+AnnotationAssertion(rdfs:label kr:NativeKnowledgeExpression "native knowledge expression")
+AnnotationAssertion(skos:definition kr:NativeKnowledgeExpression "sequence of expressions (like non-logical symbols, sentences and structuring elements) from a given KR language.")
+EquivalentClasses(kr:NativeKnowledgeExpression ObjectIntersectionOf(kr:KnowledgeExpression kr:NativeKnowledgeResource))
+SubClassOf(kr:NativeKnowledgeExpression ObjectExactCardinality(1 kr:usesLanguage kr:KnowledgeRepresentationAndReasoningLanguage))
+
+# Class: kr:NativeKnowledgeResource (native knowledge resource)
+
+AnnotationAssertion(rdfs:label kr:NativeKnowledgeResource "native knowledge resource")
+SubClassOf(kr:NativeKnowledgeResource kr:KnowledgeResource)
+
+# Class: kr:NonemptyEnvironment (nonempty environment)
+
+AnnotationAssertion(rdfs:label kr:NonemptyEnvironment "nonempty environment")
+SubClassOf(kr:NonemptyEnvironment kr:Environment)
+SubClassOf(kr:NonemptyEnvironment ObjectSomeValuesFrom(kr:hasEnvironmentMapping dol:Mapping))
+
+# Class: kr:PreservingEnvironment (preserving environment)
+
+AnnotationAssertion(rdfs:label kr:PreservingEnvironment "preserving environment")
+AnnotationAssertion(skos:definition kr:PreservingEnvironment "environment where every mapping preserves a specified property")
+SubClassOf(kr:PreservingEnvironment kr:Environment)
+
+# Class: kr:QueryLanguage (query language)
+
+AnnotationAssertion(rdfs:label kr:QueryLanguage "query language")
+AnnotationAssertion(skos:definition kr:QueryLanguage "language consisting of a set of query expressions, one or more serializations of these Expressions, and one or more Entailment Regimes (http://www.w3.org/TR/sparql11-entailment/#entRegimeParts) defined in terms of formal, logic-based semantics. "^^xsd:string)
+AnnotationAssertion(skos:scopeNote kr:QueryLanguage "Note: the set of expressions of a query language may be defined by a grammar, or it may be defined in terms of expressions of an OMS language together with a sequence of non-logical constants that will be treated as the distinguished query variables. Additional features of a query language are perfomatives used to indicate how query results should be returned."^^xsd:string)
+SubClassOf(kr:QueryLanguage kr:KnowledgeRepresentationAndReasoningLanguage)
+
+# Class: kr:Serialization (serialization)
+
+AnnotationAssertion(rdfs:isDefinedBy kr:Serialization "http://www.omg.org/spec/OntoIOp/Terminology")
+AnnotationAssertion(rdfs:label kr:Serialization "serialization")
+AnnotationAssertion(skos:definition kr:Serialization "system for transforming from an expression to a character sequence"^^xsd:string)
+AnnotationAssertion(skos:scopeNote kr:Serialization "OntoIOp sensitive"^^xsd:string)
+SubClassOf(kr:Serialization ObjectSomeValuesFrom(kr:isSerializationOf dol:Language))
+
+# Class: kr:Source (source)
+
+AnnotationAssertion(rdfs:label kr:Source "source")
+
+# Class: kr:StructuredKnowledgeExpression (structured knowledge expression)
+
+AnnotationAssertion(rdfs:label kr:StructuredKnowledgeExpression "structured knowledge expression")
+AnnotationAssertion(skos:definition kr:StructuredKnowledgeExpression "collection of knowledge expressions (either structured or basic), which are not necessarily in the same language and may themselves have structure.")
+AnnotationAssertion(skos:example kr:StructuredKnowledgeExpression "KE2: a heterogeneous collection of streaming data and RDF graphs, together with static OWL ontologies and CL texts, and ECA rules describing actions of a CDS")
+AnnotationAssertion(skos:example kr:StructuredKnowledgeExpression "KE3: the OWL 2 DL ontology series KA1, viewed as a collection of expressions rather than an equivalence class")
+EquivalentClasses(kr:StructuredKnowledgeExpression ObjectIntersectionOf(kr:KnowledgeExpression ObjectExactCardinality(1 kr:hasStructureType)))
+SubClassOf(kr:StructuredKnowledgeExpression ObjectAllValuesFrom(kr:hasStructuralComponent kr:KnowledgeExpression))
+SubClassOf(kr:StructuredKnowledgeExpression ObjectExactCardinality(1 kr:hasStructureType))
+
+# Class: dol:Expression (expression)
+
+SubClassOf(dol:Expression kr:KnowledgeExpression)
+
+# Class: dol:NativeOMS (native OMS)
+
+SubClassOf(dol:NativeOMS kr:NativeKnowledgeExpression)
+
+# Class: dol:OMSLanguage (OMS language)
+
+SubClassOf(dol:OMSLanguage kr:KnowledgeRepresentationAndReasoningLanguage)
+
+# Class: dol:OMSSerialization (dol:OMSSerialization)
+
+SubClassOf(dol:OMSSerialization kr:KnowledgeSerialization)
+
+# Class: dol:Query (query)
+
+EquivalentClasses(dol:Query dol:Sentence)
+EquivalentClasses(dol:Query ObjectIntersectionOf(ObjectSomeValuesFrom(kr:usesLanguage kr:QueryLanguage) ObjectAllValuesFrom(kr:usesLanguage kr:QueryLanguage)))
+
+
+SubObjectPropertyOf(ObjectPropertyChain(kr:hasEnvironmentMapping dol:mapsFrom) kr:hasEnvironmentMember)
+SubObjectPropertyOf(ObjectPropertyChain(kr:hasEnvironmentMapping dol:mapsTo) kr:hasEnvironmentMember)
+SubObjectPropertyOf(ObjectPropertyChain(kr:isEnvironmentMappingOf kr:allPreserve) kr:preserves)
+SubObjectPropertyOf(ObjectPropertyChain(kr:parses kr:usesSerialization kr:isSerializationOf) kr:usesLanguage)
+)
