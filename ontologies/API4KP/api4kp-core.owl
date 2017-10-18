@@ -648,7 +648,6 @@ EquivalentClasses(:KnowledgeAssetSurrogate ObjectIntersectionOf(:KnowledgeArtifa
 
 AnnotationAssertion(rdfs:label :KnowledgeEndeavour "Knowledge Endeavour")
 AnnotationAssertion(skos:definition :KnowledgeEndeavour "Endurant that embeds, directly or indirectly, some Piece of Knowledge")
-DisjointUnion(:KnowledgeEndeavour :IntellectualWork :KnowledgeArtifact :KnowledgeExpression)
 
 # Class: :KnowledgeExpression (Knowledge Expression)
 
@@ -870,6 +869,7 @@ SubClassOf(:WorkOfKnowledge ObjectSomeValuesFrom(:has-subject :Piece_of_Knowledg
 SubClassOf(:WorkOfKnowledge ObjectSomeValuesFrom(:product-of :Knowledge_Activity))
 
 
+DisjointClasses(:IntellectualWork :KnowledgeArtifact :KnowledgeExpression)
 SubObjectPropertyOf(ObjectPropertyChain(:conceptualizes :serialized-into) :realized-by)
 SubObjectPropertyOf(ObjectPropertyChain(:executes :instantiation-of) :runs)
 SubObjectPropertyOf(ObjectPropertyChain(:executes :sustains) :hosts)
