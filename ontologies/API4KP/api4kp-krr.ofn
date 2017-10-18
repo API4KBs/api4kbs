@@ -14,11 +14,9 @@ Prefix(DOL-terms:=<http://www.omg.org/spec/DOL/DOL-terms/>)
 
 
 Ontology(<http://www.omg.org/spec/API4KP/KR/>
-<http://www.omg.org/spec/API4KP/20170201/KR/>
+<http://www.omg.org/spec/API4KP/2017/12/KR/>
 Import(<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
 Import(<http://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/>)
-Import(<http://www.omg.org/spec/API4KP/20170501/FRBR-KR>)
-Import(<http://www.omg.org/spec/DOL/DOL-terms/>)
 Annotation(<http://purl.org/dc/terms/license> "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
 Annotation(sm:contentLanguage "http://www.omg.org/spec/ODM/"^^xsd:anyURI)
 Annotation(sm:contentLanguage "http://www.w3.org/standards/techs/owl#w3c_all"^^xsd:anyURI)
@@ -32,6 +30,15 @@ Annotation(sm:fileAbstract "This ontology covers the primary 'knowledge represen
 Annotation(sm:filename "api4kp-kr.rdf"^^xsd:string)
 Annotation(rdfs:label "API4KP 'Knowledge Representation and Reasoning' Terminology Ontology")
 
+Declaration(Class(frkr:CompositeKnowledgeResource))
+Declaration(Class(frkr:ConcreteExpression))
+Declaration(Class(frkr:ConstructedExpression))
+Declaration(Class(frkr:KnowledgeArtifact))
+Declaration(Class(frkr:KnowledgeRepresentationAndReasoningLanguage))
+Declaration(Class(frkr:KnowledgeResource))
+Declaration(Class(frkr:MachineReadableLanguage))
+Declaration(Class(frkr:Serialization))
+Declaration(Class(frkr:WorkOfKnowledge))
 Declaration(Class(krr:BasicEnvironment))
 Declaration(Class(krr:BasicMachinableKnowledgeResource))
 Declaration(Class(krr:CategoricalEnvironment))
@@ -64,7 +71,12 @@ Declaration(Class(krr:Serialization))
 Declaration(Class(krr:SerializedMachinableKnowledgeExpression))
 Declaration(Class(krr:Source))
 Declaration(Class(krr:StructuredMachinableKnowledgeResource))
-Declaration(Class(DOL-terms:OMSSerialization))
+Declaration(Class(DOL-terms:Language))
+Declaration(Class(DOL-terms:Mapping))
+Declaration(ObjectProperty(frkr:serialization-of))
+Declaration(ObjectProperty(frkr:serialized-into))
+Declaration(ObjectProperty(frkr:supports-serialization))
+Declaration(ObjectProperty(frkr:uses-concrete-syntax))
 Declaration(ObjectProperty(krr:accordingTo))
 Declaration(ObjectProperty(krr:allPreserve))
 Declaration(ObjectProperty(krr:conceptualizes))
@@ -89,7 +101,21 @@ Declaration(ObjectProperty(krr:preserves))
 Declaration(ObjectProperty(krr:prototypes))
 Declaration(ObjectProperty(krr:reproduces))
 Declaration(ObjectProperty(krr:usesSerialization))
+Declaration(ObjectProperty(DOL-terms:usesLanguage))
+Declaration(AnnotationProperty(<http://purl.org/dc/terms/license>))
 Declaration(AnnotationProperty(<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled>))
+Declaration(AnnotationProperty(sm:contentLanguage))
+Declaration(AnnotationProperty(sm:copyright))
+Declaration(AnnotationProperty(sm:fileAbbreviation))
+Declaration(AnnotationProperty(sm:fileAbstract))
+Declaration(AnnotationProperty(sm:filename))
+Declaration(AnnotationProperty(sm:specificationURL))
+Declaration(AnnotationProperty(skos:altLabel))
+Declaration(AnnotationProperty(skos:definition))
+Declaration(AnnotationProperty(skos:editorialNote))
+Declaration(AnnotationProperty(skos:example))
+Declaration(AnnotationProperty(skos:note))
+Declaration(AnnotationProperty(skos:scopeNote))
 
 ############################
 #   Object Properties
@@ -110,7 +136,6 @@ ObjectPropertyDomain(krr:allPreserve krr:PreservingEnvironment)
 
 AnnotationAssertion(rdfs:label krr:conceptualizes "conceptualizes")
 AnnotationAssertion(skos:definition krr:conceptualizes "inverse of 'expresses'"^^xsd:string)
-SubObjectPropertyOf(krr:conceptualizes frbr:realization)
 SubObjectPropertyOf(krr:conceptualizes krr:lifts)
 InverseObjectProperties(krr:conceptualizes krr:expresses)
 
@@ -119,7 +144,6 @@ InverseObjectProperties(krr:conceptualizes krr:expresses)
 AnnotationAssertion(rdfs:label krr:expresses "expresses")
 AnnotationAssertion(skos:altLabel krr:expresses "is expression of")
 AnnotationAssertion(skos:definition krr:expresses "piece of knowledge that would be obtained by conceptualizing the machine readable knowledge resource."^^xsd:string)
-SubObjectPropertyOf(krr:expresses frbr:realizationOf)
 SubObjectPropertyOf(krr:expresses krr:lowers)
 ObjectPropertyDomain(krr:expresses krr:MachinableKnowledgeResource)
 ObjectPropertyRange(krr:expresses krr:PieceOfKnowledge)
@@ -192,7 +216,6 @@ ObjectPropertyRange(krr:isSubenvironmentOf krr:Environment)
 AnnotationAssertion(rdfs:label krr:lifts "lifts")
 AnnotationAssertion(skos:definition krr:lifts "relation between two knowledge endeavors where the first is an abstraction of the second by one level (e.g. if the first is an encoding, the second is an item, etc.).  Lifts relations are limited to one of the following: prototypes, decodes, parses, conceptualizes"^^xsd:string)
 AnnotationAssertion(skos:note krr:lifts "OWL does not let us declare this to be functional, while keeping the property chains that link Events and Operations.")
-SubObjectPropertyOf(krr:lifts frbr:relatedEndeavour)
 InverseObjectProperties(krr:lifts krr:lowers)
 ObjectPropertyDomain(krr:lifts krr:KnowledgeEndeavor)
 ObjectPropertyRange(krr:lifts krr:KnowledgeEndeavor)
@@ -205,7 +228,6 @@ AnnotationAssertion(skos:note krr:lowers "
       <rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#FunctionalProperty\"/>
     ")
 AnnotationAssertion(skos:note krr:lowers "OWL does not let us declare this to be functional, while keeping the property chains that link Events and Operations.")
-SubObjectPropertyOf(krr:lowers frbr:relatedEndeavour)
 
 # Object Property: krr:manifests (manifests)
 
@@ -233,7 +255,6 @@ ObjectPropertyDomain(krr:preserves DOL-terms:Mapping)
 
 AnnotationAssertion(rdfs:label krr:prototypes "prototypes")
 AnnotationAssertion(skos:definition krr:prototypes "inverse of 'reproduces'"^^xsd:string)
-SubObjectPropertyOf(krr:prototypes froo:R6i_is_carried_by)
 SubObjectPropertyOf(krr:prototypes krr:lifts)
 InverseObjectProperties(krr:prototypes krr:reproduces)
 
@@ -241,7 +262,6 @@ InverseObjectProperties(krr:prototypes krr:reproduces)
 
 AnnotationAssertion(rdfs:label krr:reproduces "reproduces")
 AnnotationAssertion(skos:definition krr:reproduces "knowledge encoding that would be obtained from instreaming the machine readable knowledge artifact"^^xsd:string)
-SubObjectPropertyOf(krr:reproduces froo:R6_carries)
 SubObjectPropertyOf(krr:reproduces krr:lowers)
 ObjectPropertyDomain(krr:reproduces krr:MachinableKnowledgeArtifact)
 ObjectPropertyRange(krr:reproduces krr:SerializedMachinableKnowledgeExpression)
@@ -260,11 +280,11 @@ ObjectPropertyRange(krr:usesSerialization krr:Serialization)
 #   Classes
 ############################
 
-# Class: frkr:KnowledgeRepresentationAndReasoningLanguage (KRR Language)
+# Class: frkr:KnowledgeRepresentationAndReasoningLanguage (frkr:KnowledgeRepresentationAndReasoningLanguage)
 
 EquivalentClasses(frkr:KnowledgeRepresentationAndReasoningLanguage krr:KnowledgeRepresentationAndReasoningLanguage)
 
-# Class: frkr:Serialization (concrete syntax)
+# Class: frkr:Serialization (frkr:Serialization)
 
 EquivalentClasses(frkr:Serialization krr:Serialization)
 
@@ -356,7 +376,6 @@ AnnotationAssertion(rdfs:label krr:KnowledgeEndeavor "knowledge endeavor")
 AnnotationAssertion(skos:definition krr:KnowledgeEndeavor "a knowledge source that is an immutable entity"^^xsd:string)
 AnnotationAssertion(skos:note krr:KnowledgeEndeavor "May be identified to be at one of the following levels of abstraction; piece of knowledge, machine readable knowledge resource, knowledge manifestation, or machine readable knowledge artifact.")
 EquivalentClasses(krr:KnowledgeEndeavor ObjectIntersectionOf(krr:ImmutableEntity krr:KnowledgeSource))
-SubClassOf(krr:KnowledgeEndeavor frbr:Endeavour)
 DisjointUnion(krr:KnowledgeEndeavor krr:MachinableKnowledgeArtifact krr:MachinableKnowledgeResource krr:PieceOfKnowledge krr:SerializedMachinableKnowledgeExpression)
 
 # Class: krr:KnowledgeEnvironment (knowledge environment)
@@ -405,7 +424,6 @@ SubClassOf(krr:LanguageEnvironment ObjectAllValuesFrom(krr:hasEnvironmentMember 
 AnnotationAssertion(rdfs:label krr:MachinableKnowledgeArtifact "machine readable knowledge artifact")
 AnnotationAssertion(skos:definition krr:MachinableKnowledgeArtifact "physical instance of a knowledge encoding, e.g. snapshot of a file on a hard drive, a Java String in memory."^^xsd:string)
 AnnotationAssertion(skos:example krr:MachinableKnowledgeArtifact "Example: my copy in my Download folder of the encoding in UTF-8 of the serialization in Manchester syntax of an OWL ontology. "^^xsd:string)
-SubClassOf(krr:MachinableKnowledgeArtifact froo:F53_Material_Copy)
 SubClassOf(krr:MachinableKnowledgeArtifact frkr:KnowledgeArtifact)
 SubClassOf(krr:MachinableKnowledgeArtifact krr:KnowledgeEndeavor)
 
@@ -531,29 +549,6 @@ SubClassOf(krr:StructuredMachinableKnowledgeResource frkr:CompositeKnowledgeReso
 SubClassOf(krr:StructuredMachinableKnowledgeResource ObjectAllValuesFrom(krr:hasStructuralComponent krr:MachinableKnowledgeResource))
 SubClassOf(krr:StructuredMachinableKnowledgeResource ObjectExactCardinality(1 krr:hasStructureType))
 
-# Class: DOL-terms:Expression (expression)
 
-SubClassOf(DOL-terms:Expression krr:SerializedMachinableKnowledgeExpression)
-
-# Class: DOL-terms:NativeOMS (native OMS)
-
-SubClassOf(DOL-terms:NativeOMS krr:NativeMachinableKnowledgeResource)
-
-# Class: DOL-terms:OMSLanguage (OMS language)
-
-SubClassOf(DOL-terms:OMSLanguage krr:KnowledgeRepresentationAndReasoningLanguage)
-
-# Class: DOL-terms:OMSSerialization (DOL-terms:OMSSerialization)
-
-SubClassOf(DOL-terms:OMSSerialization krr:KnowledgeSerialization)
-
-# Class: DOL-terms:Query (query)
-
-EquivalentClasses(DOL-terms:Query ObjectIntersectionOf(ObjectSomeValuesFrom(DOL-terms:usesLanguage krr:QueryLanguage) ObjectAllValuesFrom(DOL-terms:usesLanguage krr:QueryLanguage)))
-
-
-SubObjectPropertyOf(ObjectPropertyChain(krr:hasEnvironmentMapping DOL-terms:mapsFrom) krr:hasEnvironmentMember)
-SubObjectPropertyOf(ObjectPropertyChain(krr:hasEnvironmentMapping DOL-terms:mapsTo) krr:hasEnvironmentMember)
 SubObjectPropertyOf(ObjectPropertyChain(krr:isEnvironmentMappingOf krr:allPreserve) krr:preserves)
-DLSafeRule(Annotation(<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean) Annotation(rdfs:comment ""^^xsd:string) Annotation(rdfs:label "UsesLanguage"^^xsd:string) Body(ObjectPropertyAtom(krr:parses Variable(krr:x) Variable(krr:y)) ObjectPropertyAtom(krr:usesSerialization Variable(krr:y) Variable(krr:z)) ObjectPropertyAtom(krr:isSerializationOf Variable(krr:z) Variable(krr:l)))Head(ObjectPropertyAtom(DOL-terms:usesLanguage Variable(krr:x) Variable(krr:l))))
 )

@@ -100,4 +100,29 @@ EquivalentClasses(know:FormalExpression ObjectIntersectionOf(know:ConstructedExp
 SubClassOf(know:Expression ObjectSomeValuesFrom(dol:usesLanguage dol:Language))
 
 
+
+# Class: DOL-terms:Expression (expression)
+
+SubClassOf(DOL-terms:Expression krr:SerializedMachinableKnowledgeExpression)
+
+# Class: DOL-terms:NativeOMS (native OMS)
+
+SubClassOf(DOL-terms:NativeOMS krr:NativeMachinableKnowledgeResource)
+
+# Class: DOL-terms:OMSLanguage (OMS language)
+
+SubClassOf(DOL-terms:OMSLanguage krr:KnowledgeRepresentationAndReasoningLanguage)
+
+# Class: DOL-terms:OMSSerialization (DOL-terms:OMSSerialization)
+
+SubClassOf(DOL-terms:OMSSerialization krr:KnowledgeSerialization)
+
+# Class: DOL-terms:Query (query)
+
+EquivalentClasses(DOL-terms:Query ObjectIntersectionOf(ObjectSomeValuesFrom(DOL-terms:usesLanguage krr:QueryLanguage) ObjectAllValuesFrom(DOL-terms:usesLanguage krr:QueryLanguage)))
+
+
+SubObjectPropertyOf(ObjectPropertyChain(krr:hasEnvironmentMapping DOL-terms:mapsFrom) krr:hasEnvironmentMember)
+SubObjectPropertyOf(ObjectPropertyChain(krr:hasEnvironmentMapping DOL-terms:mapsTo) krr:hasEnvironmentMember)
+
 )
