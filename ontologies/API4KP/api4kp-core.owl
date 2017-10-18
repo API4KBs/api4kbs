@@ -27,14 +27,11 @@ Declaration(Class(:AtomicConcept))
 Declaration(Class(:CompositeKnowledgeResource))
 Declaration(Class(:ComputableLanguage))
 Declaration(Class(:ConcreteExpression))
-Declaration(Class(:ConstructedExpression))
 Declaration(Class(:ConstructedLanguage))
 Declaration(Class(:ControlledNaturalLanguage))
 Declaration(Class(:ExecutionEnvironment))
-Declaration(Class(:FormalExpression))
 Declaration(Class(:FormalGrammar))
 Declaration(Class(:FormalLanguage))
-Declaration(Class(:InformationBearer))
 Declaration(Class(:InformationProcessingActivity))
 Declaration(Class(:IntellectualWork))
 Declaration(Class(:Knowledge))
@@ -49,9 +46,7 @@ Declaration(Class(:KnowledgeRepresentationAndReasoningLanguage))
 Declaration(Class(:KnowledgeResource))
 Declaration(Class(:KnowledgeResourceDescription))
 Declaration(Class(:Knowledge_Activity))
-Declaration(Class(:KnowledgeableAgent))
 Declaration(Class(:Language))
-Declaration(Class(:LiterateAgent))
 Declaration(Class(:MachineExecutableLanguage))
 Declaration(Class(:MachineReadableLanguage))
 Declaration(Class(:NaturalLanguage))
@@ -64,13 +59,10 @@ Declaration(Class(:SelfContainedKnowledgeArtifact))
 Declaration(Class(:Serialization))
 Declaration(Class(:Server))
 Declaration(Class(:Software))
-Declaration(Class(:Software_Agent))
 Declaration(Class(:Software_Execution))
 Declaration(Class(:StructuredKnowledgeResource))
 Declaration(Class(:Syntax))
 Declaration(Class(:WorkOfKnowledge))
-Declaration(ObjectProperty(:assimilated-by))
-Declaration(ObjectProperty(:assimilates))
 Declaration(ObjectProperty(:carried-by))
 Declaration(ObjectProperty(:carries))
 Declaration(ObjectProperty(:conceptualizes))
@@ -88,6 +80,7 @@ Declaration(ObjectProperty(:has-product))
 Declaration(ObjectProperty(:has-subject))
 Declaration(ObjectProperty(:hosts))
 Declaration(ObjectProperty(:instantiation-of))
+Declaration(ObjectProperty(:internally-represents))
 Declaration(ObjectProperty(:involves))
 Declaration(ObjectProperty(:is-immediate-next-versioned-revision-of))
 Declaration(ObjectProperty(:is-later-versioned-revision-of))
@@ -130,21 +123,6 @@ Declaration(AnnotationProperty(skos:scopeNote))
 ############################
 #   Object Properties
 ############################
-
-# Object Property: :assimilated-by (assimilated by)
-
-AnnotationAssertion(rdfs:label :assimilated-by "assimilated by"@en)
-AnnotationAssertion(skos:definition :assimilated-by "The relationship between some intellectual work and an agent that is capable of in-taking it as it is delivered by means of some carrier, interpreting the language it is expressed in, and creating an internal representation of that information.")
-InverseObjectProperties(:assimilated-by :assimilates)
-ObjectPropertyDomain(:assimilated-by :IntellectualWork)
-ObjectPropertyRange(:assimilated-by :LiterateAgent)
-
-# Object Property: :assimilates (assimilates)
-
-AnnotationAssertion(rdfs:label :assimilates "assimilates"@en)
-AnnotationAssertion(skos:definition :assimilates "The relationship between a literate agent and the intellectual work the agent is capable of assimilating")
-ObjectPropertyDomain(:assimilates :LiterateAgent)
-ObjectPropertyRange(:assimilates :IntellectualWork)
 
 # Object Property: :carried-by (carried by)
 
@@ -275,6 +253,14 @@ AnnotationAssertion(rdfs:label :instantiation-of "instantiation of")
 ObjectPropertyDomain(:instantiation-of :Software_Execution)
 ObjectPropertyRange(:instantiation-of :Software)
 
+# Object Property: :internally-represents (has internal representation of)
+
+AnnotationAssertion(rdfs:label :internally-represents "has internal representation of")
+AnnotationAssertion(rdfs:label :internally-represents "internally represents"@en)
+AnnotationAssertion(skos:definition :internally-represents "A Deployed Software has an internal representation of a Piece of Knowledge (whose expression is carried by an Artifact) if and only if it has visited the AST resulting from the parsing of the expression extracted from the Artifact, and the resulting information is involved in some Activity that the software performs")
+ObjectPropertyDomain(:internally-represents :RunningSoftware)
+ObjectPropertyRange(:internally-represents :KnowledgeEndeavour)
+
 # Object Property: :involves (:involves)
 
 AnnotationAssertion(skos:definition :involves "The relationship between an Activity and a participant - Agent (acitive) or Resource (passive)")
@@ -376,7 +362,7 @@ ObjectPropertyRange(:realizes :WorkOfKnowledge)
 # Object Property: :refines (:refines)
 
 AnnotationAssertion(rdfs:comment :refines "The relationship between two Syntaxes S1 and S2, such that the set of rules and constraints of S1 is no less permissive than S2, i.e. a sentence that is valid according to S2 must be valid according to S1.")
-AnnotationAssertion(rdfs:comment :refines "This relationships is used in several ways: 
+AnnotationAssertion(rdfs:comment :refines "This relationships is used in several ways:
 (i) to state that a concrete syntax externalizes an abstract one, allowing to create parse trees and defining how a parse tree reduces to an AST
 (ii) to define sub-languages that conform to certain profiles, based on semantic constraints on the abstract syntax
 (iii) to define specialized versions of a concrete syntax")
@@ -475,7 +461,7 @@ ObjectPropertyRange(:uses-language :Language)
 
 AnnotationAssertion(rdfs:comment :uses-notation "An expression that uses a Notation, automatically uses the Language which the notation formalizes")
 AnnotationAssertion(rdfs:label :uses-notation "uses notation")
-AnnotationAssertion(skos:definition :uses-notation "An expression uses a notation if the expression conforms to the rules defined by the notation. 
+AnnotationAssertion(skos:definition :uses-notation "An expression uses a notation if the expression conforms to the rules defined by the notation.
 
 The relationship can be discovered, or validated, by means of operations that make use of some Formal Grammar that realizes the Notation")
 ObjectPropertyDomain(:uses-notation :KnowledgeExpression)
@@ -493,7 +479,7 @@ ObjectPropertyRange(:uses-profile :Profile)
 
 AnnotationAssertion(rdfs:label :uses-syntax "uses syntax")
 ObjectPropertyDomain(:uses-syntax :KnowledgeExpression)
-ObjectPropertyRange(:uses-syntax :Profile)
+ObjectPropertyRange(:uses-syntax :AbstractSyntax)
 
 
 
@@ -511,7 +497,7 @@ AnnotationAssertion(rdfs:seeAlso :AbstractExpression :Serialization)
 AnnotationAssertion(skos:definition :AbstractExpression "The class of equivalence of Concrete Expressions of some Knowledge content, in some Language, across the various serializations supported by that language.")
 SubClassOf(:AbstractExpression :KnowledgeExpression)
 SubClassOf(:AbstractExpression ObjectSomeValuesFrom(:expresses ObjectSomeValuesFrom(:has-subject :Piece_of_Knowledge)))
-SubClassOf(:AbstractExpression ObjectAllValuesFrom(:serialized-into :ConcreteExpression))
+SubClassOf(:AbstractExpression ObjectSomeValuesFrom(:serialized-into :ConcreteExpression))
 DisjointClasses(:AbstractExpression :ConcreteExpression)
 
 # Class: :AbstractSyntax (Abstract Syntax)
@@ -529,7 +515,6 @@ AnnotationAssertion(rdfs:label :AbstractSyntaxTree "AST")
 AnnotationAssertion(rdfs:label :AbstractSyntaxTree "Abstract Syntax Tree")
 AnnotationAssertion(skos:definition :AbstractSyntaxTree "The representation of the internal structure of an Abstract Expression, according to some Abstract Syntax, obtained from the parsing of a Concrete Expression of which that Abstract Expression is a concrete representation")
 SubClassOf(:AbstractSyntaxTree :ConcreteExpression)
-SubClassOf(:AbstractSyntaxTree :FormalExpression)
 SubClassOf(:AbstractSyntaxTree ObjectSomeValuesFrom(:formalizes :AbstractExpression))
 
 # Class: :Activity (:Activity)
@@ -575,13 +560,6 @@ SubClassOf(:ConcreteExpression :KnowledgeExpression)
 SubClassOf(:ConcreteExpression ObjectSomeValuesFrom(:serialization-of :AbstractExpression))
 SubClassOf(:ConcreteExpression ObjectSomeValuesFrom(:uses-concrete-syntax :Serialization))
 
-# Class: :ConstructedExpression (Constructed Expression)
-
-AnnotationAssertion(rdfs:label :ConstructedExpression "Constructed Expression"@en)
-AnnotationAssertion(skos:definition :ConstructedExpression "Expression that uses (a Notation that formalizes) a Constructed Language")
-EquivalentClasses(:ConstructedExpression ObjectIntersectionOf(:KnowledgeExpression ObjectSomeValuesFrom(:uses-language :ConstructedLanguage)))
-SubClassOf(:ConstructedExpression :KnowledgeExpression)
-
 # Class: :ConstructedLanguage (Constructed Language)
 
 AnnotationAssertion(rdfs:label :ConstructedLanguage "Constructed Language")
@@ -601,13 +579,6 @@ AnnotationAssertion(skos:definition :ExecutionEnvironment "General concept that 
 SubClassOf(:ExecutionEnvironment ObjectSomeValuesFrom(:hosts :RunningSoftware))
 SubClassOf(:ExecutionEnvironment ObjectSomeValuesFrom(:runs :Software))
 
-# Class: :FormalExpression (Formal Expression)
-
-AnnotationAssertion(rdfs:label :FormalExpression "Formal Expression"@en)
-AnnotationAssertion(skos:definition :FormalExpression "Expression that uses a Formal Language")
-EquivalentClasses(:FormalExpression ObjectIntersectionOf(:ConstructedExpression ObjectSomeValuesFrom(:uses-language :FormalLanguage)))
-SubClassOf(:FormalExpression :ConstructedExpression)
-
 # Class: :FormalGrammar (Formal Grammar)
 
 AnnotationAssertion(dc:creator :FormalGrammar "davide"^^xsd:string)
@@ -615,9 +586,8 @@ AnnotationAssertion(dc:date :FormalGrammar "2017-05-19T03:30:48Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:comment :FormalGrammar "The concrete, formalized expression of the set of rules and constraints that specifies (intensionally) the valid sentences of a language")
 AnnotationAssertion(rdfs:label :FormalGrammar "Formal Grammar"@en)
 SubClassOf(:FormalGrammar :ConcreteExpression)
-SubClassOf(:FormalGrammar :FormalExpression)
 SubClassOf(:FormalGrammar ObjectSomeValuesFrom(:serialization-of :Syntax))
-SubClassOf(:FormalGrammar ObjectAllValuesFrom(:serialization-of :Syntax))
+SubClassOf(:FormalGrammar ObjectSomeValuesFrom(:uses-language :FormalLanguage))
 
 # Class: :FormalLanguage (Formal Language)
 
@@ -637,7 +607,6 @@ AnnotationAssertion(rdfs:comment :IntellectualWork "Semiotically, an Intellectua
 AnnotationAssertion(rdfs:label :IntellectualWork "Intellectual Work"@en)
 AnnotationAssertion(skos:definition :IntellectualWork "The conceptual outcome of an intellectual creative activity. It has as a subject, and thus is about, some kind of Thing (e.g. idea, person, place, etc..).")
 SubClassOf(:IntellectualWork :KnowledgeEndeavour)
-SubClassOf(:IntellectualWork ObjectSomeValuesFrom(:assimilated-by :LiterateAgent))
 
 # Class: :Knowledge (Knowledge)
 
@@ -651,6 +620,7 @@ AnnotationAssertion(rdfs:comment :KnowledgeArtifact "In FRBR, classes of artifac
 
 In OWL-DL, it is not possible to express at the same time the extensional definition (different subclasses of Knowledge Artifact) and its intensional counterpart (different individuals, instances of Manifestation), other than using punning. For this reason, the notion of Manifestation is not explicitly modelled")
 AnnotationAssertion(rdfs:label :KnowledgeArtifact "Knowledge Artifact"@en)
+AnnotationAssertion(rdfs:label :KnowledgeArtifact "Knowledge Carrier")
 AnnotationAssertion(skos:definition :KnowledgeArtifact "A digital or physical object that carries (copy of) one or more serialized Knowledge Resources.")
 EquivalentClasses(:KnowledgeArtifact ObjectSomeValuesFrom(:carries :ConcreteExpression))
 SubClassOf(:KnowledgeArtifact :KnowledgeEndeavour)
@@ -676,7 +646,6 @@ AnnotationAssertion(dc:date :KnowledgeExpression "2017-05-30T19:23:13Z"^^xsd:dat
 AnnotationAssertion(rdfs:comment :KnowledgeExpression "Expressions can be abstract or concrete, depending on their conformance to the constraints that specify either an abstract, as opposed to a concrete, syntax for the language used to express the Work")
 AnnotationAssertion(rdfs:label :KnowledgeExpression "Knowledge Expression"@en)
 AnnotationAssertion(skos:definition :KnowledgeExpression "The expression of a Work, constrained by an information encoding system such as the abstract syntax of a grammar, a schema or a (meta)model")
-EquivalentClasses(:KnowledgeExpression ObjectUnionOf(:AbstractExpression :ConcreteExpression))
 SubClassOf(:KnowledgeExpression :KnowledgeEndeavour)
 SubClassOf(:KnowledgeExpression ObjectSomeValuesFrom(:uses-language :Language))
 SubClassOf(:KnowledgeExpression ObjectSomeValuesFrom(:uses-notation ObjectIntersectionOf(:Notation ObjectSomeValuesFrom(:formalizes :Language))))
@@ -696,15 +665,17 @@ SubClassOf(:KnowledgeFragment ObjectSomeValuesFrom(:expresses ObjectSomeValuesFr
 # Class: :KnowledgePlatform (Knowledge Platform)
 
 AnnotationAssertion(rdfs:label :KnowledgePlatform "Knowledge Platform")
-EquivalentClasses(:KnowledgePlatform ObjectIntersectionOf(:ExecutionEnvironment ObjectSomeValuesFrom(:hosts ObjectIntersectionOf(:Server :Software_Agent ObjectSomeValuesFrom(:performs :Knowledge_Activity)))))
+EquivalentClasses(:KnowledgePlatform ObjectIntersectionOf(:ExecutionEnvironment ObjectSomeValuesFrom(:hosts ObjectIntersectionOf(:KnowledgePlatformModule ObjectSomeValuesFrom(:performs :Knowledge_Activity)))))
 SubClassOf(:KnowledgePlatform :ExecutionEnvironment)
 
 # Class: :KnowledgePlatformModule (Knowledge Platform Component)
 
 AnnotationAssertion(rdfs:label :KnowledgePlatformModule "Knowledge Platform Component")
 AnnotationAssertion(rdfs:label :KnowledgePlatformModule "Knowledge Platform Module")
+SubClassOf(:KnowledgePlatformModule :Agent)
 SubClassOf(:KnowledgePlatformModule :Server)
-SubClassOf(:KnowledgePlatformModule :Software_Agent)
+SubClassOf(:KnowledgePlatformModule ObjectSomeValuesFrom(:internally-represents :KnowledgeEndeavour))
+SubClassOf(:KnowledgePlatformModule ObjectSomeValuesFrom(:part-of :KnowledgePlatform))
 SubClassOf(:KnowledgePlatformModule ObjectSomeValuesFrom(:performs :Knowledge_Activity))
 
 # Class: :KnowledgeRepresentationAndReasoningLanguage (KRR Language)
@@ -743,15 +714,6 @@ AnnotationAssertion(skos:definition :Knowledge_Activity "Any Activity that invol
 EquivalentClasses(:Knowledge_Activity ObjectIntersectionOf(:Activity ObjectSomeValuesFrom(:involves :KnowledgeArtifact)))
 SubClassOf(:Knowledge_Activity :InformationProcessingActivity)
 
-# Class: :KnowledgeableAgent (Knowledgeable Agent)
-
-AnnotationAssertion(dc:creator :KnowledgeableAgent "davide"^^xsd:string)
-AnnotationAssertion(dc:date :KnowledgeableAgent "2017-05-18T22:28:30Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label :KnowledgeableAgent "Knowledgeable Agent"@en)
-AnnotationAssertion(skos:definition :KnowledgeableAgent "A literate agent that is able to assimilate works of knowledge")
-SubClassOf(:KnowledgeableAgent :LiterateAgent)
-SubClassOf(:KnowledgeableAgent ObjectSomeValuesFrom(:assimilates :WorkOfKnowledge))
-
 # Class: :Language (:Language)
 
 AnnotationAssertion(rdfs:comment :Language "Languages usually follow (loosely) some grammar, which specifies how to construct sentences by the combination of atomic tokens (e.g. words) from a common vocabulary.")
@@ -760,14 +722,6 @@ AnnotationAssertion(skos:definition :Language "The Knowledge of how to create an
 AnnotationAssertion(skos:example :Language "Contemporary Italian, as of 2017, as established by the Italian 'Accademia della Crusca'")
 AnnotationAssertion(skos:example :Language "The 2nd officially released version of the Ontology Web Language")
 SubClassOf(:Language :Piece_of_Knowledge)
-
-# Class: :LiterateAgent (Literate Agent)
-
-AnnotationAssertion(rdfs:comment :LiterateAgent "Agents include software agents and machines that have the ability to internally represent information")
-AnnotationAssertion(rdfs:label :LiterateAgent "Literate Agent"@en)
-AnnotationAssertion(skos:definition :LiterateAgent "An agent that is capable of assimilating an intellectual work, produced by another agent")
-SubClassOf(:LiterateAgent :Agent)
-SubClassOf(:LiterateAgent ObjectSomeValuesFrom(:assimilates :KnowledgeEndeavour))
 
 # Class: :MachineExecutableLanguage (Machine-Executable Language)
 
@@ -780,7 +734,7 @@ SubClassOf(:MachineExecutableLanguage :ComputableLanguage)
 
 AnnotationAssertion(rdfs:label :MachineReadableLanguage "Machine-Readable Language"@en)
 AnnotationAssertion(skos:definition :MachineReadableLanguage "Language such that Expressions that use it can be internally represented (i.e. parsed and interpreted) by a software at runtime")
-EquivalentClasses(:MachineReadableLanguage ObjectIntersectionOf(:ConstructedLanguage ObjectSomeValuesFrom(:assimilated-by ObjectIntersectionOf(:LiterateAgent :RunningSoftware))))
+EquivalentClasses(:MachineReadableLanguage ObjectIntersectionOf(:ConstructedLanguage ObjectSomeValuesFrom(ObjectInverseOf(:internally-represents) :RunningSoftware) ObjectSomeValuesFrom(ObjectInverseOf(:uses-language) :KnowledgeExpression)))
 
 # Class: :NaturalLanguage (Natural Language)
 
@@ -807,7 +761,7 @@ SubClassOf(:Notation ObjectSomeValuesFrom(:realized-by :FormalGrammar))
 AnnotationAssertion(rdfs:label :ParseTree "Concrete Syntax Tree")
 AnnotationAssertion(rdfs:label :ParseTree "Parse Tree")
 AnnotationAssertion(skos:definition :ParseTree "The representation, in terms of a tree, of the internal structure of a Concrete (Knowledge) Expression, according to some Concrete Syntax")
-SubClassOf(:ParseTree :FormalExpression)
+SubClassOf(:ParseTree :ConcreteExpression)
 SubClassOf(:ParseTree ObjectSomeValuesFrom(:formalizes :ConcreteExpression))
 
 # Class: :Piece_of_Knowledge (Piece of Knowledge)
@@ -825,12 +779,11 @@ AnnotationAssertion(skos:definition :Profile "A profile is a restricted abstract
 EquivalentClasses(:Profile ObjectIntersectionOf(:AbstractSyntax ObjectSomeValuesFrom(:profiles :AbstractSyntax)))
 SubClassOf(:Profile :AbstractSyntax)
 
-# Class: :RunningSoftware (Running Software)
+# Class: :RunningSoftware (Deployed Software)
 
-AnnotationAssertion(rdfs:label :RunningSoftware "Running Software")
-AnnotationAssertion(skos:definition :RunningSoftware "The collective state of a (virtual) machine registers, memory and other resources dedicated to the execution of some software, across the life cycle of that execution")
-AnnotationAssertion(skos:example :RunningSoftware "The instance of Protege (Software that was launched to review this ontology, until the application is closed")
-AnnotationAssertion(skos:note :RunningSoftware "A Running Software is the effect, and manifestation, of the Execution of a Software. As such, it has a life span that is tied to the temporal boundaries of that Execution")
+AnnotationAssertion(rdfs:label :RunningSoftware "Deployed Software")
+AnnotationAssertion(skos:definition :RunningSoftware "A packaged copy of a Software, which has been deployed (installed) on some Execution Environment")
+SubClassOf(:RunningSoftware :KnowledgeArtifact)
 SubClassOf(:RunningSoftware ObjectSomeValuesFrom(:deployment-of :Software))
 
 # Class: :SelfContainedKnowledgeArtifact (Self-Contained Knowledge Artifact)
@@ -861,14 +814,8 @@ AnnotationAssertion(dc:creator :Software "davide"^^xsd:string)
 AnnotationAssertion(dc:date :Software "2017-06-13T15:08:17Z"^^xsd:dateTime)
 AnnotationAssertion(skos:definition :Software "Concrete Expression, in an executable language, that specifies and/or directs the behaviour of a (virtual) machine")
 AnnotationAssertion(skos:note :Software "A Software is a \"Performance Plan\" for a (virtual) machine to execute")
-SubClassOf(:Software :ConstructedExpression)
-
-# Class: :Software_Agent (Software Agent)
-
-AnnotationAssertion(rdfs:label :Software_Agent "Software Agent")
-AnnotationAssertion(skos:definition :Software_Agent "Running Software that is interactive and/or reactive, autonomous, goal-oriented and persistent.")
-SubClassOf(:Software_Agent :Agent)
-SubClassOf(:Software_Agent :RunningSoftware)
+SubClassOf(:Software :ConcreteExpression)
+SubClassOf(:Software ObjectSomeValuesFrom(:uses-language :MachineExecutableLanguage))
 
 # Class: :Software_Execution (Software Execution)
 
@@ -895,7 +842,6 @@ AnnotationAssertion(skos:definition :Syntax "The set of structures and/or rules 
 SubClassOf(:Syntax :AbstractExpression)
 SubClassOf(:Syntax ObjectSomeValuesFrom(:expresses :Notation))
 SubClassOf(:Syntax ObjectSomeValuesFrom(:serialized-into :FormalGrammar))
-SubClassOf(:Syntax ObjectAllValuesFrom(:expresses :Notation))
 
 # Class: :WorkOfKnowledge (Work of Knowledge)
 
