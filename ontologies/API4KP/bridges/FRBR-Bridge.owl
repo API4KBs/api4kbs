@@ -1,14 +1,20 @@
 Prefix(:=<http://www.omg.org/spec/API4KP/FRBR-Bridge#>)
+Prefix(dc:=<http://www.dublin#>)
 Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
 Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
 Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
 Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
-Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 Prefix(frbr:=<http://purl.org/vocab/frbr/core#>)
 Prefix(froo:=<http://iflastandards.info/ns/fr/frbr/frbroo/>)
+Prefix(know:=<http://www.omg.org/spec/API4KP/core#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+Prefix(skos:=<http://www.w3.org/2004/02/skos/core#>)
+
 
 Ontology(<http://www.omg.org/spec/API4KP/FRBR-Bridge>
 <http://www.omg.org/spec/API4KP/2017/12/FRBR-Bridge>
+Import(<http://www.omg.org/spec/API4KP/2017/12/core>)
+Import(<http://purl.org/spar/frbr>)
 
 Declaration(Class(froo:F14_Individual_Work))
 Declaration(Class(froo:F15_Complex_Work))
@@ -31,6 +37,10 @@ Declaration(Class(frbr:Manifestation))
 Declaration(Class(frbr:ResponsibleEntity))
 Declaration(Class(frbr:Subject))
 Declaration(Class(frbr:Work))
+Declaration(Class(:Manifestation))
+Declaration(Class(:SelfContainedManifestation))
+Declaration(Class(know:Endeavour))
+Declaration(Class(know:Manifestation))
 Declaration(ObjectProperty(froo:R10_has_member))
 Declaration(ObjectProperty(froo:R10i_is_member_of))
 Declaration(ObjectProperty(froo:R15_has_fragment))
@@ -76,9 +86,17 @@ Declaration(ObjectProperty(frbr:subject))
 Declaration(ObjectProperty(frbr:successor))
 Declaration(ObjectProperty(frbr:successorOf))
 Declaration(ObjectProperty(frbr:supplement))
+Declaration(ObjectProperty(:requires))
+Declaration(ObjectProperty(know:endorsed-by))
+Declaration(ObjectProperty(know:endorses))
+Declaration(ObjectProperty(know:executed))
 Declaration(DataProperty(froo:CLP57_should_have_number_of_parts))
+Declaration(AnnotationProperty(dc:creator))
+Declaration(AnnotationProperty(dc:date))
 
-
+############################
+#   Object Properties
+############################
 
 # Object Property: froo:R10_has_member (has member)
 
@@ -308,7 +326,7 @@ ObjectPropertyRange(froo:R6_carries froo:F24_Publication_Expression)
 AnnotationAssertion(rdfs:comment froo:R6i_is_carried_by "
 "@en)
 AnnotationAssertion(rdfs:label froo:R6i_is_carried_by "is carried by"@en)
-SubObjectPropertyOf(froo:R6i_is_carried_by know:Xcarried-by)
+SubObjectPropertyOf(froo:R6i_is_carried_by know:carried-by)
 ObjectPropertyDomain(froo:R6i_is_carried_by froo:F24_Publication_Expression)
 ObjectPropertyRange(froo:R6i_is_carried_by froo:F54_Utilized_Information_Carrier)
 
@@ -351,6 +369,77 @@ SubObjectPropertyOf(froo:R9i_realises froo:R3i_realises)
 ObjectPropertyDomain(froo:R9i_realises froo:F22_Self-Contained_Expression)
 ObjectPropertyRange(froo:R9i_realises froo:F14_Individual_Work)
 
+# Object Property: frbr:partOf (is part of)
+
+EquivalentObjectProperties(frbr:partOf know:part-of)
+
+# Object Property: know:carried-by (carried by)
+
+SubObjectPropertyOf(know:carried-by frbr:relatedEndeavour)
+
+# Object Property: know:carries (carries)
+
+SubObjectPropertyOf(know:carries frbr:relatedEndeavour)
+
+# Object Property: know:conceptualizes (conceptualizes)
+
+SubObjectPropertyOf(know:conceptualizes frbr:realization)
+
+# Object Property: know:depends-on (depends on)
+
+SubObjectPropertyOf(know:depends-on frbr:relatedEndeavour)
+
+# Object Property: know:endorsed-by (know:endorsed-by)
+
+SubObjectPropertyOf(know:endorsed-by frbr:responsibleEntity)
+ObjectPropertyDomain(know:endorsed-by frbr:Work)
+ObjectPropertyRange(know:endorsed-by frbr:ResponsibleEntity)
+
+# Object Property: know:endorses (know:endorses)
+
+SubObjectPropertyOf(know:endorses frbr:responsibleEntityOf)
+ObjectPropertyDomain(know:endorses frbr:ResponsibleEntity)
+ObjectPropertyRange(know:endorses frbr:Work)
+
+# Object Property: know:executed (know:executed)
+
+SubObjectPropertyOf(know:executed froo:R25_performed)
+
+# Object Property: know:expresses (know:expresses)
+
+SubObjectPropertyOf(know:expresses frbr:realizationOf)
+
+# Object Property: know:has-later-versioned-revision (has later versioned revision)
+
+SubObjectPropertyOf(know:has-later-versioned-revision frbr:revision)
+
+# Object Property: know:has-subject (has subject)
+
+SubObjectPropertyOf(know:has-subject frbr:subject)
+
+# Object Property: know:is-later-versioned-revision-of (is later versioned revision of)
+
+SubObjectPropertyOf(know:is-later-versioned-revision-of frbr:revisionOf)
+
+# Object Property: know:is-serialized-in (has serialized representation in)
+
+SubObjectPropertyOf(know:is-serialized-in frbr:relatedEndeavour)
+
+# Object Property: know:realized-by (realized by)
+
+SubObjectPropertyOf(know:realized-by frbr:relatedEndeavour)
+
+# Object Property: know:realizes (realizes)
+
+SubObjectPropertyOf(know:realizes frbr:relatedEndeavour)
+
+# Object Property: know:serialization-of (is concrete representation of)
+
+SubObjectPropertyOf(know:serialization-of frbr:relatedEndeavour)
+
+# Object Property: know:serialized-into (concretely represented as)
+
+SubObjectPropertyOf(know:serialized-into frbr:relatedEndeavour)
 
 
 ############################
@@ -363,6 +452,9 @@ DataPropertyDomain(froo:CLP57_should_have_number_of_parts froo:F3_Manifestation_
 
 
 
+############################
+#   Classes
+############################
 
 # Class: froo:F14_Individual_Work (Individual Work)
 
@@ -482,7 +574,7 @@ AnnotationAssertion(rdfs:label froo:F5_Item "Item"@en)
 EquivalentClasses(froo:F5_Item frbr:Item)
 SubClassOf(froo:F5_Item froo:F54_Utilized_Information_Carrier)
 
-# Class: frbr:Endeavour (frbr:Endeavour)
+# Class: frbr:Endeavour (endeavour)
 
 EquivalentClasses(frbr:Endeavour know:Endeavour)
 
@@ -490,107 +582,74 @@ EquivalentClasses(frbr:Endeavour know:Endeavour)
 
 EquivalentClasses(frbr:Manifestation ObjectUnionOf(froo:F3_Manifestation_Product_Type froo:F4_Manifestation_Singleton))
 
-SubObjectPropertyOf(know:carried-by frbr:relatedEndeavour)
+# Class: :Manifestation (Manifestation)
 
-SubObjectPropertyOf(know:carries frbr:relatedEndeavour)
-SubObjectPropertyOf(know:depends-on frbr:relatedEndeavour)
+AnnotationAssertion(rdfs:label :Manifestation "Manifestation"@en)
+AnnotationAssertion(skos:definition :Manifestation "In accordance with the FRBR universe, an instance of Manifestation is a “species”, as opposed to the carriers, which are “specimens” of it. A Manifestation defines all of the features or traits that the instances will display in order to be recognised as individual realizations of that content.")
+SubClassOf(:Manifestation know:KnowledgeEndeavour)
 
-SubObjectPropertyOf(know:endorsed-by frbr:responsibleEntity)
+# Class: :SelfContainedManifestation (Self-Contained Manifestation)
 
-ObjectPropertyDomain(know:endorsed-by frbr:Work)
-ObjectPropertyRange(know:endorsed-by frbr:ResponsibleEntity)
+AnnotationAssertion(rdfs:label :SelfContainedManifestation "Self-Contained Manifestation")
+AnnotationAssertion(skos:definition :SelfContainedManifestation "A Self-Contained Manifestation is such that, for each Expression E it embodies, if that Expression E depends on another Expression F, that second Expression F is also embodied in the same Manifestation as E.")
+SubClassOf(:SelfContainedManifestation :Manifestation)
 
-SubObjectPropertyOf(know:endorses frbr:responsibleEntityOf)
-ObjectPropertyDomain(know:endorses frbr:ResponsibleEntity)
-ObjectPropertyRange(know:endorses frbr:Work)
-
-SubObjectPropertyOf(know:has-later-versioned-revision frbr:revision)
-
-SubObjectPropertyOf(know:is-later-versioned-revision-of frbr:revisionOf)
-
-SubObjectPropertyOf(know:is-serialized-in frbr:relatedEndeavour)
-
-SubObjectPropertyOf(know:serialization-of frbr:relatedEndeavour)
+# Class: know:CompositeKnowledgeResource (Composite Knowledge Resource)
 
 SubClassOf(know:CompositeKnowledgeResource ObjectSomeValuesFrom(frbr:part know:KnowledgeResource))
 
-SubClassOf(know:InformationBearer ObjectSomeValuesFrom(frbr:exemplarOf know:Manifestation))
+# Class: know:ConcreteExpression (Concrete Knowledge Expression)
+
+EquivalentClasses(know:ConcreteExpression ObjectIntersectionOf(froo:F2_Expression ObjectSomeValuesFrom(know:uses-concrete-syntax know:Serialization)))
+SubClassOf(know:ConcreteExpression froo:F2_Expression)
+
+# Class: know:Knowledge (Knowledge)
 
 SubClassOf(know:Knowledge frbr:Subject)
 
-EquivalentClasses(know:KnowledgeResource ObjectIntersectionOf(know:AbstractExpression ObjectSomeValuesFrom(frbr:realizationOf know:WorkOfKnowledge)))
-EquivalentClasses(know:KnowledgeResourceDescription ObjectIntersectionOf(know:KnowledgeResource ObjectSomeValuesFrom(frbr:subject know:KnowledgeResource)))
+# Class: know:KnowledgeArtifact (Knowledge Artifact)
 
+SubClassOf(know:KnowledgeArtifact ObjectUnionOf(froo:F4_Manifestation_Singleton froo:F53_Material_Copy froo:F5_Item))
+SubClassOf(know:KnowledgeArtifact ObjectSomeValuesFrom(frbr:exemplarOf know:Manifestation))
+
+# Class: know:KnowledgeEndeavour (Knowledge Endeavour)
+
+SubClassOf(know:KnowledgeEndeavour know:Endeavour)
+
+# Class: know:KnowledgeExpression (Knowledge Expression)
+
+SubClassOf(know:KnowledgeExpression frbr:Expression)
+
+# Class: know:KnowledgeFragment (Knowledge Fragment)
+
+SubClassOf(know:KnowledgeFragment froo:F23_Expression_Fragment)
+
+# Class: know:KnowledgeResource (Knowledge Resource)
+
+EquivalentClasses(know:KnowledgeResource ObjectIntersectionOf(know:AbstractExpression ObjectSomeValuesFrom(frbr:realizationOf know:WorkOfKnowledge)))
+
+# Class: know:Manifestation (know:Manifestation)
+
+SubClassOf(know:Manifestation froo:F3_Manifestation_Product_Type)
 SubClassOf(know:Manifestation ObjectSomeValuesFrom(frbr:embodimentOf ObjectIntersectionOf(know:ConcreteExpression ObjectSomeValuesFrom(know:serialization-of know:AbstractExpression))))
 
-EquivalentClasses(know:SelfContainedKnowledgeArtifact ObjectIntersectionOf(know:KnowledgeArtifact ObjectSomeValuesFrom(frbr:exemplarOf know:SelfContainedManifestation)))
+# Class: know:SelfContainedKnowledgeArtifact (Self-Contained Knowledge Artifact)
+
+EquivalentClasses(know:SelfContainedKnowledgeArtifact ObjectIntersectionOf(know:KnowledgeArtifact ObjectSomeValuesFrom(frbr:exemplarOf :SelfContainedManifestation)))
+
+# Class: know:Software (know:Software)
+
+SubClassOf(know:Software froo:F25_Performance_Plan)
+
+# Class: know:Software_Execution (Software Execution)
+
+EquivalentClasses(know:Software_Execution ObjectIntersectionOf(froo:F31_Performance ObjectIntersectionOf(ObjectSomeValuesFrom(froo:R25_performed know:Software) ObjectAllValuesFrom(froo:R25_performed know:Software))))
+SubClassOf(know:Software_Execution froo:F31_Performance)
+
+# Class: know:WorkOfKnowledge (Work of Knowledge)
 
 SubClassOf(know:WorkOfKnowledge ObjectSomeValuesFrom(frbr:subject know:Knowledge))
 
 
 SubObjectPropertyOf(ObjectPropertyChain(frbr:embodimentOf know:serialization-of) frbr:embodimentOf)
-
-SubObjectPropertyOf(know:executed froo:R25_performed)
-
-EquivalentClasses(know:ConcreteExpression ObjectIntersectionOf(froo:F2_Expression ObjectSomeValuesFrom(know:uses-concrete-syntax know:Serialization)))
-SubClassOf(know:ConcreteExpression froo:F2_Expression)
-
-EquivalentClasses(know:InformationBearer ObjectUnionOf(froo:F4_Manifestation_Singleton froo:F54_Utilized_Information_Carrier))
-
-SubClassOf(know:KnowledgeFragment froo:F23_Expression_Fragment)
-
-SubClassOf(know:Manifestation froo:F3_Manifestation_Product_Type)
-
-EquivalentClasses(know:Software_Execution ObjectIntersectionOf(froo:F31_Performance ObjectIntersectionOf(ObjectSomeValuesFrom(froo:R25_performed know:Software) ObjectAllValuesFrom(froo:R25_performed know:Software))))
-SubClassOf(know:Software_Execution froo:F31_Performance)
-
-SubClassOf(know:Software froo:F25_Performance_Plan)
-
-
-# Object Property: :carried-by (carried by)
-
-AnnotationAssertion(rdfs:label :carried-by "The relationship between an (concrete serialization) of an expression and an exemplar of a manifestation that embodies it")
-AnnotationAssertion(rdfs:label :carried-by "carried by"@en)
-InverseObjectProperties(:carried-by :carries)
-ObjectPropertyDomain(:carried-by :KnowledgeExpression)
-ObjectPropertyRange(:carried-by :InformationBearer)
-
-# Object Property: :carries (carries)
-
-AnnotationAssertion(rdfs:label :carries "carries")
-AnnotationAssertion(skos:definition :carries "The direct relationship between a Concrete Information Carrier and an Expression, such that the object is an exemplar of a manifestation that embodies a (concrete representation of) that Expression")
-ObjectPropertyDomain(:carries :InformationBearer)
-ObjectPropertyRange(:carries :KnowledgeExpression)
-
-
-
-# Class: :InformationBearer (Concrete Information Carrier)
-
-AnnotationAssertion(dc:creator :InformationBearer "davide"^^xsd:string)
-AnnotationAssertion(dc:date :InformationBearer "2017-05-16T19:42:51Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label :InformationBearer "Concrete Information Carrier"@en)
-AnnotationAssertion(skos:definition :InformationBearer "A digital or physical object that carries (the serialized form of) an Expression, according to a type of Manifestation of which it is an instance.")
-SubClassOf(:InformationBearer :KnowledgeEndeavour)
-SubClassOf(:InformationBearer ObjectSomeValuesFrom(:carries :ConcreteExpression))
-
-EquivalentClasses(:KnowledgeArtifact ObjectIntersectionOf(:InformationBearer ObjectSomeValuesFrom(:carries :KnowledgeResource)))
-SubClassOf(:KnowledgeArtifact :InformationBearer)
-
-
-
-# Class: :Manifestation (Manifestation)
-
-AnnotationAssertion(rdfs:label :Manifestation "Manifestation"@en)
-AnnotationAssertion(skos:definition :Manifestation "In accordance with the FRBR universe, an instance of Manifestation is a “species”, as opposed to the carriers, which are “specimens” of it. A Manifestation defines all of the features or traits that the instances will display in order to be recognised as individual realizations of that content.")
-SubClassOf(:Manifestation :KnowledgeEndeavour)
-
-# Class: :SelfContainedManifestation (Self-Contained Manifestation)
-
-AnnotationAssertion(dc:creator :SelfContainedManifestation "davide"^^xsd:string)
-AnnotationAssertion(dc:date :SelfContainedManifestation "2017-05-10T13:56:12Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label :SelfContainedManifestation "Self-Contained Manifestation"@en)
-AnnotationAssertion(skos:definition :SelfContainedManifestation "A Self-Contained Manifestation is such that, for each Expression E it embodies, if that Expression E depends on another Expression F, that second Expression F is also embodied in the same Manifestation as E.")
-EquivalentClasses(:SelfContainedManifestation ObjectIntersectionOf(:Manifestation ObjectComplementOf(ObjectSomeValuesFrom(:requires :Manifestation))))
-SubClassOf(:SelfContainedManifestation :Manifestation)
-
 )

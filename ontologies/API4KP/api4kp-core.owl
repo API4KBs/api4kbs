@@ -14,7 +14,7 @@ Prefix(SpecificationMetadata:=<http://www.omg.org/techprocess/ab/SpecificationMe
 
 
 Ontology(<http://www.omg.org/spec/API4KP/core>
-<http://www.omg.org/spec/API4KP/20170501/core>
+<http://www.omg.org/spec/API4KP/2017/12/core>
 Annotation(dc:description "This ontology defines the core concepts of the API4KP framework: Knowledge, Resources, Operations and Platforms, serving as an 'upper ontology' for the specification")
 Annotation(dc:title "API4KP Core Ontology")
 
@@ -82,6 +82,7 @@ Declaration(ObjectProperty(:hosts))
 Declaration(ObjectProperty(:instantiation-of))
 Declaration(ObjectProperty(:internally-represents))
 Declaration(ObjectProperty(:involves))
+Declaration(ObjectProperty(:is-about))
 Declaration(ObjectProperty(:is-immediate-next-versioned-revision-of))
 Declaration(ObjectProperty(:is-later-versioned-revision-of))
 Declaration(ObjectProperty(:is-serialized-in))
@@ -130,11 +131,13 @@ AnnotationAssertion(rdfs:label :carried-by "The relationship between an (concret
 AnnotationAssertion(rdfs:label :carried-by "carried by"@en)
 InverseObjectProperties(:carried-by :carries)
 ObjectPropertyDomain(:carried-by :KnowledgeExpression)
+ObjectPropertyRange(:carried-by :KnowledgeArtifact)
 
 # Object Property: :carries (carries)
 
 AnnotationAssertion(rdfs:label :carries "carries")
 AnnotationAssertion(skos:definition :carries "The direct relationship between a Concrete Information Carrier and an Expression, such that the object is an exemplar of a manifestation that embodies a (concrete representation of) that Expression")
+ObjectPropertyDomain(:carries :KnowledgeArtifact)
 ObjectPropertyRange(:carries :KnowledgeExpression)
 
 # Object Property: :conceptualizes (conceptualizes)
@@ -184,7 +187,7 @@ ObjectPropertyRange(:externalizes :AbstractSyntax)
 # Object Property: :formalizes (:formalizes)
 
 AnnotationAssertion(rdfs:comment :formalizes "The relationship between a conceptualization and/or expression and its subject, such that the former uses mathematical and/or logical concepts to capture the essence of the latter.")
-SubObjectPropertyOf(:formalizes :has-subject)
+SubObjectPropertyOf(:formalizes :is-about)
 ObjectPropertyDomain(:formalizes :KnowledgeEndeavour)
 ObjectPropertyRange(:formalizes ObjectUnionOf(:Knowledge :KnowledgeEndeavour))
 
@@ -236,8 +239,9 @@ ObjectPropertyDomain(:has-product :Activity)
 AnnotationAssertion(rdfs:comment :has-subject "A kind of 'aboutness' that reflects the relationship between a a conceptualization and/or its expression and its referent(s), scoped down to Knowledge")
 AnnotationAssertion(rdfs:comment :has-subject "Includes meta-knowledge: if a Knowledge Endeavor E has subject (a piece of) Knowledge K, another Endeavor E2 can have E as a subject. Moreover, E2 will (indirectly) have K as a subject as well")
 AnnotationAssertion(rdfs:label :has-subject "has subject")
+SubObjectPropertyOf(:has-subject :is-about)
 TransitiveObjectProperty(:has-subject)
-ObjectPropertyDomain(:has-subject :KnowledgeEndeavour)
+ObjectPropertyDomain(:has-subject :WorkOfKnowledge)
 ObjectPropertyRange(:has-subject ObjectUnionOf(:Knowledge :KnowledgeEndeavour))
 
 # Object Property: :hosts (:hosts)
@@ -265,6 +269,13 @@ ObjectPropertyRange(:internally-represents :KnowledgeEndeavour)
 
 AnnotationAssertion(skos:definition :involves "The relationship between an Activity and a participant - Agent (acitive) or Resource (passive)")
 ObjectPropertyDomain(:involves :Activity)
+
+# Object Property: :is-about (is about)
+
+AnnotationAssertion(rdfs:label :is-about "is about")
+AnnotationAssertion(skos:definition :is-about "A kind of 'aboutness' that reflects the relationship between a a conceptualization and/or its expression and its referent(s), scoped down to Knowledge")
+ObjectPropertyDomain(:is-about :KnowledgeEndeavour)
+ObjectPropertyRange(:is-about ObjectUnionOf(:Knowledge :KnowledgeEndeavour))
 
 # Object Property: :is-immediate-next-versioned-revision-of (is immediate next versioned revision of)
 
@@ -704,7 +715,7 @@ AnnotationAssertion(dc:creator :KnowledgeResourceDescription "davide"^^xsd:strin
 AnnotationAssertion(dc:date :KnowledgeResourceDescription "2017-05-10T05:38:23Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label :KnowledgeResourceDescription "Knowledge Resource Description"@en)
 AnnotationAssertion(skos:definition :KnowledgeResourceDescription "Knowledge Resource that contains information (metadata) about another Resource.")
-EquivalentClasses(:KnowledgeResourceDescription ObjectIntersectionOf(:KnowledgeResource ObjectSomeValuesFrom(:has-subject :KnowledgeResource)))
+EquivalentClasses(:KnowledgeResourceDescription ObjectIntersectionOf(:KnowledgeResource ObjectSomeValuesFrom(:is-about :KnowledgeResource)))
 SubClassOf(:KnowledgeResourceDescription :KnowledgeResource)
 
 # Class: :Knowledge_Activity (Knowledge Processing Activity)
