@@ -29,14 +29,17 @@ Declaration(Class(:ComputableLanguage))
 Declaration(Class(:ConcreteExpression))
 Declaration(Class(:ConstructedLanguage))
 Declaration(Class(:ControlledNaturalLanguage))
+Declaration(Class(:DescriptiveGrammar))
 Declaration(Class(:ExecutionEnvironment))
 Declaration(Class(:FormalGrammar))
 Declaration(Class(:FormalLanguage))
+Declaration(Class(:Grammar))
 Declaration(Class(:InformationProcessingActivity))
 Declaration(Class(:IntellectualWork))
 Declaration(Class(:Knowledge))
 Declaration(Class(:KnowledgeArtifact))
 Declaration(Class(:KnowledgeAssetSurrogate))
+Declaration(Class(:KnowledgeElement))
 Declaration(Class(:KnowledgeEndeavour))
 Declaration(Class(:KnowledgeExpression))
 Declaration(Class(:KnowledgeFragment))
@@ -47,12 +50,13 @@ Declaration(Class(:KnowledgeResource))
 Declaration(Class(:KnowledgeResourceDescription))
 Declaration(Class(:Knowledge_Activity))
 Declaration(Class(:Language))
+Declaration(Class(:Lexicon))
 Declaration(Class(:MachineExecutableLanguage))
 Declaration(Class(:MachineReadableLanguage))
 Declaration(Class(:NaturalLanguage))
-Declaration(Class(:Notation))
 Declaration(Class(:ParseTree))
 Declaration(Class(:Piece_of_Knowledge))
+Declaration(Class(:PrescriptiveGrammar))
 Declaration(Class(:Profile))
 Declaration(Class(:RunningSoftware))
 Declaration(Class(:SelfContainedKnowledgeArtifact))
@@ -65,19 +69,26 @@ Declaration(Class(:Syntax))
 Declaration(Class(:WorkOfKnowledge))
 Declaration(ObjectProperty(:carried-by))
 Declaration(ObjectProperty(:carries))
+Declaration(ObjectProperty(:completely-expresses))
+Declaration(ObjectProperty(:conceptual-representation-of))
 Declaration(ObjectProperty(:conceptualizes))
+Declaration(ObjectProperty(:concisely-expresses))
+Declaration(ObjectProperty(:consistently-expresses))
 Declaration(ObjectProperty(:depends-on))
 Declaration(ObjectProperty(:deployment-of))
+Declaration(ObjectProperty(:described-by))
 Declaration(ObjectProperty(:executes))
 Declaration(ObjectProperty(:expresses))
 Declaration(ObjectProperty(:externalizes))
+Declaration(ObjectProperty(:faithfully-expresses))
 Declaration(ObjectProperty(:formalizes))
-Declaration(ObjectProperty(:formulated-in))
-Declaration(ObjectProperty(:formulates))
+Declaration(ObjectProperty(:governed-by))
 Declaration(ObjectProperty(:has-later-versioned-revision))
 Declaration(ObjectProperty(:has-next-immediate-versioned-revision))
+Declaration(ObjectProperty(:has-part))
 Declaration(ObjectProperty(:has-product))
 Declaration(ObjectProperty(:has-subject))
+Declaration(ObjectProperty(:has-wordstock))
 Declaration(ObjectProperty(:hosts))
 Declaration(ObjectProperty(:instantiation-of))
 Declaration(ObjectProperty(:internally-represents))
@@ -97,6 +108,8 @@ Declaration(ObjectProperty(:proper-part-of))
 Declaration(ObjectProperty(:realized-by))
 Declaration(ObjectProperty(:realizes))
 Declaration(ObjectProperty(:refines))
+Declaration(ObjectProperty(:representation-of))
+Declaration(ObjectProperty(:represented-by))
 Declaration(ObjectProperty(:requires))
 Declaration(ObjectProperty(:runs))
 Declaration(ObjectProperty(:serialization-of))
@@ -106,9 +119,13 @@ Declaration(ObjectProperty(:specified-by))
 Declaration(ObjectProperty(:supports-expression))
 Declaration(ObjectProperty(:supports-serialization))
 Declaration(ObjectProperty(:sustains))
+Declaration(ObjectProperty(:unambiguously-expresses))
+Declaration(ObjectProperty(:uses-annotation-language))
+Declaration(ObjectProperty(:uses-as-sublanguage))
 Declaration(ObjectProperty(:uses-concrete-syntax))
 Declaration(ObjectProperty(:uses-language))
-Declaration(ObjectProperty(:uses-notation))
+Declaration(ObjectProperty(:uses-lexicon))
+Declaration(ObjectProperty(:uses-primary-language))
 Declaration(ObjectProperty(:uses-profile))
 Declaration(ObjectProperty(:uses-syntax))
 Declaration(AnnotationProperty(dc:creator))
@@ -140,6 +157,20 @@ AnnotationAssertion(skos:definition :carries "The direct relationship between a 
 ObjectPropertyDomain(:carries :KnowledgeArtifact)
 ObjectPropertyRange(:carries :KnowledgeExpression)
 
+# Object Property: :completely-expresses (completely expresses)
+
+AnnotationAssertion(rdfs:comment :completely-expresses "no concept in the WoK is left implicit")
+AnnotationAssertion(rdfs:label :completely-expresses "completely expresses")
+AnnotationAssertion(skos:definition :completely-expresses "every concept in the WoK must be expressed by at least one element of the expression")
+SubObjectPropertyOf(:completely-expresses :expresses)
+
+# Object Property: :conceptual-representation-of (conceptual representation of)
+
+AnnotationAssertion(rdfs:label :conceptual-representation-of "conceptual representation of")
+AnnotationAssertion(skos:definition :conceptual-representation-of "a WoK is a (knowledge) representation of something if knowledge about that something is the subject of that WoK")
+SubObjectPropertyOf(:conceptual-representation-of :is-about)
+ObjectPropertyDomain(:conceptual-representation-of :WorkOfKnowledge)
+
 # Object Property: :conceptualizes (conceptualizes)
 
 AnnotationAssertion(rdfs:comment :conceptualizes "Reflects the relationship between the expression's Abstract Syntax Tree and the work's Abstract Semantic Graph.")
@@ -149,6 +180,19 @@ AnnotationAssertion(skos:definition :conceptualizes "The relationship between a 
 InverseObjectProperties(:conceptualizes :expresses)
 ObjectPropertyDomain(:conceptualizes :WorkOfKnowledge)
 ObjectPropertyRange(:conceptualizes :AbstractExpression)
+
+# Object Property: :concisely-expresses (concisely expresses)
+
+AnnotationAssertion(rdfs:comment :concisely-expresses "no element in the epxression is redundant")
+AnnotationAssertion(rdfs:label :concisely-expresses "concisely expresses")
+AnnotationAssertion(skos:definition :concisely-expresses "when conceptualized, every element of the expression corresponds to some concept that is part of the original WoK")
+SubObjectPropertyOf(:concisely-expresses :expresses)
+
+# Object Property: :consistently-expresses (consistently expresses)
+
+AnnotationAssertion(rdfs:label :consistently-expresses "consistently expresses")
+AnnotationAssertion(skos:definition :consistently-expresses "every concept in the WoK is always represented by the same element every time it is mentioned in the expression")
+SubObjectPropertyOf(:consistently-expresses :expresses)
 
 # Object Property: :depends-on (depends on)
 
@@ -163,6 +207,12 @@ AnnotationAssertion(rdfs:label :deployment-of "deployment of")
 ObjectPropertyDomain(:deployment-of :RunningSoftware)
 ObjectPropertyRange(:deployment-of :Software)
 
+# Object Property: :described-by (:described-by)
+
+AnnotationAssertion(skos:definition :described-by "The relationship between Something and its description - a (descriptive) expression of a work of knowledge that represents what that thing is (ontology) and/or how it behaves (model)")
+SubObjectPropertyOf(:described-by :represented-by)
+ObjectPropertyRange(:described-by :AbstractExpression)
+
 # Object Property: :executes (executes)
 
 AnnotationAssertion(rdfs:label :executes "executes")
@@ -170,9 +220,10 @@ AnnotationAssertion(skos:definition :executes "The relationship between an envir
 ObjectPropertyDomain(:executes :ExecutionEnvironment)
 ObjectPropertyRange(:executes :Software_Execution)
 
-# Object Property: :expresses (:expresses)
+# Object Property: :expresses (expresses)
 
-AnnotationAssertion(skos:definition :expresses "The relationship between a Work of Knowledge, and any of its Expressions in a given language")
+AnnotationAssertion(rdfs:label :expresses "expresses")
+AnnotationAssertion(skos:definition :expresses "The relationship between a (Knowledge) Expression in some language and its knowledge content.")
 ObjectPropertyDomain(:expresses :KnowledgeExpression)
 ObjectPropertyRange(:expresses :WorkOfKnowledge)
 
@@ -184,29 +235,28 @@ SubObjectPropertyOf(:externalizes :refines)
 ObjectPropertyDomain(:externalizes :Serialization)
 ObjectPropertyRange(:externalizes :AbstractSyntax)
 
+# Object Property: :faithfully-expresses (faithfully expresses)
+
+AnnotationAssertion(rdfs:label :faithfully-expresses "faithfully expresses")
+AnnotationAssertion(skos:definition :faithfully-expresses "a faithful expression is both complete and correct, i.e. it is complete and  preserves all and only the associations between the concepts in the WoK")
+SubObjectPropertyOf(:faithfully-expresses :completely-expresses)
+
 # Object Property: :formalizes (:formalizes)
 
-AnnotationAssertion(rdfs:comment :formalizes "The relationship between a conceptualization and/or expression and its subject, such that the former uses mathematical and/or logical concepts to capture the essence of the latter.")
-SubObjectPropertyOf(:formalizes :is-about)
-ObjectPropertyDomain(:formalizes :KnowledgeEndeavour)
-ObjectPropertyRange(:formalizes ObjectUnionOf(:Knowledge :KnowledgeEndeavour))
+AnnotationAssertion(skos:definition :formalizes "An Expression formalizes a Work of Knowledge if (i) it uses a formal language and (ii) it faithfully, concisely, consistently and unambiguously expresses that WoK")
+SubObjectPropertyOf(:formalizes :concisely-expresses)
+SubObjectPropertyOf(:formalizes :consistently-expresses)
+SubObjectPropertyOf(:formalizes :faithfully-expresses)
+SubObjectPropertyOf(:formalizes :unambiguously-expresses)
+ObjectPropertyDomain(:formalizes :KnowledgeExpression)
+ObjectPropertyRange(:formalizes :WorkOfKnowledge)
 
-# Object Property: :formulated-in (formulated in)
+# Object Property: :governed-by (governed by)
 
-AnnotationAssertion(rdfs:comment :formulated-in "A notation is specifically expressible in a given abstract syntax if every sentence of the language formalized by the notation can be expressed and, moreover, the abstract syntax shows no deficit, incompleteness, redundancy or overload")
-AnnotationAssertion(rdfs:label :formulated-in "formulated in")
-AnnotationAssertion(skos:altLabel :formulated-in "perfectly expressible in")
-SubObjectPropertyOf(:formulated-in :supports-expression)
-ObjectPropertyDomain(:formulated-in :Notation)
-ObjectPropertyRange(:formulated-in :AbstractSyntax)
-
-# Object Property: :formulates (formulates)
-
-AnnotationAssertion(rdfs:label :formulates "formulates")
-AnnotationAssertion(skos:definition :formulates "The relationship between an Abstract Syntax and the notation it expresses. More specifically, a Syntax formulates a Notation to the extent that it allows to define ASTs for all and only the sentences of the language that the notation formalizes.")
-SubObjectPropertyOf(:formulates :expresses)
-ObjectPropertyDomain(:formulates :AbstractSyntax)
-ObjectPropertyRange(:formulates :Notation)
+AnnotationAssertion(rdfs:label :governed-by "governed by")
+AnnotationAssertion(skos:definition :governed-by "the relationship between a grammar, intended as the conceptualization of the rules, structures and constraints that define a language intensionally, and that language")
+ObjectPropertyDomain(:governed-by :Language)
+ObjectPropertyRange(:governed-by :Grammar)
 
 # Object Property: :has-later-versioned-revision (has later versioned revision)
 
@@ -226,6 +276,11 @@ AnnotationAssertion(skos:definition :has-next-immediate-versioned-revision "The 
 SubObjectPropertyOf(:has-next-immediate-versioned-revision :has-later-versioned-revision)
 InverseObjectProperties(:has-next-immediate-versioned-revision :is-immediate-next-versioned-revision-of)
 
+# Object Property: :has-part (has part)
+
+AnnotationAssertion(rdfs:label :has-part "has part")
+InverseObjectProperties(:has-part :part-of)
+
 # Object Property: :has-product (has product)
 
 AnnotationAssertion(rdfs:label :has-product "has product")
@@ -236,13 +291,18 @@ ObjectPropertyDomain(:has-product :Activity)
 
 # Object Property: :has-subject (has subject)
 
-AnnotationAssertion(rdfs:comment :has-subject "A kind of 'aboutness' that reflects the relationship between a a conceptualization and/or its expression and its referent(s), scoped down to Knowledge")
-AnnotationAssertion(rdfs:comment :has-subject "Includes meta-knowledge: if a Knowledge Endeavor E has subject (a piece of) Knowledge K, another Endeavor E2 can have E as a subject. Moreover, E2 will (indirectly) have K as a subject as well")
 AnnotationAssertion(rdfs:label :has-subject "has subject")
+AnnotationAssertion(skos:definition :has-subject "a specific relationship between a work of knowledge and the (piece of) knowledge it makes explicit")
 SubObjectPropertyOf(:has-subject :is-about)
-TransitiveObjectProperty(:has-subject)
 ObjectPropertyDomain(:has-subject :WorkOfKnowledge)
-ObjectPropertyRange(:has-subject ObjectUnionOf(:Knowledge :KnowledgeEndeavour))
+ObjectPropertyRange(:has-subject :Knowledge)
+
+# Object Property: :has-wordstock (has wordstock)
+
+AnnotationAssertion(rdfs:label :has-wordstock "has wordstock")
+AnnotationAssertion(skos:definition :has-wordstock "The relationship between a Language, and the set of linguistic elements that can be formed into valid sentences of the language according to the language's syntax")
+ObjectPropertyDomain(:has-wordstock :Language)
+ObjectPropertyRange(:has-wordstock :Lexicon)
 
 # Object Property: :hosts (:hosts)
 
@@ -270,12 +330,12 @@ ObjectPropertyRange(:internally-represents :KnowledgeEndeavour)
 AnnotationAssertion(skos:definition :involves "The relationship between an Activity and a participant - Agent (acitive) or Resource (passive)")
 ObjectPropertyDomain(:involves :Activity)
 
-# Object Property: :is-about (is about)
+# Object Property: :is-about (is about (knowledge))
 
-AnnotationAssertion(rdfs:label :is-about "is about")
-AnnotationAssertion(skos:definition :is-about "A kind of 'aboutness' that reflects the relationship between a a conceptualization and/or its expression and its referent(s), scoped down to Knowledge")
-ObjectPropertyDomain(:is-about :KnowledgeEndeavour)
-ObjectPropertyRange(:is-about ObjectUnionOf(:Knowledge :KnowledgeEndeavour))
+AnnotationAssertion(rdfs:comment :is-about "A kind of 'aboutness' that reflects the relationship between a a knowledge-related conceptualization and its referent(s)")
+AnnotationAssertion(rdfs:label :is-about "is about (knowledge)")
+AnnotationAssertion(skos:definition :is-about "The relationship between a (piece of) Knowledge and its referent")
+ObjectPropertyDomain(:is-about :Knowledge)
 
 # Object Property: :is-immediate-next-versioned-revision-of (is immediate next versioned revision of)
 
@@ -381,6 +441,19 @@ TransitiveObjectProperty(:refines)
 ObjectPropertyDomain(:refines :Syntax)
 ObjectPropertyRange(:refines :Syntax)
 
+# Object Property: :representation-of (representation of)
+
+AnnotationAssertion(rdfs:label :representation-of "representation of")
+AnnotationAssertion(skos:definition :representation-of "an expression of a conceptual representation of something")
+InverseObjectProperties(:representation-of :represented-by)
+ObjectPropertyDomain(:representation-of :AbstractExpression)
+
+# Object Property: :represented-by (represented by)
+
+AnnotationAssertion(rdfs:label :represented-by "represented by")
+AnnotationAssertion(skos:definition :represented-by "the association between (the knowledge about) something an expression of a work of knowledge that has that something as a subject")
+ObjectPropertyRange(:represented-by :AbstractExpression)
+
 # Object Property: :requires (requires)
 
 AnnotationAssertion(rdfs:label :requires "requires"@en)
@@ -425,23 +498,23 @@ ObjectPropertyRange(:serializes :Language)
 
 # Object Property: :specified-by (:specified-by)
 
-AnnotationAssertion(skos:definition :specified-by "The relationship between an intensionally defined universal (class or concept), and an information entity that provides its defnition, specialized to apply to '(Constructed) Languages', as classes of sentences, and their defining 'Syntaxes'")
-ObjectPropertyDomain(:specified-by :ConstructedLanguage)
-ObjectPropertyRange(:specified-by :Syntax)
+AnnotationAssertion(skos:definition :specified-by "The relationship between Something and its specification - a (prescriptive) expression of a work of knowledge that defines how that something should behave")
+SubObjectPropertyOf(:specified-by :represented-by)
+ObjectPropertyRange(:specified-by :AbstractExpression)
 
 # Object Property: :supports-expression (supports expression in)
 
 AnnotationAssertion(rdfs:comment :supports-expression "In order to be useful, the supported notations should be able to structure most sentences of the language.")
 AnnotationAssertion(rdfs:label :supports-expression "supports expression in")
-AnnotationAssertion(skos:definition :supports-expression "A Notation N supports an Abstract Syntax S if there exists at least one sentence in the language that N formalizes, such that an AST based on S can be built for that sentence")
-ObjectPropertyDomain(:supports-expression :Notation)
+AnnotationAssertion(skos:definition :supports-expression "A Language L supports an Abstract Syntax S if there exists at least one sentence in the extension of L, such that an AST based on S can be built for that sentence")
+ObjectPropertyDomain(:supports-expression :Language)
 ObjectPropertyRange(:supports-expression :AbstractSyntax)
 
 # Object Property: :supports-serialization (supports serialization in)
 
 AnnotationAssertion(rdfs:label :supports-serialization "supports serialization in"@en)
-AnnotationAssertion(skos:definition :supports-serialization "A Notation N supports a Concrete Syntax S if there exists at least one sentence in the language that S formalizes, such that a parse tree can be constructed out of the tokens that form that sentence")
-ObjectPropertyDomain(:supports-serialization :Notation)
+AnnotationAssertion(skos:definition :supports-serialization "A Language L supports a Concrete Syntax S if there exists at least one sentence in the language that S formalizes, such that a parse tree can be constructed out of the tokens that form that sentence")
+ObjectPropertyDomain(:supports-serialization :Language)
 ObjectPropertyRange(:supports-serialization :Serialization)
 
 # Object Property: :sustains (:sustains)
@@ -449,6 +522,30 @@ ObjectPropertyRange(:supports-serialization :Serialization)
 AnnotationAssertion(rdfs:comment :sustains "The relationship between the execution of a software by a (virtual) machine, and its \"phenotypical\" manifestation")
 ObjectPropertyDomain(:sustains :Software_Execution)
 ObjectPropertyRange(:sustains :RunningSoftware)
+
+# Object Property: :unambiguously-expresses (unambiguously expresses)
+
+AnnotationAssertion(rdfs:label :unambiguously-expresses "unambiguously expresses")
+AnnotationAssertion(skos:definition :unambiguously-expresses "every element in the expression has no more than one possible conceptualization")
+SubObjectPropertyOf(:unambiguously-expresses :expresses)
+
+# Object Property: :uses-annotation-language (uses annotation language)
+
+AnnotationAssertion(rdfs:label :uses-annotation-language "uses annotation language")
+AnnotationAssertion(skos:definition :uses-annotation-language "The relationship between an expression and the language used to annotate the expression, i.e. to express fragments that are not essential to the conceptualization of the expression")
+SubObjectPropertyOf(:uses-annotation-language :uses-as-sublanguage)
+ObjectPropertyDomain(:uses-annotation-language :KnowledgeExpression)
+ObjectPropertyRange(:uses-annotation-language :Language)
+
+# Object Property: :uses-as-sublanguage (uses as sub-language)
+
+AnnotationAssertion(rdfs:label :uses-as-sublanguage "uses as sub-language")
+AnnotationAssertion(skos:definition :uses-as-sublanguage "an Expression E uses L as a sublanguage if
+ - L is not the primary language
+ - there exists at least one sub-tree of E's AST such that that sub-tree formalizes a valid expression of L")
+SubObjectPropertyOf(:uses-as-sublanguage :uses-language)
+ObjectPropertyDomain(:uses-as-sublanguage :KnowledgeExpression)
+ObjectPropertyRange(:uses-as-sublanguage :Language)
 
 # Object Property: :uses-concrete-syntax (uses concrete syntax)
 
@@ -468,15 +565,21 @@ AnnotationAssertion(skos:definition :uses-language "The relationship between an 
 ObjectPropertyDomain(:uses-language :KnowledgeExpression)
 ObjectPropertyRange(:uses-language :Language)
 
-# Object Property: :uses-notation (uses notation)
+# Object Property: :uses-lexicon (uses lexicon)
 
-AnnotationAssertion(rdfs:comment :uses-notation "An expression that uses a Notation, automatically uses the Language which the notation formalizes")
-AnnotationAssertion(rdfs:label :uses-notation "uses notation")
-AnnotationAssertion(skos:definition :uses-notation "An expression uses a notation if the expression conforms to the rules defined by the notation.
+AnnotationAssertion(rdfs:label :uses-lexicon "uses lexicon")
+AnnotationAssertion(skos:definition :uses-lexicon "The relationship between a knowledge expresison and the lexicon from which its actual linguistic elements (aka signature) are extracted")
+ObjectPropertyDomain(:uses-lexicon :KnowledgeExpression)
+ObjectPropertyRange(:uses-lexicon :Lexicon)
 
-The relationship can be discovered, or validated, by means of operations that make use of some Formal Grammar that realizes the Notation")
-ObjectPropertyDomain(:uses-notation :KnowledgeExpression)
-ObjectPropertyRange(:uses-notation :Notation)
+# Object Property: :uses-primary-language (uses primary language)
+
+AnnotationAssertion(rdfs:comment :uses-primary-language "In case of set-oriented structured resources, it is sufficient that at least one of the member resources uses L as primary language")
+AnnotationAssertion(rdfs:label :uses-primary-language "uses primary language")
+AnnotationAssertion(skos:definition :uses-primary-language "An Expression E uses L as primary language if there exists a sub-tree S of E's AST T that formalizes a valid expression of L, and the root of S coincides with the root of T.")
+SubObjectPropertyOf(:uses-primary-language :uses-language)
+ObjectPropertyDomain(:uses-primary-language :KnowledgeExpression)
+ObjectPropertyRange(:uses-primary-language :Language)
 
 # Object Property: :uses-profile (uses profile)
 
@@ -507,7 +610,7 @@ AnnotationAssertion(rdfs:seeAlso :AbstractExpression :AbstractSyntax)
 AnnotationAssertion(rdfs:seeAlso :AbstractExpression :Serialization)
 AnnotationAssertion(skos:definition :AbstractExpression "The class of equivalence of Concrete Expressions of some Knowledge content, in some Language, across the various serializations supported by that language.")
 SubClassOf(:AbstractExpression :KnowledgeExpression)
-SubClassOf(:AbstractExpression ObjectSomeValuesFrom(:expresses ObjectSomeValuesFrom(:has-subject :Piece_of_Knowledge)))
+SubClassOf(:AbstractExpression ObjectSomeValuesFrom(:expresses :WorkOfKnowledge))
 SubClassOf(:AbstractExpression ObjectSomeValuesFrom(:serialized-into :ConcreteExpression))
 DisjointClasses(:AbstractExpression :ConcreteExpression)
 
@@ -517,7 +620,6 @@ AnnotationAssertion(rdfs:comment :AbstractSyntax "Like all Abstract Expressions,
 AnnotationAssertion(rdfs:label :AbstractSyntax "Abstract Syntax"@en)
 AnnotationAssertion(skos:definition :AbstractSyntax "The set of structures and/or rules that constrain the abstract syntax tree of a valid sentence of a language, itself expressed in some (meta) language")
 SubClassOf(:AbstractSyntax :Syntax)
-SubClassOf(:AbstractSyntax ObjectSomeValuesFrom(:formulates :Notation))
 DisjointClasses(:AbstractSyntax :Serialization)
 
 # Class: :AbstractSyntaxTree (Abstract Syntax Tree)
@@ -525,8 +627,8 @@ DisjointClasses(:AbstractSyntax :Serialization)
 AnnotationAssertion(rdfs:label :AbstractSyntaxTree "AST")
 AnnotationAssertion(rdfs:label :AbstractSyntaxTree "Abstract Syntax Tree")
 AnnotationAssertion(skos:definition :AbstractSyntaxTree "The representation of the internal structure of an Abstract Expression, according to some Abstract Syntax, obtained from the parsing of a Concrete Expression of which that Abstract Expression is a concrete representation")
-SubClassOf(:AbstractSyntaxTree :ConcreteExpression)
-SubClassOf(:AbstractSyntaxTree ObjectSomeValuesFrom(:formalizes :AbstractExpression))
+SubClassOf(:AbstractSyntaxTree :KnowledgeResource)
+SubClassOf(:AbstractSyntaxTree ObjectSomeValuesFrom(:formalizes ObjectSomeValuesFrom(:conceptual-representation-of :AbstractExpression)))
 
 # Class: :Activity (:Activity)
 
@@ -575,13 +677,21 @@ SubClassOf(:ConcreteExpression ObjectSomeValuesFrom(:uses-concrete-syntax :Seria
 
 AnnotationAssertion(rdfs:label :ConstructedLanguage "Constructed Language")
 AnnotationAssertion(skos:definition :ConstructedLanguage "Languages that are intensionally specified by a formal grammar, schema or metamodel - a set of criteria (e.g. rules and constraints) explicitly designed to distinguish valid sentences from invalid ones in a non-ambiguous way")
-EquivalentClasses(:ConstructedLanguage ObjectIntersectionOf(:Language ObjectSomeValuesFrom(:specified-by :Syntax)))
+EquivalentClasses(:ConstructedLanguage ObjectIntersectionOf(:Language ObjectIntersectionOf(ObjectSomeValuesFrom(:formalizes ObjectIntersectionOf(:FormalGrammar :PrescriptiveGrammar)) ObjectSomeValuesFrom(:specified-by :Syntax))))
 
 # Class: :ControlledNaturalLanguage (Controlled Natural Language)
 
 AnnotationAssertion(rdfs:label :ControlledNaturalLanguage "Controlled Natural Language")
 AnnotationAssertion(skos:definition :ControlledNaturalLanguage "Subset of a Natural Language that has a formal grammar constructed in a way to simplify and/or disambiguate that natural language")
 SubClassOf(:ControlledNaturalLanguage :ConstructedLanguage)
+SubClassOf(:ControlledNaturalLanguage :NaturalLanguage)
+
+# Class: :DescriptiveGrammar (descriptive grammar)
+
+AnnotationAssertion(rdfs:label :DescriptiveGrammar "descriptive grammar")
+AnnotationAssertion(rdfs:seeAlso :DescriptiveGrammar "https://www.teachingenglish.org.uk/article/descriptive-grammar")
+AnnotationAssertion(skos:definition :DescriptiveGrammar "a grammar that documents how a language is actually used")
+SubClassOf(:DescriptiveGrammar :Grammar)
 
 # Class: :ExecutionEnvironment (Execution Environment)
 
@@ -590,21 +700,29 @@ AnnotationAssertion(skos:definition :ExecutionEnvironment "General concept that 
 SubClassOf(:ExecutionEnvironment ObjectSomeValuesFrom(:hosts :RunningSoftware))
 SubClassOf(:ExecutionEnvironment ObjectSomeValuesFrom(:runs :Software))
 
-# Class: :FormalGrammar (Formal Grammar)
+# Class: :FormalGrammar (formal grammar)
 
-AnnotationAssertion(dc:creator :FormalGrammar "davide"^^xsd:string)
-AnnotationAssertion(dc:date :FormalGrammar "2017-05-19T03:30:48Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:comment :FormalGrammar "The concrete, formalized expression of the set of rules and constraints that specifies (intensionally) the valid sentences of a language")
-AnnotationAssertion(rdfs:label :FormalGrammar "Formal Grammar"@en)
-SubClassOf(:FormalGrammar :ConcreteExpression)
-SubClassOf(:FormalGrammar ObjectSomeValuesFrom(:serialization-of :Syntax))
-SubClassOf(:FormalGrammar ObjectSomeValuesFrom(:uses-language :FormalLanguage))
+AnnotationAssertion(rdfs:label :FormalGrammar "formal grammar")
+AnnotationAssertion(skos:definition :FormalGrammar "A grammar such there exists at least one syntax that uses a formal language and is a faithful expression of that grammar")
+EquivalentClasses(:FormalGrammar ObjectIntersectionOf(:Grammar ObjectSomeValuesFrom(:conceptualizes ObjectIntersectionOf(:Syntax ObjectSomeValuesFrom(:uses-language :FormalLanguage)))))
+SubClassOf(:FormalGrammar :Grammar)
 
 # Class: :FormalLanguage (Formal Language)
 
 AnnotationAssertion(rdfs:label :FormalLanguage "Formal Language"@en)
 AnnotationAssertion(skos:definition :FormalLanguage "language equipped with a formal, declarative, logic-based semantics")
 SubClassOf(:FormalLanguage :ConstructedLanguage)
+
+# Class: :Grammar (grammar)
+
+AnnotationAssertion(rdfs:comment :Grammar "If a grammar X formalizes a Language L, and X is expressed by an abstract syntax S, L is 'specified by' S.")
+AnnotationAssertion(rdfs:comment :Grammar "Language Specifications are expressed by syntaxes and realized by (formal) grammars")
+AnnotationAssertion(rdfs:label :Grammar "grammar")
+AnnotationAssertion(skos:altLabel :Grammar "Combinatorial Information Encoding System")
+AnnotationAssertion(skos:definition :Grammar "A conceptualization of the set of rules and constraints that define (the valid sentences of) a language")
+EquivalentClasses(:Grammar ObjectIntersectionOf(:WorkOfKnowledge ObjectSomeValuesFrom(:has-subject :Language)))
+SubClassOf(:Grammar :WorkOfKnowledge)
+SubClassOf(:Grammar ObjectSomeValuesFrom(:conceptualizes :Syntax))
 
 # Class: :InformationProcessingActivity (Information Processing Activity)
 
@@ -623,6 +741,7 @@ SubClassOf(:IntellectualWork :KnowledgeEndeavour)
 
 AnnotationAssertion(rdfs:label :Knowledge "Knowledge"@en)
 AnnotationAssertion(skos:definition :Knowledge "The cognition (know-what), pragmatics (know-how) and understanding (know-why) - about the nature and/or behaviour of some Thing")
+SubClassOf(:Knowledge ObjectSomeValuesFrom(:is-about owl:Thing))
 
 # Class: :KnowledgeArtifact (Knowledge Artifact)
 
@@ -644,6 +763,15 @@ AnnotationAssertion(rdfs:label :KnowledgeAssetSurrogate "Knowledge Asset Surroga
 AnnotationAssertion(skos:definition :KnowledgeAssetSurrogate "A Knowledge Artifact that carries the serialization of a Knowledge Resource Description")
 EquivalentClasses(:KnowledgeAssetSurrogate ObjectIntersectionOf(:KnowledgeArtifact ObjectSomeValuesFrom(:carries ObjectIntersectionOf(:ConcreteExpression ObjectSomeValuesFrom(:serialization-of :KnowledgeResourceDescription)))))
 
+# Class: :KnowledgeElement (knowledge expression element)
+
+AnnotationAssertion(rdfs:label :KnowledgeElement "knowledge expression element")
+AnnotationAssertion(rdfs:seeAlso :KnowledgeElement "http://www.w3.org/ns/lemon/ontolex#LexicalEntry")
+AnnotationAssertion(skos:definition :KnowledgeElement "fragment that expresses exactly one concept")
+AnnotationAssertion(skos:note :KnowledgeElement "knowledge expression elements are the leaves of an expression's AST, and as such are derived from (a subset of) the tokens into which a concrete expression is broken during its parsing.")
+SubClassOf(:KnowledgeElement :KnowledgeFragment)
+SubClassOf(:KnowledgeElement ObjectExactCardinality(1 :expresses :AtomicConcept))
+
 # Class: :KnowledgeEndeavour (Knowledge Endeavour)
 
 AnnotationAssertion(rdfs:label :KnowledgeEndeavour "Knowledge Endeavour")
@@ -658,14 +786,13 @@ AnnotationAssertion(rdfs:label :KnowledgeExpression "Knowledge Expression"@en)
 AnnotationAssertion(skos:definition :KnowledgeExpression "The expression of a Work, constrained by an information encoding system such as the abstract syntax of a grammar, a schema or a (meta)model")
 SubClassOf(:KnowledgeExpression :KnowledgeEndeavour)
 SubClassOf(:KnowledgeExpression ObjectSomeValuesFrom(:uses-language :Language))
-SubClassOf(:KnowledgeExpression ObjectSomeValuesFrom(:uses-notation ObjectIntersectionOf(:Notation ObjectSomeValuesFrom(:formalizes :Language))))
 SubClassOf(:KnowledgeExpression ObjectSomeValuesFrom(:uses-syntax :AbstractSyntax))
 DisjointUnion(:KnowledgeExpression :AbstractExpression :ConcreteExpression)
 
-# Class: :KnowledgeFragment (Knowledge Fragment)
+# Class: :KnowledgeFragment (knowledge fragment)
 
 AnnotationAssertion(rdfs:comment :KnowledgeFragment "Fragments express proper parts of a Work of Knowledge")
-AnnotationAssertion(rdfs:label :KnowledgeFragment "Knowledge Fragment")
+AnnotationAssertion(rdfs:label :KnowledgeFragment "knowledge fragment")
 AnnotationAssertion(skos:altLabel :KnowledgeFragment "Knowledge Resource Fragment")
 AnnotationAssertion(skos:definition :KnowledgeFragment "A proper part of a Knowledge Resource that is not a Resource itself")
 EquivalentClasses(:KnowledgeFragment ObjectIntersectionOf(:AbstractExpression ObjectSomeValuesFrom(:proper-part-of :KnowledgeResource)))
@@ -732,6 +859,18 @@ AnnotationAssertion(skos:definition :Language "The Knowledge of how to create an
 AnnotationAssertion(skos:example :Language "Contemporary Italian, as of 2017, as established by the Italian 'Accademia della Crusca'")
 AnnotationAssertion(skos:example :Language "The 2nd officially released version of the Ontology Web Language")
 SubClassOf(:Language :Piece_of_Knowledge)
+SubClassOf(:Language ObjectSomeValuesFrom(:governed-by :Grammar))
+SubClassOf(:Language ObjectSomeValuesFrom(:has-wordstock :Lexicon))
+
+# Class: :Lexicon (lexicon)
+
+AnnotationAssertion(rdfs:label :Lexicon "lexicon")
+AnnotationAssertion(rdfs:label :Lexicon "vocabulary")
+AnnotationAssertion(rdfs:seeAlso :Lexicon "https://en.wikipedia.org/wiki/Lexicon")
+AnnotationAssertion(skos:definition :Lexicon "Conceptual structure that organizes the lexical entries used or supported by a person, language, or branch of knowledge")
+AnnotationAssertion(skos:note :Lexicon "'Lexicon' and 'Vocabulary' are overloaded terms, whose sense is very context-specific")
+SubClassOf(:Lexicon :Piece_of_Knowledge)
+SubClassOf(:Lexicon ObjectSomeValuesFrom(:has-part :KnowledgeElement))
 
 # Class: :MachineExecutableLanguage (Machine-Executable Language)
 
@@ -752,27 +891,16 @@ AnnotationAssertion(rdfs:comment :NaturalLanguage "Includes written, oral and pi
 AnnotationAssertion(rdfs:label :NaturalLanguage "Natural Language"@en)
 AnnotationAssertion(skos:definition :NaturalLanguage "Language that is not structured. 
 A language for which it is not possible to define an explicit, tractable grammar such that, for each sentence constructed out of all the possible combination of the words in that language's dictionary, always allows to distinguish and disambiguate all and only the sentences that are valid syntactically and semantically.")
-EquivalentClasses(:NaturalLanguage ObjectIntersectionOf(:Language ObjectComplementOf(:ConstructedLanguage)))
+EquivalentClasses(:NaturalLanguage ObjectIntersectionOf(:Language ObjectIntersectionOf(ObjectSomeValuesFrom(:described-by :Syntax) ObjectSomeValuesFrom(:expresses :DescriptiveGrammar))))
 SubClassOf(:NaturalLanguage :Language)
-
-# Class: :Notation (Notation)
-
-AnnotationAssertion(rdfs:comment :Notation "Notations are expressed by syntaxes and realized by (formal) grammars")
-AnnotationAssertion(rdfs:label :Notation "Notation")
-AnnotationAssertion(skos:altLabel :Notation "Combinatorial Information Encoding System")
-AnnotationAssertion(skos:definition :Notation "A conceptualization of the set of rules and constraints that define (the valid sentences of) a language")
-EquivalentClasses(:Notation ObjectIntersectionOf(:WorkOfKnowledge ObjectSomeValuesFrom(:formalizes :Language)))
-SubClassOf(:Notation :WorkOfKnowledge)
-SubClassOf(:Notation ObjectSomeValuesFrom(:conceptualizes :Syntax))
-SubClassOf(:Notation ObjectSomeValuesFrom(:realized-by :FormalGrammar))
 
 # Class: :ParseTree (Concrete Syntax Tree)
 
 AnnotationAssertion(rdfs:label :ParseTree "Concrete Syntax Tree")
 AnnotationAssertion(rdfs:label :ParseTree "Parse Tree")
 AnnotationAssertion(skos:definition :ParseTree "The representation, in terms of a tree, of the internal structure of a Concrete (Knowledge) Expression, according to some Concrete Syntax")
-SubClassOf(:ParseTree :ConcreteExpression)
-SubClassOf(:ParseTree ObjectSomeValuesFrom(:formalizes :ConcreteExpression))
+SubClassOf(:ParseTree :KnowledgeResource)
+SubClassOf(:ParseTree ObjectSomeValuesFrom(:formalizes ObjectSomeValuesFrom(:conceptual-representation-of :ConcreteExpression)))
 
 # Class: :Piece_of_Knowledge (Piece of Knowledge)
 
@@ -780,6 +908,14 @@ AnnotationAssertion(rdfs:comment :Piece_of_Knowledge "When an agent represents t
 AnnotationAssertion(rdfs:label :Piece_of_Knowledge "Piece of Knowledge")
 AnnotationAssertion(skos:definition :Piece_of_Knowledge "A finite, complex association of one or more Concepts, intended as generically dependent representational units.")
 SubClassOf(:Piece_of_Knowledge :Knowledge)
+SubClassOf(:Piece_of_Knowledge ObjectSomeValuesFrom(:part-of :Knowledge))
+
+# Class: :PrescriptiveGrammar (prescriptive grammar)
+
+AnnotationAssertion(rdfs:label :PrescriptiveGrammar "prescriptive grammar")
+AnnotationAssertion(rdfs:seeAlso :PrescriptiveGrammar "https://www.teachingenglish.org.uk/article/descriptive-grammar")
+AnnotationAssertion(skos:definition :PrescriptiveGrammar "a grammar that describes how a language should be used correctly")
+SubClassOf(:PrescriptiveGrammar :Grammar)
 
 # Class: :Profile (Profile)
 
@@ -850,15 +986,14 @@ For comparison, see 'Notation' and 'Formal Grammar'")
 AnnotationAssertion(rdfs:label :Syntax "Syntax"@en)
 AnnotationAssertion(skos:definition :Syntax "The set of structures and/or rules that constrain a valid sentence of a language, itself expressed in some (meta) language")
 SubClassOf(:Syntax :AbstractExpression)
-SubClassOf(:Syntax ObjectSomeValuesFrom(:expresses :Notation))
-SubClassOf(:Syntax ObjectSomeValuesFrom(:serialized-into :FormalGrammar))
+SubClassOf(:Syntax ObjectSomeValuesFrom(:expresses :Grammar))
 
-# Class: :WorkOfKnowledge (Work of Knowledge)
+# Class: :WorkOfKnowledge (work of knowledge)
 
 AnnotationAssertion(rdfs:comment :WorkOfKnowledge "A Work of Knowledge can be conceptualized in terms of an Abstract  Semantic Graph")
 AnnotationAssertion(rdfs:comment :WorkOfKnowledge "The Activity that generates the Intellectual Work consists in identifying, selecting and preparing the Concepts that are intended to be expressed and communicated.")
 AnnotationAssertion(rdfs:comment :WorkOfKnowledge "The term 'Work of Knowledge' mirrors the term 'Work of Art'")
-AnnotationAssertion(rdfs:label :WorkOfKnowledge "Work of Knowledge")
+AnnotationAssertion(rdfs:label :WorkOfKnowledge "work of knowledge")
 AnnotationAssertion(rdfs:seeAlso :WorkOfKnowledge "http://www.tlainc.com/articl134.htm")
 AnnotationAssertion(rdfs:seeAlso :WorkOfKnowledge "https://en.wikipedia.org/wiki/Abstract_semantic_graph")
 AnnotationAssertion(skos:definition :WorkOfKnowledge "An Explicit (i.e. non Tacit) Piece of Knowledge that is the result of one or more (possibly non-deterministic) graph productions applied to some (chosen Piece of) Knowledge, intended for representation and/or communication.")
@@ -874,6 +1009,8 @@ SubObjectPropertyOf(ObjectPropertyChain(:conceptualizes :serialized-into) :reali
 SubObjectPropertyOf(ObjectPropertyChain(:executes :instantiation-of) :runs)
 SubObjectPropertyOf(ObjectPropertyChain(:executes :sustains) :hosts)
 SubObjectPropertyOf(ObjectPropertyChain(:executes :sustains :deployment-of) :runs)
+SubObjectPropertyOf(ObjectPropertyChain(:expresses :conceptual-representation-of) :representation-of)
+SubObjectPropertyOf(ObjectPropertyChain(:has-subject :is-about) :is-about)
 SubObjectPropertyOf(ObjectPropertyChain(:hosts :deployment-of) :runs)
 SubObjectPropertyOf(ObjectPropertyChain(:serialization-of :expresses) :realizes)
 SubObjectPropertyOf(ObjectPropertyChain(:serialized-into :uses-concrete-syntax) :is-serialized-in)
@@ -881,6 +1018,5 @@ SubObjectPropertyOf(ObjectPropertyChain(:supports-expression :profiles) :support
 SubObjectPropertyOf(ObjectPropertyChain(:supports-serialization :externalizes) :supports-expression)
 SubObjectPropertyOf(ObjectPropertyChain(:supports-serialization :limits) :supports-serialization)
 SubObjectPropertyOf(ObjectPropertyChain(:sustains :deployment-of) :instantiation-of)
-SubObjectPropertyOf(ObjectPropertyChain(:uses-concrete-syntax :serialization-of :expresses) :uses-notation)
-SubObjectPropertyOf(ObjectPropertyChain(:uses-notation :formalizes) :uses-language)
+SubObjectPropertyOf(ObjectPropertyChain(:uses-language :has-wordstock) :uses-lexicon)
 )
