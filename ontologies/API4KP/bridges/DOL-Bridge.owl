@@ -4,8 +4,9 @@ Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
 Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
 Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
 Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
-Prefix(dol:=<http://www.omg.org/spec/DOL/DOL-terms/>)
-Prefix(know:=<http://www.omg.org/spec/API4KP/KE#>)
+Prefix(dol:=<http://www.omg.org/spec/DOL/dol/>)
+Prefix(know:=<http://www.omg.org/spec/API4KP/core#>)
+Prefix(krr:=<http://www.omg.org/spec/API4KP/KR/>)
 
 
 
@@ -101,33 +102,33 @@ SubClassOf(know:Expression ObjectSomeValuesFrom(dol:usesLanguage dol:Language))
 
 
 
-# Class: DOL-terms:Expression (expression)
+# Class: dol:Expression (expression)
 
-SubClassOf(DOL-terms:Expression krr:SerializedMachinableKnowledgeExpression)
+SubClassOf(dol:Expression krr:SerializedMachinableKnowledgeExpression)
 
-# Class: DOL-terms:NativeOMS (native OMS)
+# Class: dol:NativeOMS (native OMS)
 
-SubClassOf(DOL-terms:NativeOMS krr:NativeMachinableKnowledgeResource)
+SubClassOf(dol:NativeOMS krr:NativeMachinableKnowledgeResource)
 
-# Class: DOL-terms:OMSLanguage (OMS language)
+# Class: dol:OMSLanguage (OMS language)
 
-SubClassOf(DOL-terms:OMSLanguage krr:KnowledgeRepresentationAndReasoningLanguage)
+SubClassOf(dol:OMSLanguage krr:KnowledgeRepresentationAndReasoningLanguage)
 
-# Class: DOL-terms:OMSSerialization (DOL-terms:OMSSerialization)
+# Class: dol:OMSSerialization (dol:OMSSerialization)
 
-SubClassOf(DOL-terms:OMSSerialization krr:KnowledgeSerialization)
+SubClassOf(dol:OMSSerialization krr:KnowledgeSerialization)
 
-# Class: DOL-terms:Query (query)
+# Class: dol:Query (query)
 
-EquivalentClasses(DOL-terms:Query ObjectIntersectionOf(ObjectSomeValuesFrom(DOL-terms:usesLanguage krr:QueryLanguage) ObjectAllValuesFrom(DOL-terms:usesLanguage krr:QueryLanguage)))
+EquivalentClasses(dol:Query ObjectIntersectionOf(ObjectSomeValuesFrom(dol:usesLanguage krr:QueryLanguage) ObjectAllValuesFrom(dol:usesLanguage krr:QueryLanguage)))
 
 
-SubObjectPropertyOf(ObjectPropertyChain(krr:hasEnvironmentMapping DOL-terms:mapsFrom) krr:hasEnvironmentMember)
-SubObjectPropertyOf(ObjectPropertyChain(krr:hasEnvironmentMapping DOL-terms:mapsTo) krr:hasEnvironmentMember)
+SubObjectPropertyOf(ObjectPropertyChain(krr:hasEnvironmentMapping dol:mapsFrom) krr:hasEnvironmentMember)
+SubObjectPropertyOf(ObjectPropertyChain(krr:hasEnvironmentMapping dol:mapsTo) krr:hasEnvironmentMember)
 
 # Class: krr:Mapping (krr:Mapping)
 
-EquivalentClasses(krr:Mapping DOL-terms:Mapping)
+EquivalentClasses(krr:Mapping dol:Mapping)
 
 
 )
