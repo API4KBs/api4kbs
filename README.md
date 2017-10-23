@@ -5,6 +5,9 @@ api4kps
 
 API for Knowledge Platforms
 
-See HTML version at sotty.github.io/api4kbs
+See HTML version at 
+
+[sotty.github.io/api4kbs](https://sotty.github.io/api4kbs/)
+
 (may require to enable 'unsafe' - non https - CSS for proper rendering) 
 
