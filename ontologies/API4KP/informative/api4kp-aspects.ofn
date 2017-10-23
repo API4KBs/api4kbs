@@ -5,28 +5,51 @@ Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
 Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
 Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 Prefix(skos:=<http://www.w3.org/2004/02/skos/core#>)
-Prefix(asp:=<http://www.omg.org/spec/API4KP/Aspects/>)
+Prefix(aspect:=<http://www.omg.org/spec/API4KP/Aspects/>)
 
 
 Ontology(<http://www.omg.org/spec/API4KP/Aspects/>
 <http://www.omg.org/spec/API4KP/20160801/Aspects/>
 Import(<http://www.w3.org/2004/02/skos/core>)
 
-Declaration(Class(:ArityClassifierAspect))
-Declaration(Class(:InputOutputTypeRelationClassifierAspect))
-Declaration(Class(:InputTypeClassifierAspect))
-Declaration(Class(:OutputTypeClassifierAspect))
-Declaration(Class(:SemanticClassifierAspect))
-Declaration(Class(:SideEffectClassifierAspect))
-Declaration(Class(:SyntacticClassifierAspect))
-Declaration(Class(:SystemLevelClassifierAspect))
-Declaration(Class(:TypeClassifierAspect))
+Declaration(Class(aspect:ArityClassifierAspect))
+Declaration(Class(aspect:ClassifierAspect))
+Declaration(Class(aspect:InputOutputTypeRelationClassifierAspect))
+Declaration(Class(aspect:OperationClassifierAspect))
+Declaration(Class(aspect:RelationshipClassifierAspect))
+Declaration(Class(aspect:SemanticClassifierAspect))
+Declaration(Class(aspect:SideEffectClassifierAspect))
+Declaration(Class(aspect:SyntacticClassifierAspect))
+Declaration(Class(aspect:TypeClassifierAspect))
+Declaration(NamedIndividual(aspect:atomic-operation))
+Declaration(NamedIndividual(aspect:binary-operation))
+Declaration(NamedIndividual(aspect:composite-operation))
+Declaration(NamedIndividual(aspect:formal-relationship))
+Declaration(NamedIndividual(aspect:idempotent-operation))
+Declaration(NamedIndividual(aspect:material-relationship))
+Declaration(NamedIndividual(aspect:nary-operation))
+Declaration(NamedIndividual(aspect:nullary-operation))
+Declaration(NamedIndividual(aspect:pure-operation))
+Declaration(NamedIndividual(aspect:side-effecful-operation))
+Declaration(NamedIndividual(aspect:ternary-operation))
+Declaration(NamedIndividual(aspect:unary-operation))
+Declaration(AnnotationProperty(aspect:categorized-by))
+Declaration(AnnotationProperty(aspect:has-aspect))
 Declaration(AnnotationProperty(skos:altLabel))
 Declaration(AnnotationProperty(skos:definition))
 Declaration(AnnotationProperty(skos:editorialNote))
 Declaration(AnnotationProperty(skos:example))
 Declaration(AnnotationProperty(skos:note))
 Declaration(AnnotationProperty(skos:scopeNote))
+############################
+#   Annotation Properties
+############################
+
+# Annotation Property: aspect:categorized-by (categorized by)
+
+AnnotationAssertion(rdfs:label aspect:categorized-by "categorized by")
+AnnotationAssertion(skos:definition aspect:categorized-by "an ontology entity is categorized by an individual aspect if that aspect models a higher order class of which the ontology entity is a member")
+SubAnnotationPropertyOf(aspect:categorized-by aspect:has-aspect)
 
 
 
@@ -34,42 +57,145 @@ Declaration(AnnotationProperty(skos:scopeNote))
 #   Classes
 ############################
 
-# Class: :ArityClassifierAspect (:ArityClassifierAspect)
+# Class: aspect:ArityClassifierAspect (arity classifier (aspect))
 
-SubClassOf(:ArityClassifierAspect :SyntacticClassifierAspect)
+AnnotationAssertion(rdfs:label aspect:ArityClassifierAspect "arity classifier (aspect)")
+SubClassOf(aspect:ArityClassifierAspect aspect:SyntacticClassifierAspect)
 
-# Class: :InputOutputTypeRelationClassifierAspect (:InputOutputTypeRelationClassifierAspect)
+# Class: aspect:ClassifierAspect (classifier aspect)
 
-SubClassOf(:InputOutputTypeRelationClassifierAspect :TypeClassifierAspect)
+AnnotationAssertion(rdfs:label aspect:ClassifierAspect "classifier aspect")
 
-# Class: :InputTypeClassifierAspect (:InputTypeClassifierAspect)
+# Class: aspect:InputOutputTypeRelationClassifierAspect (I/O type classifier (aspect))
 
-SubClassOf(:InputTypeClassifierAspect :TypeClassifierAspect)
+AnnotationAssertion(rdfs:label aspect:InputOutputTypeRelationClassifierAspect "I/O type classifier (aspect)")
+SubClassOf(aspect:InputOutputTypeRelationClassifierAspect aspect:TypeClassifierAspect)
 
-# Class: :OutputTypeClassifierAspect (:OutputTypeClassifierAspect)
+# Class: aspect:OperationClassifierAspect (operation classifier (aspect))
 
-SubClassOf(:OutputTypeClassifierAspect :TypeClassifierAspect)
+AnnotationAssertion(rdfs:label aspect:OperationClassifierAspect "operation classifier (aspect)")
+AnnotationAssertion(skos:definition aspect:OperationClassifierAspect "A higher order category which specifically applies to (API4KP) operations")
+SubClassOf(aspect:OperationClassifierAspect aspect:ClassifierAspect)
 
-# Class: :SemanticClassifierAspect (:SemanticClassifierAspect)
+# Class: aspect:RelationshipClassifierAspect (relationship classifier (aspect))
 
-SubClassOf(:SemanticClassifierAspect aspect:ClassifierAspect)
+AnnotationAssertion(rdfs:label aspect:RelationshipClassifierAspect "relationship classifier (aspect)")
+SubClassOf(aspect:RelationshipClassifierAspect aspect:ClassifierAspect)
 
-# Class: :SideEffectClassifierAspect (:SideEffectClassifierAspect)
+# Class: aspect:SemanticClassifierAspect (semantic operation classifier (aspect))
 
-SubClassOf(:SideEffectClassifierAspect :SemanticClassifierAspect)
+AnnotationAssertion(rdfs:label aspect:SemanticClassifierAspect "semantic operation classifier (aspect)")
+SubClassOf(aspect:SemanticClassifierAspect aspect:OperationClassifierAspect)
 
-# Class: :SyntacticClassifierAspect (:SyntacticClassifierAspect)
+# Class: aspect:SideEffectClassifierAspect (side-effect classifier (aspect))
 
-SubClassOf(:SyntacticClassifierAspect aspect:ClassifierAspect)
+AnnotationAssertion(rdfs:label aspect:SideEffectClassifierAspect "side-effect classifier (aspect)")
+SubClassOf(aspect:SideEffectClassifierAspect aspect:SemanticClassifierAspect)
 
-# Class: :SystemLevelClassifierAspect (:SystemLevelClassifierAspect)
+# Class: aspect:SyntacticClassifierAspect (syntactic operation classifier (aspect))
 
-SubClassOf(:SystemLevelClassifierAspect aspect:ClassifierAspect)
+AnnotationAssertion(rdfs:label aspect:SyntacticClassifierAspect "syntactic operation classifier (aspect)")
+SubClassOf(aspect:SyntacticClassifierAspect aspect:OperationClassifierAspect)
 
-# Class: :TypeClassifierAspect (:TypeClassifierAspect)
+# Class: aspect:TypeClassifierAspect (type classifier (aspect))
 
-AnnotationAssertion(skos:definition :TypeClassifierAspect "Syntactic aspect that specifies the type of input and/or output.")
-SubClassOf(:TypeClassifierAspect :SyntacticClassifierAspect)
+AnnotationAssertion(rdfs:label aspect:TypeClassifierAspect "type classifier (aspect)")
+AnnotationAssertion(skos:definition aspect:TypeClassifierAspect "Syntactic aspect that specifies the type of input and/or output.")
+SubClassOf(aspect:TypeClassifierAspect aspect:SyntacticClassifierAspect)
 
 
+############################
+#   Named Individuals
+############################
+
+# Individual: aspect:atomic-operation (atomic)
+
+AnnotationAssertion(rdfs:label aspect:atomic-operation "atomic")
+AnnotationAssertion(rdfs:seeAlso aspect:atomic-operation "https://en.wikipedia.org/wiki/Composite_pattern")
+AnnotationAssertion(skos:definition aspect:atomic-operation "atomic operations cannot be further decomposed into simpler actions witihin a given framework that defines the boundaries of atomicity (as opposed to sub-atomic components)")
+ClassAssertion(aspect:OperationClassifierAspect aspect:atomic-operation)
+
+# Individual: aspect:binary-operation (binary)
+
+AnnotationAssertion(rdfs:label aspect:binary-operation "binary")
+AnnotationAssertion(rdfs:seeAlso aspect:binary-operation "https://en.wikipedia.org/wiki/Arity")
+AnnotationAssertion(skos:definition aspect:binary-operation "operation that has exactly two input arguments")
+ClassAssertion(aspect:ArityClassifierAspect aspect:binary-operation)
+
+# Individual: aspect:composite-operation (composite)
+
+AnnotationAssertion(rdfs:label aspect:composite-operation "composite")
+AnnotationAssertion(rdfs:seeAlso aspect:composite-operation "https://en.wikipedia.org/wiki/Composite_pattern")
+AnnotationAssertion(skos:definition aspect:composite-operation "composite operations can be decomposed into a sequence of simpler operations, composite or atomic")
+ClassAssertion(aspect:OperationClassifierAspect aspect:composite-operation)
+
+# Individual: aspect:formal-relationship (formal)
+
+AnnotationAssertion(rdfs:label aspect:formal-relationship "formal")
+AnnotationAssertion(skos:definition aspect:formal-relationship "A relationship that uniquely depends on the qualities of the related individuals, without any mediating entity (event, activity, etc...)")
+ClassAssertion(aspect:RelationshipClassifierAspect aspect:formal-relationship)
+
+# Individual: aspect:idempotent-operation (idempotent)
+
+AnnotationAssertion(rdfs:label aspect:idempotent-operation "idempotent")
+AnnotationAssertion(rdfs:seeAlso aspect:idempotent-operation "https://en.wikipedia.org/wiki/Idempotence")
+AnnotationAssertion(skos:definition aspect:idempotent-operation "an idempotent operation can be composed with itself multiple times, without changing the result of the first, initial application.")
+AnnotationAssertion(skos:example aspect:idempotent-operation "abs(abs(x)) = abs(x)
+where abs is the function that extracts the absolute value of a number")
+ClassAssertion(aspect:SemanticClassifierAspect aspect:idempotent-operation)
+
+# Individual: aspect:material-relationship (material)
+
+AnnotationAssertion(rdfs:label aspect:material-relationship "material")
+AnnotationAssertion(skos:definition aspect:material-relationship "A relationship that is mediated by a supporting third entity (e.g. event, action, etc...)")
+ClassAssertion(aspect:RelationshipClassifierAspect aspect:material-relationship)
+
+# Individual: aspect:nary-operation (n-ary)
+
+AnnotationAssertion(rdfs:label aspect:nary-operation "n-ary")
+AnnotationAssertion(rdfs:seeAlso aspect:nary-operation "https://en.wikipedia.org/wiki/Arity")
+AnnotationAssertion(skos:definition aspect:nary-operation "an operation that takes a number n of arguments")
+ClassAssertion(aspect:ArityClassifierAspect aspect:nary-operation)
+
+# Individual: aspect:nullary-operation (nullary)
+
+AnnotationAssertion(rdfs:label aspect:nullary-operation "nullary")
+AnnotationAssertion(rdfs:seeAlso aspect:nullary-operation "https://en.wikipedia.org/wiki/Arity")
+AnnotationAssertion(skos:definition aspect:nullary-operation "an operation that has no explicit input arguments")
+ClassAssertion(aspect:ArityClassifierAspect aspect:nullary-operation)
+
+# Individual: aspect:pure-operation (pure)
+
+AnnotationAssertion(rdfs:label aspect:pure-operation "pure")
+AnnotationAssertion(rdfs:seeAlso aspect:pure-operation "https://en.wikipedia.org/wiki/Side_effect_(computer_science)")
+AnnotationAssertion(skos:altLabel aspect:pure-operation "side effect free")
+AnnotationAssertion(skos:definition aspect:pure-operation "an operation without side effects")
+ClassAssertion(aspect:SideEffectClassifierAspect aspect:pure-operation)
+
+# Individual: aspect:side-effecful-operation (side effectful)
+
+AnnotationAssertion(rdfs:label aspect:side-effecful-operation "side effectful")
+AnnotationAssertion(rdfs:seeAlso aspect:side-effecful-operation "https://en.wikipedia.org/wiki/Side_effect_(computer_science)")
+AnnotationAssertion(skos:definition aspect:side-effecful-operation "an operation with side effects other than the computation of the returned output values")
+ClassAssertion(aspect:SideEffectClassifierAspect aspect:side-effecful-operation)
+
+# Individual: aspect:ternary-operation (ternary)
+
+AnnotationAssertion(rdfs:label aspect:ternary-operation "ternary")
+AnnotationAssertion(rdfs:seeAlso aspect:ternary-operation "https://en.wikipedia.org/wiki/Arity")
+AnnotationAssertion(skos:definition aspect:ternary-operation "an operation that has exactly three input arguments")
+ClassAssertion(aspect:ArityClassifierAspect aspect:ternary-operation)
+
+# Individual: aspect:unary-operation (unary)
+
+AnnotationAssertion(rdfs:label aspect:unary-operation "unary")
+AnnotationAssertion(rdfs:seeAlso aspect:unary-operation "https://en.wikipedia.org/wiki/Arity")
+AnnotationAssertion(skos:definition aspect:unary-operation "an operation that has a single input argument")
+ClassAssertion(aspect:ArityClassifierAspect aspect:unary-operation)
+
+
+DifferentIndividuals(aspect:atomic-operation aspect:composite-operation)
+DifferentIndividuals(aspect:binary-operation aspect:nullary-operation aspect:ternary-operation aspect:unary-operation)
+DifferentIndividuals(aspect:formal-relationship aspect:material-relationship)
+DifferentIndividuals(aspect:pure-operation aspect:side-effecful-operation)
 )

@@ -11,21 +11,30 @@ Prefix(aspect:=<http://www.omg.org/spec/API4KP/Aspects/>)
 Ontology(<http://www.omg.org/spec/API4KP/OperationAspects/>
 <http://www.omg.org/spec/API4KP/20160801/OperationAspects/>
 Import(<http://www.w3.org/2004/02/skos/core>)
+Annotation(rdfs:comment "Aspects are used to categorize elements of the API4KP ontology at a higher order")
 
+Declaration(Class(aspect:ClassifierAspect))
 Declaration(Class(:ArityClassifierAspect))
 Declaration(Class(:InputOutputTypeRelationClassifierAspect))
 Declaration(Class(:InputTypeClassifierAspect))
+Declaration(Class(:OperationClassifierAspect))
 Declaration(Class(:OutputTypeClassifierAspect))
+Declaration(Class(:RelationshipClassifierAspect))
 Declaration(Class(:SemanticClassifierAspect))
 Declaration(Class(:SideEffectClassifierAspect))
 Declaration(Class(:SyntacticClassifierAspect))
-Declaration(Class(:SystemLevelClassifierAspect))
 Declaration(Class(:TypeClassifierAspect))
+Declaration(NamedIndividual(:formal))
+Declaration(NamedIndividual(:material))
 
 
 ############################
 #   Classes
 ############################
+
+# Class: aspect:ClassifierAspect (classifier aspect)
+
+AnnotationAssertion(rdfs:label aspect:ClassifierAspect "classifier aspect")
 
 # Class: :ArityClassifierAspect (:ArityClassifierAspect)
 
@@ -39,30 +48,51 @@ SubClassOf(:InputOutputTypeRelationClassifierAspect :TypeClassifierAspect)
 
 SubClassOf(:InputTypeClassifierAspect :TypeClassifierAspect)
 
+# Class: :OperationClassifierAspect (operation classifier (aspect))
+
+AnnotationAssertion(rdfs:label :OperationClassifierAspect "operation classifier (aspect)")
+SubClassOf(:OperationClassifierAspect aspect:ClassifierAspect)
+
 # Class: :OutputTypeClassifierAspect (:OutputTypeClassifierAspect)
 
 SubClassOf(:OutputTypeClassifierAspect :TypeClassifierAspect)
 
-# Class: :SemanticClassifierAspect (:SemanticClassifierAspect)
+# Class: :RelationshipClassifierAspect (relationship classifier (aspect))
 
-SubClassOf(:SemanticClassifierAspect aspect:ClassifierAspect)
+AnnotationAssertion(rdfs:label :RelationshipClassifierAspect "relationship classifier (aspect)")
+SubClassOf(:RelationshipClassifierAspect aspect:ClassifierAspect)
+
+# Class: :SemanticClassifierAspect (semantic classifier (aspect))
+
+AnnotationAssertion(rdfs:label :SemanticClassifierAspect "semantic classifier (aspect)")
+SubClassOf(:SemanticClassifierAspect :OperationClassifierAspect)
 
 # Class: :SideEffectClassifierAspect (:SideEffectClassifierAspect)
 
 SubClassOf(:SideEffectClassifierAspect :SemanticClassifierAspect)
 
-# Class: :SyntacticClassifierAspect (:SyntacticClassifierAspect)
+# Class: :SyntacticClassifierAspect (syntactic classifier (aspect))
 
-SubClassOf(:SyntacticClassifierAspect aspect:ClassifierAspect)
-
-# Class: :SystemLevelClassifierAspect (:SystemLevelClassifierAspect)
-
-SubClassOf(:SystemLevelClassifierAspect aspect:ClassifierAspect)
+AnnotationAssertion(rdfs:label :SyntacticClassifierAspect "syntactic classifier (aspect)")
+SubClassOf(:SyntacticClassifierAspect :OperationClassifierAspect)
 
 # Class: :TypeClassifierAspect (:TypeClassifierAspect)
 
 AnnotationAssertion(skos:definition :TypeClassifierAspect "Syntactic aspect that specifies the type of input and/or output.")
 SubClassOf(:TypeClassifierAspect :SyntacticClassifierAspect)
+
+
+############################
+#   Named Individuals
+############################
+
+# Individual: :formal (:formal)
+
+ClassAssertion(:RelationshipClassifierAspect :formal)
+
+# Individual: :material (:material)
+
+ClassAssertion(:RelationshipClassifierAspect :material)
 
 
 )
