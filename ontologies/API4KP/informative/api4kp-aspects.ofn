@@ -1,0 +1,75 @@
+Prefix(:=<http://www.omg.org/spec/API4KP/Aspects/>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+Prefix(skos:=<http://www.w3.org/2004/02/skos/core#>)
+Prefix(asp:=<http://www.omg.org/spec/API4KP/Aspects/>)
+
+
+Ontology(<http://www.omg.org/spec/API4KP/Aspects/>
+<http://www.omg.org/spec/API4KP/20160801/Aspects/>
+Import(<http://www.w3.org/2004/02/skos/core>)
+
+Declaration(Class(:ArityClassifierAspect))
+Declaration(Class(:InputOutputTypeRelationClassifierAspect))
+Declaration(Class(:InputTypeClassifierAspect))
+Declaration(Class(:OutputTypeClassifierAspect))
+Declaration(Class(:SemanticClassifierAspect))
+Declaration(Class(:SideEffectClassifierAspect))
+Declaration(Class(:SyntacticClassifierAspect))
+Declaration(Class(:SystemLevelClassifierAspect))
+Declaration(Class(:TypeClassifierAspect))
+Declaration(AnnotationProperty(skos:altLabel))
+Declaration(AnnotationProperty(skos:definition))
+Declaration(AnnotationProperty(skos:editorialNote))
+Declaration(AnnotationProperty(skos:example))
+Declaration(AnnotationProperty(skos:note))
+Declaration(AnnotationProperty(skos:scopeNote))
+
+
+
+############################
+#   Classes
+############################
+
+# Class: :ArityClassifierAspect (:ArityClassifierAspect)
+
+SubClassOf(:ArityClassifierAspect :SyntacticClassifierAspect)
+
+# Class: :InputOutputTypeRelationClassifierAspect (:InputOutputTypeRelationClassifierAspect)
+
+SubClassOf(:InputOutputTypeRelationClassifierAspect :TypeClassifierAspect)
+
+# Class: :InputTypeClassifierAspect (:InputTypeClassifierAspect)
+
+SubClassOf(:InputTypeClassifierAspect :TypeClassifierAspect)
+
+# Class: :OutputTypeClassifierAspect (:OutputTypeClassifierAspect)
+
+SubClassOf(:OutputTypeClassifierAspect :TypeClassifierAspect)
+
+# Class: :SemanticClassifierAspect (:SemanticClassifierAspect)
+
+SubClassOf(:SemanticClassifierAspect aspect:ClassifierAspect)
+
+# Class: :SideEffectClassifierAspect (:SideEffectClassifierAspect)
+
+SubClassOf(:SideEffectClassifierAspect :SemanticClassifierAspect)
+
+# Class: :SyntacticClassifierAspect (:SyntacticClassifierAspect)
+
+SubClassOf(:SyntacticClassifierAspect aspect:ClassifierAspect)
+
+# Class: :SystemLevelClassifierAspect (:SystemLevelClassifierAspect)
+
+SubClassOf(:SystemLevelClassifierAspect aspect:ClassifierAspect)
+
+# Class: :TypeClassifierAspect (:TypeClassifierAspect)
+
+AnnotationAssertion(skos:definition :TypeClassifierAspect "Syntactic aspect that specifies the type of input and/or output.")
+SubClassOf(:TypeClassifierAspect :SyntacticClassifierAspect)
+
+
+)
