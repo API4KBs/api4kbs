@@ -1,4 +1,4 @@
-Prefix(:=<http://www.omg.org/spec/API4KP/KP#>)
+Prefix(:=<http://www.omg.org/spec/API4KP/KP-#>)
 Prefix(kp:=<http://www.omg.org/spec/API4KP/KP#>)
 Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
 Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
@@ -9,14 +9,18 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 Prefix(skos:=<http://www.w3.org/2004/02/skos/core#>)
 
 
-Ontology(<http://www.omg.org/spec/API4KP/KP>
+Ontology(<http://www.omg.org/spec/API4KP/KP->
 <http://www.omg.org/spec/API4KP/2017/12/KP>
 Annotation(rdfs:comment "API4KP Ontology of Knowledge Platforms")
 
+Declaration(Class(kp:DLReasoner))
 Declaration(Class(kp:DeployedSoftware))
 Declaration(Class(kp:ExecutionEnvironment))
 Declaration(Class(kp:KnowledgePlatform))
 Declaration(Class(kp:KnowledgePlatformModule))
+Declaration(Class(kp:ProductionRuleEngine))
+Declaration(Class(kp:Reasoner))
+Declaration(Class(kp:RuleEngine))
 Declaration(Class(kp:Server))
 Declaration(Class(kp:SoftwareExecution))
 Declaration(Class(know:Activity))
@@ -24,8 +28,6 @@ Declaration(Class(know:Agent))
 Declaration(Class(know:KnowledgeActivity))
 Declaration(Class(know:KnowledgeArtifact))
 Declaration(Class(know:KnowledgeEndeavour))
-Declaration(Class(know:KnowledgeExpression))
-Declaration(Class(know:MachineReadableLanguage))
 Declaration(Class(know:Software))
 Declaration(ObjectProperty(kp:deployment-of))
 Declaration(ObjectProperty(kp:executes))
@@ -97,6 +99,12 @@ ObjectPropertyDomain(know:internally-represents kp:DeployedSoftware)
 #   Classes
 ############################
 
+# Class: kp:DLReasoner (description logic reasoner)
+
+AnnotationAssertion(rdfs:label kp:DLReasoner "description logic reasoner")
+AnnotationAssertion(skos:definition kp:DLReasoner "reasoner that supports reasoning operations with expressions that use a language that supports some of, and only, the aspects of description logics")
+SubClassOf(kp:DLReasoner kp:Reasoner)
+
 # Class: kp:DeployedSoftware (Deployed Software Module)
 
 AnnotationAssertion(rdfs:comment kp:DeployedSoftware "test")
@@ -128,6 +136,25 @@ SubClassOf(kp:KnowledgePlatformModule know:Agent)
 SubClassOf(kp:KnowledgePlatformModule ObjectSomeValuesFrom(know:internally-represents know:KnowledgeEndeavour))
 SubClassOf(kp:KnowledgePlatformModule ObjectSomeValuesFrom(know:part-of kp:KnowledgePlatform))
 SubClassOf(kp:KnowledgePlatformModule ObjectSomeValuesFrom(know:performs know:KnowledgeActivity))
+
+# Class: kp:ProductionRuleEngine (production rule engine)
+
+AnnotationAssertion(rdfs:label kp:ProductionRuleEngine "production rule engine")
+AnnotationAssertion(skos:definition kp:ProductionRuleEngine "rule engine optimized for production (condition-action) rules")
+SubClassOf(kp:ProductionRuleEngine kp:RuleEngine)
+
+# Class: kp:Reasoner (reasoner)
+
+AnnotationAssertion(rdfs:comment kp:Reasoner "software that has the capability of performing reasoning operations")
+AnnotationAssertion(rdfs:label kp:Reasoner "reasoner")
+AnnotationAssertion(skos:altLabel kp:Reasoner "engine")
+SubClassOf(kp:Reasoner know:Software)
+
+# Class: kp:RuleEngine (rule engine)
+
+AnnotationAssertion(rdfs:label kp:RuleEngine "rule engine")
+AnnotationAssertion(skos:definition kp:RuleEngine "reasoner that supports reasoning operations performed on rule bases - structured knowldege bases whose elements are expressed in some rule language that supports logic aspects commonly used to construct 'if-then' rules")
+SubClassOf(kp:RuleEngine kp:Reasoner)
 
 # Class: kp:Server (kp:Server)
 

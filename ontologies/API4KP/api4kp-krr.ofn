@@ -29,7 +29,6 @@ Annotation(sm:fileAbstract "This ontology covers the primary 'knowledge represen
 Annotation(sm:filename "api4kp-kr.rdf"^^xsd:string)
 Annotation(rdfs:label "API4KP 'Knowledge Representation and Reasoning' Terminology Ontology")
 
-Declaration(Class(<http://www.omg.org/spec/API4KP/FRBR-KR#Serialization>))
 Declaration(Class(krr:BasicEnvironment))
 Declaration(Class(krr:BasicMachinableKnowledgeResource))
 Declaration(Class(krr:CategoricalEnvironment))
@@ -38,13 +37,12 @@ Declaration(Class(krr:EmptyEnvironment))
 Declaration(Class(krr:Environment))
 Declaration(Class(krr:EnvironmentWithIdentities))
 Declaration(Class(krr:FocusedEnvironment))
+Declaration(Class(krr:HybridKnowledgeEnvironment))
 Declaration(Class(krr:ImmutableEntity))
 Declaration(Class(krr:ImmutableKnowledgeBase))
+Declaration(Class(krr:KRRKnowledgeEndeavor))
 Declaration(Class(krr:KnowledgeBase))
-Declaration(Class(krr:KnowledgeEndeavor))
-Declaration(Class(krr:KnowledgeEnvironment))
 Declaration(Class(krr:KnowledgeRepresentationAndReasoningLanguage))
-Declaration(Class(krr:KnowledgeSerialization))
 Declaration(Class(krr:KnowledgeSource))
 Declaration(Class(krr:LanguageEnvironment))
 Declaration(Class(krr:MachinableKnowledgeArtifact))
@@ -57,17 +55,12 @@ Declaration(Class(krr:MutableSource))
 Declaration(Class(krr:NativeKnowledgeResource))
 Declaration(Class(krr:NativeMachinableKnowledgeResource))
 Declaration(Class(krr:NonemptyEnvironment))
+Declaration(Class(krr:PivotalKnowledgeEnvironment))
 Declaration(Class(krr:PreservingEnvironment))
 Declaration(Class(krr:QueryLanguage))
-Declaration(Class(krr:Serialization))
 Declaration(Class(krr:SerializedMachinableKnowledgeExpression))
 Declaration(Class(krr:Source))
 Declaration(Class(krr:StructuredMachinableKnowledgeResource))
-Declaration(Class(DOL-terms:Language))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/FRBR-KR#serialization-of>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/FRBR-KR#serialized-into>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/FRBR-KR#supports-serialization>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/FRBR-KR#uses-concrete-syntax>))
 Declaration(ObjectProperty(krr:accordingTo))
 Declaration(ObjectProperty(krr:allPreserve))
 Declaration(ObjectProperty(krr:conceptualizes))
@@ -82,17 +75,12 @@ Declaration(ObjectProperty(krr:hasStructuralComponent))
 Declaration(ObjectProperty(krr:hasStructureType))
 Declaration(ObjectProperty(krr:hasSubenvironment))
 Declaration(ObjectProperty(krr:isEnvironmentMappingOf))
-Declaration(ObjectProperty(krr:isSerializationOf))
 Declaration(ObjectProperty(krr:isSubenvironmentOf))
 Declaration(ObjectProperty(krr:lifts))
 Declaration(ObjectProperty(krr:lowers))
-Declaration(ObjectProperty(krr:manifests))
-Declaration(ObjectProperty(krr:parses))
 Declaration(ObjectProperty(krr:preserves))
 Declaration(ObjectProperty(krr:prototypes))
 Declaration(ObjectProperty(krr:reproduces))
-Declaration(ObjectProperty(krr:usesSerialization))
-Declaration(ObjectProperty(DOL-terms:usesLanguage))
 Declaration(AnnotationProperty(<http://purl.org/dc/terms/license>))
 Declaration(AnnotationProperty(<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled>))
 Declaration(AnnotationProperty(sm:contentLanguage))
@@ -190,14 +178,6 @@ InverseObjectProperties(krr:hasSubenvironment krr:isSubenvironmentOf)
 
 AnnotationAssertion(rdfs:label krr:isEnvironmentMappingOf "is environment mapping of")
 
-# Object Property: krr:isSerializationOf (is serialization of)
-
-AnnotationAssertion(rdfs:label krr:isSerializationOf "is serialization of")
-AnnotationAssertion(skos:definition krr:isSerializationOf "language that is manifested by the serialization"^^xsd:string)
-SubObjectPropertyOf(krr:isSerializationOf <http://www.omg.org/spec/API4KP/FRBR-KR#supports-serialization>)
-ObjectPropertyDomain(krr:isSerializationOf DOL-terms:Language)
-ObjectPropertyRange(krr:isSerializationOf krr:Serialization)
-
 # Object Property: krr:isSubenvironmentOf (is subenvironment of)
 
 AnnotationAssertion(rdfs:label krr:isSubenvironmentOf "is subenvironment of"@en)
@@ -212,8 +192,8 @@ AnnotationAssertion(rdfs:label krr:lifts "lifts")
 AnnotationAssertion(skos:definition krr:lifts "relation between two knowledge endeavors where the first is an abstraction of the second by one level (e.g. if the first is an encoding, the second is an item, etc.).  Lifts relations are limited to one of the following: prototypes, decodes, parses, conceptualizes"^^xsd:string)
 AnnotationAssertion(skos:note krr:lifts "OWL does not let us declare this to be functional, while keeping the property chains that link Events and Operations.")
 InverseObjectProperties(krr:lifts krr:lowers)
-ObjectPropertyDomain(krr:lifts krr:KnowledgeEndeavor)
-ObjectPropertyRange(krr:lifts krr:KnowledgeEndeavor)
+ObjectPropertyDomain(krr:lifts krr:KRRKnowledgeEndeavor)
+ObjectPropertyRange(krr:lifts krr:KRRKnowledgeEndeavor)
 
 # Object Property: krr:lowers (lowers)
 
@@ -223,23 +203,6 @@ AnnotationAssertion(skos:note krr:lowers "
       <rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#FunctionalProperty\"/>
     ")
 AnnotationAssertion(skos:note krr:lowers "OWL does not let us declare this to be functional, while keeping the property chains that link Events and Operations.")
-
-# Object Property: krr:manifests (manifests)
-
-AnnotationAssertion(rdfs:label krr:manifests "manifests")
-AnnotationAssertion(skos:definition krr:manifests "machine readable knowledge resource that would be obtained from parsing the knowledge manifestation"^^xsd:string)
-SubObjectPropertyOf(krr:manifests <http://www.omg.org/spec/API4KP/FRBR-KR#serialization-of>)
-SubObjectPropertyOf(krr:manifests krr:lowers)
-InverseObjectProperties(krr:manifests krr:parses)
-ObjectPropertyDomain(krr:manifests krr:SerializedMachinableKnowledgeExpression)
-ObjectPropertyRange(krr:manifests krr:MachinableKnowledgeResource)
-
-# Object Property: krr:parses (parses)
-
-AnnotationAssertion(rdfs:label krr:parses "parses")
-AnnotationAssertion(skos:definition krr:parses "inverse of 'manifests'"^^xsd:string)
-SubObjectPropertyOf(krr:parses <http://www.omg.org/spec/API4KP/FRBR-KR#serialized-into>)
-SubObjectPropertyOf(krr:parses krr:lifts)
 
 # Object Property: krr:preserves (preserves)
 
@@ -261,23 +224,11 @@ SubObjectPropertyOf(krr:reproduces krr:lowers)
 ObjectPropertyDomain(krr:reproduces krr:MachinableKnowledgeArtifact)
 ObjectPropertyRange(krr:reproduces krr:SerializedMachinableKnowledgeExpression)
 
-# Object Property: krr:usesSerialization (uses serialization)
-
-AnnotationAssertion(rdfs:label krr:usesSerialization "uses serialization")
-AnnotationAssertion(skos:definition krr:usesSerialization "serialization used by a knowledge manifestation"^^xsd:string)
-SubObjectPropertyOf(krr:usesSerialization <http://www.omg.org/spec/API4KP/FRBR-KR#uses-concrete-syntax>)
-ObjectPropertyDomain(krr:usesSerialization krr:SerializedMachinableKnowledgeExpression)
-ObjectPropertyRange(krr:usesSerialization krr:Serialization)
-
 
 
 ############################
 #   Classes
 ############################
-
-# Class: <http://www.omg.org/spec/API4KP/FRBR-KR#Serialization> (<http://www.omg.org/spec/API4KP/FRBR-KR#Serialization>)
-
-EquivalentClasses(<http://www.omg.org/spec/API4KP/FRBR-KR#Serialization> krr:Serialization)
 
 # Class: krr:BasicEnvironment (basic environment)
 
@@ -286,9 +237,9 @@ AnnotationAssertion(skos:definition krr:BasicEnvironment "a focused environment 
 SubClassOf(krr:BasicEnvironment krr:FocusedEnvironment)
 SubClassOf(krr:BasicEnvironment ObjectExactCardinality(1 krr:hasEnvironmentMapping))
 
-# Class: krr:BasicMachinableKnowledgeResource (basic machine readable knowledge resource)
+# Class: krr:BasicMachinableKnowledgeResource (basic (KRR) knowledge resource)
 
-AnnotationAssertion(rdfs:label krr:BasicMachinableKnowledgeResource "basic machine readable knowledge resource")
+AnnotationAssertion(rdfs:label krr:BasicMachinableKnowledgeResource "basic (KRR) knowledge resource")
 AnnotationAssertion(skos:definition krr:BasicMachinableKnowledgeResource "unstructured native machine readable knowledge resource")
 AnnotationAssertion(skos:example krr:BasicMachinableKnowledgeResource "KE1: the instance of the OWL 2 DL abstract syntax for the latest version of a biomedical ontology from an ontology series KA1 defining observable entities, such as the 2015 international version of the SNOMED-CT knowledge base\\footnote{http://browser.ihtsdotools.org/} (see also the definition of Basic Knowledge Asset).
 This ontology differs from other versions of the series only in the natural language definitions.")
@@ -338,6 +289,15 @@ AnnotationAssertion(rdfs:label krr:FocusedEnvironment "focused environment")
 AnnotationAssertion(skos:definition krr:FocusedEnvironment "a nonempty environment which has a member F (called the focus or focus member) such that for every other member A, there is a mapping in the environment from A to F"^^xsd:string)
 SubClassOf(krr:FocusedEnvironment krr:NonemptyEnvironment)
 
+# Class: krr:HybridKnowledgeEnvironment (hybrid knowledge environment)
+
+AnnotationAssertion(rdfs:label krr:HybridKnowledgeEnvironment "categorical, preserving language environment where multiple KRR languages, and mappings thereof, are supported")
+AnnotationAssertion(rdfs:label krr:HybridKnowledgeEnvironment "hybrid knowledge environment")
+SubClassOf(krr:HybridKnowledgeEnvironment krr:CategoricalEnvironment)
+SubClassOf(krr:HybridKnowledgeEnvironment krr:LanguageEnvironment)
+SubClassOf(krr:HybridKnowledgeEnvironment krr:PreservingEnvironment)
+SubClassOf(krr:HybridKnowledgeEnvironment ObjectIntersectionOf(krr:LanguageEnvironment ObjectComplementOf(krr:FocusedEnvironment)))
+
 # Class: krr:ImmutableEntity (immutable entity)
 
 AnnotationAssertion(sm:specificationURL krr:ImmutableEntity "http://www.oed.com/view/Entry/92020")
@@ -353,6 +313,15 @@ AnnotationAssertion(skos:definition krr:ImmutableKnowledgeBase "Knowledge Base t
 EquivalentClasses(krr:ImmutableKnowledgeBase krr:MachineReadableWorkOfKnowledge)
 SubClassOf(krr:ImmutableKnowledgeBase krr:KnowledgeBase)
 
+# Class: krr:KRRKnowledgeEndeavor ((KRR) knowledge endeavor)
+
+AnnotationAssertion(rdfs:comment krr:KRRKnowledgeEndeavor "Knowledge Endeavors are per se immutable. Should any part change as a result of some (cognitive) activity, a new distinct Endeavor is created, that is a new version (derivative) of the original one")
+AnnotationAssertion(rdfs:label krr:KRRKnowledgeEndeavor "(KRR) knowledge endeavor")
+AnnotationAssertion(skos:definition krr:KRRKnowledgeEndeavor "a knowledge source that is an immutable entity"^^xsd:string)
+AnnotationAssertion(skos:note krr:KRRKnowledgeEndeavor "May be identified to be at one of the following levels of abstraction; piece of knowledge, machine readable knowledge resource, knowledge manifestation, or machine readable knowledge artifact.")
+EquivalentClasses(krr:KRRKnowledgeEndeavor ObjectIntersectionOf(krr:ImmutableEntity krr:KnowledgeSource know:KnowledgeEndeavour))
+DisjointUnion(krr:KRRKnowledgeEndeavor krr:MachinableKnowledgeArtifact krr:MachinableKnowledgeResource krr:MachineReadableWorkOfKnowledge krr:SerializedMachinableKnowledgeExpression)
+
 # Class: krr:KnowledgeBase (knowledge base)
 
 AnnotationAssertion(rdfs:comment krr:KnowledgeBase "A knowledge base is formed by one or more pieces of knowledge, related in different way, such that each piece plays some kind of role.")
@@ -360,37 +329,11 @@ AnnotationAssertion(rdfs:label krr:KnowledgeBase "knowledge base")
 AnnotationAssertion(skos:definition krr:KnowledgeBase "A functional complex of pieces of knowledge")
 SubClassOf(krr:KnowledgeBase krr:KnowledgeSource)
 
-# Class: krr:KnowledgeEndeavor (knowledge endeavor)
-
-AnnotationAssertion(rdfs:comment krr:KnowledgeEndeavor "Knowledge Endeavors are per se immutable. Should any part change as a result of some (cognitive) activity, a new distinct Endeavor is created, that is a new version (derivative) of the original one")
-AnnotationAssertion(rdfs:label krr:KnowledgeEndeavor "knowledge endeavor")
-AnnotationAssertion(skos:definition krr:KnowledgeEndeavor "a knowledge source that is an immutable entity"^^xsd:string)
-AnnotationAssertion(skos:note krr:KnowledgeEndeavor "May be identified to be at one of the following levels of abstraction; piece of knowledge, machine readable knowledge resource, knowledge manifestation, or machine readable knowledge artifact.")
-EquivalentClasses(krr:KnowledgeEndeavor ObjectIntersectionOf(krr:ImmutableEntity krr:KnowledgeSource))
-DisjointUnion(krr:KnowledgeEndeavor krr:MachinableKnowledgeArtifact krr:MachinableKnowledgeResource krr:MachineReadableWorkOfKnowledge krr:SerializedMachinableKnowledgeExpression)
-
-# Class: krr:KnowledgeEnvironment (knowledge environment)
-
-AnnotationAssertion(rdfs:label krr:KnowledgeEnvironment "knowledge environment")
-AnnotationAssertion(skos:definition krr:KnowledgeEnvironment "focused, categorical, preserving language environment where the focus is a KRR language")
-AnnotationAssertion(skos:scopeNote krr:KnowledgeEnvironment "The special case where all languages in an knowledge environment are KRR languages supporting model-theoretic semantics without side-effects (logics), and the preserving property is characterized by a logical graph reduces to a heterogeneous logical environment as defined in DOL.")
-SubClassOf(krr:KnowledgeEnvironment krr:CategoricalEnvironment)
-SubClassOf(krr:KnowledgeEnvironment krr:FocusedEnvironment)
-SubClassOf(krr:KnowledgeEnvironment krr:LanguageEnvironment)
-SubClassOf(krr:KnowledgeEnvironment krr:PreservingEnvironment)
-
 # Class: krr:KnowledgeRepresentationAndReasoningLanguage (knowledge representation and reasoning language)
 
 AnnotationAssertion(rdfs:label krr:KnowledgeRepresentationAndReasoningLanguage "knowledge representation and reasoning language")
 AnnotationAssertion(skos:definition krr:KnowledgeRepresentationAndReasoningLanguage "OMS language, query language, or result language"^^xsd:string)
 SubClassOf(krr:KnowledgeRepresentationAndReasoningLanguage know:KnowledgeRepresentationAndReasoningLanguage)
-
-# Class: krr:KnowledgeSerialization (knowledge serialization)
-
-AnnotationAssertion(rdfs:label krr:KnowledgeSerialization "knowledge serialization")
-AnnotationAssertion(skos:definition krr:KnowledgeSerialization "system of converting an expression into an character sequence."^^xsd:string)
-SubClassOf(krr:KnowledgeSerialization krr:Serialization)
-SubClassOf(krr:KnowledgeSerialization ObjectSomeValuesFrom(krr:isSerializationOf krr:KnowledgeRepresentationAndReasoningLanguage))
 
 # Class: krr:KnowledgeSource (knowledge source)
 
@@ -410,16 +353,16 @@ AnnotationAssertion(skos:definition krr:LanguageEnvironment "environment whose m
 SubClassOf(krr:LanguageEnvironment krr:Environment)
 SubClassOf(krr:LanguageEnvironment ObjectAllValuesFrom(krr:hasEnvironmentMember krr:KnowledgeRepresentationAndReasoningLanguage))
 
-# Class: krr:MachinableKnowledgeArtifact (machine readable knowledge artifact)
+# Class: krr:MachinableKnowledgeArtifact ((KRR) knowledge artifact)
 
-AnnotationAssertion(rdfs:label krr:MachinableKnowledgeArtifact "machine readable knowledge artifact")
+AnnotationAssertion(rdfs:label krr:MachinableKnowledgeArtifact "(KRR) knowledge artifact")
 AnnotationAssertion(skos:definition krr:MachinableKnowledgeArtifact "digital carrier that carries a concrete, machine readable knowledge expression, e.g. snapshot of a file on a hard drive, or a Java String in memory."^^xsd:string)
 AnnotationAssertion(skos:example krr:MachinableKnowledgeArtifact "Example: my copy in my Download folder of the encoding in UTF-8 of the serialization in Manchester syntax of an OWL ontology."^^xsd:string)
 SubClassOf(krr:MachinableKnowledgeArtifact know:KnowledgeArtifact)
 
-# Class: krr:MachinableKnowledgeResource (machine readable knowledge resource)
+# Class: krr:MachinableKnowledgeResource ((KRR) knowledge resource)
 
-AnnotationAssertion(rdfs:label krr:MachinableKnowledgeResource "machine readable knowledge resource")
+AnnotationAssertion(rdfs:label krr:MachinableKnowledgeResource "(KRR) knowledge resource")
 AnnotationAssertion(skos:altLabel krr:MachinableKnowledgeResource "(krr) knowledge expression")
 AnnotationAssertion(skos:definition krr:MachinableKnowledgeResource "Set of Expressions in one or more machine readable languages, in the context of a Logical Environment determining how these Expressions are jointly interpreted."^^xsd:string)
 AnnotationAssertion(skos:example krr:MachinableKnowledgeResource "Examples;
@@ -432,9 +375,9 @@ Example E: A and B, together with a mapping that allows OWL to be converted to C
 EquivalentClasses(krr:MachinableKnowledgeResource ObjectSomeValuesFrom(know:uses-language know:MachineReadableLanguage))
 SubClassOf(krr:MachinableKnowledgeResource know:KnowledgeResource)
 
-# Class: krr:MachineReadableWorkOfKnowledge (machine readable work of knowledge)
+# Class: krr:MachineReadableWorkOfKnowledge ((KRR) work of knowledge)
 
-AnnotationAssertion(rdfs:label krr:MachineReadableWorkOfKnowledge "machine readable work of knowledge")
+AnnotationAssertion(rdfs:label krr:MachineReadableWorkOfKnowledge "(KRR) work of knowledge")
 AnnotationAssertion(skos:definition krr:MachineReadableWorkOfKnowledge "equivalence class (according to an environment) of one ore more machine readable knowledge resources, assembled into a composite .
 
 Note:  intuitively, a piece of knowledge is information that may be (equivalently) expressed in one or more KR languages."^^xsd:string)
@@ -444,7 +387,7 @@ Example: query for the names of philosphers.
 Example: a sequence of strings that are asserted to be names of philosphers in some KB."^^xsd:string)
 EquivalentClasses(krr:MachineReadableWorkOfKnowledge ObjectIntersectionOf(know:WorkOfKnowledge ObjectSomeValuesFrom(krr:conceptualizes krr:MachinableKnowledgeResource)))
 SubClassOf(krr:MachineReadableWorkOfKnowledge know:WorkOfKnowledge)
-SubClassOf(krr:MachineReadableWorkOfKnowledge ObjectExactCardinality(1 krr:accordingTo krr:KnowledgeEnvironment))
+SubClassOf(krr:MachineReadableWorkOfKnowledge ObjectExactCardinality(1 krr:accordingTo krr:PivotalKnowledgeEnvironment))
 
 # Class: krr:Mapping (mapping)
 
@@ -476,9 +419,9 @@ AnnotationAssertion(rdfs:label krr:NativeKnowledgeResource "native knowledge res
 EquivalentClasses(krr:NativeKnowledgeResource ObjectIntersectionOf(know:KnowledgeResource ObjectExactCardinality(1 know:uses-language know:Language)))
 SubClassOf(krr:NativeKnowledgeResource know:KnowledgeResource)
 
-# Class: krr:NativeMachinableKnowledgeResource (native machine readable knowledge resource)
+# Class: krr:NativeMachinableKnowledgeResource (native (KRR) knowledge resource)
 
-AnnotationAssertion(rdfs:label krr:NativeMachinableKnowledgeResource "native machine readable knowledge resource")
+AnnotationAssertion(rdfs:label krr:NativeMachinableKnowledgeResource "native (KRR) knowledge resource")
 AnnotationAssertion(skos:definition krr:NativeMachinableKnowledgeResource "sequence of expressions (like non-logical symbols, sentences and structuring elements) from a given KR language.")
 EquivalentClasses(krr:NativeMachinableKnowledgeResource ObjectIntersectionOf(krr:MachinableKnowledgeResource ObjectExactCardinality(1 know:uses-language krr:KnowledgeRepresentationAndReasoningLanguage)))
 
@@ -487,6 +430,16 @@ EquivalentClasses(krr:NativeMachinableKnowledgeResource ObjectIntersectionOf(krr
 AnnotationAssertion(rdfs:label krr:NonemptyEnvironment "nonempty environment")
 SubClassOf(krr:NonemptyEnvironment krr:Environment)
 SubClassOf(krr:NonemptyEnvironment ObjectSomeValuesFrom(krr:hasEnvironmentMapping krr:Mapping))
+
+# Class: krr:PivotalKnowledgeEnvironment (pivotal knowledge environment)
+
+AnnotationAssertion(rdfs:label krr:PivotalKnowledgeEnvironment "pivotal knowledge environment")
+AnnotationAssertion(skos:definition krr:PivotalKnowledgeEnvironment "focused, categorical, preserving language environment where the focus is a KRR language")
+AnnotationAssertion(skos:scopeNote krr:PivotalKnowledgeEnvironment "The special case where all languages in an knowledge environment are KRR languages supporting model-theoretic semantics without side-effects (logics), and the preserving property is characterized by a logical graph reduces to a heterogeneous logical environment as defined in DOL.")
+SubClassOf(krr:PivotalKnowledgeEnvironment krr:CategoricalEnvironment)
+SubClassOf(krr:PivotalKnowledgeEnvironment krr:FocusedEnvironment)
+SubClassOf(krr:PivotalKnowledgeEnvironment krr:LanguageEnvironment)
+SubClassOf(krr:PivotalKnowledgeEnvironment krr:PreservingEnvironment)
 
 # Class: krr:PreservingEnvironment (preserving environment)
 
@@ -501,17 +454,9 @@ AnnotationAssertion(skos:definition krr:QueryLanguage "language consisting of a 
 AnnotationAssertion(skos:scopeNote krr:QueryLanguage "Note: the set of expressions of a query language may be defined by a grammar, or it may be defined in terms of expressions of an OMS language together with a sequence of non-logical constants that will be treated as the distinguished query variables. Additional features of a query language are perfomatives used to indicate how query results should be returned."^^xsd:string)
 SubClassOf(krr:QueryLanguage krr:KnowledgeRepresentationAndReasoningLanguage)
 
-# Class: krr:Serialization (serialization)
+# Class: krr:SerializedMachinableKnowledgeExpression (serialized (KRR) knowledge expression)
 
-AnnotationAssertion(rdfs:isDefinedBy krr:Serialization "http://www.omg.org/spec/OntoIOp/Terminology")
-AnnotationAssertion(rdfs:label krr:Serialization "serialization")
-AnnotationAssertion(skos:definition krr:Serialization "system for transforming from an expression to a character sequence"^^xsd:string)
-AnnotationAssertion(skos:scopeNote krr:Serialization "OntoIOp sensitive"^^xsd:string)
-SubClassOf(krr:Serialization ObjectSomeValuesFrom(krr:isSerializationOf DOL-terms:Language))
-
-# Class: krr:SerializedMachinableKnowledgeExpression (serialized machine readable knowledge expression)
-
-AnnotationAssertion(rdfs:label krr:SerializedMachinableKnowledgeExpression "serialized machine readable knowledge expression")
+AnnotationAssertion(rdfs:label krr:SerializedMachinableKnowledgeExpression "serialized (KRR) knowledge expression")
 AnnotationAssertion(skos:definition krr:SerializedMachinableKnowledgeExpression "character sequence, or collection of character sequences, each being the serialization of a machine readable knowledge resource in a knowledge serialization."^^xsd:string)
 AnnotationAssertion(skos:example krr:SerializedMachinableKnowledgeExpression "Example: character sequence in Manchester OWL syntax that is the serialization of an OWL Ground fact expressing that Socrates is a philosopher.
 Example: character sequence in OWL RDF/XML syntax that is the serialization of an OWL Ground fact expressing that Socrates is a philosopher.
@@ -520,16 +465,14 @@ Example: character sequence in RDF/XML that is the serialization of an RDF graph
 Example: character sequence in Turtle that is the serialization of an RDF graph expressing that the author of Moby Dick is Herman Melville.
 Example: SPARQL query String for the names of philosphers."^^xsd:string)
 SubClassOf(krr:SerializedMachinableKnowledgeExpression know:ConcreteExpression)
-SubClassOf(krr:SerializedMachinableKnowledgeExpression ObjectSomeValuesFrom(krr:manifests krr:MachinableKnowledgeResource))
-SubClassOf(krr:SerializedMachinableKnowledgeExpression ObjectSomeValuesFrom(krr:usesSerialization krr:KnowledgeSerialization))
 
 # Class: krr:Source (source)
 
 AnnotationAssertion(rdfs:label krr:Source "source")
 
-# Class: krr:StructuredMachinableKnowledgeResource (structured machine readable knowledge resource)
+# Class: krr:StructuredMachinableKnowledgeResource (structured (KRR) knowledge resource)
 
-AnnotationAssertion(rdfs:label krr:StructuredMachinableKnowledgeResource "structured machine readable knowledge resource")
+AnnotationAssertion(rdfs:label krr:StructuredMachinableKnowledgeResource "structured (KRR) knowledge resource")
 AnnotationAssertion(skos:definition krr:StructuredMachinableKnowledgeResource "collection of machine readable knowledge resources, which are not necessarily in the same language and may themselves have structure.")
 AnnotationAssertion(skos:example krr:StructuredMachinableKnowledgeResource "KE2: a heterogeneous collection of streaming data and RDF graphs, together with static OWL ontologies and CL texts, and ECA rules describing actions of a CDS")
 AnnotationAssertion(skos:example krr:StructuredMachinableKnowledgeResource "KE3: the OWL 2 DL ontology series KA1, viewed as a collection of expressions rather than an equivalence class")
