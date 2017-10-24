@@ -70,6 +70,8 @@ Declaration(ObjectProperty(know:carries))
 Declaration(ObjectProperty(know:completely-expresses))
 Declaration(ObjectProperty(know:conceptualizes))
 Declaration(ObjectProperty(know:concisely-expresses))
+Declaration(ObjectProperty(know:concretely-expressed-by))
+Declaration(ObjectProperty(know:concretely-expresses))
 Declaration(ObjectProperty(know:consistently-expresses))
 Declaration(ObjectProperty(know:depends-on))
 Declaration(ObjectProperty(know:described-by))
@@ -99,11 +101,11 @@ Declaration(ObjectProperty(know:performs))
 Declaration(ObjectProperty(know:product-of))
 Declaration(ObjectProperty(know:profiles))
 Declaration(ObjectProperty(know:proper-part-of))
-Declaration(ObjectProperty(know:realized-by))
-Declaration(ObjectProperty(know:realizes))
 Declaration(ObjectProperty(know:refines))
 Declaration(ObjectProperty(know:representation-of))
 Declaration(ObjectProperty(know:represented-by))
+Declaration(ObjectProperty(know:reproduced-by))
+Declaration(ObjectProperty(know:reproduces))
 Declaration(ObjectProperty(know:requires))
 Declaration(ObjectProperty(know:serialization-of))
 Declaration(ObjectProperty(know:serialized-into))
@@ -182,6 +184,20 @@ AnnotationAssertion(rdfs:label know:concisely-expresses "concisely expresses")
 AnnotationAssertion(skos:definition know:concisely-expresses "when conceptualized, every element of the expression corresponds to some concept that is part of the original WoK")
 SubObjectPropertyOf(know:concisely-expresses know:expresses)
 
+# Object Property: know:concretely-expressed-by (concretely expressed by)
+
+AnnotationAssertion(rdfs:label know:concretely-expressed-by "concretely expressed by")
+AnnotationAssertion(skos:definition know:concretely-expressed-by "A Work of Knowledge W is concretely expressed by a Concrete Expression E, if and only if there is an Abstract Expression of that Work W of which E is a concrete representation")
+InverseObjectProperties(know:concretely-expressed-by know:concretely-expresses)
+ObjectPropertyDomain(know:concretely-expressed-by know:WorkOfKnowledge)
+ObjectPropertyRange(know:concretely-expressed-by know:ConcreteExpression)
+
+# Object Property: know:concretely-expresses (concretely expresses)
+
+AnnotationAssertion(rdfs:label know:concretely-expresses "concretely expresses")
+ObjectPropertyDomain(know:concretely-expresses know:ConcreteExpression)
+ObjectPropertyRange(know:concretely-expresses know:WorkOfKnowledge)
+
 # Object Property: know:consistently-expresses (consistently expresses)
 
 AnnotationAssertion(rdfs:label know:consistently-expresses "consistently expresses")
@@ -208,7 +224,6 @@ AnnotationAssertion(skos:definition know:expresses "The relationship between a (
 Reflects the relationship between the expression's Abstract Syntax Tree and an Abstract Semantic Graph that captures the Knowledge content of the expression. That is, if an expression E expresses some Knowledge K, there is at least one WoK that captures K and that is faithfully expressed by E")
 AnnotationAssertion(skos:note know:expresses "Reasoners do not support the property chain 
 expresses (WoK) o captures -> expresses")
-SubObjectPropertyOf(know:expresses know:knowledge-representation-of)
 ObjectPropertyDomain(know:expresses know:AbstractExpression)
 ObjectPropertyRange(know:expresses know:WorkOfKnowledge)
 
@@ -302,10 +317,10 @@ ObjectPropertyRange(know:internally-represents know:KnowledgeEndeavour)
 AnnotationAssertion(skos:definition know:involves "The relationship between an Activity and a participant - Agent (acitive) or Resource (passive)")
 ObjectPropertyDomain(know:involves know:Activity)
 
-# Object Property: know:is-about (is about (knowledge))
+# Object Property: know:is-about (knowledge of)
 
 AnnotationAssertion(rdfs:comment know:is-about "A kind of 'aboutness' that reflects the relationship between a a knowledge-related conceptualization and its referent(s)")
-AnnotationAssertion(rdfs:label know:is-about "is about (knowledge)")
+AnnotationAssertion(rdfs:label know:is-about "knowledge of")
 AnnotationAssertion(skos:definition know:is-about "The relationship between a (piece of) Knowledge and its referent")
 ObjectPropertyDomain(know:is-about know:Knowledge)
 
@@ -390,20 +405,6 @@ AnnotationAssertion(skos:definition know:proper-part-of "Parthood relationship t
 SubObjectPropertyOf(know:proper-part-of know:part-of)
 IrreflexiveObjectProperty(know:proper-part-of)
 
-# Object Property: know:realized-by (realized by)
-
-AnnotationAssertion(rdfs:label know:realized-by "realized by")
-AnnotationAssertion(skos:definition know:realized-by "A Work of Knowledge W is realized by a Concrete Expression E, if and only if there is an Abstract Expression of that Work W of which E is a concrete representation")
-InverseObjectProperties(know:realized-by know:realizes)
-ObjectPropertyDomain(know:realized-by know:WorkOfKnowledge)
-ObjectPropertyRange(know:realized-by know:ConcreteExpression)
-
-# Object Property: know:realizes (realizes)
-
-AnnotationAssertion(rdfs:label know:realizes "realizes")
-ObjectPropertyDomain(know:realizes know:ConcreteExpression)
-ObjectPropertyRange(know:realizes know:WorkOfKnowledge)
-
 # Object Property: know:refines (know:refines)
 
 AnnotationAssertion(rdfs:comment know:refines "The relationship between two Syntaxes S1 and S2, such that the set of rules and constraints of S1 is no less permissive than S2, i.e. a sentence that is valid according to S2 must be valid according to S1.")
@@ -427,6 +428,19 @@ ObjectPropertyDomain(know:representation-of know:KnowledgeExpression)
 AnnotationAssertion(rdfs:label know:represented-by "represented by")
 AnnotationAssertion(skos:definition know:represented-by "the association between (the knowledge about) something an expression of a work of knowledge that has that something as a subject")
 ObjectPropertyRange(know:represented-by know:KnowledgeExpression)
+
+# Object Property: know:reproduced-by (know:reproduced-by)
+
+SubObjectPropertyOf(know:reproduced-by know:carried-by)
+InverseObjectProperties(know:reproduced-by know:reproduces)
+ObjectPropertyDomain(know:reproduced-by know:KnowledgeExpression)
+ObjectPropertyRange(know:reproduced-by know:KnowledgeArtifact)
+
+# Object Property: know:reproduces (know:reproduces)
+
+SubObjectPropertyOf(know:reproduces know:carries)
+ObjectPropertyDomain(know:reproduces know:KnowledgeArtifact)
+ObjectPropertyRange(know:reproduces know:KnowledgeExpression)
 
 # Object Property: know:requires (requires)
 
@@ -946,10 +960,10 @@ SubClassOf(know:WorkOfKnowledge ObjectSomeValuesFrom(know:product-of know:Knowle
 
 SubClassOf(ObjectSomeValuesFrom(know:performs know:KnowledgeActivity) know:KnowledgeableAgent)
 DisjointClasses(know:IntellectualWork know:KnowledgeArtifact know:KnowledgeExpression)
-SubObjectPropertyOf(ObjectPropertyChain(know:conceptualizes know:serialized-into) know:realized-by)
+SubObjectPropertyOf(ObjectPropertyChain(know:conceptualizes know:serialized-into) know:concretely-expressed-by)
 SubObjectPropertyOf(ObjectPropertyChain(know:expresses know:captures) know:knowledge-representation-of)
 SubObjectPropertyOf(ObjectPropertyChain(know:expresses know:has-subject) know:representation-of)
-SubObjectPropertyOf(ObjectPropertyChain(know:serialization-of know:expresses) know:realizes)
+SubObjectPropertyOf(ObjectPropertyChain(know:serialization-of know:expresses) know:concretely-expresses)
 SubObjectPropertyOf(ObjectPropertyChain(know:serialized-into know:uses-concrete-syntax) know:is-serialized-in)
 SubObjectPropertyOf(ObjectPropertyChain(know:supports-expression know:profiles) know:supports-expression)
 SubObjectPropertyOf(ObjectPropertyChain(know:supports-serialization know:externalizes) know:supports-expression)
