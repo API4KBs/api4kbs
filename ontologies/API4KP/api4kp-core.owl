@@ -72,6 +72,7 @@ Declaration(ObjectProperty(know:conceptualizes))
 Declaration(ObjectProperty(know:concisely-expresses))
 Declaration(ObjectProperty(know:concretely-expressed-by))
 Declaration(ObjectProperty(know:concretely-expresses))
+Declaration(ObjectProperty(know:conforms-with))
 Declaration(ObjectProperty(know:consistently-expresses))
 Declaration(ObjectProperty(know:depends-on))
 Declaration(ObjectProperty(know:described-by))
@@ -197,6 +198,14 @@ ObjectPropertyRange(know:concretely-expressed-by know:ConcreteExpression)
 AnnotationAssertion(rdfs:label know:concretely-expresses "concretely expresses")
 ObjectPropertyDomain(know:concretely-expresses know:ConcreteExpression)
 ObjectPropertyRange(know:concretely-expresses know:WorkOfKnowledge)
+
+# Object Property: know:conforms-with (conforms with)
+
+AnnotationAssertion(rdfs:label know:conforms-with "conforms with")
+AnnotationAssertion(skos:altLabel know:conforms-with "valid according to")
+AnnotationAssertion(skos:definition know:conforms-with "An expression conforms to, and is valid according to, the rules of the grammar of a language, as expressed by some syntax (abstract or concrete)")
+ObjectPropertyDomain(know:conforms-with know:KnowledgeExpression)
+ObjectPropertyRange(know:conforms-with know:Syntax)
 
 # Object Property: know:consistently-expresses (consistently expresses)
 
@@ -562,6 +571,10 @@ ObjectPropertyRange(know:uses-profile know:Profile)
 # Object Property: know:uses-syntax (uses syntax)
 
 AnnotationAssertion(rdfs:label know:uses-syntax "uses syntax")
+AnnotationAssertion(skos:definition know:uses-syntax "An expression uses a syntax if it is (known to have been originally) formulated according to that syntax.")
+AnnotationAssertion(skos:scopeNote know:uses-syntax "Using a syntax implies conformance to that syntax. The converse is not true in general: a sentence written in a language may still be valid according to the rules of another language it is checked against. 
+This is necessarily true when the former language is embedded in the latter, but may also be coincidentally true (e.g. the sentence \"3+5\" conforms to the syntax of many programming languages).")
+SubObjectPropertyOf(know:uses-syntax know:conforms-with)
 ObjectPropertyDomain(know:uses-syntax know:KnowledgeExpression)
 ObjectPropertyRange(know:uses-syntax know:AbstractSyntax)
 
