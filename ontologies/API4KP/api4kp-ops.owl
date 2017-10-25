@@ -1,0 +1,135 @@
+Prefix(:=<http://www.omg.org/spec/API4KP/Operations#>)
+Prefix(ops:=<http://www.omg.org/spec/API4KP/Operations#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(know:=<http://www.omg.org/spec/API4KP/core#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.omg.org/spec/API4KP/Operations>
+<http://www.omg.org/spec/API4KP2017/12//Operations>
+Import(<http://www.omg.org/spec/API4KP/2017/12/core>)
+Import(<http://www.omg.org/spec/API4KP/2017/12/DUL-Bridge>)
+Annotation(rdfs:comment "Ontology of API4KP Operations")
+
+Declaration(Class(ops:ASTranslationTask))
+Declaration(Class(ops:AtomicKnowledgeProcessingActivity))
+Declaration(Class(ops:AtomicKnowledgeProcessingTask))
+Declaration(Class(ops:ComplexKnowledgeProcessingActivity))
+Declaration(Class(ops:ComplexKnowledgeProcessingTask))
+Declaration(Class(ops:DoTranslateServiceTask))
+Declaration(Class(ops:KnowledgeProcessingOperation))
+Declaration(Class(ops:KnowledgeProcessingServiceTask))
+Declaration(Class(ops:ParsingTask))
+Declaration(ObjectProperty(ops:composed-into))
+Declaration(ObjectProperty(ops:composed-with))
+Declaration(ObjectProperty(ops:has-input-role-filled-by))
+Declaration(ObjectProperty(ops:initiated))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: ops:composed-into (composed into)
+
+AnnotationAssertion(rdfs:label ops:composed-into "composed into")
+AnnotationAssertion(rdfs:seeAlso ops:composed-into "F is composed into G if F is applied, and the G is applied to its result.
+I.e. F => G, or G( F( x ) )")
+InverseObjectProperties(ops:composed-into ops:composed-with)
+ObjectPropertyDomain(ops:composed-into ops:AtomicKnowledgeProcessingTask)
+ObjectPropertyRange(ops:composed-into ops:AtomicKnowledgeProcessingTask)
+
+# Object Property: ops:composed-with (composed with)
+
+AnnotationAssertion(rdfs:label ops:composed-with "composed with")
+AnnotationAssertion(rdfs:seeAlso ops:composed-with "https://en.wikipedia.org/wiki/Function_composition")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:composed-with "G is composed with F if G is applied to the result of the application of F
+i.e. G o F , or G( F ( x ) )")
+ObjectPropertyDomain(ops:composed-with ops:AtomicKnowledgeProcessingTask)
+ObjectPropertyRange(ops:composed-with ops:AtomicKnowledgeProcessingTask)
+
+# Object Property: ops:initiated (ops:initiated)
+
+ObjectPropertyDomain(ops:initiated ops:ComplexKnowledgeProcessingTask)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: ops:ASTranslationTask (ops:ASTranslationTask)
+
+SubClassOf(ops:ASTranslationTask ops:AtomicKnowledgeProcessingTask)
+
+# Class: ops:AtomicKnowledgeProcessingActivity (atomic knowledge processing activity)
+
+AnnotationAssertion(rdfs:label ops:AtomicKnowledgeProcessingActivity "atomic knowledge processing activity")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:AtomicKnowledgeProcessingActivity "a knowledge processing activity that is not meant be further decomposed into simpler parts that are knowledge processing activities themselves")
+EquivalentClasses(ops:AtomicKnowledgeProcessingActivity ObjectIntersectionOf(know:KnowledgeActivity ObjectComplementOf(ObjectSomeValuesFrom(know:has-part know:KnowledgeActivity))))
+SubClassOf(ops:AtomicKnowledgeProcessingActivity know:KnowledgeActivity)
+DisjointClasses(ops:AtomicKnowledgeProcessingActivity ops:ComplexKnowledgeProcessingActivity)
+
+# Class: ops:AtomicKnowledgeProcessingTask (atomic knowledge processing task)
+
+AnnotationAssertion(rdfs:comment ops:AtomicKnowledgeProcessingTask "each 'atomic knowledge processing task' is the concept that abstracts a specific class of atomic knowledge processing activities")
+AnnotationAssertion(rdfs:label ops:AtomicKnowledgeProcessingTask "atomic knowledge processing task")
+SubClassOf(ops:AtomicKnowledgeProcessingTask know:KnowledgeProcessingTask)
+SubClassOf(ops:AtomicKnowledgeProcessingTask ObjectSomeValuesFrom(know:archetypes ops:AtomicKnowledgeProcessingActivity))
+SubClassOf(ops:AtomicKnowledgeProcessingTask ObjectAllValuesFrom(know:archetypes ops:AtomicKnowledgeProcessingActivity))
+
+# Class: ops:ComplexKnowledgeProcessingActivity (complex knowledge processing activity)
+
+AnnotationAssertion(rdfs:label ops:ComplexKnowledgeProcessingActivity "complex knowledge processing activity")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ComplexKnowledgeProcessingActivity "A knowledge processing activity that is complex, and can be broken down into simpler parts, each one representing a stage of the activity")
+EquivalentClasses(ops:ComplexKnowledgeProcessingActivity ObjectIntersectionOf(know:KnowledgeActivity ObjectSomeValuesFrom(know:has-part know:KnowledgeActivity)))
+SubClassOf(ops:ComplexKnowledgeProcessingActivity know:KnowledgeActivity)
+
+# Class: ops:ComplexKnowledgeProcessingTask (complex knowledge processing task)
+
+AnnotationAssertion(rdfs:comment ops:ComplexKnowledgeProcessingTask "each 'complex knowledge processing task' is the concept that abstracts a specific class of complex knowledge processing activities. 
+
+The concept is defined by a plan which organizes the simpler tasks that are part of the complex task, and defines its roles, methods and goals.")
+AnnotationAssertion(rdfs:label ops:ComplexKnowledgeProcessingTask "complex knowledge processing task")
+SubClassOf(ops:ComplexKnowledgeProcessingTask know:KnowledgeProcessingTask)
+SubClassOf(ops:ComplexKnowledgeProcessingTask ObjectSomeValuesFrom(know:archetypes ops:ComplexKnowledgeProcessingActivity))
+SubClassOf(ops:ComplexKnowledgeProcessingTask ObjectSomeValuesFrom(know:defined-by know:ProcessPlan))
+
+# Class: ops:DoTranslateServiceTask (ops:DoTranslateServiceTask)
+
+SubClassOf(ops:DoTranslateServiceTask ops:KnowledgeProcessingServiceTask)
+SubClassOf(ops:DoTranslateServiceTask ObjectSomeValuesFrom(ops:initiated ObjectIntersectionOf(ops:ParsingTask ObjectSomeValuesFrom(ops:composed-into ops:ASTranslationTask))))
+
+# Class: ops:KnowledgeProcessingOperation (knowledge processing operation)
+
+AnnotationAssertion(rdfs:label ops:KnowledgeProcessingOperation "knowledge processing operation")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeProcessingOperation "(knowledge processing) operations are complex activities that involve knowledge artifacts as inputs and/or outputs")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:KnowledgeProcessingOperation "In API4KP, operations are usually performed 'as a service', i.e. by a (software) agent that acts on behalf of another agent")
+SubClassOf(ops:KnowledgeProcessingOperation ops:ComplexKnowledgeProcessingActivity)
+SubClassOf(ops:KnowledgeProcessingOperation ObjectUnionOf(ObjectSomeValuesFrom(know:has-product know:KnowledgeArtifact) ObjectSomeValuesFrom(know:makes-use-of know:KnowledgeArtifact)))
+
+# Class: ops:KnowledgeProcessingServiceTask (knowledge processing service task)
+
+AnnotationAssertion(rdfs:label ops:KnowledgeProcessingServiceTask "knowledge processing service task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeProcessingServiceTask "a knowledge processing task that is exposed as a service: i.e. an agent can be requested to perform activities of this kind, any number of times, based on a request mediated by an (communication) interface and possibly under the guidance of a contract")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:KnowledgeProcessingServiceTask "The 'service' elements are defined in the API4KP Platform ontology")
+SubClassOf(ops:KnowledgeProcessingServiceTask ops:ComplexKnowledgeProcessingTask)
+SubClassOf(ops:KnowledgeProcessingServiceTask ObjectSomeValuesFrom(ops:initiated ObjectIntersectionOf(ops:ParsingTask ObjectSomeValuesFrom(ops:composed-into ops:ASTranslationTask))))
+SubClassOf(ops:KnowledgeProcessingServiceTask ObjectSomeValuesFrom(know:archetypes ops:KnowledgeProcessingOperation))
+
+# Class: ops:ParsingTask (ops:ParsingTask)
+
+SubClassOf(ops:ParsingTask ops:AtomicKnowledgeProcessingTask)
+
+# Class: know:KnowledgeActivity (knowledge processing activity)
+
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> know:KnowledgeActivity "Like any other Activity, an (instance of a) knowledge processing activity is a process that takes place in space and time")
+
+# Class: know:KnowledgeProcessingTask (knowledge processing task)
+
+SubClassOf(know:KnowledgeProcessingTask ObjectSomeValuesFrom(ops:has-input-role-filled-by know:KnowledgeCarrier))
+
+
+)
