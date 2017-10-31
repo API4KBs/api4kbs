@@ -19,40 +19,109 @@ Declaration(Class(ops:AtomicKnowledgeProcessingActivity))
 Declaration(Class(ops:AtomicKnowledgeProcessingTask))
 Declaration(Class(ops:ComplexKnowledgeProcessingActivity))
 Declaration(Class(ops:ComplexKnowledgeProcessingTask))
+Declaration(Class(ops:ConfigurationParameter))
+Declaration(Class(ops:DecodingTask))
 Declaration(Class(ops:DoTranslateServiceTask))
+Declaration(Class(ops:EncodingTask))
+Declaration(Class(ops:Explanation))
+Declaration(Class(ops:Input))
+Declaration(Class(ops:InputOutput))
 Declaration(Class(ops:KnowledgeProcessingOperation))
 Declaration(Class(ops:KnowledgeProcessingServiceTask))
+Declaration(Class(ops:OptionalInput))
+Declaration(Class(ops:Output))
 Declaration(Class(ops:ParsingTask))
+Declaration(Class(ops:PrimaryInput))
+Declaration(Class(ops:PrimaryOutput))
+Declaration(Class(ops:ReadTask))
+Declaration(Class(ops:SecondaryOutput))
+Declaration(Class(ops:SerializationTask))
+Declaration(Class(ops:TranslationServiceDefinition))
+Declaration(Class(ops:WriteTask))
 Declaration(ObjectProperty(ops:composed-into))
 Declaration(ObjectProperty(ops:composed-with))
-Declaration(ObjectProperty(ops:has-input-role-filled-by))
-Declaration(ObjectProperty(ops:initiated))
+Declaration(ObjectProperty(ops:configures))
+Declaration(ObjectProperty(ops:filled-by))
+Declaration(ObjectProperty(ops:has-primary-subtask))
+Declaration(ObjectProperty(ops:has-role))
+Declaration(ObjectProperty(ops:has-subtask))
+Declaration(ObjectProperty(ops:initiated-by))
+Declaration(ObjectProperty(ops:played-by))
 
 ############################
 #   Object Properties
 ############################
 
-# Object Property: ops:composed-into (composed into)
+# Object Property: ops:composed-into (>>=)
 
-AnnotationAssertion(rdfs:label ops:composed-into "composed into")
+AnnotationAssertion(rdfs:label ops:composed-into ">>=")
 AnnotationAssertion(rdfs:seeAlso ops:composed-into "F is composed into G if F is applied, and the G is applied to its result.
 I.e. F => G, or G( F( x ) )")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:composed-into "composed into")
 InverseObjectProperties(ops:composed-into ops:composed-with)
 ObjectPropertyDomain(ops:composed-into ops:AtomicKnowledgeProcessingTask)
 ObjectPropertyRange(ops:composed-into ops:AtomicKnowledgeProcessingTask)
 
-# Object Property: ops:composed-with (composed with)
+# Object Property: ops:composed-with (o)
 
-AnnotationAssertion(rdfs:label ops:composed-with "composed with")
+AnnotationAssertion(rdfs:label ops:composed-with "o")
 AnnotationAssertion(rdfs:seeAlso ops:composed-with "https://en.wikipedia.org/wiki/Function_composition")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:composed-with "composed with")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:composed-with "G is composed with F if G is applied to the result of the application of F
 i.e. G o F , or G( F ( x ) )")
 ObjectPropertyDomain(ops:composed-with ops:AtomicKnowledgeProcessingTask)
 ObjectPropertyRange(ops:composed-with ops:AtomicKnowledgeProcessingTask)
 
-# Object Property: ops:initiated (ops:initiated)
+# Object Property: ops:configures (configures)
 
-ObjectPropertyDomain(ops:initiated ops:ComplexKnowledgeProcessingTask)
+AnnotationAssertion(rdfs:label ops:configures "configures")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:configures "A parameter configures a method by fixing one of the degrees of freedom that the method allows")
+ObjectPropertyDomain(ops:configures ops:ConfigurationParameter)
+ObjectPropertyRange(ops:configures know:KnowledgeProcessingMethod)
+
+# Object Property: ops:filled-by (filled by)
+
+AnnotationAssertion(rdfs:label ops:filled-by "filled by")
+SubObjectPropertyOf(ops:filled-by know:archetypes)
+ObjectPropertyDomain(ops:filled-by know:PassiveRole)
+
+# Object Property: ops:has-primary-subtask (has primary sub-task)
+
+AnnotationAssertion(rdfs:label ops:has-primary-subtask "has primary sub-task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:has-primary-subtask "a task T has a primary sub-task P, if not achieving the goals of the plan that defines P necessarily implies not achieving the goals of the plan that defines T")
+SubObjectPropertyOf(ops:has-primary-subtask ops:has-subtask)
+ObjectPropertyDomain(ops:has-primary-subtask know:KnowledgeProcessingTask)
+ObjectPropertyRange(ops:has-primary-subtask know:KnowledgeProcessingTask)
+
+# Object Property: ops:has-role (has role)
+
+AnnotationAssertion(rdfs:label ops:has-role "has role")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:has-role "the relationship between a task T and a role R, such that when an activity A is performed and A is archetyped by T, there exists at least one agent or a resource that participats in A and is archetyped by R")
+SubObjectPropertyOf(ops:has-role know:has-part)
+ObjectPropertyDomain(ops:has-role know:KnowledgeProcessingTask)
+ObjectPropertyRange(ops:has-role ObjectUnionOf(know:AgentiveRole know:PassiveRole))
+
+# Object Property: ops:has-subtask (has sub-task)
+
+AnnotationAssertion(rdfs:label ops:has-subtask "has sub-task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:has-subtask "the relationship between a task T and a task S, such that an activity of kind T will have an activity of type S as a sub-activity, i.e. as a (temporal) proper process part")
+SubObjectPropertyOf(ops:has-subtask know:has-part)
+ObjectPropertyDomain(ops:has-subtask know:KnowledgeProcessingTask)
+ObjectPropertyRange(ops:has-subtask know:KnowledgeProcessingTask)
+
+# Object Property: ops:initiated-by (initiated by)
+
+AnnotationAssertion(rdfs:label ops:initiated-by "initiated by")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:initiated-by "A plan P is initiated by a task T if any activity of the kind defined by P starts (temporally) with a sub-activity of kind T")
+ObjectPropertyDomain(ops:initiated-by know:KnowledgeProcessingPlan)
+ObjectPropertyRange(ops:initiated-by know:KnowledgeProcessingTask)
+
+# Object Property: ops:played-by (played by)
+
+AnnotationAssertion(rdfs:label ops:played-by "played by")
+SubObjectPropertyOf(ops:played-by know:archetypes)
+ObjectPropertyDomain(ops:played-by know:AgentiveRole)
+ObjectPropertyRange(ops:played-by know:Agent)
 
 
 
@@ -95,12 +164,55 @@ The concept is defined by a plan which organizes the simpler tasks that are part
 AnnotationAssertion(rdfs:label ops:ComplexKnowledgeProcessingTask "complex knowledge processing task")
 SubClassOf(ops:ComplexKnowledgeProcessingTask know:KnowledgeProcessingTask)
 SubClassOf(ops:ComplexKnowledgeProcessingTask ObjectSomeValuesFrom(know:archetypes ops:ComplexKnowledgeProcessingActivity))
-SubClassOf(ops:ComplexKnowledgeProcessingTask ObjectSomeValuesFrom(know:defined-by know:ProcessPlan))
+SubClassOf(ops:ComplexKnowledgeProcessingTask ObjectSomeValuesFrom(know:defined-by know:KnowledgeProcessingPlan))
+
+# Class: ops:ConfigurationParameter (configuration parameter)
+
+AnnotationAssertion(rdfs:comment ops:ConfigurationParameter "A method has a configurable degree of freedom if it can be specialized by choosing a value from a region without changing the nature of the method: i.e. an activity executed according to a given method will still be executed according to that method no matter what value is chosen for the parameter, as long as the value belongs to the admissible region")
+AnnotationAssertion(rdfs:comment ops:ConfigurationParameter "role played by a value, selected from a given region of admissible values, that informs the method used to execute a (knowledge processing) activity")
+AnnotationAssertion(rdfs:label ops:ConfigurationParameter "configuration parameter")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:ConfigurationParameter "actual parameter")
+SubClassOf(ops:ConfigurationParameter ops:OptionalInput)
+SubClassOf(ops:ConfigurationParameter ObjectSomeValuesFrom(ops:configures know:KnowledgeProcessingMethod))
+
+# Class: ops:DecodingTask (decoding task)
+
+AnnotationAssertion(rdfs:label ops:DecodingTask "decoding task")
+AnnotationAssertion(rdfs:label ops:DecodingTask "recognition task")
+SubClassOf(ops:DecodingTask ops:AtomicKnowledgeProcessingTask)
 
 # Class: ops:DoTranslateServiceTask (ops:DoTranslateServiceTask)
 
 SubClassOf(ops:DoTranslateServiceTask ops:KnowledgeProcessingServiceTask)
-SubClassOf(ops:DoTranslateServiceTask ObjectSomeValuesFrom(ops:initiated ObjectIntersectionOf(ops:ParsingTask ObjectSomeValuesFrom(ops:composed-into ops:ASTranslationTask))))
+SubClassOf(ops:DoTranslateServiceTask ObjectSomeValuesFrom(ops:has-primary-subtask ops:ASTranslationTask))
+SubClassOf(ops:DoTranslateServiceTask ObjectSomeValuesFrom(know:defined-by ops:TranslationServiceDefinition))
+
+# Class: ops:EncodingTask (encoding task)
+
+AnnotationAssertion(rdfs:label ops:EncodingTask "encoding task")
+AnnotationAssertion(rdfs:label ops:EncodingTask "engraving task")
+SubClassOf(ops:EncodingTask ops:AtomicKnowledgeProcessingTask)
+
+# Class: ops:Explanation (explanation)
+
+AnnotationAssertion(rdfs:label ops:Explanation "explanation")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:Explanation "An expression, generated as part of the execution of a (knowledge processing) activity, of knowledge about that course of that activity and/or its inputs and outputs")
+SubClassOf(ops:Explanation ops:SecondaryOutput)
+SubClassOf(ops:Explanation ObjectSomeValuesFrom(know:archetypes ObjectIntersectionOf(know:KnowledgeExpression ObjectSomeValuesFrom(know:representation-of know:KnowledgeActivity))))
+
+# Class: ops:Input (input)
+
+AnnotationAssertion(rdfs:label ops:Input "input")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:Input "role played by an entity that is used in an activity, and exists before that activity is started")
+SubClassOf(ops:Input know:PassiveRole)
+
+# Class: ops:InputOutput (input/output)
+
+AnnotationAssertion(rdfs:label ops:InputOutput "input/output")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:InputOutput "substrate")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:InputOutput "Role played by an entity that is both an input and an output")
+SubClassOf(ops:InputOutput ops:Input)
+SubClassOf(ops:InputOutput ops:Output)
 
 # Class: ops:KnowledgeProcessingOperation (knowledge processing operation)
 
@@ -116,12 +228,64 @@ AnnotationAssertion(rdfs:label ops:KnowledgeProcessingServiceTask "knowledge pro
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeProcessingServiceTask "a knowledge processing task that is exposed as a service: i.e. an agent can be requested to perform activities of this kind, any number of times, based on a request mediated by an (communication) interface and possibly under the guidance of a contract")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:KnowledgeProcessingServiceTask "The 'service' elements are defined in the API4KP Platform ontology")
 SubClassOf(ops:KnowledgeProcessingServiceTask ops:ComplexKnowledgeProcessingTask)
-SubClassOf(ops:KnowledgeProcessingServiceTask ObjectSomeValuesFrom(ops:initiated ObjectIntersectionOf(ops:ParsingTask ObjectSomeValuesFrom(ops:composed-into ops:ASTranslationTask))))
 SubClassOf(ops:KnowledgeProcessingServiceTask ObjectSomeValuesFrom(know:archetypes ops:KnowledgeProcessingOperation))
+
+# Class: ops:OptionalInput (optional input)
+
+AnnotationAssertion(rdfs:label ops:OptionalInput "optional input")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:OptionalInput "an input that, when not provided, does not preclude an activity from being executed successfully")
+SubClassOf(ops:OptionalInput ops:Input)
+
+# Class: ops:Output (output)
+
+AnnotationAssertion(rdfs:label ops:Output "output")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:Output "product")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:Output "Role played by an entity that is produced by a (knowledge processing) activity")
+SubClassOf(ops:Output know:PassiveRole)
 
 # Class: ops:ParsingTask (ops:ParsingTask)
 
 SubClassOf(ops:ParsingTask ops:AtomicKnowledgeProcessingTask)
+
+# Class: ops:PrimaryInput (primary input)
+
+AnnotationAssertion(rdfs:label ops:PrimaryInput "primary input")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:PrimaryInput "an input that is necessary for the execution of a (knowledge processing activity). As a prerequisite, the activity cannot be completed successfully (i.e. it is not possible to achieve its goals) unless the primary input is provided")
+SubClassOf(ops:PrimaryInput ops:Input)
+
+# Class: ops:PrimaryOutput (primary output)
+
+AnnotationAssertion(rdfs:comment ops:PrimaryOutput "An activity that is expected to produce a primary output is considered failed if the entity playing that role is not actually generated")
+AnnotationAssertion(rdfs:label ops:PrimaryOutput "primary output")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:PrimaryOutput "output such that its production is the main goal of the activity that generates is.")
+SubClassOf(ops:PrimaryOutput ops:Output)
+
+# Class: ops:ReadTask (I/O read task)
+
+AnnotationAssertion(rdfs:label ops:ReadTask "I/O read task")
+SubClassOf(ops:ReadTask ops:DecodingTask)
+
+# Class: ops:SecondaryOutput (secondary output)
+
+AnnotationAssertion(rdfs:comment ops:SecondaryOutput "an activity is not failed automatically if a secondary output is not produced.")
+AnnotationAssertion(rdfs:label ops:SecondaryOutput "secondary output")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:SecondaryOutput "byproduct")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SecondaryOutput "output that is generated alongside the primary output, but is not one of the primary goals of the execution of that activity")
+SubClassOf(ops:SecondaryOutput ops:Output)
+
+# Class: ops:SerializationTask (ops:SerializationTask)
+
+SubClassOf(ops:SerializationTask ops:AtomicKnowledgeProcessingTask)
+
+# Class: ops:TranslationServiceDefinition (ops:TranslationServiceDefinition)
+
+EquivalentClasses(ops:TranslationServiceDefinition ObjectIntersectionOf(know:KnowledgeProcessingPlan ObjectSomeValuesFrom(know:defines ops:DoTranslateServiceTask)))
+SubClassOf(ops:TranslationServiceDefinition know:KnowledgeProcessingPlan)
+
+# Class: ops:WriteTask (I/O write task)
+
+AnnotationAssertion(rdfs:label ops:WriteTask "I/O write task")
+SubClassOf(ops:WriteTask ops:EncodingTask)
 
 # Class: know:KnowledgeActivity (knowledge processing activity)
 
@@ -129,7 +293,12 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> know:Knowled
 
 # Class: know:KnowledgeProcessingTask (knowledge processing task)
 
-SubClassOf(know:KnowledgeProcessingTask ObjectSomeValuesFrom(ops:has-input-role-filled-by know:KnowledgeCarrier))
+AnnotationAssertion(rdfs:comment know:KnowledgeProcessingTask "A knowledge processing task abstracts the role that knowledge endeavors play in a knowledge processing activity, as inputs, outputs or both")
+AnnotationAssertion(rdfs:comment know:KnowledgeProcessingTask "Some tasks, those that are executed according to a method that has some degrees of freedom, can be configured using parameters")
+AnnotationAssertion(rdfs:comment know:KnowledgeProcessingTask "The execution of a Knowledge Processing tasks may involve the generation of an 'explanation'")
+SubClassOf(know:KnowledgeProcessingTask ObjectUnionOf(ObjectIntersectionOf(ObjectSomeValuesFrom(ops:filled-by know:KnowledgeEndeavour) ObjectSomeValuesFrom(ops:has-role ops:Input)) ObjectIntersectionOf(ObjectSomeValuesFrom(ops:filled-by know:KnowledgeEndeavour) ObjectSomeValuesFrom(ops:has-role ops:Output))))
 
 
+SubClassOf(ObjectSomeValuesFrom(ops:has-role ops:ConfigurationParameter) know:KnowledgeProcessingTask)
+SubClassOf(ObjectSomeValuesFrom(ops:has-role ops:Explanation) know:KnowledgeProcessingTask)
 )

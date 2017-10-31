@@ -160,6 +160,13 @@ SubClassOf(kp:RuleEngine kp:Reasoner)
 
 SubClassOf(kp:Server kp:DeployedSoftware)
 
+# Class: ops:Server (ops:server)
+
+AnnotationAssertion(rdfs:label ops:Server "TODO server")
+SubClassOf(ops:Server ops:AgentiveRole)
+SubClassOf(ops:Server ObjectIntersectionOf(ops:AgentiveRole ObjectSomeValuesFrom(know:archetypes know:Software)))
+
+
 # Class: kp:SoftwareExecution (Software Execution)
 
 AnnotationAssertion(rdfs:comment kp:SoftwareExecution "The process by which a (virtual) machine interpretes and executes the instructions that are fragments of a Software.")

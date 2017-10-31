@@ -23,6 +23,7 @@ Declaration(Class(know:AbstractSyntax))
 Declaration(Class(know:AbstractSyntaxTree))
 Declaration(Class(know:Activity))
 Declaration(Class(know:Agent))
+Declaration(Class(know:AgentiveRole))
 Declaration(Class(know:ArtificialAgent))
 Declaration(Class(know:AtomicConcept))
 Declaration(Class(know:ComplexConcept))
@@ -49,6 +50,8 @@ Declaration(Class(know:KnowledgeElement))
 Declaration(Class(know:KnowledgeEndeavour))
 Declaration(Class(know:KnowledgeExpression))
 Declaration(Class(know:KnowledgeFragment))
+Declaration(Class(know:KnowledgeProcessingMethod))
+Declaration(Class(know:KnowledgeProcessingPlan))
 Declaration(Class(know:KnowledgeProcessingTask))
 Declaration(Class(know:KnowledgeRepresentationAndReasoningLanguage))
 Declaration(Class(know:KnowledgeResource))
@@ -62,10 +65,10 @@ Declaration(Class(know:Model))
 Declaration(Class(know:NaturalLanguage))
 Declaration(Class(know:Ontology))
 Declaration(Class(know:ParseTree))
+Declaration(Class(know:PassiveRole))
 Declaration(Class(know:PieceOfKnowledge))
 Declaration(Class(know:PrescriptiveGrammar))
 Declaration(Class(know:PrimitiveConcept))
-Declaration(Class(know:ProcessPlan))
 Declaration(Class(know:Profile))
 Declaration(Class(know:SelfContainedKnowledgeArtifact))
 Declaration(Class(know:Serialization))
@@ -673,6 +676,15 @@ AnnotationAssertion(skos:definition know:Agent "Any entity that has the capabili
 AnnotationAssertion(skos:scopeNote know:Agent "This abstract definition of Agent is intended to be as broad as possible, at least covering human and software agents alike.
 The intent is to be refined/redefined/concretized when this ontology is used in conjunction with another ontology of social aspects.")
 
+# Class: know:AgentiveRole (agentive role)
+
+AnnotationAssertion(rdfs:label know:AgentiveRole "active paticipant (type)")
+AnnotationAssertion(rdfs:label know:AgentiveRole "agentive role")
+AnnotationAssertion(skos:definition know:AgentiveRole "concept that archetypes an Agent, and whose definition specifies how it participates (actively) in some Activity")
+EquivalentClasses(know:AgentiveRole ObjectIntersectionOf(know:DefinedConcept ObjectSomeValuesFrom(know:archetypes know:Agent)))
+SubClassOf(know:AgentiveRole know:DefinedConcept)
+DisjointClasses(know:AgentiveRole know:PassiveRole)
+
 # Class: know:ArtificialAgent (artificial agent)
 
 AnnotationAssertion(rdfs:label know:ArtificialAgent "artificial agent")
@@ -828,9 +840,9 @@ In OWL-DL, it is not possible to express at the same time the extensional defini
 SubClassOf(know:KnowledgeArtifact know:KnowledgeCarrier)
 SubClassOf(know:KnowledgeArtifact ObjectSomeValuesFrom(know:product-of know:Activity))
 
-# Class: know:KnowledgeAssetSurrogate (Knowledge Asset Surrogate)
+# Class: know:KnowledgeAssetSurrogate (knowledge asset surrogate)
 
-AnnotationAssertion(rdfs:label know:KnowledgeAssetSurrogate "Knowledge Asset Surrogate"@en)
+AnnotationAssertion(rdfs:label know:KnowledgeAssetSurrogate "knowledge asset surrogate"@en)
 AnnotationAssertion(skos:definition know:KnowledgeAssetSurrogate "A Knowledge Artifact that carries the serialization of a Knowledge Resource Description")
 EquivalentClasses(know:KnowledgeAssetSurrogate ObjectIntersectionOf(know:KnowledgeArtifact ObjectSomeValuesFrom(know:carries ObjectIntersectionOf(know:ConcreteExpression ObjectSomeValuesFrom(know:serialization-of know:KnowledgeResourceDescription)))))
 
@@ -871,18 +883,38 @@ DisjointUnion(know:KnowledgeExpression know:AbstractExpression know:ConcreteExpr
 AnnotationAssertion(rdfs:comment know:KnowledgeFragment "Fragments express proper parts of a Work of Knowledge")
 AnnotationAssertion(rdfs:label know:KnowledgeFragment "knowledge fragment")
 AnnotationAssertion(skos:altLabel know:KnowledgeFragment "Knowledge Resource Fragment")
+AnnotationAssertion(skos:altLabel know:KnowledgeFragment "knowledge resource fragment")
 AnnotationAssertion(skos:definition know:KnowledgeFragment "A proper part of a Knowledge Resource that is not a Resource itself")
 EquivalentClasses(know:KnowledgeFragment ObjectIntersectionOf(know:AbstractExpression ObjectSomeValuesFrom(know:proper-part-of know:KnowledgeResource)))
 SubClassOf(know:KnowledgeFragment know:AbstractExpression)
 SubClassOf(know:KnowledgeFragment ObjectSomeValuesFrom(know:expresses ObjectSomeValuesFrom(know:proper-part-of know:WorkOfKnowledge)))
 SubClassOf(know:KnowledgeFragment ObjectSomeValuesFrom(know:knowledge-representation-of ObjectComplementOf(know:WorkOfKnowledge)))
 
+# Class: know:KnowledgeProcessingMethod (knowledge processing method)
+
+AnnotationAssertion(rdfs:label know:KnowledgeProcessingMethod "knowledge processing method")
+AnnotationAssertion(skos:definition know:KnowledgeProcessingMethod "the conceptual definition of a procedure, technique or way of processing knowledge (in a broad sense)")
+AnnotationAssertion(skos:scopeNote know:KnowledgeProcessingMethod "From an API4KP perspective, this class is meant to be specialzied by methods of processing knowledge, either by syntactic, semantic or pragmatic manipulation")
+SubClassOf(know:KnowledgeProcessingMethod know:Definition)
+
+# Class: know:KnowledgeProcessingPlan (knowledge processing plan)
+
+AnnotationAssertion(rdfs:comment know:KnowledgeProcessingPlan "process plans can be imperative or adaptive, descriptive or prescriptive.
+
+As constructive definitions, they can be used to recognize activities from a given trace, or as specifications for the execution of future activities")
+AnnotationAssertion(rdfs:label know:KnowledgeProcessingPlan "knowledge processing plan")
+AnnotationAssertion(skos:altLabel know:KnowledgeProcessingPlan "structured process plan")
+AnnotationAssertion(skos:definition know:KnowledgeProcessingPlan "the definition of the tasks that are necessary (and possibly sufficient) to perform an activity of a given kind, in order to achieve some goals, possibly with more or less prescriptive constraints e.g. on the (relative) ordering, roles of the performers, and execution modalities")
+SubClassOf(know:KnowledgeProcessingPlan know:ConstructiveDefinition)
+
 # Class: know:KnowledgeProcessingTask (knowledge processing task)
 
-AnnotationAssertion(rdfs:comment know:KnowledgeProcessingTask "The conceptual abstraction of any knowledge processing activity")
+AnnotationAssertion(rdfs:comment know:KnowledgeProcessingTask "Tasks can be subclassed according to the kind of methods they follow. Complex (non atomic) tasks can also be defined in terms of a plan that organizes the sub-tasks")
 AnnotationAssertion(rdfs:label know:KnowledgeProcessingTask "knowledge processing task")
+AnnotationAssertion(skos:definition know:KnowledgeProcessingTask "The conceptual abstraction of any knowledge processing activity")
 SubClassOf(know:KnowledgeProcessingTask know:DefinedConcept)
 SubClassOf(know:KnowledgeProcessingTask ObjectSomeValuesFrom(know:archetypes know:KnowledgeActivity))
+SubClassOf(know:KnowledgeProcessingTask ObjectSomeValuesFrom(know:defined-by know:KnowledgeProcessingMethod))
 SubClassOf(know:KnowledgeProcessingTask ObjectAllValuesFrom(know:archetypes know:KnowledgeActivity))
 
 # Class: know:KnowledgeRepresentationAndReasoningLanguage (KRR Language)
@@ -984,6 +1016,12 @@ AnnotationAssertion(skos:definition know:ParseTree "The representation, in terms
 SubClassOf(know:ParseTree know:AbstractExpression)
 SubClassOf(know:ParseTree ObjectSomeValuesFrom(know:formalizes ObjectSomeValuesFrom(know:has-subject know:ConcreteExpression)))
 
+# Class: know:PassiveRole (passive role)
+
+AnnotationAssertion(rdfs:label know:PassiveRole "passive role")
+AnnotationAssertion(skos:definition know:PassiveRole "Role played by an entity that participates passively in an activity, e.g. as a resource, or as the subject/target of the activity")
+SubClassOf(know:PassiveRole know:DefinedConcept)
+
 # Class: know:PieceOfKnowledge (Piece of Knowledge)
 
 AnnotationAssertion(rdfs:comment know:PieceOfKnowledge "When an agent represents the complex internally, the agent possess some Knowledge (i.e. Knowledge about *some* thing)")
@@ -1017,16 +1055,6 @@ AnnotationAssertion(skos:scopeNote know:PrimitiveConcept "The notion of 'Common 
 This class of 'primitive' concept does not make a distinction, and assumes that 'primitive' is based on the context in which the ontology is used.")
 EquivalentClasses(know:PrimitiveConcept ObjectIntersectionOf(know:AtomicConcept ObjectComplementOf(ObjectSomeValuesFrom(know:captured-by know:WorkOfKnowledge))))
 SubClassOf(know:PrimitiveConcept know:AtomicConcept)
-
-# Class: know:ProcessPlan (process plan)
-
-AnnotationAssertion(rdfs:comment know:ProcessPlan "process plans can be imperative or adaptive, descriptive or prescriptive.
-
-As constructive definitions, they can be used to recognize activities from a given trace, or as specifications for the execution of future activities")
-AnnotationAssertion(rdfs:label know:ProcessPlan "process plan")
-AnnotationAssertion(skos:altLabel know:ProcessPlan "structured process plan")
-AnnotationAssertion(skos:definition know:ProcessPlan "the definition of the tasks that are necessary (and possibly sufficient) to perform an activity of a given kind, in order to achieve some goals, possibly with more or less prescriptive constraints e.g. on the (relative) ordering, roles of the performers, and execution modalities")
-SubClassOf(know:ProcessPlan know:ConstructiveDefinition)
 
 # Class: know:Profile (Profile)
 
@@ -1090,8 +1118,7 @@ AnnotationAssertion(rdfs:label know:WorkOfKnowledge "work of knowledge")
 AnnotationAssertion(rdfs:seeAlso know:WorkOfKnowledge "http://www.tlainc.com/articl134.htm")
 AnnotationAssertion(rdfs:seeAlso know:WorkOfKnowledge "https://en.wikipedia.org/wiki/Abstract_semantic_graph")
 AnnotationAssertion(skos:definition know:WorkOfKnowledge "An Explicit (i.e. non Tacit) Piece of Knowledge that is the result of one or more (possibly non-deterministic) graph productions applied to some (chosen Piece of) Knowledge, intended for representation and/or communication.")
-AnnotationAssertion(skos:definition know:WorkOfKnowledge "An Intellectual Work that has some (piece of) Knowledge as a subject. 
-The subject can be identified by means of one or more explicitly marked, 'focal' concepts")
+AnnotationAssertion(skos:definition know:WorkOfKnowledge "An Intellectual Work that captures some (piece of) Knowledge, which itself has a subject that can be reflected in the Work by means of one or more explicitly marked, 'focal' concepts")
 AnnotationAssertion(skos:example know:WorkOfKnowledge "a formal Ontology, prepared by an ontologist, and engineered to answer a number of competency questions, independently of the actual formal language used to express it.")
 AnnotationAssertion(skos:example know:WorkOfKnowledge "a lecture, as the outcome of a teacher's choosing and organizing the topics so they can be explained to the students.")
 AnnotationAssertion(skos:example know:WorkOfKnowledge "a statistician's description of a stochastic process by means of a Markov model")
