@@ -11,7 +11,8 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 Ontology(<http://www.omg.org/spec/API4KP/Operations>
 <http://www.omg.org/spec/API4KP2017/12//Operations>
 Import(<http://www.omg.org/spec/API4KP/2017/12/core>)
-Import(<http://www.omg.org/spec/API4KP/2017/12/DUL-Bridge>)
+Import(<http://www.omg.org/spec/API4KP/2017/12/DOL-Bridge>)
+Import(<http://www.omg.org/spec/API4KP/2017/12/KR/>)
 Annotation(rdfs:comment "Ontology of API4KP Operations")
 
 Declaration(Class(ops:ASTranslationTask))
@@ -21,7 +22,6 @@ Declaration(Class(ops:ComplexKnowledgeProcessingActivity))
 Declaration(Class(ops:ComplexKnowledgeProcessingTask))
 Declaration(Class(ops:ConfigurationParameter))
 Declaration(Class(ops:DecodingTask))
-Declaration(Class(ops:DoTranslateServiceTask))
 Declaration(Class(ops:EncodingTask))
 Declaration(Class(ops:Explanation))
 Declaration(Class(ops:Input))
@@ -36,7 +36,6 @@ Declaration(Class(ops:PrimaryOutput))
 Declaration(Class(ops:ReadTask))
 Declaration(Class(ops:SecondaryOutput))
 Declaration(Class(ops:SerializationTask))
-Declaration(Class(ops:TranslationServiceDefinition))
 Declaration(Class(ops:WriteTask))
 Declaration(ObjectProperty(ops:composed-into))
 Declaration(ObjectProperty(ops:composed-with))
@@ -58,6 +57,9 @@ AnnotationAssertion(rdfs:label ops:composed-into ">>=")
 AnnotationAssertion(rdfs:seeAlso ops:composed-into "F is composed into G if F is applied, and the G is applied to its result.
 I.e. F => G, or G( F( x ) )")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:composed-into "composed into")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:composed-into "An activity A1 can be followed by another activity A2 if the situation that is the outcome of A1 is subsumed by the situation that defines the preconditions for the applicability of A2.
+
+This notion of sequencing is reflected at the conceptual level by the 'composed into' relationship, which assumes that the successful completion of a Task T1 allows for the execution of Task T2. Moreover, the definition of T2 is supposed to handle any failure of T1 gracefully, possibly by delegation and/or compensation")
 InverseObjectProperties(ops:composed-into ops:composed-with)
 ObjectPropertyDomain(ops:composed-into ops:AtomicKnowledgeProcessingTask)
 ObjectPropertyRange(ops:composed-into ops:AtomicKnowledgeProcessingTask)
@@ -181,12 +183,6 @@ AnnotationAssertion(rdfs:label ops:DecodingTask "decoding task")
 AnnotationAssertion(rdfs:label ops:DecodingTask "recognition task")
 SubClassOf(ops:DecodingTask ops:AtomicKnowledgeProcessingTask)
 
-# Class: ops:DoTranslateServiceTask (ops:DoTranslateServiceTask)
-
-SubClassOf(ops:DoTranslateServiceTask ops:KnowledgeProcessingServiceTask)
-SubClassOf(ops:DoTranslateServiceTask ObjectSomeValuesFrom(ops:has-primary-subtask ops:ASTranslationTask))
-SubClassOf(ops:DoTranslateServiceTask ObjectSomeValuesFrom(know:defined-by ops:TranslationServiceDefinition))
-
 # Class: ops:EncodingTask (encoding task)
 
 AnnotationAssertion(rdfs:label ops:EncodingTask "encoding task")
@@ -277,11 +273,6 @@ SubClassOf(ops:SecondaryOutput ops:Output)
 
 SubClassOf(ops:SerializationTask ops:AtomicKnowledgeProcessingTask)
 
-# Class: ops:TranslationServiceDefinition (ops:TranslationServiceDefinition)
-
-EquivalentClasses(ops:TranslationServiceDefinition ObjectIntersectionOf(know:KnowledgeProcessingPlan ObjectSomeValuesFrom(know:defines ops:DoTranslateServiceTask)))
-SubClassOf(ops:TranslationServiceDefinition know:KnowledgeProcessingPlan)
-
 # Class: ops:WriteTask (I/O write task)
 
 AnnotationAssertion(rdfs:label ops:WriteTask "I/O write task")
@@ -296,7 +287,9 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> know:Knowled
 AnnotationAssertion(rdfs:comment know:KnowledgeProcessingTask "A knowledge processing task abstracts the role that knowledge endeavors play in a knowledge processing activity, as inputs, outputs or both")
 AnnotationAssertion(rdfs:comment know:KnowledgeProcessingTask "Some tasks, those that are executed according to a method that has some degrees of freedom, can be configured using parameters")
 AnnotationAssertion(rdfs:comment know:KnowledgeProcessingTask "The execution of a Knowledge Processing tasks may involve the generation of an 'explanation'")
-SubClassOf(know:KnowledgeProcessingTask ObjectUnionOf(ObjectIntersectionOf(ObjectSomeValuesFrom(ops:filled-by know:KnowledgeEndeavour) ObjectSomeValuesFrom(ops:has-role ops:Input)) ObjectIntersectionOf(ObjectSomeValuesFrom(ops:filled-by know:KnowledgeEndeavour) ObjectSomeValuesFrom(ops:has-role ops:Output))))
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> know:KnowledgeProcessingTask "A Knowledge Processing Task includes a Goal, i.e. a formal description of the expected situation that is the outcome of the execution of an Activity of the type defined by the Task.
+When the outcome matches the Goal - i.e. the description of the outcome is subsumed by the Goal - the activity is considered to be successful. Otherwise, it is considered to be failed")
+SubClassOf(know:KnowledgeProcessingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ObjectUnionOf(ops:Input ops:Output) ObjectSomeValuesFrom(ops:filled-by know:KnowledgeEndeavour))))
 
 
 SubClassOf(ObjectSomeValuesFrom(ops:has-role ops:ConfigurationParameter) know:KnowledgeProcessingTask)

@@ -1,134 +1,171 @@
-Prefix(:=<http://www.omg.org/spec/API4KP/FRBR-Bridge#>)
+Prefix(:=<http://www.omg.org/spec/API4KP/DOL-Bridge#>)
+Prefix(dol:=<http://www.omg.org/spec/DOL/dol/>)
+Prefix(krr:=<http://www.omg.org/spec/API4KP/KR/>)
 Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
 Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
 Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
 Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
-Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
-Prefix(dol:=<http://www.omg.org/spec/DOL/dol/>)
 Prefix(know:=<http://www.omg.org/spec/API4KP/core#>)
-Prefix(krr:=<http://www.omg.org/spec/API4KP/KR/>)
-
-
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 
 
 Ontology(<http://www.omg.org/spec/API4KP/DOL-Bridge>
 <http://www.omg.org/spec/API4KP/2017/12/DOL-Bridge>
+Import(<http://www.omg.org/spec/API4KP/2017/12/core>)
+Import(<http://www.omg.org/spec/DOL/20171101/DOL-terms/>)
+Import(<http://www.omg.org/spec/API4KP/2017/12/KR/>)
 
+Declaration(Class(krr:KnowledgeSerialization))
 Declaration(Class(dol:AbstractSyntax))
+Declaration(Class(dol:Expression))
 Declaration(Class(dol:FormalLanguage))
 Declaration(Class(dol:Language))
 Declaration(Class(dol:LinguisticEntity))
 Declaration(Class(dol:Logic))
+Declaration(Class(dol:Mapping))
+Declaration(Class(dol:NativeOMS))
 Declaration(Class(dol:OMS))
 Declaration(Class(dol:OMSLanguage))
+Declaration(Class(dol:OMSSerialization))
+Declaration(Class(dol:Query))
 Declaration(Class(dol:Serialization))
 Declaration(ObjectProperty(dol:isLinguisticallyRelatedTo))
 Declaration(ObjectProperty(dol:isMappableTo))
 Declaration(ObjectProperty(dol:isSerializedIn))
 Declaration(ObjectProperty(dol:isSubLanguageOf))
+Declaration(ObjectProperty(dol:mapsFrom))
+Declaration(ObjectProperty(dol:mapsTo))
 Declaration(ObjectProperty(dol:serializes))
 Declaration(ObjectProperty(dol:supportsLogic))
 Declaration(ObjectProperty(dol:supportsSerialization))
 Declaration(ObjectProperty(dol:usesLanguage))
+############################
+#   Object Properties
+############################
+
+# Object Property: know:serialization-of (is concrete representation of)
+
+SubObjectPropertyOf(know:serialization-of dol:isLinguisticallyRelatedTo)
+
+# Object Property: know:serialized-into (concretely represented as)
+
+SubObjectPropertyOf(know:serialized-into dol:isLinguisticallyRelatedTo)
+
+# Object Property: know:serializes (serializes)
+
+SubObjectPropertyOf(know:serializes dol:isLinguisticallyRelatedTo)
+ObjectPropertyRange(know:serializes dol:Language)
+
+# Object Property: know:specified-by (specified by)
+
+ObjectPropertyDomain(know:specified-by dol:Language)
+
+# Object Property: know:supports-serialization (supports serialization in)
 
 SubObjectPropertyOf(know:supports-serialization dol:isLinguisticallyRelatedTo)
 ObjectPropertyDomain(know:supports-serialization dol:Language)
 
-SubObjectPropertyOf(know:serialization-of dol:isLinguisticallyRelatedTo)
-SubObjectPropertyOf(know:serialized-into dol:isLinguisticallyRelatedTo)
-
-# Object Property: dol:isSerializedIn (is serialized in)
-
-SubObjectPropertyOf(dol:isSerializedIn know:is-serialized-in)
-
-# Object Property: dol:serializes (serializes)
-
-SubObjectPropertyOf(dol:serializes know:serializes)
-
-# Object Property: dol:supportsSerialization (supports serialization)
-
-SubObjectPropertyOf(dol:supportsSerialization know:supports-serialization)
-
-ObjectPropertyRange(know:serializes dol:Language)
-SubObjectPropertyOf(know:serializes dol:isLinguisticallyRelatedTo)
-
-ObjectPropertyDomain(know:specified-by dol:Language)
+# Object Property: know:uses-concrete-syntax (uses concrete syntax)
 
 SubObjectPropertyOf(know:uses-concrete-syntax dol:isLinguisticallyRelatedTo)
 
-SubClassOf(know:ConstructedExpression ObjectAllValuesFrom(dol:usesLanguage know:ConstructedLanguage))
+# Object Property: dol:isSerializedIn (dol:isSerializedIn)
 
-EquivalentClasses(know:ConstructedLanguage dol:FormalLanguage)
+SubObjectPropertyOf(dol:isSerializedIn know:is-serialized-in)
 
-EquivalentClasses(know:ControlledNaturalLanguage ObjectIntersectionOf(know:ConstructedLanguage ObjectSomeValuesFrom(dol:isSubLanguageOf know:NaturalLanguage)))
+# Object Property: dol:serializes (dol:serializes)
 
-# Class: dol:AbstractSyntax (abstract syntax)
+SubObjectPropertyOf(dol:serializes know:serializes)
 
-SubClassOf(dol:AbstractSyntax know:AbstractSyntax)
+# Object Property: dol:supportsSerialization (dol:supportsSerialization)
 
-# Class: dol:OMS (OMS (ontology, specification or MDE model))
+SubObjectPropertyOf(dol:supportsSerialization know:supports-serialization)
 
-SubClassOf(dol:OMS know:AbstractExpression)
-SubClassOf(dol:OMS know:FormalExpression)
 
-# Class: dol:OMSLanguage (OMS language)
+############################
+#   Classes
+############################
 
-SubClassOf(dol:OMSLanguage know:KnowledgeRepresentationAndReasoningLanguage)
-SubClassOf(dol:OMSLanguage ObjectSomeValuesFrom(know:specified-by dol:AbstractSyntax))
+# Class: krr:Mapping (mapping)
 
-# Class: dol:Serialization (OMS serialization)
+EquivalentClasses(krr:Mapping dol:Mapping)
 
-SubClassOf(dol:Serialization know:Serialization)
-
+# Class: know:AbstractSyntax (Abstract Syntax)
 
 SubClassOf(know:AbstractSyntax dol:LinguisticEntity)
 
+# Class: know:ConstructedLanguage (Constructed Language)
+
+EquivalentClasses(know:ConstructedLanguage dol:FormalLanguage)
+
+# Class: know:ControlledNaturalLanguage (Controlled Natural Language)
+
+EquivalentClasses(know:ControlledNaturalLanguage ObjectIntersectionOf(know:ConstructedLanguage ObjectSomeValuesFrom(dol:isSubLanguageOf know:NaturalLanguage)))
+
+# Class: know:FormalLanguage (Formal Language)
+
+EquivalentClasses(know:FormalLanguage ObjectSomeValuesFrom(dol:supportsLogic dol:Logic))
+
+# Class: know:Language (language)
+
+EquivalentClasses(know:Language dol:Language)
+
+# Class: know:Model (model)
+
+EquivalentClasses(know:Model <http://www.omg.org/spec/DOL/DOL-terms/MDEModel>)
+
+# Class: know:Ontology (ontology)
+
+EquivalentClasses(know:Ontology <http://www.omg.org/spec/DOL/DOL-terms/Ontology>)
+
+# Class: know:Serialization (Concrete Syntax)
 
 SubClassOf(know:Serialization dol:LinguisticEntity)
 SubClassOf(know:Serialization ObjectSomeValuesFrom(know:serializes dol:Language))
 SubClassOf(know:Serialization ObjectSomeValuesFrom(dol:isMappableTo know:AbstractSyntax))
 
+# Class: know:Software (know:Software)
 
 EquivalentClasses(know:Software ObjectIntersectionOf(know:ConcreteExpression ObjectSomeValuesFrom(dol:usesLanguage know:MachineExecutableLanguage)))
 
-EquivalentClasses(know:Language dol:Language)
+# Class: know:Specification (specification)
 
-EquivalentClasses(know:FormalLanguage ObjectSomeValuesFrom(dol:supportsLogic dol:Logic))
+EquivalentClasses(know:Specification <http://www.omg.org/spec/DOL/DOL-terms/Specification>)
 
-SubClassOf(know:FormalExpression ObjectAllValuesFrom(dol:usesLanguage know:FormalLanguage))
-EquivalentClasses(know:FormalExpression ObjectIntersectionOf(know:ConstructedExpression ObjectAllValuesFrom(dol:usesLanguage know:FormalLanguage)))
+# Class: dol:AbstractSyntax (dol:AbstractSyntax)
 
-SubClassOf(know:Expression ObjectSomeValuesFrom(dol:usesLanguage dol:Language))
+SubClassOf(dol:AbstractSyntax know:AbstractSyntax)
 
-
-
-# Class: dol:Expression (expression)
+# Class: dol:Expression (dol:Expression)
 
 SubClassOf(dol:Expression krr:SerializedMachinableKnowledgeExpression)
 
-# Class: dol:NativeOMS (native OMS)
+# Class: dol:NativeOMS (dol:NativeOMS)
 
 SubClassOf(dol:NativeOMS krr:NativeMachinableKnowledgeResource)
 
-# Class: dol:OMSLanguage (OMS language)
+# Class: dol:OMS (dol:OMS)
+
+SubClassOf(dol:OMS know:AbstractExpression)
+
+# Class: dol:OMSLanguage (dol:OMSLanguage)
 
 SubClassOf(dol:OMSLanguage krr:KnowledgeRepresentationAndReasoningLanguage)
+SubClassOf(dol:OMSLanguage ObjectSomeValuesFrom(know:specified-by dol:AbstractSyntax))
 
 # Class: dol:OMSSerialization (dol:OMSSerialization)
 
 SubClassOf(dol:OMSSerialization krr:KnowledgeSerialization)
 
-# Class: dol:Query (query)
+# Class: dol:Query (dol:Query)
 
 EquivalentClasses(dol:Query ObjectIntersectionOf(ObjectSomeValuesFrom(dol:usesLanguage krr:QueryLanguage) ObjectAllValuesFrom(dol:usesLanguage krr:QueryLanguage)))
+
+# Class: dol:Serialization (dol:Serialization)
+
+SubClassOf(dol:Serialization know:Serialization)
 
 
 SubObjectPropertyOf(ObjectPropertyChain(krr:hasEnvironmentMapping dol:mapsFrom) krr:hasEnvironmentMember)
 SubObjectPropertyOf(ObjectPropertyChain(krr:hasEnvironmentMapping dol:mapsTo) krr:hasEnvironmentMember)
-
-# Class: krr:Mapping (krr:Mapping)
-
-EquivalentClasses(krr:Mapping dol:Mapping)
-
-
 )

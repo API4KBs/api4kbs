@@ -1,0 +1,260 @@
+Prefix(:=<http://www.omg.org/spec/API4KP/DUL-Bridge#>)
+Prefix(dc:=<http://purl.org/dc/elements/1.1/>)
+Prefix(DUL:=<http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(brdg:=<http://www.omg.org/spec/API4KP/DUL-Bridge#>)
+Prefix(know:=<http://www.omg.org/spec/API4KP/core#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+Prefix(skos:=<http://www.w3.org/2004/02/skos/core#>)
+Prefix(vann:=<http://purl.org/vocab/vann/>)
+Prefix(skos1:=<http://www.w3.org/2008/05/skos#>)
+Prefix(terms:=<http://purl.org/dc/terms/>)
+Prefix(IOLite:=<http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#>)
+Prefix(SpecificationMetadata:=<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
+
+
+Ontology(<http://www.omg.org/spec/API4KP/DUL-Bridge>
+<http://www.omg.org/spec/API4KP/2017/12/DUL-Bridge>
+Import(<http://www.omg.org/spec/API4KP/2017/12/core>)
+Import(<http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl>)
+Annotation(dc:creator "Davide Sottara")
+
+Declaration(Class(brdg:InformationBearer))
+Declaration(Class(brdg:Manifestation))
+Declaration(Class(know:AbstractExpression))
+Declaration(Class(know:Activity))
+Declaration(Class(know:Agent))
+Declaration(Class(know:AgentiveRole))
+Declaration(Class(know:AtomicConcept))
+Declaration(Class(know:ConcreteExpression))
+Declaration(Class(know:ConstructedLanguage))
+Declaration(Class(know:DefinedConcept))
+Declaration(Class(know:Grammar))
+Declaration(Class(know:KnowledgeArtifact))
+Declaration(Class(know:KnowledgeExpression))
+Declaration(Class(know:KnowledgeProcessingTask))
+Declaration(Class(know:Language))
+Declaration(Class(know:Lexicon))
+Declaration(Class(know:Method))
+Declaration(Class(know:NaturalLanguage))
+Declaration(Class(know:PieceOfKnowledge))
+Declaration(Class(know:ProcessPlan))
+Declaration(Class(know:Software))
+Declaration(Class(know:WorkOfKnowledge))
+Declaration(Class(IOLite:combinatorial-system))
+Declaration(Class(IOLite:information-encoding-system))
+Declaration(ObjectProperty(know:carried-by))
+Declaration(ObjectProperty(know:carries))
+Declaration(ObjectProperty(know:concretely-expressed-by))
+Declaration(ObjectProperty(know:concretely-expresses))
+Declaration(ObjectProperty(know:conforms-with))
+Declaration(ObjectProperty(know:defined-by))
+Declaration(ObjectProperty(know:expresses))
+Declaration(ObjectProperty(know:governed-by))
+Declaration(ObjectProperty(know:has-subject))
+Declaration(ObjectProperty(know:internally-represents))
+Declaration(ObjectProperty(know:involves))
+Declaration(ObjectProperty(know:knowledge-representation-of))
+Declaration(ObjectProperty(know:performs))
+Declaration(ObjectProperty(know:representation-of))
+Declaration(ObjectProperty(know:represented-by))
+Declaration(ObjectProperty(know:serialization-of))
+Declaration(ObjectProperty(know:serialized-into))
+Declaration(ObjectProperty(know:uses-language))
+Declaration(ObjectProperty(IOLite:ordered-by))
+Declaration(AnnotationProperty(dc:creator))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: know:carried-by (carried by)
+
+SubObjectPropertyOf(know:carried-by DUL:isRealizedBy)
+
+# Object Property: know:carries (carries)
+
+SubObjectPropertyOf(know:carries DUL:realizes)
+
+# Object Property: know:concretely-expressed-by (concretely expressed by)
+
+SubObjectPropertyOf(know:concretely-expressed-by DUL:isConcretelyExpressedBy)
+
+# Object Property: know:concretely-expresses (concretely expresses)
+
+SubObjectPropertyOf(know:concretely-expresses DUL:concretelyExpresses)
+
+# Object Property: know:defined-by (defined by)
+
+InverseObjectProperties(know:defined-by DUL:isDefinedIn)
+
+# Object Property: know:expresses (expresses)
+
+SubObjectPropertyOf(know:expresses DUL:expresses)
+
+# Object Property: know:has-subject (has subject (knowledge))
+
+SubObjectPropertyOf(know:has-subject DUL:describes)
+
+# Object Property: know:internally-represents (has internal representation of)
+
+SubObjectPropertyOf(know:internally-represents DUL:conceptualizes)
+
+# Object Property: know:involves (know:involves)
+
+SubObjectPropertyOf(know:involves DUL:hasParticipant)
+
+# Object Property: know:knowledge-representation-of (knowledge representation of)
+
+SubObjectPropertyOf(know:knowledge-representation-of IOLite:formallyRepresents)
+
+# Object Property: know:performs (know:performs)
+
+SubObjectPropertyOf(know:performs DUL:isAgentInvolvedIn)
+
+# Object Property: know:representation-of (representation of)
+
+SubObjectPropertyOf(know:representation-of DUL:isAbout)
+
+# Object Property: know:represented-by (represented by)
+
+SubObjectPropertyOf(know:represented-by DUL:isExpressedBy)
+
+# Object Property: know:serialization-of (is concrete representation of)
+
+SubObjectPropertyOf(know:serialization-of IOLite:encodes)
+
+# Object Property: know:serialized-into (concretely represented as)
+
+SubObjectPropertyOf(know:serialized-into IOLite:isEncodedBy)
+
+# Object Property: know:uses-language (uses language)
+
+SubObjectPropertyOf(know:uses-language IOLite:hasRepresentationLanguage)
+
+# Object Property: IOLite:ordered-by (IOLite:ordered-by)
+
+SubObjectPropertyOf(IOLite:ordered-by DUL:associatedWith)
+ObjectPropertyDomain(IOLite:ordered-by DUL:InformationObject)
+ObjectPropertyRange(IOLite:ordered-by IOLite:combinatorial-system)
+
+
+############################
+#   Classes
+############################
+
+# Class: brdg:InformationBearer (brdg:InformationBearer)
+
+SubClassOf(brdg:InformationBearer DUL:Quality)
+SubClassOf(brdg:InformationBearer ObjectSomeValuesFrom(DUL:hasPart DUL:Quality))
+SubClassOf(brdg:InformationBearer ObjectSomeValuesFrom(DUL:isClassifiedBy brdg:Manifestation))
+SubClassOf(brdg:InformationBearer ObjectSomeValuesFrom(DUL:isQualityOf DUL:InformationRealization))
+
+# Class: brdg:Manifestation (brdg:Manifestation)
+
+SubClassOf(brdg:Manifestation DUL:Role)
+SubClassOf(brdg:Manifestation ObjectSomeValuesFrom(DUL:classifies DUL:InformationRealization))
+SubClassOf(brdg:Manifestation ObjectSomeValuesFrom(DUL:classifies ObjectIntersectionOf(brdg:InformationBearer ObjectSomeValuesFrom(DUL:isQualityOf DUL:InformationRealization))))
+
+# Class: know:Activity (know:Activity)
+
+EquivalentClasses(know:Activity DUL:Action)
+
+# Class: know:Agent (agent)
+
+EquivalentClasses(know:Agent DUL:Agent)
+
+# Class: know:AgentiveRole (agentive role)
+
+SubClassOf(know:AgentiveRole DUL:Role)
+
+# Class: know:AtomicConcept (concept)
+
+SubClassOf(know:AtomicConcept DUL:SocialObject)
+
+# Class: know:ConcreteExpression (Concrete Knowledge Expression)
+
+SubClassOf(know:ConcreteExpression ObjectSomeValuesFrom(IOLite:encodes know:AbstractExpression))
+SubClassOf(know:ConcreteExpression ObjectSomeValuesFrom(IOLite:ordered-by ObjectIntersectionOf(IOLite:combinatorial-system ObjectSomeValuesFrom(DUL:hasPart ObjectIntersectionOf(DUL:Method ObjectSomeValuesFrom(DUL:definesTask DUL:Task))))))
+
+# Class: know:ConstructedLanguage (Constructed Language)
+
+EquivalentClasses(know:ConstructedLanguage IOLite:FormalLanguage)
+
+# Class: know:DefinedConcept (defined concept)
+
+EquivalentClasses(know:DefinedConcept DUL:Concept)
+
+# Class: know:Grammar (grammar)
+
+SubClassOf(know:Grammar IOLite:combinatorial-system)
+
+# Class: know:KnowledgeArtifact (knowledge artifact)
+
+SubClassOf(know:KnowledgeArtifact DUL:InformationRealization)
+SubClassOf(know:KnowledgeArtifact ObjectSomeValuesFrom(DUL:hasQuality brdg:InformationBearer))
+
+# Class: know:KnowledgeExpression (Knowledge Expression)
+
+SubClassOf(know:KnowledgeExpression DUL:InformationObject)
+SubClassOf(know:KnowledgeExpression ObjectSomeValuesFrom(IOLite:ordered-by IOLite:combinatorial-system))
+
+# Class: know:KnowledgeProcessingTask (knowledge processing task)
+
+SubClassOf(know:KnowledgeProcessingTask DUL:Task)
+
+# Class: know:Language (language)
+
+EquivalentClasses(know:Language IOLite:Language)
+
+# Class: know:Lexicon (lexicon)
+
+SubClassOf(know:Lexicon ObjectSomeValuesFrom(DUL:isExpressedBy IOLite:Lexicon))
+
+# Class: know:Method (know:Method)
+
+SubClassOf(know:Method DUL:Method)
+
+# Class: know:NaturalLanguage (Natural Language)
+
+EquivalentClasses(know:NaturalLanguage IOLite:NaturalLanguage)
+
+# Class: know:PassiveRole (passive role)
+
+SubClassOf(know:PassiveRole DUL:Role)
+
+# Class: know:PieceOfKnowledge (Piece of Knowledge)
+
+SubClassOf(know:PieceOfKnowledge DUL:SocialObject)
+
+# Class: know:ProcessPlan (know:ProcessPlan)
+
+SubClassOf(know:ProcessPlan DUL:Workflow)
+
+# Class: know:Software (know:Software)
+
+SubClassOf(know:Software IOLite:Code)
+
+# Class: know:WorkOfKnowledge (work of knowledge)
+
+SubClassOf(know:WorkOfKnowledge DUL:Description)
+
+# Class: IOLite:Language (Linguaggio)
+
+SubClassOf(IOLite:Language IOLite:combinatorial-system)
+
+# Class: IOLite:combinatorial-system (IOLite:combinatorial-system)
+
+SubClassOf(IOLite:combinatorial-system IOLite:information-encoding-system)
+
+# Class: IOLite:information-encoding-system (IOLite:information-encoding-system)
+
+SubClassOf(IOLite:information-encoding-system DUL:Description)
+
+
+SubObjectPropertyOf(ObjectPropertyChain(know:conforms-with know:expresses) IOLite:ordered-by)
+SubObjectPropertyOf(ObjectPropertyChain(know:conforms-with know:expresses ObjectInverseOf(know:governed-by)) IOLite:ordered-by)
+)

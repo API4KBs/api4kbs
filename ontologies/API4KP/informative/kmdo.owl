@@ -20,7 +20,7 @@ Prefix(SpecificationMetadata:=<http://www.omg.org/techprocess/ab/SpecificationMe
 
 Ontology(<http://www.omg.org/spec/API4KP/KMO>
 <http://www.omg.org/spec/API4KP/20170501/KMO>
-Import(<http://www.omg.org/spec/DOL/DOL-terms/>)
+Import(<http://www.omg.org/spec/API4KP/2017/12/core>)
 Annotation(dc:creator "Davide Sottara")
 Annotation(dc:creator "Jane Shellum")
 Annotation(dc:creator "Kris Pavek")
@@ -30,14 +30,9 @@ Annotation(dc:creator "Sivaram Arabandi")
 Annotation(dc:description "The purpose of this ontology is to define 'knowledge' and the related concepts that play a role in managing and delivering that knowledge to different audiences.")
 Annotation(dc:title "Ontology of Shareable Knowledge")
 
-Declaration(Class(<http://iflastandards.info/ns/fr/frbr/frbroo/F13_Identifier>))
-Declaration(Class(<http://iflastandards.info/ns/fr/frbr/frbroo/F50_Controlled_Access_Point>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/FRBR-KR#Knowledge>))
 Declaration(Class(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeArtifact>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeAssetSurrogate>))
 Declaration(Class(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>))
 Declaration(Class(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResourceDescription>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/FRBR-KR#SelfContainedKnowledgeArtifact>))
 Declaration(Class(<http://www.omg.org/spec/API4KP/FRBR-KR#StructuredKnowledgeResource>))
 Declaration(Class(<http://www.omg.org/spec/API4KP/FRBR-KR#literate-agent>))
 Declaration(Class(kmo:Activity))
@@ -52,6 +47,9 @@ Declaration(Class(kmo:CanonicalKnowledgeResource))
 Declaration(Class(kmo:ClinicalBusinessDomain))
 Declaration(Class(kmo:ClinicalKnowledgeResource))
 Declaration(Class(kmo:CommonKnowledge))
+Declaration(Class(kmo:ConcretizedPieceOfContent))
+Declaration(Class(kmo:ConcretizedPieceOfKnowledge))
+Declaration(Class(kmo:ConcretizedPieceOfKnowledgeContent))
 Declaration(Class(kmo:CoreKnowledgeAsset))
 Declaration(Class(kmo:DigitalKnowledgeArtifact))
 Declaration(Class(kmo:DigitalKnowledgeArtifactDirectory))
@@ -91,9 +89,6 @@ Declaration(Class(kmo:KnowledgeTransferActivity))
 Declaration(Class(kmo:MainstreamKnowledgeResource))
 Declaration(Class(kmo:MedicalBusinessDomain))
 Declaration(Class(kmo:OriginalKnowledgeResource))
-Declaration(Class(kmo:PieceOfContent))
-Declaration(Class(kmo:PieceOfKnowledge))
-Declaration(Class(kmo:PieceOfKnowledgeContent))
 Declaration(Class(kmo:PublishedKnowledgeResource))
 Declaration(Class(kmo:SophisticatedKnowledgeResource))
 Declaration(Class(kmo:SpecialistKnowledge))
@@ -102,32 +97,24 @@ Declaration(Class(kmo:TacitKnowledge))
 Declaration(Class(kmo:UndegraduateLevelInstruction))
 Declaration(ObjectProperty(<http://purl.org/vocab/frbr/core#complement>))
 Declaration(ObjectProperty(<http://purl.org/vocab/frbr/core#part>))
+Declaration(ObjectProperty(<http://purl.org/vocab/frbr/core#partOf>))
 Declaration(ObjectProperty(<http://purl.org/vocab/frbr/core#realizationOf>))
 Declaration(ObjectProperty(<http://purl.org/vocab/frbr/core#revision>))
 Declaration(ObjectProperty(<http://purl.org/vocab/frbr/core#revisionOf>))
 Declaration(ObjectProperty(<http://purl.org/vocab/frbr/core#subject>))
 Declaration(ObjectProperty(<http://purl.org/vocab/frbr/core#supplement>))
+Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/FRBR-KR#carries>))
 Declaration(ObjectProperty(kmo:archives))
-Declaration(ObjectProperty(kmo:endorsed-by))
 Declaration(ObjectProperty(kmo:endorses))
 Declaration(ObjectProperty(kmo:function-of))
 Declaration(ObjectProperty(kmo:has-function))
-Declaration(ObjectProperty(kmo:has-recipient))
 Declaration(ObjectProperty(kmo:identified-by))
 Declaration(ObjectProperty(kmo:identifies))
-Declaration(ObjectProperty(kmo:interprets))
-Declaration(ObjectProperty(kmo:is-about))
-Declaration(ObjectProperty(kmo:performed-by))
-Declaration(ObjectProperty(kmo:performs))
 Declaration(ObjectProperty(kmo:possessed-by))
 Declaration(ObjectProperty(kmo:possesses))
-Declaration(ObjectProperty(kmo:recipient-of))
-Declaration(ObjectProperty(kmo:serialization-of))
 Declaration(ObjectProperty(kmo:serialized-into))
 Declaration(ObjectProperty(kmo:stored-by))
 Declaration(ObjectProperty(kmo:stores))
-Declaration(ObjectProperty(DOL-terms:hasPart))
-Declaration(ObjectProperty(DOL-terms:usesLanguage))
 Declaration(ObjectProperty(prov:wasDerivedFrom))
 Declaration(NamedIndividual(<http://purl.org/spar/pso/published>))
 Declaration(AnnotationProperty(obo:IAO_0000112))
@@ -138,6 +125,7 @@ Declaration(AnnotationProperty(skos:altLabel))
 Declaration(AnnotationProperty(skos:definition))
 Declaration(AnnotationProperty(skos:example))
 Declaration(AnnotationProperty(skos:note))
+Declaration(AnnotationProperty(<http://www.w3.org/2008/05/skos#note>))
 
 ############################
 #   Object Properties
@@ -145,16 +133,20 @@ Declaration(AnnotationProperty(skos:note))
 
 # Object Property: kmo:archives (kmo:archives)
 
-AnnotationAssertion(dc:creator kmo:archives "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:archives "2017-06-13T19:12:07Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:comment kmo:archives "Archival is a kind of storage implying no immediate use")
 SubObjectPropertyOf(kmo:archives kmo:stores)
 ObjectPropertyRange(kmo:archives <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeArtifact>)
 
+# Object Property: kmo:endorses (endorses)
+
+AnnotationAssertion(rdfs:label kmo:endorses "endorses")
+AnnotationAssertion(skos:definition kmo:endorses "An agent's endorsement of a knowledge endeavor implies (i) that the agent is able to understand the content of that endeavor, internally representing the knowledge (expressed by (the expression carried)) in the endeavor, (ii) that the agent transfers their reputation and trust to that endeavor")
+SubObjectPropertyOf(kmo:endorses <http://www.omg.org/spec/API4KP/core#internally-represents>)
+ObjectPropertyDomain(kmo:endorses <http://www.omg.org/spec/API4KP/core#KnowledgeableAgent>)
+ObjectPropertyRange(kmo:endorses <http://www.omg.org/spec/API4KP/core#KnowledgeEndeavour>)
+
 # Object Property: kmo:function-of (function of)
 
-AnnotationAssertion(dc:creator kmo:function-of "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:function-of "2017-06-13T19:24:21Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:function-of "function of")
 InverseObjectProperties(kmo:function-of kmo:has-function)
 ObjectPropertyDomain(kmo:function-of kmo:Function)
@@ -164,75 +156,34 @@ ObjectPropertyDomain(kmo:function-of kmo:Function)
 AnnotationAssertion(rdfs:label kmo:has-function "has function")
 ObjectPropertyRange(kmo:has-function kmo:Function)
 
-# Object Property: kmo:has-recipient (kmo:has-recipient)
+# Object Property: kmo:possessed-by ((knowledge) possessed by)
 
-InverseObjectProperties(kmo:has-recipient kmo:recipient-of)
-ObjectPropertyDomain(kmo:has-recipient kmo:Activity)
-
-# Object Property: kmo:interprets (interprets)
-
-AnnotationAssertion(rdfs:comment kmo:interprets "An agent interprets an Expression, understanding and internalizing its information content")
-AnnotationAssertion(rdfs:label kmo:interprets "interprets")
-ObjectPropertyDomain(kmo:interprets <http://www.omg.org/spec/API4KP/FRBR-KR#literate-agent>)
-ObjectPropertyRange(kmo:interprets <http://www.omg.org/spec/API4KP/FRBR-KR#Expression>)
-
-# Object Property: kmo:is-about (is about)
-
-AnnotationAssertion(rdfs:comment kmo:is-about "The general relationship between information and its subject")
-AnnotationAssertion(rdfs:label kmo:is-about "is about")
-
-# Object Property: kmo:performed-by (performed by)
-
-AnnotationAssertion(rdfs:label kmo:performed-by "performed by")
-InverseObjectProperties(kmo:performed-by kmo:performs)
-ObjectPropertyDomain(kmo:performed-by kmo:Activity)
-
-# Object Property: kmo:performs (performs)
-
-AnnotationAssertion(rdfs:label kmo:performs "performs")
-AnnotationAssertion(<http://www.w3.org/2008/05/skos#note> kmo:performs "The relationship between an entity and an activity, where the entity is an active participant")
-ObjectPropertyRange(kmo:performs kmo:Activity)
-
-# Object Property: kmo:possessed-by (possessed by)
-
-AnnotationAssertion(dc:creator kmo:possessed-by "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:possessed-by "2017-06-13T03:54:42Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:possessed-by "possessed by")
+AnnotationAssertion(rdfs:label kmo:possessed-by "(knowledge) possessed by")
 InverseObjectProperties(kmo:possessed-by kmo:possesses)
-ObjectPropertyDomain(kmo:possessed-by <http://www.omg.org/spec/API4KP/FRBR-KR#Knowledge>)
-ObjectPropertyRange(kmo:possessed-by <http://www.omg.org/spec/API4KP/FRBR-KR#literate-agent>)
+ObjectPropertyDomain(kmo:possessed-by <http://www.omg.org/spec/API4KP/core#Knowledge>)
+ObjectPropertyRange(kmo:possessed-by <http://www.omg.org/spec/API4KP/core#KnowledgeableAgent>)
 
-# Object Property: kmo:possesses (possesses)
+# Object Property: kmo:possesses (possesses (knowledge))
 
-AnnotationAssertion(dc:creator kmo:possesses "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:possesses "2017-06-13T03:50:32Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:possesses "possesses")
-AnnotationAssertion(skos:definition kmo:possesses "A literate Agent possesses some Knowledge if they can conceptualize that Knowledge, and act based on that Knowledge")
-AnnotationAssertion(skos:note kmo:possesses "The possess of some Knowledge is the outcome of a Knowledge Acquisition Activity")
-ObjectPropertyDomain(kmo:possesses <http://www.omg.org/spec/API4KP/FRBR-KR#literate-agent>)
-ObjectPropertyRange(kmo:possesses <http://www.omg.org/spec/API4KP/FRBR-KR#Knowledge>)
-
-# Object Property: kmo:recipient-of (recipient of)
-
-AnnotationAssertion(rdfs:comment kmo:recipient-of "The relationship between an entity, and activity that is targeted at that entity. The entity is a (passive) participant.")
-AnnotationAssertion(rdfs:label kmo:recipient-of "recipient of")
-ObjectPropertyDomain(kmo:recipient-of kmo:Activity)
+AnnotationAssertion(rdfs:label kmo:possesses "possesses (knowledge)")
+AnnotationAssertion(skos:definition kmo:possesses "An Agent possesses some Knowledge if they can conceptualize that Knowledge, and act based on that Knowledge")
+AnnotationAssertion(skos:note kmo:possesses "The possession of some Knowledge is the outcome of a Knowledge Acquisition Activity")
+ObjectPropertyDomain(kmo:possesses <http://www.omg.org/spec/API4KP/core#KnowledgeableAgent>)
+ObjectPropertyRange(kmo:possesses <http://www.omg.org/spec/API4KP/core#Knowledge>)
 
 # Object Property: kmo:stored-by (stored by)
 
-AnnotationAssertion(dc:creator kmo:stored-by "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:stored-by "2017-06-13T19:13:37Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:comment kmo:stored-by "The relationship between a Work, Expression or Artifact, and entity that keeps it in storage.")
 AnnotationAssertion(rdfs:label kmo:stored-by "stored by")
 InverseObjectProperties(kmo:stored-by kmo:stores)
-ObjectPropertyDomain(kmo:stored-by <http://purl.org/vocab/frbr/core#Endeavour>)
+ObjectPropertyDomain(kmo:stored-by <http://www.omg.org/spec/API4KP/core#KnowledgeEndeavour>)
 
 # Object Property: kmo:stores (stores)
 
 AnnotationAssertion(rdfs:comment kmo:stores "An entity stores a Work, Expression or Artifact if it is able to keep (a copy of) it, and make it accessible for use as needed")
 AnnotationAssertion(rdfs:label kmo:stores "stores")
 AnnotationAssertion(skos:note kmo:stores "Notice that only Artifacts can be stored in practice. Storing a Work or an Expression implies the existence of an Artifact that carries (the Expression that realized) that Work")
-ObjectPropertyRange(kmo:stores <http://purl.org/vocab/frbr/core#Endeavour>)
+ObjectPropertyRange(kmo:stores <http://www.omg.org/spec/API4KP/core#KnowledgeEndeavour>)
 
 
 
@@ -240,359 +191,282 @@ ObjectPropertyRange(kmo:stores <http://purl.org/vocab/frbr/core#Endeavour>)
 #   Classes
 ############################
 
-# Class: <http://iflastandards.info/ns/fr/frbr/frbroo/F13_Identifier> (Identifier)
-
-AnnotationAssertion(rdfs:comment <http://iflastandards.info/ns/fr/frbr/frbroo/F13_Identifier> "This class comprises strings or codes assigned to instances of E1 CRM Entity in order to identify them uniquely and permanently within the context of one or more organisations. Such codes are often known as inventory numbers, registration codes, etc. and are typically composed of alphanumeric sequences. The class E42 Identifier is not normally used for machine-generated identifiers used for automated processing unless these are also used by human agents. [Adapted from the Scope Note of CIDOC CRM E42 Identifier ver. 5.0.1]")
-AnnotationAssertion(rdfs:label <http://iflastandards.info/ns/fr/frbr/frbroo/F13_Identifier> "Identifier")
-
-# Class: <http://iflastandards.info/ns/fr/frbr/frbroo/F50_Controlled_Access_Point> (Controlled Access Point)
-
-AnnotationAssertion(rdfs:comment <http://iflastandards.info/ns/fr/frbr/frbroo/F50_Controlled_Access_Point> "This class comprises identifiers that are not only designed to be unique for the thing they identify, but also to ensure, by following adequate rules based on widely known and accepted properties for their generation, that an independent agency using the same rule would create the same identifier for the same thing.
-F50 Controlled Access Point covers the notion of both “preferred” and “variant” forms. It does not cover the notion of “cross references”. A cross reference may not uniquely identify one entity, but can be shared by two or more entities, regardless of whether it displays the same structural characteristics as preferred controlled access points.")
-AnnotationAssertion(rdfs:label <http://iflastandards.info/ns/fr/frbr/frbroo/F50_Controlled_Access_Point> "Controlled Access Point")
-AnnotationAssertion(skos:altLabel <http://iflastandards.info/ns/fr/frbr/frbroo/F50_Controlled_Access_Point> "Centrally Managed Identifier")
-SubClassOf(<http://iflastandards.info/ns/fr/frbr/frbroo/F50_Controlled_Access_Point> <http://iflastandards.info/ns/fr/frbr/frbroo/F13_Identifier>)
-
-# Class: <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeArtifact> (Knowledge Artifact)
+# Class: <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeArtifact> (<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeArtifact>)
 
 AnnotationAssertion(skos:altLabel <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeArtifact> "Knowledge Document")
 AnnotationAssertion(skos:example <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeArtifact> "A PDF Document carrying 1) a tutorial on OWL ontologies (in English) and 2) the RDF/XML serialization of an example ontology in appendix A")
 AnnotationAssertion(skos:example <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeArtifact> "An XML file that carries the XML serialization of a RuleML rulebase")
 
-# Class: <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeAssetSurrogate> (Knowledge Asset Surrogate)
-
-AnnotationAssertion(rdfs:comment <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeAssetSurrogate> "By definition, a surrogate carries 'metadata' about a Knowledge Asset. 
-
-Surrogates are organized in catalogs, support searching and browsing activities, and enable the retrieval of artifacts and their relateds.")
-SubClassOf(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeAssetSurrogate> ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/FRBR-KR#carries> <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResourceDescription>))
-
-# Class: <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource> (Knowledge Resource)
+# Class: <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource> (<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)
 
 AnnotationAssertion(skos:example <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource> "The Ontology of Knowledge Management, expressed in OWL (and English as a sub-language)")
 AnnotationAssertion(skos:example <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource> "The mass-energy equation ('E=mc^2'), as expressed in some language for the representation of math knowledge")
 
-# Class: <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResourceDescription> (Knowledge Resource Description)
+# Class: <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResourceDescription> (Knowledge Asset Descriptor)
 
-AnnotationAssertion(dc:creator <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResourceDescription> "davide"^^xsd:string)
-AnnotationAssertion(dc:date <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResourceDescription> "2017-05-10T05:40:59Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResourceDescription> "Knowledge Asset Descriptor"@en)
 AnnotationAssertion(skos:definition <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResourceDescription> "a Knowledge Asset that has another Asset as subject")
 EquivalentClasses(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResourceDescription> ObjectIntersectionOf(kmo:KnowledgeAsset ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResourceDescription> ObjectAllValuesFrom(<http://purl.org/vocab/frbr/core#subject> kmo:KnowledgeAsset))))
 SubClassOf(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResourceDescription> <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResourceDescription>)
 SubClassOf(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResourceDescription> kmo:KnowledgeAsset)
 
-# Class: <http://www.omg.org/spec/API4KP/FRBR-KR#WorkOfKnowledge> (Work of Knowledge)
-
-AnnotationAssertion(rdfs:comment <http://www.omg.org/spec/API4KP/FRBR-KR#WorkOfKnowledge> "Like any other work, a Work Of Knowledge represents the commonality across expressions (and thus carriers) in different languages of the same piece of knowledge")
-AnnotationAssertion(skos:example <http://www.omg.org/spec/API4KP/FRBR-KR#WorkOfKnowledge> "The API4KP, result of the modelling and abstraction work on conceptualizing how knowledge based systems can be interacted with")
-AnnotationAssertion(skos:example <http://www.omg.org/spec/API4KP/FRBR-KR#WorkOfKnowledge> "The rules of soccer as of 2017")
-AnnotationAssertion(skos:example <http://www.omg.org/spec/API4KP/FRBR-KR#WorkOfKnowledge> "The traditional recipe of the Bolognese sauce")
-SubClassOf(<http://www.omg.org/spec/API4KP/FRBR-KR#WorkOfKnowledge> ObjectAllValuesFrom(<http://purl.org/vocab/frbr/core#subject> kmo:ExplicitKnowledge))
-
 # Class: kmo:Activity (kmo:Activity)
 
-AnnotationAssertion(dc:creator kmo:Activity "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:Activity "2017-06-14T04:49:21Z"^^xsd:dateTime)
 AnnotationAssertion(skos:note kmo:Activity "(placeholder for compatibility with ontologies of activities and processes)")
 
-# Class: kmo:AdvancedKnowledge (Advanced Knowledge)
+# Class: kmo:AdvancedKnowledge (advanced knowledge)
 
-AnnotationAssertion(dc:creator kmo:AdvancedKnowledge "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:AdvancedKnowledge "2017-05-10T15:29:52Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:AdvancedKnowledge "Advanced Knowledge"@en)
-EquivalentClasses(kmo:AdvancedKnowledge ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#Knowledge> ObjectComplementOf(kmo:CommonKnowledge)))
-SubClassOf(kmo:AdvancedKnowledge <http://www.omg.org/spec/API4KP/FRBR-KR#Knowledge>)
+AnnotationAssertion(rdfs:label kmo:AdvancedKnowledge "advanced knowledge"@en)
+EquivalentClasses(kmo:AdvancedKnowledge ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#Knowledge> ObjectComplementOf(kmo:CommonKnowledge)))
+SubClassOf(kmo:AdvancedKnowledge <http://www.omg.org/spec/API4KP/core#Knowledge>)
 
 # Class: kmo:AnonymousKnowledgeResource (Anonymous Knowledge Resource)
 
-AnnotationAssertion(dc:creator kmo:AnonymousKnowledgeResource "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:AnonymousKnowledgeResource "2017-05-10T05:03:27Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:AnonymousKnowledgeResource "Anonymous Knowledge Resource"@en)
 AnnotationAssertion(skos:definition kmo:AnonymousKnowledgeResource "Knowledge Resource that is not identified by a an ID assigned by a central identification authority")
-EquivalentClasses(kmo:AnonymousKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource> ObjectComplementOf(ObjectSomeValuesFrom(kmo:identified-by <http://iflastandards.info/ns/fr/frbr/frbroo/F50_Controlled_Access_Point>))))
-SubClassOf(kmo:AnonymousKnowledgeResource <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)
+EquivalentClasses(kmo:AnonymousKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResource> ObjectComplementOf(ObjectSomeValuesFrom(kmo:identified-by <http://www.omg.org/spec/API4KP/core#Identifier>))))
+SubClassOf(kmo:AnonymousKnowledgeResource <http://www.omg.org/spec/API4KP/core#KnowledgeResource>)
 DisjointClasses(kmo:AnonymousKnowledgeResource kmo:IdentifiedKnowledgeResource)
 
 # Class: kmo:ApproachableKnowledgeResource (Approachable Knowledge Resource)
 
-AnnotationAssertion(dc:creator kmo:ApproachableKnowledgeResource "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:ApproachableKnowledgeResource "2017-05-10T15:36:54Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:ApproachableKnowledgeResource "Approachable Knowledge Resource"@en)
 EquivalentClasses(kmo:ApproachableKnowledgeResource ObjectIntersectionOf(kmo:AvailableKnowledgeResource kmo:BroadlyUnderstandableKnowledgeResource))
 SubClassOf(kmo:ApproachableKnowledgeResource <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)
 
 # Class: kmo:AvailableKnowledgeResource (Available Knowledge Resource)
 
-AnnotationAssertion(dc:creator kmo:AvailableKnowledgeResource "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:AvailableKnowledgeResource "2017-05-10T15:37:10Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:AvailableKnowledgeResource "Available Knowledge Resource"@en)
 AnnotationAssertion(skos:definition kmo:AvailableKnowledgeResource "There exists a repository where an agent is allowed to obtain a copy of an artifact that carries the knowledge resource")
 EquivalentClasses(kmo:AvailableKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource> ObjectSomeValuesFrom(kmo:serialized-into <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeArtifact>) ObjectSomeValuesFrom(kmo:stored-by ObjectSomeValuesFrom(kmo:has-function kmo:DigitalKnowledgeArtifactRepository))))
 SubClassOf(kmo:AvailableKnowledgeResource <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)
 
-# Class: kmo:BodyofKnowledge (Body of Knowledge)
+# Class: kmo:BodyofKnowledge (body of knowledge)
 
-AnnotationAssertion(dc:creator kmo:BodyofKnowledge "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:BodyofKnowledge "2017-05-08T17:29:43Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:BodyofKnowledge "Body of Knowledge")
-AnnotationAssertion(skos:definition kmo:BodyofKnowledge "The complex corpus that encompasses the entirety of the knowledge about a specific Business Domain")
+AnnotationAssertion(rdfs:label kmo:BodyofKnowledge "body of knowledge")
+AnnotationAssertion(skos:definition kmo:BodyofKnowledge "A complex corpus that encompasses the entirety of the knowledge about a specific Business Domain")
 SubClassOf(kmo:BodyofKnowledge kmo:DomainSpecificWorkOfKnowledge)
 
 # Class: kmo:BroadlyUnderstandableKnowledgeResource (Broadly Understandable Knowledge Resource)
 
-AnnotationAssertion(dc:creator kmo:BroadlyUnderstandableKnowledgeResource "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:BroadlyUnderstandableKnowledgeResource "2017-05-10T15:19:20Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:BroadlyUnderstandableKnowledgeResource "Broadly Understandable Knowledge Resource"@en)
 AnnotationAssertion(skos:definition kmo:BroadlyUnderstandableKnowledgeResource "Broadly Understandable Knowledge Resource: Knowledge Resource that can possibly be interpreted even by an agent that only possesses Common Knowledge.")
 EquivalentClasses(kmo:BroadlyUnderstandableKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource> ObjectSomeValuesFrom(kmo:possessed-by ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#literate-agent> ObjectComplementOf(ObjectSomeValuesFrom(kmo:possesses kmo:DomainKnowledge)) ObjectSomeValuesFrom(kmo:possesses kmo:CommonKnowledge)))))
 SubClassOf(kmo:BroadlyUnderstandableKnowledgeResource <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)
 
-# Class: kmo:BusinessDomain (Business Domain)
+# Class: kmo:BusinessDomain (business domain)
 
-AnnotationAssertion(dc:creator kmo:BusinessDomain "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:BusinessDomain "2017-05-08T17:35:26Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:BusinessDomain "Business Domain"@en)
+AnnotationAssertion(rdfs:label kmo:BusinessDomain "business domain"@en)
 AnnotationAssertion(skos:definition kmo:BusinessDomain "A concept that synthesizes, abstracting and implying it, a functional complex of more granular concepts that define all the entities and relationships (actors, roles, activities and processes, resources, information, responsibilities, etc...) pertaining to a field or discipline")
 AnnotationAssertion(skos:example kmo:BusinessDomain "cooking")
 AnnotationAssertion(skos:example kmo:BusinessDomain "finance")
 AnnotationAssertion(skos:example kmo:BusinessDomain "healthcare")
+SubClassOf(kmo:BusinessDomain <http://www.omg.org/spec/API4KP/core#ComplexConcept>)
 
 # Class: kmo:CanonicalKnowledgeResource (Canonical Knowledge Resource)
 
-AnnotationAssertion(dc:creator kmo:CanonicalKnowledgeResource "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:CanonicalKnowledgeResource "2017-05-10T17:50:14Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:CanonicalKnowledgeResource "Canonical Knowledge Resource"@en)
 AnnotationAssertion(skos:definition kmo:CanonicalKnowledgeResource "Knowledge Resource that is expressed using the preferred language for the kind of work the resource represents")
 SubClassOf(kmo:CanonicalKnowledgeResource <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)
 
-# Class: kmo:ClinicalBusinessDomain (Clinical Business Domain)
+# Class: kmo:ClinicalBusinessDomain (clinical business domain)
 
-AnnotationAssertion(dc:creator kmo:ClinicalBusinessDomain "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:ClinicalBusinessDomain "2017-05-09T14:32:26Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:comment kmo:ClinicalBusinessDomain "This is considered a class since there are multiple notions of 'Clinical Domain', varying e.g. by country or over time.")
-AnnotationAssertion(rdfs:label kmo:ClinicalBusinessDomain "Clinical Business Domain"@en)
+AnnotationAssertion(rdfs:label kmo:ClinicalBusinessDomain "clinical business domain"@en)
 AnnotationAssertion(skos:definition kmo:ClinicalBusinessDomain "A domain the includes concepts dealing with risk/cause, evaluation, diagnosis, treatment, prevention and management of health and wellness conditions, including methods for the appropriate application of tests, procedures, drugs, and treatments.")
+AnnotationAssertion(skos:scopeNote kmo:ClinicalBusinessDomain "This is considered a class since there are multiple notions of 'Clinical Domain', varying e.g. by country or over time.")
 SubClassOf(kmo:ClinicalBusinessDomain kmo:MedicalBusinessDomain)
 
 # Class: kmo:ClinicalKnowledgeResource (Clinical Knowledge Resource)
 
-AnnotationAssertion(dc:creator kmo:ClinicalKnowledgeResource "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:ClinicalKnowledgeResource "2017-05-10T14:07:12Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:ClinicalKnowledgeResource "Clinical Knowledge Resource"@en)
 AnnotationAssertion(skos:definition kmo:ClinicalKnowledgeResource "Asset that is the realization of a Work of Knowledge, whose subject includes on one or more concepts from some Clinical Domain")
 SubClassOf(kmo:ClinicalKnowledgeResource kmo:DomainSpecificKnowledgeResource)
 
-# Class: kmo:CommonKnowledge (Common Knowledge)
+# Class: kmo:CommonKnowledge (common knowledge)
 
-AnnotationAssertion(dc:creator kmo:CommonKnowledge "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:CommonKnowledge "2017-05-08T20:43:37Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:CommonKnowledge "Common Knowledge"@en)
+AnnotationAssertion(rdfs:label kmo:CommonKnowledge "common knowledge"@en)
 AnnotationAssertion(skos:definition kmo:CommonKnowledge "Knowledge that everyone has, and everyone is known to have")
-SubClassOf(kmo:CommonKnowledge <http://www.omg.org/spec/API4KP/FRBR-KR#Knowledge>)
+SubClassOf(kmo:CommonKnowledge <http://www.omg.org/spec/API4KP/core#Knowledge>)
+
+# Class: kmo:ConcretizedPieceOfContent ((concretely realized) piece of content)
+
+AnnotationAssertion(rdfs:label kmo:ConcretizedPieceOfContent "(concretely realized) piece of content"@en)
+AnnotationAssertion(skos:altLabel kmo:ConcretizedPieceOfContent "PoC")
+AnnotationAssertion(skos:definition kmo:ConcretizedPieceOfContent "Distributable, Concrete Expression of some Intellectual Work, in some Human Consumable Language")
+SubClassOf(kmo:ConcretizedPieceOfContent kmo:DistributableExpression)
+SubClassOf(kmo:ConcretizedPieceOfContent kmo:HumanConsumableExpression)
+
+# Class: kmo:ConcretizedPieceOfKnowledge ((concretely realized) piece of knowledge)
+
+AnnotationAssertion(rdfs:label kmo:ConcretizedPieceOfKnowledge "(concretely realized) piece of knowledge"@en)
+AnnotationAssertion(skos:altLabel kmo:ConcretizedPieceOfKnowledge "PoK")
+AnnotationAssertion(skos:definition kmo:ConcretizedPieceOfKnowledge "A Piece of Knowledge is a Distributable, Concrete Expression of an Intellectual Work of Knowledge")
+SubClassOf(kmo:ConcretizedPieceOfKnowledge kmo:DistributableExpression)
+SubClassOf(kmo:ConcretizedPieceOfKnowledge ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/core#concretely-expresses> <http://www.omg.org/spec/API4KP/core#WorkOfKnowledge>))
+
+# Class: kmo:ConcretizedPieceOfKnowledgeContent ((concretely realized) piece of knowledge content)
+
+AnnotationAssertion(rdfs:label kmo:ConcretizedPieceOfKnowledgeContent "(concretely realized) piece of knowledge content"@en)
+AnnotationAssertion(skos:altLabel kmo:ConcretizedPieceOfKnowledgeContent "PoCK")
+AnnotationAssertion(skos:definition kmo:ConcretizedPieceOfKnowledgeContent "Piece of Content that is the expression of a Work of knowledge")
+AnnotationAssertion(skos:note kmo:ConcretizedPieceOfKnowledgeContent "Like any Piece of Content, a PoCK is expressed using some natural language, and formatted for consumption by a human audience (as opposed to be used for computation by a software)")
+EquivalentClasses(kmo:ConcretizedPieceOfKnowledgeContent ObjectIntersectionOf(kmo:ConcretizedPieceOfContent kmo:ConcretizedPieceOfKnowledge))
 
 # Class: kmo:CoreKnowledgeAsset (Core Knowledge Asset)
 
-AnnotationAssertion(dc:creator kmo:CoreKnowledgeAsset "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:CoreKnowledgeAsset "2017-05-10T20:08:38Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:CoreKnowledgeAsset "Core Knowledge Asset"@en)
 AnnotationAssertion(skos:definition kmo:CoreKnowledgeAsset "Asset such that Assets may be derived from it, but is not itself derived from any other Asset (although it could be a derivative of another Resource)")
 EquivalentClasses(kmo:CoreKnowledgeAsset ObjectIntersectionOf(kmo:KnowledgeAsset ObjectIntersectionOf(kmo:CanonicalKnowledgeResource kmo:EndorsedKnowledgeResource kmo:MainstreamKnowledgeResource)))
 SubClassOf(kmo:CoreKnowledgeAsset kmo:KnowledgeAsset)
 SubClassOf(kmo:CoreKnowledgeAsset ObjectComplementOf(ObjectSomeValuesFrom(prov:wasDerivedFrom kmo:KnowledgeAsset)))
 
-# Class: kmo:DigitalKnowledgeArtifact (Digital Knowledge Artifact)
+# Class: kmo:DigitalKnowledgeArtifact (digital knowledge artifact)
 
-AnnotationAssertion(dc:creator kmo:DigitalKnowledgeArtifact "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:DigitalKnowledgeArtifact "2017-05-16T20:04:21Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeArtifact "Digital Knowledge Artifact"@en)
-AnnotationAssertion(skos:definition kmo:DigitalKnowledgeArtifact "A digital information bearer that carries some form of knowledge")
-SubClassOf(kmo:DigitalKnowledgeArtifact <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeArtifact>)
-SubClassOf(kmo:DigitalKnowledgeArtifact ObjectComplementOf(<http://iflastandards.info/ns/fr/frbr/frbroo/F5_Item>))
+AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeArtifact "digital knowledge artifact"@en)
+AnnotationAssertion(skos:definition kmo:DigitalKnowledgeArtifact "A digital (i.e. of electronic nature) artifact that carries some form of knowledge.")
+SubClassOf(kmo:DigitalKnowledgeArtifact <http://www.omg.org/spec/API4KP/core#KnowledgeArtifact>)
 
 # Class: kmo:DigitalKnowledgeArtifactDirectory (Digital Knowledge Artifact Directory)
 
-AnnotationAssertion(dc:creator kmo:DigitalKnowledgeArtifactDirectory "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:DigitalKnowledgeArtifactDirectory "2017-05-16T23:02:07Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeArtifactDirectory "Digital Knowledge Artifact Directory"@en)
 AnnotationAssertion(skos:definition kmo:DigitalKnowledgeArtifactDirectory "Function of a software that uses a Knowledge Artifact Inventory that references Digital Knowledge Artifacts")
 SubClassOf(kmo:DigitalKnowledgeArtifactDirectory kmo:KnowledgeArtifactDirectory)
-SubClassOf(kmo:DigitalKnowledgeArtifactDirectory ObjectSomeValuesFrom(DOL-terms:hasPart ObjectIntersectionOf(kmo:KnowledgeArtifactInventory ObjectAllValuesFrom(kmo:identifies kmo:DigitalKnowledgeArtifact))))
+SubClassOf(kmo:DigitalKnowledgeArtifactDirectory ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-part> ObjectIntersectionOf(kmo:KnowledgeArtifactInventory ObjectAllValuesFrom(kmo:identifies kmo:DigitalKnowledgeArtifact))))
 
 # Class: kmo:DigitalKnowledgeArtifactEditor (Digital Knowledge Artifact Editor)
 
-AnnotationAssertion(dc:creator kmo:DigitalKnowledgeArtifactEditor "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:DigitalKnowledgeArtifactEditor "2017-05-16T22:25:31Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeArtifactEditor "Digital Knowledge Artifact Editor"@en)
 SubClassOf(kmo:DigitalKnowledgeArtifactEditor kmo:Function)
 
 # Class: kmo:DigitalKnowledgeArtifactRepository (Digital Knowledge Artifact Repository)
 
-AnnotationAssertion(dc:creator kmo:DigitalKnowledgeArtifactRepository "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:DigitalKnowledgeArtifactRepository "2017-05-16T20:32:29Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeArtifactRepository "Digital Knowledge Artifact Repository"@en)
 AnnotationAssertion(skos:definition kmo:DigitalKnowledgeArtifactRepository "Function served by an entity that stores Digital Knowledge Artifacts")
 SubClassOf(kmo:DigitalKnowledgeArtifactRepository kmo:KnowledgeArtifactRepository)
 SubClassOf(kmo:DigitalKnowledgeArtifactRepository ObjectSomeValuesFrom(kmo:function-of ObjectSomeValuesFrom(kmo:stores kmo:DigitalKnowledgeArtifact)))
 
-# Class: kmo:DigitalKnowledgeAssetSurrogate (Digital Knowledge Asset Surrogate)
+# Class: kmo:DigitalKnowledgeAssetSurrogate (digital knowledge asset surrogate)
 
-AnnotationAssertion(dc:creator kmo:DigitalKnowledgeAssetSurrogate "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:DigitalKnowledgeAssetSurrogate "2017-05-16T20:18:42Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeAssetSurrogate "Digital Knowledge Asset Surrogate"@en)
-EquivalentClasses(kmo:DigitalKnowledgeAssetSurrogate ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeAssetSurrogate> kmo:DigitalKnowledgeArtifact))
+AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeAssetSurrogate "digital knowledge asset surrogate"@en)
+EquivalentClasses(kmo:DigitalKnowledgeAssetSurrogate ObjectIntersectionOf(kmo:DigitalKnowledgeArtifact <http://www.omg.org/spec/API4KP/core#KnowledgeAssetSurrogate>))
 SubClassOf(kmo:DigitalKnowledgeAssetSurrogate kmo:DigitalKnowledgeArtifact)
 
 # Class: kmo:DigitalKnowledgeAssetSurrogateRepository (Digital Knowledge Asset Surrogate Repository)
 
-AnnotationAssertion(dc:creator kmo:DigitalKnowledgeAssetSurrogateRepository "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:DigitalKnowledgeAssetSurrogateRepository "2017-05-16T22:11:06Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeAssetSurrogateRepository "Digital Knowledge Asset Surrogate Repository"@en)
 SubClassOf(kmo:DigitalKnowledgeAssetSurrogateRepository kmo:DigitalKnowledgeArtifactRepository)
 SubClassOf(kmo:DigitalKnowledgeAssetSurrogateRepository ObjectSomeValuesFrom(kmo:stores kmo:DigitalKnowledgeAssetSurrogate))
 
 # Class: kmo:DigitalKnowledgeManagementServiceProvider (Digital Knowledge Management Service Provider)
 
-AnnotationAssertion(dc:creator kmo:DigitalKnowledgeManagementServiceProvider "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:DigitalKnowledgeManagementServiceProvider "2017-05-16T22:20:28Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeManagementServiceProvider "Digital Knowledge Management Service Provider"@en)
 AnnotationAssertion(skos:definition kmo:DigitalKnowledgeManagementServiceProvider "Function of a software that enables the creation, maintenance, storage, cataloguing, delivery/distribution of digital knowledge artifact")
 SubClassOf(kmo:DigitalKnowledgeManagementServiceProvider kmo:KnowledgeManagementServiceProvider)
-SubClassOf(kmo:DigitalKnowledgeManagementServiceProvider ObjectSomeValuesFrom(DOL-terms:hasPart kmo:DigitalKnowledgeArtifactDirectory))
-SubClassOf(kmo:DigitalKnowledgeManagementServiceProvider ObjectSomeValuesFrom(DOL-terms:hasPart kmo:DigitalKnowledgeArtifactEditor))
-SubClassOf(kmo:DigitalKnowledgeManagementServiceProvider ObjectSomeValuesFrom(DOL-terms:hasPart kmo:DigitalKnowledgeArtifactRepository))
+SubClassOf(kmo:DigitalKnowledgeManagementServiceProvider ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-part> kmo:DigitalKnowledgeArtifactDirectory))
+SubClassOf(kmo:DigitalKnowledgeManagementServiceProvider ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-part> kmo:DigitalKnowledgeArtifactEditor))
+SubClassOf(kmo:DigitalKnowledgeManagementServiceProvider ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-part> kmo:DigitalKnowledgeArtifactRepository))
 
-# Class: kmo:DistributableExpression (Distributable Expression)
+# Class: kmo:DistributableExpression (distributable expression)
 
-AnnotationAssertion(dc:creator kmo:DistributableExpression "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:DistributableExpression "2017-05-10T13:51:51Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:DistributableExpression "Distributable Expression"@en)
+AnnotationAssertion(rdfs:label kmo:DistributableExpression "distributable expression"@en)
 AnnotationAssertion(skos:definition kmo:DistributableExpression "Concrete Expression that is realized by a self-contained knowledge artifact, and suitable to be used in a knowledge transfer activity")
-SubClassOf(kmo:DistributableExpression <http://www.omg.org/spec/API4KP/FRBR-KR#ConcreteExpression>)
-SubClassOf(kmo:DistributableExpression ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/FRBR-KR#Xcarried-by> <http://www.omg.org/spec/API4KP/FRBR-KR#SelfContainedKnowledgeArtifact>))
-SubClassOf(kmo:DistributableExpression ObjectMinCardinality(0 kmo:recipient-of kmo:KnowledgeTransferActivity))
+SubClassOf(kmo:DistributableExpression <http://www.omg.org/spec/API4KP/core#ConcreteExpression>)
+SubClassOf(kmo:DistributableExpression ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#carried-by> <http://www.omg.org/spec/API4KP/core#SelfContainedKnowledgeArtifact>))
+SubClassOf(kmo:DistributableExpression ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#involved-in> kmo:KnowledgeTransferActivity))
 
-# Class: kmo:DomainKnowledge (Domain Knowledge)
+# Class: kmo:DomainKnowledge (domain knowledge)
 
-AnnotationAssertion(dc:creator kmo:DomainKnowledge "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:DomainKnowledge "2017-05-09T14:21:27Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:DomainKnowledge "Domain Knowledge"@en)
+AnnotationAssertion(rdfs:label kmo:DomainKnowledge "domain knowledge"@en)
 AnnotationAssertion(skos:definition kmo:DomainKnowledge "Knowledge specifically about, and thus scoped by, some Business Domain (e.g. healthcare)")
-SubClassOf(kmo:DomainKnowledge ObjectIntersectionOf(kmo:ExplicitKnowledge ObjectSomeValuesFrom(kmo:is-about kmo:BusinessDomain)))
+SubClassOf(kmo:DomainKnowledge ObjectIntersectionOf(kmo:ExplicitKnowledge ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#is-about> kmo:BusinessDomain)))
 
 # Class: kmo:DomainSpecificKnowledgeResource (Domain-Specific Knowledge Resource)
 
-AnnotationAssertion(dc:creator kmo:DomainSpecificKnowledgeResource "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:DomainSpecificKnowledgeResource "2017-05-10T14:11:50Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:DomainSpecificKnowledgeResource "Domain-Specific Knowledge Resource"@en)
 SubClassOf(kmo:DomainSpecificKnowledgeResource <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)
 
-# Class: kmo:DomainSpecificWorkOfKnowledge (Domain-Specific Work of Knowledge)
+# Class: kmo:DomainSpecificWorkOfKnowledge (domain-specific work of knowledge)
 
-AnnotationAssertion(dc:creator kmo:DomainSpecificWorkOfKnowledge "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:DomainSpecificWorkOfKnowledge "2017-05-08T17:28:48Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:DomainSpecificWorkOfKnowledge "Domain-Specific Work of Knowledge")
+AnnotationAssertion(rdfs:label kmo:DomainSpecificWorkOfKnowledge "domain-specific work of knowledge")
 AnnotationAssertion(skos:definition kmo:DomainSpecificWorkOfKnowledge "Knowledge Work that has subject some aspect of a single Business Domain")
-EquivalentClasses(kmo:DomainSpecificWorkOfKnowledge ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#WorkOfKnowledge> ObjectSomeValuesFrom(<http://purl.org/vocab/frbr/core#subject> kmo:DomainKnowledge)))
+EquivalentClasses(kmo:DomainSpecificWorkOfKnowledge ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#WorkOfKnowledge> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-subject> kmo:DomainKnowledge)))
 
 # Class: kmo:EndorsedKnowledgeResource (Endorsed Knowledge Resource)
 
-AnnotationAssertion(dc:creator kmo:EndorsedKnowledgeResource "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:EndorsedKnowledgeResource "2017-05-10T19:00:18Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:EndorsedKnowledgeResource "Endorsed Knowledge Resource"@en)
 AnnotationAssertion(skos:definition kmo:EndorsedKnowledgeResource "Knowledge Resource that is endorsed by an agent / party that has adequate subject matter expertise, and has the permission to do so")
-EquivalentClasses(kmo:EndorsedKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource> ObjectSomeValuesFrom(<http://purl.org/vocab/frbr/core#realizationOf> <http://www.omg.org/spec/API4KP/FRBR-KR#WorkOfKnowledge>) ObjectSomeValuesFrom(kmo:endorsed-by kmo:KnowledgeEndorsingParty)))
-SubClassOf(kmo:EndorsedKnowledgeResource <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)
+EquivalentClasses(kmo:EndorsedKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResource> ObjectSomeValuesFrom(ObjectInverseOf(kmo:endorses) kmo:KnowledgeEndorsingParty)))
+SubClassOf(kmo:EndorsedKnowledgeResource <http://www.omg.org/spec/API4KP/core#KnowledgeResource>)
 
-# Class: kmo:ExperientialLearningActivity (Experiential Learning Activity)
+# Class: kmo:ExperientialLearningActivity (experiential learning activity)
 
-AnnotationAssertion(dc:creator kmo:ExperientialLearningActivity "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:ExperientialLearningActivity "2017-05-09T14:37:49Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:ExperientialLearningActivity "Experiential Learning Activity"@en)
+AnnotationAssertion(rdfs:label kmo:ExperientialLearningActivity "experiential learning activity"@en)
+AnnotationAssertion(skos:definition kmo:ExperientialLearningActivity "activity where an agent gains knowledge through individual experience, as opposed to transfer from a different agent that already possesses that knowledge")
 SubClassOf(kmo:ExperientialLearningActivity kmo:KnowledgeAcquisitionActivity)
 
-# Class: kmo:ExpertKnowledge (Expert Knowledge)
+# Class: kmo:ExpertKnowledge (expert knowledge)
 
-AnnotationAssertion(dc:creator kmo:ExpertKnowledge "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:ExpertKnowledge "2017-05-08T20:44:09Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:ExpertKnowledge "Expert Knowledge"@en)
+AnnotationAssertion(rdfs:label kmo:ExpertKnowledge "expert knowledge"@en)
 AnnotationAssertion(skos:definition kmo:ExpertKnowledge "Domain Knowledge acquired by advanced certified training, practice and/or research")
 SubClassOf(kmo:ExpertKnowledge kmo:DomainKnowledge)
-SubClassOf(kmo:ExpertKnowledge ObjectSomeValuesFrom(kmo:possessed-by ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#literate-agent> ObjectSomeValuesFrom(kmo:performs kmo:ExperientialLearningActivity) ObjectSomeValuesFrom(kmo:recipient-of kmo:GraduateLevelInstruction))))
+SubClassOf(kmo:ExpertKnowledge ObjectSomeValuesFrom(kmo:possessed-by ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeableAgent> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#performs> kmo:ExperientialLearningActivity) ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#recipient-of> kmo:GraduateLevelInstruction))))
 
-# Class: kmo:ExplicitKnowledge (Explicit Knowledge)
+# Class: kmo:ExplicitKnowledge (explicit knowledge)
 
-AnnotationAssertion(dc:creator kmo:ExplicitKnowledge "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:ExplicitKnowledge "2017-05-08T20:26:56Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:ExplicitKnowledge "Explicit Knowledge"@en)
+AnnotationAssertion(rdfs:label kmo:ExplicitKnowledge "explicit knowledge"@en)
 AnnotationAssertion(skos:definition kmo:ExplicitKnowledge "Knowledge that can be communicated from agent to agent")
-SubClassOf(kmo:ExplicitKnowledge <http://www.omg.org/spec/API4KP/FRBR-KR#Knowledge>)
+SubClassOf(kmo:ExplicitKnowledge <http://www.omg.org/spec/API4KP/core#Knowledge>)
 DisjointClasses(kmo:ExplicitKnowledge kmo:TacitKnowledge)
 
 # Class: kmo:ExternallyCataloguedResourceSurrogate (Externally Catalogued Resource Surrogate)
 
-AnnotationAssertion(dc:creator kmo:ExternallyCataloguedResourceSurrogate "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:ExternallyCataloguedResourceSurrogate "2017-05-17T22:53:47Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:ExternallyCataloguedResourceSurrogate "Externally Catalogued Resource Surrogate"@en)
 AnnotationAssertion(skos:definition kmo:ExternallyCataloguedResourceSurrogate "(Meta) Surrogate whose subject is a Surrogate, stored in a different knowledge repository.
 This Surrogate indirectly references a Knowledge Resource")
-SubClassOf(kmo:ExternallyCataloguedResourceSurrogate <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeAssetSurrogate>)
+SubClassOf(kmo:ExternallyCataloguedResourceSurrogate <http://www.omg.org/spec/API4KP/core#KnowledgeAssetSurrogate>)
 
 # Class: kmo:ExternallyManagedResourceSurrogate (Externally-Managed-Resource Surrogate)
 
-AnnotationAssertion(dc:creator kmo:ExternallyManagedResourceSurrogate "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:ExternallyManagedResourceSurrogate "2017-05-17T22:51:52Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:ExternallyManagedResourceSurrogate "Externally-Managed-Resource Surrogate"@en)
 AnnotationAssertion(skos:definition kmo:ExternallyManagedResourceSurrogate "Surrogate whose subject Resource is not stored in the same knowledge repository as the surrogate itself")
-SubClassOf(kmo:ExternallyManagedResourceSurrogate <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeAssetSurrogate>)
+SubClassOf(kmo:ExternallyManagedResourceSurrogate <http://www.omg.org/spec/API4KP/core#KnowledgeAssetSurrogate>)
 
-# Class: kmo:FoundationalKnowledge (Foundational Knowledge)
+# Class: kmo:FoundationalKnowledge (foundational knowledge)
 
-AnnotationAssertion(dc:creator kmo:FoundationalKnowledge "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:FoundationalKnowledge "2017-05-08T20:43:56Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:FoundationalKnowledge "Foundational Knowledge"@en)
+AnnotationAssertion(rdfs:label kmo:FoundationalKnowledge "foundational knowledge"@en)
 AnnotationAssertion(skos:definition kmo:FoundationalKnowledge "Knowledge that is acquired by means of formal training in a domain (e.g. equivalent to a MS level)")
 SubClassOf(kmo:FoundationalKnowledge kmo:DomainKnowledge)
-SubClassOf(kmo:FoundationalKnowledge ObjectIntersectionOf(ObjectSomeValuesFrom(kmo:possessed-by <http://www.omg.org/spec/API4KP/FRBR-KR#literate-agent>) ObjectSomeValuesFrom(kmo:recipient-of kmo:UndegraduateLevelInstruction)))
+SubClassOf(kmo:FoundationalKnowledge ObjectSomeValuesFrom(kmo:possessed-by ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeableAgent> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#recipient-of> kmo:UndegraduateLevelInstruction))))
 
-# Class: kmo:FrontalInstruction (Frontal Instruction)
+# Class: kmo:FrontalInstruction (frontal delivery of instruction)
 
-AnnotationAssertion(dc:creator kmo:FrontalInstruction "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:FrontalInstruction "2017-05-09T14:40:50Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:FrontalInstruction "Frontal Instruction"@en)
+AnnotationAssertion(rdfs:label kmo:FrontalInstruction "frontal delivery of instruction"@en)
+AnnotationAssertion(skos:definition kmo:FrontalInstruction "A knowledge transfer activity that assumes the spatio-temporal co-location of two agents, where direct communication is used to transfer Knowlege from one to the other")
 SubClassOf(kmo:FrontalInstruction kmo:KnowledgeTransferActivity)
-SubClassOf(kmo:FrontalInstruction ObjectSomeValuesFrom(kmo:has-recipient <http://www.omg.org/spec/API4KP/FRBR-KR#literate-agent>))
-SubClassOf(kmo:FrontalInstruction ObjectSomeValuesFrom(kmo:performed-by ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#literate-agent> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/FRBR-KR#assimilates> <http://www.omg.org/spec/API4KP/FRBR-KR#Knowledge>))))
+SubClassOf(kmo:FrontalInstruction ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#targets> <http://www.omg.org/spec/API4KP/core#KnowledgeableAgent>))
 
-# Class: kmo:GraduateLevelInstruction (Graduate Level Instruction)
+# Class: kmo:GraduateLevelInstruction (delivery of graduate-level instruction)
 
-AnnotationAssertion(dc:creator kmo:GraduateLevelInstruction "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:GraduateLevelInstruction "2017-05-09T14:53:59Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:GraduateLevelInstruction "Graduate Level Instruction"@en)
-SubClassOf(kmo:GraduateLevelInstruction kmo:FrontalInstruction)
+AnnotationAssertion(rdfs:label kmo:GraduateLevelInstruction "delivery of graduate-level instruction"@en)
+SubClassOf(kmo:GraduateLevelInstruction kmo:KnowledgeTransferActivity)
 DisjointClasses(kmo:GraduateLevelInstruction kmo:UndegraduateLevelInstruction)
 
-# Class: kmo:HumanConsumableExpression (Human Consumable Expression)
+# Class: kmo:HumanConsumableExpression (human consumable expression)
 
-AnnotationAssertion(dc:creator kmo:HumanConsumableExpression "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:HumanConsumableExpression "2017-06-14T18:34:43Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:HumanConsumableExpression "Human Consumable Expression")
-SubClassOf(kmo:HumanConsumableExpression <http://www.omg.org/spec/API4KP/FRBR-KR#ConcreteExpression>)
-SubClassOf(kmo:HumanConsumableExpression ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/FRBR-KR#is-serialized-in> ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#Serialization> ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/FRBR-KR#serializes> <http://www.omg.org/spec/API4KP/FRBR-KR#NaturalLanguage>))))
-SubClassOf(kmo:HumanConsumableExpression ObjectAllValuesFrom(DOL-terms:usesLanguage <http://www.omg.org/spec/API4KP/FRBR-KR#NaturalLanguage>))
+AnnotationAssertion(rdfs:label kmo:HumanConsumableExpression "human consumable expression")
+SubClassOf(kmo:HumanConsumableExpression <http://www.omg.org/spec/API4KP/core#ConcreteExpression>)
+SubClassOf(kmo:HumanConsumableExpression ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#uses-language> <http://www.omg.org/spec/API4KP/core#NaturalLanguage>))
+SubClassOf(kmo:HumanConsumableExpression ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/core#uses-language> <http://www.omg.org/spec/API4KP/core#NaturalLanguage>))
 
 # Class: kmo:IdentifiedKnowledgeResource (Identified Knowledge Resource)
 
-AnnotationAssertion(dc:creator kmo:IdentifiedKnowledgeResource "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:IdentifiedKnowledgeResource "2017-05-10T15:05:22Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:IdentifiedKnowledgeResource "Identified Knowledge Resource"@en)
 AnnotationAssertion(skos:definition kmo:IdentifiedKnowledgeResource "Knowledge Resource that is identified by a an ID assigned by a central identification authority")
-EquivalentClasses(kmo:IdentifiedKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource> ObjectSomeValuesFrom(kmo:identified-by <http://iflastandards.info/ns/fr/frbr/frbroo/F50_Controlled_Access_Point>)))
-SubClassOf(kmo:IdentifiedKnowledgeResource <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)
+EquivalentClasses(kmo:IdentifiedKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResource> ObjectSomeValuesFrom(kmo:identified-by <http://www.omg.org/spec/API4KP/core#Identifier>)))
+SubClassOf(kmo:IdentifiedKnowledgeResource <http://www.omg.org/spec/API4KP/core#KnowledgeResource>)
 
 # Class: kmo:InlinedKnowledgeResourceDescriptor (Inlined Knowledge Resource Descriptor)
 
-AnnotationAssertion(dc:creator kmo:InlinedKnowledgeResourceDescriptor "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:InlinedKnowledgeResourceDescriptor "2017-05-17T16:35:19Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:InlinedKnowledgeResourceDescriptor "Inlined Knowledge Resource Descriptor"@en)
 AnnotationAssertion(skos:definition kmo:InlinedKnowledgeResourceDescriptor "A descriptor that is a proper sub-part of the (same) structured knowledge resource that has, as a proper sub-part, the resource the descriptor is providing information about")
 EquivalentClasses(kmo:InlinedKnowledgeResourceDescriptor ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResourceDescription> ObjectSomeValuesFrom(<http://purl.org/vocab/frbr/core#partOf> ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#StructuredKnowledgeResource> ObjectSomeValuesFrom(<http://purl.org/vocab/frbr/core#part> <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)))))
@@ -600,30 +474,23 @@ SubClassOf(kmo:InlinedKnowledgeResourceDescriptor <http://www.omg.org/spec/API4K
 
 # Class: kmo:InternallyManagedResourceSurrogate (Internally-Managed-Resource Surrogate)
 
-AnnotationAssertion(dc:creator kmo:InternallyManagedResourceSurrogate "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:InternallyManagedResourceSurrogate "2017-05-17T22:52:26Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:InternallyManagedResourceSurrogate "Internally-Managed-Resource Surrogate"@en)
-SubClassOf(kmo:InternallyManagedResourceSurrogate <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeAssetSurrogate>)
+SubClassOf(kmo:InternallyManagedResourceSurrogate <http://www.omg.org/spec/API4KP/core#KnowledgeAssetSurrogate>)
 
-# Class: kmo:KnowledgeAcquisitionActivity (Knowledge Acquisition Activity)
+# Class: kmo:KnowledgeAcquisitionActivity (knowledge acquisition activity)
 
-AnnotationAssertion(dc:creator kmo:KnowledgeAcquisitionActivity "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:KnowledgeAcquisitionActivity "2017-05-08T17:52:10Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:KnowledgeAcquisitionActivity "Knowledge Acquisition Activity"@en)
+AnnotationAssertion(rdfs:label kmo:KnowledgeAcquisitionActivity "knowledge acquisition activity"@en)
 AnnotationAssertion(skos:definition kmo:KnowledgeAcquisitionActivity "An abstract activity that allows the agent performing it to gain some Knowledge. Concrete examples include learning, observing, experiencing, and combinations thereof.")
-SubClassOf(kmo:KnowledgeAcquisitionActivity kmo:Activity)
+SubClassOf(kmo:KnowledgeAcquisitionActivity <http://www.omg.org/spec/API4KP/core#InformationProcessingActivity>)
+SubClassOf(kmo:KnowledgeAcquisitionActivity ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#performed-by> <http://www.omg.org/spec/API4KP/core#KnowledgeableAgent>))
 
 # Class: kmo:KnowledgeArtifactDirectory (Knowledge Artifact Directory)
 
-AnnotationAssertion(dc:creator kmo:KnowledgeArtifactDirectory "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:KnowledgeArtifactDirectory "2017-05-16T23:01:54Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:KnowledgeArtifactDirectory "Knowledge Artifact Directory"@en)
 SubClassOf(kmo:KnowledgeArtifactDirectory kmo:Function)
 
 # Class: kmo:KnowledgeArtifactInventory (Knowledge Artifact Inventory)
 
-AnnotationAssertion(dc:creator kmo:KnowledgeArtifactInventory "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:KnowledgeArtifactInventory "2017-05-16T22:42:28Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:KnowledgeArtifactInventory "Knowledge Artifact Inventory"@en)
 AnnotationAssertion(skos:definition kmo:KnowledgeArtifactInventory "The association between each knowledge artifact in a collection thereof, its content, and its location")
 SubClassOf(kmo:KnowledgeArtifactInventory <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)
@@ -631,8 +498,6 @@ SubClassOf(kmo:KnowledgeArtifactInventory ObjectSomeValuesFrom(kmo:identifies <h
 
 # Class: kmo:KnowledgeArtifactRepository (Knowledge Artifact Repository)
 
-AnnotationAssertion(dc:creator kmo:KnowledgeArtifactRepository "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:KnowledgeArtifactRepository "2017-06-13T19:26:51Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:comment kmo:KnowledgeArtifactRepository "Function served by an entity that stores Knowledge Artifacts")
 AnnotationAssertion(rdfs:label kmo:KnowledgeArtifactRepository "Knowledge Artifact Repository")
 SubClassOf(kmo:KnowledgeArtifactRepository kmo:Function)
@@ -640,34 +505,26 @@ SubClassOf(kmo:KnowledgeArtifactRepository ObjectSomeValuesFrom(kmo:function-of 
 
 # Class: kmo:KnowledgeAsset (Knowledge Asset)
 
-AnnotationAssertion(dc:creator kmo:KnowledgeAsset "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:KnowledgeAsset "2017-05-10T05:11:20Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:KnowledgeAsset "Knowledge Asset"@en)
 AnnotationAssertion(skos:definition kmo:KnowledgeAsset "Identified Knowledge Resource, i.e. that is identified by an ID assigned by a central identification authority
 Assets are valuable to parties acting within that domain.")
 SubClassOf(kmo:KnowledgeAsset kmo:IdentifiedKnowledgeResource)
 
-# Class: kmo:KnowledgeEndorsingParty (Knowledge Endorsing Party)
+# Class: kmo:KnowledgeEndorsingParty (knowledge endorsing party)
 
-AnnotationAssertion(dc:creator kmo:KnowledgeEndorsingParty "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:KnowledgeEndorsingParty "2017-05-10T19:28:04Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:KnowledgeEndorsingParty "Knowledge Endorsing Party"@en)
+AnnotationAssertion(rdfs:label kmo:KnowledgeEndorsingParty "knowledge endorsing party"@en)
 AnnotationAssertion(skos:definition kmo:KnowledgeEndorsingParty "Party that has the authority and the subject matter expertise to endorse some Work of Knowledge. The trust in the Party gets transferred to the Work of Knowledge")
-SubClassOf(kmo:KnowledgeEndorsingParty <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeableAgent>)
-SubClassOf(kmo:KnowledgeEndorsingParty ObjectSomeValuesFrom(kmo:possesses kmo:AdvancedKnowledge))
+SubClassOf(kmo:KnowledgeEndorsingParty <http://www.omg.org/spec/API4KP/core#KnowledgeableAgent>)
+SubClassOf(kmo:KnowledgeEndorsingParty ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#internally-represents> kmo:AdvancedKnowledge))
 
 # Class: kmo:KnowledgeManagementServiceProvider (Knowledge Management Service Provider)
 
-AnnotationAssertion(dc:creator kmo:KnowledgeManagementServiceProvider "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:KnowledgeManagementServiceProvider "2017-05-16T22:15:45Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:KnowledgeManagementServiceProvider "Knowledge Management Service Provider"@en)
 AnnotationAssertion(skos:definition kmo:KnowledgeManagementServiceProvider "The function possessed by an entity that serves as a Knowledge Manager")
 SubClassOf(kmo:KnowledgeManagementServiceProvider kmo:Function)
 
 # Class: kmo:KnowledgeMetaDescriptor (Knowledge Meta-Descriptor)
 
-AnnotationAssertion(dc:creator kmo:KnowledgeMetaDescriptor "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:KnowledgeMetaDescriptor "2017-05-17T16:39:07Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:KnowledgeMetaDescriptor "Knowledge Meta-Descriptor"@en)
 AnnotationAssertion(skos:definition kmo:KnowledgeMetaDescriptor "A descriptor that has subject another Descriptor")
 EquivalentClasses(kmo:KnowledgeMetaDescriptor ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResourceDescription> ObjectSomeValuesFrom(<http://purl.org/vocab/frbr/core#subject> <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResourceDescription>)))
@@ -675,128 +532,84 @@ SubClassOf(kmo:KnowledgeMetaDescriptor <http://www.omg.org/spec/API4KP/FRBR-KR#K
 
 # Class: kmo:KnowledgeResourceEmbeddingSurrogate (Knowledge Resource Embedding Surrogate)
 
-AnnotationAssertion(dc:creator kmo:KnowledgeResourceEmbeddingSurrogate "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:KnowledgeResourceEmbeddingSurrogate "2017-05-17T22:24:36Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:KnowledgeResourceEmbeddingSurrogate "Knowledge Resource Embedding Surrogate"@en)
 AnnotationAssertion(skos:definition kmo:KnowledgeResourceEmbeddingSurrogate "A Surrogate that realizes a knowledge descriptor, and embeds the knowledge resource it describes, or a derivative thereof.
 (This concept is defined at the manifestation/item level. The two expressions are realized independently and included in the same manifestation, with the surrogate being the primary entity the manifestation is realizing)")
-SubClassOf(kmo:KnowledgeResourceEmbeddingSurrogate <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeAssetSurrogate>)
+SubClassOf(kmo:KnowledgeResourceEmbeddingSurrogate <http://www.omg.org/spec/API4KP/core#KnowledgeAssetSurrogate>)
 SubClassOf(kmo:KnowledgeResourceEmbeddingSurrogate ObjectSomeValuesFrom(<http://purl.org/vocab/frbr/core#part> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/FRBR-KR#carries> <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)))
 
-# Class: kmo:KnowledgeTransferActivity (Knowledge Transfer Activity)
+# Class: kmo:KnowledgeTransferActivity (knowledge transfer activity)
 
-AnnotationAssertion(rdfs:label kmo:KnowledgeTransferActivity "Knowledge Transfer Activity")
+AnnotationAssertion(rdfs:label kmo:KnowledgeTransferActivity "knowledge transfer activity")
 AnnotationAssertion(skos:definition kmo:KnowledgeTransferActivity "Activity with 2 or more participant agents. Before it is performed, there exists 2 participants A and B, such that A possesses some knowledge K, and B does not. After the activity is completed, B will possess that knowledge K.")
 SubClassOf(kmo:KnowledgeTransferActivity kmo:KnowledgeAcquisitionActivity)
+SubClassOf(kmo:KnowledgeTransferActivity ObjectMinCardinality(2 <http://www.omg.org/spec/API4KP/core#performed-by> <http://www.omg.org/spec/API4KP/core#KnowledgeableAgent>))
 
 # Class: kmo:MainstreamKnowledgeResource (Mainstream Knowledge Resource)
 
-AnnotationAssertion(dc:creator kmo:MainstreamKnowledgeResource "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:MainstreamKnowledgeResource "2017-05-10T20:04:59Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:MainstreamKnowledgeResource "Mainstream Knowledge Resource"@en)
 AnnotationAssertion(skos:definition kmo:MainstreamKnowledgeResource "Latest Published Version of a Knowledge Resource.
 i.e. Published Knowledge Resource such that there is no revision (i.e. a following version) that is also Published.")
 EquivalentClasses(kmo:MainstreamKnowledgeResource ObjectIntersectionOf(kmo:PublishedKnowledgeResource ObjectComplementOf(ObjectSomeValuesFrom(<http://purl.org/vocab/frbr/core#revision> kmo:PublishedKnowledgeResource))))
 SubClassOf(kmo:MainstreamKnowledgeResource <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)
 
-# Class: kmo:MedicalBusinessDomain (Medical Business Domain)
+# Class: kmo:MedicalBusinessDomain (medical business domain)
 
-AnnotationAssertion(dc:creator kmo:MedicalBusinessDomain "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:MedicalBusinessDomain "2017-05-09T14:32:20Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:MedicalBusinessDomain "Medical Business Domain"@en)
+AnnotationAssertion(rdfs:label kmo:MedicalBusinessDomain "medical business domain"@en)
 SubClassOf(kmo:MedicalBusinessDomain kmo:BusinessDomain)
 
 # Class: kmo:OriginalKnowledgeResource (Original Knowledge Resource)
 
-AnnotationAssertion(dc:creator kmo:OriginalKnowledgeResource "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:OriginalKnowledgeResource "2017-05-10T18:24:23Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:OriginalKnowledgeResource "Original Knowledge Resource"@en)
 AnnotationAssertion(skos:definition kmo:OriginalKnowledgeResource "The first (version of an) Knowledge Resource, such that there are no predecessor (expressions of previous) Works that have been used during its creation.")
 EquivalentClasses(kmo:OriginalKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource> ObjectComplementOf(ObjectSomeValuesFrom(<http://purl.org/vocab/frbr/core#revisionOf> <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>))))
 SubClassOf(kmo:OriginalKnowledgeResource <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)
 
-# Class: kmo:PieceOfContent (Piece of Content)
-
-AnnotationAssertion(dc:creator kmo:PieceOfContent "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:PieceOfContent "2017-05-10T04:11:56Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:PieceOfContent "Piece of Content"@en)
-AnnotationAssertion(skos:altLabel kmo:PieceOfContent "PoC")
-AnnotationAssertion(skos:definition kmo:PieceOfContent "Distributable, Concrete Expression of some Intellectual Work, in some Human Consumable Language")
-SubClassOf(kmo:PieceOfContent <http://www.omg.org/spec/API4KP/FRBR-KR#ConcreteExpression>)
-SubClassOf(kmo:PieceOfContent ObjectSomeValuesFrom(DOL-terms:usesLanguage <http://www.omg.org/spec/API4KP/FRBR-KR#NaturalLanguage>))
-SubClassOf(kmo:PieceOfContent ObjectAllValuesFrom(DOL-terms:usesLanguage <http://www.omg.org/spec/API4KP/FRBR-KR#NaturalLanguage>))
-
-# Class: kmo:PieceOfKnowledge (Piece of Knowledge)
-
-AnnotationAssertion(dc:creator kmo:PieceOfKnowledge "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:PieceOfKnowledge "2017-05-10T04:52:31Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:PieceOfKnowledge "Piece of Knowledge"@en)
-AnnotationAssertion(skos:definition kmo:PieceOfKnowledge "A Piece of Knowledge is a Distributable, Concrete Expression of an Intellectual Work of Knowledge")
-EquivalentClasses(kmo:PieceOfKnowledge ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#ConcreteExpression> ObjectSomeValuesFrom(<http://purl.org/vocab/frbr/core#realizationOf> <http://www.omg.org/spec/API4KP/FRBR-KR#WorkOfKnowledge>) ObjectSomeValuesFrom(kmo:serialization-of <http://www.omg.org/spec/API4KP/FRBR-KR#AbstractExpression>)))
-SubClassOf(kmo:PieceOfKnowledge <http://www.omg.org/spec/API4KP/FRBR-KR#ConcreteExpression>)
-
-# Class: kmo:PieceOfKnowledgeContent (Piece of Knowledge Content)
-
-AnnotationAssertion(dc:creator kmo:PieceOfKnowledgeContent "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:PieceOfKnowledgeContent "2017-05-10T05:00:12Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:PieceOfKnowledgeContent "Piece of Knowledge Content"@en)
-AnnotationAssertion(skos:altLabel kmo:PieceOfKnowledgeContent "PoK")
-AnnotationAssertion(skos:definition kmo:PieceOfKnowledgeContent "Piece of Content that is the expression of a Work of knowledge")
-AnnotationAssertion(skos:note kmo:PieceOfKnowledgeContent "Like any Piece of Content, a PoK is expressed using some natural language, and formatted for consumption by a human audience (as opposed to be used for computation by a software)")
-EquivalentClasses(kmo:PieceOfKnowledgeContent ObjectIntersectionOf(kmo:PieceOfContent kmo:PieceOfKnowledge))
-
 # Class: kmo:PublishedKnowledgeResource (Published Knowledge Resource)
 
-AnnotationAssertion(dc:creator kmo:PublishedKnowledgeResource "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:PublishedKnowledgeResource "2017-05-10T20:35:14Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:PublishedKnowledgeResource "Published Knowledge Resource"@en)
 SubClassOf(kmo:PublishedKnowledgeResource <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)
 
 # Class: kmo:SophisticatedKnowledgeResource (Sophisticated Knowledge Resource)
 
-AnnotationAssertion(dc:creator kmo:SophisticatedKnowledgeResource "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:SophisticatedKnowledgeResource "2017-05-10T15:30:35Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:SophisticatedKnowledgeResource "Sophisticated Knowledge Resource"@en)
 AnnotationAssertion(skos:definition kmo:SophisticatedKnowledgeResource "Knowledge Resource that can be interpreted only by an agent that possesses some Knowledge other than Common Knowledge, or that requires some (other) Knowledge Resource
 i.e.: not Standalone or not Broadly Understandable")
-EquivalentClasses(kmo:SophisticatedKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource> ObjectUnionOf(ObjectComplementOf(kmo:BroadlyUnderstandableKnowledgeResource) ObjectComplementOf(kmo:StandaloneKnowledgeResource))))
-SubClassOf(kmo:SophisticatedKnowledgeResource <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)
-SubClassOf(Annotation(rdfs:comment "imperfect as a def, since it requires co-reference") kmo:SophisticatedKnowledgeResource ObjectAllValuesFrom(kmo:possessed-by ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#literate-agent> ObjectUnionOf(ObjectSomeValuesFrom(kmo:interprets <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>) ObjectSomeValuesFrom(kmo:possesses kmo:AdvancedKnowledge)))))
+EquivalentClasses(kmo:SophisticatedKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResource> ObjectComplementOf(ObjectIntersectionOf(kmo:BroadlyUnderstandableKnowledgeResource kmo:StandaloneKnowledgeResource))))
+SubClassOf(kmo:SophisticatedKnowledgeResource <http://www.omg.org/spec/API4KP/core#KnowledgeResource>)
+SubClassOf(kmo:SophisticatedKnowledgeResource ObjectAllValuesFrom(kmo:possessed-by ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeableAgent> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#internally-represents> kmo:AdvancedKnowledge))))
 
-# Class: kmo:SpecialistKnowledge (Specialist Knowledge)
+# Class: kmo:SpecialistKnowledge (specialist knowledge)
 
-AnnotationAssertion(dc:creator kmo:SpecialistKnowledge "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:SpecialistKnowledge "2017-05-08T20:44:03Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:SpecialistKnowledge "Specialist Knowledge"@en)
+AnnotationAssertion(rdfs:label kmo:SpecialistKnowledge "specialist knowledge"@en)
 AnnotationAssertion(skos:definition kmo:SpecialistKnowledge "Domain Knowledge acquired by advanced certified training")
 SubClassOf(kmo:SpecialistKnowledge kmo:DomainKnowledge)
-SubClassOf(kmo:SpecialistKnowledge ObjectIntersectionOf(ObjectSomeValuesFrom(kmo:possessed-by <http://www.omg.org/spec/API4KP/FRBR-KR#literate-agent>) ObjectSomeValuesFrom(kmo:recipient-of kmo:GraduateLevelInstruction)))
+SubClassOf(kmo:SpecialistKnowledge ObjectSomeValuesFrom(kmo:possessed-by ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeableAgent> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#recipient-of> kmo:GraduateLevelInstruction))))
 
 # Class: kmo:StandaloneKnowledgeResource (Standalone Knowledge Resource)
 
 AnnotationAssertion(obo:IAO_0000600 kmo:StandaloneKnowledgeResource "Such a Resource can be interpreted by an agent (that has the appropriate knowledge pre-requisites) without the need to look up any additional Knowledge Resources")
-AnnotationAssertion(dc:creator kmo:StandaloneKnowledgeResource "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:StandaloneKnowledgeResource "2017-05-10T14:50:30Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label kmo:StandaloneKnowledgeResource "Standalone Knowledge Resource"@en)
 AnnotationAssertion(skos:definition kmo:StandaloneKnowledgeResource "Knowledge Resource that does not have complements nor supplements.")
 EquivalentClasses(kmo:StandaloneKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource> ObjectComplementOf(ObjectSomeValuesFrom(<http://purl.org/vocab/frbr/core#complement> <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)) ObjectComplementOf(ObjectSomeValuesFrom(<http://purl.org/vocab/frbr/core#supplement> <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>))))
 
-# Class: kmo:TacitKnowledge (Tacit Knowledge)
+# Class: kmo:TacitKnowledge (tacit knowledge)
 
-AnnotationAssertion(dc:creator kmo:TacitKnowledge "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:TacitKnowledge "2017-05-08T20:26:32Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:TacitKnowledge "Tacit Knowledge"@en)
+AnnotationAssertion(rdfs:label kmo:TacitKnowledge "tacit knowledge"@en)
 AnnotationAssertion(skos:definition kmo:TacitKnowledge "Knowledge that can not be transfered to another agent by means of direct communication")
-SubClassOf(kmo:TacitKnowledge <http://www.omg.org/spec/API4KP/FRBR-KR#Knowledge>)
+SubClassOf(kmo:TacitKnowledge <http://www.omg.org/spec/API4KP/core#Knowledge>)
 
-# Class: kmo:UndegraduateLevelInstruction (Undergraduate Level Instruction)
+# Class: kmo:UndegraduateLevelInstruction (delivery of undergraduate level instruction)
 
-AnnotationAssertion(dc:creator kmo:UndegraduateLevelInstruction "davide"^^xsd:string)
-AnnotationAssertion(dc:date kmo:UndegraduateLevelInstruction "2017-05-09T14:54:39Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label kmo:UndegraduateLevelInstruction "Undergraduate Level Instruction"@en)
-SubClassOf(kmo:UndegraduateLevelInstruction kmo:FrontalInstruction)
+AnnotationAssertion(rdfs:label kmo:UndegraduateLevelInstruction "delivery of undergraduate level instruction"@en)
+SubClassOf(kmo:UndegraduateLevelInstruction kmo:KnowledgeTransferActivity)
+
+# Class: <http://www.omg.org/spec/API4KP/core#WorkOfKnowledge> (work of knowledge)
+
+SubClassOf(<http://www.omg.org/spec/API4KP/core#WorkOfKnowledge> kmo:ExplicitKnowledge)
 
 
 
+SubObjectPropertyOf(ObjectPropertyChain(<http://www.omg.org/spec/API4KP/core#internally-represents> <http://www.omg.org/spec/API4KP/core#knowledge-representation-of>) kmo:possesses)
 AnnotationAssertion(rdfs:comment <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeRepresentationAndReasoningLanguage> "Machine Executable Language that is used to create Knowledge Resources (that are expressions of Pieces of Knowledge).")
 )

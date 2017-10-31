@@ -39,6 +39,7 @@ Declaration(Class(know:DescriptiveGrammar))
 Declaration(Class(know:FormalGrammar))
 Declaration(Class(know:FormalLanguage))
 Declaration(Class(know:Grammar))
+Declaration(Class(know:Identifier))
 Declaration(Class(know:InformationProcessingActivity))
 Declaration(Class(know:IntellectualWork))
 Declaration(Class(know:Knowledge))
@@ -76,6 +77,7 @@ Declaration(Class(know:Software))
 Declaration(Class(know:Specification))
 Declaration(Class(know:StructuredKnowledgeResource))
 Declaration(Class(know:Syntax))
+Declaration(Class(know:VersionedIdentifier))
 Declaration(Class(know:WorkOfKnowledge))
 Declaration(ObjectProperty(know:archetypes))
 Declaration(ObjectProperty(know:captured-by))
@@ -105,6 +107,7 @@ Declaration(ObjectProperty(know:has-product))
 Declaration(ObjectProperty(know:has-subject))
 Declaration(ObjectProperty(know:has-wordstock))
 Declaration(ObjectProperty(know:internally-represents))
+Declaration(ObjectProperty(know:involved-in))
 Declaration(ObjectProperty(know:involves))
 Declaration(ObjectProperty(know:is-about))
 Declaration(ObjectProperty(know:is-immediate-next-versioned-revision-of))
@@ -119,6 +122,7 @@ Declaration(ObjectProperty(know:performs))
 Declaration(ObjectProperty(know:product-of))
 Declaration(ObjectProperty(know:profiles))
 Declaration(ObjectProperty(know:proper-part-of))
+Declaration(ObjectProperty(know:recipient-of))
 Declaration(ObjectProperty(know:refines))
 Declaration(ObjectProperty(know:representation-of))
 Declaration(ObjectProperty(know:represented-by))
@@ -131,6 +135,7 @@ Declaration(ObjectProperty(know:serializes))
 Declaration(ObjectProperty(know:specified-by))
 Declaration(ObjectProperty(know:supports-expression))
 Declaration(ObjectProperty(know:supports-serialization))
+Declaration(ObjectProperty(know:targets))
 Declaration(ObjectProperty(know:unambiguously-expresses))
 Declaration(ObjectProperty(know:uses-annotation-language))
 Declaration(ObjectProperty(know:uses-as-sublanguage))
@@ -369,9 +374,21 @@ AnnotationAssertion(skos:definition know:internally-represents "An Agent an inte
 ObjectPropertyDomain(know:internally-represents know:KnowledgeableAgent)
 ObjectPropertyRange(know:internally-represents know:KnowledgeEndeavour)
 
-# Object Property: know:involves (know:involves)
+# Object Property: know:involved-in (involved in)
 
-AnnotationAssertion(skos:definition know:involves "The relationship between an Activity and a participant - Agent (acitive) or Resource (passive)")
+AnnotationAssertion(rdfs:label know:involved-in "involved in")
+AnnotationAssertion(skos:altLabel know:involved-in "participates in")
+AnnotationAssertion(skos:definition know:involved-in "the relationship between a participant in some activity and that activity")
+InverseObjectProperties(know:involved-in know:involves)
+ObjectPropertyRange(know:involved-in know:Activity)
+
+# Object Property: know:involves (involves)
+
+AnnotationAssertion(rdfs:label know:involves "involves")
+AnnotationAssertion(skos:altLabel know:involves "has participant")
+AnnotationAssertion(skos:definition know:involves "The relationship between an Activity and a participant - Agent (acitive) or Resource (passive)
+Conceptually, this relationship is mediated by an 'entity qua' individual that represents the participant's temporary play of a given role in the context of the activity.")
+AnnotationAssertion(skos:scopeNote know:involves "in this ontology, \"roles\" are explicitly modeled as concepts, but their realization in space and time by an entity is left implicit.")
 ObjectPropertyDomain(know:involves know:Activity)
 
 # Object Property: know:is-about (knowledge of)
@@ -438,13 +455,14 @@ ObjectPropertyRange(know:performed-by know:Agent)
 
 # Object Property: know:performs (know:performs)
 
+SubObjectPropertyOf(know:performs know:involved-in)
 ObjectPropertyDomain(know:performs know:Agent)
 ObjectPropertyRange(know:performs know:Activity)
 
 # Object Property: know:product-of (product of)
 
 AnnotationAssertion(rdfs:label know:product-of "product of")
-SubObjectPropertyOf(know:product-of owl:topObjectProperty)
+SubObjectPropertyOf(know:product-of know:involved-in)
 ObjectPropertyRange(know:product-of know:Activity)
 
 # Object Property: know:profiles (profiles)
@@ -461,6 +479,14 @@ AnnotationAssertion(rdfs:label know:proper-part-of "proper part of")
 AnnotationAssertion(skos:definition know:proper-part-of "Parthood relationship that is irreflexive, i.e. such that no individual is allowed to be proper part of itself")
 SubObjectPropertyOf(know:proper-part-of know:part-of)
 IrreflexiveObjectProperty(know:proper-part-of)
+
+# Object Property: know:recipient-of (recipient of)
+
+AnnotationAssertion(rdfs:label know:recipient-of "recipient of")
+AnnotationAssertion(skos:definition know:recipient-of "an entity is the recipient of an activity if that activity targets that entity")
+SubObjectPropertyOf(know:recipient-of know:involved-in)
+InverseObjectProperties(know:recipient-of know:targets)
+ObjectPropertyRange(know:recipient-of know:Activity)
 
 # Object Property: know:refines (know:refines)
 
@@ -550,6 +576,14 @@ AnnotationAssertion(rdfs:label know:supports-serialization "supports serializati
 AnnotationAssertion(skos:definition know:supports-serialization "A Language L supports a Concrete Syntax S if there exists at least one sentence in the language that S formalizes, such that a parse tree can be constructed out of the tokens that form that sentence")
 ObjectPropertyDomain(know:supports-serialization know:Language)
 ObjectPropertyRange(know:supports-serialization know:Serialization)
+
+# Object Property: know:targets (targets)
+
+AnnotationAssertion(rdfs:label know:targets "targets")
+AnnotationAssertion(skos:definition know:targets "an activity targets  a (passive) participant, which is pre-existing to the start of the activity, but is changed somehow in the process. 
+i.e.the activity does not alter any of the essential qualities that define the identity of the entity, but results in some change to the non-essential ones.")
+SubObjectPropertyOf(know:targets know:involves)
+ObjectPropertyDomain(know:targets know:Activity)
 
 # Object Property: know:unambiguously-expresses (unambiguously expresses)
 
@@ -662,9 +696,10 @@ AnnotationAssertion(skos:definition know:AbstractSyntaxTree "The representation 
 SubClassOf(know:AbstractSyntaxTree know:AbstractExpression)
 SubClassOf(know:AbstractSyntaxTree ObjectSomeValuesFrom(know:formalizes ObjectSomeValuesFrom(know:has-subject know:AbstractExpression)))
 
-# Class: know:Activity (know:Activity)
+# Class: know:Activity (activity)
 
 AnnotationAssertion(rdfs:comment know:Activity "This classes is provided for compatibility with other ontologies that define 'Activity' at higher levels of abstraction and/or generality")
+AnnotationAssertion(rdfs:label know:Activity "activity")
 AnnotationAssertion(skos:definition know:Activity "An intentional process, executed with the active participation of one of more Agents that carry out a plan..")
 
 # Class: know:Agent (agent)
@@ -673,7 +708,7 @@ AnnotationAssertion(rdfs:comment know:Agent "Agents can act on behalf of other A
 AnnotationAssertion(rdfs:comment know:Agent "Some agents have intentions, and can decide to act based on them")
 AnnotationAssertion(rdfs:label know:Agent "agent")
 AnnotationAssertion(skos:definition know:Agent "Any entity that has the capability (potential) to be an active participant in an Activity")
-AnnotationAssertion(skos:scopeNote know:Agent "This abstract definition of Agent is intended to be as broad as possible, at least covering human and software agents alike.
+AnnotationAssertion(skos:scopeNote know:Agent "This abstract definition of Agent is intended to be as broad as possible, at least covering human and software agents alike. It is also meant to include individual agents, as well as collectives thereof.
 The intent is to be refined/redefined/concretized when this ontology is used in conjunction with another ontology of social aspects.")
 
 # Class: know:AgentiveRole (agentive role)
@@ -802,6 +837,12 @@ EquivalentClasses(know:Grammar ObjectIntersectionOf(know:WorkOfKnowledge ObjectS
 SubClassOf(know:Grammar know:WorkOfKnowledge)
 SubClassOf(know:Grammar ObjectSomeValuesFrom(know:conceptualizes know:Syntax))
 
+# Class: know:Identifier (identifier)
+
+AnnotationAssertion(rdfs:label know:Identifier "identifier")
+AnnotationAssertion(skos:definition know:Identifier "Identifers are resolved to exactly 1 entity, and express the concept that abstracts that entity")
+SubClassOf(know:Identifier know:KnowledgeElement)
+
 # Class: know:InformationProcessingActivity (information processing activity)
 
 AnnotationAssertion(rdfs:label know:InformationProcessingActivity "information processing activity")
@@ -816,9 +857,9 @@ AnnotationAssertion(rdfs:label know:IntellectualWork "Intellectual Work"@en)
 AnnotationAssertion(skos:definition know:IntellectualWork "The conceptual outcome of an intellectual creative activity. It has as a subject, and thus is about, some kind of Thing (e.g. idea, person, place, etc..).")
 SubClassOf(know:IntellectualWork know:KnowledgeEndeavour)
 
-# Class: know:Knowledge (Knowledge)
+# Class: know:Knowledge (knowledge)
 
-AnnotationAssertion(rdfs:label know:Knowledge "Knowledge"@en)
+AnnotationAssertion(rdfs:label know:Knowledge "knowledge"@en)
 AnnotationAssertion(skos:definition know:Knowledge "The cognition (know-what), pragmatics (know-how) and understanding (know-why) - about the nature and/or behaviour of some Thing")
 SubClassOf(know:Knowledge ObjectSomeValuesFrom(know:is-about owl:Thing))
 
@@ -863,9 +904,9 @@ AnnotationAssertion(skos:note know:KnowledgeElement "knowledge expression elemen
 SubClassOf(know:KnowledgeElement know:KnowledgeFragment)
 SubClassOf(know:KnowledgeElement ObjectExactCardinality(1 know:expresses know:AtomicConcept))
 
-# Class: know:KnowledgeEndeavour (Knowledge Endeavour)
+# Class: know:KnowledgeEndeavour (knowledge endeavour)
 
-AnnotationAssertion(rdfs:label know:KnowledgeEndeavour "Knowledge Endeavour")
+AnnotationAssertion(rdfs:label know:KnowledgeEndeavour "knowledge endeavour")
 AnnotationAssertion(skos:definition know:KnowledgeEndeavour "Endurant that embeds, directly or indirectly, some Piece of Knowledge")
 
 # Class: know:KnowledgeExpression (Knowledge Expression)
@@ -1108,6 +1149,12 @@ AnnotationAssertion(rdfs:label know:Syntax "syntax"@en)
 AnnotationAssertion(skos:definition know:Syntax "The set of structures and/or rules that constrain a valid sentence of a language, itself expressed in some (meta) language")
 SubClassOf(know:Syntax know:Specification)
 SubClassOf(know:Syntax ObjectSomeValuesFrom(know:expresses know:Grammar))
+
+# Class: know:VersionedIdentifier (versioned identifier)
+
+AnnotationAssertion(rdfs:label know:VersionedIdentifier "versioned identifier")
+AnnotationAssertion(skos:definition know:VersionedIdentifier "Identifier of a particular version of a given entity, i.e. the particular configuration of (mutable) qualities of a given entity over a specific period of time")
+SubClassOf(know:VersionedIdentifier know:Identifier)
 
 # Class: know:WorkOfKnowledge (work of knowledge)
 
