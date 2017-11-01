@@ -45,12 +45,14 @@ Declaration(Class(know:IntellectualWork))
 Declaration(Class(know:Knowledge))
 Declaration(Class(know:KnowledgeActivity))
 Declaration(Class(know:KnowledgeArtifact))
+Declaration(Class(know:KnowledgeArtifactRepository))
 Declaration(Class(know:KnowledgeAssetSurrogate))
 Declaration(Class(know:KnowledgeCarrier))
 Declaration(Class(know:KnowledgeElement))
 Declaration(Class(know:KnowledgeEndeavour))
 Declaration(Class(know:KnowledgeExpression))
 Declaration(Class(know:KnowledgeFragment))
+Declaration(Class(know:KnowledgeProcessingFunction))
 Declaration(Class(know:KnowledgeProcessingMethod))
 Declaration(Class(know:KnowledgeProcessingPlan))
 Declaration(Class(know:KnowledgeProcessingTask))
@@ -79,7 +81,9 @@ Declaration(Class(know:StructuredKnowledgeResource))
 Declaration(Class(know:Syntax))
 Declaration(Class(know:VersionedIdentifier))
 Declaration(Class(know:WorkOfKnowledge))
+Declaration(ObjectProperty(know:archetyped-by))
 Declaration(ObjectProperty(know:archetypes))
+Declaration(ObjectProperty(know:associated-to))
 Declaration(ObjectProperty(know:captured-by))
 Declaration(ObjectProperty(know:captures))
 Declaration(ObjectProperty(know:carried-by))
@@ -93,19 +97,28 @@ Declaration(ObjectProperty(know:conforms-with))
 Declaration(ObjectProperty(know:consistently-expresses))
 Declaration(ObjectProperty(know:defined-by))
 Declaration(ObjectProperty(know:defines))
+Declaration(ObjectProperty(know:denoted-by))
+Declaration(ObjectProperty(know:denotes))
 Declaration(ObjectProperty(know:depends-on))
 Declaration(ObjectProperty(know:described-by))
 Declaration(ObjectProperty(know:expresses))
 Declaration(ObjectProperty(know:externalizes))
 Declaration(ObjectProperty(know:faithfully-expresses))
 Declaration(ObjectProperty(know:formalizes))
+Declaration(ObjectProperty(know:function-of))
 Declaration(ObjectProperty(know:governed-by))
+Declaration(ObjectProperty(know:has-function))
+Declaration(ObjectProperty(know:has-knowledge))
 Declaration(ObjectProperty(know:has-later-versioned-revision))
 Declaration(ObjectProperty(know:has-next-immediate-versioned-revision))
 Declaration(ObjectProperty(know:has-part))
 Declaration(ObjectProperty(know:has-product))
+Declaration(ObjectProperty(know:has-proper-part))
 Declaration(ObjectProperty(know:has-subject))
 Declaration(ObjectProperty(know:has-wordstock))
+Declaration(ObjectProperty(know:identified-by))
+Declaration(ObjectProperty(know:identifies))
+Declaration(ObjectProperty(know:internally-represented-by))
 Declaration(ObjectProperty(know:internally-represents))
 Declaration(ObjectProperty(know:involved-in))
 Declaration(ObjectProperty(know:involves))
@@ -133,12 +146,16 @@ Declaration(ObjectProperty(know:serialization-of))
 Declaration(ObjectProperty(know:serialized-into))
 Declaration(ObjectProperty(know:serializes))
 Declaration(ObjectProperty(know:specified-by))
+Declaration(ObjectProperty(know:stored-in))
+Declaration(ObjectProperty(know:stores))
 Declaration(ObjectProperty(know:supports-expression))
 Declaration(ObjectProperty(know:supports-serialization))
 Declaration(ObjectProperty(know:targets))
 Declaration(ObjectProperty(know:unambiguously-expresses))
+Declaration(ObjectProperty(know:used-in))
 Declaration(ObjectProperty(know:uses-annotation-language))
 Declaration(ObjectProperty(know:uses-as-sublanguage))
+Declaration(ObjectProperty(know:uses-concept))
 Declaration(ObjectProperty(know:uses-concrete-syntax))
 Declaration(ObjectProperty(know:uses-language))
 Declaration(ObjectProperty(know:uses-lexicon))
@@ -159,6 +176,15 @@ Declaration(AnnotationProperty(skos:scopeNote))
 #   Object Properties
 ############################
 
+# Object Property: know:archetyped-by (archetyped by)
+
+AnnotationAssertion(rdfs:label know:archetyped-by "archetyped by")
+AnnotationAssertion(skos:altLabel know:archetyped-by "classified by")
+AnnotationAssertion(skos:altLabel know:archetyped-by "instance of")
+SubObjectPropertyOf(know:archetyped-by know:has-knowledge)
+InverseObjectProperties(know:archetyped-by know:archetypes)
+ObjectPropertyRange(know:archetyped-by know:AtomicConcept)
+
 # Object Property: know:archetypes (archetypes)
 
 AnnotationAssertion(rdfs:comment know:archetypes "a concept archetypes a referent, to the extent that the concept is defined by a definition that has that referent as a subject.")
@@ -167,10 +193,19 @@ AnnotationAssertion(rdfs:seeAlso know:archetypes "inverse http://www.w3.org/ns/l
 SubObjectPropertyOf(know:archetypes know:is-about)
 ObjectPropertyDomain(know:archetypes know:DefinedConcept)
 
+# Object Property: know:associated-to (associated to)
+
+AnnotationAssertion(rdfs:comment know:associated-to "this is an 'explicit' and 'conscious' notion of association which, in order to be asserted, requires that at least one agent has explicitly identified and called out the close relationship between the two concepts")
+AnnotationAssertion(rdfs:label know:associated-to "associated to")
+AnnotationAssertion(skos:definition know:associated-to "two concepts are associated to each other if there exists at least one work of knowledge that makes their relationship explicit")
+ObjectPropertyDomain(know:associated-to know:AtomicConcept)
+ObjectPropertyRange(know:associated-to know:AtomicConcept)
+
 # Object Property: know:captured-by (captured by)
 
 AnnotationAssertion(rdfs:label know:captured-by "captured by")
 AnnotationAssertion(rdfs:label know:captured-by "the relationship between a (piece of) Knowledge and any Work of Knowledge that makes it finite, explicit and potentially communicable")
+SubObjectPropertyOf(know:captured-by know:has-knowledge)
 InverseObjectProperties(know:captured-by know:captures)
 ObjectPropertyDomain(know:captured-by know:Knowledge)
 ObjectPropertyRange(know:captured-by know:WorkOfKnowledge)
@@ -265,6 +300,20 @@ SubObjectPropertyOf(know:defines know:captures)
 ObjectPropertyDomain(know:defines know:Definition)
 ObjectPropertyRange(know:defines know:DefinedConcept)
 
+# Object Property: know:denoted-by (denoted by)
+
+AnnotationAssertion(rdfs:label know:denoted-by "denoted by")
+AnnotationAssertion(skos:definition know:denoted-by "the relationship between a referent and a symbolic expression that resolves to that referent, possibly within a given context")
+InverseObjectProperties(know:denoted-by know:denotes)
+ObjectPropertyRange(know:denoted-by know:KnowledgeElement)
+
+# Object Property: know:denotes (denotes)
+
+AnnotationAssertion(rdfs:label know:denotes "denotes")
+AnnotationAssertion(rdfs:seeAlso know:denotes "http://www.w3.org/ns/lemon/ontolex#denotes")
+AnnotationAssertion(skos:definition know:denotes "the semiotic relationship between a linguistic expression and its referent, where the former references the latter, possibly within a context")
+ObjectPropertyDomain(know:denotes know:KnowledgeElement)
+
 # Object Property: know:depends-on (depends on)
 
 AnnotationAssertion(rdfs:label know:depends-on "depends on"@en)
@@ -313,12 +362,33 @@ SubObjectPropertyOf(know:formalizes know:unambiguously-expresses)
 ObjectPropertyDomain(know:formalizes know:KnowledgeExpression)
 ObjectPropertyRange(know:formalizes know:WorkOfKnowledge)
 
+# Object Property: know:function-of (function of)
+
+AnnotationAssertion(rdfs:label know:function-of "function of")
+AnnotationAssertion(skos:definition know:function-of "the relationship between an entity and the concept that abstracts its function")
+SubObjectPropertyOf(know:function-of know:archetypes)
+InverseObjectProperties(know:function-of know:has-function)
+ObjectPropertyDomain(know:function-of know:KnowledgeProcessingFunction)
+
 # Object Property: know:governed-by (governed by)
 
 AnnotationAssertion(rdfs:label know:governed-by "governed by")
 AnnotationAssertion(skos:definition know:governed-by "the relationship between a grammar, intended as the conceptualization of the rules, structures and constraints that define a language intensionally, and that language")
 ObjectPropertyDomain(know:governed-by know:Language)
 ObjectPropertyRange(know:governed-by know:Grammar)
+
+# Object Property: know:has-function (has function)
+
+AnnotationAssertion(rdfs:label know:has-function "has function")
+SubObjectPropertyOf(know:has-function know:archetyped-by)
+ObjectPropertyRange(know:has-function know:KnowledgeProcessingFunction)
+
+# Object Property: know:has-knowledge (has knowledge)
+
+AnnotationAssertion(rdfs:label know:has-knowledge "has knowledge")
+AnnotationAssertion(skos:definition know:has-knowledge "the abstract relationship between an entity, and what is known about that entity")
+InverseObjectProperties(know:has-knowledge know:is-about)
+ObjectPropertyRange(know:has-knowledge know:Knowledge)
 
 # Object Property: know:has-later-versioned-revision (has later versioned revision)
 
@@ -351,6 +421,12 @@ SubObjectPropertyOf(know:has-product know:involves)
 InverseObjectProperties(know:has-product know:product-of)
 ObjectPropertyDomain(know:has-product know:Activity)
 
+# Object Property: know:has-proper-part (has proper part)
+
+AnnotationAssertion(rdfs:label know:has-proper-part "has proper part")
+SubObjectPropertyOf(know:has-proper-part know:has-part)
+InverseObjectProperties(know:has-proper-part know:proper-part-of)
+
 # Object Property: know:has-subject (has subject (knowledge))
 
 AnnotationAssertion(rdfs:label know:has-subject "conceptual representation of")
@@ -365,6 +441,27 @@ AnnotationAssertion(rdfs:label know:has-wordstock "has wordstock")
 AnnotationAssertion(skos:definition know:has-wordstock "The relationship between a Language, and the set of linguistic elements that can be formed into valid sentences of the language according to the language's syntax")
 ObjectPropertyDomain(know:has-wordstock know:Language)
 ObjectPropertyRange(know:has-wordstock know:Lexicon)
+
+# Object Property: know:identified-by (identified by)
+
+AnnotationAssertion(rdfs:label know:identified-by "identified by")
+SubObjectPropertyOf(know:identified-by know:denoted-by)
+InverseObjectProperties(know:identified-by know:identifies)
+ObjectPropertyRange(know:identified-by know:Identifier)
+
+# Object Property: know:identifies (identifies)
+
+AnnotationAssertion(rdfs:label know:identifies "identifies")
+AnnotationAssertion(skos:definition know:identifies "an identifier uniquely and unambiguously denotes its referent")
+SubObjectPropertyOf(know:identifies know:denotes)
+ObjectPropertyDomain(know:identifies know:Identifier)
+
+# Object Property: know:internally-represented-by (internally represented by)
+
+AnnotationAssertion(rdfs:label know:internally-represented-by "internally represented by")
+InverseObjectProperties(know:internally-represented-by know:internally-represents)
+ObjectPropertyDomain(know:internally-represented-by know:KnowledgeEndeavour)
+ObjectPropertyRange(know:internally-represented-by know:KnowledgeableAgent)
 
 # Object Property: know:internally-represents (has internal representation of)
 
@@ -437,6 +534,7 @@ ObjectPropertyRange(know:limits know:Serialization)
 AnnotationAssertion(rdfs:comment know:makes-use-of "The relationship between an Activity and a non-agentive resource that is used by an Agent performing that Activity")
 AnnotationAssertion(rdfs:label know:makes-use-of "makes use of")
 SubObjectPropertyOf(know:makes-use-of know:involves)
+InverseObjectProperties(know:makes-use-of know:used-in)
 ObjectPropertyDomain(know:makes-use-of know:Activity)
 
 # Object Property: know:part-of (part of)
@@ -562,6 +660,23 @@ AnnotationAssertion(skos:definition know:specified-by "The relationship between 
 SubObjectPropertyOf(know:specified-by know:represented-by)
 ObjectPropertyRange(know:specified-by know:AbstractExpression)
 
+# Object Property: know:stored-in (stored in)
+
+AnnotationAssertion(rdfs:label know:stored-in "stored in")
+AnnotationAssertion(skos:definition know:stored-in "an artifact (as a carrier of the expression of a piece of knowledge) is stored in a container that has the function of a knowledge repository")
+InverseObjectProperties(know:stored-in know:stores)
+ObjectPropertyDomain(know:stored-in know:KnowledgeEndeavour)
+
+# Object Property: know:stores (stores)
+
+AnnotationAssertion(rdfs:label know:stores "Notice that only Artifacts can be stored in practice. Storing a Work or an Expression implies the existence of an Artifact that carries (the Expression that realized) that Work. 
+Nevertheless, the relationship can be asserted at any level, to shift the focus on the entity that is valuable for the purpose of storage")
+AnnotationAssertion(rdfs:label know:stores "stores")
+AnnotationAssertion(skos:definition know:stores "the relationship between an entity with the function of Knowledge artifact repository, and the knowledge resources that are stored therein by means of some carrier.
+
+An entity stores a Work, Expression or Artifact if it is able to keep (a copy of) it, and make it accessible for use as needed")
+ObjectPropertyRange(know:stores know:KnowledgeEndeavour)
+
 # Object Property: know:supports-expression (supports expression in)
 
 AnnotationAssertion(rdfs:comment know:supports-expression "In order to be useful, the supported notations should be able to structure most sentences of the language.")
@@ -591,6 +706,12 @@ AnnotationAssertion(rdfs:label know:unambiguously-expresses "unambiguously expre
 AnnotationAssertion(skos:definition know:unambiguously-expresses "every element in the expression has no more than one possible conceptualization")
 SubObjectPropertyOf(know:unambiguously-expresses know:expresses)
 
+# Object Property: know:used-in (used in)
+
+AnnotationAssertion(rdfs:label know:used-in "used in")
+SubObjectPropertyOf(know:used-in know:involved-in)
+ObjectPropertyRange(know:used-in know:Activity)
+
 # Object Property: know:uses-annotation-language (uses annotation language)
 
 AnnotationAssertion(rdfs:label know:uses-annotation-language "uses annotation language")
@@ -608,6 +729,14 @@ AnnotationAssertion(skos:definition know:uses-as-sublanguage "an Expression E us
 SubObjectPropertyOf(know:uses-as-sublanguage know:uses-language)
 ObjectPropertyDomain(know:uses-as-sublanguage know:KnowledgeExpression)
 ObjectPropertyRange(know:uses-as-sublanguage know:Language)
+
+# Object Property: know:uses-concept (uses concept)
+
+AnnotationAssertion(rdfs:label know:uses-concept "uses concept")
+AnnotationAssertion(skos:definition know:uses-concept "a work of knowledge uses a concept if the concept is part of the concepts selected during the creation of the work, and thus is part of the work")
+SubObjectPropertyOf(know:uses-concept know:has-part)
+ObjectPropertyDomain(know:uses-concept know:WorkOfKnowledge)
+ObjectPropertyRange(know:uses-concept know:AtomicConcept)
 
 # Object Property: know:uses-concrete-syntax (uses concrete syntax)
 
@@ -667,11 +796,11 @@ ObjectPropertyRange(know:uses-syntax know:AbstractSyntax)
 #   Classes
 ############################
 
-# Class: know:AbstractExpression (Abstract Knowledge Expression)
+# Class: know:AbstractExpression (abstract knowledge expression)
 
 AnnotationAssertion(rdfs:comment know:AbstractExpression "Abstract expressions, by definition generically depend on some carrier. An abstract expression needs one to exist physically, but does not depend on any particular one. Abstract Expressions, however, cannot be realized directly. The language needs to be complemented with a ‘form’ that allows for a concrete syntactic encoding (e.g. written vs vocal for English, XML vs JSON for UML Class Models, OFN vs Turtle for OWL, etc..)")
 AnnotationAssertion(rdfs:comment know:AbstractExpression "An Abstract Knowledge Expression can be internally represented by an Agent in terms of an Abstract Syntax Tree")
-AnnotationAssertion(rdfs:label know:AbstractExpression "Abstract Knowledge Expression"@en)
+AnnotationAssertion(rdfs:label know:AbstractExpression "abstract knowledge expression"@en)
 AnnotationAssertion(rdfs:seeAlso know:AbstractExpression know:AbstractSyntax)
 AnnotationAssertion(rdfs:seeAlso know:AbstractExpression know:Serialization)
 AnnotationAssertion(skos:definition know:AbstractExpression "The class of equivalence of Concrete Expressions of some Knowledge content, in some Language, across the various serializations supported by that language.")
@@ -688,10 +817,10 @@ AnnotationAssertion(skos:definition know:AbstractSyntax "The set of structures a
 SubClassOf(know:AbstractSyntax know:Syntax)
 DisjointClasses(know:AbstractSyntax know:Serialization)
 
-# Class: know:AbstractSyntaxTree (Abstract Syntax Tree)
+# Class: know:AbstractSyntaxTree (abstract syntax tree)
 
 AnnotationAssertion(rdfs:label know:AbstractSyntaxTree "AST")
-AnnotationAssertion(rdfs:label know:AbstractSyntaxTree "Abstract Syntax Tree")
+AnnotationAssertion(rdfs:label know:AbstractSyntaxTree "abstract syntax tree")
 AnnotationAssertion(skos:definition know:AbstractSyntaxTree "The representation of the internal structure of an Abstract Expression, according to some Abstract Syntax, obtained from the parsing of a Concrete Expression of which that Abstract Expression is a concrete representation")
 SubClassOf(know:AbstractSyntaxTree know:AbstractExpression)
 SubClassOf(know:AbstractSyntaxTree ObjectSomeValuesFrom(know:formalizes ObjectSomeValuesFrom(know:has-subject know:AbstractExpression)))
@@ -761,11 +890,11 @@ AnnotationAssertion(skos:definition know:ComputableLanguage "Constructed Languag
 SubClassOf(know:ComputableLanguage know:ConstructedLanguage)
 SubClassOf(know:ComputableLanguage ObjectSomeValuesFrom(ObjectInverseOf(know:uses-language) ObjectSomeValuesFrom(ObjectInverseOf(know:specified-by) know:InformationProcessingActivity)))
 
-# Class: know:ConcreteExpression (Concrete Knowledge Expression)
+# Class: know:ConcreteExpression (concrete knowledge expression)
 
 AnnotationAssertion(rdfs:comment know:ConcreteExpression "A concrete expression is the result of the act of serializing an (abstract) expression using a concrete syntax, which adds 'form' aspects that allow to engrave the expression on a carrier")
 AnnotationAssertion(rdfs:comment know:ConcreteExpression "As a remark, two individual Concrete Expressions of the same Abstract Expression (of the same Work) are different if they use different serializations")
-AnnotationAssertion(rdfs:label know:ConcreteExpression "Concrete Knowledge Expression"@en)
+AnnotationAssertion(rdfs:label know:ConcreteExpression "concrete knowledge expression"@en)
 AnnotationAssertion(skos:definition know:ConcreteExpression "An Expression in some language, serialized using one of the concrete syntaxes supported by that language")
 SubClassOf(know:ConcreteExpression know:KnowledgeExpression)
 SubClassOf(know:ConcreteExpression ObjectSomeValuesFrom(know:serialization-of know:AbstractExpression))
@@ -783,9 +912,9 @@ AnnotationAssertion(rdfs:label know:ConstructiveDefinition "constructive definit
 AnnotationAssertion(skos:definition know:ConstructiveDefinition "definition that can be used to generate instances of a concept, as well as recognizing them")
 SubClassOf(know:ConstructiveDefinition know:Definition)
 
-# Class: know:ControlledNaturalLanguage (Controlled Natural Language)
+# Class: know:ControlledNaturalLanguage (controlled natural language)
 
-AnnotationAssertion(rdfs:label know:ControlledNaturalLanguage "Controlled Natural Language")
+AnnotationAssertion(rdfs:label know:ControlledNaturalLanguage "controlled natural language")
 AnnotationAssertion(skos:definition know:ControlledNaturalLanguage "Subset of a Natural Language that has a formal grammar constructed in a way to simplify and/or disambiguate that natural language")
 SubClassOf(know:ControlledNaturalLanguage know:ConstructedLanguage)
 SubClassOf(know:ControlledNaturalLanguage know:NaturalLanguage)
@@ -849,11 +978,11 @@ AnnotationAssertion(rdfs:label know:InformationProcessingActivity "information p
 AnnotationAssertion(skos:definition know:InformationProcessingActivity "activity that has at least one information object as input")
 SubClassOf(know:InformationProcessingActivity know:Activity)
 
-# Class: know:IntellectualWork (Intellectual Work)
+# Class: know:IntellectualWork (intellectual work)
 
 AnnotationAssertion(rdfs:comment know:IntellectualWork "Initially, it generically depends on some Agent, that carries its internal representation, until it can be carried by a concrete manifestation and possibly assimilated by other Agents.")
 AnnotationAssertion(rdfs:comment know:IntellectualWork "Semiotically, an Intellectual Work is situated at the Meaning level: It needs to be expressed (and carried by a medium) in order to be communicated")
-AnnotationAssertion(rdfs:label know:IntellectualWork "Intellectual Work"@en)
+AnnotationAssertion(rdfs:label know:IntellectualWork "intellectual work"@en)
 AnnotationAssertion(skos:definition know:IntellectualWork "The conceptual outcome of an intellectual creative activity. It has as a subject, and thus is about, some kind of Thing (e.g. idea, person, place, etc..).")
 SubClassOf(know:IntellectualWork know:KnowledgeEndeavour)
 
@@ -880,6 +1009,12 @@ AnnotationAssertion(skos:scopeNote know:KnowledgeArtifact "In FRBR, classes of a
 In OWL-DL, it is not possible to express at the same time the extensional definition (different subclasses of Knowledge Artifact) and its intensional counterpart (different individuals, instances of Manifestation), other than using punning. For this reason, the notion of Manifestation is not explicitly modelled")
 SubClassOf(know:KnowledgeArtifact know:KnowledgeCarrier)
 SubClassOf(know:KnowledgeArtifact ObjectSomeValuesFrom(know:product-of know:Activity))
+
+# Class: know:KnowledgeArtifactRepository (knowledge artifact repository)
+
+AnnotationAssertion(rdfs:label know:KnowledgeArtifactRepository "knowledge artifact repository")
+SubClassOf(know:KnowledgeArtifactRepository know:KnowledgeProcessingFunction)
+SubClassOf(know:KnowledgeArtifactRepository ObjectSomeValuesFrom(know:function-of ObjectSomeValuesFrom(know:stores know:KnowledgeArtifact)))
 
 # Class: know:KnowledgeAssetSurrogate (knowledge asset surrogate)
 
@@ -909,10 +1044,10 @@ SubClassOf(know:KnowledgeElement ObjectExactCardinality(1 know:expresses know:At
 AnnotationAssertion(rdfs:label know:KnowledgeEndeavour "knowledge endeavour")
 AnnotationAssertion(skos:definition know:KnowledgeEndeavour "Endurant that embeds, directly or indirectly, some Piece of Knowledge")
 
-# Class: know:KnowledgeExpression (Knowledge Expression)
+# Class: know:KnowledgeExpression (knowledge expression)
 
 AnnotationAssertion(rdfs:comment know:KnowledgeExpression "Expressions can be abstract or concrete, depending on their conformance to the constraints that specify either an abstract, as opposed to a concrete, syntax for the language used to express the Work")
-AnnotationAssertion(rdfs:label know:KnowledgeExpression "Knowledge Expression"@en)
+AnnotationAssertion(rdfs:label know:KnowledgeExpression "knowledge expression"@en)
 AnnotationAssertion(skos:definition know:KnowledgeExpression "The expression of a Work, constrained by an information encoding system such as the abstract syntax of a grammar, a schema or a (meta)model")
 SubClassOf(know:KnowledgeExpression know:KnowledgeEndeavour)
 SubClassOf(know:KnowledgeExpression ObjectSomeValuesFrom(know:uses-language know:Language))
@@ -931,6 +1066,16 @@ SubClassOf(know:KnowledgeFragment know:AbstractExpression)
 SubClassOf(know:KnowledgeFragment ObjectSomeValuesFrom(know:expresses ObjectSomeValuesFrom(know:proper-part-of know:WorkOfKnowledge)))
 SubClassOf(know:KnowledgeFragment ObjectSomeValuesFrom(know:knowledge-representation-of ObjectComplementOf(know:WorkOfKnowledge)))
 
+# Class: know:KnowledgeProcessingFunction ((knowledge processing) function)
+
+AnnotationAssertion(rdfs:comment know:KnowledgeProcessingFunction "in general: \"the purpose for which something is designed or exists\"")
+AnnotationAssertion(rdfs:label know:KnowledgeProcessingFunction "(knowledge processing) function")
+AnnotationAssertion(skos:definition know:KnowledgeProcessingFunction "concept that defines the purpose on an entity, manifested as it plays a certain role and realized through the execution of certain tasks")
+AnnotationAssertion(skos:scopeNote know:KnowledgeProcessingFunction "this class is intended to be limited to functions regarding the processing of knowledge. As such it should always be narrower than the general notion of 'function' usually defined in upper ontologies")
+SubClassOf(know:KnowledgeProcessingFunction know:DefinedConcept)
+SubClassOf(know:KnowledgeProcessingFunction ObjectSomeValuesFrom(know:associated-to know:KnowledgeProcessingTask))
+SubClassOf(know:KnowledgeProcessingFunction ObjectSomeValuesFrom(know:associated-to ObjectUnionOf(know:AgentiveRole know:PassiveRole)))
+
 # Class: know:KnowledgeProcessingMethod (knowledge processing method)
 
 AnnotationAssertion(rdfs:label know:KnowledgeProcessingMethod "knowledge processing method")
@@ -948,11 +1093,12 @@ AnnotationAssertion(skos:altLabel know:KnowledgeProcessingPlan "structured proce
 AnnotationAssertion(skos:definition know:KnowledgeProcessingPlan "the definition of the tasks that are necessary (and possibly sufficient) to perform an activity of a given kind, in order to achieve some goals, possibly with more or less prescriptive constraints e.g. on the (relative) ordering, roles of the performers, and execution modalities")
 SubClassOf(know:KnowledgeProcessingPlan know:ConstructiveDefinition)
 
-# Class: know:KnowledgeProcessingTask (knowledge processing task)
+# Class: know:KnowledgeProcessingTask ((knowledge processing) task)
 
 AnnotationAssertion(rdfs:comment know:KnowledgeProcessingTask "Tasks can be subclassed according to the kind of methods they follow. Complex (non atomic) tasks can also be defined in terms of a plan that organizes the sub-tasks")
-AnnotationAssertion(rdfs:label know:KnowledgeProcessingTask "knowledge processing task")
+AnnotationAssertion(rdfs:label know:KnowledgeProcessingTask "(knowledge processing) task")
 AnnotationAssertion(skos:definition know:KnowledgeProcessingTask "The conceptual abstraction of any knowledge processing activity")
+AnnotationAssertion(skos:scopeNote know:KnowledgeProcessingTask "this class is intended to be limited to tasks regarding the processing of knowledge. As such it should always be narrower than the general notion of 'task' usually defined in upper ontologies")
 SubClassOf(know:KnowledgeProcessingTask know:DefinedConcept)
 SubClassOf(know:KnowledgeProcessingTask ObjectSomeValuesFrom(know:archetypes know:KnowledgeActivity))
 SubClassOf(know:KnowledgeProcessingTask ObjectSomeValuesFrom(know:defined-by know:KnowledgeProcessingMethod))
@@ -1013,9 +1159,9 @@ AnnotationAssertion(skos:note know:Lexicon "'Lexicon' and 'Vocabulary' are overl
 SubClassOf(know:Lexicon know:PieceOfKnowledge)
 SubClassOf(know:Lexicon ObjectSomeValuesFrom(know:has-part know:KnowledgeElement))
 
-# Class: know:MachineExecutableLanguage (Machine-Executable Language)
+# Class: know:MachineExecutableLanguage (machine-executable language)
 
-AnnotationAssertion(rdfs:label know:MachineExecutableLanguage "Machine-Executable Language"@en)
+AnnotationAssertion(rdfs:label know:MachineExecutableLanguage "machine-executable language"@en)
 AnnotationAssertion(skos:definition know:MachineExecutableLanguage "Language that can be interpreted by a machine, and the machine will be able to act based on that representation")
 EquivalentClasses(know:MachineExecutableLanguage ObjectIntersectionOf(know:ComputableLanguage know:MachineReadableLanguage))
 SubClassOf(know:MachineExecutableLanguage know:ComputableLanguage)
@@ -1024,7 +1170,7 @@ SubClassOf(know:MachineExecutableLanguage know:ComputableLanguage)
 
 AnnotationAssertion(rdfs:label know:MachineReadableLanguage "Machine-Readable Language"@en)
 AnnotationAssertion(skos:definition know:MachineReadableLanguage "Language such that Expressions that use it can be internally represented (i.e. parsed and interpreted) by a software at runtime")
-EquivalentClasses(know:MachineReadableLanguage ObjectIntersectionOf(know:ConstructedLanguage ObjectSomeValuesFrom(ObjectInverseOf(know:internally-represents) know:ArtificialAgent)))
+EquivalentClasses(know:MachineReadableLanguage ObjectIntersectionOf(know:ConstructedLanguage ObjectSomeValuesFrom(know:internally-represented-by know:ArtificialAgent)))
 
 # Class: know:Model (model)
 
@@ -1033,10 +1179,10 @@ AnnotationAssertion(rdfs:label know:Model "model")
 AnnotationAssertion(skos:definition know:Model "expression of knowledge about the structure (static) and/or behaviour (dynamic) of a system, constructed to emulate, study and/or predict certain aspects of that system")
 SubClassOf(know:Model know:KnowledgeResource)
 
-# Class: know:NaturalLanguage (Natural Language)
+# Class: know:NaturalLanguage (natural language)
 
 AnnotationAssertion(rdfs:comment know:NaturalLanguage "Includes written, oral and pictorial natural languages - differentiated by the choice of alphabet used to construct the ‘sentences’ of the languages")
-AnnotationAssertion(rdfs:label know:NaturalLanguage "Natural Language"@en)
+AnnotationAssertion(rdfs:label know:NaturalLanguage "natural language"@en)
 AnnotationAssertion(skos:definition know:NaturalLanguage "Language that is not structured. 
 A language for which it is not possible to define an explicit, tractable grammar such that, for each sentence constructed out of all the possible combination of the words in that language's dictionary, always allows to distinguish and disambiguate all and only the sentences that are valid syntactically and semantically.")
 EquivalentClasses(know:NaturalLanguage ObjectIntersectionOf(know:Language ObjectSomeValuesFrom(know:described-by ObjectIntersectionOf(know:Syntax ObjectSomeValuesFrom(know:expresses know:DescriptiveGrammar)))))
@@ -1049,10 +1195,10 @@ AnnotationAssertion(rdfs:label know:Ontology "ontology")
 AnnotationAssertion(skos:definition know:Ontology "descriptive expression of knowledge about the structural, necessary aspects of a domain of interest")
 SubClassOf(know:Ontology know:KnowledgeResource)
 
-# Class: know:ParseTree (Concrete Syntax Tree)
+# Class: know:ParseTree (concrete syntax tree)
 
-AnnotationAssertion(rdfs:label know:ParseTree "Concrete Syntax Tree")
 AnnotationAssertion(rdfs:label know:ParseTree "Parse Tree")
+AnnotationAssertion(rdfs:label know:ParseTree "concrete syntax tree")
 AnnotationAssertion(skos:definition know:ParseTree "The representation, in terms of a tree, of the internal structure of a Concrete (Knowledge) Expression, according to some Concrete Syntax")
 SubClassOf(know:ParseTree know:AbstractExpression)
 SubClassOf(know:ParseTree ObjectSomeValuesFrom(know:formalizes ObjectSomeValuesFrom(know:has-subject know:ConcreteExpression)))
@@ -1063,10 +1209,10 @@ AnnotationAssertion(rdfs:label know:PassiveRole "passive role")
 AnnotationAssertion(skos:definition know:PassiveRole "Role played by an entity that participates passively in an activity, e.g. as a resource, or as the subject/target of the activity")
 SubClassOf(know:PassiveRole know:DefinedConcept)
 
-# Class: know:PieceOfKnowledge (Piece of Knowledge)
+# Class: know:PieceOfKnowledge (piece of knowledge)
 
 AnnotationAssertion(rdfs:comment know:PieceOfKnowledge "When an agent represents the complex internally, the agent possess some Knowledge (i.e. Knowledge about *some* thing)")
-AnnotationAssertion(rdfs:label know:PieceOfKnowledge "Piece of Knowledge")
+AnnotationAssertion(rdfs:label know:PieceOfKnowledge "piece of knowledge")
 AnnotationAssertion(skos:definition know:PieceOfKnowledge "A finite, complex association of one or more Concepts, intended as generically dependent representational units.")
 AnnotationAssertion(skos:example know:PieceOfKnowledge "the knowledge of how to extract the square number of a positive, integer number")
 AnnotationAssertion(skos:example know:PieceOfKnowledge "the knowledge of what the square root of a number is, including a few examples")
@@ -1120,8 +1266,9 @@ AnnotationAssertion(skos:definition know:Serialization "The set of structures an
 SubClassOf(know:Serialization know:Syntax)
 SubClassOf(know:Serialization ObjectSomeValuesFrom(know:externalizes know:AbstractSyntax))
 
-# Class: know:Software (know:Software)
+# Class: know:Software (software)
 
+AnnotationAssertion(rdfs:label know:Software "software")
 AnnotationAssertion(skos:definition know:Software "Concrete Expression, in an executable language, that specifies and/or directs the behaviour of a (virtual) machine")
 AnnotationAssertion(skos:note know:Software "A Software is a \"Performance Plan\" for a (virtual) machine to execute")
 SubClassOf(know:Software know:ConcreteExpression)
@@ -1181,6 +1328,7 @@ SubClassOf(know:WorkOfKnowledge ObjectSomeValuesFrom(know:product-of know:Knowle
 SubClassOf(ObjectSomeValuesFrom(know:performs know:KnowledgeActivity) know:KnowledgeableAgent)
 DisjointClasses(know:IntellectualWork know:KnowledgeArtifact know:KnowledgeExpression)
 SubObjectPropertyOf(ObjectPropertyChain(know:conceptualizes know:serialized-into) know:concretely-expressed-by)
+SubObjectPropertyOf(ObjectPropertyChain(know:defined-by know:uses-concept) know:associated-to)
 SubObjectPropertyOf(ObjectPropertyChain(know:expresses know:captures) know:knowledge-representation-of)
 SubObjectPropertyOf(ObjectPropertyChain(know:expresses know:has-subject) know:representation-of)
 SubObjectPropertyOf(ObjectPropertyChain(know:serialization-of know:expresses) know:concretely-expresses)
