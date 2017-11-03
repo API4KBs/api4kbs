@@ -36,6 +36,7 @@ Declaration(Class(know:ControlledNaturalLanguage))
 Declaration(Class(know:DefinedConcept))
 Declaration(Class(know:Definition))
 Declaration(Class(know:DescriptiveGrammar))
+Declaration(Class(know:EncodedKnowledgeExpression))
 Declaration(Class(know:FormalGrammar))
 Declaration(Class(know:FormalLanguage))
 Declaration(Class(know:Grammar))
@@ -52,6 +53,7 @@ Declaration(Class(know:KnowledgeElement))
 Declaration(Class(know:KnowledgeEndeavour))
 Declaration(Class(know:KnowledgeExpression))
 Declaration(Class(know:KnowledgeFragment))
+Declaration(Class(know:KnowledgeManifestation))
 Declaration(Class(know:KnowledgeProcessingFunction))
 Declaration(Class(know:KnowledgeProcessingMethod))
 Declaration(Class(know:KnowledgeProcessingPlan))
@@ -80,6 +82,7 @@ Declaration(Class(know:Specification))
 Declaration(Class(know:StructuredKnowledgeResource))
 Declaration(Class(know:Syntax))
 Declaration(Class(know:VersionedIdentifier))
+Declaration(Class(know:VersionedKnowledgeEndeavor))
 Declaration(Class(know:WorkOfKnowledge))
 Declaration(ObjectProperty(know:archetyped-by))
 Declaration(ObjectProperty(know:archetypes))
@@ -99,18 +102,21 @@ Declaration(ObjectProperty(know:defined-by))
 Declaration(ObjectProperty(know:defines))
 Declaration(ObjectProperty(know:denoted-by))
 Declaration(ObjectProperty(know:denotes))
-Declaration(ObjectProperty(know:depends-on))
 Declaration(ObjectProperty(know:described-by))
+Declaration(ObjectProperty(know:encoding-of))
+Declaration(ObjectProperty(know:engraved-on))
+Declaration(ObjectProperty(know:engraved-with))
+Declaration(ObjectProperty(know:exemplar-of))
 Declaration(ObjectProperty(know:expresses))
 Declaration(ObjectProperty(know:externalizes))
 Declaration(ObjectProperty(know:faithfully-expresses))
 Declaration(ObjectProperty(know:formalizes))
 Declaration(ObjectProperty(know:function-of))
 Declaration(ObjectProperty(know:governed-by))
+Declaration(ObjectProperty(know:has-encoding))
+Declaration(ObjectProperty(know:has-exemplar))
 Declaration(ObjectProperty(know:has-function))
 Declaration(ObjectProperty(know:has-knowledge))
-Declaration(ObjectProperty(know:has-later-versioned-revision))
-Declaration(ObjectProperty(know:has-next-immediate-versioned-revision))
 Declaration(ObjectProperty(know:has-part))
 Declaration(ObjectProperty(know:has-product))
 Declaration(ObjectProperty(know:has-proper-part))
@@ -123,8 +129,6 @@ Declaration(ObjectProperty(know:internally-represents))
 Declaration(ObjectProperty(know:involved-in))
 Declaration(ObjectProperty(know:involves))
 Declaration(ObjectProperty(know:is-about))
-Declaration(ObjectProperty(know:is-immediate-next-versioned-revision-of))
-Declaration(ObjectProperty(know:is-later-versioned-revision-of))
 Declaration(ObjectProperty(know:is-serialized-in))
 Declaration(ObjectProperty(know:knowledge-representation-of))
 Declaration(ObjectProperty(know:limits))
@@ -132,6 +136,7 @@ Declaration(ObjectProperty(know:makes-use-of))
 Declaration(ObjectProperty(know:part-of))
 Declaration(ObjectProperty(know:performed-by))
 Declaration(ObjectProperty(know:performs))
+Declaration(ObjectProperty(know:preserves))
 Declaration(ObjectProperty(know:product-of))
 Declaration(ObjectProperty(know:profiles))
 Declaration(ObjectProperty(know:proper-part-of))
@@ -141,7 +146,6 @@ Declaration(ObjectProperty(know:representation-of))
 Declaration(ObjectProperty(know:represented-by))
 Declaration(ObjectProperty(know:reproduced-by))
 Declaration(ObjectProperty(know:reproduces))
-Declaration(ObjectProperty(know:requires))
 Declaration(ObjectProperty(know:serialization-of))
 Declaration(ObjectProperty(know:serialized-into))
 Declaration(ObjectProperty(know:serializes))
@@ -314,19 +318,42 @@ AnnotationAssertion(rdfs:seeAlso know:denotes "http://www.w3.org/ns/lemon/ontole
 AnnotationAssertion(skos:definition know:denotes "the semiotic relationship between a linguistic expression and its referent, where the former references the latter, possibly within a context")
 ObjectPropertyDomain(know:denotes know:KnowledgeElement)
 
-# Object Property: know:depends-on (depends on)
-
-AnnotationAssertion(rdfs:label know:depends-on "depends on"@en)
-AnnotationAssertion(skos:definition know:depends-on "An endeavor X depends on an another endeavor Y if any activity that involves X can be somehow augmented by the involvement of Y.")
-ObjectPropertyDomain(know:depends-on know:KnowledgeEndeavour)
-ObjectPropertyRange(know:depends-on know:KnowledgeEndeavour)
-
 # Object Property: know:described-by (described by)
 
 AnnotationAssertion(rdfs:label know:described-by "described by")
 AnnotationAssertion(skos:definition know:described-by "The relationship between Something and its description - a (descriptive) expression of a work of knowledge that represents what that thing is (ontology) and/or how it behaves (model)")
 SubObjectPropertyOf(know:described-by know:represented-by)
 ObjectPropertyRange(know:described-by know:AbstractExpression)
+
+# Object Property: know:encoding-of (encoding of)
+
+AnnotationAssertion(rdfs:label know:encoding-of "encoding of")
+InverseObjectProperties(know:encoding-of know:has-encoding)
+ObjectPropertyDomain(know:encoding-of know:EncodedKnowledgeExpression)
+ObjectPropertyRange(know:encoding-of know:ConcreteExpression)
+
+# Object Property: know:engraved-on (engraved on)
+
+AnnotationAssertion(rdfs:label know:engraved-on "engraved on")
+AnnotationAssertion(skos:definition know:engraved-on "the relationship between an encoding and its carrier")
+InverseObjectProperties(know:engraved-on know:engraved-with)
+ObjectPropertyDomain(know:engraved-on know:EncodedKnowledgeExpression)
+ObjectPropertyRange(know:engraved-on know:KnowledgeCarrier)
+
+# Object Property: know:engraved-with (engraved with)
+
+AnnotationAssertion(rdfs:label know:engraved-with "engraved with")
+ObjectPropertyDomain(know:engraved-with know:KnowledgeCarrier)
+ObjectPropertyRange(know:engraved-with know:EncodedKnowledgeExpression)
+
+# Object Property: know:exemplar-of (exemplar of)
+
+AnnotationAssertion(rdfs:label know:exemplar-of "exemplar of")
+AnnotationAssertion(skos:definition know:exemplar-of "an individual artifact is an exemplar of a knowledge manifestation, which conceptualizes (and defines) the qualities of that artifact and all its copies")
+SubObjectPropertyOf(know:exemplar-of know:archetyped-by)
+InverseObjectProperties(know:exemplar-of know:has-exemplar)
+ObjectPropertyDomain(know:exemplar-of know:KnowledgeArtifact)
+ObjectPropertyRange(know:exemplar-of know:KnowledgeManifestation)
 
 # Object Property: know:expresses (expresses)
 
@@ -377,6 +404,20 @@ AnnotationAssertion(skos:definition know:governed-by "the relationship between a
 ObjectPropertyDomain(know:governed-by know:Language)
 ObjectPropertyRange(know:governed-by know:Grammar)
 
+# Object Property: know:has-encoding (has encoding)
+
+AnnotationAssertion(rdfs:label know:has-encoding "has encoding")
+AnnotationAssertion(skos:definition know:has-encoding "the relationship between a concrete expresison and its encoded version")
+ObjectPropertyDomain(know:has-encoding know:ConcreteExpression)
+ObjectPropertyRange(know:has-encoding know:EncodedKnowledgeExpression)
+
+# Object Property: know:has-exemplar (has exemplar)
+
+AnnotationAssertion(rdfs:label know:has-exemplar "has exemplar")
+SubObjectPropertyOf(know:has-exemplar know:archetypes)
+ObjectPropertyDomain(know:has-exemplar know:KnowledgeManifestation)
+ObjectPropertyRange(know:has-exemplar know:KnowledgeArtifact)
+
 # Object Property: know:has-function (has function)
 
 AnnotationAssertion(rdfs:label know:has-function "has function")
@@ -389,24 +430,6 @@ AnnotationAssertion(rdfs:label know:has-knowledge "has knowledge")
 AnnotationAssertion(skos:definition know:has-knowledge "the abstract relationship between an entity, and what is known about that entity")
 InverseObjectProperties(know:has-knowledge know:is-about)
 ObjectPropertyRange(know:has-knowledge know:Knowledge)
-
-# Object Property: know:has-later-versioned-revision (has later versioned revision)
-
-AnnotationAssertion(dc:creator know:has-later-versioned-revision "davide"^^xsd:string)
-AnnotationAssertion(dc:date know:has-later-versioned-revision "2017-06-02T17:36:20Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label know:has-later-versioned-revision "has later versioned revision"@en)
-AnnotationAssertion(skos:altLabel know:has-later-versioned-revision "is previous version of")
-AnnotationAssertion(skos:definition know:has-later-versioned-revision "The relationship between two expressions E1 and E2, with E2 a work-preserving revision of E1, where both are ordered by the same (partially) ordered versioning scheme v, and such that v(E1) < v(E2).")
-InverseObjectProperties(know:has-later-versioned-revision know:is-later-versioned-revision-of)
-
-# Object Property: know:has-next-immediate-versioned-revision (has next immediate versioned revision)
-
-AnnotationAssertion(dc:creator know:has-next-immediate-versioned-revision "davide"^^xsd:string)
-AnnotationAssertion(dc:date know:has-next-immediate-versioned-revision "2017-06-02T17:39:25Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label know:has-next-immediate-versioned-revision "has next immediate versioned revision"@en)
-AnnotationAssertion(skos:definition know:has-next-immediate-versioned-revision "The relationship between two expressions E1 and E2, with E2 a work-preserving revision of E1, where both are ordered by the same (partially) ordered versioning scheme v, and such that v(E1) < v(E2), and there is no E3 such that v(E1) < v(E3) < v(E2)")
-SubObjectPropertyOf(know:has-next-immediate-versioned-revision know:has-later-versioned-revision)
-InverseObjectProperties(know:has-next-immediate-versioned-revision know:is-immediate-next-versioned-revision-of)
 
 # Object Property: know:has-part (has part)
 
@@ -495,18 +518,6 @@ AnnotationAssertion(rdfs:label know:is-about "knowledge of")
 AnnotationAssertion(skos:definition know:is-about "The relationship between a (piece of) Knowledge and its referent")
 ObjectPropertyDomain(know:is-about know:Knowledge)
 
-# Object Property: know:is-immediate-next-versioned-revision-of (is immediate next versioned revision of)
-
-AnnotationAssertion(rdfs:label know:is-immediate-next-versioned-revision-of "is immediate next versioned revision of"@en)
-AnnotationAssertion(skos:altLabel know:is-immediate-next-versioned-revision-of "has next previous immediate versioned revision")
-SubObjectPropertyOf(know:is-immediate-next-versioned-revision-of know:is-later-versioned-revision-of)
-
-# Object Property: know:is-later-versioned-revision-of (is later versioned revision of)
-
-AnnotationAssertion(rdfs:comment know:is-later-versioned-revision-of "A revision that")
-AnnotationAssertion(rdfs:label know:is-later-versioned-revision-of "is later versioned revision of"@en)
-AnnotationAssertion(skos:altLabel know:is-later-versioned-revision-of "has previous versioned revision")
-
 # Object Property: know:is-serialized-in (has serialized representation in)
 
 AnnotationAssertion(rdfs:label know:is-serialized-in "has serialized representation in"@en)
@@ -556,6 +567,20 @@ ObjectPropertyRange(know:performed-by know:Agent)
 SubObjectPropertyOf(know:performs know:involved-in)
 ObjectPropertyDomain(know:performs know:Agent)
 ObjectPropertyRange(know:performs know:Activity)
+
+# Object Property: know:preserves (preserves)
+
+AnnotationAssertion(rdfs:label know:preserves "preserves")
+AnnotationAssertion(skos:definition know:preserves "A method M (subject) preserves an entity E of type T (object) if: 
+- for any entity X 
+  - if X is related to E by R
+  and X is input of an activity A 
+  and A is based on M
+  and A produces an output O
+then:
+  O is also related to E by R")
+AnnotationAssertion(skos:example know:preserves "A transcription method, by definition, defines how to create different concrete expressions, but preserves the language (abstract syntax)")
+ObjectPropertyDomain(know:preserves know:KnowledgeProcessingMethod)
 
 # Object Property: know:product-of (product of)
 
@@ -622,14 +647,6 @@ ObjectPropertyRange(know:reproduced-by know:KnowledgeArtifact)
 SubObjectPropertyOf(know:reproduces know:carries)
 ObjectPropertyDomain(know:reproduces know:KnowledgeArtifact)
 ObjectPropertyRange(know:reproduces know:KnowledgeExpression)
-
-# Object Property: know:requires (requires)
-
-AnnotationAssertion(rdfs:label know:requires "requires"@en)
-AnnotationAssertion(skos:definition know:requires "An endeavor X requires another endeavor Y if there is at least one activity that involves X which cannot be completed without the participartion of Y as well")
-SubObjectPropertyOf(know:requires know:depends-on)
-ObjectPropertyDomain(know:requires know:KnowledgeEndeavour)
-ObjectPropertyRange(know:requires know:KnowledgeEndeavour)
 
 # Object Property: know:serialization-of (is concrete representation of)
 
@@ -892,7 +909,7 @@ SubClassOf(know:ComputableLanguage ObjectSomeValuesFrom(ObjectInverseOf(know:use
 
 # Class: know:ConcreteExpression (concrete knowledge expression)
 
-AnnotationAssertion(rdfs:comment know:ConcreteExpression "A concrete expression is the result of the act of serializing an (abstract) expression using a concrete syntax, which adds 'form' aspects that allow to engrave the expression on a carrier")
+AnnotationAssertion(rdfs:comment know:ConcreteExpression "A concrete expression is the result of the act of serializing an (abstract) expression using a concrete syntax, which adds 'form' aspects that allow to engrave an encoding of the expression on a carrier")
 AnnotationAssertion(rdfs:comment know:ConcreteExpression "As a remark, two individual Concrete Expressions of the same Abstract Expression (of the same Work) are different if they use different serializations")
 AnnotationAssertion(rdfs:label know:ConcreteExpression "concrete knowledge expression"@en)
 AnnotationAssertion(skos:definition know:ConcreteExpression "An Expression in some language, serialized using one of the concrete syntaxes supported by that language")
@@ -941,6 +958,11 @@ AnnotationAssertion(rdfs:label know:DescriptiveGrammar "descriptive grammar")
 AnnotationAssertion(rdfs:seeAlso know:DescriptiveGrammar "https://www.teachingenglish.org.uk/article/descriptive-grammar")
 AnnotationAssertion(skos:definition know:DescriptiveGrammar "a grammar that documents how a language is actually used")
 SubClassOf(know:DescriptiveGrammar know:Grammar)
+
+# Class: know:EncodedKnowledgeExpression (encoded knowledge expression)
+
+AnnotationAssertion(rdfs:label know:EncodedKnowledgeExpression "encoded knowledge expression")
+SubClassOf(know:EncodedKnowledgeExpression know:KnowledgeExpression)
 
 # Class: know:FormalGrammar (formal grammar)
 
@@ -1065,6 +1087,15 @@ EquivalentClasses(know:KnowledgeFragment ObjectIntersectionOf(know:AbstractExpre
 SubClassOf(know:KnowledgeFragment know:AbstractExpression)
 SubClassOf(know:KnowledgeFragment ObjectSomeValuesFrom(know:expresses ObjectSomeValuesFrom(know:proper-part-of know:WorkOfKnowledge)))
 SubClassOf(know:KnowledgeFragment ObjectSomeValuesFrom(know:knowledge-representation-of ObjectComplementOf(know:WorkOfKnowledge)))
+
+# Class: know:KnowledgeManifestation (knowledge manifestation)
+
+AnnotationAssertion(rdfs:comment know:KnowledgeManifestation "All the exemplars of a given manifestation are copies (replicas) of each other. Conversely, given an exemplar of a manifestation, if that exemplar is copied (replicated), the copy will be an exemplar of the same manifestation")
+AnnotationAssertion(rdfs:comment know:KnowledgeManifestation "The original exemplar is called a 'master copy'")
+AnnotationAssertion(rdfs:label know:KnowledgeManifestation "knowledge manifestation")
+AnnotationAssertion(skos:definition know:KnowledgeManifestation "The archetype of a class of knowledge artifacts, defining the common qualities - including the concrete expression(s) carried by the artifacts, and the form used to encode and engrave the expression in the artifact")
+SubClassOf(know:KnowledgeManifestation know:DefinedConcept)
+SubClassOf(know:KnowledgeManifestation ObjectSomeValuesFrom(know:archetypes know:KnowledgeCarrier))
 
 # Class: know:KnowledgeProcessingFunction ((knowledge processing) function)
 
@@ -1303,6 +1334,14 @@ AnnotationAssertion(rdfs:label know:VersionedIdentifier "versioned identifier")
 AnnotationAssertion(skos:definition know:VersionedIdentifier "Identifier of a particular version of a given entity, i.e. the particular configuration of (mutable) qualities of a given entity over a specific period of time")
 SubClassOf(know:VersionedIdentifier know:Identifier)
 
+# Class: know:VersionedKnowledgeEndeavor (versioned knowledge endeavor)
+
+AnnotationAssertion(rdfs:comment know:VersionedKnowledgeEndeavor "versioned endeavors are identified explicitly by a version identifier")
+AnnotationAssertion(rdfs:label know:VersionedKnowledgeEndeavor "versioned knowledge endeavor")
+AnnotationAssertion(skos:definition know:VersionedKnowledgeEndeavor "endeavor that is part of a series - a temporally ordered chain of endeavors of the same type, related by the fact that each successor is a revision of its predecessor.")
+SubClassOf(know:VersionedKnowledgeEndeavor know:KnowledgeEndeavour)
+SubClassOf(know:VersionedKnowledgeEndeavor ObjectSomeValuesFrom(know:identified-by know:VersionedIdentifier))
+
 # Class: know:WorkOfKnowledge (work of knowledge)
 
 AnnotationAssertion(rdfs:comment know:WorkOfKnowledge "A Work of Knowledge can be conceptualized in terms of an Abstract  Semantic Graph")
@@ -1329,8 +1368,10 @@ SubClassOf(ObjectSomeValuesFrom(know:performs know:KnowledgeActivity) know:Knowl
 DisjointClasses(know:IntellectualWork know:KnowledgeArtifact know:KnowledgeExpression)
 SubObjectPropertyOf(ObjectPropertyChain(know:conceptualizes know:serialized-into) know:concretely-expressed-by)
 SubObjectPropertyOf(ObjectPropertyChain(know:defined-by know:uses-concept) know:associated-to)
+SubObjectPropertyOf(ObjectPropertyChain(know:engraved-with know:encoding-of) know:carries)
 SubObjectPropertyOf(ObjectPropertyChain(know:expresses know:captures) know:knowledge-representation-of)
 SubObjectPropertyOf(ObjectPropertyChain(know:expresses know:has-subject) know:representation-of)
+SubObjectPropertyOf(ObjectPropertyChain(know:has-encoding know:engraved-on) know:carried-by)
 SubObjectPropertyOf(ObjectPropertyChain(know:serialization-of know:expresses) know:concretely-expresses)
 SubObjectPropertyOf(ObjectPropertyChain(know:serialized-into know:uses-concrete-syntax) know:is-serialized-in)
 SubObjectPropertyOf(ObjectPropertyChain(know:supports-expression know:profiles) know:supports-expression)

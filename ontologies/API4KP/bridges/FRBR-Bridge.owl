@@ -37,9 +37,9 @@ Declaration(Class(frbr:Manifestation))
 Declaration(Class(frbr:ResponsibleEntity))
 Declaration(Class(frbr:Subject))
 Declaration(Class(frbr:Work))
-Declaration(Class(:Manifestation))
 Declaration(Class(:SelfContainedManifestation))
 Declaration(Class(know:Endeavour))
+Declaration(Class(know:KnowledgeManifestation))
 Declaration(Class(know:Manifestation))
 Declaration(ObjectProperty(froo:R10_has_member))
 Declaration(ObjectProperty(froo:R10i_is_member_of))
@@ -86,9 +86,14 @@ Declaration(ObjectProperty(frbr:subject))
 Declaration(ObjectProperty(frbr:successor))
 Declaration(ObjectProperty(frbr:successorOf))
 Declaration(ObjectProperty(frbr:supplement))
+Declaration(ObjectProperty(know:depends-on))
 Declaration(ObjectProperty(know:endorsed-by))
 Declaration(ObjectProperty(know:endorses))
 Declaration(ObjectProperty(know:executed))
+Declaration(ObjectProperty(know:has-later-versioned-revision))
+Declaration(ObjectProperty(know:is-later-versioned-revision-of))
+Declaration(ObjectProperty(know:realized-by))
+Declaration(ObjectProperty(know:realizes))
 Declaration(DataProperty(froo:CLP57_should_have_number_of_parts))
 Declaration(AnnotationProperty(dc:creator))
 Declaration(AnnotationProperty(dc:date))
@@ -382,7 +387,7 @@ SubObjectPropertyOf(know:carries frbr:relatedEndeavour)
 
 SubObjectPropertyOf(know:conceptualizes frbr:realization)
 
-# Object Property: know:depends-on (depends on)
+# Object Property: know:depends-on (know:depends-on)
 
 SubObjectPropertyOf(know:depends-on frbr:relatedEndeavour)
 
@@ -402,19 +407,27 @@ ObjectPropertyRange(know:endorses frbr:Work)
 
 SubObjectPropertyOf(know:executed froo:R25_performed)
 
-# Object Property: know:expresses (know:expresses)
+# Object Property: know:exemplar-of (exemplar of)
+
+SubObjectPropertyOf(know:exemplar-of frbr:exemplarOf)
+
+# Object Property: know:expresses (expresses)
 
 SubObjectPropertyOf(know:expresses frbr:realizationOf)
 
-# Object Property: know:has-later-versioned-revision (has later versioned revision)
+# Object Property: know:has-exemplar (has exemplar)
+
+SubObjectPropertyOf(know:has-exemplar frbr:exemplar)
+
+# Object Property: know:has-later-versioned-revision (know:has-later-versioned-revision)
 
 SubObjectPropertyOf(know:has-later-versioned-revision frbr:revision)
 
-# Object Property: know:has-subject (has subject)
+# Object Property: know:has-subject (has subject (knowledge))
 
 SubObjectPropertyOf(know:has-subject frbr:subject)
 
-# Object Property: know:is-later-versioned-revision-of (is later versioned revision of)
+# Object Property: know:is-later-versioned-revision-of (know:is-later-versioned-revision-of)
 
 SubObjectPropertyOf(know:is-later-versioned-revision-of frbr:revisionOf)
 
@@ -422,11 +435,11 @@ SubObjectPropertyOf(know:is-later-versioned-revision-of frbr:revisionOf)
 
 SubObjectPropertyOf(know:is-serialized-in frbr:relatedEndeavour)
 
-# Object Property: know:realized-by (realized by)
+# Object Property: know:realized-by (know:realized-by)
 
 SubObjectPropertyOf(know:realized-by frbr:relatedEndeavour)
 
-# Object Property: know:realizes (realizes)
+# Object Property: know:realizes (know:realizes)
 
 SubObjectPropertyOf(know:realizes frbr:relatedEndeavour)
 
@@ -579,47 +592,47 @@ EquivalentClasses(frbr:Endeavour know:Endeavour)
 
 EquivalentClasses(frbr:Manifestation ObjectUnionOf(froo:F3_Manifestation_Product_Type froo:F4_Manifestation_Singleton))
 
-# Class: :Manifestation (Manifestation)
-
-AnnotationAssertion(rdfs:label :Manifestation "Manifestation"@en)
-AnnotationAssertion(skos:definition :Manifestation "In accordance with the FRBR universe, an instance of Manifestation is a “species”, as opposed to the carriers, which are “specimens” of it. A Manifestation defines all of the features or traits that the instances will display in order to be recognised as individual realizations of that content.")
-SubClassOf(:Manifestation know:KnowledgeEndeavour)
-
 # Class: :SelfContainedManifestation (Self-Contained Manifestation)
 
 AnnotationAssertion(rdfs:label :SelfContainedManifestation "Self-Contained Manifestation")
 AnnotationAssertion(skos:definition :SelfContainedManifestation "A Self-Contained Manifestation is such that, for each Expression E it embodies, if that Expression E depends on another Expression F, that second Expression F is also embodied in the same Manifestation as E.")
-SubClassOf(:SelfContainedManifestation :Manifestation)
+SubClassOf(:SelfContainedManifestation know:KnowledgeManifestation)
 
 # Class: know:CompositeKnowledgeResource (Composite Knowledge Resource)
 
 SubClassOf(know:CompositeKnowledgeResource ObjectSomeValuesFrom(frbr:part know:KnowledgeResource))
 
-# Class: know:ConcreteExpression (Concrete Knowledge Expression)
+# Class: know:ConcreteExpression (concrete knowledge expression)
 
 EquivalentClasses(know:ConcreteExpression ObjectIntersectionOf(froo:F2_Expression ObjectSomeValuesFrom(know:uses-concrete-syntax know:Serialization)))
 SubClassOf(know:ConcreteExpression froo:F2_Expression)
 
-# Class: know:Knowledge (Knowledge)
+# Class: know:Knowledge (knowledge)
 
 SubClassOf(know:Knowledge frbr:Subject)
 
-# Class: know:KnowledgeArtifact (Knowledge Artifact)
+# Class: know:KnowledgeArtifact (knowledge artifact)
 
 SubClassOf(know:KnowledgeArtifact ObjectUnionOf(froo:F4_Manifestation_Singleton froo:F54_Utilized_Information_Carrier))
 SubClassOf(know:KnowledgeArtifact ObjectSomeValuesFrom(frbr:exemplarOf know:Manifestation))
 
-# Class: know:KnowledgeEndeavour (Knowledge Endeavour)
+# Class: know:KnowledgeEndeavour (knowledge endeavour)
 
 SubClassOf(know:KnowledgeEndeavour know:Endeavour)
 
-# Class: know:KnowledgeExpression (Knowledge Expression)
+# Class: know:KnowledgeExpression (knowledge expression)
 
 SubClassOf(know:KnowledgeExpression frbr:Expression)
 
-# Class: know:KnowledgeFragment (Knowledge Fragment)
+# Class: know:KnowledgeFragment (knowledge fragment)
 
 SubClassOf(know:KnowledgeFragment froo:F23_Expression_Fragment)
+
+# Class: know:KnowledgeManifestation (knowledge manifestation)
+
+AnnotationAssertion(skos:definition know:KnowledgeManifestation "In accordance with the FRBR universe, an instance of Manifestation is a “species”, as opposed to the carriers, which are “specimens” of it. A Manifestation defines all of the features or traits that the instances will display in order to be recognised as individual realizations of that content.")
+SubClassOf(know:KnowledgeManifestation frbr:Manifestation)
+SubClassOf(know:KnowledgeManifestation know:KnowledgeEndeavour)
 
 # Class: know:KnowledgeResource (Knowledge Resource)
 
@@ -634,16 +647,11 @@ SubClassOf(know:Manifestation ObjectSomeValuesFrom(frbr:embodimentOf ObjectInter
 
 EquivalentClasses(know:SelfContainedKnowledgeArtifact ObjectIntersectionOf(know:KnowledgeArtifact ObjectSomeValuesFrom(frbr:exemplarOf :SelfContainedManifestation)))
 
-# Class: know:Software (know:Software)
+# Class: know:Software (software)
 
 SubClassOf(know:Software froo:F25_Performance_Plan)
 
-# Class: know:Software_Execution (Software Execution)
-
-EquivalentClasses(know:Software_Execution ObjectIntersectionOf(froo:F31_Performance ObjectIntersectionOf(ObjectSomeValuesFrom(froo:R25_performed know:Software) ObjectAllValuesFrom(froo:R25_performed know:Software))))
-SubClassOf(know:Software_Execution froo:F31_Performance)
-
-# Class: know:WorkOfKnowledge (Work of Knowledge)
+# Class: know:WorkOfKnowledge (work of knowledge)
 
 SubClassOf(know:WorkOfKnowledge ObjectSomeValuesFrom(frbr:subject know:Knowledge))
 

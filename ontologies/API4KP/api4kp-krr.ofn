@@ -35,6 +35,8 @@ Declaration(Class(krr:EmptyEnvironment))
 Declaration(Class(krr:Environment))
 Declaration(Class(krr:EnvironmentWithIdentities))
 Declaration(Class(krr:FocusedEnvironment))
+Declaration(Class(krr:HeterogeneousKnowledgeResource))
+Declaration(Class(krr:HeterogeneousMachinableKnowledgeResource))
 Declaration(Class(krr:HybridKnowledgeEnvironment))
 Declaration(Class(krr:ImmutableEntity))
 Declaration(Class(krr:ImmutableKnowledgeBase))
@@ -47,6 +49,7 @@ Declaration(Class(krr:MachinableKnowledgeArtifact))
 Declaration(Class(krr:MachinableKnowledgeResource))
 Declaration(Class(krr:MachineReadableWorkOfKnowledge))
 Declaration(Class(krr:Mapping))
+Declaration(Class(krr:MinimalKnowledgeResource))
 Declaration(Class(krr:Mutable))
 Declaration(Class(krr:MutableKnowledgeBase))
 Declaration(Class(krr:MutableSource))
@@ -66,7 +69,6 @@ Declaration(ObjectProperty(krr:expresses))
 Declaration(ObjectProperty(krr:hasEnvironmentMapping))
 Declaration(ObjectProperty(krr:hasEnvironmentMember))
 Declaration(ObjectProperty(krr:hasFocusMember))
-Declaration(ObjectProperty(krr:hasPart))
 Declaration(ObjectProperty(krr:hasSetOfMappings))
 Declaration(ObjectProperty(krr:hasSnapshot))
 Declaration(ObjectProperty(krr:hasStructuralComponent))
@@ -141,11 +143,6 @@ ObjectPropertyRange(krr:hasEnvironmentMember owl:Thing)
 
 SubObjectPropertyOf(krr:hasFocusMember krr:hasEnvironmentMember)
 
-# Object Property: krr:hasPart (has part)
-
-AnnotationAssertion(rdfs:label krr:hasPart "has part")
-AnnotationAssertion(skos:definition krr:hasPart "most general mereological relationship")
-
 # Object Property: krr:hasSetOfMappings (has set of mappings)
 
 AnnotationAssertion(rdfs:label krr:hasSetOfMappings "has set of mappings")
@@ -161,7 +158,7 @@ ObjectPropertyRange(krr:hasSnapshot krr:ImmutableEntity)
 
 AnnotationAssertion(rdfs:label krr:hasStructuralComponent "has structural component")
 AnnotationAssertion(skos:definition krr:hasStructuralComponent "functional parthood relationship where the role of the target component X is determined by the mutual relationship of that component X and other parts of the same parent composite")
-SubObjectPropertyOf(krr:hasStructuralComponent krr:hasPart)
+SubObjectPropertyOf(krr:hasStructuralComponent know:has-proper-part)
 
 # Object Property: krr:hasStructureType (has structure type)
 
@@ -205,6 +202,7 @@ AnnotationAssertion(skos:note krr:lowers "OWL does not let us declare this to be
 # Object Property: krr:preserves (preserves)
 
 AnnotationAssertion(rdfs:label krr:preserves "preserves")
+SubObjectPropertyOf(krr:preserves know:preserves)
 ObjectPropertyDomain(krr:preserves krr:Mapping)
 
 # Object Property: krr:prototypes (prototypes)
@@ -238,6 +236,7 @@ SubClassOf(krr:BasicEnvironment ObjectExactCardinality(1 krr:hasEnvironmentMappi
 # Class: krr:BasicMachinableKnowledgeResource (basic (KRR) knowledge resource)
 
 AnnotationAssertion(rdfs:label krr:BasicMachinableKnowledgeResource "basic (KRR) knowledge resource")
+AnnotationAssertion(skos:altLabel krr:BasicMachinableKnowledgeResource "unstructured (KRR) knowledge resource")
 AnnotationAssertion(skos:definition krr:BasicMachinableKnowledgeResource "unstructured native machine readable knowledge resource")
 AnnotationAssertion(skos:example krr:BasicMachinableKnowledgeResource "KE1: the instance of the OWL 2 DL abstract syntax for the latest version of a biomedical ontology from an ontology series KA1 defining observable entities, such as the 2015 international version of the SNOMED-CT knowledge base\\footnote{http://browser.ihtsdotools.org/} (see also the definition of Basic Knowledge Asset).
 This ontology differs from other versions of the series only in the natural language definitions.")
@@ -286,6 +285,19 @@ SubClassOf(krr:EnvironmentWithIdentities krr:ComposableEnvironment)
 AnnotationAssertion(rdfs:label krr:FocusedEnvironment "focused environment")
 AnnotationAssertion(skos:definition krr:FocusedEnvironment "a nonempty environment which has a member F (called the focus or focus member) such that for every other member A, there is a mapping in the environment from A to F"^^xsd:string)
 SubClassOf(krr:FocusedEnvironment krr:NonemptyEnvironment)
+
+# Class: krr:HeterogeneousKnowledgeResource (heterogeneous knowledge resource)
+
+AnnotationAssertion(rdfs:label krr:HeterogeneousKnowledgeResource "heterogeneous knowledge resource")
+AnnotationAssertion(skos:definition krr:HeterogeneousKnowledgeResource "knowledge resource expressed by means of 2 or more languages")
+EquivalentClasses(krr:HeterogeneousKnowledgeResource ObjectIntersectionOf(know:KnowledgeResource ObjectMinCardinality(2 know:uses-language know:Language)))
+SubClassOf(krr:HeterogeneousKnowledgeResource know:KnowledgeResource)
+
+# Class: krr:HeterogeneousMachinableKnowledgeResource (heterogeneous (KRR) knowledge resource)
+
+AnnotationAssertion(rdfs:label krr:HeterogeneousMachinableKnowledgeResource "heterogeneous (KRR) knowledge resource")
+EquivalentClasses(krr:HeterogeneousMachinableKnowledgeResource ObjectIntersectionOf(krr:HeterogeneousKnowledgeResource krr:MachinableKnowledgeResource ObjectMinCardinality(2 know:uses-language krr:KnowledgeRepresentationAndReasoningLanguage)))
+SubClassOf(krr:HeterogeneousMachinableKnowledgeResource krr:MachinableKnowledgeResource)
 
 # Class: krr:HybridKnowledgeEnvironment (hybrid knowledge environment)
 
@@ -393,6 +405,14 @@ AnnotationAssertion(rdfs:label krr:Mapping "mapping")
 AnnotationAssertion(rdfs:seeAlso krr:Mapping "DOL-terms:Mapping")
 SubClassOf(krr:Mapping know:KnowledgeProcessingMethod)
 
+# Class: krr:MinimalKnowledgeResource (minimal knowledge resource)
+
+AnnotationAssertion(rdfs:comment krr:MinimalKnowledgeResource "a minimal resource cannot be further abdridged while expressing the same work of knowledge")
+AnnotationAssertion(rdfs:label krr:MinimalKnowledgeResource "minimal knowledge resource")
+AnnotationAssertion(skos:definition krr:MinimalKnowledgeResource "a knowledge resource that expresses a Work of Knowledge, and such that if a fragment of that resource is removed, that resource will no longer be able to express that Work of Knowledge")
+EquivalentClasses(krr:MinimalKnowledgeResource ObjectIntersectionOf(know:KnowledgeResource ObjectExactCardinality(1 know:concisely-expresses know:WorkOfKnowledge)))
+SubClassOf(krr:MinimalKnowledgeResource know:KnowledgeResource)
+
 # Class: krr:Mutable (mutable entity)
 
 AnnotationAssertion(rdfs:label krr:Mutable "mutable entity")
@@ -422,7 +442,7 @@ SubClassOf(krr:NativeKnowledgeResource know:KnowledgeResource)
 
 AnnotationAssertion(rdfs:label krr:NativeMachinableKnowledgeResource "native (KRR) knowledge resource")
 AnnotationAssertion(skos:definition krr:NativeMachinableKnowledgeResource "sequence of expressions (like non-logical symbols, sentences and structuring elements) from a given KR language.")
-EquivalentClasses(krr:NativeMachinableKnowledgeResource ObjectIntersectionOf(krr:MachinableKnowledgeResource ObjectExactCardinality(1 know:uses-language krr:KnowledgeRepresentationAndReasoningLanguage)))
+EquivalentClasses(krr:NativeMachinableKnowledgeResource ObjectIntersectionOf(krr:MachinableKnowledgeResource krr:NativeKnowledgeResource ObjectExactCardinality(1 know:uses-language krr:KnowledgeRepresentationAndReasoningLanguage)))
 
 # Class: krr:NonemptyEnvironment (nonempty environment)
 
@@ -480,7 +500,7 @@ SubClassOf(krr:StructuredMachinableKnowledgeResource know:CompositeKnowledgeReso
 SubClassOf(krr:StructuredMachinableKnowledgeResource ObjectSomeValuesFrom(krr:hasStructuralComponent krr:MachinableKnowledgeResource))
 SubClassOf(krr:StructuredMachinableKnowledgeResource ObjectExactCardinality(1 krr:hasStructureType))
 
-# Class: know:KnowledgeEndeavour (Knowledge Endeavour)
+# Class: know:KnowledgeEndeavour (knowledge endeavour)
 
 AnnotationAssertion(skos:note know:KnowledgeEndeavour "Knowledge Endeavors are per se immutable. Should any part change as a result of some (cognitive) activity, a new distinct Endeavor is created, that is a new version (derivative) of the original one")
 SubClassOf(know:KnowledgeEndeavour krr:ImmutableEntity)

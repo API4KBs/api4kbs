@@ -19,8 +19,9 @@ Prefix(SpecificationMetadata:=<http://www.omg.org/techprocess/ab/SpecificationMe
 
 
 Ontology(<http://www.omg.org/spec/API4KP/KMO>
-<http://www.omg.org/spec/API4KP/20170501/KMO>
+<http://www.omg.org/spec/API4KP/2017/12/KMO>
 Import(<http://www.omg.org/spec/API4KP/2017/12/core>)
+Import(<http://www.omg.org/spec/API4KP/2017/12/rel>)
 Annotation(dc:creator "Davide Sottara")
 Annotation(dc:creator "Jane Shellum")
 Annotation(dc:creator "Kris Pavek")
@@ -30,7 +31,6 @@ Annotation(dc:creator "Sivaram Arabandi")
 Annotation(dc:description "The purpose of this ontology is to define 'knowledge' and the related concepts that play a role in managing and delivering that knowledge to different audiences.")
 Annotation(dc:title "Ontology of Shareable Knowledge")
 
-Declaration(Class(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeArtifact>))
 Declaration(Class(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>))
 Declaration(Class(kmo:AdvancedKnowledge))
 Declaration(Class(kmo:AnonymousKnowledgeResource))
@@ -91,7 +91,6 @@ Declaration(Class(kmo:SpecialistKnowledge))
 Declaration(Class(kmo:StandaloneKnowledgeResource))
 Declaration(Class(kmo:TacitKnowledge))
 Declaration(Class(kmo:UndegraduateLevelInstruction))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#Function>))
 Declaration(ObjectProperty(<http://purl.org/vocab/frbr/core#complement>))
 Declaration(ObjectProperty(<http://purl.org/vocab/frbr/core#revision>))
 Declaration(ObjectProperty(<http://purl.org/vocab/frbr/core#revisionOf>))
@@ -102,6 +101,7 @@ Declaration(ObjectProperty(kmo:endorsed-by))
 Declaration(ObjectProperty(kmo:endorses))
 Declaration(ObjectProperty(kmo:possessed-by))
 Declaration(ObjectProperty(kmo:possesses))
+Declaration(ObjectProperty(kmo:replica-of))
 Declaration(ObjectProperty(prov:wasDerivedFrom))
 Declaration(NamedIndividual(<http://purl.org/spar/pso/published>))
 Declaration(AnnotationProperty(dc:creator))
@@ -160,17 +160,19 @@ AnnotationAssertion(skos:note kmo:possesses "The possession of some Knowledge is
 ObjectPropertyDomain(kmo:possesses <http://www.omg.org/spec/API4KP/core#KnowledgeableAgent>)
 ObjectPropertyRange(kmo:possesses <http://www.omg.org/spec/API4KP/core#Knowledge>)
 
+# Object Property: kmo:replica-of (replica of)
+
+AnnotationAssertion(rdfs:comment kmo:replica-of "An artifact that resulted from the copy of a 'master copy' is a replica of that copy")
+AnnotationAssertion(rdfs:label kmo:replica-of "replica of")
+SubObjectPropertyOf(kmo:replica-of <http://www.omg.org/spec/API4KP/rel#copy-of>)
+ObjectPropertyDomain(kmo:replica-of <http://www.omg.org/spec/API4KP/core#KnowledgeArtifact>)
+ObjectPropertyRange(kmo:replica-of kmo:MasterCopy)
+
 
 
 ############################
 #   Classes
 ############################
-
-# Class: <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeArtifact> (<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeArtifact>)
-
-AnnotationAssertion(skos:altLabel <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeArtifact> "Knowledge Document")
-AnnotationAssertion(skos:example <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeArtifact> "A PDF Document carrying 1) a tutorial on OWL ontologies (in English) and 2) the RDF/XML serialization of an example ontology in appendix A")
-AnnotationAssertion(skos:example <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeArtifact> "An XML file that carries the XML serialization of a RuleML rulebase")
 
 # Class: <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource> (<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)
 
@@ -294,16 +296,15 @@ AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeArtifact "digital knowledge a
 AnnotationAssertion(skos:definition kmo:DigitalKnowledgeArtifact "A digital (i.e. of electronic nature) artifact that carries some form of knowledge.")
 SubClassOf(kmo:DigitalKnowledgeArtifact <http://www.omg.org/spec/API4KP/core#KnowledgeArtifact>)
 
-# Class: kmo:DigitalKnowledgeArtifactDirectory (Digital Knowledge Artifact Directory)
+# Class: kmo:DigitalKnowledgeArtifactDirectory (digital knowledge artifact directory)
 
-AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeArtifactDirectory "Digital Knowledge Artifact Directory"@en)
-AnnotationAssertion(skos:definition kmo:DigitalKnowledgeArtifactDirectory "Function of a software that uses a Knowledge Artifact Inventory that references Digital Knowledge Artifacts")
+AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeArtifactDirectory "digital knowledge artifact directory"@en)
+AnnotationAssertion(skos:definition kmo:DigitalKnowledgeArtifactDirectory "Function of a (software) agent that relies on a Knowledge Artifact Inventory that references Digital Knowledge Artifacts")
 SubClassOf(kmo:DigitalKnowledgeArtifactDirectory kmo:KnowledgeArtifactDirectory)
-SubClassOf(kmo:DigitalKnowledgeArtifactDirectory ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-part> ObjectIntersectionOf(kmo:KnowledgeArtifactInventory ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/core#identifies> kmo:DigitalKnowledgeArtifact))))
 
-# Class: kmo:DigitalKnowledgeArtifactRepository (Digital Knowledge Artifact Repository)
+# Class: kmo:DigitalKnowledgeArtifactRepository (digital knowledge artifact repository)
 
-AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeArtifactRepository "Digital Knowledge Artifact Repository"@en)
+AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeArtifactRepository "digital knowledge artifact repository"@en)
 AnnotationAssertion(skos:definition kmo:DigitalKnowledgeArtifactRepository "Function served by an entity that stores Digital Knowledge Artifacts")
 SubClassOf(kmo:DigitalKnowledgeArtifactRepository <http://www.omg.org/spec/API4KP/core#KnowledgeArtifactRepository>)
 SubClassOf(kmo:DigitalKnowledgeArtifactRepository ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#function-of> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#stores> kmo:DigitalKnowledgeArtifact)))
@@ -314,9 +315,10 @@ AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeAssetSurrogate "digital knowl
 EquivalentClasses(kmo:DigitalKnowledgeAssetSurrogate ObjectIntersectionOf(kmo:DigitalKnowledgeArtifact <http://www.omg.org/spec/API4KP/core#KnowledgeAssetSurrogate>))
 SubClassOf(kmo:DigitalKnowledgeAssetSurrogate kmo:DigitalKnowledgeArtifact)
 
-# Class: kmo:DigitalKnowledgeAssetSurrogateRepository (Digital Knowledge Asset Surrogate Repository)
+# Class: kmo:DigitalKnowledgeAssetSurrogateRepository (digital knowledge asset surrogate repository)
 
-AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeAssetSurrogateRepository "Digital Knowledge Asset Surrogate Repository"@en)
+AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeAssetSurrogateRepository "digital knowledge asset surrogate repository"@en)
+AnnotationAssertion(skos:definition kmo:DigitalKnowledgeAssetSurrogateRepository "a repository specialized in digital asset surrogates")
 SubClassOf(kmo:DigitalKnowledgeAssetSurrogateRepository kmo:DigitalKnowledgeArtifactRepository)
 SubClassOf(kmo:DigitalKnowledgeAssetSurrogateRepository ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#function-of> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#stores> kmo:DigitalKnowledgeAssetSurrogate)))
 
@@ -451,10 +453,12 @@ AnnotationAssertion(skos:definition kmo:KnowledgeAcquisitionActivity "An abstrac
 SubClassOf(kmo:KnowledgeAcquisitionActivity <http://www.omg.org/spec/API4KP/core#InformationProcessingActivity>)
 SubClassOf(kmo:KnowledgeAcquisitionActivity ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#performed-by> <http://www.omg.org/spec/API4KP/core#KnowledgeableAgent>))
 
-# Class: kmo:KnowledgeArtifactDirectory (Knowledge Artifact Directory)
+# Class: kmo:KnowledgeArtifactDirectory (knowledge artifact directory)
 
-AnnotationAssertion(rdfs:label kmo:KnowledgeArtifactDirectory "Knowledge Artifact Directory"@en)
+AnnotationAssertion(rdfs:label kmo:KnowledgeArtifactDirectory "knowledge artifact directory"@en)
+AnnotationAssertion(skos:definition kmo:KnowledgeArtifactDirectory "function of an agent that can be queried to resolve the identity and/or location of certain knowledge artifacts. The function is enabled by the agent's internal representation of an artifact inventory")
 SubClassOf(kmo:KnowledgeArtifactDirectory <http://www.omg.org/spec/API4KP/core#KnowledgeProcessingFunction>)
+SubClassOf(kmo:KnowledgeArtifactDirectory ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#function-of> ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeableAgent> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#internally-represents> kmo:KnowledgeArtifactInventory))))
 
 # Class: kmo:KnowledgeArtifactEditor (knowledge artifact editor)
 
@@ -463,12 +467,12 @@ AnnotationAssertion(rdfs:label kmo:KnowledgeArtifactEditor "knowledge artifact e
 SubClassOf(kmo:KnowledgeArtifactEditor <http://www.omg.org/spec/API4KP/core#KnowledgeProcessingFunction>)
 SubClassOf(kmo:KnowledgeArtifactEditor ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#function-of> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#used-in> ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeActivity> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#targets> <http://www.omg.org/spec/API4KP/core#KnowledgeArtifact>)))))
 
-# Class: kmo:KnowledgeArtifactInventory (Knowledge Artifact Inventory)
+# Class: kmo:KnowledgeArtifactInventory (knowledge artifact inventory)
 
-AnnotationAssertion(rdfs:label kmo:KnowledgeArtifactInventory "Knowledge Artifact Inventory"@en)
-AnnotationAssertion(skos:definition kmo:KnowledgeArtifactInventory "The association between each knowledge artifact in a collection thereof, its content, and its location")
-SubClassOf(kmo:KnowledgeArtifactInventory <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)
-SubClassOf(kmo:KnowledgeArtifactInventory ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#identifies> <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeArtifact>))
+AnnotationAssertion(rdfs:label kmo:KnowledgeArtifactInventory "knowledge artifact inventory"@en)
+AnnotationAssertion(skos:definition kmo:KnowledgeArtifactInventory "A complex collection of references to one or more Knowledge Artifacts")
+SubClassOf(kmo:KnowledgeArtifactInventory <http://www.omg.org/spec/API4KP/core#AbstractExpression>)
+SubClassOf(kmo:KnowledgeArtifactInventory ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-proper-part> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#denotes> <http://www.omg.org/spec/API4KP/core#KnowledgeArtifact>)))
 
 # Class: kmo:KnowledgeAsset (knowledge asset)
 
@@ -496,7 +500,7 @@ SubClassOf(kmo:KnowledgeEndorsingParty ObjectSomeValuesFrom(<http://www.omg.org/
 # Class: kmo:KnowledgeManagementServiceProvider (knowledge management service provider)
 
 AnnotationAssertion(rdfs:label kmo:KnowledgeManagementServiceProvider "knowledge management service provider"@en)
-AnnotationAssertion(skos:definition kmo:KnowledgeManagementServiceProvider "The function possessed by an entity that serves the role of Knowledge Manager, enabling the creation, maintenance, storage, cataloguing, and delivery/distribution of knowledge artifacts")
+AnnotationAssertion(skos:definition kmo:KnowledgeManagementServiceProvider "The function of an entity that serves the role of Knowledge Manager, enabling the creation, maintenance, storage, cataloguing, and delivery/distribution of knowledge artifacts")
 SubClassOf(kmo:KnowledgeManagementServiceProvider <http://www.omg.org/spec/API4KP/core#KnowledgeProcessingFunction>)
 SubClassOf(kmo:KnowledgeManagementServiceProvider ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-part> kmo:KnowledgeArtifactDirectory))
 SubClassOf(kmo:KnowledgeManagementServiceProvider ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-part> kmo:KnowledgeArtifactEditor))
@@ -553,6 +557,7 @@ EquivalentClasses(kmo:OriginalKnowledgeResource ObjectIntersectionOf(<http://www
 # Class: kmo:PublishedKnowledgeResource (Published Knowledge Resource)
 
 AnnotationAssertion(rdfs:label kmo:PublishedKnowledgeResource "Published Knowledge Resource"@en)
+AnnotationAssertion(skos:definition kmo:PublishedKnowledgeResource "resource that has been published by means of a publication activity")
 SubClassOf(kmo:PublishedKnowledgeResource <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)
 
 # Class: kmo:SophisticatedKnowledgeResource (sophisticated knowledge resource)
