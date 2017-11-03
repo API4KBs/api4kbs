@@ -1,5 +1,6 @@
 Prefix(:=<http://www.omg.org/spec/API4KP/Operations#>)
 Prefix(sm:=<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
+Prefix(DOL:=<http://www.omg.org/spec/DOL/DOL-terms/>)
 Prefix(ops:=<http://www.omg.org/spec/API4KP/Operations#>)
 Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
 Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
@@ -12,6 +13,7 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 Ontology(<http://www.omg.org/spec/API4KP/Operations>
 <http://www.omg.org/spec/API4KP2017/12//Operations>
 Import(<http://www.omg.org/spec/API4KP/2017/12/core>)
+Import(<http://www.omg.org/spec/API4KP/2017/12/DOL-Bridge>)
 Import(<http://www.omg.org/spec/API4KP/20160801/Aspects/>)
 Import(<http://www.omg.org/spec/API4KP/2017/12/rel>)
 Import(<http://www.omg.org/spec/API4KP/2017/12/KR/>)
@@ -24,19 +26,28 @@ Copyright (c) 2014-2017 Thematix Partners LLC
 Copyright (c) 2014-2017 Object Management Group, Inc."^^xsd:string)
 Annotation(rdfs:comment "Ontology of API4KP Operations")
 
-Declaration(Class(ops:ASTranslationTask))
 Declaration(Class(ops:AtomicKnowledgeProcessingActivity))
 Declaration(Class(ops:AtomicKnowledgeProcessingTask))
+Declaration(Class(ops:ClosedKnowledgeProcessingTask))
 Declaration(Class(ops:ComplexKnowledgeProcessingActivity))
 Declaration(Class(ops:ComplexKnowledgeProcessingTask))
 Declaration(Class(ops:ConfigurationParameter))
 Declaration(Class(ops:DecodingTask))
 Declaration(Class(ops:EncodingTask))
 Declaration(Class(ops:Explanation))
+Declaration(Class(ops:ExpressionTask))
 Declaration(Class(ops:Input))
 Declaration(Class(ops:InputOutput))
+Declaration(Class(ops:InterpretationTask))
+Declaration(Class(ops:KnowledgeAnalyticTask))
+Declaration(Class(ops:KnowledgeBaseStructuringTask))
+Declaration(Class(ops:KnowledgeManagementTask))
+Declaration(Class(ops:KnowledgeManipulationTask))
 Declaration(Class(ops:KnowledgeProcessingOperation))
 Declaration(Class(ops:KnowledgeProcessingServiceTask))
+Declaration(Class(ops:KnowledgeReasoningTask))
+Declaration(Class(ops:KnowledgeStructuringTask))
+Declaration(Class(ops:OpenKnowledgeProcessingTask))
 Declaration(Class(ops:OptionalInput))
 Declaration(Class(ops:Output))
 Declaration(Class(ops:ParsingTask))
@@ -44,11 +55,17 @@ Declaration(Class(ops:PrimaryInput))
 Declaration(Class(ops:PrimaryOutput))
 Declaration(Class(ops:ReadTask))
 Declaration(Class(ops:SecondaryOutput))
+Declaration(Class(ops:SemanticKnowledgeManagementTask))
 Declaration(Class(ops:SerializationTask))
+Declaration(Class(ops:SyntacticAnalysisTask))
+Declaration(Class(ops:SyntacticKnowledgeProcessingTask))
+Declaration(Class(ops:SyntacticParsingTask))
 Declaration(Class(ops:WriteTask))
+Declaration(ObjectProperty(ops:commences-with))
 Declaration(ObjectProperty(ops:composed-into))
 Declaration(ObjectProperty(ops:composed-with))
 Declaration(ObjectProperty(ops:configures))
+Declaration(ObjectProperty(ops:encapsulates))
 Declaration(ObjectProperty(ops:filled-by))
 Declaration(ObjectProperty(ops:has-primary-subtask))
 Declaration(ObjectProperty(ops:has-role))
@@ -60,9 +77,17 @@ Declaration(ObjectProperty(ops:played-by))
 #   Object Properties
 ############################
 
-# Object Property: ops:composed-into (>>=)
+# Object Property: ops:commences-with (commences with)
 
-AnnotationAssertion(rdfs:label ops:composed-into ">>=")
+AnnotationAssertion(rdfs:label ops:commences-with "commences with")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:commences-with "A task T commences with a given subtask S if T is defined by a plan P that is initiated by S")
+SubObjectPropertyOf(ops:commences-with know:associated-to)
+ObjectPropertyDomain(ops:commences-with know:InformationProcessingTask)
+ObjectPropertyRange(ops:commences-with know:InformationProcessingTask)
+
+# Object Property: ops:composed-into (then)
+
+AnnotationAssertion(rdfs:label ops:composed-into "then")
 AnnotationAssertion(rdfs:seeAlso ops:composed-into "F is composed into G if F is applied, and the G is applied to its result.
 I.e. F => G, or G( F( x ) )")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:composed-into "composed into")
@@ -90,6 +115,15 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:configu
 ObjectPropertyDomain(ops:configures ops:ConfigurationParameter)
 ObjectPropertyRange(ops:configures know:KnowledgeProcessingMethod)
 
+# Object Property: ops:encapsulates (encapsulates)
+
+AnnotationAssertion(rdfs:label ops:encapsulates "encapsulates")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:encapsulates "A closed task encapsulates another task, giving it closure")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:encapsulates "The target task is usually an atomic task, or an open (complex) task, but can also be another closed task, e.g. to handle the involvement of third parties")
+SubObjectPropertyOf(ops:encapsulates ops:has-primary-subtask)
+ObjectPropertyDomain(ops:encapsulates ops:ClosedKnowledgeProcessingTask)
+ObjectPropertyRange(ops:encapsulates know:InformationProcessingTask)
+
 # Object Property: ops:filled-by (filled by)
 
 AnnotationAssertion(rdfs:label ops:filled-by "filled by")
@@ -101,15 +135,15 @@ ObjectPropertyDomain(ops:filled-by know:PassiveRole)
 AnnotationAssertion(rdfs:label ops:has-primary-subtask "has primary sub-task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:has-primary-subtask "a task T has a primary sub-task P, if not achieving the goals of the plan that defines P necessarily implies not achieving the goals of the plan that defines T")
 SubObjectPropertyOf(ops:has-primary-subtask ops:has-subtask)
-ObjectPropertyDomain(ops:has-primary-subtask know:KnowledgeProcessingTask)
-ObjectPropertyRange(ops:has-primary-subtask know:KnowledgeProcessingTask)
+ObjectPropertyDomain(ops:has-primary-subtask know:InformationProcessingTask)
+ObjectPropertyRange(ops:has-primary-subtask know:InformationProcessingTask)
 
 # Object Property: ops:has-role (has role)
 
 AnnotationAssertion(rdfs:label ops:has-role "has role")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:has-role "the relationship between a task T and a role R, such that when an activity A is performed and A is archetyped by T, there exists at least one agent or a resource that participats in A and is archetyped by R")
 SubObjectPropertyOf(ops:has-role know:has-part)
-ObjectPropertyDomain(ops:has-role know:KnowledgeProcessingTask)
+ObjectPropertyDomain(ops:has-role know:InformationProcessingTask)
 ObjectPropertyRange(ops:has-role ObjectUnionOf(know:AgentiveRole know:PassiveRole))
 
 # Object Property: ops:has-subtask (has sub-task)
@@ -117,15 +151,15 @@ ObjectPropertyRange(ops:has-role ObjectUnionOf(know:AgentiveRole know:PassiveRol
 AnnotationAssertion(rdfs:label ops:has-subtask "has sub-task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:has-subtask "the relationship between a task T and a task S, such that an activity of kind T will have an activity of type S as a sub-activity, i.e. as a (temporal) proper process part")
 SubObjectPropertyOf(ops:has-subtask know:has-part)
-ObjectPropertyDomain(ops:has-subtask know:KnowledgeProcessingTask)
-ObjectPropertyRange(ops:has-subtask know:KnowledgeProcessingTask)
+ObjectPropertyDomain(ops:has-subtask know:InformationProcessingTask)
+ObjectPropertyRange(ops:has-subtask know:InformationProcessingTask)
 
 # Object Property: ops:initiated-by (initiated by)
 
 AnnotationAssertion(rdfs:label ops:initiated-by "initiated by")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:initiated-by "A plan P is initiated by a task T if any activity of the kind defined by P starts (temporally) with a sub-activity of kind T")
 ObjectPropertyDomain(ops:initiated-by know:KnowledgeProcessingPlan)
-ObjectPropertyRange(ops:initiated-by know:KnowledgeProcessingTask)
+ObjectPropertyRange(ops:initiated-by know:InformationProcessingTask)
 
 # Object Property: ops:played-by (played by)
 
@@ -140,10 +174,6 @@ ObjectPropertyRange(ops:played-by know:Agent)
 #   Classes
 ############################
 
-# Class: ops:ASTranslationTask (ops:ASTranslationTask)
-
-SubClassOf(ops:ASTranslationTask ops:AtomicKnowledgeProcessingTask)
-
 # Class: ops:AtomicKnowledgeProcessingActivity (atomic knowledge processing activity)
 
 AnnotationAssertion(rdfs:label ops:AtomicKnowledgeProcessingActivity "atomic knowledge processing activity")
@@ -156,9 +186,21 @@ DisjointClasses(ops:AtomicKnowledgeProcessingActivity ops:ComplexKnowledgeProces
 
 AnnotationAssertion(rdfs:comment ops:AtomicKnowledgeProcessingTask "each 'atomic knowledge processing task' is the concept that abstracts a specific class of atomic knowledge processing activities")
 AnnotationAssertion(rdfs:label ops:AtomicKnowledgeProcessingTask "atomic knowledge processing task")
-SubClassOf(ops:AtomicKnowledgeProcessingTask know:KnowledgeProcessingTask)
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:AtomicKnowledgeProcessingTask "task that is executed in an atomic activity, i.e. an activity that is not further explicitly decomposed")
+SubClassOf(ops:AtomicKnowledgeProcessingTask know:InformationProcessingTask)
 SubClassOf(ops:AtomicKnowledgeProcessingTask ObjectSomeValuesFrom(know:archetypes ops:AtomicKnowledgeProcessingActivity))
 SubClassOf(ops:AtomicKnowledgeProcessingTask ObjectAllValuesFrom(know:archetypes ops:AtomicKnowledgeProcessingActivity))
+
+# Class: ops:ClosedKnowledgeProcessingTask (closed knowledge processing task)
+
+AnnotationAssertion(rdfs:comment ops:ClosedKnowledgeProcessingTask "'Closed' tasks start with the extraction of knowledge from a knowledge artifact (given or resolved), and are possibly terminated with the creation of a (new version of) a knowledge artifact.
+As such, they cannot be chained directly, but their composition is mediated by the use of carriers")
+AnnotationAssertion(rdfs:label ops:ClosedKnowledgeProcessingTask "closed knowledge processing task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ClosedKnowledgeProcessingTask "A closed knowledge processing task is a task than can be executed with persistent consequences, even if the (artificial) agent that performs it is destroyed.
+The 'core' of such a task is another knowledge processing task, or composition thereof")
+SubClassOf(ops:ClosedKnowledgeProcessingTask ops:ComplexKnowledgeProcessingTask)
+SubClassOf(ops:ClosedKnowledgeProcessingTask ObjectSomeValuesFrom(ops:encapsulates know:InformationProcessingTask))
+SubClassOf(ops:ClosedKnowledgeProcessingTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by know:KnowledgeArtifact)))
 
 # Class: ops:ComplexKnowledgeProcessingActivity (complex knowledge processing activity)
 
@@ -169,11 +211,13 @@ SubClassOf(ops:ComplexKnowledgeProcessingActivity know:KnowledgeActivity)
 
 # Class: ops:ComplexKnowledgeProcessingTask (complex knowledge processing task)
 
-AnnotationAssertion(rdfs:comment ops:ComplexKnowledgeProcessingTask "each 'complex knowledge processing task' is the concept that abstracts a specific class of complex knowledge processing activities. 
+AnnotationAssertion(rdfs:comment ops:ComplexKnowledgeProcessingTask "Knowledge processing task are further divided into 'open' and 'closed'.")
+AnnotationAssertion(rdfs:label ops:ComplexKnowledgeProcessingTask "complex knowledge processing task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ComplexKnowledgeProcessingTask "each 'complex knowledge processing task' is the concept that abstracts a specific class of complex knowledge processing activities. 
 
 The concept is defined by a plan which organizes the simpler tasks that are part of the complex task, and defines its roles, methods and goals.")
-AnnotationAssertion(rdfs:label ops:ComplexKnowledgeProcessingTask "complex knowledge processing task")
-SubClassOf(ops:ComplexKnowledgeProcessingTask know:KnowledgeProcessingTask)
+EquivalentClasses(ops:ComplexKnowledgeProcessingTask ObjectIntersectionOf(know:InformationProcessingTask ObjectSomeValuesFrom(ops:has-subtask know:InformationProcessingTask)))
+SubClassOf(ops:ComplexKnowledgeProcessingTask know:InformationProcessingTask)
 SubClassOf(ops:ComplexKnowledgeProcessingTask ObjectSomeValuesFrom(know:archetypes ops:ComplexKnowledgeProcessingActivity))
 SubClassOf(ops:ComplexKnowledgeProcessingTask ObjectSomeValuesFrom(know:defined-by know:KnowledgeProcessingPlan))
 
@@ -189,14 +233,23 @@ SubClassOf(ops:ConfigurationParameter ObjectSomeValuesFrom(ops:configures know:K
 # Class: ops:DecodingTask (decoding task)
 
 AnnotationAssertion(rdfs:label ops:DecodingTask "decoding task")
-AnnotationAssertion(rdfs:label ops:DecodingTask "recognition task")
 SubClassOf(ops:DecodingTask ops:AtomicKnowledgeProcessingTask)
+SubClassOf(ops:DecodingTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:DecodingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:EncodedKnowledgeExpression))))
+SubClassOf(ops:DecodingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
+SubClassOf(ops:DecodingTask ObjectSomeValuesFrom(know:based-on know:Encoding))
 
 # Class: ops:EncodingTask (encoding task)
 
 AnnotationAssertion(rdfs:label ops:EncodingTask "encoding task")
-AnnotationAssertion(rdfs:label ops:EncodingTask "engraving task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:EncodingTask "")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:EncodingTask "Tasks of this type encode concrete expressions so that they can be engraved on a carrier")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#example> ops:EncodingTask "Converting characters into sequences of bits, according to an encoding method, so that they can be written to a RAM, ROM or magnetic disk")
 SubClassOf(ops:EncodingTask ops:AtomicKnowledgeProcessingTask)
+SubClassOf(ops:EncodingTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:EncodingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
+SubClassOf(ops:EncodingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:EncodedKnowledgeExpression))))
+SubClassOf(ops:EncodingTask ObjectSomeValuesFrom(know:based-on know:Encoding))
 
 # Class: ops:Explanation (explanation)
 
@@ -204,6 +257,12 @@ AnnotationAssertion(rdfs:label ops:Explanation "explanation")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:Explanation "An expression, generated as part of the execution of a (knowledge processing) activity, of knowledge about that course of that activity and/or its inputs and outputs")
 SubClassOf(ops:Explanation ops:SecondaryOutput)
 SubClassOf(ops:Explanation ObjectSomeValuesFrom(know:archetypes ObjectIntersectionOf(know:KnowledgeExpression ObjectSomeValuesFrom(know:representation-of know:KnowledgeActivity))))
+
+# Class: ops:ExpressionTask (TODO TODO TODO expression task)
+
+AnnotationAssertion(rdfs:label ops:ExpressionTask "TODO TODO TODO expression task")
+SubClassOf(ops:ExpressionTask ops:AtomicKnowledgeProcessingTask)
+SubClassOf(ops:ExpressionTask ops:SyntacticKnowledgeProcessingTask)
 
 # Class: ops:Input (input)
 
@@ -219,6 +278,42 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:InputOu
 SubClassOf(ops:InputOutput ops:Input)
 SubClassOf(ops:InputOutput ops:Output)
 
+# Class: ops:InterpretationTask (TODO TODO TODO conceptualization task)
+
+AnnotationAssertion(rdfs:label ops:InterpretationTask "TODO TODO TODO conceptualization task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:InterpretationTask "interpretation task")
+SubClassOf(ops:InterpretationTask ops:AtomicKnowledgeProcessingTask)
+SubClassOf(ops:InterpretationTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:InterpretationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:AbstractSyntaxTree))))
+SubClassOf(ops:InterpretationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:AbstractSemanticGraph))))
+
+# Class: ops:KnowledgeAnalyticTask (knowledge analytic task)
+
+AnnotationAssertion(rdfs:label ops:KnowledgeAnalyticTask "knowledge analytic task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeAnalyticTask "task whose objective is the determination of a quality of a knowledge resource (e.g. used language, complexity, etc..)")
+SubClassOf(ops:KnowledgeAnalyticTask ops:OpenKnowledgeProcessingTask)
+
+# Class: ops:KnowledgeBaseStructuringTask (knowledge base structuring task)
+
+AnnotationAssertion(rdfs:label ops:KnowledgeBaseStructuringTask "knowledge base structuring task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeBaseStructuringTask "Task that is ultimately aimed at the creation of composite knowledge resources, snapshots of which are intended to be used as working knowledge bases in some reasoning activity")
+SubClassOf(ops:KnowledgeBaseStructuringTask ops:KnowledgeStructuringTask)
+SubClassOf(ops:KnowledgeBaseStructuringTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/WorkingKnowledgeBase>)))
+
+# Class: ops:KnowledgeManagementTask (knowledge management task)
+
+AnnotationAssertion(rdfs:label ops:KnowledgeManagementTask "knowledge management task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeManagementTask "A task that deals with the life cycle of a knowledge resource and/or the artifact(s) that carry it")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:KnowledgeManagementTask "Tasks of this kind cover elicitation, authoring, curation, storage and retrieval, cataloguing, distribution of knowledge resources, but treat resources (and artifacts) as black boxes, ignoring their syntactic, semantic and pragmatic characteristics")
+SubClassOf(ops:KnowledgeManagementTask ops:OpenKnowledgeProcessingTask)
+SubClassOf(ops:KnowledgeManagementTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by know:KnowledgeArtifact)))
+
+# Class: ops:KnowledgeManipulationTask (knowledge manipulation task)
+
+AnnotationAssertion(rdfs:label ops:KnowledgeManipulationTask "a task that is based on methods that only leverage the syntactic and semantic aspects of a knowledge resource, but not its pragmatic ones.")
+AnnotationAssertion(rdfs:label ops:KnowledgeManipulationTask "knowledge manipulation task")
+SubClassOf(ops:KnowledgeManipulationTask ops:OpenKnowledgeProcessingTask)
+
 # Class: ops:KnowledgeProcessingOperation (knowledge processing operation)
 
 AnnotationAssertion(rdfs:label ops:KnowledgeProcessingOperation "knowledge processing operation")
@@ -229,11 +324,46 @@ SubClassOf(ops:KnowledgeProcessingOperation ObjectUnionOf(ObjectSomeValuesFrom(k
 
 # Class: ops:KnowledgeProcessingServiceTask (knowledge processing service task)
 
+AnnotationAssertion(rdfs:comment ops:KnowledgeProcessingServiceTask "Knowledge processing tasks 'as a service' involve some specific roles:
+
+- one primary output
+- some configuration parameters that influence, for example, the choice of the specific, encapsulated task, and/or the method(s) used to perform those task(s)
+- an explanation, in the form of a knowledge expression, that justifies how and why the actual primary output was returned")
+AnnotationAssertion(rdfs:comment ops:KnowledgeProcessingServiceTask "Tasks executed as a service are necessarily closed, as they are mediated by the request and regulated by the service contract.")
 AnnotationAssertion(rdfs:label ops:KnowledgeProcessingServiceTask "knowledge processing service task")
-AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeProcessingServiceTask "a knowledge processing task that is exposed as a service: i.e. an agent can be requested to perform activities of this kind, any number of times, based on a request mediated by an (communication) interface and possibly under the guidance of a contract")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeProcessingServiceTask "a knowledge processing task that can be exposed as a service by an agent: i.e. that agent can be requested to perform activities of this kind, any number of times, based on a request mediated by an (communication) interface and possibly under the guidance of a contract")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:KnowledgeProcessingServiceTask "The 'service' elements are defined in the API4KP Platform ontology")
-SubClassOf(ops:KnowledgeProcessingServiceTask ops:ComplexKnowledgeProcessingTask)
-SubClassOf(ops:KnowledgeProcessingServiceTask ObjectSomeValuesFrom(know:archetypes ops:KnowledgeProcessingOperation))
+SubClassOf(ops:KnowledgeProcessingServiceTask ops:ClosedKnowledgeProcessingTask)
+SubClassOf(ops:KnowledgeProcessingServiceTask ObjectSomeValuesFrom(ops:has-role ops:ConfigurationParameter))
+SubClassOf(ops:KnowledgeProcessingServiceTask ObjectSomeValuesFrom(ops:has-role ops:PrimaryInput))
+SubClassOf(ops:KnowledgeProcessingServiceTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Explanation ObjectSomeValuesFrom(ops:filled-by know:KnowledgeExpression))))
+
+# Class: ops:KnowledgeReasoningTask (knowledge reasoning task)
+
+AnnotationAssertion(rdfs:label ops:KnowledgeReasoningTask "knowledge reasoning task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeReasoningTask "task that derives new information leveraging the pragmatic aspects of a working knowledge base")
+SubClassOf(ops:KnowledgeReasoningTask ops:OpenKnowledgeProcessingTask)
+SubClassOf(ops:KnowledgeReasoningTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/WorkingKnowledgeBase>)))
+
+# Class: ops:KnowledgeStructuringTask (knowledge structuring task)
+
+AnnotationAssertion(rdfs:label ops:KnowledgeStructuringTask "knowledge structuring task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeStructuringTask "task that, when executed, involves structured knowledge resources")
+SubClassOf(ops:KnowledgeStructuringTask ops:OpenKnowledgeProcessingTask)
+SubClassOf(ops:KnowledgeStructuringTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by know:StructuredKnowledgeResource)))
+
+# Class: ops:OpenKnowledgeProcessingTask (open knowledge processing task)
+
+AnnotationAssertion(rdfs:comment ops:OpenKnowledgeProcessingTask "Tasks are roughly grouped by whether their methods are based on certain aspects of a knowledge resource, including:
+
+- syntactic : aspects tied to the language (syntax and lexical expressions)
+- semantic : computational semantics based on the underlying logic(s) and/or domain semantics based on the interpretation of the signature (the part of the lexicon used in an expression)
+- pragmatic: additional aspects, proper of the underlying logic, that drive the use of a resource, e.g. for 'reasoning'")
+AnnotationAssertion(rdfs:label ops:OpenKnowledgeProcessingTask "open knowledge processing task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:OpenKnowledgeProcessingTask "An open knowledge processing task is a task whose execution and outcomes specifically depend on the agent that is performing it. 
+
+As such, they can be chained without the need of communication or other forms of mediation, but require closure in order to have persistent effects")
+SubClassOf(ops:OpenKnowledgeProcessingTask know:InformationProcessingTask)
 
 # Class: ops:OptionalInput (optional input)
 
@@ -248,9 +378,15 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:Output "p
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:Output "Role played by an entity that is produced by a (knowledge processing) activity")
 SubClassOf(ops:Output know:PassiveRole)
 
-# Class: ops:ParsingTask (ops:ParsingTask)
+# Class: ops:ParsingTask (parsing task)
 
-SubClassOf(ops:ParsingTask ops:AtomicKnowledgeProcessingTask)
+AnnotationAssertion(rdfs:label ops:ParsingTask "parsing task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ParsingTask "the act of creating an AST (of an abstract knowldge expression) from a concrete knowledge expression")
+SubClassOf(ops:ParsingTask ops:ComplexKnowledgeProcessingTask)
+SubClassOf(ops:ParsingTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:ParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
+SubClassOf(ops:ParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:AbstractSyntaxTree))))
+SubClassOf(ops:ParsingTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:AbstractSyntax)))
 
 # Class: ops:PrimaryInput (primary input)
 
@@ -268,7 +404,12 @@ SubClassOf(ops:PrimaryOutput ops:Output)
 # Class: ops:ReadTask (I/O read task)
 
 AnnotationAssertion(rdfs:label ops:ReadTask "I/O read task")
-SubClassOf(ops:ReadTask ops:DecodingTask)
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:ReadTask "extraction task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ReadTask "A task that extracts an encoded knowledge expression from a carrier")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#example> ops:ReadTask "opening a file and reading the stream of Unicode-encoded characters")
+SubClassOf(ops:ReadTask ops:AtomicKnowledgeProcessingTask)
+SubClassOf(ops:ReadTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeCarrier))))
+SubClassOf(ops:ReadTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:EncodedKnowledgeExpression))))
 
 # Class: ops:SecondaryOutput (secondary output)
 
@@ -278,29 +419,78 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:Secondary
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SecondaryOutput "output that is generated alongside the primary output, but is not one of the primary goals of the execution of that activity")
 SubClassOf(ops:SecondaryOutput ops:Output)
 
-# Class: ops:SerializationTask (ops:SerializationTask)
+# Class: ops:SemanticKnowledgeManagementTask (semantic knowledge management task)
 
+AnnotationAssertion(rdfs:label ops:SemanticKnowledgeManagementTask "semantic knowledge management task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SemanticKnowledgeManagementTask "A 'semantic' knowledge management task treats artifacts and resources as a black box, but makes use of their descriptions (and the surrogates that carry them)")
+SubClassOf(ops:SemanticKnowledgeManagementTask ops:KnowledgeManagementTask)
+SubClassOf(ops:SemanticKnowledgeManagementTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResourceDescription)))
+
+# Class: ops:SerializationTask (TODO TODO TODO serialization task)
+
+AnnotationAssertion(rdfs:label ops:SerializationTask "TODO TODO TODO serialization task")
 SubClassOf(ops:SerializationTask ops:AtomicKnowledgeProcessingTask)
+SubClassOf(ops:SerializationTask ops:SyntacticKnowledgeProcessingTask)
+
+# Class: ops:SyntacticAnalysisTask (syntactic analysis task)
+
+AnnotationAssertion(rdfs:label ops:SyntacticAnalysisTask "syntactic analysis task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SyntacticAnalysisTask "the act of deriving an AST from a parse tree")
+SubClassOf(ops:SyntacticAnalysisTask ops:AtomicKnowledgeProcessingTask)
+SubClassOf(ops:SyntacticAnalysisTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:SyntacticAnalysisTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ParseTree))))
+SubClassOf(ops:SyntacticAnalysisTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:AbstractSyntaxTree))))
+SubClassOf(ops:SyntacticAnalysisTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:AbstractSyntax)))
+
+# Class: ops:SyntacticKnowledgeProcessingTask (syntactic knowledge processing task)
+
+AnnotationAssertion(rdfs:label ops:SyntacticKnowledgeProcessingTask "syntactic knowledge processing task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SyntacticKnowledgeProcessingTask "a task that is based on methods that only leverage the syntactic aspects of a knowledge resource, but not its semantic and pragmatic ones")
+SubClassOf(ops:SyntacticKnowledgeProcessingTask ops:OpenKnowledgeProcessingTask)
+SubClassOf(ops:SyntacticKnowledgeProcessingTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:WorkOfKnowledge)))
+SubClassOf(ops:SyntacticKnowledgeProcessingTask ObjectAllValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:WorkOfKnowledge)))
+
+# Class: ops:SyntacticParsingTask (syntactic parsing task)
+
+AnnotationAssertion(rdfs:label ops:SyntacticParsingTask "syntactic parsing task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SyntacticParsingTask "the act of creating a parse tree from a concrete knowledge expression. scanning and tokenization are considered sub-atomic parts of this task")
+SubClassOf(ops:SyntacticParsingTask ops:AtomicKnowledgeProcessingTask)
+SubClassOf(ops:SyntacticParsingTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:SyntacticParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
+SubClassOf(ops:SyntacticParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:ParseTree))))
+SubClassOf(ops:SyntacticParsingTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:Serialization)))
 
 # Class: ops:WriteTask (I/O write task)
 
 AnnotationAssertion(rdfs:label ops:WriteTask "I/O write task")
-SubClassOf(ops:WriteTask ops:EncodingTask)
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:WriteTask "engraving task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:WriteTask "The task of imprinting an encoded expression on a carrier")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#example> ops:WriteTask "writing a stream of ASCII characters to a (text) file")
+SubClassOf(ops:WriteTask ops:AtomicKnowledgeProcessingTask)
+SubClassOf(ops:WriteTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:EncodedKnowledgeExpression))))
+SubClassOf(ops:WriteTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeCarrier))))
+
+# Class: know:InformationProcessingTask (knowledge processing task)
+
+AnnotationAssertion(rdfs:comment know:InformationProcessingTask "A knowledge processing task abstracts the role that knowledge endeavors play in a knowledge processing activity, as inputs, outputs or both")
+AnnotationAssertion(rdfs:comment know:InformationProcessingTask "Some tasks, those that are executed according to a method that has some degrees of freedom, can be configured using parameters")
+AnnotationAssertion(rdfs:comment know:InformationProcessingTask "The execution of a Knowledge Processing tasks may involve the generation of an 'explanation'")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> know:InformationProcessingTask "A Knowledge Processing Task includes a Goal, i.e. a formal description of the expected situation that is the outcome of the execution of an Activity of the type defined by the Task.
+When the outcome matches the Goal - i.e. the description of the outcome is subsumed by the Goal - the activity is considered to be successful. Otherwise, it is considered to be failed")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> know:InformationProcessingTask "The classes in this part of the taxonomy are scoped to knowledge endeavors. Many of them generalize to expressions and information objects that are not necessarily representation of \"knowledge\", which however are not in the scope of this ontology.
+
+As such, those classes in the API4KP namespace should be considered subclasses of their more general counterparts defined in other ontologies")
+SubClassOf(know:InformationProcessingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ObjectUnionOf(ops:Input ops:Output) ObjectSomeValuesFrom(ops:filled-by know:KnowledgeEndeavour))))
 
 # Class: know:KnowledgeActivity (knowledge processing activity)
 
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> know:KnowledgeActivity "Like any other Activity, an (instance of a) knowledge processing activity is a process that takes place in space and time")
-
-# Class: know:KnowledgeProcessingTask ((knowledge processing) task)
-
-AnnotationAssertion(rdfs:comment know:KnowledgeProcessingTask "A knowledge processing task abstracts the role that knowledge endeavors play in a knowledge processing activity, as inputs, outputs or both")
-AnnotationAssertion(rdfs:comment know:KnowledgeProcessingTask "Some tasks, those that are executed according to a method that has some degrees of freedom, can be configured using parameters")
-AnnotationAssertion(rdfs:comment know:KnowledgeProcessingTask "The execution of a Knowledge Processing tasks may involve the generation of an 'explanation'")
-AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> know:KnowledgeProcessingTask "A Knowledge Processing Task includes a Goal, i.e. a formal description of the expected situation that is the outcome of the execution of an Activity of the type defined by the Task.
-When the outcome matches the Goal - i.e. the description of the outcome is subsumed by the Goal - the activity is considered to be successful. Otherwise, it is considered to be failed")
-SubClassOf(know:KnowledgeProcessingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ObjectUnionOf(ops:Input ops:Output) ObjectSomeValuesFrom(ops:filled-by know:KnowledgeEndeavour))))
+SubClassOf(know:KnowledgeActivity ObjectSomeValuesFrom(know:archetyped-by know:InformationProcessingTask))
 
 
-SubClassOf(ObjectSomeValuesFrom(ops:has-role ops:ConfigurationParameter) know:KnowledgeProcessingTask)
-SubClassOf(ObjectSomeValuesFrom(ops:has-role ops:Explanation) know:KnowledgeProcessingTask)
+SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:ReadTask ObjectSomeValuesFrom(ops:composed-into ObjectIntersectionOf(ops:DecodingTask ObjectSomeValuesFrom(ops:composed-into ObjectIntersectionOf(know:InformationProcessingTask ObjectSomeValuesFrom(ops:composed-into ObjectIntersectionOf(ops:EncodingTask ObjectSomeValuesFrom(ops:composed-into ops:WriteTask))))))))) ops:ClosedKnowledgeProcessingTask)
+SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:SyntacticParsingTask ObjectSomeValuesFrom(ops:composed-into ops:SyntacticAnalysisTask))) ops:ParsingTask)
+SubClassOf(ObjectSomeValuesFrom(ops:has-role ops:ConfigurationParameter) know:InformationProcessingTask)
+SubClassOf(ObjectSomeValuesFrom(ops:has-role ops:Explanation) know:InformationProcessingTask)
+SubObjectPropertyOf(ObjectPropertyChain(know:defined-by ops:initiated-by) ops:commences-with)
 )

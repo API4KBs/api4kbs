@@ -1,5 +1,6 @@
 Prefix(:=<http://www.omg.org/spec/API4KP/core#>)
 Prefix(dc:=<http://purl.org/dc/elements/1.1/>)
+Prefix(sm:=<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
 Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
 Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
 Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
@@ -10,14 +11,13 @@ Prefix(know:=<http://www.omg.org/spec/API4KP/core#>)
 Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 Prefix(skos:=<http://www.w3.org/2004/02/skos/core#>)
 Prefix(vann:=<http://purl.org/vocab/vann/>)
-Prefix(sm:=<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
 
 
 Ontology(<http://www.omg.org/spec/API4KP/core>
 <http://www.omg.org/spec/API4KP/2017/12/core>
 Annotation(dc:description "This ontology defines the core concepts of the API4KP framework: Knowledge, Resources, Operations and Platforms, serving as an 'upper ontology' for the specification")
 Annotation(dc:title "API4KP Core Ontology")
-Annotation(<http://purl.org/dc/terms/license> "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
+Annotation(dc-t:license "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
 Annotation(sm:copyright "Copyright (c) 2014-2017 Arizona State University
 Copyright (c) 2014-2017 Freie Universitat Berlin
 Copyright (c) 2014-2017 Athan Services
@@ -26,6 +26,7 @@ Copyright (c) 2014-2017 Thematix Partners LLC
 Copyright (c) 2014-2017 Object Management Group, Inc."^^xsd:string)
 
 Declaration(Class(know:AbstractExpression))
+Declaration(Class(know:AbstractSemanticGraph))
 Declaration(Class(know:AbstractSyntax))
 Declaration(Class(know:AbstractSyntaxTree))
 Declaration(Class(know:Activity))
@@ -52,6 +53,7 @@ Declaration(Class(know:FormalLanguage))
 Declaration(Class(know:Grammar))
 Declaration(Class(know:Identifier))
 Declaration(Class(know:InformationProcessingActivity))
+Declaration(Class(know:InformationProcessingTask))
 Declaration(Class(know:IntellectualWork))
 Declaration(Class(know:Knowledge))
 Declaration(Class(know:KnowledgeActivity))
@@ -68,7 +70,6 @@ Declaration(Class(know:KnowledgeManifestation))
 Declaration(Class(know:KnowledgeProcessingFunction))
 Declaration(Class(know:KnowledgeProcessingMethod))
 Declaration(Class(know:KnowledgeProcessingPlan))
-Declaration(Class(know:KnowledgeProcessingTask))
 Declaration(Class(know:KnowledgeRepresentationAndReasoningLanguage))
 Declaration(Class(know:KnowledgeResource))
 Declaration(Class(know:KnowledgeResourceDescription))
@@ -97,9 +98,11 @@ Declaration(Class(know:Syntax))
 Declaration(Class(know:VersionedIdentifier))
 Declaration(Class(know:VersionedKnowledgeEndeavor))
 Declaration(Class(know:WorkOfKnowledge))
+Declaration(ObjectProperty(know:affects))
 Declaration(ObjectProperty(know:archetyped-by))
 Declaration(ObjectProperty(know:archetypes))
 Declaration(ObjectProperty(know:associated-to))
+Declaration(ObjectProperty(know:based-on))
 Declaration(ObjectProperty(know:captured-by))
 Declaration(ObjectProperty(know:captures))
 Declaration(ObjectProperty(know:carried-by))
@@ -183,6 +186,7 @@ Declaration(ObjectProperty(know:uses-concept))
 Declaration(ObjectProperty(know:uses-concrete-syntax))
 Declaration(ObjectProperty(know:uses-language))
 Declaration(ObjectProperty(know:uses-lexicon))
+Declaration(ObjectProperty(know:uses-method))
 Declaration(ObjectProperty(know:uses-primary-language))
 Declaration(ObjectProperty(know:uses-profile))
 Declaration(ObjectProperty(know:uses-syntax))
@@ -190,6 +194,8 @@ Declaration(AnnotationProperty(dc:creator))
 Declaration(AnnotationProperty(dc:date))
 Declaration(AnnotationProperty(dc:description))
 Declaration(AnnotationProperty(dc:title))
+Declaration(AnnotationProperty(dc-t:license))
+Declaration(AnnotationProperty(sm:copyright))
 Declaration(AnnotationProperty(skos:altLabel))
 Declaration(AnnotationProperty(skos:definition))
 Declaration(AnnotationProperty(skos:example))
@@ -199,6 +205,13 @@ Declaration(AnnotationProperty(skos:scopeNote))
 ############################
 #   Object Properties
 ############################
+
+# Object Property: know:affects (affects)
+
+AnnotationAssertion(rdfs:label know:affects "affects")
+AnnotationAssertion(skos:definition know:affects "A method affects something if it is known explicitly not to preserve that something")
+ObjectPropertyDomain(know:affects know:KnowledgeProcessingMethod)
+DisjointObjectProperties(know:affects know:preserves)
 
 # Object Property: know:archetyped-by (archetyped by)
 
@@ -224,6 +237,14 @@ AnnotationAssertion(rdfs:label know:associated-to "associated to")
 AnnotationAssertion(skos:definition know:associated-to "two concepts are associated to each other if there exists at least one work of knowledge that makes their relationship explicit")
 ObjectPropertyDomain(know:associated-to know:AtomicConcept)
 ObjectPropertyRange(know:associated-to know:AtomicConcept)
+
+# Object Property: know:based-on (based on)
+
+AnnotationAssertion(rdfs:label know:based-on "based on")
+AnnotationAssertion(skos:definition know:based-on "a method provides guidelines specifically on how to perform a given task, and thus can be considered part of a task definition")
+SubObjectPropertyOf(know:based-on know:defined-by)
+ObjectPropertyDomain(know:based-on know:InformationProcessingTask)
+ObjectPropertyRange(know:based-on know:KnowledgeProcessingMethod)
 
 # Object Property: know:captured-by (captured by)
 
@@ -855,6 +876,12 @@ AnnotationAssertion(skos:definition know:uses-lexicon "The relationship between 
 ObjectPropertyDomain(know:uses-lexicon know:KnowledgeExpression)
 ObjectPropertyRange(know:uses-lexicon know:Lexicon)
 
+# Object Property: know:uses-method (uses method)
+
+AnnotationAssertion(rdfs:label know:uses-method "uses method")
+ObjectPropertyDomain(know:uses-method know:KnowledgeActivity)
+ObjectPropertyRange(know:uses-method know:KnowledgeProcessingMethod)
+
 # Object Property: know:uses-primary-language (uses primary language)
 
 AnnotationAssertion(rdfs:comment know:uses-primary-language "In case of set-oriented structured resources, it is sufficient that at least one of the member resources uses L as primary language")
@@ -900,6 +927,13 @@ SubClassOf(know:AbstractExpression know:KnowledgeExpression)
 SubClassOf(know:AbstractExpression ObjectSomeValuesFrom(know:knowledge-representation-of know:PieceOfKnowledge))
 SubClassOf(know:AbstractExpression ObjectSomeValuesFrom(know:serialized-into know:ConcreteExpression))
 DisjointClasses(know:AbstractExpression know:ConcreteExpression)
+
+# Class: know:AbstractSemanticGraph (abstract semantic graph)
+
+AnnotationAssertion(rdfs:label know:AbstractSemanticGraph "abstract semantic graph")
+AnnotationAssertion(skos:definition know:AbstractSemanticGraph "The representation of the 'pure' information content of a Work of Knowledge, in terms of (a representation of) the concepts that constitute the Work and their associations")
+SubClassOf(know:AbstractSemanticGraph know:AbstractExpression)
+SubClassOf(know:AbstractSemanticGraph ObjectSomeValuesFrom(know:formalizes ObjectSomeValuesFrom(know:has-subject know:WorkOfKnowledge)))
 
 # Class: know:AbstractSyntax (abstract syntax)
 
@@ -1102,6 +1136,17 @@ AnnotationAssertion(rdfs:label know:InformationProcessingActivity "information p
 AnnotationAssertion(skos:definition know:InformationProcessingActivity "activity that has at least one information object as input")
 SubClassOf(know:InformationProcessingActivity know:Activity)
 
+# Class: know:InformationProcessingTask (knowledge processing task)
+
+AnnotationAssertion(rdfs:comment know:InformationProcessingTask "Tasks can be subclassed according to the kind of methods they follow. Complex (non atomic) tasks can also be defined in terms of a plan that organizes the sub-tasks")
+AnnotationAssertion(rdfs:label know:InformationProcessingTask "knowledge processing task")
+AnnotationAssertion(skos:definition know:InformationProcessingTask "The conceptual abstraction of any knowledge processing activity")
+AnnotationAssertion(skos:scopeNote know:InformationProcessingTask "this class is intended to be limited to tasks regarding the processing of knowledge. As such it should always be narrower than the general notion of 'task' usually defined in upper ontologies")
+SubClassOf(know:InformationProcessingTask know:DefinedConcept)
+SubClassOf(know:InformationProcessingTask ObjectSomeValuesFrom(know:archetypes know:KnowledgeActivity))
+SubClassOf(know:InformationProcessingTask ObjectSomeValuesFrom(know:defined-by know:KnowledgeProcessingMethod))
+SubClassOf(know:InformationProcessingTask ObjectAllValuesFrom(know:archetypes know:KnowledgeActivity))
+
 # Class: know:IntellectualWork (intellectual work)
 
 AnnotationAssertion(rdfs:comment know:IntellectualWork "Initially, it generically depends on some Agent, that carries its internal representation, until it can be carried by a concrete manifestation and possibly assimilated by other Agents.")
@@ -1121,6 +1166,8 @@ SubClassOf(know:Knowledge ObjectSomeValuesFrom(know:is-about owl:Thing))
 AnnotationAssertion(rdfs:label know:KnowledgeActivity "knowledge processing activity")
 AnnotationAssertion(skos:definition know:KnowledgeActivity "Any Activity that involves the participation of a Knowledge Carrier as a product, tool, aid or background resource. The Knowledge Carrier carries the Knowledge which plays the role of information object in this context")
 EquivalentClasses(know:KnowledgeActivity ObjectIntersectionOf(know:InformationProcessingActivity ObjectSomeValuesFrom(know:involves know:KnowledgeCarrier)))
+SubClassOf(know:KnowledgeActivity ObjectSomeValuesFrom(know:archetyped-by know:InformationProcessingTask))
+SubClassOf(know:KnowledgeActivity ObjectSomeValuesFrom(know:uses-method know:KnowledgeProcessingMethod))
 
 # Class: know:KnowledgeArtifact (knowledge artifact)
 
@@ -1160,6 +1207,7 @@ AnnotationAssertion(rdfs:label know:KnowledgeConstructionActivity "knowledge con
 AnnotationAssertion(skos:definition know:KnowledgeConstructionActivity "the class of activities that involve structured knowledge resources")
 EquivalentClasses(know:KnowledgeConstructionActivity ObjectIntersectionOf(know:KnowledgeActivity ObjectSomeValuesFrom(know:involves know:StructuredKnowledgeResource)))
 SubClassOf(know:KnowledgeConstructionActivity know:KnowledgeActivity)
+SubClassOf(know:KnowledgeConstructionActivity ObjectSomeValuesFrom(know:targets know:KnowledgeResource))
 
 # Class: know:KnowledgeElement (knowledge expression element)
 
@@ -1213,7 +1261,7 @@ AnnotationAssertion(rdfs:label know:KnowledgeProcessingFunction "(knowledge proc
 AnnotationAssertion(skos:definition know:KnowledgeProcessingFunction "concept that defines the purpose on an entity, manifested as it plays a certain role and realized through the execution of certain tasks")
 AnnotationAssertion(skos:scopeNote know:KnowledgeProcessingFunction "this class is intended to be limited to functions regarding the processing of knowledge. As such it should always be narrower than the general notion of 'function' usually defined in upper ontologies")
 SubClassOf(know:KnowledgeProcessingFunction know:DefinedConcept)
-SubClassOf(know:KnowledgeProcessingFunction ObjectSomeValuesFrom(know:associated-to know:KnowledgeProcessingTask))
+SubClassOf(know:KnowledgeProcessingFunction ObjectSomeValuesFrom(know:associated-to know:InformationProcessingTask))
 SubClassOf(know:KnowledgeProcessingFunction ObjectSomeValuesFrom(know:associated-to ObjectUnionOf(know:AgentiveRole know:PassiveRole)))
 
 # Class: know:KnowledgeProcessingMethod (knowledge processing method)
@@ -1232,17 +1280,6 @@ AnnotationAssertion(rdfs:label know:KnowledgeProcessingPlan "knowledge processin
 AnnotationAssertion(skos:altLabel know:KnowledgeProcessingPlan "structured process plan")
 AnnotationAssertion(skos:definition know:KnowledgeProcessingPlan "the definition of the tasks that are necessary (and possibly sufficient) to perform an activity of a given kind, in order to achieve some goals, possibly with more or less prescriptive constraints e.g. on the (relative) ordering, roles of the performers, and execution modalities")
 SubClassOf(know:KnowledgeProcessingPlan know:ConstructiveDefinition)
-
-# Class: know:KnowledgeProcessingTask ((knowledge processing) task)
-
-AnnotationAssertion(rdfs:comment know:KnowledgeProcessingTask "Tasks can be subclassed according to the kind of methods they follow. Complex (non atomic) tasks can also be defined in terms of a plan that organizes the sub-tasks")
-AnnotationAssertion(rdfs:label know:KnowledgeProcessingTask "(knowledge processing) task")
-AnnotationAssertion(skos:definition know:KnowledgeProcessingTask "The conceptual abstraction of any knowledge processing activity")
-AnnotationAssertion(skos:scopeNote know:KnowledgeProcessingTask "this class is intended to be limited to tasks regarding the processing of knowledge. As such it should always be narrower than the general notion of 'task' usually defined in upper ontologies")
-SubClassOf(know:KnowledgeProcessingTask know:DefinedConcept)
-SubClassOf(know:KnowledgeProcessingTask ObjectSomeValuesFrom(know:archetypes know:KnowledgeActivity))
-SubClassOf(know:KnowledgeProcessingTask ObjectSomeValuesFrom(know:defined-by know:KnowledgeProcessingMethod))
-SubClassOf(know:KnowledgeProcessingTask ObjectAllValuesFrom(know:archetypes know:KnowledgeActivity))
 
 # Class: know:KnowledgeRepresentationAndReasoningLanguage (KRR Language)
 
@@ -1275,9 +1312,6 @@ SubClassOf(know:KnowledgeResourceDescription know:KnowledgeResource)
 AnnotationAssertion(rdfs:label know:KnowledgeStructuringActivity "knowledge structuring activity")
 AnnotationAssertion(skos:definition know:KnowledgeStructuringActivity "activity that organizes other resources, producing a structure")
 AnnotationAssertion(skos:note know:KnowledgeStructuringActivity "The structuring resource is 'structured' by definition. The input resources become 'structured resources', and structured with each other, as a consequence of this activity if not already structured")
-SubClassOf(know:KnowledgeStructuringActivity know:KnowledgeConstructionActivity)
-SubClassOf(know:KnowledgeStructuringActivity ObjectSomeValuesFrom(know:has-product know:StructuringKnowledgeResource))
-SubClassOf(know:KnowledgeStructuringActivity ObjectSomeValuesFrom(know:targets know:KnowledgeResource))
 
 # Class: know:KnowledgeableAgent (knowledgeable agent)
 
@@ -1495,6 +1529,7 @@ SubClassOf(know:WorkOfKnowledge ObjectSomeValuesFrom(know:product-of know:Knowle
 
 SubClassOf(ObjectSomeValuesFrom(know:performs know:KnowledgeActivity) know:KnowledgeableAgent)
 DisjointClasses(know:IntellectualWork know:KnowledgeArtifact know:KnowledgeExpression)
+SubObjectPropertyOf(ObjectPropertyChain(know:archetyped-by know:based-on) know:uses-method)
 SubObjectPropertyOf(ObjectPropertyChain(know:conceptualizes know:serialized-into) know:concretely-expressed-by)
 SubObjectPropertyOf(ObjectPropertyChain(know:defined-by know:uses-concept) know:associated-to)
 SubObjectPropertyOf(ObjectPropertyChain(know:engraved-with know:encoding-of) know:carries)
