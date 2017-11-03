@@ -1,0 +1,552 @@
+Prefix(:=<http://www.omg.org/spec/API4KP/rel#>)
+Prefix(asp:=<http://www.omg.org/spec/API4KP/20160801/Aspects/>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(rel:=<http://www.omg.org/spec/API4KP/rel#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(know:=<http://www.omg.org/spec/API4KP/core#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.omg.org/spec/API4KP/rel>
+<http://www.omg.org/spec/API4KP/2017/12/rel>
+Import(<http://www.omg.org/spec/API4KP/2017/12/core>)
+Import(<http://www.omg.org/spec/API4KP/20160801/Aspects/>)
+
+Declaration(Class(know:KnowledgeEndeavour))
+Declaration(Class(know:VersionedKnowledgeEndeavor))
+Declaration(ObjectProperty(rel:TODO-lifts-lowers))
+Declaration(ObjectProperty(rel:abridgement-of))
+Declaration(ObjectProperty(rel:adaptation-of))
+Declaration(ObjectProperty(rel:compact-representation-of))
+Declaration(ObjectProperty(rel:compatible-with))
+Declaration(ObjectProperty(rel:complements))
+Declaration(ObjectProperty(rel:compression-of))
+Declaration(ObjectProperty(rel:copy-of))
+Declaration(ObjectProperty(rel:depends-on))
+Declaration(ObjectProperty(rel:derived-from))
+Declaration(ObjectProperty(rel:digest-of))
+Declaration(ObjectProperty(rel:equal-to))
+Declaration(ObjectProperty(rel:has-derivative))
+Declaration(ObjectProperty(rel:has-later-revision))
+Declaration(ObjectProperty(rel:has-later-versioned-revision))
+Declaration(ObjectProperty(rel:has-latest))
+Declaration(ObjectProperty(rel:has-next-immediate-versioned-revision))
+Declaration(ObjectProperty(rel:has-next-version))
+Declaration(ObjectProperty(rel:has-original))
+Declaration(ObjectProperty(rel:has-previous-version))
+Declaration(ObjectProperty(rel:has-prior-version))
+Declaration(ObjectProperty(rel:has-succesor-version))
+Declaration(ObjectProperty(rel:imitation-of))
+Declaration(ObjectProperty(rel:imports))
+Declaration(ObjectProperty(rel:includes))
+Declaration(ObjectProperty(rel:inspired-by))
+Declaration(ObjectProperty(rel:is-immediate-next-versioned-revision-of))
+Declaration(ObjectProperty(rel:is-later-revision-of))
+Declaration(ObjectProperty(rel:is-later-versioned-revision-of))
+Declaration(ObjectProperty(rel:linguistic-adaptation-of))
+Declaration(ObjectProperty(rel:lowers))
+Declaration(ObjectProperty(rel:paraphrase-of))
+Declaration(ObjectProperty(rel:rearrangement-of))
+Declaration(ObjectProperty(rel:summarization-of))
+Declaration(ObjectProperty(rel:supplements))
+Declaration(ObjectProperty(rel:synopsis-of))
+Declaration(ObjectProperty(rel:transcodification-of))
+Declaration(ObjectProperty(rel:transcreation-of))
+Declaration(ObjectProperty(rel:transcription-of))
+Declaration(ObjectProperty(rel:translation-of))
+Declaration(ObjectProperty(rel:transliteration-of))
+Declaration(ObjectProperty(rel:transwordation-of))
+Declaration(ObjectProperty(rel:variant-of))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: know:carried-by (carried by)
+
+SubObjectPropertyOf(know:carried-by rel:TODO-lifts-lowers)
+
+# Object Property: know:carries (carries)
+
+SubObjectPropertyOf(know:carries rel:lowers)
+
+# Object Property: know:conceptualizes (conceptualizes)
+
+SubObjectPropertyOf(know:conceptualizes rel:TODO-lifts-lowers)
+
+# Object Property: know:concretely-expressed-by (concretely expressed by)
+
+SubObjectPropertyOf(know:concretely-expressed-by rel:TODO-lifts-lowers)
+
+# Object Property: know:concretely-expresses (concretely expresses)
+
+SubObjectPropertyOf(know:concretely-expresses rel:lowers)
+
+# Object Property: know:encoding-of (encoding of)
+
+SubObjectPropertyOf(know:encoding-of rel:lowers)
+
+# Object Property: know:engraved-on (engraved on)
+
+SubObjectPropertyOf(know:engraved-on rel:TODO-lifts-lowers)
+
+# Object Property: know:engraved-with (engraved with)
+
+SubObjectPropertyOf(know:engraved-with rel:lowers)
+
+# Object Property: know:expresses (expresses)
+
+SubObjectPropertyOf(know:expresses rel:lowers)
+
+# Object Property: know:flattening-of (flattening of)
+
+SubObjectPropertyOf(know:flattening-of rel:derived-from)
+
+# Object Property: know:has-encoding (has encoding)
+
+SubObjectPropertyOf(know:has-encoding rel:TODO-lifts-lowers)
+
+# Object Property: know:serialization-of (is concrete representation of)
+
+SubObjectPropertyOf(know:serialization-of rel:lowers)
+
+# Object Property: know:serialized-into (concretely represented as)
+
+SubObjectPropertyOf(know:serialized-into rel:TODO-lifts-lowers)
+
+# Object Property: rel:TODO-lifts-lowers (lifts)
+
+AnnotationAssertion(rdfs:label rel:TODO-lifts-lowers "lifts")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:TODO-lifts-lowers "The relationship between endeavors E1 and E2, where E1 is at a higher level of abstraction")
+InverseObjectProperties(rel:TODO-lifts-lowers rel:lowers)
+ObjectPropertyDomain(rel:TODO-lifts-lowers know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:TODO-lifts-lowers know:KnowledgeEndeavour)
+
+# Object Property: rel:abridgement-of (abdridgement of)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:abridgement-of <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:abridgement-of "abdridgement of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:abridgement-of "An expression E1 is an abridgement of a target expression E2 if
+- both express the same Work of Knowledge
+AND
+  - they have equivalent ASTs ( i.e. parse(E1) = parse(E2) ), but the parse  tree of E2 is a subtree of the parse tree of E1.
+  OR
+  - the AST of E2 is a subtree of the AST of E1,")
+SubObjectPropertyOf(rel:abridgement-of rel:compact-representation-of)
+SubObjectPropertyOf(rel:abridgement-of rel:derived-from)
+ObjectPropertyDomain(rel:abridgement-of know:KnowledgeExpression)
+ObjectPropertyRange(rel:abridgement-of know:KnowledgeExpression)
+
+# Object Property: rel:adaptation-of (adaptation of)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:adaptation-of <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:comment rel:adaptation-of "The concepts used by the derived work are more suitable from a certain perspective, including but not limited to delivering to an audience or a setting, or expressing in some language")
+AnnotationAssertion(rdfs:label rel:adaptation-of "adaptation of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:adaptation-of "the relationship between two derivative works of knowledge that capture the same piece of knowledge")
+SubObjectPropertyOf(rel:adaptation-of rel:derived-from)
+SubObjectPropertyOf(rel:adaptation-of rel:variant-of)
+ObjectPropertyDomain(rel:adaptation-of know:WorkOfKnowledge)
+ObjectPropertyRange(rel:adaptation-of know:WorkOfKnowledge)
+
+# Object Property: rel:compact-representation-of (compact representation of)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:compact-representation-of <http://www.omg.org/spec/API4KP/Aspects/formal-relationship>)
+AnnotationAssertion(rdfs:label rel:compact-representation-of "compact representation of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:compact-representation-of "a source endeavor is more compact than a target endeavor if it uses less elements to capture (a salient, proper part of) the piece of knowledge captured by the target endeavor")
+ObjectPropertyDomain(rel:compact-representation-of know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:compact-representation-of know:KnowledgeEndeavour)
+
+# Object Property: rel:compatible-with (compatible with)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:compatible-with <http://www.omg.org/spec/API4KP/Aspects/formal-relationship>)
+AnnotationAssertion(rdfs:comment rel:compatible-with "sometimes the complementary notion of 'incompatibility' may be of interest. Two endeavors are incompatible if their involvement in the same activity will necessarily cause that activity to fail")
+AnnotationAssertion(rdfs:label rel:compatible-with "compatible with")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:compatible-with "An endeavor X is compatible with an another endeavor Y if there is at least one activity that can successfully completed when both X and Y are involved in that activity")
+ObjectPropertyDomain(rel:compatible-with know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:compatible-with know:KnowledgeEndeavour)
+
+# Object Property: rel:complements (complements)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:complements <http://www.omg.org/spec/API4KP/Aspects/formal-relationship>)
+AnnotationAssertion(rdfs:label rel:complements "complements")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:complements "An endeavor X complements another endeavor Y if Y does not depend on X, bu Y can be used to extend X")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#note> rel:complements "this relationship implies that (tree-oriented) structuring of X and Y is possible, but not necessary nor actual")
+SubObjectPropertyOf(rel:complements rel:compatible-with)
+ObjectPropertyDomain(rel:complements know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:complements know:KnowledgeEndeavour)
+
+# Object Property: rel:compression-of (compression of)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:compression-of <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:compression-of "compression of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:compression-of "transcodification such that the target encoding requires less space in order to be engraved on a carrier, may be lossy or lossless")
+SubObjectPropertyOf(rel:compression-of rel:compact-representation-of)
+SubObjectPropertyOf(rel:compression-of rel:transcodification-of)
+
+# Object Property: rel:copy-of (copy of)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:copy-of <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:copy-of "copy of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:copy-of "An endeavor E1 is a copy of another endeavor E2 if they are equal, and E2 is the product of an activity (\"copying\") that used E1 as a primary input")
+SubObjectPropertyOf(rel:copy-of rel:equal-to)
+ObjectPropertyDomain(rel:copy-of know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:copy-of know:KnowledgeEndeavour)
+
+# Object Property: rel:depends-on (depends on)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:depends-on <http://www.omg.org/spec/API4KP/Aspects/formal-relationship>)
+AnnotationAssertion(rdfs:label rel:depends-on "depends on"@en)
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> rel:depends-on "requires")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:depends-on "An endeavor X depends on an another endeavor Y if any activity that involves X must also involve Y in order to be successful.")
+SubObjectPropertyOf(rel:depends-on rel:compatible-with)
+ObjectPropertyDomain(rel:depends-on know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:depends-on know:KnowledgeEndeavour)
+
+# Object Property: rel:derived-from (derived from)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:derived-from <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:derived-from "derived from")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:derived-from "An endeavor E1 is derived from an endeavor E2 if the activity that produced E2 used E1 as a primary input")
+InverseObjectProperties(rel:derived-from rel:has-derivative)
+ObjectPropertyDomain(rel:derived-from know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:derived-from know:KnowledgeEndeavour)
+
+# Object Property: rel:digest-of (digest of)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:digest-of <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:digest-of "digest of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> rel:digest-of "condensation of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:digest-of "An expression E1 is a digest of another expression E2 if the WoK that conceptualizes E2 cannot be completely reconstructed from the WoK that conceptualizes E1 without additional contextual knowledge")
+SubObjectPropertyOf(rel:digest-of rel:summarization-of)
+ObjectPropertyDomain(rel:digest-of know:KnowledgeExpression)
+ObjectPropertyRange(rel:digest-of know:KnowledgeExpression)
+
+# Object Property: rel:equal-to (equal to)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:equal-to <http://www.omg.org/spec/API4KP/Aspects/formal-relationship>)
+AnnotationAssertion(rdfs:label rel:equal-to "equal to")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:equal-to "Like any other individual, an endeavor is equal to itself at any given point in time.
+
+Two distinct (according to some principle of identity) endeavors are equal if and only if they are indistinguishable:
+- two semantic graphs have equal nodes and edges
+- two (abstract or concrete) trees have equal nodes and parent/child edges 
+- two artifacts carry the same (or equal) concrete expressions, and all their other qualities and configurations are equal")
+ObjectPropertyDomain(rel:equal-to know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:equal-to know:KnowledgeEndeavour)
+
+# Object Property: rel:has-derivative (has derivative)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:has-derivative <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:has-derivative "has derivative")
+ObjectPropertyDomain(rel:has-derivative know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:has-derivative know:KnowledgeEndeavour)
+
+# Object Property: rel:has-later-revision (has later revision)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:has-later-revision <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:comment rel:has-later-revision "Scoped to Work of Knowledge:
+A revision of a WoK is a new WoK that preserves the same Piece of Knowledge. That is, the new WoK will choose a different set of concepts (and associations thereof) to ensure that the WoK can be communicated more properly.
+
+Scoped to Knowledge Expressions:  
+The new expression preserves the WoK: conceptualizing either the previous or the later revision will yield the same WoK. However, the new revision alters the AST (or the Parse tree) to reduce the cost and/or the likelihood of errors in the act of conceptualizing its WoK content")
+AnnotationAssertion(rdfs:comment rel:has-later-revision "revisions may, but do not need to, be tied to an explicit versioning scheme")
+AnnotationAssertion(rdfs:label rel:has-later-revision "has later revision")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> rel:has-later-revision "has revision")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:has-later-revision "The relationship between two endeavors E1 and E2, where E2 is explicitly derived from E1, and E2 is intended to be preferred to E1 in activities where either would be suitably involved.
+
+Moreover, this relationships implies that:
+- both endeavors are defined at the same level of abstraction
+- both refer to the same entity at the higher level(s) of abstraction 
+- the two endeavors have different information content
+- the derivation preserves the representation methods (as applicable): language, serialization, and/or carrier")
+SubObjectPropertyOf(rel:has-later-revision rel:has-derivative)
+InverseObjectProperties(rel:has-later-revision rel:is-later-revision-of)
+ObjectPropertyDomain(rel:has-later-revision know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:has-later-revision know:KnowledgeEndeavour)
+
+# Object Property: rel:has-later-versioned-revision (has later versioned revision)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:has-later-versioned-revision <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:has-later-versioned-revision "has later versioned revision"@en)
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> rel:has-later-versioned-revision "is previous version of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:has-later-versioned-revision "the 'has revision' relationship, where both subject and object are versioned according to a common versioning scheme that determines the version identifiers assigned to either endeavors")
+SubObjectPropertyOf(rel:has-later-versioned-revision rel:has-later-revision)
+SubObjectPropertyOf(rel:has-later-versioned-revision rel:has-succesor-version)
+InverseObjectProperties(rel:has-later-versioned-revision rel:is-later-versioned-revision-of)
+ObjectPropertyDomain(rel:has-later-versioned-revision know:VersionedKnowledgeEndeavor)
+ObjectPropertyRange(rel:has-later-versioned-revision know:VersionedKnowledgeEndeavor)
+
+# Object Property: rel:has-latest (has latest)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:has-latest <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:has-latest "has latest")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:has-latest "the relationship between an endeavor E and the (versioned) revision L within  that endeavor's series, such that there are no later revisions of L")
+SubObjectPropertyOf(rel:has-latest rel:has-later-versioned-revision)
+ObjectPropertyDomain(rel:has-latest know:VersionedKnowledgeEndeavor)
+ObjectPropertyRange(rel:has-latest know:VersionedKnowledgeEndeavor)
+
+# Object Property: rel:has-next-immediate-versioned-revision (has next immediate versioned revision)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:has-next-immediate-versioned-revision <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:has-next-immediate-versioned-revision "has next immediate versioned revision"@en)
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:has-next-immediate-versioned-revision "The relationship between two expressions E1 and E2, with E2 a work-preserving revision of E1, where both are ordered by the same (partially) ordered versioning scheme v, and such that v(E1) < v(E2), and there is no E3 such that v(E1) < v(E3) < v(E2)")
+SubObjectPropertyOf(rel:has-next-immediate-versioned-revision rel:has-later-versioned-revision)
+SubObjectPropertyOf(rel:has-next-immediate-versioned-revision rel:has-next-version)
+InverseObjectProperties(rel:has-next-immediate-versioned-revision rel:is-immediate-next-versioned-revision-of)
+ObjectPropertyDomain(rel:has-next-immediate-versioned-revision know:VersionedKnowledgeEndeavor)
+ObjectPropertyRange(rel:has-next-immediate-versioned-revision know:VersionedKnowledgeEndeavor)
+
+# Object Property: rel:has-next-version (has next version)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:has-next-version <http://www.omg.org/spec/API4KP/Aspects/formal-relationship>)
+AnnotationAssertion(rdfs:label rel:has-next-version "has next version")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> rel:has-next-version "next")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:has-next-version "given the subject E1 and its successor object E2, there is no E3 such that v(E1) < v(E3) < v(E2)")
+SubObjectPropertyOf(rel:has-next-version rel:has-succesor-version)
+InverseObjectProperties(rel:has-next-version rel:has-previous-version)
+ObjectPropertyDomain(rel:has-next-version know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:has-next-version know:KnowledgeEndeavour)
+
+# Object Property: rel:has-original (has original)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:has-original <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:has-original "has original")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:has-original "the relationship between an endeavor E and the (versioned) revision O within that endeavor's series, such that there are no prior revisions of O")
+SubObjectPropertyOf(rel:has-original rel:is-later-versioned-revision-of)
+ObjectPropertyDomain(rel:has-original know:VersionedKnowledgeEndeavor)
+ObjectPropertyRange(rel:has-original know:VersionedKnowledgeEndeavor)
+
+# Object Property: rel:has-previous-version (has previous version)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:has-previous-version <http://www.omg.org/spec/API4KP/Aspects/formal-relationship>)
+AnnotationAssertion(rdfs:label rel:has-previous-version "has previous version")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> rel:has-previous-version "previous")
+SubObjectPropertyOf(rel:has-previous-version rel:has-prior-version)
+
+# Object Property: rel:has-prior-version (has prior version)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:has-prior-version <http://www.omg.org/spec/API4KP/Aspects/formal-relationship>)
+AnnotationAssertion(rdfs:label rel:has-prior-version "has prior version")
+InverseObjectProperties(rel:has-prior-version rel:has-succesor-version)
+ObjectPropertyDomain(rel:has-prior-version know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:has-prior-version know:KnowledgeEndeavour)
+
+# Object Property: rel:has-succesor-version (has successor version)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:has-succesor-version <http://www.omg.org/spec/API4KP/Aspects/formal-relationship>)
+AnnotationAssertion(rdfs:comment rel:has-succesor-version "Being related by means of a versioning scheme, in general, does not imply derivation: when preparing a new endeavor to be released as part of a series, It is not uncommon to 'start from scratch'.
+Hence, versioning due to revision is treated as a special case, at the intersection of versioning and revision")
+AnnotationAssertion(rdfs:label rel:has-succesor-version "has successor version")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:has-succesor-version "The relationship between two endeavors E1 and E2, where both are ordered by the same (partially) ordered versioning scheme v, and such that v(E1) < v(E2).")
+ObjectPropertyDomain(rel:has-succesor-version know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:has-succesor-version know:KnowledgeEndeavour)
+
+# Object Property: rel:imitation-of (imitation of)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:imitation-of <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:imitation-of "imitation of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:imitation-of "A derivative Work W1 is an actual imitation of a Work W2 if the similarity between the underlying concept graphs is sufficient so that they can be considered equal")
+SubObjectPropertyOf(rel:imitation-of rel:equal-to)
+SubObjectPropertyOf(rel:imitation-of rel:inspired-by)
+ObjectPropertyDomain(rel:imitation-of know:WorkOfKnowledge)
+ObjectPropertyRange(rel:imitation-of know:WorkOfKnowledge)
+
+# Object Property: rel:imports (imports)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:imports <http://www.omg.org/spec/API4KP/Aspects/formal-relationship>)
+AnnotationAssertion(rdfs:label rel:imports "A Resource S imports another resource T if there is at least one fragment of S that implicitly declares the need to perform a structuring operation involving S and T before S can be used in a knowledge processing activity")
+AnnotationAssertion(rdfs:label rel:imports "imports")
+SubObjectPropertyOf(rel:imports rel:depends-on)
+ObjectPropertyDomain(rel:imports know:KnowledgeResource)
+ObjectPropertyRange(rel:imports know:KnowledgeResource)
+
+# Object Property: rel:includes (includes)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:includes <http://www.omg.org/spec/API4KP/Aspects/formal-relationship>)
+AnnotationAssertion(rdfs:label rel:includes "includes")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:includes "A stronger form of import, stating that the target resouce T must be injected into the source S
+(i.e. there is an implicit tree-based structure where S is a parent of T)")
+SubObjectPropertyOf(rel:includes rel:imports)
+ObjectPropertyDomain(rel:includes know:KnowledgeResource)
+ObjectPropertyRange(rel:includes know:KnowledgeResource)
+
+# Object Property: rel:inspired-by (inspired by)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:inspired-by <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:inspired-by "inspired by")
+AnnotationAssertion(rdfs:seeAlso rel:inspired-by "https://people.eecs.berkeley.edu/~aramdas/reports/DBreport.pdf")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:inspired-by "a derivative work W1 is inspired by another work W2 if the underlying semantic graphs are similar enough according to some similarity measure (i.e. if the derivative work uses enough of the same concepts and associations as the original one)")
+SubObjectPropertyOf(rel:inspired-by rel:derived-from)
+ObjectPropertyDomain(rel:inspired-by know:WorkOfKnowledge)
+ObjectPropertyRange(rel:inspired-by know:WorkOfKnowledge)
+
+# Object Property: rel:is-immediate-next-versioned-revision-of (is immediate next versioned revision of)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:is-immediate-next-versioned-revision-of <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:is-immediate-next-versioned-revision-of "is immediate next versioned revision of"@en)
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> rel:is-immediate-next-versioned-revision-of "has next previous immediate versioned revision")
+SubObjectPropertyOf(rel:is-immediate-next-versioned-revision-of rel:has-previous-version)
+SubObjectPropertyOf(rel:is-immediate-next-versioned-revision-of rel:is-later-versioned-revision-of)
+ObjectPropertyDomain(rel:is-immediate-next-versioned-revision-of know:VersionedKnowledgeEndeavor)
+ObjectPropertyRange(rel:is-immediate-next-versioned-revision-of know:VersionedKnowledgeEndeavor)
+
+# Object Property: rel:is-later-revision-of (is later revision of)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:is-later-revision-of <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:is-later-revision-of "is later revision of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> rel:is-later-revision-of "revision of")
+SubObjectPropertyOf(rel:is-later-revision-of rel:derived-from)
+ObjectPropertyDomain(rel:is-later-revision-of know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:is-later-revision-of know:KnowledgeEndeavour)
+
+# Object Property: rel:is-later-versioned-revision-of (is later versioned revision of)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:is-later-versioned-revision-of <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:is-later-versioned-revision-of "is later versioned revision of"@en)
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> rel:is-later-versioned-revision-of "has previous versioned revision")
+SubObjectPropertyOf(rel:is-later-versioned-revision-of rel:has-prior-version)
+SubObjectPropertyOf(rel:is-later-versioned-revision-of rel:is-later-revision-of)
+ObjectPropertyDomain(rel:is-later-versioned-revision-of know:VersionedKnowledgeEndeavor)
+ObjectPropertyRange(rel:is-later-versioned-revision-of know:VersionedKnowledgeEndeavor)
+
+# Object Property: rel:linguistic-adaptation-of (linguistic adaptation of)
+
+AnnotationAssertion(rdfs:label rel:linguistic-adaptation-of "linguistic adaptation of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:linguistic-adaptation-of "An adaptation that facilitates the expression of the derivative WoK in some language")
+SubObjectPropertyOf(rel:linguistic-adaptation-of rel:adaptation-of)
+ObjectPropertyDomain(rel:linguistic-adaptation-of know:WorkOfKnowledge)
+ObjectPropertyRange(rel:linguistic-adaptation-of know:WorkOfKnowledge)
+
+# Object Property: rel:lowers (lowers)
+
+AnnotationAssertion(rdfs:label rel:lowers "lowers")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:lowers "The relationship between endeavors E1 and E2, where E1 is at a lower level of abstraction")
+ObjectPropertyDomain(rel:lowers know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:lowers know:KnowledgeEndeavour)
+
+# Object Property: rel:paraphrase-of (paraphrase of)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:paraphrase-of <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:paraphrase-of "paraphrase of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:paraphrase-of "An expression of a Work W1 paraphrases an expression of a Work W2 if the two use different concepts, but W1 entails W2 and vice versa. As such, both expression capture the same piece of knowledge")
+SubObjectPropertyOf(rel:paraphrase-of rel:derived-from)
+ObjectPropertyDomain(rel:paraphrase-of know:AbstractExpression)
+ObjectPropertyRange(rel:paraphrase-of know:AbstractExpression)
+
+# Object Property: rel:rearrangement-of (rearrangement of)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:rearrangement-of <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:rearrangement-of "rearrangement of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:rearrangement-of "A structured resource R1 is a rearrangement of another structured resource R2 if they have different structure and components, but their flattening yields two Resources F1 and F2 that express the same Work of Knowledge")
+SubObjectPropertyOf(rel:rearrangement-of rel:derived-from)
+SubObjectPropertyOf(rel:rearrangement-of rel:variant-of)
+ObjectPropertyDomain(rel:rearrangement-of know:StructuredKnowledgeResource)
+ObjectPropertyRange(rel:rearrangement-of know:StructuredKnowledgeResource)
+
+# Object Property: rel:summarization-of (summarization of)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:summarization-of <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:summarization-of "summarization of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:summarization-of "An expresison E1 summarizes an expression E2 if the WoK that conceptualizes E1 uses a subset of the concepts (and associations thereof) used by the WoK that conceptualizes E2")
+SubObjectPropertyOf(rel:summarization-of rel:compact-representation-of)
+SubObjectPropertyOf(rel:summarization-of rel:derived-from)
+ObjectPropertyDomain(rel:summarization-of know:KnowledgeExpression)
+ObjectPropertyRange(rel:summarization-of know:KnowledgeExpression)
+
+# Object Property: rel:supplements (supplements)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:supplements <http://www.omg.org/spec/API4KP/Aspects/formal-relationship>)
+AnnotationAssertion(rdfs:label rel:supplements "supplements")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:supplements "An endeavor X supplements another endeavor Y if Y does not depend on X, bu Y can be used in parallel with X")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#note> rel:supplements "this relationship implies that (set-oriented) structuring of X and Y is possible, but not necessary nor actual")
+SubObjectPropertyOf(rel:supplements rel:compatible-with)
+ObjectPropertyDomain(rel:supplements know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:supplements know:KnowledgeEndeavour)
+
+# Object Property: rel:synopsis-of (synopsis of)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:synopsis-of <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:synopsis-of "synopsis of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:synopsis-of "A synopsis is a summary such that the original WoK (i.e. the WoK that conceptualizes the expression that is the target of this relationship) can be inferred from the WoK that conceptualizes the derived WoK")
+SubObjectPropertyOf(rel:synopsis-of rel:summarization-of)
+ObjectPropertyDomain(rel:synopsis-of know:KnowledgeExpression)
+ObjectPropertyRange(rel:synopsis-of know:KnowledgeExpression)
+
+# Object Property: rel:transcodification-of (transcodification of)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:transcodification-of <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:transcodification-of "transcodification of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:transcodification-of "A relationship between two encodings of the same concrete expression that use two different encoding mechanisms")
+SubObjectPropertyOf(rel:transcodification-of rel:derived-from)
+SubObjectPropertyOf(rel:transcodification-of rel:variant-of)
+ObjectPropertyDomain(rel:transcodification-of know:EncodedKnowledgeExpression)
+ObjectPropertyRange(rel:transcodification-of know:EncodedKnowledgeExpression)
+
+# Object Property: rel:transcreation-of (transcreation of)
+
+AnnotationAssertion(rdfs:label rel:transcreation-of "transcreation of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:transcreation-of "Adaptation that facilitates the interpretation of (an expression of) the derived WoK by a target audience, for which all the concepts used by the derived Work are common knowledge, but some of the ones used in the original WoK are not")
+SubObjectPropertyOf(rel:transcreation-of rel:adaptation-of)
+ObjectPropertyDomain(rel:transcreation-of know:WorkOfKnowledge)
+ObjectPropertyRange(rel:transcreation-of know:WorkOfKnowledge)
+
+# Object Property: rel:transcription-of (transcription of)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:transcription-of <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:transcription-of "transcription of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:transcription-of "A relationship between two concrete expressions, in the same language but two different concrete syntaxes, that concretize the same abstract expression (and thus express the same work of knowledge), such that the subject is derived from the object by means of a transcription operation")
+SubObjectPropertyOf(rel:transcription-of rel:derived-from)
+SubObjectPropertyOf(rel:transcription-of rel:variant-of)
+ObjectPropertyDomain(rel:transcription-of know:ConcreteExpression)
+ObjectPropertyRange(rel:transcription-of know:ConcreteExpression)
+
+# Object Property: rel:translation-of (translation of)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:translation-of <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:translation-of "translation of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:translation-of "A relationship between two abstract expressions, in two different languages, that express the same work of knowledge, such that the subject is derived from the object by means of a translation operation")
+SubObjectPropertyOf(rel:translation-of rel:derived-from)
+SubObjectPropertyOf(rel:translation-of rel:variant-of)
+ObjectPropertyDomain(rel:translation-of know:AbstractExpression)
+ObjectPropertyRange(rel:translation-of know:AbstractExpression)
+
+# Object Property: rel:transliteration-of (transliteration of)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:transliteration-of <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
+AnnotationAssertion(rdfs:label rel:transliteration-of "A relationship between two concretizations C1 and C2 of the same abstract expression, in the same language and using the same lexicon, but such that the tokens are constructed using alternative alphabets")
+AnnotationAssertion(rdfs:label rel:transliteration-of "transliteration of")
+SubObjectPropertyOf(rel:transliteration-of rel:derived-from)
+SubObjectPropertyOf(rel:transliteration-of rel:variant-of)
+ObjectPropertyDomain(rel:transliteration-of know:ConcreteExpression)
+ObjectPropertyRange(rel:transliteration-of know:ConcreteExpression)
+
+# Object Property: rel:transwordation-of (transwordation of)
+
+AnnotationAssertion(rdfs:label rel:transwordation-of "transwordation of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:transwordation-of "A relationship between two expressions, such that the lexical tokens ('words') used to express atomic concepts in the source are replaced by synonyms in the target")
+SubObjectPropertyOf(rel:transwordation-of rel:derived-from)
+SubObjectPropertyOf(rel:transwordation-of rel:variant-of)
+ObjectPropertyDomain(rel:transwordation-of know:ConcreteExpression)
+ObjectPropertyRange(rel:transwordation-of know:ConcreteExpression)
+
+# Object Property: rel:variant-of (alternative representation of)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:variant-of <http://www.omg.org/spec/API4KP/Aspects/formal-relationship>)
+AnnotationAssertion(rdfs:label rel:variant-of "alternative representation of")
+AnnotationAssertion(rdfs:label rel:variant-of "variant of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> rel:variant-of "iso-semantic representation of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:variant-of "an endeavor is a variant of another endeavor if 
+- the two endeavors represent the same piece of knowledge
+- both exist at the same level of abstraction (work, expression, serialization, encoding/artifact)
+- both refer to the same entity at the higher level(s) of abstraction 
+- the two are iso-semantic, i.e. they preserve the information content at the same level, but differ in the choice of concepts (to capture the same knowledge), language (for the same work), serialization (for the same language), or carrier (for the same concretization)")
+SymmetricObjectProperty(rel:variant-of)
+ObjectPropertyDomain(rel:variant-of know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:variant-of know:KnowledgeEndeavour)
+
+
+
+
+)

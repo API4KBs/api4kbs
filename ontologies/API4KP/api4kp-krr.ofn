@@ -37,11 +37,13 @@ Declaration(Class(krr:EnvironmentWithIdentities))
 Declaration(Class(krr:FocusedEnvironment))
 Declaration(Class(krr:HeterogeneousKnowledgeResource))
 Declaration(Class(krr:HeterogeneousMachinableKnowledgeResource))
+Declaration(Class(krr:HybridKnowledgeBase))
 Declaration(Class(krr:HybridKnowledgeEnvironment))
 Declaration(Class(krr:ImmutableEntity))
 Declaration(Class(krr:ImmutableKnowledgeBase))
 Declaration(Class(krr:KRRKnowledgeEndeavor))
 Declaration(Class(krr:KnowledgeBase))
+Declaration(Class(krr:KnowledgeDrivenReasoningActivity))
 Declaration(Class(krr:KnowledgeRepresentationAndReasoningLanguage))
 Declaration(Class(krr:KnowledgeSource))
 Declaration(Class(krr:LanguageEnvironment))
@@ -62,6 +64,7 @@ Declaration(Class(krr:QueryLanguage))
 Declaration(Class(krr:SerializedMachinableKnowledgeExpression))
 Declaration(Class(krr:Source))
 Declaration(Class(krr:StructuredMachinableKnowledgeResource))
+Declaration(Class(krr:WorkingKnowledgeBase))
 Declaration(ObjectProperty(krr:accordingTo))
 Declaration(ObjectProperty(krr:allPreserve))
 Declaration(ObjectProperty(krr:hasEnvironmentMapping))
@@ -69,7 +72,6 @@ Declaration(ObjectProperty(krr:hasEnvironmentMember))
 Declaration(ObjectProperty(krr:hasFocusMember))
 Declaration(ObjectProperty(krr:hasSetOfMappings))
 Declaration(ObjectProperty(krr:hasSnapshot))
-Declaration(ObjectProperty(krr:hasStructuralComponent))
 Declaration(ObjectProperty(krr:hasStructureType))
 Declaration(ObjectProperty(krr:hasSubenvironment))
 Declaration(ObjectProperty(krr:isEnvironmentMappingOf))
@@ -132,12 +134,6 @@ AnnotationAssertion(rdfs:label krr:hasSnapshot "has snapshot")
 AnnotationAssertion(skos:definition krr:hasSnapshot "relationship between a mutable source and its state at one timepoint."^^xsd:string)
 ObjectPropertyDomain(krr:hasSnapshot krr:Mutable)
 ObjectPropertyRange(krr:hasSnapshot krr:ImmutableEntity)
-
-# Object Property: krr:hasStructuralComponent (has structural component)
-
-AnnotationAssertion(rdfs:label krr:hasStructuralComponent "has structural component")
-AnnotationAssertion(skos:definition krr:hasStructuralComponent "functional parthood relationship where the role of the target component X is determined by the mutual relationship of that component X and other parts of the same parent composite")
-SubObjectPropertyOf(krr:hasStructuralComponent know:has-proper-part)
 
 # Object Property: krr:hasStructureType (has structure type)
 
@@ -245,6 +241,13 @@ AnnotationAssertion(rdfs:label krr:HeterogeneousMachinableKnowledgeResource "het
 EquivalentClasses(krr:HeterogeneousMachinableKnowledgeResource ObjectIntersectionOf(krr:HeterogeneousKnowledgeResource krr:MachinableKnowledgeResource ObjectMinCardinality(2 know:uses-language krr:KnowledgeRepresentationAndReasoningLanguage)))
 SubClassOf(krr:HeterogeneousMachinableKnowledgeResource krr:MachinableKnowledgeResource)
 
+# Class: krr:HybridKnowledgeBase (hybrid knowledge base)
+
+AnnotationAssertion(rdfs:label krr:HybridKnowledgeBase "hybrid knowledge base")
+AnnotationAssertion(skos:definition krr:HybridKnowledgeBase "A knowledge base composed by multiple parts that have different computational semantics and pragmatics, and thus are likely based on different logics")
+SubClassOf(krr:HybridKnowledgeBase krr:ImmutableKnowledgeBase)
+SubClassOf(krr:HybridKnowledgeBase ObjectSomeValuesFrom(know:conceptualizes krr:StructuredMachinableKnowledgeResource))
+
 # Class: krr:HybridKnowledgeEnvironment (hybrid knowledge environment)
 
 AnnotationAssertion(rdfs:label krr:HybridKnowledgeEnvironment "categorical, preserving language environment where multiple KRR languages, and mappings thereof, are supported")
@@ -284,6 +287,14 @@ AnnotationAssertion(rdfs:comment krr:KnowledgeBase "A knowledge base is formed b
 AnnotationAssertion(rdfs:label krr:KnowledgeBase "knowledge base")
 AnnotationAssertion(skos:definition krr:KnowledgeBase "A functional complex of pieces of knowledge")
 SubClassOf(krr:KnowledgeBase krr:KnowledgeSource)
+
+# Class: krr:KnowledgeDrivenReasoningActivity (knowledge driven reasoning activity)
+
+AnnotationAssertion(rdfs:label krr:KnowledgeDrivenReasoningActivity "knowledge driven reasoning activity")
+AnnotationAssertion(skos:definition krr:KnowledgeDrivenReasoningActivity "Activity performed by an artificial agent that uses a reasoner (aka \"engine\") and the knowledge captured by a (working) knowledge base to derive new information, e.g. to make inferences or answer queries")
+SubClassOf(krr:KnowledgeDrivenReasoningActivity know:KnowledgeActivity)
+SubClassOf(krr:KnowledgeDrivenReasoningActivity ObjectSomeValuesFrom(know:involves krr:WorkingKnowledgeBase))
+SubClassOf(krr:KnowledgeDrivenReasoningActivity ObjectSomeValuesFrom(know:performed-by know:ArtificialAgent))
 
 # Class: krr:KnowledgeRepresentationAndReasoningLanguage (knowledge representation and reasoning language)
 
@@ -435,16 +446,24 @@ SubClassOf(krr:SerializedMachinableKnowledgeExpression know:ConcreteExpression)
 
 AnnotationAssertion(rdfs:label krr:Source "source")
 
-# Class: krr:StructuredMachinableKnowledgeResource (structured (KRR) knowledge resource)
+# Class: krr:StructuredMachinableKnowledgeResource (composite (KRR) knowledge resource)
 
-AnnotationAssertion(rdfs:label krr:StructuredMachinableKnowledgeResource "structured (KRR) knowledge resource")
+AnnotationAssertion(rdfs:label krr:StructuredMachinableKnowledgeResource "composite (KRR) knowledge resource")
 AnnotationAssertion(skos:definition krr:StructuredMachinableKnowledgeResource "collection of machine readable knowledge resources, which are not necessarily in the same language and may themselves have structure.")
 AnnotationAssertion(skos:example krr:StructuredMachinableKnowledgeResource "KE2: a heterogeneous collection of streaming data and RDF graphs, together with static OWL ontologies and CL texts, and ECA rules describing actions of a CDS")
 AnnotationAssertion(skos:example krr:StructuredMachinableKnowledgeResource "KE3: the OWL 2 DL ontology series KA1, viewed as a collection of expressions rather than an equivalence class")
 EquivalentClasses(krr:StructuredMachinableKnowledgeResource ObjectIntersectionOf(krr:MachinableKnowledgeResource ObjectExactCardinality(1 krr:hasStructureType)))
 SubClassOf(krr:StructuredMachinableKnowledgeResource know:CompositeKnowledgeResource)
-SubClassOf(krr:StructuredMachinableKnowledgeResource ObjectSomeValuesFrom(krr:hasStructuralComponent krr:MachinableKnowledgeResource))
+SubClassOf(krr:StructuredMachinableKnowledgeResource ObjectSomeValuesFrom(know:has-structural-component krr:MachinableKnowledgeResource))
 SubClassOf(krr:StructuredMachinableKnowledgeResource ObjectExactCardinality(1 krr:hasStructureType))
+
+# Class: krr:WorkingKnowledgeBase (working knowledge base)
+
+AnnotationAssertion(rdfs:label krr:WorkingKnowledgeBase "working knowledge base")
+AnnotationAssertion(skos:definition krr:WorkingKnowledgeBase "(The snapshot of) a KRR knowledge base, internally represented by an artificial (software) agent, used in activities that make use of a 'reasoner' to derive new information from its content")
+SubClassOf(krr:WorkingKnowledgeBase krr:ImmutableKnowledgeBase)
+SubClassOf(krr:WorkingKnowledgeBase ObjectSomeValuesFrom(know:internally-represented-by know:ArtificialAgent))
+SubClassOf(krr:WorkingKnowledgeBase ObjectSomeValuesFrom(know:involved-in know:KnowledgeActivity))
 
 # Class: know:KnowledgeEndeavour (knowledge endeavour)
 

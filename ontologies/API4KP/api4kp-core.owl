@@ -33,11 +33,13 @@ Declaration(Class(know:ConcreteExpression))
 Declaration(Class(know:ConstructedLanguage))
 Declaration(Class(know:ConstructiveDefinition))
 Declaration(Class(know:ControlledNaturalLanguage))
+Declaration(Class(know:DecomposableKnowledgeResource))
 Declaration(Class(know:DefinedConcept))
 Declaration(Class(know:Definition))
 Declaration(Class(know:DescriptiveGrammar))
 Declaration(Class(know:EncodedKnowledgeExpression))
 Declaration(Class(know:Encoding))
+Declaration(Class(know:FlattenedKnowledgeResource))
 Declaration(Class(know:FormalGrammar))
 Declaration(Class(know:FormalLanguage))
 Declaration(Class(know:Grammar))
@@ -114,7 +116,9 @@ Declaration(ObjectProperty(know:exemplar-of))
 Declaration(ObjectProperty(know:expresses))
 Declaration(ObjectProperty(know:externalizes))
 Declaration(ObjectProperty(know:faithfully-expresses))
+Declaration(ObjectProperty(know:flattening-of))
 Declaration(ObjectProperty(know:formalizes))
+Declaration(ObjectProperty(know:framed-by))
 Declaration(ObjectProperty(know:function-of))
 Declaration(ObjectProperty(know:governed-by))
 Declaration(ObjectProperty(know:has-encoding))
@@ -124,6 +128,7 @@ Declaration(ObjectProperty(know:has-knowledge))
 Declaration(ObjectProperty(know:has-part))
 Declaration(ObjectProperty(know:has-product))
 Declaration(ObjectProperty(know:has-proper-part))
+Declaration(ObjectProperty(know:has-structural-component))
 Declaration(ObjectProperty(know:has-subject))
 Declaration(ObjectProperty(know:has-wordstock))
 Declaration(ObjectProperty(know:identified-by))
@@ -156,6 +161,10 @@ Declaration(ObjectProperty(know:serializes))
 Declaration(ObjectProperty(know:specified-by))
 Declaration(ObjectProperty(know:stored-in))
 Declaration(ObjectProperty(know:stores))
+Declaration(ObjectProperty(know:structurally-organized-by))
+Declaration(ObjectProperty(know:structured-by))
+Declaration(ObjectProperty(know:structured-with))
+Declaration(ObjectProperty(know:structures))
 Declaration(ObjectProperty(know:supports-expression))
 Declaration(ObjectProperty(know:supports-serialization))
 Declaration(ObjectProperty(know:targets))
@@ -383,6 +392,13 @@ AnnotationAssertion(rdfs:label know:faithfully-expresses "faithfully expresses")
 AnnotationAssertion(skos:definition know:faithfully-expresses "a faithful expression is both complete and correct, i.e. it is complete and  preserves all and only the associations between the concepts in the WoK")
 SubObjectPropertyOf(know:faithfully-expresses know:completely-expresses)
 
+# Object Property: know:flattening-of (flattening of)
+
+AnnotationAssertion(rdfs:label know:flattening-of "flattening of")
+AnnotationAssertion(skos:definition know:flattening-of "a particular kind of derivation, relating a flattened resource to the composite it was generated from")
+ObjectPropertyDomain(know:flattening-of know:FlattenedKnowledgeResource)
+ObjectPropertyRange(know:flattening-of know:CompositeKnowledgeResource)
+
 # Object Property: know:formalizes (know:formalizes)
 
 AnnotationAssertion(skos:definition know:formalizes "An Expression formalizes a Work of Knowledge if (i) it uses a formal language and (ii) it faithfully, concisely, consistently and unambiguously expresses that WoK")
@@ -392,6 +408,13 @@ SubObjectPropertyOf(know:formalizes know:faithfully-expresses)
 SubObjectPropertyOf(know:formalizes know:unambiguously-expresses)
 ObjectPropertyDomain(know:formalizes know:KnowledgeExpression)
 ObjectPropertyRange(know:formalizes know:WorkOfKnowledge)
+
+# Object Property: know:framed-by (framed by)
+
+AnnotationAssertion(rdfs:label know:framed-by "framed by")
+AnnotationAssertion(skos:definition know:framed-by "relationship between a (decomposable) knowledge resource and the structure that identifies and relates its components")
+ObjectPropertyDomain(know:framed-by know:DecomposableKnowledgeResource)
+ObjectPropertyRange(know:framed-by know:StructuringKnowledgeResource)
 
 # Object Property: know:function-of (function of)
 
@@ -453,6 +476,15 @@ ObjectPropertyDomain(know:has-product know:Activity)
 AnnotationAssertion(rdfs:label know:has-proper-part "has proper part")
 SubObjectPropertyOf(know:has-proper-part know:has-part)
 InverseObjectProperties(know:has-proper-part know:proper-part-of)
+
+# Object Property: know:has-structural-component (has structural component)
+
+AnnotationAssertion(rdfs:label know:has-structural-component "The relationship between a composite and its parts")
+AnnotationAssertion(rdfs:label know:has-structural-component "has structural component")
+SubObjectPropertyOf(know:has-structural-component know:has-proper-part)
+SubObjectPropertyOf(know:has-structural-component know:structured-with)
+ObjectPropertyDomain(know:has-structural-component know:CompositeKnowledgeResource)
+ObjectPropertyRange(know:has-structural-component know:StructuredKnowledgeResource)
 
 # Object Property: know:has-subject (has subject (knowledge))
 
@@ -698,6 +730,38 @@ AnnotationAssertion(skos:definition know:stores "the relationship between an ent
 An entity stores a Work, Expression or Artifact if it is able to keep (a copy of) it, and make it accessible for use as needed")
 ObjectPropertyRange(know:stores know:KnowledgeEndeavour)
 
+# Object Property: know:structurally-organized-by (structurally organized by)
+
+AnnotationAssertion(rdfs:label know:structurally-organized-by "structurally organized by")
+SubObjectPropertyOf(know:structurally-organized-by know:framed-by)
+SubObjectPropertyOf(know:structurally-organized-by know:has-structural-component)
+SubObjectPropertyOf(know:structurally-organized-by know:structured-by)
+ObjectPropertyDomain(know:structurally-organized-by know:CompositeKnowledgeResource)
+ObjectPropertyRange(know:structurally-organized-by know:StructuringKnowledgeResource)
+
+# Object Property: know:structured-by (structured by)
+
+AnnotationAssertion(rdfs:label know:structured-by "structured by")
+SubObjectPropertyOf(know:structured-by know:structured-with)
+InverseObjectProperties(know:structured-by know:structures)
+ObjectPropertyDomain(know:structured-by know:StructuredKnowledgeResource)
+ObjectPropertyRange(know:structured-by know:StructuringKnowledgeResource)
+
+# Object Property: know:structured-with (structured with)
+
+AnnotationAssertion(rdfs:label know:structured-with "structured with")
+AnnotationAssertion(skos:definition know:structured-with "Two knowledge resources are mutually structured with each other if they are part of the same structured knowledge resource.")
+AnnotationAssertion(skos:note know:structured-with "A structuring knowledge resource is structured with all the resources that it structures")
+ObjectPropertyDomain(know:structured-with know:StructuredKnowledgeResource)
+ObjectPropertyRange(know:structured-with know:StructuredKnowledgeResource)
+
+# Object Property: know:structures (structures)
+
+AnnotationAssertion(rdfs:label know:structures "structures")
+SubObjectPropertyOf(know:structures know:structured-with)
+ObjectPropertyDomain(know:structures know:StructuringKnowledgeResource)
+ObjectPropertyRange(know:structures know:StructuredKnowledgeResource)
+
 # Object Property: know:supports-expression (supports expression in)
 
 AnnotationAssertion(rdfs:comment know:supports-expression "In order to be useful, the supported notations should be able to structure most sentences of the language.")
@@ -897,12 +961,15 @@ AnnotationAssertion(skos:definition know:ComplexConcept "A Concept that can be d
 EquivalentClasses(know:ComplexConcept ObjectIntersectionOf(know:AtomicConcept ObjectSomeValuesFrom(know:captured-by know:WorkOfKnowledge)))
 SubClassOf(know:ComplexConcept know:AtomicConcept)
 
-# Class: know:CompositeKnowledgeResource (Composite Knowledge Resource)
+# Class: know:CompositeKnowledgeResource (composite knowledge resource)
 
 AnnotationAssertion(rdfs:comment know:CompositeKnowledgeResource "Functionally Complex Resource that has one or more structural components, and provides the structuring for them. Each component plays a specific role")
-AnnotationAssertion(rdfs:label know:CompositeKnowledgeResource "Composite Knowledge Resource"@en)
-AnnotationAssertion(skos:definition know:CompositeKnowledgeResource "A Composite Knowledge Resource is a Structured Knowledge Resource such that the structuring operation preserved the original components, allowing to discern them.")
+AnnotationAssertion(rdfs:label know:CompositeKnowledgeResource "composite knowledge resource"@en)
+AnnotationAssertion(skos:definition know:CompositeKnowledgeResource "a complex, structured knowledge resource that is constructed by assembling a number of knowledge resources, according to the plan that is the information content of a structuring resource")
+EquivalentClasses(know:CompositeKnowledgeResource ObjectIntersectionOf(know:StructuredKnowledgeResource ObjectSomeValuesFrom(know:structurally-organized-by know:StructuringKnowledgeResource)))
+SubClassOf(know:CompositeKnowledgeResource know:DecomposableKnowledgeResource)
 SubClassOf(know:CompositeKnowledgeResource know:StructuredKnowledgeResource)
+SubClassOf(know:CompositeKnowledgeResource ObjectSomeValuesFrom(know:has-proper-part know:StructuredKnowledgeResource))
 
 # Class: know:ComputableLanguage (computable language)
 
@@ -940,6 +1007,15 @@ AnnotationAssertion(skos:definition know:ControlledNaturalLanguage "Subset of a 
 SubClassOf(know:ControlledNaturalLanguage know:ConstructedLanguage)
 SubClassOf(know:ControlledNaturalLanguage know:NaturalLanguage)
 
+# Class: know:DecomposableKnowledgeResource (decomposable knowledge resource)
+
+AnnotationAssertion(rdfs:label know:DecomposableKnowledgeResource "decomposable knowledge resource")
+AnnotationAssertion(skos:definition know:DecomposableKnowledgeResource "Knowledge resource that is not a composite, but such that there exists at least one composite knowledge resource that, if flattened, results in a (flattened) knowledge resource that is equal to this.
+
+The structure of that composite can be overlyed on top of the decomposable resource, as a possibel input to a deconstructing operation")
+SubClassOf(know:DecomposableKnowledgeResource know:KnowledgeResource)
+SubClassOf(know:DecomposableKnowledgeResource ObjectSomeValuesFrom(know:framed-by know:StructuringKnowledgeResource))
+
 # Class: know:DefinedConcept (defined concept)
 
 AnnotationAssertion(rdfs:comment know:DefinedConcept "When expressed in OWL, defined concepts have at least one equivalentClass axiom, assuming OWL is sufficiently expressive to represent that definition.")
@@ -975,6 +1051,13 @@ AnnotationAssertion(rdfs:seeAlso know:Encoding "https://en.wikipedia.org/wiki/Co
 AnnotationAssertion(rdfs:seeAlso know:Encoding "https://en.wikipedia.org/wiki/Encoding_(memory)")
 AnnotationAssertion(skos:definition know:Encoding "method for converting a concrete (knowledge) expression into a from that is suitable to be engraved on a carrier of choice")
 SubClassOf(know:Encoding know:KnowledgeProcessingMethod)
+
+# Class: know:FlattenedKnowledgeResource (flattened knowledge resource)
+
+AnnotationAssertion(rdfs:label know:FlattenedKnowledgeResource "flattened knowledge resource")
+AnnotationAssertion(skos:definition know:FlattenedKnowledgeResource "knowledge resource that is obtained from a composite knowledge resource by means of some flattening operation")
+EquivalentClasses(know:FlattenedKnowledgeResource ObjectSomeValuesFrom(know:flattening-of know:CompositeKnowledgeResource))
+SubClassOf(know:FlattenedKnowledgeResource know:DecomposableKnowledgeResource)
 
 # Class: know:FormalGrammar (formal grammar)
 
@@ -1164,10 +1247,10 @@ AnnotationAssertion(skos:example know:KnowledgeRepresentationAndReasoningLanguag
 EquivalentClasses(know:KnowledgeRepresentationAndReasoningLanguage ObjectIntersectionOf(know:FormalLanguage know:MachineExecutableLanguage))
 SubClassOf(know:KnowledgeRepresentationAndReasoningLanguage ObjectSomeValuesFrom(ObjectInverseOf(know:uses-language) know:KnowledgeExpression))
 
-# Class: know:KnowledgeResource (Knowledge Resource)
+# Class: know:KnowledgeResource (knowledge resource)
 
 AnnotationAssertion(rdfs:comment know:KnowledgeResource "By definition, an information object that is about (an intellectual work that is about) some form of knowledge about something")
-AnnotationAssertion(rdfs:label know:KnowledgeResource "Knowledge Resource"@en)
+AnnotationAssertion(rdfs:label know:KnowledgeResource "knowledge resource"@en)
 AnnotationAssertion(skos:definition know:KnowledgeResource "The Expression of some Work of Knowledge in the Abstract Syntax of some language")
 AnnotationAssertion(skos:example know:KnowledgeResource "the specification of the allgorithm for the extraction of the square root of a number in some programming language such as Java (version 8)")
 SubClassOf(know:KnowledgeResource know:AbstractExpression)
@@ -1180,9 +1263,14 @@ AnnotationAssertion(skos:definition know:KnowledgeResourceDescription "Knowledge
 EquivalentClasses(know:KnowledgeResourceDescription ObjectIntersectionOf(know:KnowledgeResource ObjectSomeValuesFrom(know:is-about know:KnowledgeResource)))
 SubClassOf(know:KnowledgeResourceDescription know:KnowledgeResource)
 
-# Class: know:KnowledgeStructuringActivity (know:KnowledgeStructuringActivity)
+# Class: know:KnowledgeStructuringActivity (knowledge structuring activity)
 
+AnnotationAssertion(rdfs:label know:KnowledgeStructuringActivity "knowledge structuring activity")
+AnnotationAssertion(skos:definition know:KnowledgeStructuringActivity "activity that organizes other resources, producing a structure")
+AnnotationAssertion(skos:note know:KnowledgeStructuringActivity "The structuring resource is 'structured' by definition. The input resources become 'structured resources', and structured with each other, as a consequence of this activity if not already structured")
 SubClassOf(know:KnowledgeStructuringActivity know:KnowledgeConstructionActivity)
+SubClassOf(know:KnowledgeStructuringActivity ObjectSomeValuesFrom(know:has-product know:StructuringKnowledgeResource))
+SubClassOf(know:KnowledgeStructuringActivity ObjectSomeValuesFrom(know:targets know:KnowledgeResource))
 
 # Class: know:KnowledgeableAgent (knowledgeable agent)
 
@@ -1335,18 +1423,22 @@ AnnotationAssertion(rdfs:label know:Specification "specification")
 AnnotationAssertion(skos:definition know:Specification "prescriptive expression of knowledge about the expected and/or required behavior of a system")
 SubClassOf(know:Specification know:KnowledgeResource)
 
-# Class: know:StructuredKnowledgeResource (Structured Knowledge Resource)
+# Class: know:StructuredKnowledgeResource (structured knowledge resource)
 
-AnnotationAssertion(rdfs:label know:StructuredKnowledgeResource "Structured Knowledge Resource"@en)
-AnnotationAssertion(skos:definition know:StructuredKnowledgeResource "Knowledge Resource that is the result of a structuring operation, that takes a number of other Knowledge Resources as Inputs")
+AnnotationAssertion(rdfs:label know:StructuredKnowledgeResource "structured knowledge resource"@en)
+AnnotationAssertion(skos:definition know:StructuredKnowledgeResource "Knowledge Resource that is structured with some other Resource, i.e. it is either a structure or is structured by a structure")
+EquivalentClasses(know:StructuredKnowledgeResource ObjectIntersectionOf(know:KnowledgeResource ObjectSomeValuesFrom(know:structured-with know:KnowledgeResource)))
+EquivalentClasses(know:StructuredKnowledgeResource ObjectUnionOf(know:StructuringKnowledgeResource ObjectSomeValuesFrom(know:structured-by know:StructuringKnowledgeResource)))
 SubClassOf(know:StructuredKnowledgeResource know:KnowledgeResource)
 
 # Class: know:StructuringKnowledgeResource (structuring knowledge resource)
 
 AnnotationAssertion(rdfs:label know:StructuringKnowledgeResource "structure")
 AnnotationAssertion(rdfs:label know:StructuringKnowledgeResource "structuring knowledge resource")
-AnnotationAssertion(skos:definition know:StructuringKnowledgeResource "A knowledge resource that defines - declaratively or procedurally - how other resources can be aggregated or composed into a structured resource")
-SubClassOf(know:StructuringKnowledgeResource know:KnowledgeResource)
+AnnotationAssertion(skos:definition know:StructuringKnowledgeResource "A knowledge resource that defines - declaratively or procedurally - how other resources can be aggregated or composed into a composite resource")
+EquivalentClasses(know:StructuringKnowledgeResource ObjectIntersectionOf(know:StructuredKnowledgeResource ObjectSomeValuesFrom(know:structures know:StructuredKnowledgeResource)))
+SubClassOf(know:StructuringKnowledgeResource know:StructuredKnowledgeResource)
+SubClassOf(know:StructuringKnowledgeResource ObjectSomeValuesFrom(know:expresses know:KnowledgeProcessingPlan))
 
 # Class: know:Syntax (syntax)
 
