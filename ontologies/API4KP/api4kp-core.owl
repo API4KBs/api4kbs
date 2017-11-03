@@ -37,6 +37,7 @@ Declaration(Class(know:DefinedConcept))
 Declaration(Class(know:Definition))
 Declaration(Class(know:DescriptiveGrammar))
 Declaration(Class(know:EncodedKnowledgeExpression))
+Declaration(Class(know:Encoding))
 Declaration(Class(know:FormalGrammar))
 Declaration(Class(know:FormalLanguage))
 Declaration(Class(know:Grammar))
@@ -49,6 +50,7 @@ Declaration(Class(know:KnowledgeArtifact))
 Declaration(Class(know:KnowledgeArtifactRepository))
 Declaration(Class(know:KnowledgeAssetSurrogate))
 Declaration(Class(know:KnowledgeCarrier))
+Declaration(Class(know:KnowledgeConstructionActivity))
 Declaration(Class(know:KnowledgeElement))
 Declaration(Class(know:KnowledgeEndeavour))
 Declaration(Class(know:KnowledgeExpression))
@@ -61,6 +63,7 @@ Declaration(Class(know:KnowledgeProcessingTask))
 Declaration(Class(know:KnowledgeRepresentationAndReasoningLanguage))
 Declaration(Class(know:KnowledgeResource))
 Declaration(Class(know:KnowledgeResourceDescription))
+Declaration(Class(know:KnowledgeStructuringActivity))
 Declaration(Class(know:KnowledgeableAgent))
 Declaration(Class(know:Language))
 Declaration(Class(know:Lexicon))
@@ -80,6 +83,7 @@ Declaration(Class(know:Serialization))
 Declaration(Class(know:Software))
 Declaration(Class(know:Specification))
 Declaration(Class(know:StructuredKnowledgeResource))
+Declaration(Class(know:StructuringKnowledgeResource))
 Declaration(Class(know:Syntax))
 Declaration(Class(know:VersionedIdentifier))
 Declaration(Class(know:VersionedKnowledgeEndeavor))
@@ -826,10 +830,10 @@ SubClassOf(know:AbstractExpression ObjectSomeValuesFrom(know:knowledge-represent
 SubClassOf(know:AbstractExpression ObjectSomeValuesFrom(know:serialized-into know:ConcreteExpression))
 DisjointClasses(know:AbstractExpression know:ConcreteExpression)
 
-# Class: know:AbstractSyntax (Abstract Syntax)
+# Class: know:AbstractSyntax (abstract syntax)
 
 AnnotationAssertion(rdfs:comment know:AbstractSyntax "Like all Abstract Expressions, it needs a serialization to be concretized")
-AnnotationAssertion(rdfs:label know:AbstractSyntax "Abstract Syntax"@en)
+AnnotationAssertion(rdfs:label know:AbstractSyntax "abstract syntax"@en)
 AnnotationAssertion(skos:definition know:AbstractSyntax "The set of structures and/or rules that constrain the abstract syntax tree of a valid sentence of a language, itself expressed in some (meta) language")
 SubClassOf(know:AbstractSyntax know:Syntax)
 DisjointClasses(know:AbstractSyntax know:Serialization)
@@ -900,9 +904,9 @@ AnnotationAssertion(rdfs:label know:CompositeKnowledgeResource "Composite Knowle
 AnnotationAssertion(skos:definition know:CompositeKnowledgeResource "A Composite Knowledge Resource is a Structured Knowledge Resource such that the structuring operation preserved the original components, allowing to discern them.")
 SubClassOf(know:CompositeKnowledgeResource know:StructuredKnowledgeResource)
 
-# Class: know:ComputableLanguage (Computable Language)
+# Class: know:ComputableLanguage (computable language)
 
-AnnotationAssertion(rdfs:label know:ComputableLanguage "Computable Language"@en)
+AnnotationAssertion(rdfs:label know:ComputableLanguage "computable language"@en)
 AnnotationAssertion(skos:definition know:ComputableLanguage "Constructed Language that is used only by expressions that define how to execute information processing tasks and, as such, is indirectly used in certain Information Processing Activities")
 SubClassOf(know:ComputableLanguage know:ConstructedLanguage)
 SubClassOf(know:ComputableLanguage ObjectSomeValuesFrom(ObjectInverseOf(know:uses-language) ObjectSomeValuesFrom(ObjectInverseOf(know:specified-by) know:InformationProcessingActivity)))
@@ -917,9 +921,9 @@ SubClassOf(know:ConcreteExpression know:KnowledgeExpression)
 SubClassOf(know:ConcreteExpression ObjectSomeValuesFrom(know:serialization-of know:AbstractExpression))
 SubClassOf(know:ConcreteExpression ObjectSomeValuesFrom(know:uses-concrete-syntax know:Serialization))
 
-# Class: know:ConstructedLanguage (Constructed Language)
+# Class: know:ConstructedLanguage (constructed language)
 
-AnnotationAssertion(rdfs:label know:ConstructedLanguage "Constructed Language")
+AnnotationAssertion(rdfs:label know:ConstructedLanguage "constructed language")
 AnnotationAssertion(skos:definition know:ConstructedLanguage "Languages that are intensionally specified by a formal grammar, schema or metamodel - a set of criteria (e.g. rules and constraints) explicitly designed to distinguish valid sentences from invalid ones in a non-ambiguous way")
 EquivalentClasses(know:ConstructedLanguage ObjectIntersectionOf(know:Language ObjectSomeValuesFrom(know:specified-by ObjectIntersectionOf(know:Syntax ObjectSomeValuesFrom(know:formalizes ObjectIntersectionOf(know:FormalGrammar know:PrescriptiveGrammar))))))
 
@@ -964,6 +968,14 @@ SubClassOf(know:DescriptiveGrammar know:Grammar)
 AnnotationAssertion(rdfs:label know:EncodedKnowledgeExpression "encoded knowledge expression")
 SubClassOf(know:EncodedKnowledgeExpression know:KnowledgeExpression)
 
+# Class: know:Encoding (encoding)
+
+AnnotationAssertion(rdfs:label know:Encoding "encoding")
+AnnotationAssertion(rdfs:seeAlso know:Encoding "https://en.wikipedia.org/wiki/Code")
+AnnotationAssertion(rdfs:seeAlso know:Encoding "https://en.wikipedia.org/wiki/Encoding_(memory)")
+AnnotationAssertion(skos:definition know:Encoding "method for converting a concrete (knowledge) expression into a from that is suitable to be engraved on a carrier of choice")
+SubClassOf(know:Encoding know:KnowledgeProcessingMethod)
+
 # Class: know:FormalGrammar (formal grammar)
 
 AnnotationAssertion(rdfs:label know:FormalGrammar "formal grammar")
@@ -971,9 +983,9 @@ AnnotationAssertion(skos:definition know:FormalGrammar "A grammar such there exi
 EquivalentClasses(know:FormalGrammar ObjectIntersectionOf(know:Grammar ObjectSomeValuesFrom(know:conceptualizes ObjectIntersectionOf(know:Syntax ObjectSomeValuesFrom(know:uses-language know:FormalLanguage)))))
 SubClassOf(know:FormalGrammar know:Grammar)
 
-# Class: know:FormalLanguage (Formal Language)
+# Class: know:FormalLanguage (formal logic language)
 
-AnnotationAssertion(rdfs:label know:FormalLanguage "Formal Language"@en)
+AnnotationAssertion(rdfs:label know:FormalLanguage "formal logic language"@en)
 AnnotationAssertion(skos:definition know:FormalLanguage "language equipped with a formal, declarative, logic-based semantics")
 SubClassOf(know:FormalLanguage know:ConstructedLanguage)
 
@@ -1051,6 +1063,13 @@ AnnotationAssertion(skos:definition know:KnowledgeCarrier "The medium that supop
 AnnotationAssertion(skos:scopeNote know:KnowledgeCarrier "From the perspective of an agent, this class includes external carriers, such as documents and files, as well as internal carriers, such as neural patterns and/or digital memories")
 SubClassOf(know:KnowledgeCarrier know:KnowledgeEndeavour)
 SubClassOf(know:KnowledgeCarrier ObjectSomeValuesFrom(know:carries ObjectIntersectionOf(know:ConcreteExpression ObjectSomeValuesFrom(know:representation-of know:PieceOfKnowledge))))
+
+# Class: know:KnowledgeConstructionActivity (knowledge construction activity)
+
+AnnotationAssertion(rdfs:label know:KnowledgeConstructionActivity "knowledge construction activity")
+AnnotationAssertion(skos:definition know:KnowledgeConstructionActivity "the class of activities that involve structured knowledge resources")
+EquivalentClasses(know:KnowledgeConstructionActivity ObjectIntersectionOf(know:KnowledgeActivity ObjectSomeValuesFrom(know:involves know:StructuredKnowledgeResource)))
+SubClassOf(know:KnowledgeConstructionActivity know:KnowledgeActivity)
 
 # Class: know:KnowledgeElement (knowledge expression element)
 
@@ -1154,12 +1173,16 @@ AnnotationAssertion(skos:example know:KnowledgeResource "the specification of th
 SubClassOf(know:KnowledgeResource know:AbstractExpression)
 SubClassOf(know:KnowledgeResource ObjectSomeValuesFrom(know:expresses know:WorkOfKnowledge))
 
-# Class: know:KnowledgeResourceDescription (Knowledge Resource Description)
+# Class: know:KnowledgeResourceDescription (knowledge resource description)
 
-AnnotationAssertion(rdfs:label know:KnowledgeResourceDescription "Knowledge Resource Description"@en)
+AnnotationAssertion(rdfs:label know:KnowledgeResourceDescription "knowledge resource description"@en)
 AnnotationAssertion(skos:definition know:KnowledgeResourceDescription "Knowledge Resource that contains information (metadata) about another Resource.")
 EquivalentClasses(know:KnowledgeResourceDescription ObjectIntersectionOf(know:KnowledgeResource ObjectSomeValuesFrom(know:is-about know:KnowledgeResource)))
 SubClassOf(know:KnowledgeResourceDescription know:KnowledgeResource)
+
+# Class: know:KnowledgeStructuringActivity (know:KnowledgeStructuringActivity)
+
+SubClassOf(know:KnowledgeStructuringActivity know:KnowledgeConstructionActivity)
 
 # Class: know:KnowledgeableAgent (knowledgeable agent)
 
@@ -1197,9 +1220,9 @@ AnnotationAssertion(skos:definition know:MachineExecutableLanguage "Language tha
 EquivalentClasses(know:MachineExecutableLanguage ObjectIntersectionOf(know:ComputableLanguage know:MachineReadableLanguage))
 SubClassOf(know:MachineExecutableLanguage know:ComputableLanguage)
 
-# Class: know:MachineReadableLanguage (Machine-Readable Language)
+# Class: know:MachineReadableLanguage (machine-readable language)
 
-AnnotationAssertion(rdfs:label know:MachineReadableLanguage "Machine-Readable Language"@en)
+AnnotationAssertion(rdfs:label know:MachineReadableLanguage "machine-readable language"@en)
 AnnotationAssertion(skos:definition know:MachineReadableLanguage "Language such that Expressions that use it can be internally represented (i.e. parsed and interpreted) by a software at runtime")
 EquivalentClasses(know:MachineReadableLanguage ObjectIntersectionOf(know:ConstructedLanguage ObjectSomeValuesFrom(know:internally-represented-by know:ArtificialAgent)))
 
@@ -1274,9 +1297,9 @@ This class of 'primitive' concept does not make a distinction, and assumes that 
 EquivalentClasses(know:PrimitiveConcept ObjectIntersectionOf(know:AtomicConcept ObjectComplementOf(ObjectSomeValuesFrom(know:captured-by know:WorkOfKnowledge))))
 SubClassOf(know:PrimitiveConcept know:AtomicConcept)
 
-# Class: know:Profile (Profile)
+# Class: know:Profile (profile)
 
-AnnotationAssertion(rdfs:label know:Profile "Profile")
+AnnotationAssertion(rdfs:label know:Profile "profile")
 AnnotationAssertion(skos:altLabel know:Profile "Linguistic Profile")
 AnnotationAssertion(skos:definition know:Profile "A profile is a restricted abstract syntax that limits the expressvity of (the admissible expression in) a given language, usually to reduce the complexity, narrow the scope, and/or improve the semantic clarity of the expressions")
 EquivalentClasses(know:Profile ObjectIntersectionOf(know:AbstractSyntax ObjectSomeValuesFrom(know:profiles know:AbstractSyntax)))
@@ -1289,9 +1312,9 @@ AnnotationAssertion(rdfs:label know:SelfContainedKnowledgeArtifact "Self-Contain
 AnnotationAssertion(skos:definition know:SelfContainedKnowledgeArtifact "A Knowledge Artifact that is an exemplar of a self-contained manifestation")
 SubClassOf(know:SelfContainedKnowledgeArtifact know:KnowledgeArtifact)
 
-# Class: know:Serialization (Concrete Syntax)
+# Class: know:Serialization (concrete syntax)
 
-AnnotationAssertion(rdfs:label know:Serialization "Concrete Syntax"@en)
+AnnotationAssertion(rdfs:label know:Serialization "concrete syntax"@en)
 AnnotationAssertion(skos:altLabel know:Serialization "serialization")
 AnnotationAssertion(skos:definition know:Serialization "The set of structures and/or rules that constrain the parse tree of a valid sentence of a language, itself expressed in some (meta) language")
 SubClassOf(know:Serialization know:Syntax)
@@ -1317,6 +1340,13 @@ SubClassOf(know:Specification know:KnowledgeResource)
 AnnotationAssertion(rdfs:label know:StructuredKnowledgeResource "Structured Knowledge Resource"@en)
 AnnotationAssertion(skos:definition know:StructuredKnowledgeResource "Knowledge Resource that is the result of a structuring operation, that takes a number of other Knowledge Resources as Inputs")
 SubClassOf(know:StructuredKnowledgeResource know:KnowledgeResource)
+
+# Class: know:StructuringKnowledgeResource (structuring knowledge resource)
+
+AnnotationAssertion(rdfs:label know:StructuringKnowledgeResource "structure")
+AnnotationAssertion(rdfs:label know:StructuringKnowledgeResource "structuring knowledge resource")
+AnnotationAssertion(skos:definition know:StructuringKnowledgeResource "A knowledge resource that defines - declaratively or procedurally - how other resources can be aggregated or composed into a structured resource")
+SubClassOf(know:StructuringKnowledgeResource know:KnowledgeResource)
 
 # Class: know:Syntax (syntax)
 

@@ -31,7 +31,6 @@ Annotation(dc:creator "Sivaram Arabandi")
 Annotation(dc:description "The purpose of this ontology is to define 'knowledge' and the related concepts that play a role in managing and delivering that knowledge to different audiences.")
 Annotation(dc:title "Ontology of Shareable Knowledge")
 
-Declaration(Class(<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>))
 Declaration(Class(kmo:AdvancedKnowledge))
 Declaration(Class(kmo:AnonymousKnowledgeResource))
 Declaration(Class(kmo:ApproachableKnowledgeResource))
@@ -79,6 +78,7 @@ Declaration(Class(kmo:KnowledgeAssetDescription))
 Declaration(Class(kmo:KnowledgeEndorsingParty))
 Declaration(Class(kmo:KnowledgeManagementServiceProvider))
 Declaration(Class(kmo:KnowledgeMetaDescriptor))
+Declaration(Class(kmo:KnowledgePublicationActivity))
 Declaration(Class(kmo:KnowledgeResourceEmbeddingSurrogate))
 Declaration(Class(kmo:KnowledgeTransferActivity))
 Declaration(Class(kmo:MainstreamKnowledgeResource))
@@ -91,10 +91,6 @@ Declaration(Class(kmo:SpecialistKnowledge))
 Declaration(Class(kmo:StandaloneKnowledgeResource))
 Declaration(Class(kmo:TacitKnowledge))
 Declaration(Class(kmo:UndegraduateLevelInstruction))
-Declaration(ObjectProperty(<http://purl.org/vocab/frbr/core#complement>))
-Declaration(ObjectProperty(<http://purl.org/vocab/frbr/core#revision>))
-Declaration(ObjectProperty(<http://purl.org/vocab/frbr/core#revisionOf>))
-Declaration(ObjectProperty(<http://purl.org/vocab/frbr/core#supplement>))
 Declaration(ObjectProperty(kmo:archived-in))
 Declaration(ObjectProperty(kmo:archives))
 Declaration(ObjectProperty(kmo:endorsed-by))
@@ -102,7 +98,6 @@ Declaration(ObjectProperty(kmo:endorses))
 Declaration(ObjectProperty(kmo:possessed-by))
 Declaration(ObjectProperty(kmo:possesses))
 Declaration(ObjectProperty(kmo:replica-of))
-Declaration(ObjectProperty(prov:wasDerivedFrom))
 Declaration(NamedIndividual(<http://purl.org/spar/pso/published>))
 Declaration(AnnotationProperty(dc:creator))
 Declaration(AnnotationProperty(dc:date))
@@ -173,11 +168,6 @@ ObjectPropertyRange(kmo:replica-of kmo:MasterCopy)
 ############################
 #   Classes
 ############################
-
-# Class: <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource> (<http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)
-
-AnnotationAssertion(skos:example <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource> "The Ontology of Knowledge Management, expressed in OWL (and English as a sub-language)")
-AnnotationAssertion(skos:example <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource> "The mass-energy equation ('E=mc^2'), as expressed in some language for the representation of math knowledge")
 
 # Class: kmo:AdvancedKnowledge (advanced knowledge)
 
@@ -288,7 +278,7 @@ AnnotationAssertion(rdfs:label kmo:CoreKnowledgeAsset "core knowledge asset"@en)
 AnnotationAssertion(skos:definition kmo:CoreKnowledgeAsset "Asset such that Assets may be derived from it, but is not itself derived from any other Asset (although it could be a derivative of another Resource)")
 EquivalentClasses(kmo:CoreKnowledgeAsset ObjectIntersectionOf(kmo:KnowledgeAsset ObjectIntersectionOf(kmo:CanonicalKnowledgeResource kmo:EndorsedKnowledgeResource kmo:MainstreamKnowledgeResource)))
 SubClassOf(kmo:CoreKnowledgeAsset kmo:KnowledgeAsset)
-SubClassOf(kmo:CoreKnowledgeAsset ObjectComplementOf(ObjectSomeValuesFrom(prov:wasDerivedFrom kmo:KnowledgeAsset)))
+SubClassOf(kmo:CoreKnowledgeAsset ObjectComplementOf(ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/rel#derived-from> kmo:KnowledgeAsset)))
 
 # Class: kmo:DigitalKnowledgeArtifact (digital knowledge artifact)
 
@@ -513,6 +503,15 @@ AnnotationAssertion(skos:definition kmo:KnowledgeMetaDescriptor "A descriptor th
 EquivalentClasses(kmo:KnowledgeMetaDescriptor ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResourceDescription> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#representation-of> <http://www.omg.org/spec/API4KP/core#KnowledgeResourceDescription>)))
 SubClassOf(kmo:KnowledgeMetaDescriptor <http://www.omg.org/spec/API4KP/core#KnowledgeResourceDescription>)
 
+# Class: kmo:KnowledgePublicationActivity (knowledge publication activity)
+
+AnnotationAssertion(rdfs:label kmo:KnowledgePublicationActivity "knowledge publication activity")
+AnnotationAssertion(skos:altLabel kmo:KnowledgePublicationActivity "knowledge release activity")
+AnnotationAssertion(skos:definition kmo:KnowledgePublicationActivity "activity by which an endorsed knowledge resource is released to the public, to be used, making it possible for agents to acquire it")
+SubClassOf(kmo:KnowledgePublicationActivity <http://www.omg.org/spec/API4KP/core#InformationProcessingActivity>)
+SubClassOf(kmo:KnowledgePublicationActivity ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#involves> kmo:EndorsedKnowledgeResource))
+SubClassOf(kmo:KnowledgePublicationActivity ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/core#targets> kmo:PublishedKnowledgeResource))
+
 # Class: kmo:KnowledgeResourceEmbeddingSurrogate (knowledge resource embedding surrogate)
 
 AnnotationAssertion(rdfs:label kmo:KnowledgeResourceEmbeddingSurrogate "knowledge resource embedding surrogate"@en)
@@ -528,12 +527,12 @@ AnnotationAssertion(skos:definition kmo:KnowledgeTransferActivity "Activity with
 SubClassOf(kmo:KnowledgeTransferActivity kmo:KnowledgeAcquisitionActivity)
 SubClassOf(kmo:KnowledgeTransferActivity ObjectMinCardinality(2 <http://www.omg.org/spec/API4KP/core#performed-by> <http://www.omg.org/spec/API4KP/core#KnowledgeableAgent>))
 
-# Class: kmo:MainstreamKnowledgeResource (Mainstream Knowledge Resource)
+# Class: kmo:MainstreamKnowledgeResource (mainstream knowledge resource)
 
-AnnotationAssertion(rdfs:label kmo:MainstreamKnowledgeResource "Mainstream Knowledge Resource"@en)
+AnnotationAssertion(rdfs:label kmo:MainstreamKnowledgeResource "mainstream knowledge resource"@en)
 AnnotationAssertion(skos:definition kmo:MainstreamKnowledgeResource "Latest Published Version of a Knowledge Resource.
-i.e. Published Knowledge Resource such that there is no revision (i.e. a following version) that is also Published.")
-EquivalentClasses(kmo:MainstreamKnowledgeResource ObjectIntersectionOf(kmo:PublishedKnowledgeResource ObjectComplementOf(ObjectSomeValuesFrom(<http://purl.org/vocab/frbr/core#revision> kmo:PublishedKnowledgeResource))))
+i.e. Published Knowledge Resource such that there is no revision that is also Published.")
+EquivalentClasses(kmo:MainstreamKnowledgeResource ObjectIntersectionOf(kmo:PublishedKnowledgeResource ObjectComplementOf(ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/rel#has-later-revision> kmo:PublishedKnowledgeResource))))
 SubClassOf(kmo:MainstreamKnowledgeResource kmo:PublishedKnowledgeResource)
 
 # Class: kmo:MasterCopy (master copy)
@@ -548,17 +547,18 @@ AnnotationAssertion(rdfs:label kmo:MedicalBusinessDomain "medical business domai
 AnnotationAssertion(skos:definition kmo:MedicalBusinessDomain "domain that encompasses the science of health in general: including, but not limited to, the study the human body (anatomy and physiology), the practice of medicine as the prevention and treatment of diseaes, pharmacology as the science of substances that can affect the human body")
 SubClassOf(kmo:MedicalBusinessDomain kmo:BusinessDomain)
 
-# Class: kmo:OriginalKnowledgeResource (Original Knowledge Resource)
+# Class: kmo:OriginalKnowledgeResource (original knowledge resource)
 
-AnnotationAssertion(rdfs:label kmo:OriginalKnowledgeResource "Original Knowledge Resource"@en)
+AnnotationAssertion(rdfs:label kmo:OriginalKnowledgeResource "original knowledge resource"@en)
 AnnotationAssertion(skos:definition kmo:OriginalKnowledgeResource "The first (version of an) Knowledge Resource, such that there are no predecessor (expressions of previous) Works that have been used during its creation.")
-EquivalentClasses(kmo:OriginalKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResource> ObjectComplementOf(ObjectSomeValuesFrom(<http://purl.org/vocab/frbr/core#revisionOf> <http://www.omg.org/spec/API4KP/core#KnowledgeResource>))))
+EquivalentClasses(kmo:OriginalKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResource> ObjectComplementOf(ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/rel#is-later-revision-of> <http://www.omg.org/spec/API4KP/core#KnowledgeResource>))))
+SubClassOf(kmo:OriginalKnowledgeResource ObjectSomeValuesFrom(ObjectInverseOf(<http://www.omg.org/spec/API4KP/rel#has-original>) <http://www.omg.org/spec/API4KP/core#KnowledgeResource>))
 
-# Class: kmo:PublishedKnowledgeResource (Published Knowledge Resource)
+# Class: kmo:PublishedKnowledgeResource (published knowledge resource)
 
-AnnotationAssertion(rdfs:label kmo:PublishedKnowledgeResource "Published Knowledge Resource"@en)
+AnnotationAssertion(rdfs:label kmo:PublishedKnowledgeResource "published knowledge resource"@en)
 AnnotationAssertion(skos:definition kmo:PublishedKnowledgeResource "resource that has been published by means of a publication activity")
-SubClassOf(kmo:PublishedKnowledgeResource <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeResource>)
+EquivalentClasses(kmo:PublishedKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResource> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#recipient-of> kmo:KnowledgePublicationActivity)))
 
 # Class: kmo:SophisticatedKnowledgeResource (sophisticated knowledge resource)
 
@@ -576,12 +576,12 @@ AnnotationAssertion(skos:definition kmo:SpecialistKnowledge "Domain Knowledge ac
 SubClassOf(kmo:SpecialistKnowledge kmo:DomainKnowledge)
 SubClassOf(kmo:SpecialistKnowledge ObjectSomeValuesFrom(kmo:possessed-by ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeableAgent> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#recipient-of> kmo:GraduateLevelInstruction))))
 
-# Class: kmo:StandaloneKnowledgeResource (Standalone Knowledge Resource)
+# Class: kmo:StandaloneKnowledgeResource (standalone knowledge resource)
 
 AnnotationAssertion(rdfs:comment kmo:StandaloneKnowledgeResource "Such a Resource can be interpreted by an agent (that has the appropriate knowledge pre-requisites) without the need to look up any additional Knowledge Resources")
-AnnotationAssertion(rdfs:label kmo:StandaloneKnowledgeResource "Standalone Knowledge Resource"@en)
-AnnotationAssertion(skos:definition kmo:StandaloneKnowledgeResource "Knowledge Resource that does not have complements nor supplements.")
-EquivalentClasses(kmo:StandaloneKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResource> ObjectComplementOf(ObjectSomeValuesFrom(<http://purl.org/vocab/frbr/core#complement> <http://www.omg.org/spec/API4KP/core#KnowledgeResource>)) ObjectComplementOf(ObjectSomeValuesFrom(<http://purl.org/vocab/frbr/core#supplement> <http://www.omg.org/spec/API4KP/core#KnowledgeResource>))))
+AnnotationAssertion(rdfs:label kmo:StandaloneKnowledgeResource "standalone knowledge resource"@en)
+AnnotationAssertion(skos:definition kmo:StandaloneKnowledgeResource "Knowledge Resource that does not depend on any other resource")
+EquivalentClasses(kmo:StandaloneKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResource> ObjectComplementOf(ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/rel#depends-on> <http://www.omg.org/spec/API4KP/core#KnowledgeResource>))))
 
 # Class: kmo:TacitKnowledge (tacit knowledge)
 

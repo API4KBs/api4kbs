@@ -64,8 +64,6 @@ Declaration(Class(krr:Source))
 Declaration(Class(krr:StructuredMachinableKnowledgeResource))
 Declaration(ObjectProperty(krr:accordingTo))
 Declaration(ObjectProperty(krr:allPreserve))
-Declaration(ObjectProperty(krr:conceptualizes))
-Declaration(ObjectProperty(krr:expresses))
 Declaration(ObjectProperty(krr:hasEnvironmentMapping))
 Declaration(ObjectProperty(krr:hasEnvironmentMember))
 Declaration(ObjectProperty(krr:hasFocusMember))
@@ -76,11 +74,7 @@ Declaration(ObjectProperty(krr:hasStructureType))
 Declaration(ObjectProperty(krr:hasSubenvironment))
 Declaration(ObjectProperty(krr:isEnvironmentMappingOf))
 Declaration(ObjectProperty(krr:isSubenvironmentOf))
-Declaration(ObjectProperty(krr:lifts))
-Declaration(ObjectProperty(krr:lowers))
 Declaration(ObjectProperty(krr:preserves))
-Declaration(ObjectProperty(krr:prototypes))
-Declaration(ObjectProperty(krr:reproduces))
 Declaration(AnnotationProperty(<http://purl.org/dc/terms/license>))
 Declaration(AnnotationProperty(<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled>))
 Declaration(AnnotationProperty(sm:contentLanguage))
@@ -111,22 +105,6 @@ ObjectPropertyRange(krr:accordingTo krr:Environment)
 AnnotationAssertion(rdfs:label krr:allPreserve "all preserve")
 ObjectPropertyDomain(krr:allPreserve krr:PreservingEnvironment)
 
-# Object Property: krr:conceptualizes (conceptualizes)
-
-AnnotationAssertion(rdfs:label krr:conceptualizes "conceptualizes")
-AnnotationAssertion(skos:definition krr:conceptualizes "inverse of 'expresses'"^^xsd:string)
-SubObjectPropertyOf(krr:conceptualizes krr:lifts)
-InverseObjectProperties(krr:conceptualizes krr:expresses)
-
-# Object Property: krr:expresses (expresses)
-
-AnnotationAssertion(rdfs:label krr:expresses "expresses")
-AnnotationAssertion(skos:altLabel krr:expresses "is expression of")
-AnnotationAssertion(skos:definition krr:expresses "piece of knowledge that would be obtained by conceptualizing the machine readable knowledge resource."^^xsd:string)
-SubObjectPropertyOf(krr:expresses krr:lowers)
-ObjectPropertyDomain(krr:expresses krr:MachinableKnowledgeResource)
-ObjectPropertyRange(krr:expresses krr:MachineReadableWorkOfKnowledge)
-
 # Object Property: krr:hasEnvironmentMapping (has environment mapping)
 
 AnnotationAssertion(rdfs:label krr:hasEnvironmentMapping "has environment mapping")
@@ -139,8 +117,9 @@ AnnotationAssertion(rdfs:label krr:hasEnvironmentMember "has environment member"
 ObjectPropertyDomain(krr:hasEnvironmentMember krr:NonemptyEnvironment)
 ObjectPropertyRange(krr:hasEnvironmentMember owl:Thing)
 
-# Object Property: krr:hasFocusMember (krr:hasFocusMember)
+# Object Property: krr:hasFocusMember (has focus member)
 
+AnnotationAssertion(rdfs:label krr:hasFocusMember "has focus member")
 SubObjectPropertyOf(krr:hasFocusMember krr:hasEnvironmentMember)
 
 # Object Property: krr:hasSetOfMappings (has set of mappings)
@@ -181,44 +160,11 @@ TransitiveObjectProperty(krr:isSubenvironmentOf)
 ObjectPropertyDomain(krr:isSubenvironmentOf krr:Environment)
 ObjectPropertyRange(krr:isSubenvironmentOf krr:Environment)
 
-# Object Property: krr:lifts (lifts)
-
-AnnotationAssertion(rdfs:label krr:lifts "lifts")
-AnnotationAssertion(skos:definition krr:lifts "relation between two knowledge endeavors where the first is an abstraction of the second by one level (e.g. if the first is an encoding, the second is an item, etc.).  Lifts relations are limited to one of the following: prototypes, decodes, parses, conceptualizes"^^xsd:string)
-AnnotationAssertion(skos:note krr:lifts "OWL does not let us declare this to be functional, while keeping the property chains that link Events and Operations.")
-InverseObjectProperties(krr:lifts krr:lowers)
-ObjectPropertyDomain(krr:lifts krr:KRRKnowledgeEndeavor)
-ObjectPropertyRange(krr:lifts krr:KRRKnowledgeEndeavor)
-
-# Object Property: krr:lowers (lowers)
-
-AnnotationAssertion(rdfs:label krr:lowers "lowers")
-AnnotationAssertion(skos:definition krr:lowers "relation between two knowledge endeavors where the first is a deabstraction of the second by one level (e.g. if the first is an item, the second is an encoding, etc.).  Lowers relations are limited to one of the following: reproduces, encodes, manifests, expresses"^^xsd:string)
-AnnotationAssertion(skos:note krr:lowers "
-      <rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#FunctionalProperty\"/>
-    ")
-AnnotationAssertion(skos:note krr:lowers "OWL does not let us declare this to be functional, while keeping the property chains that link Events and Operations.")
-
 # Object Property: krr:preserves (preserves)
 
 AnnotationAssertion(rdfs:label krr:preserves "preserves")
 SubObjectPropertyOf(krr:preserves know:preserves)
 ObjectPropertyDomain(krr:preserves krr:Mapping)
-
-# Object Property: krr:prototypes (prototypes)
-
-AnnotationAssertion(rdfs:label krr:prototypes "prototypes")
-AnnotationAssertion(skos:definition krr:prototypes "inverse of 'reproduces'"^^xsd:string)
-SubObjectPropertyOf(krr:prototypes krr:lifts)
-InverseObjectProperties(krr:prototypes krr:reproduces)
-
-# Object Property: krr:reproduces (reproduces)
-
-AnnotationAssertion(rdfs:label krr:reproduces "reproduces")
-AnnotationAssertion(skos:definition krr:reproduces "knowledge encoding that would be obtained from instreaming the machine readable knowledge artifact"^^xsd:string)
-SubObjectPropertyOf(krr:reproduces krr:lowers)
-ObjectPropertyDomain(krr:reproduces krr:MachinableKnowledgeArtifact)
-ObjectPropertyRange(krr:reproduces krr:SerializedMachinableKnowledgeExpression)
 
 
 
@@ -395,7 +341,7 @@ AnnotationAssertion(skos:example krr:MachineReadableWorkOfKnowledge "Example: as
 Example: assertion that the author of Moby Dick is Herman Melville.
 Example: query for the names of philosphers.
 Example: a sequence of strings that are asserted to be names of philosphers in some KB."^^xsd:string)
-EquivalentClasses(krr:MachineReadableWorkOfKnowledge ObjectIntersectionOf(know:WorkOfKnowledge ObjectSomeValuesFrom(krr:conceptualizes krr:MachinableKnowledgeResource)))
+EquivalentClasses(krr:MachineReadableWorkOfKnowledge ObjectIntersectionOf(know:WorkOfKnowledge ObjectSomeValuesFrom(know:conceptualizes krr:MachinableKnowledgeResource)))
 SubClassOf(krr:MachineReadableWorkOfKnowledge know:WorkOfKnowledge)
 SubClassOf(krr:MachineReadableWorkOfKnowledge ObjectExactCardinality(1 krr:accordingTo krr:PivotalKnowledgeEnvironment))
 
