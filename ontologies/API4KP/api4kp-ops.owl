@@ -1,4 +1,5 @@
 Prefix(:=<http://www.omg.org/spec/API4KP/Operations#>)
+Prefix(sm:=<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
 Prefix(ops:=<http://www.omg.org/spec/API4KP/Operations#>)
 Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
 Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
@@ -11,8 +12,16 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 Ontology(<http://www.omg.org/spec/API4KP/Operations>
 <http://www.omg.org/spec/API4KP2017/12//Operations>
 Import(<http://www.omg.org/spec/API4KP/2017/12/core>)
-Import(<http://www.omg.org/spec/API4KP/2017/12/DOL-Bridge>)
+Import(<http://www.omg.org/spec/API4KP/20160801/Aspects/>)
+Import(<http://www.omg.org/spec/API4KP/2017/12/rel>)
 Import(<http://www.omg.org/spec/API4KP/2017/12/KR/>)
+Annotation(<http://purl.org/dc/terms/license> "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
+Annotation(sm:copyright "Copyright (c) 2014-2017 Arizona State University
+Copyright (c) 2014-2017 Freie Universitat Berlin
+Copyright (c) 2014-2017 Athan Services
+Copyright (c) 2014-2017 Mayo Clinic
+Copyright (c) 2014-2017 Thematix Partners LLC
+Copyright (c) 2014-2017 Object Management Group, Inc."^^xsd:string)
 Annotation(rdfs:comment "Ontology of API4KP Operations")
 
 Declaration(Class(ops:ASTranslationTask))
@@ -282,7 +291,7 @@ SubClassOf(ops:WriteTask ops:EncodingTask)
 
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> know:KnowledgeActivity "Like any other Activity, an (instance of a) knowledge processing activity is a process that takes place in space and time")
 
-# Class: know:KnowledgeProcessingTask (knowledge processing task)
+# Class: know:KnowledgeProcessingTask ((knowledge processing) task)
 
 AnnotationAssertion(rdfs:comment know:KnowledgeProcessingTask "A knowledge processing task abstracts the role that knowledge endeavors play in a knowledge processing activity, as inputs, outputs or both")
 AnnotationAssertion(rdfs:comment know:KnowledgeProcessingTask "Some tasks, those that are executed according to a method that has some degrees of freedom, can be configured using parameters")

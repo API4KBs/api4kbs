@@ -1,4 +1,5 @@
 Prefix(:=<http://www.omg.org/spec/API4KP/rel#>)
+Prefix(sm:=<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
 Prefix(asp:=<http://www.omg.org/spec/API4KP/20160801/Aspects/>)
 Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
 Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
@@ -12,7 +13,13 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 Ontology(<http://www.omg.org/spec/API4KP/rel>
 <http://www.omg.org/spec/API4KP/2017/12/rel>
 Import(<http://www.omg.org/spec/API4KP/2017/12/core>)
-Import(<http://www.omg.org/spec/API4KP/20160801/Aspects/>)
+Annotation(<http://purl.org/dc/terms/license> "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
+Annotation(sm:copyright "Copyright (c) 2014-2017 Arizona State University
+Copyright (c) 2014-2017 Freie Universitat Berlin
+Copyright (c) 2014-2017 Athan Services
+Copyright (c) 2014-2017 Mayo Clinic
+Copyright (c) 2014-2017 Thematix Partners LLC
+Copyright (c) 2014-2017 Object Management Group, Inc."^^xsd:string)
 
 Declaration(Class(know:KnowledgeEndeavour))
 Declaration(Class(know:VersionedKnowledgeEndeavor))
@@ -59,6 +66,9 @@ Declaration(ObjectProperty(rel:translation-of))
 Declaration(ObjectProperty(rel:transliteration-of))
 Declaration(ObjectProperty(rel:transwordation-of))
 Declaration(ObjectProperty(rel:variant-of))
+Declaration(AnnotationProperty(<http://purl.org/dc/terms/license>))
+Declaration(AnnotationProperty(<http://www.omg.org/spec/API4KP/Aspects/has-aspect>))
+Declaration(AnnotationProperty(sm:copyright))
 
 ############################
 #   Object Properties
