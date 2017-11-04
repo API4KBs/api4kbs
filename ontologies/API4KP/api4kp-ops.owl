@@ -33,6 +33,10 @@ Declaration(Class(ops:ComplexKnowledgeProcessingActivity))
 Declaration(Class(ops:ComplexKnowledgeProcessingTask))
 Declaration(Class(ops:ConfigurationParameter))
 Declaration(Class(ops:DecodingTask))
+Declaration(Class(ops:DetectComplexityTask))
+Declaration(Class(ops:DetectLanguageInformationTask))
+Declaration(Class(ops:DetectLogicTask))
+Declaration(Class(ops:DetectSignatureTask))
 Declaration(Class(ops:EncodingTask))
 Declaration(Class(ops:Explanation))
 Declaration(Class(ops:ExpressionTask))
@@ -54,12 +58,18 @@ Declaration(Class(ops:ParsingTask))
 Declaration(Class(ops:PrimaryInput))
 Declaration(Class(ops:PrimaryOutput))
 Declaration(Class(ops:ReadTask))
+Declaration(Class(ops:RemoveArtifactTask))
+Declaration(Class(ops:RetrieveArtifactTask))
+Declaration(Class(ops:RetrieveAssetTask))
+Declaration(Class(ops:RetrieveSurrogateTask))
 Declaration(Class(ops:SecondaryOutput))
 Declaration(Class(ops:SemanticKnowledgeManagementTask))
 Declaration(Class(ops:SerializationTask))
+Declaration(Class(ops:StoreAssetTask))
 Declaration(Class(ops:SyntacticAnalysisTask))
 Declaration(Class(ops:SyntacticKnowledgeProcessingTask))
 Declaration(Class(ops:SyntacticParsingTask))
+Declaration(Class(ops:SyntaxValidationTask))
 Declaration(Class(ops:WriteTask))
 Declaration(ObjectProperty(ops:commences-with))
 Declaration(ObjectProperty(ops:composed-into))
@@ -168,6 +178,10 @@ SubObjectPropertyOf(ops:played-by know:archetypes)
 ObjectPropertyDomain(ops:played-by know:AgentiveRole)
 ObjectPropertyRange(ops:played-by know:Agent)
 
+# Object Property: know:based-on (based on)
+
+SubObjectPropertyOf(know:based-on know:structured-with)
+
 
 
 ############################
@@ -232,15 +246,79 @@ SubClassOf(ops:ConfigurationParameter ObjectSomeValuesFrom(ops:configures know:K
 
 # Class: ops:DecodingTask (decoding task)
 
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DecodingTask <http://www.omg.org/spec/API4KP/Aspects/atomic-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DecodingTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DecodingTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DecodingTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
 AnnotationAssertion(rdfs:label ops:DecodingTask "decoding task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:DecodingTask "the act of recreating a concrete expression from its encoded version")
 SubClassOf(ops:DecodingTask ops:AtomicKnowledgeProcessingTask)
 SubClassOf(ops:DecodingTask ops:SyntacticKnowledgeProcessingTask)
 SubClassOf(ops:DecodingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:EncodedKnowledgeExpression))))
 SubClassOf(ops:DecodingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
 SubClassOf(ops:DecodingTask ObjectSomeValuesFrom(know:based-on know:Encoding))
 
+# Class: ops:DetectComplexityTask (detect computational complexity task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DetectComplexityTask <http://www.omg.org/spec/API4KP/Aspects/composite-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DetectComplexityTask <http://www.omg.org/spec/API4KP/Aspects/multi-output-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DetectComplexityTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(rdfs:label ops:DetectComplexityTask "detect computational complexity task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:DetectComplexityTask "detects the computational complexity (space and/or time) of a given knowledge expression. 
+The detection is based on the aspects of logic underlying the language(s) used in the expression, that are actually used in the expression")
+SubClassOf(ops:DetectComplexityTask ops:ComplexKnowledgeProcessingTask)
+SubClassOf(ops:DetectComplexityTask ops:KnowledgeAnalyticTask)
+SubClassOf(ops:DetectComplexityTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
+SubClassOf(ops:DetectComplexityTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/ComputationalComplexityClass>))))
+SubClassOf(ops:DetectComplexityTask ObjectSomeValuesFrom(ops:has-subtask ops:ParsingTask))
+
+# Class: ops:DetectLanguageInformationTask (detect language information task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DetectLanguageInformationTask <http://www.omg.org/spec/API4KP/Aspects/composite-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DetectLanguageInformationTask <http://www.omg.org/spec/API4KP/Aspects/multi-output-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DetectLanguageInformationTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(rdfs:label ops:DetectLanguageInformationTask "detect language information task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:DetectLanguageInformationTask "Analyzes an expression to identify the language and/or profile and concrete syntax used in the representation of that expression")
+SubClassOf(ops:DetectLanguageInformationTask ops:ComplexKnowledgeProcessingTask)
+SubClassOf(ops:DetectLanguageInformationTask ops:KnowledgeAnalyticTask)
+SubClassOf(ops:DetectLanguageInformationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Output ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))))
+SubClassOf(ops:DetectLanguageInformationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Output ObjectSomeValuesFrom(ops:filled-by know:Profile))))
+SubClassOf(ops:DetectLanguageInformationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
+SubClassOf(ops:DetectLanguageInformationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:Language))))
+SubClassOf(ops:DetectLanguageInformationTask ObjectSomeValuesFrom(ops:has-subtask ops:ParsingTask))
+
+# Class: ops:DetectLogicTask (detect logic task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DetectLogicTask <http://www.omg.org/spec/API4KP/Aspects/composite-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DetectLogicTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DetectLogicTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
+AnnotationAssertion(rdfs:label ops:DetectLogicTask "detect logic task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:DetectLogicTask "identifies the (simplest) logic that is expressive enough to formalize given knowledge expression.")
+SubClassOf(ops:DetectLogicTask ops:ComplexKnowledgeProcessingTask)
+SubClassOf(ops:DetectLogicTask ops:KnowledgeAnalyticTask)
+SubClassOf(ops:DetectLogicTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
+SubClassOf(ops:DetectLogicTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by DOL:Logic))))
+SubClassOf(ops:DetectLogicTask ObjectSomeValuesFrom(ops:has-subtask ops:ParsingTask))
+
+# Class: ops:DetectSignatureTask (detect signature task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DetectSignatureTask <http://www.omg.org/spec/API4KP/Aspects/composite-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DetectSignatureTask <http://www.omg.org/spec/API4KP/Aspects/multi-output-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DetectSignatureTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(rdfs:label ops:DetectSignatureTask "detect signature task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:DetectSignatureTask "extracts the non-logical symbols (aka \"terms\" - concretizations of linguistic elements that express atomic concepts) used in an expression, identifying the lexicon they have been extracted from")
+SubClassOf(ops:DetectSignatureTask ops:ComplexKnowledgeProcessingTask)
+SubClassOf(ops:DetectSignatureTask ops:KnowledgeAnalyticTask)
+SubClassOf(ops:DetectSignatureTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Output ObjectSomeValuesFrom(ops:filled-by know:Lexicon))))
+SubClassOf(ops:DetectSignatureTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
+SubClassOf(ops:DetectSignatureTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeElement))))
+
 # Class: ops:EncodingTask (encoding task)
 
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:EncodingTask <http://www.omg.org/spec/API4KP/Aspects/atomic-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:EncodingTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:EncodingTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:EncodingTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
 AnnotationAssertion(rdfs:label ops:EncodingTask "encoding task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:EncodingTask "")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:EncodingTask "Tasks of this type encode concrete expressions so that they can be engraved on a carrier")
@@ -258,11 +336,20 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:Explana
 SubClassOf(ops:Explanation ops:SecondaryOutput)
 SubClassOf(ops:Explanation ObjectSomeValuesFrom(know:archetypes ObjectIntersectionOf(know:KnowledgeExpression ObjectSomeValuesFrom(know:representation-of know:KnowledgeActivity))))
 
-# Class: ops:ExpressionTask (TODO TODO TODO expression task)
+# Class: ops:ExpressionTask (expression task)
 
-AnnotationAssertion(rdfs:label ops:ExpressionTask "TODO TODO TODO expression task")
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ExpressionTask <http://www.omg.org/spec/API4KP/Aspects/atomic-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ExpressionTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ExpressionTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ExpressionTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
+AnnotationAssertion(rdfs:label ops:ExpressionTask "expression task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ExpressionTask "the act of creating an expression in a given language (sytnax and dictionary), from the information content of a work of knowledge")
 SubClassOf(ops:ExpressionTask ops:AtomicKnowledgeProcessingTask)
 SubClassOf(ops:ExpressionTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:ExpressionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by know:AbstractSyntax))))
+SubClassOf(ops:ExpressionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by know:Lexicon))))
+SubClassOf(ops:ExpressionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:AbstractSemanticGraph))))
+SubClassOf(ops:ExpressionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:AbstractSyntaxTree))))
 
 # Class: ops:Input (input)
 
@@ -278,10 +365,15 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:InputOu
 SubClassOf(ops:InputOutput ops:Input)
 SubClassOf(ops:InputOutput ops:Output)
 
-# Class: ops:InterpretationTask (TODO TODO TODO conceptualization task)
+# Class: ops:InterpretationTask (conceptualization task)
 
-AnnotationAssertion(rdfs:label ops:InterpretationTask "TODO TODO TODO conceptualization task")
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:InterpretationTask <http://www.omg.org/spec/API4KP/Aspects/atomic-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:InterpretationTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:InterpretationTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:InterpretationTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
+AnnotationAssertion(rdfs:label ops:InterpretationTask "conceptualization task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:InterpretationTask "interpretation task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:InterpretationTask "The act of extracting the information content expressed by a knowledge expression, by means of analyzing the AST of that expression")
 SubClassOf(ops:InterpretationTask ops:AtomicKnowledgeProcessingTask)
 SubClassOf(ops:InterpretationTask ops:SyntacticKnowledgeProcessingTask)
 SubClassOf(ops:InterpretationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:AbstractSyntaxTree))))
@@ -380,13 +472,17 @@ SubClassOf(ops:Output know:PassiveRole)
 
 # Class: ops:ParsingTask (parsing task)
 
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ParsingTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ParsingTask <http://www.omg.org/spec/API4KP/Aspects/composite-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ParsingTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ParsingTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
 AnnotationAssertion(rdfs:label ops:ParsingTask "parsing task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ParsingTask "the act of creating an AST (of an abstract knowldge expression) from a concrete knowledge expression")
 SubClassOf(ops:ParsingTask ops:ComplexKnowledgeProcessingTask)
 SubClassOf(ops:ParsingTask ops:SyntacticKnowledgeProcessingTask)
 SubClassOf(ops:ParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
 SubClassOf(ops:ParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:AbstractSyntaxTree))))
-SubClassOf(ops:ParsingTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:AbstractSyntax)))
+SubClassOf(ops:ParsingTask ObjectSomeValuesFrom(know:based-on ObjectIntersectionOf(ObjectSomeValuesFrom(know:preserves know:AbstractSyntax) ObjectSomeValuesFrom(know:uses-concept <http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))))
 
 # Class: ops:PrimaryInput (primary input)
 
@@ -411,6 +507,22 @@ SubClassOf(ops:ReadTask ops:AtomicKnowledgeProcessingTask)
 SubClassOf(ops:ReadTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeCarrier))))
 SubClassOf(ops:ReadTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:EncodedKnowledgeExpression))))
 
+# Class: ops:RemoveArtifactTask (ops:RemoveArtifactTask)
+
+SubClassOf(ops:RemoveArtifactTask ops:KnowledgeManagementTask)
+
+# Class: ops:RetrieveArtifactTask (ops:RetrieveArtifactTask)
+
+SubClassOf(ops:RetrieveArtifactTask ops:KnowledgeManagementTask)
+
+# Class: ops:RetrieveAssetTask (ops:RetrieveAssetTask)
+
+SubClassOf(ops:RetrieveAssetTask ops:KnowledgeManagementTask)
+
+# Class: ops:RetrieveSurrogateTask (ops:RetrieveSurrogateTask)
+
+SubClassOf(ops:RetrieveSurrogateTask ops:KnowledgeManagementTask)
+
 # Class: ops:SecondaryOutput (secondary output)
 
 AnnotationAssertion(rdfs:comment ops:SecondaryOutput "an activity is not failed automatically if a secondary output is not produced.")
@@ -426,14 +538,31 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:Semanti
 SubClassOf(ops:SemanticKnowledgeManagementTask ops:KnowledgeManagementTask)
 SubClassOf(ops:SemanticKnowledgeManagementTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResourceDescription)))
 
-# Class: ops:SerializationTask (TODO TODO TODO serialization task)
+# Class: ops:SerializationTask (serialization task)
 
-AnnotationAssertion(rdfs:label ops:SerializationTask "TODO TODO TODO serialization task")
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SerializationTask <http://www.omg.org/spec/API4KP/Aspects/atomic-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SerializationTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SerializationTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SerializationTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
+AnnotationAssertion(rdfs:label ops:SerializationTask "serialization task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SerializationTask "The act of concretizing an abstract expression, serializing it using one of the concrete syntaxes supported by the langauge")
 SubClassOf(ops:SerializationTask ops:AtomicKnowledgeProcessingTask)
 SubClassOf(ops:SerializationTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:SerializationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))))
+SubClassOf(ops:SerializationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:AbstractExpression))))
+SubClassOf(ops:SerializationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
+SubClassOf(ops:SerializationTask ObjectSomeValuesFrom(know:based-on ObjectIntersectionOf(ObjectSomeValuesFrom(know:preserves know:AbstractSyntax) ObjectSomeValuesFrom(know:uses-concept <http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))))
+
+# Class: ops:StoreAssetTask (ops:StoreAssetTask)
+
+SubClassOf(ops:StoreAssetTask ops:KnowledgeManagementTask)
 
 # Class: ops:SyntacticAnalysisTask (syntactic analysis task)
 
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SyntacticAnalysisTask <http://www.omg.org/spec/API4KP/Aspects/atomic-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SyntacticAnalysisTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SyntacticAnalysisTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SyntacticAnalysisTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
 AnnotationAssertion(rdfs:label ops:SyntacticAnalysisTask "syntactic analysis task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SyntacticAnalysisTask "the act of deriving an AST from a parse tree")
 SubClassOf(ops:SyntacticAnalysisTask ops:AtomicKnowledgeProcessingTask)
@@ -447,11 +576,15 @@ SubClassOf(ops:SyntacticAnalysisTask ObjectSomeValuesFrom(know:based-on ObjectSo
 AnnotationAssertion(rdfs:label ops:SyntacticKnowledgeProcessingTask "syntactic knowledge processing task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SyntacticKnowledgeProcessingTask "a task that is based on methods that only leverage the syntactic aspects of a knowledge resource, but not its semantic and pragmatic ones")
 SubClassOf(ops:SyntacticKnowledgeProcessingTask ops:OpenKnowledgeProcessingTask)
-SubClassOf(ops:SyntacticKnowledgeProcessingTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:WorkOfKnowledge)))
+SubClassOf(ops:SyntacticKnowledgeProcessingTask ObjectSomeValuesFrom(know:based-on ObjectIntersectionOf(ObjectSomeValuesFrom(know:preserves know:WorkOfKnowledge) ObjectSomeValuesFrom(know:uses-concept know:Language))))
 SubClassOf(ops:SyntacticKnowledgeProcessingTask ObjectAllValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:WorkOfKnowledge)))
 
 # Class: ops:SyntacticParsingTask (syntactic parsing task)
 
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SyntacticParsingTask <http://www.omg.org/spec/API4KP/Aspects/atomic-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SyntacticParsingTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SyntacticParsingTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SyntacticParsingTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
 AnnotationAssertion(rdfs:label ops:SyntacticParsingTask "syntactic parsing task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SyntacticParsingTask "the act of creating a parse tree from a concrete knowledge expression. scanning and tokenization are considered sub-atomic parts of this task")
 SubClassOf(ops:SyntacticParsingTask ops:AtomicKnowledgeProcessingTask)
@@ -459,6 +592,20 @@ SubClassOf(ops:SyntacticParsingTask ops:SyntacticKnowledgeProcessingTask)
 SubClassOf(ops:SyntacticParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
 SubClassOf(ops:SyntacticParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:ParseTree))))
 SubClassOf(ops:SyntacticParsingTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:Serialization)))
+
+# Class: ops:SyntaxValidationTask (syntax validation task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SyntaxValidationTask <http://www.omg.org/spec/API4KP/Aspects/composite-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SyntaxValidationTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SyntaxValidationTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
+AnnotationAssertion(rdfs:label ops:SyntaxValidationTask "syntax validation task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SyntaxValidationTask "the act of checking whether a knowledge expression is a valid sentence according to the syntax - abstract and/or concrete - of some language, or profile thereof.")
+SubClassOf(ops:SyntaxValidationTask ops:ComplexKnowledgeProcessingTask)
+SubClassOf(ops:SyntaxValidationTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:SyntaxValidationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by know:Language))))
+SubClassOf(ops:SyntaxValidationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
+SubClassOf(ops:SyntaxValidationTask ObjectSomeValuesFrom(ops:has-subtask ops:ParsingTask))
+SubClassOf(ops:SyntaxValidationTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:uses-concept ObjectIntersectionOf(know:Language ObjectSomeValuesFrom(know:defined-by know:Syntax)))))
 
 # Class: ops:WriteTask (I/O write task)
 

@@ -8,15 +8,14 @@ Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
 Prefix(know:=<http://www.omg.org/spec/API4KP/core#>)
 Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 Prefix(skos:=<http://www.w3.org/2004/02/skos/core#>)
-Prefix(sm:=<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
 
 
 Ontology(<http://www.omg.org/spec/API4KP/KR/>
 <http://www.omg.org/spec/API4KP/2017/12/KR/>
 Import(<http://www.omg.org/spec/API4KP/2017/12/core>)
+Annotation(<http://purl.org/dc/terms/license> "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
 Annotation(sm:contentLanguage "http://www.omg.org/spec/ODM/"^^xsd:anyURI)
 Annotation(sm:contentLanguage "http://www.w3.org/standards/techs/owl#w3c_all"^^xsd:anyURI)
-Annotation(<http://purl.org/dc/terms/license> "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
 Annotation(sm:copyright "Copyright (c) 2014-2017 Arizona State University
 Copyright (c) 2014-2017 Athan Services
 Copyright (c) 2014-2017 Mayo Clinic
@@ -31,6 +30,7 @@ Declaration(Class(krr:BasicEnvironment))
 Declaration(Class(krr:BasicMachinableKnowledgeResource))
 Declaration(Class(krr:CategoricalEnvironment))
 Declaration(Class(krr:ComposableEnvironment))
+Declaration(Class(krr:ComputationalComplexityClass))
 Declaration(Class(krr:EmptyEnvironment))
 Declaration(Class(krr:Environment))
 Declaration(Class(krr:EnvironmentWithIdentities))
@@ -45,6 +45,7 @@ Declaration(Class(krr:KRRKnowledgeEndeavor))
 Declaration(Class(krr:KnowledgeBase))
 Declaration(Class(krr:KnowledgeDrivenReasoningActivity))
 Declaration(Class(krr:KnowledgeRepresentationAndReasoningLanguage))
+Declaration(Class(krr:KnowledgeSerialization))
 Declaration(Class(krr:KnowledgeSource))
 Declaration(Class(krr:LanguageEnvironment))
 Declaration(Class(krr:MachinableKnowledgeArtifact))
@@ -201,6 +202,13 @@ AnnotationAssertion(skos:definition krr:ComposableEnvironment "an environment ha
 AnnotationAssertion(skos:editorialNote krr:ComposableEnvironment "The composition M2 o M1 of two mappings M1 and M2 is well-defined when M1 maps to the same thing that M2 maps from. (The codomain of M1 is the domain of M2).")
 SubClassOf(krr:ComposableEnvironment krr:Environment)
 
+# Class: krr:ComputationalComplexityClass (computational complexity class)
+
+AnnotationAssertion(rdfs:label krr:ComputationalComplexityClass "computational complexity class")
+AnnotationAssertion(rdfs:seeAlso krr:ComputationalComplexityClass "https://complexityzoo.uwaterloo.ca/Complexity_Zoo")
+AnnotationAssertion(rdfs:seeAlso krr:ComputationalComplexityClass "https://en.wikipedia.org/wiki/List_of_complexity_classes")
+SubClassOf(krr:ComputationalComplexityClass know:DefinedConcept)
+
 # Class: krr:EmptyEnvironment (empty environment)
 
 AnnotationAssertion(rdfs:label krr:EmptyEnvironment "empty environment")
@@ -301,6 +309,12 @@ SubClassOf(krr:KnowledgeDrivenReasoningActivity ObjectSomeValuesFrom(know:perfor
 AnnotationAssertion(rdfs:label krr:KnowledgeRepresentationAndReasoningLanguage "knowledge representation and reasoning language")
 AnnotationAssertion(skos:definition krr:KnowledgeRepresentationAndReasoningLanguage "OMS language, query language, or result language"^^xsd:string)
 SubClassOf(krr:KnowledgeRepresentationAndReasoningLanguage know:KnowledgeRepresentationAndReasoningLanguage)
+
+# Class: krr:KnowledgeSerialization (knowledge serialization)
+
+AnnotationAssertion(rdfs:label krr:KnowledgeSerialization "knowledge serialization")
+SubClassOf(krr:KnowledgeSerialization know:DefinedConcept)
+SubClassOf(krr:KnowledgeSerialization ObjectSomeValuesFrom(know:defined-by ObjectIntersectionOf(know:Definition ObjectSomeValuesFrom(know:conceptualizes know:Serialization))))
 
 # Class: krr:KnowledgeSource (knowledge source)
 
