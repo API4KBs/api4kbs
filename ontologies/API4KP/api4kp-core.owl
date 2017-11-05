@@ -41,7 +41,7 @@ Declaration(Class(know:ConcreteExpression))
 Declaration(Class(know:ConstructedLanguage))
 Declaration(Class(know:ConstructiveDefinition))
 Declaration(Class(know:ControlledNaturalLanguage))
-Declaration(Class(know:DecomposableKnowledgeResource))
+Declaration(Class(know:DeconstructableKnowledgeResource))
 Declaration(Class(know:DefinedConcept))
 Declaration(Class(know:Definition))
 Declaration(Class(know:DescriptiveGrammar))
@@ -440,8 +440,8 @@ ObjectPropertyRange(know:formalizes know:WorkOfKnowledge)
 # Object Property: know:framed-by (framed by)
 
 AnnotationAssertion(rdfs:label know:framed-by "framed by")
-AnnotationAssertion(skos:definition know:framed-by "relationship between a (decomposable) knowledge resource and the structure that identifies and relates its components")
-ObjectPropertyDomain(know:framed-by know:DecomposableKnowledgeResource)
+AnnotationAssertion(skos:definition know:framed-by "relationship between a (deconstructable) knowledge resource and the structure that identifies and relates its components")
+ObjectPropertyDomain(know:framed-by know:DeconstructableKnowledgeResource)
 ObjectPropertyRange(know:framed-by know:StructuringKnowledgeResource)
 
 # Object Property: know:function-of (function of)
@@ -1008,7 +1008,7 @@ AnnotationAssertion(rdfs:comment know:CompositeKnowledgeResource "Functionally C
 AnnotationAssertion(rdfs:label know:CompositeKnowledgeResource "composite knowledge resource"@en)
 AnnotationAssertion(skos:definition know:CompositeKnowledgeResource "a complex, structured knowledge resource that is constructed by assembling a number of knowledge resources, according to the plan that is the information content of a structuring resource")
 EquivalentClasses(know:CompositeKnowledgeResource ObjectIntersectionOf(know:StructuredKnowledgeResource ObjectSomeValuesFrom(know:structurally-organized-by know:StructuringKnowledgeResource)))
-SubClassOf(know:CompositeKnowledgeResource know:DecomposableKnowledgeResource)
+SubClassOf(know:CompositeKnowledgeResource know:DeconstructableKnowledgeResource)
 SubClassOf(know:CompositeKnowledgeResource know:StructuredKnowledgeResource)
 SubClassOf(know:CompositeKnowledgeResource ObjectSomeValuesFrom(know:has-proper-part know:StructuredKnowledgeResource))
 
@@ -1048,14 +1048,14 @@ AnnotationAssertion(skos:definition know:ControlledNaturalLanguage "Subset of a 
 SubClassOf(know:ControlledNaturalLanguage know:ConstructedLanguage)
 SubClassOf(know:ControlledNaturalLanguage know:NaturalLanguage)
 
-# Class: know:DecomposableKnowledgeResource (decomposable knowledge resource)
+# Class: know:DeconstructableKnowledgeResource (deconstructable knowledge resource)
 
-AnnotationAssertion(rdfs:label know:DecomposableKnowledgeResource "decomposable knowledge resource")
-AnnotationAssertion(skos:definition know:DecomposableKnowledgeResource "Knowledge resource that is not a composite, but such that there exists at least one composite knowledge resource that, if flattened, results in a (flattened) knowledge resource that is equal to this.
+AnnotationAssertion(rdfs:label know:DeconstructableKnowledgeResource "deconstructable knowledge resource")
+AnnotationAssertion(skos:definition know:DeconstructableKnowledgeResource "Knowledge resource that is not a composite, but such that there exists at least one composite knowledge resource that, if flattened, results in a (flattened) knowledge resource that is equal to this.
 
-The structure of that composite can be overlyed on top of the decomposable resource, as a possibel input to a deconstructing operation")
-SubClassOf(know:DecomposableKnowledgeResource know:KnowledgeResource)
-SubClassOf(know:DecomposableKnowledgeResource ObjectSomeValuesFrom(know:framed-by know:StructuringKnowledgeResource))
+The structure of that composite can be overlyed on top of the deconstructable resource, as a possibel input to a deconstructing operation")
+SubClassOf(know:DeconstructableKnowledgeResource know:KnowledgeResource)
+SubClassOf(know:DeconstructableKnowledgeResource ObjectSomeValuesFrom(know:framed-by know:StructuringKnowledgeResource))
 
 # Class: know:DefinedConcept (defined concept)
 
@@ -1098,7 +1098,7 @@ SubClassOf(know:Encoding know:KnowledgeProcessingMethod)
 AnnotationAssertion(rdfs:label know:FlattenedKnowledgeResource "flattened knowledge resource")
 AnnotationAssertion(skos:definition know:FlattenedKnowledgeResource "knowledge resource that is obtained from a composite knowledge resource by means of some flattening operation")
 EquivalentClasses(know:FlattenedKnowledgeResource ObjectSomeValuesFrom(know:flattening-of know:CompositeKnowledgeResource))
-SubClassOf(know:FlattenedKnowledgeResource know:DecomposableKnowledgeResource)
+SubClassOf(know:FlattenedKnowledgeResource know:DeconstructableKnowledgeResource)
 
 # Class: know:FormalGrammar (formal grammar)
 

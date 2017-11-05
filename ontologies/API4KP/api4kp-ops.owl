@@ -26,50 +26,113 @@ Copyright (c) 2014-2017 Thematix Partners LLC
 Copyright (c) 2014-2017 Object Management Group, Inc."^^xsd:string)
 Annotation(rdfs:comment "Ontology of API4KP Operations")
 
+Declaration(Class(ops:AbridgmentTask))
 Declaration(Class(ops:AtomicKnowledgeProcessingActivity))
 Declaration(Class(ops:AtomicKnowledgeProcessingTask))
+Declaration(Class(ops:CarvingTask))
+Declaration(Class(ops:CherrypickingTask))
+Declaration(Class(ops:ClearLocationTask))
 Declaration(Class(ops:ClosedKnowledgeProcessingTask))
 Declaration(Class(ops:ComplexKnowledgeProcessingActivity))
 Declaration(Class(ops:ComplexKnowledgeProcessingTask))
 Declaration(Class(ops:ConfigurationParameter))
+Declaration(Class(ops:ConsistencyCheckTask))
+Declaration(Class(ops:CreateWorkingKnowledgeBaseTask))
 Declaration(Class(ops:DecodingTask))
 Declaration(Class(ops:DetectComplexityTask))
 Declaration(Class(ops:DetectLanguageInformationTask))
 Declaration(Class(ops:DetectLogicTask))
 Declaration(Class(ops:DetectSignatureTask))
+Declaration(Class(ops:DiscoverCompatibleResourcesTask))
 Declaration(Class(ops:EncodingTask))
+Declaration(Class(ops:EntailmentCheckTask))
 Declaration(Class(ops:Explanation))
 Declaration(Class(ops:ExpressionTask))
+Declaration(Class(ops:ExtensionTask))
+Declaration(Class(ops:ExtractDescriptionTask))
+Declaration(Class(ops:ExtractionTask))
+Declaration(Class(ops:FilteringTask))
+Declaration(Class(ops:FusionTask))
+Declaration(Class(ops:HorizontalKnowledgeProcessingTask))
+Declaration(Class(ops:IdentityLookupTask))
+Declaration(Class(ops:IdentityNegotiationTask))
+Declaration(Class(ops:IdentityResolutionTask))
+Declaration(Class(ops:InferenceTask))
+Declaration(Class(ops:InjectionTask))
 Declaration(Class(ops:Input))
 Declaration(Class(ops:InputOutput))
+Declaration(Class(ops:InternalRepositoryTask))
 Declaration(Class(ops:InterpretationTask))
 Declaration(Class(ops:KnowledgeAnalyticTask))
 Declaration(Class(ops:KnowledgeBaseStructuringTask))
+Declaration(Class(ops:KnowledgeCompositionalTask))
 Declaration(Class(ops:KnowledgeManagementTask))
 Declaration(Class(ops:KnowledgeManipulationTask))
 Declaration(Class(ops:KnowledgeProcessingOperation))
 Declaration(Class(ops:KnowledgeProcessingServiceTask))
 Declaration(Class(ops:KnowledgeReasoningTask))
+Declaration(Class(ops:KnowledgeRepositoryTask))
+Declaration(Class(ops:KnowledgeReshapingTask))
+Declaration(Class(ops:KnowledgeResourceAggregationTask))
+Declaration(Class(ops:KnowledgeResourceCompositionTask))
+Declaration(Class(ops:KnowledgeResourceConstructionTask))
+Declaration(Class(ops:KnowledgeResourceDecompositionTask))
+Declaration(Class(ops:KnowledgeResourceDeconstructionTask))
+Declaration(Class(ops:KnowledgeResourceDisaggregationTask))
+Declaration(Class(ops:KnowledgeResourceDisassemblyTask))
+Declaration(Class(ops:KnowledgeResourceFlatteningTask))
+Declaration(Class(ops:KnowledgeResourceRearrangementTask))
 Declaration(Class(ops:KnowledgeStructuringTask))
+Declaration(Class(ops:LiftingTask))
+Declaration(Class(ops:LogicBasedReasoningTask))
+Declaration(Class(ops:LoweringTask))
 Declaration(Class(ops:OpenKnowledgeProcessingTask))
 Declaration(Class(ops:OptionalInput))
 Declaration(Class(ops:Output))
+Declaration(Class(ops:ParaphraseTask))
 Declaration(Class(ops:ParsingTask))
+Declaration(Class(ops:PartitionTask))
 Declaration(Class(ops:PrimaryInput))
 Declaration(Class(ops:PrimaryOutput))
+Declaration(Class(ops:Product))
+Declaration(Class(ops:ProofGenerationTask))
+Declaration(Class(ops:QueryAnswerTask))
 Declaration(Class(ops:ReadTask))
-Declaration(Class(ops:RemoveArtifactTask))
+Declaration(Class(ops:RedactionTask))
+Declaration(Class(ops:ReductionTask))
+Declaration(Class(ops:RemovalTask))
+Declaration(Class(ops:ReplaceArtifactAtLocationTask))
+Declaration(Class(ops:ReplicationTask))
+Declaration(Class(ops:ResolveClosureTask))
+Declaration(Class(ops:ResolveDependenciesTask))
+Declaration(Class(ops:RetrieveArtifactFromLocationTask))
 Declaration(Class(ops:RetrieveArtifactTask))
-Declaration(Class(ops:RetrieveAssetTask))
+Declaration(Class(ops:RetrieveResourceDescriptionTask))
+Declaration(Class(ops:RetrieveResourceTask))
 Declaration(Class(ops:RetrieveSurrogateTask))
+Declaration(Class(ops:SatisfiabilityCheckTask))
 Declaration(Class(ops:SecondaryOutput))
+Declaration(Class(ops:SelectionTask))
 Declaration(Class(ops:SemanticKnowledgeManagementTask))
+Declaration(Class(ops:SeparationTask))
 Declaration(Class(ops:SerializationTask))
-Declaration(Class(ops:StoreAssetTask))
+Declaration(Class(ops:SeriesManagementTask))
+Declaration(Class(ops:SimplificationTask))
+Declaration(Class(ops:SnapshotTask))
+Declaration(Class(ops:StoreArtifactAtLocationTask))
+Declaration(Class(ops:SummarizationTask))
 Declaration(Class(ops:SyntacticAnalysisTask))
 Declaration(Class(ops:SyntacticKnowledgeProcessingTask))
+Declaration(Class(ops:SyntacticParaphraseTask))
 Declaration(Class(ops:SyntacticParsingTask))
-Declaration(Class(ops:SyntaxValidationTask))
+Declaration(Class(ops:SyntacticTranscriptionTask))
+Declaration(Class(ops:SyntacticTranslationTask))
+Declaration(Class(ops:TranscreationTask))
+Declaration(Class(ops:TranscriptionTask))
+Declaration(Class(ops:TranslationTask))
+Declaration(Class(ops:UnionTask))
+Declaration(Class(ops:VerticalKnowledgeProcessingTask))
+Declaration(Class(ops:WellFormednessCheckTask))
 Declaration(Class(ops:WriteTask))
 Declaration(ObjectProperty(ops:commences-with))
 Declaration(ObjectProperty(ops:composed-into))
@@ -188,6 +251,12 @@ SubObjectPropertyOf(know:based-on know:structured-with)
 #   Classes
 ############################
 
+# Class: ops:AbridgmentTask (abdrigment task)
+
+AnnotationAssertion(rdfs:label ops:AbridgmentTask "abdrigment task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:AbridgmentTask "A paraphrase that eliminates element of an expression that are not essential to reconstruct its meaning")
+SubClassOf(ops:AbridgmentTask ops:ParaphraseTask)
+
 # Class: ops:AtomicKnowledgeProcessingActivity (atomic knowledge processing activity)
 
 AnnotationAssertion(rdfs:label ops:AtomicKnowledgeProcessingActivity "atomic knowledge processing activity")
@@ -204,6 +273,30 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:AtomicK
 SubClassOf(ops:AtomicKnowledgeProcessingTask know:InformationProcessingTask)
 SubClassOf(ops:AtomicKnowledgeProcessingTask ObjectSomeValuesFrom(know:archetypes ops:AtomicKnowledgeProcessingActivity))
 SubClassOf(ops:AtomicKnowledgeProcessingTask ObjectAllValuesFrom(know:archetypes ops:AtomicKnowledgeProcessingActivity))
+
+# Class: ops:CarvingTask (syntactic carving task)
+
+AnnotationAssertion(rdfs:label ops:CarvingTask "syntactic carving task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:CarvingTask "Selection based on the extraction of one or more fragments of the source expression, properly decomposed")
+SubClassOf(ops:CarvingTask ops:SelectionTask)
+SubClassOf(ops:CarvingTask ops:SyntacticKnowledgeProcessingTask)
+
+# Class: ops:CherrypickingTask (cherrypicking task)
+
+AnnotationAssertion(rdfs:label ops:CherrypickingTask "cherrypicking task")
+AnnotationAssertion(rdfs:seeAlso ops:CherrypickingTask "http://precedings.nature.com/documents/3574/version/1")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:CherrypickingTask "The act of selecting a subset of the concepts in the original WoK, to derive a new WoK to be expressed")
+SubClassOf(ops:CherrypickingTask ops:SelectionTask)
+
+# Class: ops:ClearLocationTask (clear location task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ClearLocationTask <http://www.omg.org/spec/API4KP/Aspects/atomic-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ClearLocationTask <http://www.omg.org/spec/API4KP/Aspects/idempotent-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ClearLocationTask <http://www.omg.org/spec/API4KP/Aspects/side-effecful-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ClearLocationTask <http://www.omg.org/spec/API4KP/Aspects/void-operation>)
+AnnotationAssertion(rdfs:label ops:ClearLocationTask "clear location task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ClearLocationTask "ensures that no artifact is stored at a given location")
+SubClassOf(ops:ClearLocationTask ops:InternalRepositoryTask)
 
 # Class: ops:ClosedKnowledgeProcessingTask (closed knowledge processing task)
 
@@ -244,6 +337,29 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:Configura
 SubClassOf(ops:ConfigurationParameter ops:OptionalInput)
 SubClassOf(ops:ConfigurationParameter ObjectSomeValuesFrom(ops:configures know:KnowledgeProcessingMethod))
 
+# Class: ops:ConsistencyCheckTask (consistency check task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ConsistencyCheckTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ConsistencyCheckTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
+AnnotationAssertion(rdfs:label ops:ConsistencyCheckTask "consistency check task")
+AnnotationAssertion(rdfs:seeAlso ops:ConsistencyCheckTask "")
+AnnotationAssertion(rdfs:seeAlso ops:ConsistencyCheckTask "https://en.wikipedia.org/wiki/Consistency")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ConsistencyCheckTask "Tests a knowledge base for internal contradictions")
+SubClassOf(ops:ConsistencyCheckTask ops:AtomicKnowledgeProcessingTask)
+SubClassOf(ops:ConsistencyCheckTask ops:LogicBasedReasoningTask)
+
+# Class: ops:CreateWorkingKnowledgeBaseTask (create working knowledge base task)
+
+AnnotationAssertion(rdfs:label ops:CreateWorkingKnowledgeBaseTask "create working knowledge base task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:CreateWorkingKnowledgeBaseTask "Task that creates a working knowledge base from a composite knowledge resource that expresses a knowledge base")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:CreateWorkingKnowledgeBaseTask "The task itself is composed of sub-steps: flattening the composite into a single resource - task that may also include translations to a focal representation - deriving an internal representation (a mutable knowledge base) and finally taking a snapshot
+
+This task is defined explicitly because it is not uncommon for reasoners to execute tasks of this type internally")
+SubClassOf(ops:CreateWorkingKnowledgeBaseTask ops:ComplexKnowledgeProcessingTask)
+SubClassOf(ops:CreateWorkingKnowledgeBaseTask ops:KnowledgeBaseStructuringTask)
+SubClassOf(ops:CreateWorkingKnowledgeBaseTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by ObjectIntersectionOf(know:CompositeKnowledgeResource ObjectSomeValuesFrom(know:expresses <http://www.omg.org/spec/API4KP/KR/KnowledgeBase>))))))
+SubClassOf(ops:CreateWorkingKnowledgeBaseTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/WorkingKnowledgeBase>))))
+
 # Class: ops:DecodingTask (decoding task)
 
 AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DecodingTask <http://www.omg.org/spec/API4KP/Aspects/atomic-operation>)
@@ -253,7 +369,7 @@ AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:Deco
 AnnotationAssertion(rdfs:label ops:DecodingTask "decoding task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:DecodingTask "the act of recreating a concrete expression from its encoded version")
 SubClassOf(ops:DecodingTask ops:AtomicKnowledgeProcessingTask)
-SubClassOf(ops:DecodingTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:DecodingTask ops:LiftingTask)
 SubClassOf(ops:DecodingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:EncodedKnowledgeExpression))))
 SubClassOf(ops:DecodingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
 SubClassOf(ops:DecodingTask ObjectSomeValuesFrom(know:based-on know:Encoding))
@@ -313,6 +429,17 @@ SubClassOf(ops:DetectSignatureTask ObjectSomeValuesFrom(ops:has-role ObjectInter
 SubClassOf(ops:DetectSignatureTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
 SubClassOf(ops:DetectSignatureTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeElement))))
 
+# Class: ops:DiscoverCompatibleResourcesTask (discover compatible resources task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DiscoverCompatibleResourcesTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DiscoverCompatibleResourcesTask <http://www.omg.org/spec/API4KP/Aspects/composite-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:DiscoverCompatibleResourcesTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(rdfs:label ops:DiscoverCompatibleResourcesTask "discover compatible resources task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:DiscoverCompatibleResourcesTask "Returns a collection of resources that are compatible (composable) with a given resource")
+SubClassOf(ops:DiscoverCompatibleResourcesTask ops:SemanticKnowledgeManagementTask)
+SubClassOf(ops:DiscoverCompatibleResourcesTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResource))))
+SubClassOf(ops:DiscoverCompatibleResourcesTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResource))))
+
 # Class: ops:EncodingTask (encoding task)
 
 AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:EncodingTask <http://www.omg.org/spec/API4KP/Aspects/atomic-operation>)
@@ -324,10 +451,20 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:Encodin
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:EncodingTask "Tasks of this type encode concrete expressions so that they can be engraved on a carrier")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#example> ops:EncodingTask "Converting characters into sequences of bits, according to an encoding method, so that they can be written to a RAM, ROM or magnetic disk")
 SubClassOf(ops:EncodingTask ops:AtomicKnowledgeProcessingTask)
-SubClassOf(ops:EncodingTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:EncodingTask ops:LoweringTask)
 SubClassOf(ops:EncodingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
 SubClassOf(ops:EncodingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:EncodedKnowledgeExpression))))
 SubClassOf(ops:EncodingTask ObjectSomeValuesFrom(know:based-on know:Encoding))
+
+# Class: ops:EntailmentCheckTask (entailment check test)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:EntailmentCheckTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:EntailmentCheckTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
+AnnotationAssertion(rdfs:label ops:EntailmentCheckTask "entailment check test")
+AnnotationAssertion(rdfs:seeAlso ops:EntailmentCheckTask "https://en.wikipedia.org/wiki/Logical_consequence")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:EntailmentCheckTask "tests whether the content of a given working knowledge base is entailed by a reference working knowledge base")
+SubClassOf(ops:EntailmentCheckTask ops:AtomicKnowledgeProcessingTask)
+SubClassOf(ops:EntailmentCheckTask ops:LogicBasedReasoningTask)
 
 # Class: ops:Explanation (explanation)
 
@@ -345,11 +482,116 @@ AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:Expr
 AnnotationAssertion(rdfs:label ops:ExpressionTask "expression task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ExpressionTask "the act of creating an expression in a given language (sytnax and dictionary), from the information content of a work of knowledge")
 SubClassOf(ops:ExpressionTask ops:AtomicKnowledgeProcessingTask)
-SubClassOf(ops:ExpressionTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:ExpressionTask ops:LoweringTask)
 SubClassOf(ops:ExpressionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by know:AbstractSyntax))))
 SubClassOf(ops:ExpressionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by know:Lexicon))))
 SubClassOf(ops:ExpressionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:AbstractSemanticGraph))))
 SubClassOf(ops:ExpressionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:AbstractSyntaxTree))))
+
+# Class: ops:ExtensionTask (extension task)
+
+AnnotationAssertion(rdfs:label ops:ExtensionTask "extension task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ExtensionTask "Injection of a resource into a second resource, which plays the role of 'extension', providing a wrapping context")
+SubClassOf(ops:ExtensionTask ops:InjectionTask)
+
+# Class: ops:ExtractDescriptionTask (extract description task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ExtractDescriptionTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ExtractDescriptionTask <http://www.omg.org/spec/API4KP/Aspects/idempotent-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ExtractDescriptionTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ExtractDescriptionTask "reasons over a knowledge expression, trying to generate a description of that expression")
+AnnotationAssertion(rdfs:label ops:ExtractDescriptionTask "extract description task")
+SubClassOf(ops:ExtractDescriptionTask ops:ComplexKnowledgeProcessingTask)
+SubClassOf(ops:ExtractDescriptionTask ops:RetrieveResourceDescriptionTask)
+SubClassOf(ops:ExtractDescriptionTask ops:SemanticKnowledgeManagementTask)
+SubClassOf(ops:ExtractDescriptionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:AbstractExpression))))
+SubClassOf(ops:ExtractDescriptionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResourceDescription))))
+
+# Class: ops:ExtractionTask (extraction task)
+
+AnnotationAssertion(rdfs:label ops:ExtractionTask "extraction task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ExtractionTask "A separation based on a tree-oriented deconstruction")
+SubClassOf(ops:ExtractionTask ops:SeparationTask)
+
+# Class: ops:FilteringTask (censoring task)
+
+AnnotationAssertion(rdfs:comment ops:FilteringTask "The expression of the resulting WoK will not contain any linguistic element that evokes the redacted concepts.")
+AnnotationAssertion(rdfs:label ops:FilteringTask "censoring task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:FilteringTask "Simplification aimed at removing one or more concepts and their associations from the WoK.")
+SubClassOf(ops:FilteringTask ops:SimplificationTask)
+
+# Class: ops:FusionTask (fusion task)
+
+AnnotationAssertion(rdfs:comment ops:FusionTask "Fusing two or more resources is equivalent to structuring them by construction, then flattening the structure so obtained")
+AnnotationAssertion(rdfs:label ops:FusionTask "fusion task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:FusionTask "The act of creating a new resource by the combination of two or more resources, such that the identity of the individual resources is not preserved")
+SubClassOf(ops:FusionTask ops:KnowledgeReshapingTask)
+SubClassOf(ops:FusionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectMinCardinality(2 ops:filled-by know:KnowledgeResource))))
+SubClassOf(ops:FusionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectExactCardinality(1 ops:filled-by know:KnowledgeResource))))
+
+# Class: ops:HorizontalKnowledgeProcessingTask (horizontal knowledge processing task)
+
+AnnotationAssertion(rdfs:comment ops:HorizontalKnowledgeProcessingTask "'Horizontal' tasks may use information at the ground level of abstraction, or at any level above. As such, for each task of this type there is a 'syntactic' version and a 'semantic' version. The latter uses information at the work of knowledge (abstract semantic graph) level, while the former uses only linguistic information (grammars/syntaxes)")
+AnnotationAssertion(rdfs:label ops:HorizontalKnowledgeProcessingTask "horizontal knowledge processing task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:HorizontalKnowledgeProcessingTask "task that consumes and produces endeavors at the same level of abstraction, without preserving some primary characteristic that is defined at level of abstraction (e.g. concrete syntax, lexicon, abstract syntax, etc.)
+ 
+While the input I and the product O are different entities, both will refer to the same entities at the higher levels of abstraction: i.e. lift(O) sameAs lift(I), where 'lift' is the execution of any lifting vertical task
+
+Regardless of the level, horizontal tasks of this class always preserve the WoK at the foundation of an endeavor")
+SubClassOf(ops:HorizontalKnowledgeProcessingTask ops:ComplexKnowledgeProcessingTask)
+SubClassOf(ops:HorizontalKnowledgeProcessingTask ops:KnowledgeManipulationTask)
+SubClassOf(ops:HorizontalKnowledgeProcessingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeEndeavour))))
+SubClassOf(ops:HorizontalKnowledgeProcessingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Product ObjectSomeValuesFrom(ops:filled-by know:KnowledgeEndeavour))))
+SubClassOf(ops:HorizontalKnowledgeProcessingTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:WorkOfKnowledge)))
+
+# Class: ops:IdentityLookupTask (identity lookup task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:IdentityLookupTask <http://www.omg.org/spec/API4KP/Aspects/atomic-operation>)
+AnnotationAssertion(rdfs:label ops:IdentityLookupTask "identity lookup task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:IdentityLookupTask "resolution based on a simple lookup")
+SubClassOf(ops:IdentityLookupTask ops:AtomicKnowledgeProcessingTask)
+SubClassOf(ops:IdentityLookupTask ops:IdentityResolutionTask)
+
+# Class: ops:IdentityNegotiationTask (identity negotiation task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:IdentityNegotiationTask <http://www.omg.org/spec/API4KP/Aspects/composite-operation>)
+AnnotationAssertion(rdfs:label ops:IdentityNegotiationTask "identity negotiation task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:IdentityNegotiationTask "complex resolution process that involves alternative options, and preferences about them")
+SubClassOf(ops:IdentityNegotiationTask ops:ComplexKnowledgeProcessingTask)
+SubClassOf(ops:IdentityNegotiationTask ops:IdentityResolutionTask)
+
+# Class: ops:IdentityResolutionTask (identity resolution task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:IdentityResolutionTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:IdentityResolutionTask <http://www.omg.org/spec/API4KP/Aspects/idempotent-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:IdentityResolutionTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(rdfs:label ops:IdentityResolutionTask "Associates identifiers (and or names) to the entity they denote, its location, or information about it")
+AnnotationAssertion(rdfs:label ops:IdentityResolutionTask "identity resolution task")
+AnnotationAssertion(rdfs:seeAlso ops:IdentityResolutionTask "https://tools.ietf.org/html/rfc2483")
+SubClassOf(ops:IdentityResolutionTask ops:ClosedKnowledgeProcessingTask)
+SubClassOf(ops:IdentityResolutionTask ops:KnowledgeManagementTask)
+SubClassOf(ops:IdentityResolutionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:Identifier))))
+SubClassOf(ops:IdentityResolutionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:Identifier))))
+SubClassOf(ops:IdentityResolutionTask ObjectSomeValuesFrom(know:based-on <http://www.omg.org/spec/API4KP/KR/Mapping>))
+
+# Class: ops:InferenceTask (inference task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:InferenceTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:InferenceTask <http://www.omg.org/spec/API4KP/Aspects/idempotent-operation>)
+AnnotationAssertion(rdfs:label ops:InferenceTask "inference task")
+AnnotationAssertion(rdfs:seeAlso ops:InferenceTask "https://en.wikipedia.org/wiki/Logical_consequence")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:InferenceTask "expresses the logical consequence(s) entailed by a given knowledge base")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:InferenceTask "The inferred knowledge may be returned independently, or added to (a new version of) the input knowledge base")
+SubClassOf(ops:InferenceTask ops:AtomicKnowledgeProcessingTask)
+SubClassOf(ops:InferenceTask ops:LogicBasedReasoningTask)
+SubClassOf(ops:InferenceTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:InputOutput ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/WorkingKnowledgeBase>))))
+SubClassOf(ops:InferenceTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResource))))
+
+# Class: ops:InjectionTask (injection task)
+
+AnnotationAssertion(rdfs:label ops:InjectionTask "injection task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:InjectionTask "fusion in terms of an implicit tree-oriented structure.")
+SubClassOf(ops:InjectionTask ops:FusionTask)
 
 # Class: ops:Input (input)
 
@@ -365,6 +607,16 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:InputOu
 SubClassOf(ops:InputOutput ops:Input)
 SubClassOf(ops:InputOutput ops:Output)
 
+# Class: ops:InternalRepositoryTask (internal repository task)
+
+AnnotationAssertion(rdfs:label ops:InternalRepositoryTask "internal repository task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:InternalRepositoryTask "Tasks that deal with the management of artifacts inside a repository's locations.
+Locations are logical entities, identified by a (location) identifier, regardless of the specific repository implementation")
+SubClassOf(ops:InternalRepositoryTask ops:AtomicKnowledgeProcessingTask)
+SubClassOf(ops:InternalRepositoryTask ops:ClosedKnowledgeProcessingTask)
+SubClassOf(ops:InternalRepositoryTask ops:KnowledgeRepositoryTask)
+SubClassOf(ops:InternalRepositoryTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:Identifier))))
+
 # Class: ops:InterpretationTask (conceptualization task)
 
 AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:InterpretationTask <http://www.omg.org/spec/API4KP/Aspects/atomic-operation>)
@@ -375,7 +627,7 @@ AnnotationAssertion(rdfs:label ops:InterpretationTask "conceptualization task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:InterpretationTask "interpretation task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:InterpretationTask "The act of extracting the information content expressed by a knowledge expression, by means of analyzing the AST of that expression")
 SubClassOf(ops:InterpretationTask ops:AtomicKnowledgeProcessingTask)
-SubClassOf(ops:InterpretationTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:InterpretationTask ops:LiftingTask)
 SubClassOf(ops:InterpretationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:AbstractSyntaxTree))))
 SubClassOf(ops:InterpretationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:AbstractSemanticGraph))))
 
@@ -389,20 +641,27 @@ SubClassOf(ops:KnowledgeAnalyticTask ops:OpenKnowledgeProcessingTask)
 
 AnnotationAssertion(rdfs:label ops:KnowledgeBaseStructuringTask "knowledge base structuring task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeBaseStructuringTask "Task that is ultimately aimed at the creation of composite knowledge resources, snapshots of which are intended to be used as working knowledge bases in some reasoning activity")
-SubClassOf(ops:KnowledgeBaseStructuringTask ops:KnowledgeStructuringTask)
+SubClassOf(ops:KnowledgeBaseStructuringTask ops:KnowledgeCompositionalTask)
 SubClassOf(ops:KnowledgeBaseStructuringTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/WorkingKnowledgeBase>)))
+
+# Class: ops:KnowledgeCompositionalTask (knowledge compositional task)
+
+AnnotationAssertion(rdfs:label ops:KnowledgeCompositionalTask "knowledge compositional task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeCompositionalTask "task that deals with the structure-mediated organization of knowledge resources in composites")
+SubClassOf(ops:KnowledgeCompositionalTask ops:KnowledgeStructuringTask)
+SubClassOf(ops:KnowledgeCompositionalTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by know:StructuredKnowledgeResource)))
 
 # Class: ops:KnowledgeManagementTask (knowledge management task)
 
 AnnotationAssertion(rdfs:label ops:KnowledgeManagementTask "knowledge management task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeManagementTask "A task that deals with the life cycle of a knowledge resource and/or the artifact(s) that carry it")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:KnowledgeManagementTask "Tasks of this kind cover elicitation, authoring, curation, storage and retrieval, cataloguing, distribution of knowledge resources, but treat resources (and artifacts) as black boxes, ignoring their syntactic, semantic and pragmatic characteristics")
-SubClassOf(ops:KnowledgeManagementTask ops:OpenKnowledgeProcessingTask)
+SubClassOf(ops:KnowledgeManagementTask know:InformationProcessingTask)
 SubClassOf(ops:KnowledgeManagementTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by know:KnowledgeArtifact)))
 
 # Class: ops:KnowledgeManipulationTask (knowledge manipulation task)
 
-AnnotationAssertion(rdfs:label ops:KnowledgeManipulationTask "a task that is based on methods that only leverage the syntactic and semantic aspects of a knowledge resource, but not its pragmatic ones.")
+AnnotationAssertion(rdfs:label ops:KnowledgeManipulationTask "a task that generates new knowledge endeavors, according to methods that only leverage the syntactic and semantic aspects of a knowledge resource, but not its pragmatic ones.")
 AnnotationAssertion(rdfs:label ops:KnowledgeManipulationTask "knowledge manipulation task")
 SubClassOf(ops:KnowledgeManipulationTask ops:OpenKnowledgeProcessingTask)
 
@@ -437,12 +696,136 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:Knowled
 SubClassOf(ops:KnowledgeReasoningTask ops:OpenKnowledgeProcessingTask)
 SubClassOf(ops:KnowledgeReasoningTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/WorkingKnowledgeBase>)))
 
+# Class: ops:KnowledgeRepositoryTask (knowledge repository task)
+
+AnnotationAssertion(rdfs:label ops:KnowledgeRepositoryTask "knowledge repository task")
+SubClassOf(ops:KnowledgeRepositoryTask ops:KnowledgeManagementTask)
+SubClassOf(ops:KnowledgeRepositoryTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by ObjectSomeValuesFrom(know:has-function know:KnowledgeArtifactRepository))))
+
+# Class: ops:KnowledgeReshapingTask (knowledge reshaping task)
+
+AnnotationAssertion(rdfs:label ops:KnowledgeReshapingTask "knowledge reshaping task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeReshapingTask "Task that uses some (complex) method to derive new works of knowledge using one or more knoweldge resources (and their WoKs) as inputs. 
+
+The resulting WoK is expressed by means of an (abstract) expression - a knowledge resource, or a fragment thereof, in the same language as the source
+
+Both original and new WoKs capture (different aspects) of the same Piece of Knowledge")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:KnowledgeReshapingTask "Because reshaping is a semantic operation, tasks are defined in terms of abstract knowledge expressions as a proxy for the WoK they express: any detail about serialization and encoding is irrelevent")
+SubClassOf(ops:KnowledgeReshapingTask ops:KnowledgeStructuringTask)
+SubClassOf(ops:KnowledgeReshapingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:AbstractExpression))))
+SubClassOf(ops:KnowledgeReshapingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:AbstractExpression))))
+SubClassOf(ops:KnowledgeReshapingTask ObjectSomeValuesFrom(know:based-on ObjectIntersectionOf(ObjectSomeValuesFrom(know:preserves know:Language) ObjectSomeValuesFrom(know:preserves know:PieceOfKnowledge))))
+
+# Class: ops:KnowledgeResourceAggregationTask (knowledge resource aggregation task)
+
+AnnotationAssertion(rdfs:label ops:KnowledgeResourceAggregationTask "knowledge resource aggregation task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeResourceAggregationTask "construction of a set-oriented structure")
+SubClassOf(ops:KnowledgeResourceAggregationTask ops:KnowledgeResourceConstructionTask)
+
+# Class: ops:KnowledgeResourceCompositionTask (knowledge resource composition task)
+
+AnnotationAssertion(rdfs:label ops:KnowledgeResourceCompositionTask "knowledge resource composition task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeResourceCompositionTask "construction of a tree-oriented structure")
+SubClassOf(ops:KnowledgeResourceCompositionTask ops:KnowledgeResourceConstructionTask)
+
+# Class: ops:KnowledgeResourceConstructionTask (knowledge resource construction task)
+
+AnnotationAssertion(rdfs:label ops:KnowledgeResourceConstructionTask "knowledge resource construction task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeResourceConstructionTask "Creates a structuring knowledge resource that has two or more knowledge resources as referenced components")
+SubClassOf(ops:KnowledgeResourceConstructionTask ops:KnowledgeCompositionalTask)
+SubClassOf(ops:KnowledgeResourceConstructionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResource))))
+SubClassOf(ops:KnowledgeResourceConstructionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:StructuringKnowledgeResource))))
+
+# Class: ops:KnowledgeResourceDecompositionTask (knowledge resource decomposition task)
+
+AnnotationAssertion(rdfs:label ops:KnowledgeResourceDecompositionTask "knowledge resource decomposition task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeResourceDecompositionTask "deconstruction limited to tree-oriented structures")
+SubClassOf(ops:KnowledgeResourceDecompositionTask ops:KnowledgeResourceDeconstructionTask)
+
+# Class: ops:KnowledgeResourceDeconstructionTask (knowledge resource deconstruction task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:KnowledgeResourceDeconstructionTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:KnowledgeResourceDeconstructionTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:KnowledgeResourceDeconstructionTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
+AnnotationAssertion(rdfs:label ops:KnowledgeResourceDeconstructionTask "knowledge resource deconstruction task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeResourceDeconstructionTask "superimposes a structure on a non-composite, but deconstructable knowledge resource")
+SubClassOf(ops:KnowledgeResourceDeconstructionTask ops:KnowledgeCompositionalTask)
+SubClassOf(ops:KnowledgeResourceDeconstructionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:DeconstructableKnowledgeResource))))
+SubClassOf(ops:KnowledgeResourceDeconstructionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:StructuringKnowledgeResource))))
+
+# Class: ops:KnowledgeResourceDisaggregationTask (knowledge resource disaggregation task)
+
+AnnotationAssertion(rdfs:label ops:KnowledgeResourceDisaggregationTask "knowledge resource disaggregation task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeResourceDisaggregationTask "deconstruction limited to set-oriented structures")
+SubClassOf(ops:KnowledgeResourceDisaggregationTask ops:KnowledgeResourceDeconstructionTask)
+
+# Class: ops:KnowledgeResourceDisassemblyTask (knowledge resource disassembly task)
+
+AnnotationAssertion(rdfs:label ops:KnowledgeResourceDisassemblyTask "knowledge resource disassembly task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeResourceDisassemblyTask "breaking apart a deconstructable knowledge resource, following a structure, to obtain the componenets")
+SubClassOf(ops:KnowledgeResourceDisassemblyTask ops:KnowledgeCompositionalTask)
+SubClassOf(ops:KnowledgeResourceDisassemblyTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:DeconstructableKnowledgeResource))))
+SubClassOf(ops:KnowledgeResourceDisassemblyTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:StructuringKnowledgeResource))))
+SubClassOf(ops:KnowledgeResourceDisassemblyTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectMinCardinality(2 ops:filled-by know:KnowledgeResource))))
+
+# Class: ops:KnowledgeResourceFlatteningTask (knowledge resource flattening task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:KnowledgeResourceFlatteningTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:KnowledgeResourceFlatteningTask <http://www.omg.org/spec/API4KP/Aspects/composite-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:KnowledgeResourceFlatteningTask <http://www.omg.org/spec/API4KP/Aspects/idempotent-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:KnowledgeResourceFlatteningTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
+AnnotationAssertion(rdfs:comment ops:KnowledgeResourceFlatteningTask "The flattening may require some manipulation of the component resources before they can be merged")
+AnnotationAssertion(rdfs:label ops:KnowledgeResourceFlatteningTask "knowledge resource flattening task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:KnowledgeResourceFlatteningTask "knowledge resource assembly task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeResourceFlatteningTask "The act of creating a single, flattened knowledge resource from a composite knowledge resource and its component structured resources, according to the plan specified by a structure.")
+SubClassOf(ops:KnowledgeResourceFlatteningTask ops:ComplexKnowledgeProcessingTask)
+SubClassOf(ops:KnowledgeResourceFlatteningTask ops:KnowledgeCompositionalTask)
+SubClassOf(ops:KnowledgeResourceFlatteningTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:CompositeKnowledgeResource))))
+SubClassOf(ops:KnowledgeResourceFlatteningTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:FlattenedKnowledgeResource))))
+SubClassOf(ops:KnowledgeResourceFlatteningTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by know:StructuringKnowledgeResource)))
+
+# Class: ops:KnowledgeResourceRearrangementTask (knowledge resource rearrangement task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:KnowledgeResourceRearrangementTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(rdfs:comment ops:KnowledgeResourceRearrangementTask "The operation generates a new structure, that is a versioned revision of the input structure")
+AnnotationAssertion(rdfs:label ops:KnowledgeResourceRearrangementTask "knowledge resource rearrangement task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeResourceRearrangementTask "A rearrangement changes the mutual relationships between the structured resources in a composite, but does not affect the resources themselves")
+SubClassOf(ops:KnowledgeResourceRearrangementTask ops:KnowledgeCompositionalTask)
+SubClassOf(ops:KnowledgeResourceRearrangementTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by know:StructuringKnowledgeResource))))
+SubClassOf(ops:KnowledgeResourceRearrangementTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Output ObjectSomeValuesFrom(ops:filled-by know:StructuringKnowledgeResource))))
+
 # Class: ops:KnowledgeStructuringTask (knowledge structuring task)
 
 AnnotationAssertion(rdfs:label ops:KnowledgeStructuringTask "knowledge structuring task")
-AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeStructuringTask "task that, when executed, involves structured knowledge resources")
-SubClassOf(ops:KnowledgeStructuringTask ops:OpenKnowledgeProcessingTask)
-SubClassOf(ops:KnowledgeStructuringTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by know:StructuredKnowledgeResource)))
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeStructuringTask "task that, when executed, involves structured knowledge resources - either directly, or (potentially) in preparation for structuring")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:KnowledgeStructuringTask "In API4KP a 'structure' denotes, in a narrow sense, two or more resources organized into composite resources
+In DOL, 'structuring' is used in a broader sense, not only to cover the API4KP sense, but also the API4KP notion of '(complex) manipulation' - operations that are possibly, but not necessarily, used to prepare resources to become part of a structure.
+
+To remain aligned, in API4KP 'structuring' denotes manipulations other than 'horizontal' and 'vertical' manipulations which preserve the work of knowledge. 
+Hence, 'structuring' tasks do not preserve the WoK 
+'Structuring' is then further partitioned into 'Composition' - dealing with API4KP structures and composite resources - and 'Reshaping' - dealing with non-WoK preserving transrepresentations")
+SubClassOf(ops:KnowledgeStructuringTask ops:KnowledgeManipulationTask)
+SubClassOf(ops:KnowledgeStructuringTask ObjectSomeValuesFrom(know:based-on ObjectIntersectionOf(know:KnowledgeProcessingMethod ObjectComplementOf(ObjectSomeValuesFrom(know:preserves know:WorkOfKnowledge)))))
+
+# Class: ops:LiftingTask (lifting task)
+
+AnnotationAssertion(rdfs:label ops:LiftingTask "lifting task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:LiftingTask "when executed, a lifting task produces an endeavor at a higher level of abstraction that its input")
+SubClassOf(ops:LiftingTask ops:VerticalKnowledgeProcessingTask)
+
+# Class: ops:LogicBasedReasoningTask (logic-based reasoning task)
+
+AnnotationAssertion(rdfs:label ops:LogicBasedReasoningTask "logic-based reasoning task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:LogicBasedReasoningTask "Reasoning task based on the semantics and pragmatics of some underlying logic, based on symbolic methods, suitable to be peformed by 'reasoners'")
+SubClassOf(ops:LogicBasedReasoningTask ops:KnowledgeReasoningTask)
+SubClassOf(ops:LogicBasedReasoningTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/WorkingKnowledgeBase>))))
+SubClassOf(ops:LogicBasedReasoningTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:uses-concept DOL:Logic)))
+
+# Class: ops:LoweringTask (lowering task)
+
+AnnotationAssertion(rdfs:label ops:LoweringTask "lowering task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:LoweringTask "when executed, a lowering task produces an endeavor at a lower level of abstraction that its input")
+SubClassOf(ops:LoweringTask ops:VerticalKnowledgeProcessingTask)
 
 # Class: ops:OpenKnowledgeProcessingTask (open knowledge processing task)
 
@@ -470,6 +853,20 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:Output "p
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:Output "Role played by an entity that is produced by a (knowledge processing) activity")
 SubClassOf(ops:Output know:PassiveRole)
 
+# Class: ops:ParaphraseTask (paraphrase task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ParaphraseTask <http://www.omg.org/spec/API4KP/Aspects/composite-operation>)
+AnnotationAssertion(rdfs:label ops:ParaphraseTask "paraphrase task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ParaphraseTask "The creation of an alternative expression (concrete or abstract) that carries the same meaning, but uses different fragments (sentences and/or linguistic elements). 
+
+Meaning (work of knowledge), language and format are preserved, but not the internal structure of an expression.")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#note> ops:ParaphraseTask "Paraphrase is only admissible in languages that are redundant, i.e. allow alternative, different expressions of the same meaning")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:ParaphraseTask "Interesting 'paraphrases' are the ones that cast an expression, in a given language, within the boundaries of a profile of that language")
+SubClassOf(ops:ParaphraseTask ops:HorizontalKnowledgeProcessingTask)
+SubClassOf(ops:ParaphraseTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by know:KnowledgeExpression))))
+SubClassOf(ops:ParaphraseTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Product ObjectSomeValuesFrom(ops:filled-by know:KnowledgeExpression))))
+SubClassOf(ops:ParaphraseTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:Language)))
+
 # Class: ops:ParsingTask (parsing task)
 
 AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ParsingTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
@@ -479,10 +876,16 @@ AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:Pars
 AnnotationAssertion(rdfs:label ops:ParsingTask "parsing task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ParsingTask "the act of creating an AST (of an abstract knowldge expression) from a concrete knowledge expression")
 SubClassOf(ops:ParsingTask ops:ComplexKnowledgeProcessingTask)
-SubClassOf(ops:ParsingTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:ParsingTask ops:LiftingTask)
 SubClassOf(ops:ParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
 SubClassOf(ops:ParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:AbstractSyntaxTree))))
 SubClassOf(ops:ParsingTask ObjectSomeValuesFrom(know:based-on ObjectIntersectionOf(ObjectSomeValuesFrom(know:preserves know:AbstractSyntax) ObjectSomeValuesFrom(know:uses-concept <http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))))
+
+# Class: ops:PartitionTask (partition task)
+
+AnnotationAssertion(rdfs:label ops:PartitionTask "partition task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:PartitionTask "A separation based on a set-oriented deconstruction")
+SubClassOf(ops:PartitionTask ops:SeparationTask)
 
 # Class: ops:PrimaryInput (primary input)
 
@@ -497,6 +900,28 @@ AnnotationAssertion(rdfs:label ops:PrimaryOutput "primary output")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:PrimaryOutput "output such that its production is the main goal of the activity that generates is.")
 SubClassOf(ops:PrimaryOutput ops:Output)
 
+# Class: ops:Product (product)
+
+AnnotationAssertion(rdfs:label ops:Product "product")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:Product "\"product\" is the role played by an entity that did not exist before an activity (of a given task type) was executed, with respect to that activity. The activity generates that entity, and thus is cause of its existence")
+SubClassOf(ops:Product ops:PrimaryOutput)
+
+# Class: ops:ProofGenerationTask (proof generation task)
+
+AnnotationAssertion(rdfs:label ops:ProofGenerationTask "proof generation task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ProofGenerationTask "The act of generating a proof that justifies how an expression is a logical consequence of a knowledge base")
+SubClassOf(ops:ProofGenerationTask ops:LogicBasedReasoningTask)
+SubClassOf(ops:ProofGenerationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeExpression))))
+
+# Class: ops:QueryAnswerTask (query answering task)
+
+AnnotationAssertion(rdfs:label ops:QueryAnswerTask "query answering task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:QueryAnswerTask "given a query, expressed by means of a proper knowledge expression that contains some variables, returns an 'anser' in terms of bindings of those variables")
+SubClassOf(ops:QueryAnswerTask ops:AtomicKnowledgeProcessingTask)
+SubClassOf(ops:QueryAnswerTask ops:LogicBasedReasoningTask)
+SubClassOf(ops:QueryAnswerTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by DOL:Query))))
+SubClassOf(ops:QueryAnswerTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeExpression))))
+
 # Class: ops:ReadTask (I/O read task)
 
 AnnotationAssertion(rdfs:label ops:ReadTask "I/O read task")
@@ -507,21 +932,133 @@ SubClassOf(ops:ReadTask ops:AtomicKnowledgeProcessingTask)
 SubClassOf(ops:ReadTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeCarrier))))
 SubClassOf(ops:ReadTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:EncodedKnowledgeExpression))))
 
-# Class: ops:RemoveArtifactTask (ops:RemoveArtifactTask)
+# Class: ops:RedactionTask (syntactic redaction task)
 
-SubClassOf(ops:RemoveArtifactTask ops:KnowledgeManagementTask)
+AnnotationAssertion(rdfs:label ops:RedactionTask "syntactic redaction task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:RedactionTask "The syntactic counterpart of censoring: derives the product expression by removing all the fragments (sentences) in the source expression that contain any linguistic element that evoke any one of the concepts to be filtered out")
+SubClassOf(ops:RedactionTask ops:SimplificationTask)
+SubClassOf(ops:RedactionTask ops:SyntacticKnowledgeProcessingTask)
 
-# Class: ops:RetrieveArtifactTask (ops:RetrieveArtifactTask)
+# Class: ops:ReductionTask (reduction task)
 
+AnnotationAssertion(rdfs:label ops:ReductionTask "reduction task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ReductionTask "Simplification due to the inability of the target language (and/or its underlying logic) to express a number of concepts present in the original WoK")
+SubClassOf(ops:ReductionTask ops:SimplificationTask)
+
+# Class: ops:RemovalTask (removal task)
+
+AnnotationAssertion(rdfs:label ops:RemovalTask "removal task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:RemovalTask "Removes a specific component from a structure")
+SubClassOf(ops:RemovalTask ops:SeparationTask)
+
+# Class: ops:ReplaceArtifactAtLocationTask (replace artifact at location task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ReplaceArtifactAtLocationTask <http://www.omg.org/spec/API4KP/Aspects/composite-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ReplaceArtifactAtLocationTask <http://www.omg.org/spec/API4KP/Aspects/side-effecful-operation>)
+AnnotationAssertion(rdfs:label ops:ReplaceArtifactAtLocationTask "replace artifact at location task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ReplaceArtifactAtLocationTask "replaces an artifact at location, preserving any previously stored artifact")
+SubClassOf(ops:ReplaceArtifactAtLocationTask ops:ComplexKnowledgeProcessingActivity)
+SubClassOf(ops:ReplaceArtifactAtLocationTask ops:InternalRepositoryTask)
+SubClassOf(ops:ReplaceArtifactAtLocationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Output ObjectSomeValuesFrom(ops:filled-by know:VersionedIdentifier))))
+SubClassOf(ops:ReplaceArtifactAtLocationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeArtifact))))
+SubClassOf(ops:ReplaceArtifactAtLocationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeArtifact))))
+SubClassOf(ops:ReplaceArtifactAtLocationTask ObjectSomeValuesFrom(ops:has-subtask ops:StoreArtifactAtLocationTask))
+
+# Class: ops:ReplicationTask (replication task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ReplicationTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ReplicationTask <http://www.omg.org/spec/API4KP/Aspects/side-effecful-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ReplicationTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
+AnnotationAssertion(rdfs:label ops:ReplicationTask "replication task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ReplicationTask "Task that creates a new, equal, copy of the input endeavor. 
+As such, it creates a new istance of the same type as the input entity.")
+SubClassOf(ops:ReplicationTask ops:HorizontalKnowledgeProcessingTask)
+SubClassOf(ops:ReplicationTask ObjectAllValuesFrom(ops:has-role ObjectIntersectionOf(ops:Product ObjectSomeValuesFrom(ops:filled-by ObjectIntersectionOf(know:KnowledgeEndeavour ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/rel#copy-of> know:KnowledgeEndeavour))))))
+
+# Class: ops:ResolveClosureTask (resolve dependency closure task)
+
+AnnotationAssertion(rdfs:label ops:ResolveClosureTask "resolve dependency closure task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ResolveClosureTask "Recursive dependency resolution task")
+SubClassOf(ops:ResolveClosureTask ops:ResolveDependenciesTask)
+
+# Class: ops:ResolveDependenciesTask (resolve dependencies task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ResolveDependenciesTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ResolveDependenciesTask <http://www.omg.org/spec/API4KP/Aspects/composite-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:ResolveDependenciesTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(rdfs:label ops:ResolveDependenciesTask "resolve dependencies task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ResolveDependenciesTask "Retrieves the resources that a given resource depends on")
+SubClassOf(ops:ResolveDependenciesTask ops:SemanticKnowledgeManagementTask)
+SubClassOf(ops:ResolveDependenciesTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResource))))
+SubClassOf(ops:ResolveDependenciesTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResource))))
+
+# Class: ops:RetrieveArtifactFromLocationTask (retrieve artifact from location task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveArtifactFromLocationTask <http://www.omg.org/spec/API4KP/Aspects/atomic-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveArtifactFromLocationTask <http://www.omg.org/spec/API4KP/Aspects/idempotent-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveArtifactFromLocationTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveArtifactFromLocationTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
+AnnotationAssertion(rdfs:label ops:RetrieveArtifactFromLocationTask "retrieve artifact from location task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:RetrieveArtifactFromLocationTask "returns (a copy of) an artifact stored at a given location")
+SubClassOf(ops:RetrieveArtifactFromLocationTask ops:InternalRepositoryTask)
+
+# Class: ops:RetrieveArtifactTask (retrieve artifact task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveArtifactTask <http://www.omg.org/spec/API4KP/Aspects/atomic-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveArtifactTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveArtifactTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveArtifactTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
+AnnotationAssertion(rdfs:label ops:RetrieveArtifactTask "retrieve artifact task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:RetrieveArtifactTask "resolves the identifier of a knowledge artifact, and retrieves (a copy of) that artifact")
+SubClassOf(ops:RetrieveArtifactTask ops:ComplexKnowledgeProcessingTask)
 SubClassOf(ops:RetrieveArtifactTask ops:KnowledgeManagementTask)
+SubClassOf(ops:RetrieveArtifactTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:Identifier))))
+SubClassOf(ops:RetrieveArtifactTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/rel#copy-of> know:KnowledgeArtifact)))))
 
-# Class: ops:RetrieveAssetTask (ops:RetrieveAssetTask)
+# Class: ops:RetrieveResourceDescriptionTask (retrieve resource description task)
 
-SubClassOf(ops:RetrieveAssetTask ops:KnowledgeManagementTask)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveResourceDescriptionTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveResourceDescriptionTask <http://www.omg.org/spec/API4KP/Aspects/composite-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveResourceDescriptionTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveResourceDescriptionTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
+AnnotationAssertion(rdfs:label ops:RetrieveResourceDescriptionTask "retrieve resource description task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:RetrieveResourceDescriptionTask "retrieves a resource that is the description of another resource")
+SubClassOf(ops:RetrieveResourceDescriptionTask ops:RetrieveResourceTask)
+SubClassOf(ops:RetrieveResourceDescriptionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectAllValuesFrom(ops:filled-by ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/rel#copy-of> ObjectIntersectionOf(know:ConcreteExpression ObjectSomeValuesFrom(know:concretely-expresses know:KnowledgeResourceDescription)))))))
 
-# Class: ops:RetrieveSurrogateTask (ops:RetrieveSurrogateTask)
+# Class: ops:RetrieveResourceTask (retrieve resource task)
 
-SubClassOf(ops:RetrieveSurrogateTask ops:KnowledgeManagementTask)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveResourceTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveResourceTask <http://www.omg.org/spec/API4KP/Aspects/composite-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveResourceTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveResourceTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
+AnnotationAssertion(rdfs:label ops:RetrieveResourceTask "retrieve resource task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:RetrieveResourceTask "retrieves a concrete knowledge resource, extracting it from the master copy stored at a location that resolves the identifier provided as input")
+SubClassOf(ops:RetrieveResourceTask ops:ComplexKnowledgeProcessingTask)
+SubClassOf(ops:RetrieveResourceTask ops:KnowledgeManagementTask)
+SubClassOf(ops:RetrieveResourceTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:Identifier))))
+SubClassOf(ops:RetrieveResourceTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/rel#copy-of> know:ConcreteExpression)))))
+
+# Class: ops:RetrieveSurrogateTask (retrieve surrogate task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveSurrogateTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveSurrogateTask <http://www.omg.org/spec/API4KP/Aspects/composite-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveSurrogateTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:RetrieveSurrogateTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
+AnnotationAssertion(rdfs:label ops:RetrieveSurrogateTask "retrieve surrogate task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:RetrieveSurrogateTask "resolves the identifier of an asset (or an artifact) to the identifier of a surrogate that describes it, and retrieves a copy of that surrogate")
+SubClassOf(ops:RetrieveSurrogateTask ops:RetrieveArtifactTask)
+SubClassOf(ops:RetrieveSurrogateTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectAllValuesFrom(ops:filled-by ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/rel#copy-of> know:KnowledgeAssetSurrogate)))))
+
+# Class: ops:SatisfiabilityCheckTask (satisfiability check task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SatisfiabilityCheckTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SatisfiabilityCheckTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
+AnnotationAssertion(rdfs:label ops:SatisfiabilityCheckTask "satisfiability check task")
+AnnotationAssertion(rdfs:seeAlso ops:SatisfiabilityCheckTask "https://en.wikipedia.org/wiki/Satisfiability")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SatisfiabilityCheckTask "checks whether a knowledge base is satisfiable or not")
+SubClassOf(ops:SatisfiabilityCheckTask ops:AtomicKnowledgeProcessingTask)
+SubClassOf(ops:SatisfiabilityCheckTask ops:LogicBasedReasoningTask)
 
 # Class: ops:SecondaryOutput (secondary output)
 
@@ -531,12 +1068,29 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:Secondary
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SecondaryOutput "output that is generated alongside the primary output, but is not one of the primary goals of the execution of that activity")
 SubClassOf(ops:SecondaryOutput ops:Output)
 
+# Class: ops:SelectionTask (selection task)
+
+AnnotationAssertion(rdfs:comment ops:SelectionTask "Selection is additive (to the target WoK), whereas simplification is subtractive (to the source WoK)")
+AnnotationAssertion(rdfs:label ops:SelectionTask "selection task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SelectionTask "The product Work of Knowledge is obtained by explicit selection of a sub-set of the concepts (and their associations) in the original WoK")
+SubClassOf(ops:SelectionTask ops:KnowledgeReshapingTask)
+
 # Class: ops:SemanticKnowledgeManagementTask (semantic knowledge management task)
 
 AnnotationAssertion(rdfs:label ops:SemanticKnowledgeManagementTask "semantic knowledge management task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SemanticKnowledgeManagementTask "A 'semantic' knowledge management task treats artifacts and resources as a black box, but makes use of their descriptions (and the surrogates that carry them)")
 SubClassOf(ops:SemanticKnowledgeManagementTask ops:KnowledgeManagementTask)
+SubClassOf(ops:SemanticKnowledgeManagementTask ops:KnowledgeReasoningTask)
 SubClassOf(ops:SemanticKnowledgeManagementTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResourceDescription)))
+
+# Class: ops:SeparationTask (separation task)
+
+AnnotationAssertion(rdfs:comment ops:SeparationTask "Conceptually equivalent to a deconstruction followed by a disassembly")
+AnnotationAssertion(rdfs:label ops:SeparationTask "separation task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SeparationTask "The act of breaking a (deconstructable) knowledge resource into its component, which are returned as individual resources")
+SubClassOf(ops:SeparationTask ops:KnowledgeReshapingTask)
+SubClassOf(ops:SeparationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:DeconstructableKnowledgeResource))))
+SubClassOf(ops:SeparationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectMinCardinality(2 ops:filled-by know:KnowledgeResource))))
 
 # Class: ops:SerializationTask (serialization task)
 
@@ -547,15 +1101,59 @@ AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:Seri
 AnnotationAssertion(rdfs:label ops:SerializationTask "serialization task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SerializationTask "The act of concretizing an abstract expression, serializing it using one of the concrete syntaxes supported by the langauge")
 SubClassOf(ops:SerializationTask ops:AtomicKnowledgeProcessingTask)
-SubClassOf(ops:SerializationTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:SerializationTask ops:LoweringTask)
 SubClassOf(ops:SerializationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))))
 SubClassOf(ops:SerializationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:AbstractExpression))))
 SubClassOf(ops:SerializationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
 SubClassOf(ops:SerializationTask ObjectSomeValuesFrom(know:based-on ObjectIntersectionOf(ObjectSomeValuesFrom(know:preserves know:AbstractSyntax) ObjectSomeValuesFrom(know:uses-concept <http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))))
 
-# Class: ops:StoreAssetTask (ops:StoreAssetTask)
+# Class: ops:SeriesManagementTask (series management task)
 
-SubClassOf(ops:StoreAssetTask ops:KnowledgeManagementTask)
+AnnotationAssertion(rdfs:label ops:SeriesManagementTask "series management task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SeriesManagementTask "Tasks dealing with the management 'series' of temporally and version related knowledge endeavors")
+SubClassOf(ops:SeriesManagementTask ops:KnowledgeManagementTask)
+SubClassOf(ops:SeriesManagementTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by know:VersionedIdentifier)))
+
+# Class: ops:SimplificationTask (simplification task)
+
+AnnotationAssertion(rdfs:label ops:SimplificationTask "simplification task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SimplificationTask "When this task is executed, parts of the concepts used by the WoK that conceptualizes the source expression are removed ('forgotten') before the resulting WoK is expressed in the target language
+
+As such, the conceptualization of the proudct is a sub-graph of the conceptualization of the source")
+SubClassOf(ops:SimplificationTask ops:KnowledgeReshapingTask)
+
+# Class: ops:SnapshotTask (snapshot task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SnapshotTask <http://www.omg.org/spec/API4KP/Aspects/atomic-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SnapshotTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SnapshotTask <http://www.omg.org/spec/API4KP/Aspects/idempotent-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SnapshotTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(rdfs:comment ops:SnapshotTask "Unlike replication tasks, 'Snapshot tasks' are atomic.
+In fact, a snapshot does not imply replication or any other activity, other than the guarantee that the ouput endevaor is immutable, and properly versioned")
+AnnotationAssertion(rdfs:label ops:SnapshotTask "snapshot task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SnapshotTask "task that, when executed, makes an exact, immutable copy of a knowledge endeavor (expression or artifact), and assigns the result a versioned identifier")
+SubClassOf(ops:SnapshotTask ops:AtomicKnowledgeProcessingTask)
+SubClassOf(ops:SnapshotTask ops:SeriesManagementTask)
+SubClassOf(ops:SnapshotTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Output ObjectSomeValuesFrom(ops:filled-by know:VersionedIdentifier))))
+SubClassOf(ops:SnapshotTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeEndeavour))))
+SubClassOf(ops:SnapshotTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/KR/ImmutableEntity> know:KnowledgeEndeavour)))))
+
+# Class: ops:StoreArtifactAtLocationTask (store artifact at location task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:StoreArtifactAtLocationTask <http://www.omg.org/spec/API4KP/Aspects/atomic-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:StoreArtifactAtLocationTask <http://www.omg.org/spec/API4KP/Aspects/idempotent-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:StoreArtifactAtLocationTask <http://www.omg.org/spec/API4KP/Aspects/side-effecful-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:StoreArtifactAtLocationTask <http://www.omg.org/spec/API4KP/Aspects/void-operation>)
+AnnotationAssertion(rdfs:label ops:StoreArtifactAtLocationTask "store artifact at location task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:StoreArtifactAtLocationTask "ensures that an artifact is available at a given location")
+SubClassOf(ops:StoreArtifactAtLocationTask ops:InternalRepositoryTask)
+SubClassOf(ops:StoreArtifactAtLocationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeArtifact))))
+
+# Class: ops:SummarizationTask (summarization task)
+
+AnnotationAssertion(rdfs:label ops:SummarizationTask "summarization task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SummarizationTask "Simplification to reduce the number of concepts, and the complexity of their associations, in order to facilitate delivery to an audience")
+SubClassOf(ops:SummarizationTask ops:SimplificationTask)
 
 # Class: ops:SyntacticAnalysisTask (syntactic analysis task)
 
@@ -566,7 +1164,7 @@ AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:Synt
 AnnotationAssertion(rdfs:label ops:SyntacticAnalysisTask "syntactic analysis task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SyntacticAnalysisTask "the act of deriving an AST from a parse tree")
 SubClassOf(ops:SyntacticAnalysisTask ops:AtomicKnowledgeProcessingTask)
-SubClassOf(ops:SyntacticAnalysisTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:SyntacticAnalysisTask ops:LiftingTask)
 SubClassOf(ops:SyntacticAnalysisTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ParseTree))))
 SubClassOf(ops:SyntacticAnalysisTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:AbstractSyntaxTree))))
 SubClassOf(ops:SyntacticAnalysisTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:AbstractSyntax)))
@@ -575,9 +1173,21 @@ SubClassOf(ops:SyntacticAnalysisTask ObjectSomeValuesFrom(know:based-on ObjectSo
 
 AnnotationAssertion(rdfs:label ops:SyntacticKnowledgeProcessingTask "syntactic knowledge processing task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SyntacticKnowledgeProcessingTask "a task that is based on methods that only leverage the syntactic aspects of a knowledge resource, but not its semantic and pragmatic ones")
-SubClassOf(ops:SyntacticKnowledgeProcessingTask ops:OpenKnowledgeProcessingTask)
+SubClassOf(ops:SyntacticKnowledgeProcessingTask ops:KnowledgeManipulationTask)
 SubClassOf(ops:SyntacticKnowledgeProcessingTask ObjectSomeValuesFrom(know:based-on ObjectIntersectionOf(ObjectSomeValuesFrom(know:preserves know:WorkOfKnowledge) ObjectSomeValuesFrom(know:uses-concept know:Language))))
+SubClassOf(ops:SyntacticKnowledgeProcessingTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:WorkOfKnowledge)))
 SubClassOf(ops:SyntacticKnowledgeProcessingTask ObjectAllValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:WorkOfKnowledge)))
+
+# Class: ops:SyntacticParaphraseTask (syntactic paraphrase task)
+
+AnnotationAssertion(rdfs:label ops:SyntacticParaphraseTask "syntactic paraphrase task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SyntacticParaphraseTask "paraphrase task that is based merely on syntactic manipulation")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#editorialNote> ops:SyntacticParaphraseTask "The formalization of 'paraphrase' in terms of decomposition and flattening needs more work")
+SubClassOf(ops:SyntacticParaphraseTask ops:ParaphraseTask)
+SubClassOf(ops:SyntacticParaphraseTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:SyntacticParaphraseTask ObjectSomeValuesFrom(ops:has-subtask ops:KnowledgeResourceDeconstructionTask))
+SubClassOf(ops:SyntacticParaphraseTask ObjectSomeValuesFrom(ops:has-subtask ops:KnowledgeResourceFlatteningTask))
+SubClassOf(ops:SyntacticParaphraseTask ObjectSomeValuesFrom(ops:has-subtask ops:KnowledgeResourceRearrangementTask))
 
 # Class: ops:SyntacticParsingTask (syntactic parsing task)
 
@@ -588,24 +1198,88 @@ AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:Synt
 AnnotationAssertion(rdfs:label ops:SyntacticParsingTask "syntactic parsing task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SyntacticParsingTask "the act of creating a parse tree from a concrete knowledge expression. scanning and tokenization are considered sub-atomic parts of this task")
 SubClassOf(ops:SyntacticParsingTask ops:AtomicKnowledgeProcessingTask)
-SubClassOf(ops:SyntacticParsingTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:SyntacticParsingTask ops:LiftingTask)
 SubClassOf(ops:SyntacticParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
 SubClassOf(ops:SyntacticParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:ParseTree))))
 SubClassOf(ops:SyntacticParsingTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:Serialization)))
 
-# Class: ops:SyntaxValidationTask (syntax validation task)
+# Class: ops:SyntacticTranscriptionTask (syntactic transcription task)
 
-AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SyntaxValidationTask <http://www.omg.org/spec/API4KP/Aspects/composite-operation>)
-AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SyntaxValidationTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
-AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SyntaxValidationTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
-AnnotationAssertion(rdfs:label ops:SyntaxValidationTask "syntax validation task")
-AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SyntaxValidationTask "the act of checking whether a knowledge expression is a valid sentence according to the syntax - abstract and/or concrete - of some language, or profile thereof.")
-SubClassOf(ops:SyntaxValidationTask ops:ComplexKnowledgeProcessingTask)
-SubClassOf(ops:SyntaxValidationTask ops:SyntacticKnowledgeProcessingTask)
-SubClassOf(ops:SyntaxValidationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by know:Language))))
-SubClassOf(ops:SyntaxValidationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
-SubClassOf(ops:SyntaxValidationTask ObjectSomeValuesFrom(ops:has-subtask ops:ParsingTask))
-SubClassOf(ops:SyntaxValidationTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:uses-concept ObjectIntersectionOf(know:Language ObjectSomeValuesFrom(know:defined-by know:Syntax)))))
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SyntacticTranscriptionTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SyntacticTranscriptionTask <http://www.omg.org/spec/API4KP/Aspects/idempotent-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:SyntacticTranscriptionTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(rdfs:label ops:SyntacticTranscriptionTask "syntactic transcription task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SyntacticTranscriptionTask "transcription purely based on syntactic criteria")
+SubClassOf(ops:SyntacticTranscriptionTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:SyntacticTranscriptionTask ops:TranscriptionTask)
+SubClassOf(ops:SyntacticTranscriptionTask ObjectAllValuesFrom(know:based-on ObjectIntersectionOf(DOL:LanguageMapping ObjectExactCardinality(1 know:uses-concept know:Language) ObjectExactCardinality(2 know:uses-concept <http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))))
+
+# Class: ops:SyntacticTranslationTask (syntactic translation task)
+
+AnnotationAssertion(rdfs:label ops:SyntacticTranslationTask "syntactic translation task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SyntacticTranslationTask "A translation task based merely on syntactic methods")
+SubClassOf(ops:SyntacticTranslationTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:SyntacticTranslationTask ops:TranslationTask)
+SubClassOf(ops:SyntacticTranslationTask ObjectAllValuesFrom(know:based-on ObjectIntersectionOf(DOL:LanguageMapping ObjectExactCardinality(2 know:uses-concept know:Language))))
+
+# Class: ops:TranscreationTask (transcreation task)
+
+AnnotationAssertion(rdfs:label ops:TranscreationTask "transcreation task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:TranscreationTask "complex transformation that alters the semantics and pragmatics of a work of knowledge")
+SubClassOf(ops:TranscreationTask ops:KnowledgeReshapingTask)
+SubClassOf(ops:TranscreationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResource))))
+SubClassOf(ops:TranscreationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResource))))
+
+# Class: ops:TranscriptionTask (transcription task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:TranscriptionTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:TranscriptionTask <http://www.omg.org/spec/API4KP/Aspects/idempotent-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:TranscriptionTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
+AnnotationAssertion(rdfs:label ops:TranscriptionTask "transcription task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:TranscriptionTask "The act of creating a different serialization of a concrete expression in a given language.
+The target serialization must be supported by the language")
+SubClassOf(ops:TranscriptionTask ops:HorizontalKnowledgeProcessingTask)
+SubClassOf(ops:TranscriptionTask ObjectSomeValuesFrom(know:based-on ObjectIntersectionOf(ObjectExactCardinality(1 know:uses-concept know:Language) ObjectExactCardinality(2 know:uses-concept <http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))))
+
+# Class: ops:TranslationTask (translation task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:TranslationTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:TranslationTask <http://www.omg.org/spec/API4KP/Aspects/idempotent-operation>)
+AnnotationAssertion(rdfs:comment ops:TranslationTask "Translations may be preceded by paraphrases, to ensure that the source expression uses only aspects that are mappable to the target language, when the mapping is not complete")
+AnnotationAssertion(rdfs:label ops:TranslationTask "translation task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:TranslationTask "The act of creating a different expression of a work of knowledge in a given language.
+Translations are exact, requiring not only to use a method that actually preserves the meaning, but also that the target language is expressive enough.")
+SubClassOf(ops:TranslationTask ops:HorizontalKnowledgeProcessingTask)
+SubClassOf(ops:TranslationTask ObjectSomeValuesFrom(know:based-on ObjectIntersectionOf(DOL:LanguageMapping ObjectExactCardinality(2 know:uses-concept know:Language))))
+
+# Class: ops:UnionTask (union task)
+
+AnnotationAssertion(rdfs:label ops:UnionTask "union task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:UnionTask "Fusion in terms of a set-oriented implicit structure")
+SubClassOf(ops:UnionTask ops:FusionTask)
+
+# Class: ops:VerticalKnowledgeProcessingTask (vertical knowledge processing task)
+
+AnnotationAssertion(rdfs:comment ops:VerticalKnowledgeProcessingTask "task that, despite the syntactic nature of the operation, preserve both representation (encoding, format or concrete syntax, language (grammar and lexicon), and content (work of knowledge and used concepts)")
+AnnotationAssertion(rdfs:label ops:VerticalKnowledgeProcessingTask "vertical knowledge processing task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:VerticalKnowledgeProcessingTask "task that produces endevavors at higher or lower level of abstraction along the \"artifact - encoding - concrete - abstract - work\" chain")
+SubClassOf(ops:VerticalKnowledgeProcessingTask ops:SyntacticKnowledgeProcessingTask)
+SubClassOf(ops:VerticalKnowledgeProcessingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeEndeavour))))
+SubClassOf(ops:VerticalKnowledgeProcessingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Product ObjectSomeValuesFrom(ops:filled-by know:KnowledgeEndeavour))))
+
+# Class: ops:WellFormednessCheckTask (well-formedness check task)
+
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:WellFormednessCheckTask <http://www.omg.org/spec/API4KP/Aspects/composite-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:WellFormednessCheckTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:WellFormednessCheckTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
+AnnotationAssertion(rdfs:label ops:WellFormednessCheckTask "well-formedness check task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:WellFormednessCheckTask "the act of checking whether a knowledge expression is a valid sentence according to the syntax - abstract and/or concrete - of some language, or profile thereof.")
+SubClassOf(ops:WellFormednessCheckTask ops:ComplexKnowledgeProcessingTask)
+SubClassOf(ops:WellFormednessCheckTask ops:KnowledgeAnalyticTask)
+SubClassOf(ops:WellFormednessCheckTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by know:Language))))
+SubClassOf(ops:WellFormednessCheckTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
+SubClassOf(ops:WellFormednessCheckTask ObjectSomeValuesFrom(ops:has-subtask ops:ParsingTask))
+SubClassOf(ops:WellFormednessCheckTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:uses-concept ObjectIntersectionOf(know:Language ObjectSomeValuesFrom(know:defined-by know:Syntax)))))
 
 # Class: ops:WriteTask (I/O write task)
 
@@ -635,6 +1309,15 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> know:Knowled
 SubClassOf(know:KnowledgeActivity ObjectSomeValuesFrom(know:archetyped-by know:InformationProcessingTask))
 
 
+SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:IdentityResolutionTask ObjectIntersectionOf(ObjectSomeValuesFrom(ops:composed-into ops:ParsingTask) ObjectSomeValuesFrom(ops:composed-into ops:RetrieveArtifactFromLocationTask)))) ops:RetrieveResourceTask)
+SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:IdentityResolutionTask ObjectSomeValuesFrom(ops:composed-into ops:RetrieveArtifactFromLocationTask))) ops:RetrieveArtifactTask)
+SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:IdentityResolutionTask ObjectSomeValuesFrom(ops:composed-into ObjectIntersectionOf(ops:KnowledgeReasoningTask ObjectSomeValuesFrom(ops:composed-into ops:RetrieveResourceDescriptionTask))))) ops:DiscoverCompatibleResourcesTask)
+SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:IdentityResolutionTask ObjectSomeValuesFrom(ops:composed-into ObjectIntersectionOf(ops:KnowledgeReasoningTask ObjectSomeValuesFrom(ops:composed-into ops:RetrieveResourceDescriptionTask))))) ops:ResolveDependenciesTask)
+SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:InterpretationTask ObjectSomeValuesFrom(ops:composed-into ops:ExpressionTask))) ops:SyntacticTranslationTask)
+SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:KnowledgeResourceConstructionTask ObjectSomeValuesFrom(ops:composed-into ops:KnowledgeResourceFlatteningTask))) ops:FusionTask)
+SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:KnowledgeResourceDeconstructionTask ObjectSomeValuesFrom(ops:composed-into ops:KnowledgeResourceDisassemblyTask))) ops:SeparationTask)
+SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:KnowledgeResourceFlatteningTask ObjectSomeValuesFrom(ops:composed-into ops:SnapshotTask))) ops:CreateWorkingKnowledgeBaseTask)
+SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:ParsingTask ObjectSomeValuesFrom(ops:composed-into ops:SerializationTask))) ops:SyntacticTranscriptionTask)
 SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:ReadTask ObjectSomeValuesFrom(ops:composed-into ObjectIntersectionOf(ops:DecodingTask ObjectSomeValuesFrom(ops:composed-into ObjectIntersectionOf(know:InformationProcessingTask ObjectSomeValuesFrom(ops:composed-into ObjectIntersectionOf(ops:EncodingTask ObjectSomeValuesFrom(ops:composed-into ops:WriteTask))))))))) ops:ClosedKnowledgeProcessingTask)
 SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:SyntacticParsingTask ObjectSomeValuesFrom(ops:composed-into ops:SyntacticAnalysisTask))) ops:ParsingTask)
 SubClassOf(ObjectSomeValuesFrom(ops:has-role ops:ConfigurationParameter) know:InformationProcessingTask)
