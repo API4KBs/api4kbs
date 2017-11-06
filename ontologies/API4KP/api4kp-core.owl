@@ -190,6 +190,7 @@ Declaration(ObjectProperty(know:uses-method))
 Declaration(ObjectProperty(know:uses-primary-language))
 Declaration(ObjectProperty(know:uses-profile))
 Declaration(ObjectProperty(know:uses-syntax))
+Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/rel#depends-on>))
 Declaration(AnnotationProperty(dc:creator))
 Declaration(AnnotationProperty(dc:date))
 Declaration(AnnotationProperty(dc:description))
@@ -1006,11 +1007,14 @@ SubClassOf(know:ComplexConcept know:AtomicConcept)
 
 AnnotationAssertion(rdfs:comment know:CompositeKnowledgeResource "Functionally Complex Resource that has one or more structural components, and provides the structuring for them. Each component plays a specific role")
 AnnotationAssertion(rdfs:label know:CompositeKnowledgeResource "composite knowledge resource"@en)
-AnnotationAssertion(skos:definition know:CompositeKnowledgeResource "a complex, structured knowledge resource that is constructed by assembling a number of knowledge resources, according to the plan that is the information content of a structuring resource")
+AnnotationAssertion(skos:definition know:CompositeKnowledgeResource "a complex, structured knowledge resource that is constructed by assembling a number of knowledge resources, according to the plan that is the information content of a structuring resource.
+Since the components are proper parts, a composite resource depends on all its components.")
 EquivalentClasses(know:CompositeKnowledgeResource ObjectIntersectionOf(know:StructuredKnowledgeResource ObjectSomeValuesFrom(know:structurally-organized-by know:StructuringKnowledgeResource)))
 SubClassOf(know:CompositeKnowledgeResource know:DeconstructableKnowledgeResource)
 SubClassOf(know:CompositeKnowledgeResource know:StructuredKnowledgeResource)
 SubClassOf(know:CompositeKnowledgeResource ObjectSomeValuesFrom(know:has-proper-part know:StructuredKnowledgeResource))
+SubClassOf(know:CompositeKnowledgeResource ObjectSomeValuesFrom(know:has-proper-part know:StructuringKnowledgeResource))
+SubClassOf(know:CompositeKnowledgeResource ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/rel#depends-on> know:KnowledgeResource))
 
 # Class: know:ComputableLanguage (computable language)
 
@@ -1213,7 +1217,7 @@ SubClassOf(know:KnowledgeConstructionActivity ObjectSomeValuesFrom(know:targets 
 
 AnnotationAssertion(rdfs:label know:KnowledgeElement "knowledge expression element")
 AnnotationAssertion(rdfs:seeAlso know:KnowledgeElement "http://www.w3.org/ns/lemon/ontolex#LexicalEntry")
-AnnotationAssertion(skos:definition know:KnowledgeElement "fragment that expresses exactly one concept")
+AnnotationAssertion(skos:definition know:KnowledgeElement "fragment that expresses exactly one concept in a given interpretation context")
 AnnotationAssertion(skos:note know:KnowledgeElement "knowledge expression elements are the leaves of an expression's AST, and as such are derived from (a subset of) the tokens into which a concrete expression is broken during its parsing.")
 SubClassOf(know:KnowledgeElement know:KnowledgeFragment)
 SubClassOf(know:KnowledgeElement ObjectExactCardinality(1 know:expresses know:AtomicConcept))
@@ -1474,6 +1478,7 @@ SubClassOf(know:StructuredKnowledgeResource know:KnowledgeResource)
 
 # Class: know:StructuringKnowledgeResource (structuring knowledge resource)
 
+AnnotationAssertion(rdfs:comment know:StructuringKnowledgeResource "Structures can be set-oriented, tree-oriented, or both. A set-oriented structure defines a composite by aggregation of similar resources, while a tree-oriented structure defines composites by means of composition of Resources into other Resources.")
 AnnotationAssertion(rdfs:label know:StructuringKnowledgeResource "structure")
 AnnotationAssertion(rdfs:label know:StructuringKnowledgeResource "structuring knowledge resource")
 AnnotationAssertion(skos:definition know:StructuringKnowledgeResource "A knowledge resource that defines - declaratively or procedurally - how other resources can be aggregated or composed into a composite resource")

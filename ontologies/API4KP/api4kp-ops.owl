@@ -64,7 +64,7 @@ Declaration(Class(ops:InputOutput))
 Declaration(Class(ops:InternalRepositoryTask))
 Declaration(Class(ops:InterpretationTask))
 Declaration(Class(ops:KnowledgeAnalyticTask))
-Declaration(Class(ops:KnowledgeBaseStructuringTask))
+Declaration(Class(ops:KnowledgeBaseBuildingTask))
 Declaration(Class(ops:KnowledgeCompositionalTask))
 Declaration(Class(ops:KnowledgeManagementTask))
 Declaration(Class(ops:KnowledgeManipulationTask))
@@ -82,6 +82,7 @@ Declaration(Class(ops:KnowledgeResourceDisaggregationTask))
 Declaration(Class(ops:KnowledgeResourceDisassemblyTask))
 Declaration(Class(ops:KnowledgeResourceFlatteningTask))
 Declaration(Class(ops:KnowledgeResourceRearrangementTask))
+Declaration(Class(ops:KnowledgeResourceWeavingTask))
 Declaration(Class(ops:KnowledgeStructuringTask))
 Declaration(Class(ops:LiftingTask))
 Declaration(Class(ops:LogicBasedReasoningTask))
@@ -127,6 +128,13 @@ Declaration(Class(ops:SyntacticParaphraseTask))
 Declaration(Class(ops:SyntacticParsingTask))
 Declaration(Class(ops:SyntacticTranscriptionTask))
 Declaration(Class(ops:SyntacticTranslationTask))
+Declaration(Class(ops:TODOTODO_ClassificationTask))
+Declaration(Class(ops:TODOTODO_ClosureTask))
+Declaration(Class(ops:TODOTODO_DependencyOrganizationTask))
+Declaration(Class(ops:TODOTODO_Diffing_Lexical_and_Logical))
+Declaration(Class(ops:TODOTODO_KnowledgeResourceAssemblyTask))
+Declaration(Class(ops:TODOTODO_SubsumptionTask))
+Declaration(Class(ops:TODOTransmigrationTask))
 Declaration(Class(ops:TranscreationTask))
 Declaration(Class(ops:TranscriptionTask))
 Declaration(Class(ops:TranslationTask))
@@ -277,7 +285,8 @@ SubClassOf(ops:AtomicKnowledgeProcessingTask ObjectAllValuesFrom(know:archetypes
 # Class: ops:CarvingTask (syntactic carving task)
 
 AnnotationAssertion(rdfs:label ops:CarvingTask "syntactic carving task")
-AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:CarvingTask "Selection based on the extraction of one or more fragments of the source expression, properly decomposed")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:CarvingTask "Selection based on the extraction of one or more fragments of the source expression, properly decomposed.
+The selection is based on the categorization of the syntactic elements of the resource's AST")
 SubClassOf(ops:CarvingTask ops:SelectionTask)
 SubClassOf(ops:CarvingTask ops:SyntacticKnowledgeProcessingTask)
 
@@ -356,7 +365,7 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:CreateWo
 
 This task is defined explicitly because it is not uncommon for reasoners to execute tasks of this type internally")
 SubClassOf(ops:CreateWorkingKnowledgeBaseTask ops:ComplexKnowledgeProcessingTask)
-SubClassOf(ops:CreateWorkingKnowledgeBaseTask ops:KnowledgeBaseStructuringTask)
+SubClassOf(ops:CreateWorkingKnowledgeBaseTask ops:KnowledgeBaseBuildingTask)
 SubClassOf(ops:CreateWorkingKnowledgeBaseTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by ObjectIntersectionOf(know:CompositeKnowledgeResource ObjectSomeValuesFrom(know:expresses <http://www.omg.org/spec/API4KP/KR/KnowledgeBase>))))))
 SubClassOf(ops:CreateWorkingKnowledgeBaseTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/WorkingKnowledgeBase>))))
 
@@ -510,7 +519,7 @@ SubClassOf(ops:ExtractDescriptionTask ObjectSomeValuesFrom(ops:has-role ObjectIn
 # Class: ops:ExtractionTask (extraction task)
 
 AnnotationAssertion(rdfs:label ops:ExtractionTask "extraction task")
-AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ExtractionTask "A separation based on a tree-oriented deconstruction")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ExtractionTask "A separation based on a tree-oriented deconstruction, where the Resources that are part of a subtree of the underlying Structure are returned.")
 SubClassOf(ops:ExtractionTask ops:SeparationTask)
 
 # Class: ops:FilteringTask (censoring task)
@@ -525,7 +534,7 @@ SubClassOf(ops:FilteringTask ops:SimplificationTask)
 AnnotationAssertion(rdfs:comment ops:FusionTask "Fusing two or more resources is equivalent to structuring them by construction, then flattening the structure so obtained")
 AnnotationAssertion(rdfs:label ops:FusionTask "fusion task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:FusionTask "The act of creating a new resource by the combination of two or more resources, such that the identity of the individual resources is not preserved")
-SubClassOf(ops:FusionTask ops:KnowledgeReshapingTask)
+SubClassOf(ops:FusionTask ops:KnowledgeResourceWeavingTask)
 SubClassOf(ops:FusionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectMinCardinality(2 ops:filled-by know:KnowledgeResource))))
 SubClassOf(ops:FusionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectExactCardinality(1 ops:filled-by know:KnowledgeResource))))
 
@@ -637,12 +646,12 @@ AnnotationAssertion(rdfs:label ops:KnowledgeAnalyticTask "knowledge analytic tas
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeAnalyticTask "task whose objective is the determination of a quality of a knowledge resource (e.g. used language, complexity, etc..)")
 SubClassOf(ops:KnowledgeAnalyticTask ops:OpenKnowledgeProcessingTask)
 
-# Class: ops:KnowledgeBaseStructuringTask (knowledge base structuring task)
+# Class: ops:KnowledgeBaseBuildingTask (knowledge base building task)
 
-AnnotationAssertion(rdfs:label ops:KnowledgeBaseStructuringTask "knowledge base structuring task")
-AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeBaseStructuringTask "Task that is ultimately aimed at the creation of composite knowledge resources, snapshots of which are intended to be used as working knowledge bases in some reasoning activity")
-SubClassOf(ops:KnowledgeBaseStructuringTask ops:KnowledgeCompositionalTask)
-SubClassOf(ops:KnowledgeBaseStructuringTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/WorkingKnowledgeBase>)))
+AnnotationAssertion(rdfs:label ops:KnowledgeBaseBuildingTask "knowledge base building task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeBaseBuildingTask "Task that is ultimately aimed at the creation of composite knowledge resources, snapshots of which are intended to be used as working knowledge bases in some reasoning activity")
+SubClassOf(ops:KnowledgeBaseBuildingTask ops:KnowledgeCompositionalTask)
+SubClassOf(ops:KnowledgeBaseBuildingTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/WorkingKnowledgeBase>)))
 
 # Class: ops:KnowledgeCompositionalTask (knowledge compositional task)
 
@@ -763,7 +772,7 @@ SubClassOf(ops:KnowledgeResourceDisaggregationTask ops:KnowledgeResourceDeconstr
 
 AnnotationAssertion(rdfs:label ops:KnowledgeResourceDisassemblyTask "knowledge resource disassembly task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeResourceDisassemblyTask "breaking apart a deconstructable knowledge resource, following a structure, to obtain the componenets")
-SubClassOf(ops:KnowledgeResourceDisassemblyTask ops:KnowledgeCompositionalTask)
+SubClassOf(ops:KnowledgeResourceDisassemblyTask ops:KnowledgeResourceWeavingTask)
 SubClassOf(ops:KnowledgeResourceDisassemblyTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:DeconstructableKnowledgeResource))))
 SubClassOf(ops:KnowledgeResourceDisassemblyTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:StructuringKnowledgeResource))))
 SubClassOf(ops:KnowledgeResourceDisassemblyTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectMinCardinality(2 ops:filled-by know:KnowledgeResource))))
@@ -779,7 +788,7 @@ AnnotationAssertion(rdfs:label ops:KnowledgeResourceFlatteningTask "knowledge re
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:KnowledgeResourceFlatteningTask "knowledge resource assembly task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeResourceFlatteningTask "The act of creating a single, flattened knowledge resource from a composite knowledge resource and its component structured resources, according to the plan specified by a structure.")
 SubClassOf(ops:KnowledgeResourceFlatteningTask ops:ComplexKnowledgeProcessingTask)
-SubClassOf(ops:KnowledgeResourceFlatteningTask ops:KnowledgeCompositionalTask)
+SubClassOf(ops:KnowledgeResourceFlatteningTask ops:TODOTODO_KnowledgeResourceAssemblyTask)
 SubClassOf(ops:KnowledgeResourceFlatteningTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:CompositeKnowledgeResource))))
 SubClassOf(ops:KnowledgeResourceFlatteningTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:FlattenedKnowledgeResource))))
 SubClassOf(ops:KnowledgeResourceFlatteningTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by know:StructuringKnowledgeResource)))
@@ -787,12 +796,20 @@ SubClassOf(ops:KnowledgeResourceFlatteningTask ObjectSomeValuesFrom(ops:has-role
 # Class: ops:KnowledgeResourceRearrangementTask (knowledge resource rearrangement task)
 
 AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:KnowledgeResourceRearrangementTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
+AnnotationAssertion(rdfs:comment ops:KnowledgeResourceRearrangementTask "That is, the corresponding Composites have the same atomic components, but the underlying set-tree organization is different")
 AnnotationAssertion(rdfs:comment ops:KnowledgeResourceRearrangementTask "The operation generates a new structure, that is a versioned revision of the input structure")
 AnnotationAssertion(rdfs:label ops:KnowledgeResourceRearrangementTask "knowledge resource rearrangement task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeResourceRearrangementTask "A rearrangement changes the mutual relationships between the structured resources in a composite, but does not affect the resources themselves")
 SubClassOf(ops:KnowledgeResourceRearrangementTask ops:KnowledgeCompositionalTask)
 SubClassOf(ops:KnowledgeResourceRearrangementTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by know:StructuringKnowledgeResource))))
 SubClassOf(ops:KnowledgeResourceRearrangementTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Output ObjectSomeValuesFrom(ops:filled-by know:StructuringKnowledgeResource))))
+
+# Class: ops:KnowledgeResourceWeavingTask (knowledge resource weaving task)
+
+AnnotationAssertion(rdfs:label ops:KnowledgeResourceWeavingTask "knowledge resource weaving task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeResourceWeavingTask "A kind of reshaping that is driven by a structure")
+SubClassOf(ops:KnowledgeResourceWeavingTask ops:KnowledgeCompositionalTask)
+SubClassOf(ops:KnowledgeResourceWeavingTask ops:KnowledgeReshapingTask)
 
 # Class: ops:KnowledgeStructuringTask (knowledge structuring task)
 
@@ -948,7 +965,7 @@ SubClassOf(ops:ReductionTask ops:SimplificationTask)
 # Class: ops:RemovalTask (removal task)
 
 AnnotationAssertion(rdfs:label ops:RemovalTask "removal task")
-AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:RemovalTask "Removes a specific component from a structure")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:RemovalTask "A separation based on a tree-oriented deconstruction, where the Resources that are part of a subtree of the underlying Structure are discarded.")
 SubClassOf(ops:RemovalTask ops:SeparationTask)
 
 # Class: ops:ReplaceArtifactAtLocationTask (replace artifact at location task)
@@ -1088,7 +1105,7 @@ SubClassOf(ops:SemanticKnowledgeManagementTask ObjectSomeValuesFrom(ops:has-role
 AnnotationAssertion(rdfs:comment ops:SeparationTask "Conceptually equivalent to a deconstruction followed by a disassembly")
 AnnotationAssertion(rdfs:label ops:SeparationTask "separation task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SeparationTask "The act of breaking a (deconstructable) knowledge resource into its component, which are returned as individual resources")
-SubClassOf(ops:SeparationTask ops:KnowledgeReshapingTask)
+SubClassOf(ops:SeparationTask ops:KnowledgeResourceWeavingTask)
 SubClassOf(ops:SeparationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:DeconstructableKnowledgeResource))))
 SubClassOf(ops:SeparationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectMinCardinality(2 ops:filled-by know:KnowledgeResource))))
 
@@ -1222,8 +1239,35 @@ SubClassOf(ops:SyntacticTranslationTask ops:SyntacticKnowledgeProcessingTask)
 SubClassOf(ops:SyntacticTranslationTask ops:TranslationTask)
 SubClassOf(ops:SyntacticTranslationTask ObjectAllValuesFrom(know:based-on ObjectIntersectionOf(DOL:LanguageMapping ObjectExactCardinality(2 know:uses-concept know:Language))))
 
+# Class: ops:TODOTODO_ClassificationTask (ops:TODOTODO_ClassificationTask)
+
+SubClassOf(ops:TODOTODO_ClassificationTask ops:LogicBasedReasoningTask)
+
+# Class: ops:TODOTODO_ClosureTask (ops:TODOTODO_ClosureTask)
+
+SubClassOf(ops:TODOTODO_ClosureTask ops:FusionTask)
+
+# Class: ops:TODOTODO_DependencyOrganizationTask (ops:TODOTODO_DependencyOrganizationTask)
+
+SubClassOf(ops:TODOTODO_DependencyOrganizationTask ops:KnowledgeResourceCompositionTask)
+
+# Class: ops:TODOTODO_Diffing_Lexical_and_Logical (ops:TODOTODO_Diffing_Lexical_and_Logical)
+
+SubClassOf(ops:TODOTODO_Diffing_Lexical_and_Logical ops:KnowledgeAnalyticTask)
+
+# Class: ops:TODOTODO_KnowledgeResourceAssemblyTask (ops:TODOTODO_KnowledgeResourceAssemblyTask)
+
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#note> ops:TODOTODO_KnowledgeResourceAssemblyTask "The generation of a single, self-contained, complex Knowledge Resource that expresses the same work as a Composite Knowledge Resource. The implicit version of this operation is more specifically called ‘merging’, while the explicit one is called ‘flattening’")
+SubClassOf(ops:TODOTODO_KnowledgeResourceAssemblyTask ops:KnowledgeResourceWeavingTask)
+
+# Class: ops:TODOTODO_SubsumptionTask (ops:TODOTODO_SubsumptionTask)
+
+SubClassOf(ops:TODOTODO_SubsumptionTask ops:LogicBasedReasoningTask)
+
 # Class: ops:TranscreationTask (transcreation task)
 
+AnnotationAssertion(rdfs:comment ops:TranscreationTask "Note: even if the operation results in a new expression of a new work, this transformation is embedded in the specification of the mapping, which can be executed mechanically by an Agent that is not expected to be aware of the implications of applying that mapping.")
+AnnotationAssertion(rdfs:comment ops:TranscreationTask "Unlike translations, transcreations will generally result in the creation of a derivative Work, because of significative semantic and/or pragmatic differences in the outcome and its intended use.")
 AnnotationAssertion(rdfs:label ops:TranscreationTask "transcreation task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:TranscreationTask "complex transformation that alters the semantics and pragmatics of a work of knowledge")
 SubClassOf(ops:TranscreationTask ops:KnowledgeReshapingTask)
