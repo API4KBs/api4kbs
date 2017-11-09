@@ -1,43 +1,16 @@
 ---
 ---
+{% assign sortedColls = site.collections | sort: 'index' %}
 
-
-{% assign norm = site.collections | where: "label", "Normative" | first %}
-{% assign info = site.collections | where: "label", "Informative" | first %}
-{% assign brdg = site.collections | where: "label", "Bridges" | first %}
-{% assign omg  = site.collections | where: "label", "OMG" | first %}
-{% assign dol  = site.collections | where: "label", "DOL" | first %}
-
-# API4KP
-## {{ norm.label }}
-{% for file in norm.files %}
-   * [{{file.basename}}]( {{ site.baseurl }}{{ file.path | replace: "_", "/"}} ){:target="_blank"}
+{% for coll in sortedColls %}
+{% if coll.label != "posts" %}
+## {{ coll.label }} 
+{% assign sorted = coll.docs | sort: 'index' %}
+    {% for onto in sorted %}
+* [{{ onto.name }}]( {{ site.baseurl }}{{ onto.lode }} ){:target="_blank"} ({% if onto.normative %} N {% else %} I {% endif %}) - {{ onto.title }}
+    {% endfor %}
+{% endif %}    
 {% endfor %}
-
-## {{ info.label }}
-{% for file in info.files %}
-   * [{{file.basename}}]( {{ site.baseurl }}{{ file.path | replace: "_", "/"}} ){:target="_blank"}
-{% endfor %}
-
-## {{ brdg.label }}
-{% for file in brdg.files %}
-   * [{{file.basename}}]( {{ site.baseurl }}{{ file.path | replace: "_", "/"}} ){:target="_blank"}
-{% endfor %}
-
-# Other OMG
-## {{ dol.label }}
-{% for file in dol.files %}
-   * [{{file.basename}}]( {{ site.baseurl }}{{ file.path | replace: "_", "/"}} ){:target="_blank"}
-{% endfor %}
-
-## {{ omg.label }}
-{% for file in omg.files %}
-   * [{{file.basename}}]( {{ site.baseurl }}{{ file.path | replace: "_", "/"}} ){:target="_blank"}
-{% endfor %}
-
-
-
-
 
 ---
 [Credits](about.md)
