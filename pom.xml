@@ -3,287 +3,306 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <artifactId>API4KP</artifactId>
-    <groupId>org.omg.spec</groupId>
-    <version>1.0</version>
-    <modelVersion>4.0.0</modelVersion>
+  <artifactId>API4KP</artifactId>
+  <groupId>org.omg.spec</groupId>
+  <version>1.0</version>
+  <modelVersion>4.0.0</modelVersion>
 
-    <name>API for Knowledge Base Ontology and Terminology</name>
+  <name>API for Knowledge Base Ontology and Terminology</name>
 
-    <url>https://github.com/sotty/api4kbs</url>
+  <url>https://github.com/sotty/api4kbs</url>
 
-    <build>
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+
+  <build>
+
+  </build>
+
+  <profiles>
+
+    <profile>
+      <id>lode</id>
+      <build>
 
         <resources>
-            <resource>
-                <directory>ontologies</directory>
-                <excludes>
-                    <exclude>API4KP/deprecated/*.*</exclude>
-                    <exclude>API4KP/to_review/*.*</exclude>
-                    <exclude>DOL/older/*.*</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
+          <resource>
+            <directory>ontologies</directory>
+            <excludes>
+              <exclude>API4KP/deprecated/*.*</exclude>
+              <exclude>API4KP/to_review/*.*</exclude>
+              <exclude>DOL/older/*.*</exclude>
+            </excludes>
+          </resource>
+          <resource>
+            <directory>src/main/resources</directory>
+          </resource>
         </resources>
 
         <plugins>
-            <!--plugin>
-                <artifactId>maven-remote-resources-plugin</artifactId>
-                <version>1.5</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>bundle</goal>
-                        </goals>
-                    </execution>
-                </executions>
+          <!--plugin>
+              <artifactId>maven-remote-resources-plugin</artifactId>
+              <version>1.5</version>
+              <executions>
+                  <execution>
+                      <goals>
+                          <goal>bundle</goal>
+                      </goals>
+                  </execution>
+              </executions>
+              <configuration>
+                  <resourcesDirectory>ontologies</resourcesDirectory>
+                  <includes>
+                      <include>**/*.owl</include>
+                      <include>**/*.ofn</include>
+                      <include>**/*.rdf</include>
+                      <include>**/*.rdfs</include>
+                      <include>**/catalog-dist.xml</include>
+                  </includes>
+                  <excludes>
+                      <exclude>API4KP/deprecated/*.*</exclude>
+                      <exclude>API4KP/to_review/*.*</exclude>
+                      <exclude>DOL/older/*.*</exclude>
+                  </excludes>
+              </configuration>
+          </plugin-->
+
+          <!--plugin>
+              <groupId>de.csw</groupId>
+              <artifactId>ontomaven</artifactId>
+              <version>1.0-SNAPSHOT</version>
+              <executions>
+                  <execution>
+                      <id>import-omg</id>
+                      <goals>
+                          <goal>ImportOntologies</goal>
+                      </goals>
+                      <phase>generate-resources</phase>
+                      <configuration>
+                          <owlDirectory>${pom.basedir}/ontologies/OMG</owlDirectory>
+                          <importDirectory>../W3C</importDirectory>
+                          <owlFileName>SpecificationMetadata.rdf</owlFileName>
+                          <owlFileURL>http://www.omg.org/techprocess/ab/SpecificationMetadata</owlFileURL>
+                          <catalogFileName>catalog-dist.xml</catalogFileName>
+                      </configuration>
+                  </execution>
+                  <execution>
+                      <id>import-ontoiop</id>
+                      <goals>
+                          <goal>ImportOntologies</goal>
+                      </goals>
+                      <configuration>
+                          <owlDirectory>${pom.basedir}/ontologies/OntoIOp</owlDirectory>
+                          <importDirectory>../W3C</importDirectory>
+                          <owlFileName>DOL-terms.rdf</owlFileName>
+                          <owlFileURL>http://www.omg.org/spec/DOL/</owlFileURL>
+                          <catalogFileName>catalog-dist.xml</catalogFileName>
+                      </configuration>
+                  </execution>
+
+
+                  <execution>
+                      <id>check</id>
+                      <goals>
+                          <goal>TestOntology</goal>
+                      </goals>
+                      <configuration>
+                          <owlFileName>api4kp-krr.ofn</owlFileName>
+                          <owlDirectory>API4KP</owlDirectory>
+                          <catalogURL>API4KP/catalog-dist.xml</catalogURL>
+
+                      </configuration>
+                  </execution>
+              </executions>
+          </plugin-->
+
+
+          <!--plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-site-plugin</artifactId>
+              <version>3.3</version>
+              <configuration>
+                  <skipDeploy>true</skipDeploy>
+              </configuration>
+          </plugin>
+          <plugin>
+              <groupId>com.github.github</groupId>
+              <artifactId>site-maven-plugin</artifactId>
+              <version>0.12</version>
+              <executions>
+                  <execution>
+                      <goals>
+                          <goal>site</goal>
+                      </goals>
+                      <phase>site-deploy</phase>
+                      <configuration>
+                          <server>github</server>
+                          <message>Updating site (test)</message>
+                          <path>docs</path>
+                          <merge>false</merge>
+                      </configuration>
+                  </execution>
+              </executions>
+          </plugin-->
+
+
+
+
+          <plugin>
+            <groupId>ontology.mayo.edu</groupId>
+            <artifactId>lode-mvn-plugin</artifactId>
+            <version>1.0</version>
+            <configuration>
+              <useOWLAPI>true</useOWLAPI>
+              <considerImportedClosure>false</considerImportedClosure>
+              <deepImport>false</deepImport>
+
+              <xsltLocation>lode/lode.xsl</xsltLocation>
+            </configuration>
+            <executions>
+
+              <execution>
+                <id>API4KP</id>
+                <phase>package</phase>
+                <goals><goal>lode-gen</goal></goals>
                 <configuration>
-                    <resourcesDirectory>ontologies</resourcesDirectory>
-                    <includes>
-                        <include>**/*.owl</include>
-                        <include>**/*.ofn</include>
-                        <include>**/*.rdf</include>
-                        <include>**/*.rdfs</include>
-                        <include>**/catalog-dist.xml</include>
-                    </includes>
-                    <excludes>
-                        <exclude>API4KP/deprecated/*.*</exclude>
-                        <exclude>API4KP/to_review/*.*</exclude>
-                        <exclude>DOL/older/*.*</exclude>
-                    </excludes>
+                  <ontologyURLs>
+                    <ontologyURL>${project.build.outputDirectory}/API4KP/api4kp-aspects.ofn</ontologyURL>
+                    <ontologyURL>${project.build.outputDirectory}/API4KP/api4kp-core.owl</ontologyURL>
+                    <ontologyURL>${project.build.outputDirectory}/API4KP/api4kp-kp.ofn</ontologyURL>
+                    <ontologyURL>${project.build.outputDirectory}/API4KP/api4kp-krr.ofn</ontologyURL>
+                    <ontologyURL>${project.build.outputDirectory}/API4KP/api4kp-rels.ofn</ontologyURL>
+                    <ontologyURL>${project.build.outputDirectory}/API4KP/api4kp-ops.owl</ontologyURL>
+                    <ontologyURL>${project.build.outputDirectory}/API4KP/informative/api4kp-kp-inst.owl</ontologyURL>
+                  </ontologyURLs>
+                  <targetDirectory>${pom.basedir}/docs/LODE/API4KP/Core</targetDirectory>
+                  <xsltLocation>${project.build.outputDirectory}/lode/lode.xsl</xsltLocation>
+                  <catalog>${project.build.outputDirectory}/API4KP/catalog-dist.xml</catalog>
                 </configuration>
-            </plugin-->
-
-            <!--plugin>
-                <groupId>de.csw</groupId>
-                <artifactId>ontomaven</artifactId>
-                <version>1.0-SNAPSHOT</version>
-                <executions>
-                    <execution>
-                        <id>import-omg</id>
-                        <goals>
-                            <goal>ImportOntologies</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                        <configuration>
-                            <owlDirectory>${pom.basedir}/ontologies/OMG</owlDirectory>
-                            <importDirectory>../W3C</importDirectory>
-                            <owlFileName>SpecificationMetadata.rdf</owlFileName>
-                            <owlFileURL>http://www.omg.org/techprocess/ab/SpecificationMetadata</owlFileURL>
-                            <catalogFileName>catalog-dist.xml</catalogFileName>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>import-ontoiop</id>
-                        <goals>
-                            <goal>ImportOntologies</goal>
-                        </goals>
-                        <configuration>
-                            <owlDirectory>${pom.basedir}/ontologies/OntoIOp</owlDirectory>
-                            <importDirectory>../W3C</importDirectory>
-                            <owlFileName>DOL-terms.rdf</owlFileName>
-                            <owlFileURL>http://www.omg.org/spec/DOL/</owlFileURL>
-                            <catalogFileName>catalog-dist.xml</catalogFileName>
-                        </configuration>
-                    </execution>
+              </execution>
 
 
-                    <execution>
-                        <id>check</id>
-                        <goals>
-                            <goal>TestOntology</goal>
-                        </goals>
-                        <configuration>
-                            <owlFileName>api4kp-krr.ofn</owlFileName>
-                            <owlDirectory>API4KP</owlDirectory>
-                            <catalogURL>API4KP/catalog-dist.xml</catalogURL>
-
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin-->
-
-
-            <!--plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.3</version>
+              <execution>
+                <id>Extra</id>
+                <phase>package</phase>
+                <goals><goal>lode-gen</goal></goals>
                 <configuration>
-                    <skipDeploy>true</skipDeploy>
+                  <ontologyURLs>
+                    <ontologyURL>${project.build.outputDirectory}/API4KP/informative/kmdo.owl</ontologyURL>
+                  </ontologyURLs>
+                  <targetDirectory>${pom.basedir}/docs/LODE/API4KP/Extensions</targetDirectory>
+                  <xsltLocation>${project.build.outputDirectory}/lode/lode.xsl</xsltLocation>
+                  <catalog>${project.build.outputDirectory}/API4KP/catalog-dist.xml</catalog>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.github.github</groupId>
-                <artifactId>site-maven-plugin</artifactId>
-                <version>0.12</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>site</goal>
-                        </goals>
-                        <phase>site-deploy</phase>
-                        <configuration>
-                            <server>github</server>
-                            <message>Updating site (test)</message>
-                            <path>docs</path>
-                            <merge>false</merge>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin-->
+              </execution>
 
-
-            <plugin>
-                <groupId>ontology.mayo.edu</groupId>
-                <artifactId>lode-mvn-plugin</artifactId>
-                <version>1.0</version>
+              <execution>
+                <id>API4KP-Bridges</id>
+                <phase>package</phase>
+                <goals><goal>lode-gen</goal></goals>
                 <configuration>
-                    <useOWLAPI>true</useOWLAPI>
-                    <considerImportedClosure>false</considerImportedClosure>
-                    <deepImport>false</deepImport>
-
-                    <xsltLocation>lode.xsl</xsltLocation>
+                  <ontologyURLs>
+                    <ontologyURL>${project.build.outputDirectory}/API4KP/bridges/DOL-Bridge.owl</ontologyURL>
+                    <ontologyURL>${project.build.outputDirectory}/API4KP/bridges/DUL-Bridge.ofn</ontologyURL>
+                    <ontologyURL>${project.build.outputDirectory}/API4KP/bridges/FRBR-Bridge.owl</ontologyURL>
+                  </ontologyURLs>
+                  <targetDirectory>${pom.basedir}/docs/LODE/API4KP/Bridges</targetDirectory>
+                  <xsltLocation>${project.build.outputDirectory}/lode/lode.xsl</xsltLocation>
+                  <catalog>${project.build.outputDirectory}/API4KP/bridges/catalog-dist.xml</catalog>
                 </configuration>
-                <executions>
+              </execution>
 
-                    <execution>
-                        <id>API4KP</id>
-                        <phase>package</phase>
-                        <goals><goal>lode-gen</goal></goals>
-                        <configuration>
-                            <ontologyURLs>
-                                <ontologyURL>${project.build.outputDirectory}/API4KP/api4kp-aspects.ofn</ontologyURL>
-                                <ontologyURL>${project.build.outputDirectory}/API4KP/api4kp-core.owl</ontologyURL>
-                                <ontologyURL>${project.build.outputDirectory}/API4KP/api4kp-kp.ofn</ontologyURL>
-                                <ontologyURL>${project.build.outputDirectory}/API4KP/api4kp-krr.ofn</ontologyURL>
-                                <ontologyURL>${project.build.outputDirectory}/API4KP/api4kp-rels.ofn</ontologyURL>
-                                <ontologyURL>${project.build.outputDirectory}/API4KP/api4kp-ops.owl</ontologyURL>
-                                <ontologyURL>${project.build.outputDirectory}/API4KP/informative/api4kp-kp-inst.owl</ontologyURL>
-                            </ontologyURLs>
-                            <targetDirectory>${pom.basedir}/docs/LODE/API4KP/Core</targetDirectory>
-                            <xsltLocation>${project.build.outputDirectory}/lode.xsl</xsltLocation>
-                            <catalog>${project.build.outputDirectory}/API4KP/catalog-dist.xml</catalog>
-                        </configuration>
-                    </execution>
+              <execution>
+                <id>DOL</id>
+                <phase>package</phase>
+                <goals><goal>lode-gen</goal></goals>
+                <configuration>
+                  <ontologyURLs>
+                    <ontologyURL>${project.build.outputDirectory}/DOL/registry.owl</ontologyURL>
+                    <ontologyURL>${project.build.outputDirectory}/DOL/DOL-terms.rdf</ontologyURL>
+                  </ontologyURLs>
+                  <targetDirectory>${pom.basedir}/docs/LODE/DOL</targetDirectory>
+                  <xsltLocation>${project.build.outputDirectory}/lode/lode.xsl</xsltLocation>
+                  <catalog>${project.build.outputDirectory}/API4KP/catalog-dist.xml</catalog>
+                </configuration>
+              </execution>
 
 
-                    <execution>
-                        <id>Extra</id>
-                        <phase>package</phase>
-                        <goals><goal>lode-gen</goal></goals>
-                        <configuration>
-                            <ontologyURLs>
-                                <ontologyURL>${project.build.outputDirectory}/API4KP/informative/kmdo.owl</ontologyURL>
-                            </ontologyURLs>
-                            <targetDirectory>${pom.basedir}/docs/LODE/API4KP/Extensions</targetDirectory>
-                            <xsltLocation>${project.build.outputDirectory}/lode.xsl</xsltLocation>
-                            <catalog>${project.build.outputDirectory}/API4KP/catalog-dist.xml</catalog>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>API4KP-Bridges</id>
-                        <phase>package</phase>
-                        <goals><goal>lode-gen</goal></goals>
-                        <configuration>
-                            <ontologyURLs>
-                                <ontologyURL>${project.build.outputDirectory}/API4KP/bridges/DOL-Bridge.owl</ontologyURL>
-                                <ontologyURL>${project.build.outputDirectory}/API4KP/bridges/DUL-Bridge.ofn</ontologyURL>
-                                <ontologyURL>${project.build.outputDirectory}/API4KP/bridges/FRBR-Bridge.owl</ontologyURL>
-                            </ontologyURLs>
-                            <targetDirectory>${pom.basedir}/docs/LODE/API4KP/Bridges</targetDirectory>
-                            <xsltLocation>${project.build.outputDirectory}/lode.xsl</xsltLocation>
-                            <catalog>${project.build.outputDirectory}/API4KP/bridges/catalog-dist.xml</catalog>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>DOL</id>
-                        <phase>package</phase>
-                        <goals><goal>lode-gen</goal></goals>
-                        <configuration>
-                            <ontologyURLs>
-                                <ontologyURL>${project.build.outputDirectory}/DOL/registry.owl</ontologyURL>
-                                <ontologyURL>${project.build.outputDirectory}/DOL/DOL-terms.rdf</ontologyURL>
-                            </ontologyURLs>
-                            <targetDirectory>${pom.basedir}/docs/LODE/DOL</targetDirectory>
-                            <xsltLocation>${project.build.outputDirectory}/lode.xsl</xsltLocation>
-                            <catalog>${project.build.outputDirectory}/API4KP/catalog-dist.xml</catalog>
-                        </configuration>
-                    </execution>
+              <execution>
+                <id>OMG</id>
+                <phase>package</phase>
+                <goals><goal>lode-gen</goal></goals>
+                <configuration>
+                  <ontologyURLs>
+                    <ontologyURL>${project.build.outputDirectory}/OMG/SpecificationMetadata.rdf</ontologyURL>
+                  </ontologyURLs>
+                  <targetDirectory>${pom.basedir}/docs/LODE/OMG</targetDirectory>
+                  <xsltLocation>${project.build.outputDirectory}/lode/lode.xsl</xsltLocation>
+                  <catalog>${project.build.outputDirectory}/API4KP/catalog-dist.xml</catalog>
+                </configuration>
+              </execution>
 
 
-                    <execution>
-                        <id>OMG</id>
-                        <phase>package</phase>
-                        <goals><goal>lode-gen</goal></goals>
-                        <configuration>
-                            <ontologyURLs>
-                                <ontologyURL>${project.build.outputDirectory}/OMG/SpecificationMetadata.rdf</ontologyURL>
-                            </ontologyURLs>
-                            <targetDirectory>${pom.basedir}/docs/LODE/OMG</targetDirectory>
-                            <xsltLocation>${project.build.outputDirectory}/lode.xsl</xsltLocation>
-                            <catalog>${project.build.outputDirectory}/API4KP/catalog-dist.xml</catalog>
-                        </configuration>
-                    </execution>
-
-
-                    <execution>
-                        <id>Other 3rd Parties</id>
-                        <phase>package</phase>
-                        <goals><goal>lode-gen</goal></goals>
-                        <configuration>
-                            <ontologyURLs>
-                                <ontologyURL>${project.build.outputDirectory}/Other/spar-frbr.rdf</ontologyURL>
-                                <ontologyURL>${project.build.outputDirectory}/Other/FRBRoo2.4-draft.rdfs</ontologyURL>
-                                <ontologyURL>${project.build.outputDirectory}/Other/DUL.owl</ontologyURL>
-                            </ontologyURLs>
-                            <targetDirectory>${pom.basedir}/docs/LODE/Other</targetDirectory>
-                            <xsltLocation>${project.build.outputDirectory}/lode.xsl</xsltLocation>
-                            <catalog>${project.build.outputDirectory}/API4KP/catalog-dist.xml</catalog>
-                        </configuration>
-                    </execution>
+              <execution>
+                <id>Other 3rd Parties</id>
+                <phase>package</phase>
+                <goals><goal>lode-gen</goal></goals>
+                <configuration>
+                  <ontologyURLs>
+                    <ontologyURL>${project.build.outputDirectory}/Other/spar-frbr.rdf</ontologyURL>
+                    <ontologyURL>${project.build.outputDirectory}/Other/FRBRoo2.4-draft.rdfs</ontologyURL>
+                    <ontologyURL>${project.build.outputDirectory}/Other/DUL.owl</ontologyURL>
+                  </ontologyURLs>
+                  <targetDirectory>${pom.basedir}/docs/LODE/Other</targetDirectory>
+                  <xsltLocation>${project.build.outputDirectory}/lode/lode.xsl</xsltLocation>
+                  <catalog>${project.build.outputDirectory}/API4KP/catalog-dist.xml</catalog>
+                </configuration>
+              </execution>
 
 
 
-                    <!--
-                    <execution>
-                        <id>DOL</id>
-                        <phase>package</phase>
-                        <goals><goal>lode-gen</goal></goals>
-                        <configuration>
-                            <ontologyURLs>
-                                <ontologyURL>${project.build.outputDirectory}/DOL/DOL-terms.rdf</ontologyURL>
-                            </ontologyURLs>
-                            <targetDirectory>${pom.basedir}/docs/_DOL</targetDirectory>
-                            <xsltLocation>${project.build.outputDirectory}/lode.xsl</xsltLocation>
-                            <catalog>${project.build.outputDirectory}/DOL/catalog-dist.xml</catalog>
-                        </configuration>
-                    </execution>
+              <!--
+              <execution>
+                  <id>DOL</id>
+                  <phase>package</phase>
+                  <goals><goal>lode-gen</goal></goals>
+                  <configuration>
+                      <ontologyURLs>
+                          <ontologyURL>${project.build.outputDirectory}/DOL/DOL-terms.rdf</ontologyURL>
+                      </ontologyURLs>
+                      <targetDirectory>${pom.basedir}/docs/_DOL</targetDirectory>
+                      <xsltLocation>${project.build.outputDirectory}/lode.xsl</xsltLocation>
+                      <catalog>${project.build.outputDirectory}/DOL/catalog-dist.xml</catalog>
+                  </configuration>
+              </execution>
 
-                   <execution>
-                        <id>OMG</id>
-                        <phase>package</phase>
-                        <goals><goal>lode-gen</goal></goals>
-                        <configuration>
-                            <ontologyURLs>
-                                <ontologyURL>${project.build.outputDirectory}/OMG/SpecificationMetadata.rdf</ontologyURL>
-                            </ontologyURLs>
-                            <targetDirectory>${pom.basedir}/docs/_OMG</targetDirectory>
-                            <xsltLocation>${project.build.outputDirectory}/lode.xsl</xsltLocation>
-                            <catalog>${project.build.outputDirectory}/OMG/catalog-dist.xml</catalog>
-                        </configuration>
-                    </execution>
+             <execution>
+                  <id>OMG</id>
+                  <phase>package</phase>
+                  <goals><goal>lode-gen</goal></goals>
+                  <configuration>
+                      <ontologyURLs>
+                          <ontologyURL>${project.build.outputDirectory}/OMG/SpecificationMetadata.rdf</ontologyURL>
+                      </ontologyURLs>
+                      <targetDirectory>${pom.basedir}/docs/_OMG</targetDirectory>
+                      <xsltLocation>${project.build.outputDirectory}/lode.xsl</xsltLocation>
+                      <catalog>${project.build.outputDirectory}/OMG/catalog-dist.xml</catalog>
+                  </configuration>
+              </execution>
 
-                    -->
-                </executions>
+              -->
+            </executions>
 
-            </plugin>
+          </plugin>
 
         </plugins>
 
-    </build>
+      </build>
+    </profile>
+  </profiles>
 
 </project>
