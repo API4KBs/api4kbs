@@ -21,8 +21,28 @@ Copyright (c) 2014-2017 Mayo Clinic
 Copyright (c) 2014-2017 Thematix Partners LLC
 Copyright (c) 2014-2017 Object Management Group, Inc."^^xsd:string)
 
+Declaration(Class(know:AbstractExpression))
+Declaration(Class(know:ConcreteExpression))
+Declaration(Class(know:EncodedKnowledgeExpression))
 Declaration(Class(know:KnowledgeEndeavour))
+Declaration(Class(know:KnowledgeExpression))
+Declaration(Class(know:KnowledgeResource))
+Declaration(Class(know:StructuredKnowledgeResource))
 Declaration(Class(know:VersionedKnowledgeEndeavor))
+Declaration(Class(know:WorkOfKnowledge))
+Declaration(ObjectProperty(know:carried-by))
+Declaration(ObjectProperty(know:carries))
+Declaration(ObjectProperty(know:conceptualizes))
+Declaration(ObjectProperty(know:concretely-expressed-by))
+Declaration(ObjectProperty(know:concretely-expresses))
+Declaration(ObjectProperty(know:encoding-of))
+Declaration(ObjectProperty(know:engraved-on))
+Declaration(ObjectProperty(know:engraved-with))
+Declaration(ObjectProperty(know:expresses))
+Declaration(ObjectProperty(know:flattening-of))
+Declaration(ObjectProperty(know:has-encoding))
+Declaration(ObjectProperty(know:serialization-of))
+Declaration(ObjectProperty(know:serialized-into))
 Declaration(ObjectProperty(rel:TODO-lifts-lowers))
 Declaration(ObjectProperty(rel:abridgement-of))
 Declaration(ObjectProperty(rel:adaptation-of))
@@ -47,6 +67,7 @@ Declaration(ObjectProperty(rel:has-prior-version))
 Declaration(ObjectProperty(rel:has-succesor-version))
 Declaration(ObjectProperty(rel:imitation-of))
 Declaration(ObjectProperty(rel:imports))
+Declaration(ObjectProperty(rel:in-series-with))
 Declaration(ObjectProperty(rel:includes))
 Declaration(ObjectProperty(rel:inspired-by))
 Declaration(ObjectProperty(rel:is-immediate-next-versioned-revision-of))
@@ -69,60 +90,63 @@ Declaration(ObjectProperty(rel:variant-of))
 Declaration(AnnotationProperty(<http://purl.org/dc/terms/license>))
 Declaration(AnnotationProperty(<http://www.omg.org/spec/API4KP/Aspects/has-aspect>))
 Declaration(AnnotationProperty(sm:copyright))
+Declaration(AnnotationProperty(<http://www.w3.org/2004/02/skos/core#altLabel>))
+Declaration(AnnotationProperty(<http://www.w3.org/2004/02/skos/core#definition>))
+Declaration(AnnotationProperty(<http://www.w3.org/2004/02/skos/core#note>))
 
 ############################
 #   Object Properties
 ############################
 
-# Object Property: know:carried-by (carried by)
+# Object Property: know:carried-by (know:carried-by)
 
 SubObjectPropertyOf(know:carried-by rel:TODO-lifts-lowers)
 
-# Object Property: know:carries (carries)
+# Object Property: know:carries (know:carries)
 
 SubObjectPropertyOf(know:carries rel:lowers)
 
-# Object Property: know:conceptualizes (conceptualizes)
+# Object Property: know:conceptualizes (know:conceptualizes)
 
 SubObjectPropertyOf(know:conceptualizes rel:TODO-lifts-lowers)
 
-# Object Property: know:concretely-expressed-by (concretely expressed by)
+# Object Property: know:concretely-expressed-by (know:concretely-expressed-by)
 
 SubObjectPropertyOf(know:concretely-expressed-by rel:TODO-lifts-lowers)
 
-# Object Property: know:concretely-expresses (concretely expresses)
+# Object Property: know:concretely-expresses (know:concretely-expresses)
 
 SubObjectPropertyOf(know:concretely-expresses rel:lowers)
 
-# Object Property: know:encoding-of (encoding of)
+# Object Property: know:encoding-of (know:encoding-of)
 
 SubObjectPropertyOf(know:encoding-of rel:lowers)
 
-# Object Property: know:engraved-on (engraved on)
+# Object Property: know:engraved-on (know:engraved-on)
 
 SubObjectPropertyOf(know:engraved-on rel:TODO-lifts-lowers)
 
-# Object Property: know:engraved-with (engraved with)
+# Object Property: know:engraved-with (know:engraved-with)
 
 SubObjectPropertyOf(know:engraved-with rel:lowers)
 
-# Object Property: know:expresses (expresses)
+# Object Property: know:expresses (know:expresses)
 
 SubObjectPropertyOf(know:expresses rel:lowers)
 
-# Object Property: know:flattening-of (flattening of)
+# Object Property: know:flattening-of (know:flattening-of)
 
 SubObjectPropertyOf(know:flattening-of rel:derived-from)
 
-# Object Property: know:has-encoding (has encoding)
+# Object Property: know:has-encoding (know:has-encoding)
 
 SubObjectPropertyOf(know:has-encoding rel:TODO-lifts-lowers)
 
-# Object Property: know:serialization-of (is concrete representation of)
+# Object Property: know:serialization-of (know:serialization-of)
 
 SubObjectPropertyOf(know:serialization-of rel:lowers)
 
-# Object Property: know:serialized-into (concretely represented as)
+# Object Property: know:serialized-into (know:serialized-into)
 
 SubObjectPropertyOf(know:serialized-into rel:TODO-lifts-lowers)
 
@@ -339,6 +363,7 @@ SubObjectPropertyOf(rel:has-previous-version rel:has-prior-version)
 
 AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:has-prior-version <http://www.omg.org/spec/API4KP/Aspects/formal-relationship>)
 AnnotationAssertion(rdfs:label rel:has-prior-version "has prior version")
+SubObjectPropertyOf(rel:has-prior-version rel:in-series-with)
 InverseObjectProperties(rel:has-prior-version rel:has-succesor-version)
 ObjectPropertyDomain(rel:has-prior-version know:KnowledgeEndeavour)
 ObjectPropertyRange(rel:has-prior-version know:KnowledgeEndeavour)
@@ -349,7 +374,8 @@ AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:has-
 AnnotationAssertion(rdfs:comment rel:has-succesor-version "Being related by means of a versioning scheme, in general, does not imply derivation: when preparing a new endeavor to be released as part of a series, It is not uncommon to 'start from scratch'.
 Hence, versioning due to revision is treated as a special case, at the intersection of versioning and revision")
 AnnotationAssertion(rdfs:label rel:has-succesor-version "has successor version")
-AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:has-succesor-version "The relationship between two endeavors E1 and E2, where both are ordered by the same (partially) ordered versioning scheme v, and such that v(E1) < v(E2).")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:has-succesor-version "The relationship between two endeavors E1 and E2 part of the same series, where both are ordered by the same (partially) ordered versioning scheme v, and such that v(E1) < v(E2).")
+SubObjectPropertyOf(rel:has-succesor-version rel:in-series-with)
 ObjectPropertyDomain(rel:has-succesor-version know:KnowledgeEndeavour)
 ObjectPropertyRange(rel:has-succesor-version know:KnowledgeEndeavour)
 
@@ -366,11 +392,18 @@ ObjectPropertyRange(rel:imitation-of know:WorkOfKnowledge)
 # Object Property: rel:imports (imports)
 
 AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:imports <http://www.omg.org/spec/API4KP/Aspects/formal-relationship>)
-AnnotationAssertion(rdfs:label rel:imports "A Resource S imports another resource T if there is at least one fragment of S that implicitly declares the need to perform a structuring operation involving S and T before S can be used in a knowledge processing activity")
 AnnotationAssertion(rdfs:label rel:imports "imports")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:imports "A Resource S imports another resource T if there is at least one fragment of S that implicitly declares the need to perform a structuring operation involving S and T before S can be used in a knowledge processing activity")
 SubObjectPropertyOf(rel:imports rel:depends-on)
 ObjectPropertyDomain(rel:imports know:KnowledgeResource)
 ObjectPropertyRange(rel:imports know:KnowledgeResource)
+
+# Object Property: rel:in-series-with (in series with)
+
+AnnotationAssertion(rdfs:label rel:in-series-with "in series with")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:in-series-with "The relationship between two endeavors that belong to the same series, in the context of a versioning scheme")
+ObjectPropertyDomain(rel:in-series-with know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:in-series-with know:KnowledgeEndeavour)
 
 # Object Property: rel:includes (includes)
 
@@ -525,8 +558,8 @@ ObjectPropertyRange(rel:translation-of know:AbstractExpression)
 # Object Property: rel:transliteration-of (transliteration of)
 
 AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:transliteration-of <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
-AnnotationAssertion(rdfs:label rel:transliteration-of "A relationship between two concretizations C1 and C2 of the same abstract expression, in the same language and using the same lexicon, but such that the tokens are constructed using alternative alphabets")
 AnnotationAssertion(rdfs:label rel:transliteration-of "transliteration of")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:transliteration-of "A relationship between two concretizations C1 and C2 of the same abstract expression, in the same language and using the same lexicon, but such that the tokens are constructed using alternative alphabets")
 SubObjectPropertyOf(rel:transliteration-of rel:derived-from)
 SubObjectPropertyOf(rel:transliteration-of rel:variant-of)
 ObjectPropertyDomain(rel:transliteration-of know:ConcreteExpression)
