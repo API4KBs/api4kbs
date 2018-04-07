@@ -1,0 +1,905 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"
+     xml:base="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"
+     xmlns:dct="http://purl.org/dc/terms/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:sm="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:lcc-lr="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/">
+    <owl:Ontology rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/">
+        <owl:versionIRI rdf:resource="http://www.omg.org/spec/LCC/20170801/Languages/LanguageRepresentation/"/>
+        <owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
+        <sm:copyright rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Copyright (c) 2015-2017 Object Management Group, Inc.
+Copyright (c) 2015-2017 Adaptive Inc.
+Copyright (c) 2015-2017 Thematix Partners LLC
+Copyright (c) 2015-2017 Unisys
+</sm:copyright>
+        <sm:contentLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.omg.org/spec/ODM/</sm:contentLanguage>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ISO 639-5 Codes for the representation of names of languages - Part 5: Alpha-3 code for language families and groups, First edition, 2008-05-15</dct:source>
+        <rdfs:seeAlso rdf:resource="http://www.omg.org/spec/LCC/Languages/AboutLanguages/"/>
+        <sm:contentLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.w3.org/standards/techs/owl#w3c_all</sm:contentLanguage>
+        <skos:changeNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The http://www.omg.org/spec/LCC/20151101/Languages/LanguageRepresentation.rdf version of this ontology was revised to reflect the issues addressed by the LCC 1.0 FTF report.</skos:changeNote>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ISO 639-3 Codes for the representation of names of languages - Part 3: Alpha-3 code for comprehensive coverage of languages, First edition, 2007-02-01</dct:source>
+        <skos:historyNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This ontology is ultimately intended to represent all of ISO 639 for reference purposes, and to be sufficiently extensible to accommodate new sections or modifications as they are published. The current version of the ontology (including subordinate modules containing the language names and codes) provides a unique English name (i.e., the reference name from 639-3) for each language, with UTF-8 encoded literals specifying alternates in English, French, and Indigenous languages where present in the standard, and in German corresponding to the names on the LoC web site.
+
+1.  Where multiple English names occur in 639-1 and 639-2, we have used the primary name specified in 639-2:1998 superseded by the latest revision posted by the registration authority, or, where multiples are specified by the registration authority, the reference name from ISO 639-3 as the &apos;named individual name&apos; for a given language. For languages specified in ISO 639-1, there is at least one English name and at least one French name for every language, corresponding to exactly one alpha-2 code.  Most languages from ISO 639-1 have at least one indigenous name.  Most languages with codes available from the Library of Congress also have at least one German name.  The correspondence between the alpha-2 codes and languages are made explicit in the individuals representing the codes themselves, and can be inferred for the languages using an OWL DL reasoner.
+
+2.  This release of the ontology covers all languages specified in parts 1 and 2 of the standard, and categorizes the alpha-3 codes from part 2 according to the categorization scheme provided in parts 3 and 4.  Subsequent releases of the ontology will address additional languages covered in part 3, as well as additional components of the standard, such as equivalence to standards representing relevant scripts, as they become available, and the language groups covered by ISO 639-5.
+
+3.  We have used individuals to represent all alpha-2 and alpha-3 codes, which, in turn, have matching strings (tags) associated with them for use in a variety of applications to facilitate reasoning and mapping.  The strings are provided as datatype properties of the individuals to support applications that may require them for RFC 4646-style tagging.
+  
+4.  Note that some tools, including certain UML tools, are case insensitive.  Thus, in cases where a language name collides with an alpha-2 or alpha-3 code, (i.e., Ga, Ewe, Fon, Ido, Lao, Tiv, Twi, Vai, and Yao), the names for the individual codes have been extended with &apos;_1&apos; (e.g., &apos;ewe_1&apos;).
+
+5.  We found a few anomalies in the standards while developing this ontology.  These include: 
+(1) Bihari is included in the 2002 version of 639-1, in the 1998 version of 639-2, and in the online codes posted by the Library of Congress in 2007 for parts 1 and 2, with part 1 code of &apos;bh&apos; and part 2 bibliographic and terminology codes of &apos;bih&apos;.  At that time, there was no discussion stating that Bihari is a collective language, although it was omitted from the downloadable data for 639-3.  Since then, the language element has been renamed &apos;Bihari languages&apos;, in both English and French, without change to the corresponding language codes.  The latest version of the code sets reflect this modification.  Our assumption is that the trigraph for Bihari is a collective language code, which is supported by online research in Eastern Indic languages.
+(2) Serbo-Croatian was included in the 2002 version of 639-1, with part 1 code &apos;sh&apos;.  It was not mentioned in the 1998 version of 693-2, but appears in 639-3 with a language identifier of &apos;hbs&apos;, without codes for 639-2.  As of 2010, Serbo-Croation has been eliminated from ISO 639-1 and 639-2 codes altogether, and the ontology reflects this.
+(3) Other changes in the latest version of the ontology include elimination of the 639-1 code for Moldavian, merging the language with Romanian, and additional English and French names for some languages, such as Dutch (to include Flemish, flamais), among others.
+(4) German names for languages in ISO 639-2 were added to the Library of Congress in 2014, and are supported in this version of the ontology.
+
+6.  The LCC 1.0 version of this ontology, published in advance of the 2017 New Orleans OMG Technical Meeting, was current as of 31 July 2017 with respect to the ISO 639-1 and 639-2 codes included herein.</skos:historyNote>
+        <rdfs:seeAlso rdf:resource="http://www.omg.org/spec/LCC/AboutLCC/"/>
+        <sm:filename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LanguageRepresentation.rdf</sm:filename>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ISO 639-2 Codes for the representation of names of languages - Part 2: Alpha-3 code, First edition, 1998-11-01</dct:source>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ISO 639-6 Codes for the representation of names of languages - Part 6: Alpha-4 code for comprehensive coverage of language variants, First edition, 2009-12-01</dct:source>
+        <sm:relatedSpecification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">BCP 47, Tags for Identifying Languages, see http://tools.ietf.org/html/bcp47</sm:relatedSpecification>
+        <dct:license rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"/>
+        <sm:fileAbstract rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This ontology, based on ISO 639 as well as the language element of the Language Tag specified in BCP 47 (RFC 4646, RFC 4647), provides a systemic description of the vocabulary used for language representation, including natural and artificial languages. 
+
+ISO 639 provides two language codes, one as a two-letter code (ISO 639-1) and another as a three-letter code (ISO 639-2, ISO 639-3, ISO 639-5) for the representation of names of languages.  ISO 639-1 was devised primarily for use in terminology, lexicography, and linguistics.  ISO 639-2 represents all of the languages contained in ISO 639-1, additional languages and language groups, as they may be coded for special purposes when more specificity in coding is needed.  The languages listed in ISO 639-1 are a subset of the languages listed in ISO 639-2; every language code element in the two-letter code has a corresponding language code element in the three-letter code, but not necessarily vice versa.  ISO 639-4 provides the basis for describing languages, as defined in this ontology, and additional codes are provided in 639-5 and other parts of the standard, again with more details about macrolanguages, other lesser known independent languages, and special language groups.
+
+ISO 639-3 extends the set of three-letter codes provided in 639-2 to cover all of the natural, human languages in use today, along with many well-known ancient, extinct, and historical languages, including written and signed languages.  It also identifies the codes found in 639-2 that represent families or groups of languages rather than a single human language, depending on the perspective of the consumer.
+
+The Registration Authority for ISO 639-1 is the International Information Centre for Terminology, ISO 639-1/RA.  This organization is responsible for maintenance of Part-1, and more information can be found at http://www.infoterm.info/standardization/iso_639_1_2002.php, although the actual code set is maintained by the US Library of Congress, together with the code set for ISO 639-2.
+
+The Registration Authority for ISO 639-2 is the Library of Congress, ISO 639-2/RA.  The Library of Congress is responsible for maintenance of Part-2, at http://www.loc.gov/standards/iso639-2/iso639-2ra.html.  Current code sets for ISO 639-1 and ISO 639-2 are available from this site, as mentioned above.  In addition to the material covered in the basic standard, the Library of Congress also publishes the German names for all languages, which is reflected in the properties given below.  See http://loc.gov/standards/iso639-2/php/code_list.php for the latest release.
+
+The Registration Authority for ISO 639-3 is SIL International, ISO 639-3/RA.  SIL International is responsible for maintenance of Part-3, and more information can be found at http://www.sil.org/iso639-3/default.asp.
+
+The codes included herein also correspond to the language element of the Language Tag specified in BCP 47 (RFC 4646, RFC 4647), and can be used for matching or other application development purposes (e.g., use of language identifier literals in applications that build up the RFC 4646 based tags).
+
+This ontology (Language Representation) defines the model for the standard, based in part on ISO 639-4, with individual codes for the other parts of the standard represented in dependent models.</sm:fileAbstract>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ISO 639-1 Codes for the representation of names of languages - Part 1: Alpha-2 code, First edition, 2002-07-15</dct:source>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ISO 639-4 Codes for the representation of names of languages - Part 4: General principles of coding of the representation of names of languages and related entities, and application guidelines, First edition, 2010-07-15</dct:source>
+        <rdfs:label>Language Representation Ontology</rdfs:label>
+        <sm:fileAbbreviation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lcc-lr</sm:fileAbbreviation>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/denotes -->
+
+    <owl:ObjectProperty rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/denotes">
+        <owl:inverseOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasDenotation"/>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>denotes</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">serves as a linguistic expression of the notion of, means</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/has -->
+
+    <owl:ObjectProperty rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/has">
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>has</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">indicates that someone (or something) possesses something, such as a characteristic, attribute, feature, or capability</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasDenotation -->
+
+    <owl:ObjectProperty rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasDenotation">
+        <rdfs:subPropertyOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/has"/>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>has denotation</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has meaning, expresses</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasEarlierForm -->
+
+    <owl:ObjectProperty rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasEarlierForm">
+        <rdfs:subPropertyOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/has"/>
+        <rdfs:domain rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language"/>
+        <rdfs:range rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language"/>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>has earlier form</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">relates a language to an earlier form (historically significant) of that same language</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasMember -->
+
+    <owl:ObjectProperty rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasMember">
+        <owl:inverseOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/isMemberOf"/>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>has member</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">relates something, typically a collection, group or organization, to some discrete thing identified as a member of it</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/identifies -->
+
+    <owl:ObjectProperty rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/identifies">
+        <owl:inverseOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/isIdentifiedBy"/>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>identifies</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">recognizes or establishes within some context</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/isIdentifiedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/isIdentifiedBy">
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>is identified by</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has an indicator or label, that is unique within some context</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/isMemberOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/isMemberOf">
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>is member of</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">belongs, either individually or collectively, to a group</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasEnglishName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasEnglishName">
+        <rdfs:subPropertyOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasName"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.4, ISO 639-3</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>has English name</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">associates a name in English with an individual concept</skos:definition>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasFrenchName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasFrenchName">
+        <rdfs:subPropertyOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasName"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.4, ISO 639-3</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>has French name</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">associates a name in French with an individual concept</skos:definition>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasGermanName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasGermanName">
+        <rdfs:subPropertyOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasName"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>has German name</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">associates a name in German with an individual concept</skos:definition>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasIndigenousName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasIndigenousName">
+        <rdfs:subPropertyOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasName"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.4, ISO 639-3</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>has indigenous name</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">associates a local regional or cultural name with an individual concept</skos:definition>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasName">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.4, ISO 639-3</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>has name</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">associates a name, reference name, or appellation with an individual concept</skos:definition>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasTag -->
+
+    <owl:DatatypeProperty rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasTag">
+        <rdfs:domain rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Identifier"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>has tag</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a unique combination of alphanumeric characters corresponding to the identifier</skos:definition>
+        <skos:note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Text-valued tags are included here as they may be useful for automated transformation or encoding systems, such as those used to produce IETF compliant language tags in XML.</skos:note>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.omg.org/spec/API4KP/core#Grammar -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KP/core#Grammar"/>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Alpha2Code -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Alpha2Code">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageIdentifier"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 4.1, ISO 639-1</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>alpha-2 code</rdfs:label>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://en.wikipedia.org/wiki/UTF-8</rdfs:seeAlso>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a language identifier for a human language as defined by ISO 639-1, that is, a two-letter combination of characters used to represent a language or languages</skos:definition>
+        <skos:note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In the ISO 639-1 language code, each language identifier is composed of two letters (lower case letters from the Latin alphabet, corresponding to characters 97 through 122 of the UTF-8 encoding), without diacritical marks or other encodings of any kind.</skos:note>
+        <skos:scopeNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The identifiers are not abbreviations for the languages they identify.  They are derived in some way from the indiginous language name or from preferences of the relevant speech community.</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Alpha3Code -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Alpha3Code">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageIdentifier"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.2, ISO 639-2</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>alpha-3 code</rdfs:label>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://en.wikipedia.org/wiki/UTF-8</rdfs:seeAlso>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a language identifier for a human language as defined by ISO 639, that is, a three-letter combination of characters used to represent a language or languages</skos:definition>
+        <skos:note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In the ISO 639-2 language code, each language identifier is composed of three letters (lower case letters from the Latin alphabet, corresponding to characters 97 through 122 of the UTF-8 encoding), without diacritical marks or other encodings of any kind.</skos:note>
+        <skos:note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Two code sets are provided in ISO 639-2, one for bibliographic applications and one for terminology applications. Some of these are considered collective language codes, referring to a family of languages, and there are a few special purpose codes for use in various applications. ISO 639-3 provides a single, three character code for each individual language or macrolanguage. Additional codes for language families and groups are specified in other parts of the standard.</skos:note>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/AncientLanguage -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/AncientLanguage">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/ExtinctLanguage"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.25 and 4.7, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>ancient language</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">an extinct language that has an attested literature and is recognized as having special status in the academic community</skos:definition>
+        <skos:note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ancient languages may have either individual or collective language codes.  See section 4.1.5, ISO 639-2, for an explanation of the latter case.</skos:note>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Arrangement -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Arrangement">
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>arrangement</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a structure or means of organizing information such as a schema, numbering system, organization scheme, measurement system, taxonomy, or language for organizing information</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/ArtificialLanguage -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/ArtificialLanguage">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language"/>
+        <owl:disjointWith rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/NaturalLanguage"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.28 and 4.8, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>artificial language</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a language for human communication that has been artificially devised</skos:definition>
+        <skos:note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Artificial languages do not include reconstructed languages or computer programming languages.</skos:note>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/BibliographicCode -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/BibliographicCode">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Alpha3Code"/>
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageIdentifier"/>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>bibliographic code</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">an alpha-3 code that is a member of the set of bibliographic codes in ISO 639-2</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/CodeElement -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/CodeElement">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/denotes"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/isMemberOf"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/CodeSet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ISO/IEC 11179-3 Information technology - Metadata registries (MDR) - Part 3: Registry metamodel and basic attributes, Third edition, 2013-02-15</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>code element</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a sequence of characters denoting something that it is associated with for some purpose, within a specified context, according to some rule set</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/CodeSet -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/CodeSet">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Arrangement"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasMember"/>
+                <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/CodeElement"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ISO/IEC 11179-3 Information technology - Metadata registries (MDR) - Part 3: Registry metamodel and basic attributes, Third edition, 2013-02-15</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>code set</rdfs:label>
+        <skos:altLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">coding scheme</skos:altLabel>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a system of alpha-numeric symbols, or combinations of symbols, that stand for specified values in some context</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Collection -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Collection">
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>collection</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a grouping of some variable number of things (may be zero) that have some shared significance</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/CollectiveLanguageCode -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/CollectiveLanguageCode">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageIdentifier"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/denotes"/>
+                <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageGroup"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/identifies"/>
+                <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageGroup"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/SpecialPurposeCode"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sections 3.3 and 4.1.1, and 4.1.3, ISO 639-2; Section 4.6, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>collective language code</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a language identifier or code used to represent a group of languages</skos:definition>
+        <skos:note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">See section 4.1.1, ISO 639-2, for an explanation of the usage of such codes, and section 4.1.3 to gain understanding of the distinction between collective language and macrolanguage codes.</skos:note>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Dialect -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Dialect">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageVariant"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sections 3.8, 4.2, and 4.5, ISO 639-4; Sections 4.1.3 and 4.1.4, ISO 639-2</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>dialect</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a language variant that is specific to a geographical region or speech community</skos:definition>
+        <skos:note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dialects are typically represented via the same language code as the code for the primary language, with a few exceptions for well-known dialects.  See sections 4.1.3 and 4.1.4, ISO 639-2 for additional details on the treatment of dialects in the standard.</skos:note>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/ExtinctLanguage -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/ExtinctLanguage">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language"/>
+        <owl:disjointWith rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LivingLanguage"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.24 and 4.7, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>extinct language</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">an individual language or variant that is no longer in use and has no current descendant</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/HistoricalLanguage -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/HistoricalLanguage">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.26 and 4.7, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>historical language</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a well-known prior version of a living or extinct language</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/IdentificationScheme -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/IdentificationScheme">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Arrangement"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasMember"/>
+                <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Identifier"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ISO/IEC 11179-3 Information technology - Metadata registries (MDR) - Part 3: Registry metamodel and basic attributes, Third edition, 2013-02-15</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>identification scheme</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a system for allocating identifiers to objects</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Identifier -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Identifier">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/identifies"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/isMemberOf"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/IdentificationScheme"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasTag"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ISO/IEC 11179-3 Information technology - Metadata registries (MDR) - Part 3: Registry metamodel and basic attributes, Third edition, 2013-02-15</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>identifier</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a sequence of characters uniquely identifying something that it is associated with for some purpose and within a specified context</skos:definition>
+        <skos:note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Text-valued tags are included here as they may be useful for automated transformation or encoding systems, such as those used to produce IETF compliant language tags in XML.</skos:note>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/IndividualLanguage -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/IndividualLanguage">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.7, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>individual language</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a language that can be distinguished from another language by some set of rules</skos:definition>
+        <skos:note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Identifiers in Parts 1, 2, and 3 of ISO 639 are assumed to denote distinct individual languages, unless the language name explicitly refers to a language group.  See section 4.2 in ISO 639-4 for a detailed explanation of the definition of individual language in the context of the ISO 639 standard.</skos:note>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/IndividualLanguageIdentifier -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/IndividualLanguageIdentifier">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageIdentifier"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/denotes"/>
+                <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/IndividualLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/identifies"/>
+                <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/IndividualLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/MacrolanguageIdentifier"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.7, ISO 639-3</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>individual language identifier</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a language identifier whose scope is that of an individual (distinct) language</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasEnglishName"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasFrenchName"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasGermanName"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasIndigenousName"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.6, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>language</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a systematic use of sounds, characters, symbols or signs to communicate meaning</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageFamily -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageFamily">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageGroup"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.11, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>language family</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a group of individual languages related to each other through common ancestry</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageGroup -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageGroup">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Collection"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.10, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>language group</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a collection of two or more individual languages, treated as a group for some purpose</skos:definition>
+        <skos:note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">See section 4.6 in ISO 639-4 for additional explanatory material for language groups.</skos:note>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageIdentifier -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageIdentifier">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/CodeElement"/>
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Identifier"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/denotes"/>
+                <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/identifies"/>
+                <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.5, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>language identifier</rdfs:label>
+        <skos:altLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">language symbol</skos:altLabel>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a string of characters that uniquely identifies a linguistic entity</skos:definition>
+        <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">language identifier</skos:prefLabel>
+        <skos:scopeNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In the language codes of Parts 1, 2, 3, and 5 of ISO 639, each language identifier is composed of two or three letters.</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageVariant -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageVariant">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/IndividualLanguage"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.14, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>language variant</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a variation of an individual language that is sufficiently unique that it can be identified and named</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageVariation -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageVariation">
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.13, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>language variation</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">continuous change within and between individual languages</skos:definition>
+        <skos:note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Language variation may include change over time, space, cultural affiliation, etc.</skos:note>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LivingLanguage -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LivingLanguage">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.23, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>living language</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">an individual language or variant in use today by some speech community</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Macrolanguage -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Macrolanguage">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.9, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>macrolanguage</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a language that may be viewed in some circumstances as an individual language, but actually represents two or more individual languages</skos:definition>
+        <skos:note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">See sections 4.1 and 4.3 of ISO 639-4 for an extensive description of macrolanguages and how they are different from language groups.</skos:note>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/MacrolanguageIdentifier -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/MacrolanguageIdentifier">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageIdentifier"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/denotes"/>
+                <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Macrolanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/identifies"/>
+                <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Macrolanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/SpecialPurposeCode"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.7, ISO 639-3</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>macrolanguage identifier</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a language identifier whose scope is that of a macrolanguage</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/NaturalLanguage -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/NaturalLanguage">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.27, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>natural language</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a language used in human communications that is not artificial in nature</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Orthography -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Orthography">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/API4KP/core#Grammar"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.27, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>orthography</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a set of conventions and rules for representing language in written form</skos:definition>
+        <skos:note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The orthographic rules for a given language may include rules of spelling, hyphenation, capitalization, word breaks, emphasis, and punctuation. Languages that have multiple writing systems may have distinct orthographies and scripts.</skos:note>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/RemainderGroup -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/RemainderGroup">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageGroup"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.12, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>remainder group</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a group of languages that explicitly excludes certain individual languages</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Script -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Script">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Collection"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.17, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>script</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a set of graphic characters used to represent one or more languages in writing</skos:definition>
+        <skos:note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Use of multiple writing systems does not mean that multiple language identifiers are necessary for a language. ISO 639 language identifiers may be combined with script identifiers from ISO 15924 (e.g., BCP 47).</skos:note>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/SpecialPurposeCode -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/SpecialPurposeCode">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageIdentifier"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/denotes"/>
+                <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/SpecialPurposeLanguageConcept"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/identifies"/>
+                <owl:allValuesFrom rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/SpecialPurposeLanguageConcept"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.7, ISO 639-3</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>special purpose code</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a language identifier whose scope is that of a special purpose language construct</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/SpecialPurposeLanguageConcept -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/SpecialPurposeLanguageConcept">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 4.2.6, ISO 639-3</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>special purpose language concept</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a language concept introduced in ISO 639-3 to satisfy special-purpose requirements, typically to support application constraints</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/SpokenLanguage -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/SpokenLanguage">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.22, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>spoken language</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">an individual language or language variant that is articulated through speech (oral or vocal) sounds</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/StandardVariant -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/StandardVariant">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageVariant"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.15, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>standard variant</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a language variant with a high degree of status and normalization, typically used in public discourse, centers of government and commerce</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/TerminologyCode -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/TerminologyCode">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Alpha3Code"/>
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/LanguageIdentifier"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.7, ISO 639-3</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>terminology code</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a language identifier whose scope is that of terminological codes</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Transcription -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Transcription">
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.19, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>transcription</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the representation of speech or signing in written form</skos:definition>
+        <skos:note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The resulting text is also referred to as a transcription.</skos:note>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Transliteration -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Transliteration">
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.20, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>transliteration</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the conversion of text from one script to another without loss of information</skos:definition>
+        <skos:note rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The resulting text is also referred to as a transliteration.</skos:note>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/WritingSystem -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/WritingSystem">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Arrangement"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/has"/>
+                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Orthography"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/has"/>
+                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Script"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.16, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>writing system</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a system for writing a language, including the requisite script and character set</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/WrittenLanguage -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/WrittenLanguage">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language"/>
+        <dct:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Section 3.21, ISO 639-4</dct:source>
+        <rdfs:isDefinedBy rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <rdfs:label>written language</rdfs:label>
+        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the representation of a language via a writing system, with a relatively normalized orthography</skos:definition>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

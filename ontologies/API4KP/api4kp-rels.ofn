@@ -11,15 +11,15 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 
 
 Ontology(<http://www.omg.org/spec/API4KP/rel>
-<http://www.omg.org/spec/API4KP/2017/12/rel>
-Import(<http://www.omg.org/spec/API4KP/2017/12/core>)
+<http://www.omg.org/spec/API4KP/2018/06/rel>
+Import(<http://www.omg.org/spec/API4KP/2018/06/core>)
 Annotation(<http://purl.org/dc/terms/license> "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
-Annotation(sm:copyright "Copyright (c) 2014-2017 Arizona State University
-Copyright (c) 2014-2017 Freie Universitat Berlin
-Copyright (c) 2014-2017 Athan Services
-Copyright (c) 2014-2017 Mayo Clinic
-Copyright (c) 2014-2017 Thematix Partners LLC
-Copyright (c) 2014-2017 Object Management Group, Inc."^^xsd:string)
+Annotation(sm:copyright "Copyright (c) 2014-2018 Arizona State University
+Copyright (c) 2014-2018 Freie Universitat Berlin
+Copyright (c) 2014-2018 Athan Services
+Copyright (c) 2014-2018 Mayo Clinic
+Copyright (c) 2014-2018 Thematix Partners LLC
+Copyright (c) 2014-2018 Object Management Group, Inc."^^xsd:string)
 
 Declaration(Class(know:AbstractExpression))
 Declaration(Class(know:ConcreteExpression))
@@ -98,55 +98,55 @@ Declaration(AnnotationProperty(<http://www.w3.org/2004/02/skos/core#note>))
 #   Object Properties
 ############################
 
-# Object Property: know:carried-by (know:carried-by)
+# Object Property: know:carried-by (carried by)
 
 SubObjectPropertyOf(know:carried-by rel:TODO-lifts-lowers)
 
-# Object Property: know:carries (know:carries)
+# Object Property: know:carries (carries)
 
 SubObjectPropertyOf(know:carries rel:lowers)
 
-# Object Property: know:conceptualizes (know:conceptualizes)
+# Object Property: know:conceptualizes (conceptualizes)
 
 SubObjectPropertyOf(know:conceptualizes rel:TODO-lifts-lowers)
 
-# Object Property: know:concretely-expressed-by (know:concretely-expressed-by)
+# Object Property: know:concretely-expressed-by (concretely expressed by)
 
 SubObjectPropertyOf(know:concretely-expressed-by rel:TODO-lifts-lowers)
 
-# Object Property: know:concretely-expresses (know:concretely-expresses)
+# Object Property: know:concretely-expresses (concretely expresses)
 
 SubObjectPropertyOf(know:concretely-expresses rel:lowers)
 
-# Object Property: know:encoding-of (know:encoding-of)
+# Object Property: know:encoding-of (encoding of)
 
 SubObjectPropertyOf(know:encoding-of rel:lowers)
 
-# Object Property: know:engraved-on (know:engraved-on)
+# Object Property: know:engraved-on (engraved on)
 
 SubObjectPropertyOf(know:engraved-on rel:TODO-lifts-lowers)
 
-# Object Property: know:engraved-with (know:engraved-with)
+# Object Property: know:engraved-with (engraved with)
 
 SubObjectPropertyOf(know:engraved-with rel:lowers)
 
-# Object Property: know:expresses (know:expresses)
+# Object Property: know:expresses (expresses)
 
 SubObjectPropertyOf(know:expresses rel:lowers)
 
-# Object Property: know:flattening-of (know:flattening-of)
+# Object Property: know:flattening-of (flattening of)
 
 SubObjectPropertyOf(know:flattening-of rel:derived-from)
 
-# Object Property: know:has-encoding (know:has-encoding)
+# Object Property: know:has-encoding (has encoding)
 
 SubObjectPropertyOf(know:has-encoding rel:TODO-lifts-lowers)
 
-# Object Property: know:serialization-of (know:serialization-of)
+# Object Property: know:serialization-of (is concrete representation of)
 
 SubObjectPropertyOf(know:serialization-of rel:lowers)
 
-# Object Property: know:serialized-into (know:serialized-into)
+# Object Property: know:serialized-into (concretely represented as)
 
 SubObjectPropertyOf(know:serialized-into rel:TODO-lifts-lowers)
 
@@ -393,10 +393,10 @@ ObjectPropertyRange(rel:imitation-of know:WorkOfKnowledge)
 
 AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:imports <http://www.omg.org/spec/API4KP/Aspects/formal-relationship>)
 AnnotationAssertion(rdfs:label rel:imports "imports")
-AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:imports "A Resource S imports another resource T if there is at least one fragment of S that implicitly declares the need to perform a structuring operation involving S and T before S can be used in a knowledge processing activity")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:imports "A Representation S imports another Representation T if there is at least one fragment of S that implicitly declares the need to perform a structuring operation involving S and T before S can be used in a knowledge processing activity")
 SubObjectPropertyOf(rel:imports rel:depends-on)
-ObjectPropertyDomain(rel:imports know:KnowledgeResource)
-ObjectPropertyRange(rel:imports know:KnowledgeResource)
+ObjectPropertyDomain(rel:imports know:KnowledgeRepresentation)
+ObjectPropertyRange(rel:imports know:KnowledgeRepresentation)
 
 # Object Property: rel:in-series-with (in series with)
 
@@ -409,11 +409,11 @@ ObjectPropertyRange(rel:in-series-with know:KnowledgeEndeavour)
 
 AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:includes <http://www.omg.org/spec/API4KP/Aspects/formal-relationship>)
 AnnotationAssertion(rdfs:label rel:includes "includes")
-AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:includes "A stronger form of import, stating that the target resouce T must be injected into the source S
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:includes "A stronger form of import, stating that the target representation T must be injected into the source S
 (i.e. there is an implicit tree-based structure where S is a parent of T)")
 SubObjectPropertyOf(rel:includes rel:imports)
-ObjectPropertyDomain(rel:includes know:KnowledgeResource)
-ObjectPropertyRange(rel:includes know:KnowledgeResource)
+ObjectPropertyDomain(rel:includes know:KnowledgeRepresentation)
+ObjectPropertyRange(rel:includes know:KnowledgeRepresentation)
 
 # Object Property: rel:inspired-by (inspired by)
 
