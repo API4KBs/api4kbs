@@ -59,6 +59,7 @@ Declaration(Class(know:IntellectualWork))
 Declaration(Class(know:Knowledge))
 Declaration(Class(know:KnowledgeActivity))
 Declaration(Class(know:KnowledgeArtifact))
+Declaration(Class(know:KnowledgeArtifactReplicationActivity))
 Declaration(Class(know:KnowledgeArtifactRepository))
 Declaration(Class(know:KnowledgeAsset))
 Declaration(Class(know:KnowledgeCarrier))
@@ -69,8 +70,9 @@ Declaration(Class(know:KnowledgeExpression))
 Declaration(Class(know:KnowledgeFragment))
 Declaration(Class(know:KnowledgeManifestation))
 Declaration(Class(know:KnowledgeProcessingFunction))
-Declaration(Class(know:KnowledgeProcessingMethod))
+Declaration(Class(know:KnowledgeProcessingMethodSpecification))
 Declaration(Class(know:KnowledgeProcessingPlan))
+Declaration(Class(know:KnowledgeProcessingTechnique))
 Declaration(Class(know:KnowledgeRepresentation))
 Declaration(Class(know:KnowledgeRepresentationAndReasoningLanguage))
 Declaration(Class(know:KnowledgeResource))
@@ -82,6 +84,7 @@ Declaration(Class(know:Language))
 Declaration(Class(know:Lexicon))
 Declaration(Class(know:MachineExecutableLanguage))
 Declaration(Class(know:MachineReadableLanguage))
+Declaration(Class(know:MasterKnowledgeArtifact))
 Declaration(Class(know:Model))
 Declaration(Class(know:NaturalLanguage))
 Declaration(Class(know:Ontology))
@@ -105,8 +108,8 @@ Declaration(ObjectProperty(know:affects))
 Declaration(ObjectProperty(know:archetyped-by))
 Declaration(ObjectProperty(know:archetypes))
 Declaration(ObjectProperty(know:associated-to))
-Declaration(ObjectProperty(know:based-on))
-Declaration(ObjectProperty(know:captured-by))
+Declaration(ObjectProperty(know:blueprinted-by))
+Declaration(ObjectProperty(know:capturedBy))
 Declaration(ObjectProperty(know:captures))
 Declaration(ObjectProperty(know:carried-by))
 Declaration(ObjectProperty(know:carries))
@@ -214,7 +217,7 @@ Declaration(AnnotationProperty(skos:scopeNote))
 
 AnnotationAssertion(rdfs:label know:affects "affects")
 AnnotationAssertion(skos:definition know:affects "A method affects something if it is known explicitly not to preserve that something")
-ObjectPropertyDomain(know:affects know:KnowledgeProcessingMethod)
+ObjectPropertyDomain(know:affects know:KnowledgeProcessingMethodSpecification)
 DisjointObjectProperties(know:affects know:preserves)
 
 # Object Property: know:archetyped-by (archetyped by)
@@ -242,28 +245,27 @@ AnnotationAssertion(skos:definition know:associated-to "two concepts are associa
 ObjectPropertyDomain(know:associated-to know:AtomicConcept)
 ObjectPropertyRange(know:associated-to know:AtomicConcept)
 
-# Object Property: know:based-on (based on)
+# Object Property: know:blueprinted-by (blueprinted by)
 
-AnnotationAssertion(rdfs:label know:based-on "based on")
-AnnotationAssertion(skos:definition know:based-on "a method provides guidelines specifically on how to perform a given task, and thus can be considered part of a task definition")
-SubObjectPropertyOf(know:based-on know:defined-by)
-ObjectPropertyDomain(know:based-on know:InformationProcessingTask)
-ObjectPropertyRange(know:based-on know:KnowledgeProcessingMethod)
+AnnotationAssertion(rdfs:label know:blueprinted-by "blueprinted by")
+AnnotationAssertion(skos:definition know:blueprinted-by "a method provides guidelines specifically on how to perform a given task, and thus can be considered part of a task definition")
+SubObjectPropertyOf(know:blueprinted-by know:defined-by)
+ObjectPropertyDomain(know:blueprinted-by know:InformationProcessingTask)
+ObjectPropertyRange(know:blueprinted-by know:KnowledgeProcessingMethodSpecification)
 
-# Object Property: know:captured-by (captured by)
+# Object Property: know:capturedBy (captured by)
 
-AnnotationAssertion(rdfs:label know:captured-by "captured by")
-AnnotationAssertion(rdfs:label know:captured-by "the relationship between a (piece of) Knowledge and any Work of Knowledge that makes it finite, explicit and potentially communicable")
-SubObjectPropertyOf(know:captured-by know:has-knowledge)
-InverseObjectProperties(know:captured-by know:captures)
-ObjectPropertyDomain(know:captured-by know:Knowledge)
-ObjectPropertyRange(know:captured-by know:WorkOfKnowledge)
+AnnotationAssertion(rdfs:label know:capturedBy "captured by")
+AnnotationAssertion(skos:definition know:capturedBy "the relationship between a (piece of) Knowledge and any Work of Knowledge that makes it finite, explicit and potentially communicable")
+InverseObjectProperties(know:capturedBy know:captures)
+ObjectPropertyDomain(know:capturedBy know:Knowledge)
+ObjectPropertyRange(know:capturedBy know:WorkOfKnowledge)
 
 # Object Property: know:captures (captures)
 
 AnnotationAssertion(rdfs:label know:captures "captures")
 AnnotationAssertion(skos:definition know:captures "a specific relationship between a work of knowledge and the (piece of) knowledge it makes explicit")
-SubObjectPropertyOf(know:captures know:is-about)
+SubObjectPropertyOf(know:captures know:uses-concept)
 ObjectPropertyDomain(know:captures know:WorkOfKnowledge)
 ObjectPropertyRange(know:captures know:Knowledge)
 
@@ -337,14 +339,15 @@ SubObjectPropertyOf(know:consistently-expresses know:expresses)
 
 # Object Property: know:defined-by (defined by)
 
-AnnotationAssertion(rdfs:label know:defined-by "A Work of Knowledge defines a concept if it provides necessary and sufficient knowledge to allow to recognize instances of that concept")
 AnnotationAssertion(rdfs:label know:defined-by "defined by")
-SubObjectPropertyOf(know:defined-by know:captured-by)
+AnnotationAssertion(skos:definition know:defined-by "A Work of Knowledge defines a concept if it provides necessary and sufficient knowledge to allow to recognize instances of that concept")
+SubObjectPropertyOf(know:defined-by know:capturedBy)
 ObjectPropertyDomain(know:defined-by know:DefinedConcept)
 ObjectPropertyRange(know:defined-by know:WorkOfKnowledge)
 
 # Object Property: know:defines (know:defines)
 
+AnnotationAssertion(rdfs:seeAlso know:defines <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#defines>)
 SubObjectPropertyOf(know:defines know:captures)
 ObjectPropertyDomain(know:defines know:Definition)
 ObjectPropertyRange(know:defines know:DefinedConcept)
@@ -652,7 +655,7 @@ AnnotationAssertion(skos:definition know:preserves "A method M (subject) preserv
 then:
   O is also related to E by R")
 AnnotationAssertion(skos:example know:preserves "A transcription method, by definition, defines how to create different concrete expressions, but preserves the language (abstract syntax)")
-ObjectPropertyDomain(know:preserves know:KnowledgeProcessingMethod)
+ObjectPropertyDomain(know:preserves know:KnowledgeProcessingMethodSpecification)
 
 # Object Property: know:product-of (product of)
 
@@ -888,7 +891,7 @@ ObjectPropertyRange(know:uses-lexicon know:Lexicon)
 
 AnnotationAssertion(rdfs:label know:uses-method "uses method")
 ObjectPropertyDomain(know:uses-method know:KnowledgeActivity)
-ObjectPropertyRange(know:uses-method know:KnowledgeProcessingMethod)
+ObjectPropertyRange(know:uses-method know:KnowledgeProcessingMethodSpecification)
 
 # Object Property: know:uses-primary-language (uses primary language)
 
@@ -1007,7 +1010,7 @@ SubClassOf(know:AtomicConcept know:PieceOfKnowledge)
 AnnotationAssertion(rdfs:comment know:ComplexConcept "When expressed in OWL, complex concepts are described in terms of their relationships to other concepts, using subClassOf or equivalentClass axioms")
 AnnotationAssertion(rdfs:label know:ComplexConcept "complex concept")
 AnnotationAssertion(skos:definition know:ComplexConcept "A Concept that can be decomposed into a complex association of other Concepts, ans such that there is at least one Work of Knowledge that captures those Concepts and their relationships")
-EquivalentClasses(know:ComplexConcept ObjectIntersectionOf(know:AtomicConcept ObjectSomeValuesFrom(know:captured-by know:WorkOfKnowledge)))
+EquivalentClasses(know:ComplexConcept ObjectIntersectionOf(know:AtomicConcept ObjectSomeValuesFrom(know:capturedBy know:WorkOfKnowledge)))
 SubClassOf(know:ComplexConcept know:AtomicConcept)
 
 # Class: know:CompositeKnowledgeResource (composite knowledge resource)
@@ -1102,7 +1105,7 @@ AnnotationAssertion(rdfs:label know:Encoding "encoding")
 AnnotationAssertion(rdfs:seeAlso know:Encoding "https://en.wikipedia.org/wiki/Code")
 AnnotationAssertion(rdfs:seeAlso know:Encoding "https://en.wikipedia.org/wiki/Encoding_(memory)")
 AnnotationAssertion(skos:definition know:Encoding "method for converting a concrete (knowledge) expression into a from that is suitable to be engraved on a carrier of choice")
-SubClassOf(know:Encoding know:KnowledgeProcessingMethod)
+SubClassOf(know:Encoding know:KnowledgeProcessingMethodSpecification)
 
 # Class: know:FlattenedKnowledgeResource (flattened knowledge resource)
 
@@ -1156,7 +1159,7 @@ AnnotationAssertion(skos:definition know:InformationProcessingTask "The conceptu
 AnnotationAssertion(skos:scopeNote know:InformationProcessingTask "this class is intended to be limited to tasks regarding the processing of knowledge. As such it should always be narrower than the general notion of 'task' usually defined in upper ontologies")
 SubClassOf(know:InformationProcessingTask know:DefinedConcept)
 SubClassOf(know:InformationProcessingTask ObjectSomeValuesFrom(know:archetypes know:KnowledgeActivity))
-SubClassOf(know:InformationProcessingTask ObjectSomeValuesFrom(know:defined-by know:KnowledgeProcessingMethod))
+SubClassOf(know:InformationProcessingTask ObjectSomeValuesFrom(know:defined-by know:KnowledgeProcessingMethodSpecification))
 SubClassOf(know:InformationProcessingTask ObjectAllValuesFrom(know:archetypes know:KnowledgeActivity))
 
 # Class: know:IntellectualWork (intellectual work)
@@ -1179,7 +1182,7 @@ AnnotationAssertion(rdfs:label know:KnowledgeActivity "knowledge processing acti
 AnnotationAssertion(skos:definition know:KnowledgeActivity "Any Activity that involves the participation of a Knowledge Carrier as a product, tool, aid or background resource. The Knowledge Carrier carries the Knowledge which plays the role of information object in this context")
 EquivalentClasses(know:KnowledgeActivity ObjectIntersectionOf(know:InformationProcessingActivity ObjectSomeValuesFrom(know:involves know:KnowledgeCarrier)))
 SubClassOf(know:KnowledgeActivity ObjectSomeValuesFrom(know:archetyped-by know:InformationProcessingTask))
-SubClassOf(know:KnowledgeActivity ObjectSomeValuesFrom(know:uses-method know:KnowledgeProcessingMethod))
+SubClassOf(know:KnowledgeActivity ObjectSomeValuesFrom(know:uses-method know:KnowledgeProcessingMethodSpecification))
 
 # Class: know:KnowledgeArtifact (knowledge artifact)
 
@@ -1192,6 +1195,16 @@ AnnotationAssertion(skos:scopeNote know:KnowledgeArtifact "In FRBR, classes of a
 In OWL-DL, it is not possible to express at the same time the extensional definition (different subclasses of Knowledge Artifact) and its intensional counterpart (different individuals, instances of Manifestation), other than using punning. For this reason, the notion of Manifestation is not explicitly modelled")
 SubClassOf(know:KnowledgeArtifact know:KnowledgeCarrier)
 SubClassOf(know:KnowledgeArtifact ObjectSomeValuesFrom(know:product-of know:Activity))
+
+# Class: know:KnowledgeArtifactReplicationActivity (knowledge artifact replication activity)
+
+AnnotationAssertion(rdfs:label know:KnowledgeArtifactReplicationActivity "knowledge artifact replication activity")
+AnnotationAssertion(skos:altLabel know:KnowledgeArtifactReplicationActivity "replication activity")
+AnnotationAssertion(skos:definition know:KnowledgeArtifactReplicationActivity "The act of producing a Knowledge Artifact, using another Artifact as an input, such that the two are exemplars of the same Knowledge Manifestation")
+SubClassOf(know:KnowledgeArtifactReplicationActivity know:Activity)
+SubClassOf(know:KnowledgeArtifactReplicationActivity ObjectSomeValuesFrom(know:has-product know:KnowledgeArtifact))
+SubClassOf(know:KnowledgeArtifactReplicationActivity ObjectSomeValuesFrom(know:involves know:KnowledgeManifestation))
+SubClassOf(know:KnowledgeArtifactReplicationActivity ObjectSomeValuesFrom(know:makes-use-of know:KnowledgeArtifact))
 
 # Class: know:KnowledgeArtifactRepository (knowledge artifact repository)
 
@@ -1265,7 +1278,7 @@ SubClassOf(know:KnowledgeFragment ObjectSomeValuesFrom(know:knowledge-representa
 AnnotationAssertion(rdfs:comment know:KnowledgeManifestation "All the exemplars of a given manifestation are copies (replicas) of each other. Conversely, given an exemplar of a manifestation, if that exemplar is copied (replicated), the copy will be an exemplar of the same manifestation")
 AnnotationAssertion(rdfs:comment know:KnowledgeManifestation "The original exemplar is called a 'master copy'")
 AnnotationAssertion(rdfs:label know:KnowledgeManifestation "knowledge manifestation")
-AnnotationAssertion(skos:definition know:KnowledgeManifestation "The archetype of a class of knowledge artifacts, defining the common qualities - including the concrete expression(s) carried by the artifacts, and the form used to encode and engrave the expression in the artifact")
+AnnotationAssertion(skos:definition know:KnowledgeManifestation "The archetypical concept that abstracts a class of Knowledge Artifacts, defining the common qualities - including the concrete expression(s) carried by the artifacts, and the form used to encode and engrave the expression in each artifact of that class.")
 SubClassOf(know:KnowledgeManifestation know:DefinedConcept)
 SubClassOf(know:KnowledgeManifestation ObjectSomeValuesFrom(know:archetypes know:KnowledgeCarrier))
 
@@ -1280,12 +1293,16 @@ SubClassOf(know:KnowledgeProcessingFunction know:DefinedConcept)
 SubClassOf(know:KnowledgeProcessingFunction ObjectSomeValuesFrom(know:associated-to know:InformationProcessingTask))
 SubClassOf(know:KnowledgeProcessingFunction ObjectSomeValuesFrom(know:associated-to ObjectUnionOf(know:AgentiveRole know:PassiveRole)))
 
-# Class: know:KnowledgeProcessingMethod (knowledge processing method)
+# Class: know:KnowledgeProcessingMethodSpecification (knowledge processing method specification)
 
-AnnotationAssertion(rdfs:label know:KnowledgeProcessingMethod "knowledge processing method")
-AnnotationAssertion(skos:definition know:KnowledgeProcessingMethod "the conceptual definition of a procedure, technique or way of processing knowledge (in a broad sense)")
-AnnotationAssertion(skos:scopeNote know:KnowledgeProcessingMethod "From an API4KP perspective, this class is meant to be specialzied by methods of processing knowledge, either by syntactic, semantic or pragmatic manipulation")
-SubClassOf(know:KnowledgeProcessingMethod know:Definition)
+AnnotationAssertion(rdfs:label know:KnowledgeProcessingMethodSpecification "knowledge processing method specification")
+AnnotationAssertion(skos:definition know:KnowledgeProcessingMethodSpecification "a conceptualization that defines how to perform some knowledge processing task. 
+As such, it is expressed by means of a specification, and leverages some knowledge processing technique")
+AnnotationAssertion(skos:example know:KnowledgeProcessingMethodSpecification "A way to predict a risk factor that is based on a logistic regression model.")
+SubClassOf(know:KnowledgeProcessingMethodSpecification know:Definition)
+SubClassOf(know:KnowledgeProcessingMethodSpecification ObjectSomeValuesFrom(know:conceptualizes know:Specification))
+SubClassOf(know:KnowledgeProcessingMethodSpecification ObjectSomeValuesFrom(know:defines know:InformationProcessingTask))
+SubClassOf(know:KnowledgeProcessingMethodSpecification ObjectSomeValuesFrom(know:uses-concept know:KnowledgeProcessingTechnique))
 
 # Class: know:KnowledgeProcessingPlan (knowledge processing plan)
 
@@ -1296,6 +1313,14 @@ AnnotationAssertion(rdfs:label know:KnowledgeProcessingPlan "knowledge processin
 AnnotationAssertion(skos:altLabel know:KnowledgeProcessingPlan "structured process plan")
 AnnotationAssertion(skos:definition know:KnowledgeProcessingPlan "the definition of the tasks that are necessary (and possibly sufficient) to perform an activity of a given kind, in order to achieve some goals, possibly with more or less prescriptive constraints e.g. on the (relative) ordering, roles of the performers, and execution modalities")
 SubClassOf(know:KnowledgeProcessingPlan know:ConstructiveDefinition)
+
+# Class: know:KnowledgeProcessingTechnique ((knowledge processing) technique)
+
+AnnotationAssertion(rdfs:label know:KnowledgeProcessingTechnique "(knowledge processing) technique")
+AnnotationAssertion(skos:definition know:KnowledgeProcessingTechnique "Techniques are 'bodies of specialized procedures and methods used in some field'. Knowledge processing techniques are specifically leveraged in knowledge processing activities: in particular, techniques are part of the methods that define those tasks.")
+AnnotationAssertion(skos:example know:KnowledgeProcessingTechnique "Artificial Intelligence driven techniques in general, as a concept to be refined")
+AnnotationAssertion(skos:example know:KnowledgeProcessingTechnique "Natural Language Processing")
+SubClassOf(know:KnowledgeProcessingTechnique know:DefinedConcept)
 
 # Class: know:KnowledgeRepresentation (knowledge representation)
 
@@ -1387,6 +1412,15 @@ AnnotationAssertion(rdfs:label know:MachineReadableLanguage "machine-readable la
 AnnotationAssertion(skos:definition know:MachineReadableLanguage "Language such that Expressions that use it can be internally represented (i.e. parsed and interpreted) by a software at runtime")
 EquivalentClasses(know:MachineReadableLanguage ObjectIntersectionOf(know:ConstructedLanguage ObjectSomeValuesFrom(know:internally-represented-by know:ArtificialAgent)))
 
+# Class: know:MasterKnowledgeArtifact (knowledge artifact master copy)
+
+AnnotationAssertion(rdfs:label know:MasterKnowledgeArtifact "knowledge artifact master copy")
+AnnotationAssertion(skos:altLabel know:MasterKnowledgeArtifact "master copy")
+AnnotationAssertion(skos:definition know:MasterKnowledgeArtifact "A Knowledge Artifact that is used as the primary source in replication activities.")
+SubClassOf(know:MasterKnowledgeArtifact know:KnowledgeArtifact)
+SubClassOf(know:MasterKnowledgeArtifact ObjectSomeValuesFrom(know:stored-in ObjectSomeValuesFrom(know:has-function know:KnowledgeArtifactRepository)))
+SubClassOf(know:MasterKnowledgeArtifact ObjectSomeValuesFrom(know:used-in know:KnowledgeArtifactReplicationActivity))
+
 # Class: know:Model (model)
 
 AnnotationAssertion(rdfs:comment know:Model "TODO: Does OMG have a standard def?")
@@ -1456,7 +1490,7 @@ As such, they live at the boundaries of the semantic graphs that constitute a wo
 AnnotationAssertion(skos:scopeNote know:PrimitiveConcept "The notion of 'Common Knowledge' may be universal, or be scoped to a domain. That is, certain concepts can be expected to be represented by any intelligent agent (e.g. the concept of the number \"one\"), while others may depend on the nature of the agent (e.g. feelings are natural to human beings, not so much to computer agents), or on their expertise (e.g. the notion of \"physiology\" requires expertise in medicine).
 
 This class of 'primitive' concept does not make a distinction, and assumes that 'primitive' is based on the context in which the ontology is used.")
-EquivalentClasses(know:PrimitiveConcept ObjectIntersectionOf(know:AtomicConcept ObjectComplementOf(ObjectSomeValuesFrom(know:captured-by know:WorkOfKnowledge))))
+EquivalentClasses(know:PrimitiveConcept ObjectIntersectionOf(know:AtomicConcept ObjectComplementOf(ObjectSomeValuesFrom(know:capturedBy know:WorkOfKnowledge))))
 SubClassOf(know:PrimitiveConcept know:AtomicConcept)
 
 # Class: know:Profile (profile)
@@ -1577,7 +1611,7 @@ SubClassOf(<http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/CodeEle
 
 SubClassOf(ObjectSomeValuesFrom(know:performs know:KnowledgeActivity) know:KnowledgeableAgent)
 DisjointClasses(know:IntellectualWork know:KnowledgeArtifact know:KnowledgeExpression)
-SubObjectPropertyOf(ObjectPropertyChain(know:archetyped-by know:based-on) know:uses-method)
+SubObjectPropertyOf(ObjectPropertyChain(know:archetyped-by know:blueprinted-by) know:uses-method)
 SubObjectPropertyOf(ObjectPropertyChain(know:conceptualizes know:serialized-into) know:concretely-expressed-by)
 SubObjectPropertyOf(ObjectPropertyChain(know:defined-by know:uses-concept) know:associated-to)
 SubObjectPropertyOf(ObjectPropertyChain(know:engraved-with know:encoding-of) know:carries)

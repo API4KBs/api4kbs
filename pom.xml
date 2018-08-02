@@ -16,6 +16,16 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <s>${file.separator}</s>
+    <api4kp>${project.build.outputDirectory}${s}API4KP${s}</api4kp>
+    <info>${project.build.outputDirectory}${s}API4KP${s}informative${s}</info>
+    <bridges>${project.build.outputDirectory}${s}API4KP${s}bridges${s}</bridges>
+    <dol>${project.build.outputDirectory}${s}DOL${s}</dol>
+    <omg>${project.build.outputDirectory}${s}OMG${s}</omg>
+    <other>${project.build.outputDirectory}${s}Other${s}</other>
+
+    <docs>${pom.basedir}${s}docs${s}LODE${s}</docs>
   </properties>
 
 
@@ -171,17 +181,18 @@
                 <goals><goal>lode-gen</goal></goals>
                 <configuration>
                   <ontologyURLs>
-                    <ontologyURL>${project.build.outputDirectory}/API4KP/api4kp-aspects.ofn</ontologyURL>
-                    <ontologyURL>${project.build.outputDirectory}/API4KP/api4kp-core.owl</ontologyURL>
-                    <ontologyURL>${project.build.outputDirectory}/API4KP/api4kp-kp.ofn</ontologyURL>
-                    <ontologyURL>${project.build.outputDirectory}/API4KP/api4kp-krr.ofn</ontologyURL>
-                    <ontologyURL>${project.build.outputDirectory}/API4KP/api4kp-rels.ofn</ontologyURL>
-                    <ontologyURL>${project.build.outputDirectory}/API4KP/api4kp-ops.owl</ontologyURL>
-                    <ontologyURL>${project.build.outputDirectory}/API4KP/informative/api4kp-kp-inst.owl</ontologyURL>
+                    <ontologyURL>${api4kp}api4kp-aspects.ofn</ontologyURL>
+                    <ontologyURL>${api4kp}api4kp-core.owl</ontologyURL>
+                    <ontologyURL>${api4kp}api4kp-kp.ofn</ontologyURL>
+                    <ontologyURL>${api4kp}api4kp-krr.ofn</ontologyURL>
+                    <ontologyURL>${api4kp}api4kp-rels.ofn</ontologyURL>
+                    <ontologyURL>${api4kp}api4kp-ops.owl</ontologyURL>
+                    <ontologyURL>${info}api4kp-kp-inst.owl</ontologyURL>
+                    <ontologyURL>${info}api4kp-kp-registry.owl</ontologyURL>
                   </ontologyURLs>
-                  <targetDirectory>${pom.basedir}/docs/LODE/API4KP/Core</targetDirectory>
+                  <targetDirectory>${docs}API4KP${s}Core</targetDirectory>
                   <xsltLocation>${project.build.outputDirectory}/lode/lode.xsl</xsltLocation>
-                  <catalog>${project.build.outputDirectory}/API4KP/catalog-dist.xml</catalog>
+                  <catalog>${api4kp}catalog-dist.xml</catalog>
                 </configuration>
               </execution>
 
@@ -192,11 +203,12 @@
                 <goals><goal>lode-gen</goal></goals>
                 <configuration>
                   <ontologyURLs>
-                    <ontologyURL>${project.build.outputDirectory}/API4KP/informative/kmdo.owl</ontologyURL>
+                    <ontologyURL>${info}kmdo.owl</ontologyURL>
+                    <ontologyURL>${info}kao.owl.rdf</ontologyURL>
                   </ontologyURLs>
-                  <targetDirectory>${pom.basedir}/docs/LODE/API4KP/Extensions</targetDirectory>
+                  <targetDirectory>${docs}API4KP${s}Extensions</targetDirectory>
                   <xsltLocation>${project.build.outputDirectory}/lode/lode.xsl</xsltLocation>
-                  <catalog>${project.build.outputDirectory}/API4KP/catalog-dist.xml</catalog>
+                  <catalog>${api4kp}catalog-dist.xml</catalog>
                 </configuration>
               </execution>
 
@@ -206,13 +218,13 @@
                 <goals><goal>lode-gen</goal></goals>
                 <configuration>
                   <ontologyURLs>
-                    <ontologyURL>${project.build.outputDirectory}/API4KP/bridges/DOL-Bridge.owl</ontologyURL>
-                    <ontologyURL>${project.build.outputDirectory}/API4KP/bridges/DUL-Bridge.ofn</ontologyURL>
-                    <ontologyURL>${project.build.outputDirectory}/API4KP/bridges/FRBR-Bridge.owl</ontologyURL>
+                    <ontologyURL>${bridges}DOL-Bridge.owl</ontologyURL>
+                    <ontologyURL>${bridges}DUL-Bridge.ofn</ontologyURL>
+                    <ontologyURL>${bridges}FRBR-Bridge.owl</ontologyURL>
                   </ontologyURLs>
-                  <targetDirectory>${pom.basedir}/docs/LODE/API4KP/Bridges</targetDirectory>
+                  <targetDirectory>${docs}API4KP${s}Bridges</targetDirectory>
                   <xsltLocation>${project.build.outputDirectory}/lode/lode.xsl</xsltLocation>
-                  <catalog>${project.build.outputDirectory}/API4KP/bridges/catalog-dist.xml</catalog>
+                  <catalog>${bridges}catalog-dist.xml</catalog>
                 </configuration>
               </execution>
 
@@ -222,12 +234,12 @@
                 <goals><goal>lode-gen</goal></goals>
                 <configuration>
                   <ontologyURLs>
-                    <ontologyURL>${project.build.outputDirectory}/DOL/registry.owl</ontologyURL>
-                    <ontologyURL>${project.build.outputDirectory}/DOL/DOL-terms.rdf</ontologyURL>
+                    <ontologyURL>${dol}registry.owl</ontologyURL>
+                    <ontologyURL>${dol}DOL-terms.rdf</ontologyURL>
                   </ontologyURLs>
-                  <targetDirectory>${pom.basedir}/docs/LODE/DOL</targetDirectory>
+                  <targetDirectory>${docs}DOL</targetDirectory>
                   <xsltLocation>${project.build.outputDirectory}/lode/lode.xsl</xsltLocation>
-                  <catalog>${project.build.outputDirectory}/API4KP/catalog-dist.xml</catalog>
+                  <catalog>${api4kp}catalog-dist.xml</catalog>
                 </configuration>
               </execution>
 
@@ -238,11 +250,12 @@
                 <goals><goal>lode-gen</goal></goals>
                 <configuration>
                   <ontologyURLs>
-                    <ontologyURL>${project.build.outputDirectory}/OMG/SpecificationMetadata.rdf</ontologyURL>
+                    <ontologyURL>${omg}SpecificationMetadata.rdf</ontologyURL>
+                    <ontologyURL>${omg}LanguageRepresentation.rdf</ontologyURL>
                   </ontologyURLs>
-                  <targetDirectory>${pom.basedir}/docs/LODE/OMG</targetDirectory>
+                  <targetDirectory>${docs}OMG</targetDirectory>
                   <xsltLocation>${project.build.outputDirectory}/lode/lode.xsl</xsltLocation>
-                  <catalog>${project.build.outputDirectory}/API4KP/catalog-dist.xml</catalog>
+                  <catalog>${api4kp}catalog-dist.xml</catalog>
                 </configuration>
               </execution>
 
@@ -253,13 +266,13 @@
                 <goals><goal>lode-gen</goal></goals>
                 <configuration>
                   <ontologyURLs>
-                    <ontologyURL>${project.build.outputDirectory}/Other/spar-frbr.rdf</ontologyURL>
-                    <ontologyURL>${project.build.outputDirectory}/Other/FRBRoo2.4-draft.rdfs</ontologyURL>
-                    <ontologyURL>${project.build.outputDirectory}/Other/DUL.owl</ontologyURL>
+                    <ontologyURL>${other}spar-frbr.rdf</ontologyURL>
+                    <ontologyURL>${other}FRBRoo2.4-draft.rdfs</ontologyURL>
+                    <ontologyURL>${other}DUL.owl</ontologyURL>
                   </ontologyURLs>
-                  <targetDirectory>${pom.basedir}/docs/LODE/Other</targetDirectory>
+                  <targetDirectory>${docs}Other</targetDirectory>
                   <xsltLocation>${project.build.outputDirectory}/lode/lode.xsl</xsltLocation>
-                  <catalog>${project.build.outputDirectory}/API4KP/catalog-dist.xml</catalog>
+                  <catalog>${api4kp}catalog-dist.xml</catalog>
                 </configuration>
               </execution>
 
