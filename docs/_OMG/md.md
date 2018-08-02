@@ -1,7 +1,7 @@
 ---
-name:  SM
-title: OMG Specification Metadata Ontology
-lode: /LODE/API4KP/OMG/SpecificationMetadata.html
-index: 1
+name:  LRR
+title: OMG (Natural) Languages Ontology
+lode: /LODE/API4KP/OMG/LanguageRepresentation.html
+index: 10
 normative: true
 ---
