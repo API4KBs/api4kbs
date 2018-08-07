@@ -46,6 +46,7 @@ Declaration(Class(know:DeconstructableKnowledgeResource))
 Declaration(Class(know:DefinedConcept))
 Declaration(Class(know:Definition))
 Declaration(Class(know:DescriptiveGrammar))
+Declaration(Class(know:DescriptiveMarkupLanguage))
 Declaration(Class(know:EncodedKnowledgeExpression))
 Declaration(Class(know:Encoding))
 Declaration(Class(know:FlattenedKnowledgeResource))
@@ -84,7 +85,10 @@ Declaration(Class(know:Language))
 Declaration(Class(know:Lexicon))
 Declaration(Class(know:MachineExecutableLanguage))
 Declaration(Class(know:MachineReadableLanguage))
+Declaration(Class(know:MarkupLanguage))
 Declaration(Class(know:MasterKnowledgeArtifact))
+Declaration(Class(know:MetaFormat))
+Declaration(Class(know:MetaFormatSerializableLanguage))
 Declaration(Class(know:Model))
 Declaration(Class(know:NaturalLanguage))
 Declaration(Class(know:Ontology))
@@ -92,12 +96,16 @@ Declaration(Class(know:ParseTree))
 Declaration(Class(know:PassiveRole))
 Declaration(Class(know:PieceOfKnowledge))
 Declaration(Class(know:PrescriptiveGrammar))
+Declaration(Class(know:PresentationalMarkupLanguage))
 Declaration(Class(know:PrimitiveConcept))
+Declaration(Class(know:ProceduralMarkupLanguage))
 Declaration(Class(know:Profile))
 Declaration(Class(know:SelfContainedKnowledgeArtifact))
+Declaration(Class(know:SerializableLanguage))
 Declaration(Class(know:Serialization))
 Declaration(Class(know:Software))
 Declaration(Class(know:Specification))
+Declaration(Class(know:StructuralMarkupLanguage))
 Declaration(Class(know:StructuredKnowledgeResource))
 Declaration(Class(know:StructuringKnowledgeRepresentation))
 Declaration(Class(know:Syntax))
@@ -125,6 +133,7 @@ Declaration(ObjectProperty(know:defines))
 Declaration(ObjectProperty(know:denoted-by))
 Declaration(ObjectProperty(know:denotes))
 Declaration(ObjectProperty(know:described-by))
+Declaration(ObjectProperty(know:embedsLanguage))
 Declaration(ObjectProperty(know:encoding-of))
 Declaration(ObjectProperty(know:engraved-on))
 Declaration(ObjectProperty(know:engraved-with))
@@ -374,6 +383,14 @@ AnnotationAssertion(rdfs:label know:described-by "described by")
 AnnotationAssertion(skos:definition know:described-by "The relationship between Something and its description - a (descriptive) expression of a work of knowledge that represents what that thing is (ontology) and/or how it behaves (model)")
 SubObjectPropertyOf(know:described-by know:represented-by)
 ObjectPropertyRange(know:described-by know:AbstractExpression)
+
+# Object Property: know:embedsLanguage (embeds language)
+
+AnnotationAssertion(rdfs:label know:embedsLanguage "embeds language")
+AnnotationAssertion(skos:definition know:embedsLanguage "The relationship between two languages L1 and L2, such that L1 is designed to delegate to another language L2 the expression of a certain class of concepts")
+AnnotationAssertion(skos:scopeNote know:embedsLanguage "This conceptual relationship is asserted when two languages are designed to complement each other. 
+If an expression in L1 happens to delegate to L2, \"uses as sub-language\" should be used instead")
+SubObjectPropertyOf(know:embedsLanguage know:has-proper-part)
 
 # Object Property: know:encoding-of (encoding of)
 
@@ -1094,6 +1111,12 @@ AnnotationAssertion(rdfs:seeAlso know:DescriptiveGrammar "https://www.teachingen
 AnnotationAssertion(skos:definition know:DescriptiveGrammar "a grammar that documents how a language is actually used")
 SubClassOf(know:DescriptiveGrammar know:Grammar)
 
+# Class: know:DescriptiveMarkupLanguage (declarative markup language)
+
+AnnotationAssertion(rdfs:label know:DescriptiveMarkupLanguage "declarative markup language")
+AnnotationAssertion(skos:definition know:DescriptiveMarkupLanguage "markup language used to express structural or semantic knowledge")
+SubClassOf(know:DescriptiveMarkupLanguage know:MarkupLanguage)
+
 # Class: know:EncodedKnowledgeExpression (encoded knowledge expression)
 
 AnnotationAssertion(rdfs:label know:EncodedKnowledgeExpression "encoded knowledge expression")
@@ -1387,7 +1410,6 @@ AnnotationAssertion(skos:example know:Language "The 2nd officially released vers
 EquivalentClasses(know:Language <http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language>)
 SubClassOf(know:Language know:DefinedConcept)
 SubClassOf(know:Language ObjectSomeValuesFrom(know:governed-by know:Grammar))
-SubClassOf(know:Language ObjectSomeValuesFrom(know:has-wordstock know:Lexicon))
 
 # Class: know:Lexicon (lexicon)
 
@@ -1411,6 +1433,18 @@ SubClassOf(know:MachineExecutableLanguage know:ComputableLanguage)
 AnnotationAssertion(rdfs:label know:MachineReadableLanguage "machine-readable language"@en)
 AnnotationAssertion(skos:definition know:MachineReadableLanguage "Language such that Expressions that use it can be internally represented (i.e. parsed and interpreted) by a software at runtime")
 EquivalentClasses(know:MachineReadableLanguage ObjectIntersectionOf(know:ConstructedLanguage ObjectSomeValuesFrom(know:internally-represented-by know:ArtificialAgent)))
+SubClassOf(know:MachineReadableLanguage know:SerializableLanguage)
+
+# Class: know:MarkupLanguage (markup language)
+
+AnnotationAssertion(Annotation(dc-t:source "https://www.merriam-webster.com/dictionary/markup%20language") rdfs:comment know:MarkupLanguage "Informally (and more narrowly) defined as \"a system (such as HTML or SGML) for marking or tagging a document that indicates its logical structure (such as paragraphs) and gives instructions for its layout on the page especially for electronic transmission and display\"")
+AnnotationAssertion(rdfs:label know:MarkupLanguage "markup language")
+AnnotationAssertion(skos:definition know:MarkupLanguage "Language L1 that embeds another language L2 by design.
+When an expression E in L2 is marked with fragments F in L1, the subject of F is either E itself or the manifestation of E, as opposed to the subject of E.
+
+That is: if E is about X, F is about E and not X")
+SubClassOf(know:MarkupLanguage know:MachineReadableLanguage)
+SubClassOf(know:MarkupLanguage ObjectSomeValuesFrom(know:embedsLanguage know:Language))
 
 # Class: know:MasterKnowledgeArtifact (knowledge artifact master copy)
 
@@ -1420,6 +1454,23 @@ AnnotationAssertion(skos:definition know:MasterKnowledgeArtifact "A Knowledge Ar
 SubClassOf(know:MasterKnowledgeArtifact know:KnowledgeArtifact)
 SubClassOf(know:MasterKnowledgeArtifact ObjectSomeValuesFrom(know:stored-in ObjectSomeValuesFrom(know:has-function know:KnowledgeArtifactRepository)))
 SubClassOf(know:MasterKnowledgeArtifact ObjectSomeValuesFrom(know:used-in know:KnowledgeArtifactReplicationActivity))
+
+# Class: know:MetaFormat (meta-format)
+
+AnnotationAssertion(rdfs:comment know:MetaFormat "A purely syntactic language that is used in the definition of markup languages")
+AnnotationAssertion(rdfs:label know:MetaFormat "meta-format")
+AnnotationAssertion(rdfs:seeAlso know:MetaFormat "https://www.w3.org/standards/webarch/metaformats")
+AnnotationAssertion(skos:definition know:MetaFormat "A (meta) language without any specific lexicon")
+EquivalentClasses(know:MetaFormat ObjectIntersectionOf(know:MachineReadableLanguage ObjectComplementOf(ObjectSomeValuesFrom(know:has-wordstock know:Lexicon))))
+SubClassOf(know:MetaFormat know:MachineReadableLanguage)
+
+# Class: know:MetaFormatSerializableLanguage (meta-format serializable language)
+
+AnnotationAssertion(rdfs:label know:MetaFormatSerializableLanguage "meta-format serializable language")
+AnnotationAssertion(skos:definition know:MetaFormatSerializableLanguage "machine readable, serializable language that has at least one concrete syntax that is based on a meta-format")
+AnnotationAssertion(skos:example know:MetaFormatSerializableLanguage "any language that supports an XML based serialization, such as BPMN or RuleML")
+SubClassOf(know:MetaFormatSerializableLanguage know:MachineReadableLanguage)
+SubClassOf(know:MetaFormatSerializableLanguage ObjectSomeValuesFrom(know:uses-concept know:MetaFormat))
 
 # Class: know:Model (model)
 
@@ -1478,6 +1529,12 @@ AnnotationAssertion(rdfs:seeAlso know:PrescriptiveGrammar "https://www.teachinge
 AnnotationAssertion(skos:definition know:PrescriptiveGrammar "a grammar that describes how a language should be used correctly")
 SubClassOf(know:PrescriptiveGrammar know:Grammar)
 
+# Class: know:PresentationalMarkupLanguage (presentational markup language)
+
+AnnotationAssertion(rdfs:label know:PresentationalMarkupLanguage "presentational markup language")
+AnnotationAssertion(skos:definition know:PresentationalMarkupLanguage "Markup language that guides the realization of manifestations of the marked expression")
+SubClassOf(know:PresentationalMarkupLanguage know:MarkupLanguage)
+
 # Class: know:PrimitiveConcept (primitive concept)
 
 AnnotationAssertion(rdfs:comment know:PrimitiveConcept "When expressed in OWL, primitive concepts are not the subject of subClassOf or equivalentClass axioms")
@@ -1493,6 +1550,12 @@ This class of 'primitive' concept does not make a distinction, and assumes that 
 EquivalentClasses(know:PrimitiveConcept ObjectIntersectionOf(know:AtomicConcept ObjectComplementOf(ObjectSomeValuesFrom(know:capturedBy know:WorkOfKnowledge))))
 SubClassOf(know:PrimitiveConcept know:AtomicConcept)
 
+# Class: know:ProceduralMarkupLanguage (procedural markup language)
+
+AnnotationAssertion(rdfs:label know:ProceduralMarkupLanguage "procedural markup language")
+AnnotationAssertion(skos:definition know:ProceduralMarkupLanguage "markup language used to express procedural or behavioral knowledge")
+SubClassOf(know:ProceduralMarkupLanguage know:MarkupLanguage)
+
 # Class: know:Profile (profile)
 
 AnnotationAssertion(rdfs:label know:Profile "profile")
@@ -1507,6 +1570,13 @@ AnnotationAssertion(rdfs:comment know:SelfContainedKnowledgeArtifact "As an inst
 AnnotationAssertion(rdfs:label know:SelfContainedKnowledgeArtifact "self-contained knowledge artifact"@en)
 AnnotationAssertion(skos:definition know:SelfContainedKnowledgeArtifact "A Knowledge Artifact that is an exemplar of a self-contained manifestation")
 SubClassOf(know:SelfContainedKnowledgeArtifact know:KnowledgeArtifact)
+
+# Class: know:SerializableLanguage (serializable language)
+
+AnnotationAssertion(rdfs:label know:SerializableLanguage "serializable language")
+AnnotationAssertion(skos:definition know:SerializableLanguage "language that has at least one concrete syntax")
+EquivalentClasses(know:SerializableLanguage ObjectIntersectionOf(know:Language ObjectSomeValuesFrom(know:specified-by know:Serialization)))
+SubClassOf(know:SerializableLanguage know:Language)
 
 # Class: know:Serialization (concrete syntax)
 
@@ -1530,6 +1600,12 @@ AnnotationAssertion(rdfs:comment know:Specification "TODO: Does OMG have a stand
 AnnotationAssertion(rdfs:label know:Specification "specification")
 AnnotationAssertion(skos:definition know:Specification "prescriptive expression of knowledge about the expected and/or required behavior of a system")
 SubClassOf(know:Specification know:KnowledgeRepresentation)
+
+# Class: know:StructuralMarkupLanguage (structural markup language)
+
+AnnotationAssertion(rdfs:label know:StructuralMarkupLanguage "structural markup language")
+AnnotationAssertion(skos:definition know:StructuralMarkupLanguage "markup language L that is used in (the expression of) decomposable structured expressions, such that the structural frame of that expression is expressed in L, while the components are expressed in the embedded language(s)")
+SubClassOf(know:StructuralMarkupLanguage know:MarkupLanguage)
 
 # Class: know:StructuredKnowledgeResource (structured knowledge resource)
 
@@ -1609,6 +1685,7 @@ SubClassOf(<http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Artific
 SubClassOf(<http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/CodeElement> know:ConcreteExpression)
 
 
+SubClassOf(ObjectSomeValuesFrom(know:has-wordstock know:Lexicon) know:Language)
 SubClassOf(ObjectSomeValuesFrom(know:performs know:KnowledgeActivity) know:KnowledgeableAgent)
 DisjointClasses(know:IntellectualWork know:KnowledgeArtifact know:KnowledgeExpression)
 SubObjectPropertyOf(ObjectPropertyChain(know:archetyped-by know:blueprinted-by) know:uses-method)

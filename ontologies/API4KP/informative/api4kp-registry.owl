@@ -5,22 +5,29 @@
      xmlns:redux="http://purl.net/dol/reduction/"
      xmlns:log="http://www.w3.org/2000/10/swap/log#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:w3c="http://www.w3.org/"
+     xmlns:w3c="http://www.w3.org/TR/"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:omg="https://www.omg.org/spec/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:symbols="http://purl.net/dol/symbolKinds/"
      xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:json="http://json.org/"
      xmlns:langs="http://purl.net/dol/languages/"
+     xmlns:yaml="http://yaml.org/"
      xmlns:xcl="http://purl.org/xcl/1.0/#"
      xmlns:ser="http://purl.net/dol/serializations/"
      xmlns:registry="http://purl.net/dol/registry/"
      xmlns:sta="http://purl.net/dol/1.0/standardization#"
      xmlns:void="http://rdfs.org/ns/void#"
+     xmlns:sct="http://snomed.info/sct/"
      xmlns:co="http://www.w3.org/2004/02/skos/core#"
+     xmlns:hl7="http://hl7.org/"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:oapi="http://www.openapis.org/"
      xmlns:syntax="http://latin.omdoc.org/logics/syntax?"
+     xmlns:know="http://www.omg.org/spec/API4KP/core#"
      xmlns:AnnotationVocabulary="http://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/"
      xmlns:logic="http://purl.net/dol/logics/"
      xmlns:terms1="http://open.vocab.org/terms/"
@@ -29,7 +36,7 @@
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="http://edu.mayo.kmdp/registry">
         <owl:versionIRI rdf:resource="http://edu.mayo.kmdp/2018/08/registry"/>
-        <owl:imports rdf:resource="http://www.omg.org/spec/API4KP/2018/06p/DOL-Bridge"/>
+        <owl:imports rdf:resource="http://www.omg.org/spec/API4KP/2018/06/DOL-Bridge"/>
     </owl:Ontology>
     
 
@@ -343,6 +350,24 @@
     
 
 
+    <!-- http://www.omg.org/spec/API4KP/core#ConstructedLanguage -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KP/core#Lexicon -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KP/core#Lexicon"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KP/core#MetaFormat -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/API4KP/core#MetaFormat"/>
+    
+
+
     <!-- http://www.omg.org/spec/DOL/DOL-terms/AbstractSyntax -->
 
     <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/AbstractSyntax"/>
@@ -483,6 +508,37 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://hl7.org/fhir/DSTU2 -->
+
+    <owl:NamedIndividual rdf:about="http://hl7.org/fhir/DSTU2">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdfs:label>FHIR DSTU2</rdfs:label>
+        <co:prefLabel>FHIR DSTU2</co:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://hl7.org/fhir/STU3 -->
+
+    <owl:NamedIndividual rdf:about="http://hl7.org/fhir/STU3">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdfs:label>FHIR STU3</rdfs:label>
+        <co:prefLabel>FHIR STU3</co:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://json.org/versions/20171201 -->
+
+    <owl:NamedIndividual rdf:about="http://json.org/versions/20171201">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#MetaFormat"/>
+        <rdfs:label>JSON</rdfs:label>
+    </owl:NamedIndividual>
     
 
 
@@ -1753,9 +1809,37 @@
     
 
 
-    <!-- http://www.w3.org/2002/07/owl -->
+    <!-- http://snomed.info/sct/900000000000207008/version/20180731 -->
 
-    <owl:NamedIndividual rdf:about="http://www.w3.org/2002/07/owl">
+    <owl:NamedIndividual rdf:about="http://snomed.info/sct/900000000000207008/version/20180731">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
+        <rdfs:label>SNOMED-CT Int 07_18</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.openapis.org/versions/2.3.x -->
+
+    <owl:NamedIndividual rdf:about="http://www.openapis.org/versions/2.3.x">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <rdfs:label>OpenAPI 2.3</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/TR/xml11 -->
+
+    <owl:NamedIndividual rdf:about="http://www.w3.org/TR/xml11">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#MetaFormat"/>
+        <co:prefLabel>XML 1.1</co:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/TR/2012/REC-owl2-overview-20121211 -->
+
+    <owl:NamedIndividual rdf:about="http://www.w3.org/TR/2012/REC-owl2-overview-20121211">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
         <terms:source>http://www.w3.org/TR/owl2-overview/</terms:source>
         <rdfs:comment>Ontology Web Language 2</rdfs:comment>
@@ -1765,10 +1849,63 @@
     
 
 
-    <!-- https://www.w3.org/TR/owl2-syntax/ -->
+    <!-- http://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/ -->
 
-    <owl:NamedIndividual rdf:about="https://www.w3.org/TR/owl2-syntax/">
+    <owl:NamedIndividual rdf:about="http://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#MetaFormat"/>
+        <rdfs:label>RDF 1.1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/TR/owl2-syntax/ -->
+
+    <owl:NamedIndividual rdf:about="http://www.w3.org/TR/owl2-syntax/">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/AbstractSyntax"/>
+        <rdfs:label>OWL 2 Syntax</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://yaml.org/spec/1.2 -->
+
+    <owl:NamedIndividual rdf:about="http://yaml.org/spec/1.2">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#MetaFormat"/>
+        <rdfs:label>YAML 1.2</rdfs:label>
+        <co:prefLabel>YAML 1.2</co:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.omg.org/spec/BPMN/2.0.2 -->
+
+    <owl:NamedIndividual rdf:about="https://www.omg.org/spec/BPMN/2.0.2">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdfs:label>BPMN 2.0.2</rdfs:label>
+        <co:prefLabel>BPMN 2.0.2</co:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.omg.org/spec/CMMN/1.1 -->
+
+    <owl:NamedIndividual rdf:about="https://www.omg.org/spec/CMMN/1.1">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdfs:label>CMMN 1.1</rdfs:label>
+        <co:prefLabel>CMMN 1.1</co:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.omg.org/spec/DMN/1.1 -->
+
+    <owl:NamedIndividual rdf:about="https://www.omg.org/spec/DMN/1.1">
+        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdfs:label>DMN 1.1</rdfs:label>
+        <co:prefLabel>DMN 1.1</co:prefLabel>
     </owl:NamedIndividual>
     
 
