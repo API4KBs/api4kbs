@@ -1,0 +1,276 @@
+% This is the main latex file for the
+% submission to RuleML 2015 about
+% API4KB ontologies
+%
+\documentclass[runningheads]{llncs}
+\usepackage{amsmath,amssymb,amsfonts,textcomp}
+\usepackage{url}
+\usepackage{cite}
+\usepackage{footnote}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{rotating}
+\usepackage[final]{todonotes}
+%
+\title{API4KP Prrofs}
+
+\date{}
+%
+\begin{document}
+%
+\author{Tara Athan\inst{1}}
+
+\institute{
+Athan Services (athant.com), West Lafayette, Indiana, USA\\
+\email{taraathan@gmail.com}
+}
+%
+\maketitle
+
+\begin{abstract}
+These are the proofs that the M-tree monads satisfy the monad laws.
+\end{abstract}
+
+
+\section{Monad Laws}
+In seminal work that established a theoretical foundation for proving the equivalence of programs, Moggi\cite{moggi_notions_1991} applied the notion of monad from category theory\cite{MacLane1998} to computation.
+As defined in category theory, a monad  is an endofunctor on a category C (a kind of mapping from C into itself) which additionally satisfies some requirements (the monad laws).
+In functional programming, monads on a particular category are of interest - the category with types as objects and programs as arrows.
+For example, the List[\_] typeclass is a monad, e.g. List[Int] is a type that is a member of List[\_].
+
+Each monad has the following transformations (exemplified for the List monad where lists are denoted with angle brackets)
+\begin{itemize}
+\item unit: A $\Rightarrow$ M[A] lifts the input into the monad (e.g. unit(2) = $\langle$2$\rangle$)
+\item join: M[M[A]] $\Rightarrow$ M[A] collapses nested monad instances by one level (e.g. join($\langle$$\langle$1, 2$\rangle$, $\langle$3, 4$\rangle$$\rangle$) = $\langle$1, 2, 3, 4$\rangle$)
+\item map: (A $\Rightarrow$ B) $\Rightarrow$ (M[A] $\Rightarrow$ M[B]) takes a function between two generic types and returns a function relating the corresponding monadic types (e.g. map( s $\Rightarrow$ 2*s)($\langle$1, 2$\rangle$) = $\langle$2, 4$\rangle$)
+\end{itemize}
+Note that we choose the unit, join and map transformations\cite{Wadler1992} as fundamental in this development of the monad laws because it is useful for later discussion on tree structures, whereas the usual theoretical treatment, based on unit and bind = join o map, is more concise.
+
+The map transformation defines a functor M, satisfying the functor laws:
+\begin{description}
+\item[Functor Identity] map(id)(y) = y
+\item[Functor Associativity] map(f o g) = map(f) o map(g)
+\end{description}
+where id is identity function s $\Rightarrow$ s.
+The unit and join transformations arise from natural transformations related to M, satisfying:
+\begin{description}
+\item[Unit from Natural Transformation] map(f)(unit(x)) = unit(f(x))
+\item[Join from Natural Transformation] join(map(join)(x)) = join(join(x))
+\end{description}
+
+Further, these transformations must obey the monad laws:
+\begin{description}
+\item[Monad Left Identity] join(map(unit)(x)) = x
+\item[Monad Right Identity] join(unit(x)) = x
+\item[Monad Associativity] join(map(map(f))(x)) = map(f)(join(x))
+\end{description}
+
+Monads of relevance to API4KP include
+\begin{description}
+\item [Option:] handles nullability, has subclasses Some, which wraps a knowledge resource, and None, which is empty
+\item [Try:] handles exceptions, has subclasses Success, which wraps a knowledge resource, and Failure, which wraps a (non-fatal) exception
+\item [Future:] handles concurrency, describes a process whose output may become available at some time
+\item [IO:] handles IO side-effects, wraps a knowledge resource and an \emph{item configuration}
+\item [Task:] handles general side-effects, wraps a knowledge resource and a description of a side-effectful task
+\item [Observable:] handles streams, wraps a sequence of knowledge resources that become available over time
+\item [Key-Value Map:] handles labelled structure, a knowledge resource is associated with each key in some set
+\item [Heterogeneous List:] handles a specified pattern of knowledge resource subclasses (e.g. RuleML rulebase together with an OWL ontology defining the sort hierarchy, CL text with sidecar RDF metadata).
+\item [State:] handles state, wraps a knowledge resource (the state) and implements state transitions
+\end{description}
+These monad functors may be composed; for example, given a basic knowledge expression type E, the type (State o Try o List) [E] = State[Try[List[E]]] may be defined.
+%be of type State of type Try of type List of type basic knowledge expression.
+In general, the composition of monads is not necessarily a monad. 
+%For example, (Set o List)[\_] is a typeclass, with members of type Set[List[A]], i.e. sets of lists of type A.
+
+\section{Either Bifunctor}
+Because the Either bifunctor is utilized to define the M-tree monad, the following functions regarding Either are useful in the proofs that follow.
+The function $bimap$ takes two arguments of type function and returns a function that applies those functions in a map-like fashion to the left and right types, respectively.
+ $$  bimap   : (A=>C) => (B=>D) => ((A \mathop{\mathrm{or}} B)=> (C \mathop{\mathrm{or}} D))$$
+ Special cases are
+$$  mapRight = bimap( s -> s)$$
+$$  mapLeft(f) = bimap(f)(s -> s)$$
+ 
+The function $bimapOne$ is similar to $bimap$ in that it takes two arguments of type function, but these two functions are required to have the same output type. The function returned by $bimapOne$ unwraps the Either into the common output type.
+$$bimapOne: (A=>C) => (B=>C) => ((A \mathop{\mathrm{or}} B)=> C)$$
+ 
+ Let $unit_L$, $unit_R$ be the left and right-biased monadic type constructor for Either, respectively.
+
+%In general, a right-biased disjunction (REither) of monads instances of the same generic type can serve as a basis for tree structures as follows: 
+% M[E] = REither[M1[E], M2[E]] is a monad provided:
+%    unit_M(x) = Right( unit_M2(x))
+%    map_M(x)  = map_M1(x) if x is Left, map_M2(x) if x is Right
+%    join_M(x) = join_M2(x) if x is Right[Right],
+%                otherwise, the value is obtained by lifting x into Right[Right] by 
+% applying a (full) lifting functor G:M1 => M2 that is a right adjoint of a 
+% (restricted) forgetful functor F: M2 => M1
+% Purpose: For use with two languages, A and B where M2 is a monad that is compatible with A and B, while
+% M1 is a monad compatible only with A.
+% N1[A] = M1[Q1[A]]
+% Q1[A] = Either[A, N1[A]]
+% E = Either[Q1[A], B]
+% Let N2[E] = M2[Q2[E]]
+% Q2[E] = Either[E, N2[E]] 
+% R[A, B] = Q2[Either[Q1[A], B]]
+
+
+
+
+
+\section{Monadic Tree Structures}
+The monad structures needed for API4KP are a restricted form of the monads seen in functional programming - rather than applying to category of all types, these monads are functors on a smaller category of knowledge resource types. In DOL, the concept of structured expression using sets is introduced. For example, let B be the category of (basic) Common Logic text expressions, and Q[B] = B or Set[Q[B]], where Set[Q[B]] is the typeclass of SetTree-structured Common Logic expressions. In particular, a member of type SetTree[B] is specified by a Set whose members are either  basic leaves (of type B) or structured branches (of type Set[Q[B]]). 
+
+The Set monad is appropriate for defining structured expressions in monotonic logics, like Common Logic, because the order and multiplicity of expressions in a collection has no effect on semantics. The semantics of CL is provided by the CL interpretation structure that assigns a truth-value to each basic CL text expression. The truth-value of a set of CL text expressions is true in an interpretation I if each member of the set maps to true in I. The truth value I(y) of a SetTree-structured CL expression y is defined to be I(flatten(y)), where flatten(y) is the set of leaves of y.
+
+We generalize this approach for defining the semantics of structured expressions to an arbitrary language L with basic expressions E and M-tree structured expressions. We assume that 
+\begin{itemize}
+\item M is a monad on the category of types,
+\item model-theoretic semantics is supplied through an interpretation structure I defined for basic expressions in E and simply-structured expressions M[E],
+\item a post-condition contract for side-effects is specified by a truth-valued function P(F, y) for all supported void knowledge actions F and all y in E or M[E].
+\end{itemize}
+
+Let N[\_] be the M-tree monad corresponding to the minimal (finite) fixed point of N[E] = M[E + N[E]], where "A + B" is the coproduct, which can also be denoted as a bifunctor Either[A, B].
+The unit function for N is the same as the unit function for M.
+The map and join functions for N are defined from a straight-forward recursive application of the map and join functions for M, given in the next section.
+The satisfaction of the monad laws is dependent on the use of the Either bifunctor to handle the union types, so that the left or right intention is preserved even in the case when the types are not disjoint. In particular,
+$$join_N = (join_M o map_M)( bimapOne( id) (unit_M o unit_R o join_N) ) $$
+$$ map_N(f) = map_M( bimap(f, map_N(f)) ) $$
+ where casting between M and N is implicit and the following functions for the Either bifunctor are used:
+ 
+If E is a type of basic knowledge resources, then N[E] is the type of M-tree-structured knowledge resources, and
+Q[E] = E or N[E] is the corresponding type of knowledge resources (either basic or structured). By convention, the M-tree monad is named by appending "Tree" to the name of the underlying monad; thus, SetTree[E] = Set[E or Set[SetTree[E]]].
+
+For all x, y $\in$ Q[E], define
+\begin{description}
+\item[level:] Q[E] $\Rightarrow$ N[E]
+%= bimapL(unit, id)
+such that level(x) = unit(x), if x $\in$ E, x otherwise
+\item[flatten:] Q[E] $\Rightarrow$ M[E]  
+such that flatten(y) = y if y $\in$  E or M[E], flatten( join$_N$(map$_M$(level)(y)) otherwise
+%= bimap(id, flatten_N)
+%\item[flatten_N:] N[E] $\Rightarrow$ M[E]  = bimap(id, flatten_N)
+\end{description}
+%where bimapL is a left-biased 
+Then for all y $\in$ Q[E], we may define the interpretation I(y) = I(flatten(y)), with entailments defined accordingly. %Similarly the pragmatics (side-effects) are specified by P(flatten(y)).
+Implementations that honor the semantics must satisfy P(F, y) = P(F, flatten(y)), where P is a function representing the post-conditions after execution of side-effectful knowledge operation F on the knowledge resource y.
+
+% composition of monads is a functor (not necessarily a monad)
+Like other monads, M-tree monads are functors and so can be combined through composition.
+For example, a system of multiple concurrent threads may be modelled as a Set-structure of Stream-structured knowledge resources: SetTree o StreamTree.
+%   StreamTree[A] = Stream[A or Stream[StreamTree[A]]]
+
+
+\section{Heterogeneous Structures}
+% monad tree in two langauges, with focus A and leaf B
+Suppose A and B are expression types of two languages where an environment provides a semantics-preserving transformation T from B to A.
+Further suppose that an interpretation mapping I is defined on A or M[A].
+The Either type E = A or B defines the basic knowledge expressions in this environment, while structured expressions are N[E] where N is the M-tree monad  N[E].
+The Either type Q[E] = E or N[E] contains all expressions in this environment, basic or structured. 
+
+Using the transformation T from the environment, we may define the interpretation of the M-tree structured expressions in terms of the interpretations of basic expressions in A and operations on monads. In particular,
+\begin{itemize}
+\item S(x) = T(x) if x $\in$ B, x otherwise
+\item I(x) = I( map(S)(flatten(x)) )
+\end{itemize}
+Notice that the expressions of type B are not required to be in a knowledge representation language. They could be in a domain-specific data model based on XML, JSON or SQL. The semantics of expressions of type B are derived from the transformation to type A, the focus  knowledge representation language of the environment. API4KP employs this feature to model ontology-based data access (OBDA) and rule-based data access (RBDA).
+
+Structured expressions can always be constructed in a monad that has more structure than necessary for compatibility with the semantics of a given language.
+For example, List and Stream monads can be used for monotonic, effect-free languages even though the Set monad has sufficient structure for these languages;
+a forgetful functor is used to define the semantics in the monad with greater structure in terms of the monad of lesser structure.
+A heterogeneous structure of languages containing some languages with effects and others without effects (e.g. an ECA rulebase supported by ontologies) could thus make primary use of an M-tree monad that preserves order, such as ListTree or StreamTree, while permitting some members of the collection to have a SetTree structure. 
+%In particular, if A is an ECA rulebase language and B is an ontology language, then ListTree[ A or SetTree[B]] would be an appropriate monadic tree structure for heterogeneous knowledge expressions in these two languages. 
+%
+
+\section{Proof}
+
+%Proof of satisfaction of monad laws by M-trees
+% Note - a shorter proof could probably be obtained using Kleisli's
+%[Functor Identity] map(id)(y) = y
+%where id is identity function s $\Rightarrow$ s.
+To verify the Functor Identity law for an M-tree, it is sufficient to show that map$_N$(id) = id. 
+In terms of the definition of map$_N$, 
+$$ map_N(f) = map_M( bimap(f, map_N(f)) ) $$
+we must show
+$$ map_N(id) = map_M( mapRight (map_N(id)) ) = id $$
+If x is Left, then mapRight(_)(x) = (x), so the law holds in the base case.
+Now suppose x is Right; i.e. it is an M-tree of some depth k.
+If the law holds for the components of x, then it holds for x.
+If k=1, then all the components of x are left, and the law holds.
+Suppose that the law holds for all M-trees of depth less then k.
+Then law holds for the components of x, and hence the law holds for x.
+Because M-trees are finite, then the law holds by induction.
+%
+%
+%[Functor Associativity] map(f o g) = map(f) o map(g)
+To verify the functor associativity law, it is sufficient to show
+$$ map_N(f o g) = map_N(f) o map_N(g) $$
+or
+$$ map_M(bimap(f o g, map_N(f o g)) = map_M(bimap(f, map_N(f)) o map_M(bimap(g, map_N(g)) $$
+If x is left, then
+$$ bimap(f o g, map_N(f o g)(x) = mapLeft(f o g)(x)$$
+Because $mapLeft$ satisfies functor associativity, then the law holds for x.
+
+Now
+$$ map_M(bimap(f o g, map_N(f o g)) = map_M(mapLeft(f o g) o mapRight(map_N(f o g)))$$
+Since $map_M$, $mapLeft$ and $mapRight$ are satisfy functor associativity, we have
+$$ map_M(bimap(f o g, map_N(f o g)) = map_M(mapLeft(f)) o map_M( mapLeft(g)) o map_M(mapRight(map_N(f o g))))$$
+Similarly
+$$map_M(bimap(f, map_N(f)) o map_M(bimap(g, map_N(g)) = map_M(mapLeft(f)) o map_M(mapRight( map_N(f)) o map_M(mapLeft(g)) o map_M(mapRight(map_N(g)))$$
+Because $mapLeft$ and $mapRight$ are commutative, then
+$$map_M(bimap(f, map_N(f)) o map_M(bimap(g, map_N(g)) = map_M(mapLeft(f))o map_M(mapLeft(g)) o map_M(mapRight( map_N(f))  o map_M(mapRight(map_N(g)))$$
+Therefore we need to show
+$$map_M(mapRight(map_N(f o g))) = map_M(mapRight( map_N(f))  o map_M(mapRight(map_N(g)))$$
+and this follows provided
+$$map_M(mapRight(map_N(f o g))) = map_M(mapRight( map_N(f) o map_N(g))$$
+
+
+Consider the sequence of M-trees of maximum depth $k$, denoted as $N_k$.
+$$ N_0[E] = Unit$$
+$$ N_1[E] = M[Either[E, N0[E]]$$
+$$ N_2[E] = M[Either[E, N1[E]]$$
+$$ N_n[E] = M[Either[E, N_{n-1}[E]]$$
+
+$N_0$ is a monad by default, since it has no instances.
+We wish to show that P[E] = M2[Either[E, M1[E]]] is a monad, provided M1 and M2 are monads,
+where
+$$ map_P(f) = map_M2( bimap(f, map_M1(f)) ) $$
+
+
+%[Functor Identity] map(id)(y) = y
+%where id is identity function s $\Rightarrow$ s.
+To verify functor identity, we need to show
+$$ map_P(id) = map_M2( bimap(id, map_M1(id)) ) = id $$
+Now
+$$ map_M2( bimap(id, map_M1(id)) ) = map_M2( mapRight(map_M1(id)) )$$
+Since M2, M1 and REither are monads, then 
+$$map_M2( mapRight(map_M1(id)) ) =id$
+and functor identity holds.
+%[Functor Associativity] map(f o g) = map(f) o map(g)
+To verify the functor associativity law, it is sufficient to show
+$$ map_P(f o g) = map_P(f) o map_P(g) $$
+or
+$$ map_M2( bimap(f o g, map_M1(f o g)) ) = map_M2( bimap(f, map_M1(f)) )  o map_M2( bimap(g, map_M1(g)) )  $$
+Working first on the left-hand side of the equation,
+\begin{align*}
+map_M2( bimap(f o g, map_M1(f o g)) ) = map_M2( mapLeft(f o g) o mapRight(map_M1(f o g)) ) \\
+ &= map_M2( mapLeft(f) o mapLeft(g) o mapRight(map_M1(f)) o mapRight(map_M1(g)))) ) \\
+ &= map_M2( mapLeft(f) o  mapRight(map_M1(f)) o mapLeft(g) omapRight(map_M1(g)))) ) \\
+\end{align*}
+because $mapLeft$ and $mapRight$ are commutative.
+Similarly, the right-hand side becomes
+\begin{align*}
+map_M2( bimap(f, map_M1(f)) )  o map_M2( bimap(g, map_M1(g)) ) 
+  &= map_M2( mapLeft(f) o mapRight(map_M1(f)) )  o map_M2( mapLeft(g) o mapRight(map_M1(g)) ) \\
+   &= map_M2( mapLeft(f) o mapRight(map_M1(f)) )  o map_M2( mapLeft(g) o mapRight(map_M1(g)) ) \\
+   &= map_M2( mapLeft(f)) o map_M2(mapRight(map_M1(f)) )  o map_M2( mapLeft(g)) o map_M2(mapRight(map_M1(g)) ) \\
+\end{align*}
+%[Unit from Natural Transformation] map(f)(unit(x)) = unit(f(x))
+%[Join from Natural Transformation] join(map(join)(x)) = join(join(x))
+
+%[Monad Left Identity] join(map(unit)(x)) = x
+%[Monad Right Identity] join(unit(x)) = x
+%[Monad Associativity] join(map(map(f))(x)) = map(f)(join(x))
+
+\bibliographystyle{splncs03}
+\bibliography{api4kbonto}
+
+\end{document}
