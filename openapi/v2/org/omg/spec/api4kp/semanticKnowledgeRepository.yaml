@@ -1,0 +1,590 @@
+swagger: '2.0'
+
+info:
+  #This version tag identifies the 'signature' as a whole, i.e. the acceptable combination of paths and associated behaviors. As such, it only impacts (one of) the URLs where the managed resources are accessed, not the identity of the Knowledge Resources themselves, whose versioning is built into the paths
+  version: "1.2"
+  title: 'Semantic Knowledge Repository API'
+  contact:
+    name: Davide Sottara
+    email: sottara.davide@mayo.edu
+  license:
+    name: Apache License, Version 2.0 
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  description: "APIs for a Semantic Knowledge Repository. \n\n Semantic Repositories abstract a Knowledge Artifact's content by means of known ontologies, recognize different forms of representation, and support descriptive knowledge management metadata (e.g. provenance, pedigree, applicability, usage, etc.). \n\n As such, Semantic Knowledge Repositories treat Knowledge Artifacts as gray boxes, as opposed to a (non-semantic) Repository, for which Artifacts are black boxes. \n\n Moreover, Semantic Repositories are transparent to location/federation, should support content negotiation, and may leverage transrepresentation capabilities to materialize ephemeral Knowledge Artifacts on demand. \n\n  Knowledge Assets are immaterial entities, and the Catalog is not always guaranteed to have direct access to any concrete manifestation. For this reason, the Catalog uses a Surrogate Resource to materialze the (meta) knowledge about an Asset."
+  
+  
+  
+tags:
+  - name: Knowledge Asset Catalog
+    description: "A Knowledge Asset Catalog is an indexed collection of Knowledge Assets. A Catalog identifies, versions, types/categorizes, and relates Assets to each other."
+  - name: Semantic Knowledge Repository
+    description: "A Semantic Knowledge Repository provides access to Knowledge Artifacts based on their content and representation thereof, rather than identity or location."
+
+
+#schemas:
+# - http
+
+paths:
+
+      
+####################################################################################################  
+#
+# Knowledge Asset Catalog
+#  
+####################################################################################################  
+  
+  
+  /cat:
+    get:
+      tags:
+        - Knowledge Asset Catalog
+        #- core
+      summary: Describe Knowledge Asset Catalog. 
+      description: "Returns a Knowledge Asset Catalog Resource that summarizes the current state of the Catalog available at this endpoint."
+      operationId: getAssetCatalog
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/KnowledgeAssetCatalog'
+        500:
+          description: Internal Error
+
+
+####################################################################################################  
+
+  
+  /cat/assets:
+    get:
+      tags:
+        - Knowledge Asset Catalog
+        #- core
+      summary: List Knowledge Assets. 
+      description: "Returns a collection of resources that (summarily) describe the Assets managed under this Catalog, i.e. such that a Knowledge Asset Surrogate has been registered. Filtering should be allowed based on asset type and asset annotations"
+      operationId: listKnowledgeAssets
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: '#/parameters/assetType'
+        - $ref: '#/parameters/assetAnnotation'
+        # pageable
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit' 
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        500:
+          description: Internal error
+    
+    post:
+      tags:
+        - Knowledge Asset Catalog
+        #- Semantic Knowledge Repository
+      summary: Create a new Knowledge Asset
+      description: "Creates a new Knowledge Asset (Surrogate), assigning an asset ID in the process. \n If a Knowledge Artifact is provided, it should be considered an exemplar of the primary manifestation of the Asset, and that Artifact should be used to pre-populate the Knowledge Asset Surrogate. In particular, if an assetID can be inferred from the Artifact, that ID shall be used; otherwise a new one will minted using a server-determined strategy. \n\n This operation should use other support APIs such as LanguageService::detect to populate the Surrogate. \n If the Artifact is recognized to be a composite, the resulting Surrogate will have composite structure as well. "
+      operationId: addKnowledgeAsset
+      consumes: 
+        - application/xml
+        - application/json
+      parameters: 
+        - $ref: '#/parameters/assetSurrogate'
+      responses:
+        201:
+          description: Success
+          headers:
+            Content-Location:
+              type: string
+              format: uri
+              description: URL where the new Knowledge Asset can be accessed   
+        403:
+          description: Not supported - repository is read only
+        500:
+          description: Internal error     
+        501: 
+          description: Not implemented     
+              
+                  
+
+
+####################################################################################################  
+
+  /cat/assets/{assetId}:
+    get:
+      tags:
+        - Knowledge Asset Catalog
+        #- core
+      summary: Retrieve a Knowledge Asset. 
+      description: "Retrives the most recently released version of a Knowledge Asset (Surrogate). \n\n Of all the versions in the series, several criteria concur to determine the LATEST: the time at which a version was created, the (partial) ordering of the version tags, and the association of that version of the Asset with a Manifestation in a given publication status. Unless otherwise specified, the server should return the top version that has a published manifestation, or the top version if no version has a published manifestation. If the versioning scheme does not have an absolute order (i.e. there is no clear top version), the LATEST version should be chosen."
+      operationId: getKnowledgeAsset
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/assetId'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/KnowledgeAsset'
+        404:
+          description: Asset not found
+        500:
+          description: Internal error    
+    
+####################################################################################################  
+          
+  /cat/assets/{assetId}/versions:
+    post:
+      tags:
+        - Semantic Knowledge Repository
+        #- Knowledge Asset Catalog
+      summary: Posts a newer version of a Knowledge Asset Surrogate.
+      description: "Updates a Knowledge Asset Surrogate. The new Surrogate MUST either refer to the same Knowledge Asset or, if it refers to a new version of the Asset, it must either have no manifestations/carriers, or provide an exemplar."
+      operationId: addKnowledgeAssetVersion
+      consumes: 
+        - multipart/form-data
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/assetSurrogate'
+        - $ref: '#/parameters/exemplarCarrier'
+      responses:
+        201:
+          description: Success
+          headers:
+            Content-Location:
+              type: string
+              format: uri
+              description: URL where the new version of the Knowledge Asset Surrogate is accessible
+        403:
+          description: Series is read-only    
+        404:
+          description: Asset not found    
+        500:
+          description: Internal error  
+        501:
+          description: Not implemented   
+            
+    get:
+      tags:
+        #- Semantic Knowledge Repository
+        - Knowledge Asset Catalog
+      summary: Get all versions of a Knowledge Asset Surrogate.
+      operationId: getKnowledgeAssetVersions
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - $ref: '#/parameters/assetId'
+        # pageable
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit' 
+        #series
+        - $ref: '#/parameters/beforeTag'
+        - $ref: '#/parameters/afterTag'
+        #sortable
+        - $ref: '#/parameters/sort'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        404:
+          description: Asset not found    
+        500:
+          description: Internal error       
+    
+  /cat/assets/{assetId}/versions/{versionTag}:
+    get:
+      tags:
+        - Knowledge Asset Catalog
+        #- core
+      summary: Retrieves a Knowledge Asset. 
+      description: "Retrieves a Surrogate that reflects the current meta-knowledge about a specific version of a Knowledge Asset, its Representations and Manifestations."
+      operationId: getVersionedKnowledgeAsset
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/KnowledgeAsset'
+        404:
+          description: Asset not found   
+        500:
+          description: Internal error    
+            
+    put:
+      tags:
+        - Knowledge Asset Catalog
+        #- Semantic Knowledge Repository
+      summary: Set/Initialize a specific version of a Knowledge Asset
+      description: "Configures a Catalog Entry, for a known (version of) a Knowledge Asset. The client is required, at a minimum, to know/provide the Asset ID and version, and should provide a Surrogate consistent with that information. \n Furthermore, the client may provide an exemplar Carrier of that Asset."
+      operationId: setVersionedKnowledgeAsset
+      consumes: 
+        - application/json
+        - application/xml
+      parameters: 
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/assetSurrogate'
+      responses:
+        204:
+          description: Success
+        403:
+          description: Not supported - repository is read only
+        404:
+          description: Asset not found   
+        500:
+          description: Internal error     
+        501: 
+          description: Not implemented       
+          
+          
+          
+####################################################################################################  
+  /cat/assets/{assetId}/versions/{versionTag}/carrier:
+    get:
+      tags:
+      - Semantic Knowledge Repository
+      #- core
+      summary: Retrieve a Knowledge Artifact carrying the primary Manifestation of a Knowledge Asset. 
+      description: "For a given version of a Knowledge Asset, looks up the Manifestations such that a Master Copy is either stored in, or accessible to the Semantic Repository, selects the one that is marked as primary, if any, and returns a copy thereof. If a specific manifestation type is indicated, the server SHOULD honor the request"
+      operationId: getCanonicalKnowledgeAssetCarrier
+      produces:
+      - application/xml
+      - application/json
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        # negotiatiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        300:
+          description: Negotiation failed, see alternatives
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+          headers:
+            Location:
+              type: string
+              format: uri
+              description: Location where the canonical carrier can be accessed.    
+        404:
+          description: Asset Version not found   
+        500:
+          description: Internal error     
+        
+  /cat/assets/{assetId}/versions/{versionTag}/carriers:
+    get:
+      tags:
+      - Semantic Knowledge Repository
+      #- core
+      summary: Lists the known Carriers for a given Knowledge Asset
+      description: "Retrieves Pointers to all the Knowledge Artifacts that are known to carry at least one expression, in some language, of the given version of a Knowledge Asset."
+      operationId: getKnowledgeAssetCarriers
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        404:
+          description: Asset Version not found   
+        500:
+          description: Internal error     
+      
+          
+    post:
+      tags:
+      - Semantic Knowledge Repository
+      #- core
+      summary: Registers a new Carrier for a given Knowledge Asset
+      description: "Registers a new Carrier for a given Knowledge Asset. An artifact ID will be inferred from the artifact content, or minted anew, and the Asset surrogate will be updated"
+      operationId: addKnowledgeAssetCarrier
+      consumes:
+      - application/octet-stream
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/exemplarCarrier'
+      responses:
+        201:
+          description: Success
+          headers:
+            Content-Location:
+              type: string
+              format: uri
+              description: URL where the new version of the Knowledge Asset Carrier is accessible
+        403:
+          description: Asset Series is read-only    
+        404:
+          description: Asset Version not found    
+        500:
+          description: Internal error  
+        501:
+          description: Not implemented     
+  
+  /cat/assets/{assetId}/versions/{versionTag}/carriers/{artifactId}/versions/{artifactVersionTag}:
+    get:
+      tags:
+      - Semantic Knowledge Repository
+      #- core
+      summary: Retrieves a specific Carrier for a given Knowledge Asset
+      description: "Retrieves (a copy of a version of) an Artifact. That Artifact must be known to carry at least one expression, in some language, of the given Knowledge Asset."
+      operationId: getKnowledgeAssetCarrierVersion
+      produces:
+      - application/*
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/artifactId'
+        - $ref: '#/parameters/artifactVersionTag'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        404:
+          description: Asset Version not found    
+        500:
+          description: Internal error  
+          
+    put:
+      tags:
+      - Semantic Knowledge Repository
+      #- core
+      summary: Registers a (version of a) Carrier for a given Knowledge Asset
+      description: "Registers a Knowledge Artifact as the Carrier of an expression of a Knowledge Asset. As a consequence, the Asset (Surrogate) is updated, and its version is incremented."
+      operationId: setKnowledgeAssetCarrierVersion
+      consumes:
+      - application/octet-stream
+      produces:
+      - application/xml
+      - application/json
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/artifactId'
+        - $ref: '#/parameters/artifactVersionTag'
+        - $ref: '#/parameters/exemplarCarrier'
+      responses:
+        204:
+          description: Success
+        403:
+          description: Asset Series is read-only    
+        404:
+          description: Asset Version not found    
+        500:
+          description: Internal error  
+        501:
+          description: Not implemented     
+    
+      
+####################################################################################################  
+#TODO - Revision in progress      
+      
+  /cat/assets/{assetId}/versions/{versionTag}/bundle:       
+    get:
+      tags:
+      - Semantic Knowledge Repository
+      #- core
+      operationId: bundle
+      produces:
+        - "application/json"
+        - "application/xml"
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/KnowledgeCarrier'
+            
+  /cat/assets/{assetId}/versions/{versionTag}/expressions:
+    get:
+      tags:
+      - Semantic Knowledge Repository
+      #- core
+      summary: Retrieve a Knowledge Artifact carrying the given version of the given Knowledge Asset. 
+      description: "Retrieves a self-contained Artifact that carries a concrete expression of the given Knowledge Asset. The client and server may engage in content negotiation. The server is not expected to store a master copy of the desired Artifact, as long as the server can leverage trans-representation and knowledge base services to create the required Artifact dynamically."
+      operationId: getKnowledgeAssetExpression
+      produces:
+      - model/*
+      - application/*
+      - text/*
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: string
+            format: binary
+
+
+
+
+parameters:
+  
+  assetType:
+    in: query
+    name: assetType
+    required: false
+    type: string
+    description: "A codified term that identifies a type, category or class of Knowledge Assets defined in some ontology or classification scheme known to the server. For this reason, the term does not need to be fully qualified."
+  
+  assetAnnotation:
+    in: query
+    name: assetAnnotation
+    required: false
+    type: string
+    description: "A fully qualified (URI) term that denotes a concept that can be used to annotate assets."
+
+  assetId:
+    in: path
+    name: assetId
+    required: true
+    type: string
+    description: "The id of the Knowledge Asset (Series)."  
+  
+  versionTag:
+    in: path
+    name: versionTag
+    required: true
+    type: string
+    description: "The version tag of a Versioned Entity. \n Versioned Identifiers identify specific, Immutable Versions of Mutable Entities, which reflect the state of that Entity at a given point in time. Where a version(ed) identifier is universal, the Tag represents the local part of that identifier, under the scope of the identifier that denotes the Entity (series)."  
+ 
+  artifactId:
+    in: path
+    name: artifactId
+    required: true
+    type: string
+    description: "The id of the Knowledge Artifact that carries a concrete expression of a Knowledge Asset."  
+  
+  artifactVersionTag:
+    in: path
+    name: artifactVersionTag
+    required: true
+    type: string
+    description: "The version tag a (version of a) Knowledge Artifact"  
+ 
+  extAccept:
+    in: header
+    name: X-Accept
+    required: false
+    type: string
+    description: "A MIME Type that codifies the syntactic representation of a Knowledge Artifact, as accepted by the client in a content negotiation sense."  
+ 
+  assetSurrogate:
+    in: body
+    name: assetSurrogate
+    required: false
+    schema:
+      $ref: '#/definitions/KnowledgeAsset'
+    description: "The Surrogate of a Knowledge Asset."
+    
+  exemplarCarrier:  
+    in: body
+    name: exemplar
+    required: false
+    schema:
+      type: string
+      format: binary 
+    description: "A Knowledge Artifact that carries an exemplar of a Knowledge Assets" 
+ 
+ 
+  beforeTag:
+    in: query
+    name: beforeTag
+    required: false
+    type: string
+    description: "Restricts the series to include only versions before (included) a given version Tag. Assumes the underlying versioning scheme has at least a partial ordering defined."
+  afterTag:
+    in: query
+    name: afterTag
+    required: false
+    type: string
+    description: "Restricts the series to include only versions after (included) a given version Tag. Assumes the underlying versioning scheme has at least a partial ordering defined."
+  
+  sort:
+    in: query
+    name: sort
+    required: false
+    type: string
+    default: "asc"
+    description: "Allows to sort a collection by one ore more properties."  
+
+  offset:
+    in: query
+    name: offset
+    type: integer
+    required: false
+    description: "Filters elements in a collection, returning all elements after the 'offset' index included, ignoring all previous elements." 
+  limit:
+    in: query
+    name: limit
+    type: integer
+    required: false
+    description: "Returns up to the given number of elements in a collection."
+
+
+
+definitions:
+
+  Pointer: 
+    type: object
+
+  KnowledgeCarrier:
+    type: object
+    description: "A Resource that wraps a Serialized, Encoded Knowledge Artifact"
+
+  KnowledgeAsset: 
+    title: Knowledge Asset Surrogate
+    type: object
+    description: "A Resource that contains descriptive information about a specific version of a Knowledge Asset, as well as its known Representations and/or Manifestations. The actual content model is implementation specific, so the adopted language specification must be manifested by the Knowledge Asset Catalog."
+ 
+  KnowledgeAssetCatalog:
+    title: Knowledge Asset Catalog
+    type: object
+    description: "A Resource that provides a summary of the features of a Catalog at a given point in time, including the categories and types of Assets it supports, and the model/schema used to represent Assets' descriptions."
+
+
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+# basePath: /mea-3d/KnowledgeRepository/1.0
+schemes:
+ - https
+# Added by API Auto Mocking Plugin
+basePath: /mayo-clinic/SemanticKnowledgeRepository/1.0.0
