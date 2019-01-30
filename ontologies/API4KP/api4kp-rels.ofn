@@ -49,11 +49,13 @@ Declaration(ObjectProperty(rel:adaptation-of))
 Declaration(ObjectProperty(rel:compact-representation-of))
 Declaration(ObjectProperty(rel:compatible-with))
 Declaration(ObjectProperty(rel:complements))
+Declaration(ObjectProperty(rel:complies-with))
 Declaration(ObjectProperty(rel:compression-of))
 Declaration(ObjectProperty(rel:copy-of))
 Declaration(ObjectProperty(rel:depends-on))
 Declaration(ObjectProperty(rel:derived-from))
 Declaration(ObjectProperty(rel:digest-of))
+Declaration(ObjectProperty(rel:effectuates))
 Declaration(ObjectProperty(rel:equal-to))
 Declaration(ObjectProperty(rel:has-derivative))
 Declaration(ObjectProperty(rel:has-later-revision))
@@ -211,6 +213,15 @@ SubObjectPropertyOf(rel:complements rel:compatible-with)
 ObjectPropertyDomain(rel:complements know:KnowledgeEndeavour)
 ObjectPropertyRange(rel:complements know:KnowledgeEndeavour)
 
+# Object Property: rel:complies-with (complies with)
+
+AnnotationAssertion(rdfs:label rel:complies-with "complies with")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:complies-with "An endeavor X complies with an endeavor Y if it satisfies all the constraints in Y")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> rel:complies-with "The compliant endeavor is supposed to be, or to contain, some kind of specification")
+SubObjectPropertyOf(rel:complies-with rel:compatible-with)
+ObjectPropertyDomain(rel:complies-with know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:complies-with know:KnowledgeEndeavour)
+
 # Object Property: rel:compression-of (compression of)
 
 AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> rel:compression-of <http://www.omg.org/spec/API4KP/Aspects/material-relationship>)
@@ -256,6 +267,18 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:digest-
 SubObjectPropertyOf(rel:digest-of rel:summarization-of)
 ObjectPropertyDomain(rel:digest-of know:KnowledgeExpression)
 ObjectPropertyRange(rel:digest-of know:KnowledgeExpression)
+
+# Object Property: rel:effectuates (effectuates)
+
+AnnotationAssertion(rdfs:label rel:effectuates "effectuates")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> rel:effectuates "The relationship between two endeavors X and Y, such that:
+- X is a knowledge endeavor, which either is or can be conceptualized as a knowledge processing method specification 
+- When X is used in a knowledge processing activity, that activity will produce another knowledge endeavor Z
+- Z complies with Y")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#note> rel:effectuates "The definition needs to be formalized as a rule")
+SubObjectPropertyOf(rel:effectuates rel:compatible-with)
+ObjectPropertyDomain(rel:effectuates know:KnowledgeEndeavour)
+ObjectPropertyRange(rel:effectuates know:KnowledgeEndeavour)
 
 # Object Property: rel:equal-to (equal to)
 

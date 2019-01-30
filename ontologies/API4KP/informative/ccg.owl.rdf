@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://ckm.ontology.mayo.edu/CCG#"
+     xml:base="http://ckm.ontology.mayo.edu/CCG"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <owl:Ontology rdf:about="http://ckm.ontology.mayo.edu/CCG">
+        <owl:imports rdf:resource="http://ckm.ontology.mayo.edu/ontology/KAO/1.0"/>
+        <rdfs:comment>Clinical Concept Glossary Ontology</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ckm.ontology.mayo.edu/ontology/CCG#ClinicalConceptOperationalDefinition -->
+
+    <owl:Class rdf:about="http://ckm.ontology.mayo.edu/ontology/CCG#ClinicalConceptOperationalDefinition">
+        <rdfs:subClassOf rdf:resource="http://ckm.ontology.mayo.edu/ontology/KAO#ClinicalKnowledgeAsset"/>
+        <rdfs:subClassOf rdf:resource="http://ckm.ontology.mayo.edu/ontology/KAO#OperationalConceptDefinition"/>
+        <rdfs:label>clinical concept operational definition</rdfs:label>
+        <skos:definition>Operational definition that defines some clinical concept</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ckm.ontology.mayo.edu/ontology/CCG#CognitivelyAssistedConceptDefinition -->
+
+    <owl:Class rdf:about="http://ckm.ontology.mayo.edu/ontology/CCG#CognitivelyAssistedConceptDefinition">
+        <rdfs:subClassOf rdf:resource="http://ckm.ontology.mayo.edu/ontology/CCG#ConceptGlossaryEntry"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KP/core#uses-concept"/>
+                        <owl:someValuesFrom rdf:resource="http://ckm.ontology.mayo.edu/ontology/KAO#ComputationalTechnique"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KP/core#uses-concept"/>
+                        <owl:someValuesFrom rdf:resource="http://ckm.ontology.mayo.edu/ontology/KAO#NaturalisticTechnique"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:label>cognitively assisted concept definition</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ckm.ontology.mayo.edu/ontology/CCG#ConceptGlossaryEntry -->
+
+    <owl:Class rdf:about="http://ckm.ontology.mayo.edu/ontology/CCG#ConceptGlossaryEntry">
+        <rdfs:subClassOf rdf:resource="http://ckm.ontology.mayo.edu/ontology/KAO#OperationalConceptDefinition"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KP/core#uses-concept"/>
+                <owl:someValuesFrom rdf:resource="http://www.omg.org/spec/API4KP/core#KnowledgeProcessingTechnique"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>concept glossary entry</rdfs:label>
+        <skos:definition>Operational Definition of a Concept that is based on one or more explicit knowledge processing technique</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ckm.ontology.mayo.edu/ontology/CCG#HumanResolutionConceptDefinition -->
+
+    <owl:Class rdf:about="http://ckm.ontology.mayo.edu/ontology/CCG#HumanResolutionConceptDefinition">
+        <rdfs:subClassOf rdf:resource="http://ckm.ontology.mayo.edu/ontology/CCG#ConceptGlossaryEntry"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KP/core#uses-concept"/>
+                <owl:someValuesFrom rdf:resource="http://ckm.ontology.mayo.edu/ontology/KAO#NaturalisticTechnique"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>human resolution concept definition</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ckm.ontology.mayo.edu/ontology/CCG#InteractiveConceptDefinition -->
+
+    <owl:Class rdf:about="http://ckm.ontology.mayo.edu/ontology/CCG#InteractiveConceptDefinition">
+        <rdfs:subClassOf rdf:resource="http://ckm.ontology.mayo.edu/ontology/CCG#ConceptGlossaryEntry"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KP/core#uses-concept"/>
+                <owl:someValuesFrom rdf:resource="http://ckm.ontology.mayo.edu/ontology/KAO#InteractiveTechnique"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>interactive concept definition</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ckm.ontology.mayo.edu/ontology/CCG#KnowledgeBasedConceptDefinition -->
+
+    <owl:Class rdf:about="http://ckm.ontology.mayo.edu/ontology/CCG#KnowledgeBasedConceptDefinition">
+        <rdfs:subClassOf rdf:resource="http://ckm.ontology.mayo.edu/ontology/CCG#ConceptGlossaryEntry"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KP/core#uses-concept"/>
+                <owl:someValuesFrom rdf:resource="http://ckm.ontology.mayo.edu/ontology/KAO#ComputationalTechnique"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>(computable) knowledge based concept definition</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ckm.ontology.mayo.edu/ontology/CCG#LogicBasedConceptDefinition -->
+
+    <owl:Class rdf:about="http://ckm.ontology.mayo.edu/ontology/CCG#LogicBasedConceptDefinition">
+        <rdfs:subClassOf rdf:resource="http://ckm.ontology.mayo.edu/ontology/CCG#KnowledgeBasedConceptDefinition"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KP/core#uses-concept"/>
+                <owl:someValuesFrom rdf:resource="http://ckm.ontology.mayo.edu/ontology/KAO#QualitativeTechnique"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>logic based concept definition</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ckm.ontology.mayo.edu/ontology/CCG#NLPBasedConceptDefinition -->
+
+    <owl:Class rdf:about="http://ckm.ontology.mayo.edu/ontology/CCG#NLPBasedConceptDefinition">
+        <rdfs:subClassOf rdf:resource="http://ckm.ontology.mayo.edu/ontology/CCG#KnowledgeBasedConceptDefinition"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KP/core#uses-concept"/>
+                <owl:someValuesFrom rdf:resource="http://ckm.ontology.mayo.edu/ontology/KAO#NLPTechnique"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>NLP based concept definition</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ckm.ontology.mayo.edu/ontology/CCG#ServiceBasedDefinition -->
+
+    <owl:Class rdf:about="http://ckm.ontology.mayo.edu/ontology/CCG#ServiceBasedDefinition">
+        <rdfs:subClassOf rdf:resource="http://ckm.ontology.mayo.edu/ontology/CCG#ConceptGlossaryEntry"/>
+        <rdfs:subClassOf rdf:resource="http://ckm.ontology.mayo.edu/ontology/KAO#ServiceProfile"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KP/core#uses-concept"/>
+                <owl:someValuesFrom rdf:resource="http://ckm.ontology.mayo.edu/ontology/KAO#QueryTechnique"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>service-based concept definition</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ckm.ontology.mayo.edu/ontology/CCG#StatisticalConceptDefinition -->
+
+    <owl:Class rdf:about="http://ckm.ontology.mayo.edu/ontology/CCG#StatisticalConceptDefinition">
+        <rdfs:subClassOf rdf:resource="http://ckm.ontology.mayo.edu/ontology/CCG#KnowledgeBasedConceptDefinition"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.omg.org/spec/API4KP/core#uses-concept"/>
+                <owl:someValuesFrom rdf:resource="http://ckm.ontology.mayo.edu/ontology/KAO#QuantitativeTechnique"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>statistical concept definition</rdfs:label>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

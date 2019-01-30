@@ -100,6 +100,7 @@ Declaration(Class(know:PresentationalMarkupLanguage))
 Declaration(Class(know:PrimitiveConcept))
 Declaration(Class(know:ProceduralMarkupLanguage))
 Declaration(Class(know:Profile))
+Declaration(Class(know:ResolvableConcept))
 Declaration(Class(know:SelfContainedKnowledgeArtifact))
 Declaration(Class(know:SerializableLanguage))
 Declaration(Class(know:Serialization))
@@ -112,6 +113,12 @@ Declaration(Class(know:Syntax))
 Declaration(Class(know:VersionedIdentifier))
 Declaration(Class(know:VersionedKnowledgeResource))
 Declaration(Class(know:WorkOfKnowledge))
+Declaration(Class(<http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Arrangement>))
+Declaration(Class(<http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/ArtificialLanguage>))
+Declaration(Class(<http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/CodeElement>))
+Declaration(Class(<http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Identifier>))
+Declaration(Class(<http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language>))
+Declaration(Class(<http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/NaturalLanguage>))
 Declaration(ObjectProperty(know:affects))
 Declaration(ObjectProperty(know:archetyped-by))
 Declaration(ObjectProperty(know:archetypes))
@@ -130,6 +137,7 @@ Declaration(ObjectProperty(know:conforms-with))
 Declaration(ObjectProperty(know:consistently-expresses))
 Declaration(ObjectProperty(know:defined-by))
 Declaration(ObjectProperty(know:defines))
+Declaration(ObjectProperty(know:defines-in-terms-of))
 Declaration(ObjectProperty(know:denoted-by))
 Declaration(ObjectProperty(know:denotes))
 Declaration(ObjectProperty(know:described-by))
@@ -165,6 +173,7 @@ Declaration(ObjectProperty(know:involves))
 Declaration(ObjectProperty(know:is-about))
 Declaration(ObjectProperty(know:is-serialized-in))
 Declaration(ObjectProperty(know:knowledge-representation-of))
+Declaration(ObjectProperty(know:leverages))
 Declaration(ObjectProperty(know:limits))
 Declaration(ObjectProperty(know:makes-use-of))
 Declaration(ObjectProperty(know:part-of))
@@ -206,11 +215,16 @@ Declaration(ObjectProperty(know:uses-primary-language))
 Declaration(ObjectProperty(know:uses-profile))
 Declaration(ObjectProperty(know:uses-syntax))
 Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/rel#depends-on>))
+Declaration(ObjectProperty(<http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/denotes>))
+Declaration(ObjectProperty(<http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/hasDenotation>))
+Declaration(ObjectProperty(<http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/identifies>))
+Declaration(ObjectProperty(<http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/isIdentifiedBy>))
 Declaration(AnnotationProperty(dc:creator))
 Declaration(AnnotationProperty(dc:date))
 Declaration(AnnotationProperty(dc:description))
 Declaration(AnnotationProperty(dc:title))
 Declaration(AnnotationProperty(dc-t:license))
+Declaration(AnnotationProperty(dc-t:source))
 Declaration(AnnotationProperty(sm:copyright))
 Declaration(AnnotationProperty(skos:altLabel))
 Declaration(AnnotationProperty(skos:definition))
@@ -360,6 +374,13 @@ AnnotationAssertion(rdfs:seeAlso know:defines <http://www.ontologydesignpatterns
 SubObjectPropertyOf(know:defines know:captures)
 ObjectPropertyDomain(know:defines know:Definition)
 ObjectPropertyRange(know:defines know:DefinedConcept)
+
+# Object Property: know:defines-in-terms-of (know:defines-in-terms-of)
+
+AnnotationAssertion(rdfs:comment know:defines-in-terms-of "concept that is used explcitily in the definition of another concept")
+SubObjectPropertyOf(know:defines-in-terms-of know:leverages)
+ObjectPropertyDomain(know:defines-in-terms-of know:Definition)
+ObjectPropertyRange(know:defines-in-terms-of know:AtomicConcept)
 
 # Object Property: know:denoted-by (denoted by)
 
@@ -624,6 +645,13 @@ AnnotationAssertion(skos:definition know:knowledge-representation-of "relates a 
 SubObjectPropertyOf(know:knowledge-representation-of know:representation-of)
 ObjectPropertyDomain(know:knowledge-representation-of know:KnowledgeExpression)
 ObjectPropertyRange(know:knowledge-representation-of know:Knowledge)
+
+# Object Property: know:leverages (know:leverages)
+
+AnnotationAssertion(rdfs:comment know:leverages "a WoK levereages a concept if that concept is not part of that WoK, but is required to understand the WoK")
+SubObjectPropertyOf(know:leverages know:uses-concept)
+ObjectPropertyDomain(know:leverages know:WorkOfKnowledge)
+ObjectPropertyRange(know:leverages know:AtomicConcept)
 
 # Object Property: know:limits (know:limits)
 
@@ -1564,6 +1592,12 @@ AnnotationAssertion(skos:definition know:Profile "A profile is a restricted abst
 EquivalentClasses(know:Profile ObjectIntersectionOf(know:AbstractSyntax ObjectSomeValuesFrom(know:profiles know:AbstractSyntax)))
 SubClassOf(know:Profile know:AbstractSyntax)
 
+# Class: know:ResolvableConcept (resolvable concept)
+
+AnnotationAssertion(rdfs:comment know:ResolvableConcept "Defined Concept that has some Operational (constructive) Definition, i.e. a definition that can be applied to a situation, to infer whether or not the concept archetypes that Situation")
+AnnotationAssertion(rdfs:label know:ResolvableConcept "resolvable concept")
+SubClassOf(know:ResolvableConcept know:DefinedConcept)
+
 # Class: know:SelfContainedKnowledgeArtifact (self-contained knowledge artifact)
 
 AnnotationAssertion(rdfs:comment know:SelfContainedKnowledgeArtifact "As an instance of a self-contained manifestation, it carries all the expression(s) needed to understand its content, if any dependencies exist")
@@ -1672,15 +1706,15 @@ SubClassOf(know:WorkOfKnowledge ObjectSomeValuesFrom(know:captures know:PieceOfK
 SubClassOf(know:WorkOfKnowledge ObjectSomeValuesFrom(know:has-part know:AtomicConcept))
 SubClassOf(know:WorkOfKnowledge ObjectSomeValuesFrom(know:product-of know:KnowledgeActivity))
 
-# Class: <http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Arrangement> (arrangement)
+# Class: <http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Arrangement> (<http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Arrangement>)
 
 SubClassOf(<http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Arrangement> know:ComplexConcept)
 
-# Class: <http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/ArtificialLanguage> (artificial language)
+# Class: <http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/ArtificialLanguage> (<http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/ArtificialLanguage>)
 
 SubClassOf(<http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/ArtificialLanguage> know:ConstructedLanguage)
 
-# Class: <http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/CodeElement> (code element)
+# Class: <http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/CodeElement> (<http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/CodeElement>)
 
 SubClassOf(<http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/CodeElement> know:ConcreteExpression)
 

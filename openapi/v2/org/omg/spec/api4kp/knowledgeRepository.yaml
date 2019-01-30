@@ -1,0 +1,547 @@
+swagger: '2.0'
+info:
+  version: "1.2"
+  title: 'Knowledge Repository API'
+  description: "API that expose the functional capabilities of a Knowledge Artifact Repository.
+  Repositories allow to store and retrieve (copies of) Digital Knowledge Artifacts, handling versioning in the process.
+  The API also supports the (logical) federation of Repositories.
+  
+  Artifacts MUST be identified and versioned, and the identifiers SHOULD be universal, unique and opaque."
+# basePath: /mea3-repository
+tags:
+  - name: Knowledge Artifact
+    description: Endpoints handling Versioned Master Copies of Knowledge Artifacts.
+    
+  - name: Knowledge Artifact Series
+    description: Endpoints handling Knowledge Artifact Series, dealing with versioning implicitly     
+  
+  - name: Knowledge Artifact Repository
+    description: Endpoints that expose the notion of federated Knowledge Artifact Repository.
+
+
+#schemas:
+# - http
+paths:
+
+####################################################################################################  
+#
+# Knowledge Artifact Repository
+#  
+####################################################################################################  
+
+  /repos:
+    get:
+      tags:
+      - Knowledge Artifact Repository
+      summary: List federated Knowledge Artifact Repositories
+      description: "Retrieves a browsable list of known Knowledge Artifact Repositories federated under this manager."
+      operationId: listKnowledgeArtifactRepositories
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        500:
+          description: Internal error
+    post:
+      tags:
+      - Knowledge Artifact Repository
+      summary: Create new Knowledge Artifact Respository 
+      description: "Creates a new Knowledge Artifact Repository, assigning an identifier in the process, possibly using some initial descriptive information"
+      operationId: initKnowledgeArtifactRepository
+      parameters:
+        - $ref: '#/parameters/repositoryDescr'
+      responses:
+        201:
+          description: Success
+          headers:
+            Content-Location:
+              type: string
+              format: uri
+              description: URL where the new repository can be accessed  
+        403:
+          description: New Repositories cannot be created
+        500:
+          description: Internal error  
+        501:
+          description: Not supported
+
+####################################################################################################
+
+  /repos/{repositoryId}:
+    get:
+      tags:
+      - Knowledge Artifact Repository
+      summary: Describe Knowledge Artifact Respository
+      description: "Retrieves the state, as known at the time the operation is invoked, of a specific Knowledge Artifact Repository."
+      operationId: getKnowledgeArtifactRepository
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: '#/parameters/repositoryId'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/KnowledgeArtifactRepository'
+        404:
+          description: There is no Repository with the given ID
+        500:
+          description: Internal error  
+    put:
+      tags:
+      - Knowledge Artifact Repository
+      summary: Sets a Knowledge Artifact Respository 
+      description: "Ensure a Knowledge Artifact Repository with the given identifier is accessible. If not, will attempt to create one. The identifier must be acceptable to the server. If optional descriptive information is provided, it will be used to initialize or update the state of the Repository."
+      operationId: setKnowledgeArtifactRepository
+      consumes: 
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: '#/parameters/repositoryId'
+        - $ref: '#/parameters/repositoryDescr'
+      responses:
+        204:
+          description: Success
+        403:
+          description: Repositories cannot be created or updated.
+        500:
+          description: Internal error
+        501: 
+          description: Not implemented
+    delete:
+      tags:
+      - Knowledge Artifact Repository
+      summary: Deletes an empty Knowledge Artifact Respository 
+      description: "Ensure a Knowledge Artifact Repository with the given identifier is no longer accessible. The Repository MUST be empty for this operation to succeed"
+      operationId: deleteKnowledgeArtifactRepository
+      parameters:
+        - $ref: '#/parameters/repositoryId'
+      responses:
+        204:
+          description: Success. The repository was successfully deleted.
+        403:
+          description: The repository is not empty and cannot be deleted.
+        500:
+          description: Internal error
+        501:
+          description: Not implemented
+        
+    head:
+      tags:
+      - Knowledge Artifact Repository
+      summary: Check Knowledge Artifact Respository
+      description: "Checks for the existence of a Knowledge Artifact Repository with the given identifier" 
+      operationId: isKnowledgeArtifactRepository
+      parameters:
+        - $ref: '#/parameters/repositoryId'
+      responses:
+        204:
+          description: Success
+        500:
+          description: Internal error 
+        501: 
+          description: Not implemented  
+
+####################################################################################################
+
+  /repos/{repositoryId}/artifacts:
+    get:
+      tags:
+      - Knowledge Artifact Series
+      summary: List stored Knowledge Artifacts
+      description: "Retrieves a browsable list of references to the (Master Copies of the) Knowledge Artifacts that are stored in a given Knowledge Artifact Repository. The returned references must, at a minimum, allow to reference eacn Artifact's Series, and should also carry a reference to the latest version. This operation should support paging."
+      operationId: listKnowledgeArtifacts
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - $ref: '#/parameters/repositoryId'
+        # pageable
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'  
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        404:
+          description: Repository not found
+        500:
+          description: Internal error  
+        
+    post:
+      tags:
+      - Knowledge Artifact Series
+      summary: Initialize new Artifact series
+      description: "Initializes a new (empty) Knowledge Artifact series."
+      operationId: initKnowledgeArtifactSeries
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/repositoryId'
+      responses:
+        201:
+          description: Success
+          headers:
+            Content-Location:
+              type: string
+              format: uri
+              description: URL where the new Knowledge Artifact Series can be accessed   
+        403:
+          description: Not supported - repository is read only
+        404:
+          description: Repository not found
+        500:
+          description: Internal error     
+        501: 
+          description: Not implemented  
+              
+####################################################################################################
+
+
+
+
+
+  /repos/{repositoryId}/artifacts/{artifactId}:
+    get:
+      tags:
+      - Knowledge Artifact Series
+      summary: Retrieves the LATEST version of a Knowledge Artifact
+      description: Gets a copy of a (Digital) Knowledge Artifact, based on the LATEST version of its Master Copy.
+      operationId: getLatestKnowledgeArtifact
+      produces:
+      - "*/*"
+      parameters:
+        - $ref: '#/parameters/repositoryId'
+        - $ref: '#/parameters/artifactId'
+      responses:
+        200:
+          description: Success
+          schema:
+              type: string
+              format: binary
+        404:
+          description: Repository or Artifact not found  
+        500:
+          description: Internal error    
+    delete:
+      tags:
+      - Knowledge Artifact Series
+      summary: Removes a Knowledge Artifact from the Repository
+      description: "Individual Knowledge Artifacts are considered removed from a Repository, if and only if any attempt to resolve that Artifact identifier within the given Knowledge Repository will not succeeed. Removing an Artifact that is not (any longer) in a Repository will result in a trivial success. Implementations can decide whether to actually delete the series, or archive it. This operation is allowed if and only the artifactId corresponds to an empty series, i.e. such that all the versions of that Artifact have been removed."
+      operationId: deleteKnowledgeArtifactSeries
+      parameters:
+        - $ref: '#/parameters/repositoryId'
+        - $ref: '#/parameters/artifactId' 
+      responses:
+        204:
+          description: Success
+        403:
+          description: The series is not empty or read-only, and cannot be deleted  
+        404:
+          description: Repository or Artifact not found  
+        500:
+          description: Internal error   
+        501:
+          description: Not implemented   
+
+    put:
+      tags:
+      - Knowledge Artifact Series
+      summary: Create new Artifact series
+      description: "Ensures that a Knowledge Artifact series with the given identifier is present, possibly creating a new (empty) one. The client provides an identifier which must be acceptable to the server's identification scheme, as if it had been minted by the server."
+      operationId: setKnowledgeArtifactSeries
+      parameters:
+        - $ref: '#/parameters/repositoryId'
+        - $ref: '#/parameters/artifactId'
+      responses:
+        204:
+          description: Success
+        403:
+          description: The series is read-only  
+        404:
+          description: Repository or Artifact not found    
+        500:
+          description: Internal error   
+        501:
+          description: Not implemented     
+    
+    head:
+      tags:
+      - Knowledge Artifact Series
+      summary: Check Knowledge Artifact series
+      description: "Checks for the existence of a Knowledge Artifact Series. "
+      operationId: isKnowledgeArtifactSeries
+      parameters:
+        - $ref: '#/parameters/repositoryId'
+        - $ref: '#/parameters/artifactId'
+      responses:
+        204:
+          description: Success
+        404:
+          description: Repository or Artifact not found    
+        500:
+          description: Internal error  
+        501:
+          description: Not implemented
+            
+            
+####################################################################################################
+
+  /repos/{repositoryId}/artifacts/{artifactId}/versions:
+    # We do not allow raw DELETEs on entire collections. Should a strategy be standardized?, e.g. see
+    # https://stackoverflow.com/questions/2421595/restful-way-for-deleting-a-bunch-of-items
+    get:
+      tags:
+      - Knowledge Artifact Series
+      summary: List versions of a Knowledge Artifact. 
+      description: "Provides access to an Artifact's historical series, i.e. the list of immutable versions of the Artifact maintained in the given Knowledge Artifact Repository. Optionally, allows to sort the series, filter by version range and supports pagination."
+      operationId: getKnowledgeArtifactSeries
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+        - $ref: '#/parameters/repositoryId'
+        - $ref: '#/parameters/artifactId'
+        # pageable
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+        #series
+        - $ref: '#/parameters/beforeTag'
+        - $ref: '#/parameters/afterTag'
+        #sortable
+        - $ref: '#/parameters/sort'
+      responses: 
+        200:
+          description: Success
+          schema:
+              type: array
+              items:
+                $ref: '#/definitions/Pointer'
+        404:
+          description: Repository or Artifact not found    
+        500:
+          description: Internal error          
+    post:
+      tags:
+      - Knowledge Artifact Series
+      summary: Add a (new version) of a Knowledge Artifact. 
+      description: "Adds a new version of a given Artifact to the Artifact's series, making this version the  LATEST. The client is required to provide the content, but the server is expected to provide the version tagging, according to the version scheme that is implemented internally. When successful, the server will return the URL where that version can be accessed." 
+      operationId: addKnowledgeArtifactVersion
+      parameters:
+        - $ref: '#/parameters/repositoryId'
+        - $ref: '#/parameters/artifactId'
+        - in: formData
+          name: document
+          required: true
+          type: string
+          format: binary 
+          description: "The (content of) a Knowledge Artifact. \n A Knowledge Expression, serialized and encoded in a way that is suitable for transmission and/or engraving on a Digital Carrier. Clients are expected to be able to decode, parse and/or interpret it in order to use it." 
+      consumes:
+      - multipart/form-data
+      responses: 
+        201:
+          description: Success
+          headers:
+            Content-Location:
+              type: string
+              format: uri
+              description: URL where the new version of the Knowledge Artifact is accessible
+        403:
+          description: Series is read-only    
+        404:
+          description: Repository or Artifact not found    
+        500:
+          description: Internal error  
+        501:
+          description: Not implemented      
+            
+####################################################################################################
+
+  /repos/{repositoryId}/artifacts/{artifactId}/versions/{versionTag}:
+    get:
+      tags:
+      - Knowledge Artifact
+      summary: Retrieve a specific version of a Knowledge Artifact
+      description: "Provides the client with a copy of a specific version of a Knowledge Artifact." 
+      operationId: getKnowledgeArtifactVersion
+      produces:
+      - "*/*"
+      parameters:
+        - $ref: '#/parameters/repositoryId'
+        - $ref: '#/parameters/artifactId' 
+        - $ref: '#/parameters/versionTag'
+      responses:
+        200:
+          description: Success
+          schema:
+              type: string
+              format: binary 
+        404:
+          description: Repository or Artifact Version not found    
+        500:
+          description: Internal error       
+    delete:
+      tags:
+      - Knowledge Artifact
+      summary: Remove a specific version of a Knowledge Artifact
+      description: "Ensures that a specific version of a given Knowledge Artifact is not resolvable anymore within the Knowledge Artifact version series. Implementations can determine whether to remove or archive when the requested version is found in the repository. If the version cannot be found, the operations succeeds trivially." 
+      operationId: deleteKnowledgeArtifactVersion
+      parameters:
+        - $ref: '#/parameters/repositoryId'
+        - $ref: '#/parameters/artifactId'
+        - $ref: '#/parameters/versionTag'
+      responses:
+        204:
+          description: Success
+        403:  
+          description: The series is read only
+        404:
+          description: Repository or Artifact Version not found    
+        500:
+          description: Internal error
+        501:
+          description: Not implemented
+    put:
+      tags:
+      - Knowledge Artifact
+      summary: Sets a Version of a specific Knowledge Artifact
+      description: "Ensures that a Knowledge Artifact's Master Copy is available in the given Repository, and that an attempt to resolve a version with the given tag will succeed, returning a copy of the provided payload. Creates an Artifact series if not present, and overwrites the stored copy if already present." 
+      operationId: setKnowledgeArtifactVersion
+      consumes:
+      - multipart/form-data
+      parameters:
+        - $ref: '#/parameters/repositoryId'
+        - $ref: '#/parameters/artifactId'
+        - $ref: '#/parameters/versionTag'
+        - in: formData
+          name: document
+          required: true
+          type: string
+          format: binary 
+          description: "The (content of) a Knowledge Artifact. \n A Knowledge Expression, serialized and encoded in a way that is suitable for transmission and/or engraving on a Digital Carrier. Clients are expected to be able to decode, parse and/or interpret it in order to use it." 
+      responses:
+        204:
+          description: Success
+        403:  
+          description: The series is read only
+        404:
+          description: Repository or Artifact Version not found    
+        500:
+          description: Internal error
+        501:
+          description: Not implemented  
+    head:
+      tags:
+      - Knowledge Artifact 
+      summary: Check Knowledge Artifact Version
+      description: "Checks for the existence of a specific version of a Knowledge Artifact Series. "
+      operationId: isKnowledgeArtifactVersion
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/repositoryId' 
+        - $ref: '#/parameters/artifactId'        
+        - $ref: '#/parameters/versionTag'
+      responses:
+        204:
+          description: Success
+        404:
+          description: Repository or Artifact Version not found    
+        500:
+          description: Internal error
+        501:
+          description: Not implemented  
+
+
+
+parameters:
+  repositoryId:
+    in: path
+    name: repositoryId
+    required: true
+    type: string
+    description: "The id of a Knowledge Artifact Repository. \n The id of a Knowledge Artifact Repository in the context of the current server that this operation will be applied in the context of. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable."
+  repositoryDescr:
+    in: body
+    name: repositoryDescr
+    required: false
+    schema:
+      $ref: '#/definitions/KnowledgeArtifactRepository' 
+    description: "A representation of the current state of a given Knowledge Repository"
+  
+  artifactId:
+    in: path
+    name: artifactId
+    required: true
+    type: string
+    description: "The id of the Knowledge Artifact (Series). \n The (qualified) identifier of a Knowledge Manifestation from which Knowledge Artifacts are derived by replication. Used in the context of a Knowledge Artifact Repository, the pair repositoryId/artifactId identifies the Master Copy of the Manifestation that is stored (and used for replication) within the Repository. Since Master Copies can be mutable, unless further qualified, the identifier will denote the associated Series in general, and identify the LATEST public version within the series. In general, the artifactId is qualified, but when the namespace is uniquely implied by the server, or when the local part is globally unique, the local part can be substituted in the paths." 
+  
+  versionTag:
+    in: path
+    name: versionTag
+    required: true
+    type: string
+    description: "The version tag of a Versioned Entity. \n Versioned Identifiers identify specific, Immutable Versions of Mutable Entities, which reflect the state of that Entity at a given point in time. Where a version(ed) identifier is universal, the Tag represents the local part of that identifier, under the scope of the identifier that denotes the Entity (series)."  
+  
+  
+  beforeTag:
+    in: query
+    name: beforeTag
+    required: false
+    type: string
+    description: "Restricts the series to include only versions before (included) a given version Tag. Assumes the underlying versioning scheme has at least a partial ordering defined."
+  afterTag:
+    in: query
+    name: afterTag
+    required: false
+    type: string
+    description: "Restricts the series to include only versions after (included) a given version Tag. Assumes the underlying versioning scheme has at least a partial ordering defined."
+  
+  
+  sort:
+    in: query
+    name: sort
+    required: false
+    type: string
+    default: "asc"
+    description: "Allows to sort a collection by one ore more properties."   
+    
+    
+  offset:
+    in: query
+    name: offset
+    type: integer
+    required: false
+    description: "Filters elements in a collection, returning all elements after the 'offset' index included, ignoring all previous elements." 
+  limit:
+    in: query
+    name: limit
+    type: integer
+    required: false
+    description: "Returns up to the given number of elements in a collection."
+
+
+definitions:
+
+  Pointer: 
+    type: object
+
+  KnowledgeArtifactRepository:
+    type: object
+
+
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /mea-3d/KnowledgeRepository/1.0
+schemes:
+ - https

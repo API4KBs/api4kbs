@@ -26,12 +26,95 @@
     <other>${project.build.outputDirectory}${s}Other${s}</other>
 
     <docs>${pom.basedir}${s}docs${s}LODE${s}</docs>
+
+    <apiFolder>${project.basedir}/openapi/v2/org/omg/spec/api4kp/</apiFolder>
   </properties>
 
 
   <build>
 
+    <resources>
+      <resource>
+        <directory>${apiFolder}</directory>
+      </resource>
+    </resources>
+
+    <plugins>
+      <plugin>
+        <groupId>io.swagger</groupId>
+        <artifactId>swaggerhub-maven-plugin</artifactId>
+        <version>1.0.2</version>
+        <configuration>
+          <owner>mayo-clinic</owner>
+          <format>yaml</format>
+        </configuration>
+        <executions>
+          <execution>
+            <id>krepo</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>download</goal>
+            </goals>
+            <configuration>
+              <api>KnowledgeRepository</api>
+              <version>1.2</version>
+              <outputFile>${apiFolder}knowledgeRepository.yaml</outputFile>
+            </configuration>
+          </execution>
+          <!--<execution>
+            <id>kac</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>download</goal>
+            </goals>
+            <configuration>
+              <api>SemanticKnowledgeRepository</api>
+              <version>1.0.0</version>
+              <outputFile>${apiFolder}semanticKnowledgeRepository.yaml</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>kbase</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>download</goal>
+            </goals>
+            <configuration>
+              <api>KnowledgeBaseService</api>
+              <version>1.0.0</version>
+              <outputFile>${apiFolder}knowledgeBase.yaml</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>lang</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>download</goal>
+            </goals>
+            <configuration>
+              <api>LanguageService</api>
+              <version>1.1.0</version>
+              <outputFile>${apiFolder}language.yaml</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>inf</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>download</goal>
+            </goals>
+            <configuration>
+              <api>MicroInference</api>
+              <version>1.0.0</version>
+              <outputFile>${apiFolder}inference.yaml</outputFile>
+            </configuration>
+          </execution>-->
+        </executions>
+      </plugin>
+    </plugins>
   </build>
+
+
 
   <profiles>
 
