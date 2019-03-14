@@ -18,5 +18,8 @@ This Repository contains the Technical Documents that constitute the response to
 <br> OpenAPI / Swagger v2 specifications of the API4KP
 <br> Recommended: Open with [SwaggerHub](https://swagger.io/tools/swaggerhub/)
 
+See also:
+* [GitHub pages](https://api4kbs.github.io/)
+* [API4KB Wiki](http://www.omgwiki.org/API4KB/doku.php?id=start)
 
 [![Join the chat at https://gitter.im/API4KBs/api4kbs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/API4KBs/api4kbs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
