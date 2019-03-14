@@ -20,10 +20,3 @@ This Repository contains the Technical Documents that constitute the response to
 
 
 [![Join the chat at https://gitter.im/API4KBs/api4kbs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/API4KBs/api4kbs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-
-See the HTML companion site (Work in Progress) at 
-<br>
-[sotty.github.io/api4kbs](https://sotty.github.io/api4kbs/)
-<br>(may require to enable 'unsafe' - non https - CSS for proper rendering) 
-
