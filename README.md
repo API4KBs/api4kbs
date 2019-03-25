@@ -1,5 +1,7 @@
 api4kps - API for Knowledge Platforms
 =======
+[![Build Status](https://travis-ci.com/API4KBs/api4kbs.svg?branch=master)](https://travis-ci.com/API4KBs/api4kbs)
+
 
 This Repository contains the Technical Documents that constitute the response to the OMG API4KP standard RFP
 
@@ -23,3 +25,4 @@ See also:
 * [API4KB Wiki](http://www.omgwiki.org/API4KB/doku.php?id=start)
 
 [![Join the chat at https://gitter.im/API4KBs/api4kbs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/API4KBs/api4kbs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
