@@ -30,8 +30,14 @@
     <apiFolder>openapi/v2/org/omg/spec/api4kp/</apiFolder>
     <ontoFolder>ontologies</ontoFolder>
     <umlFolder>uml</umlFolder>
+
+    <github.global.server>github</github.global.server>
   </properties>
 
+  <scm>
+    <developerConnection>scm:git:ssh://github.com/API4KBs/api4kbs.git</developerConnection>
+    <url>https://github.com/API4KBs/api4kbs</url>
+  </scm>
 
   <build>
 
@@ -91,8 +97,44 @@
 
         </executions>
       </plugin>
+
+      <plugin>
+        <groupId>com.github.github</groupId>
+        <artifactId>site-maven-plugin</artifactId>
+        <version>0.12</version>
+        <configuration>
+          <message>Maven artifacts for ${project.name} ${project.version}</message>
+          <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+          <branch>refs/heads/api4kbs</branch>
+          <includes><include>**/*</include></includes>
+          <repositoryName>mvn-repo</repositoryName>
+          <repositoryOwner>API4KBs</repositoryOwner>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>site</goal>
+            </goals>
+            <phase>deploy</phase>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
+
+
+  <distributionManagement>
+    <repository>
+      <id>internal.repo</id>
+      <name>Temporary Staging Repository</name>
+      <url>file://${project.build.directory}/mvn-repo</url>
+    </repository>
+    <snapshotRepository>
+      <id>internal.snap.repo</id>
+      <name>Temporary Staging Repository - Snapshots</name>
+      <url>file://${project.build.directory}/mvn-repo</url>
+    </snapshotRepository>
+  </distributionManagement>
 
 
 </project>
