@@ -18,16 +18,16 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <s>${file.separator}</s>
-    <api4kp>${project.build.outputDirectory}${s}API4KP${s}</api4kp>
-    <info>${project.build.outputDirectory}${s}API4KP${s}informative${s}</info>
-    <bridges>${project.build.outputDirectory}${s}API4KP${s}bridges${s}</bridges>
-    <dol>${project.build.outputDirectory}${s}DOL${s}</dol>
-    <omg>${project.build.outputDirectory}${s}OMG${s}</omg>
-    <other>${project.build.outputDirectory}${s}Other${s}</other>
+    <!--<api4kp>${project.build.outputDirectory}${s}API4KP${s}</api4kp>-->
+    <!--<info>${project.build.outputDirectory}${s}API4KP${s}informative${s}</info>-->
+    <!--<bridges>${project.build.outputDirectory}${s}API4KP${s}bridges${s}</bridges>-->
+    <!--<dol>${project.build.outputDirectory}${s}DOL${s}</dol>-->
+    <!--<omg>${project.build.outputDirectory}${s}OMG${s}</omg>-->
+    <!--<other>${project.build.outputDirectory}${s}Other${s}</other>-->
 
-    <docs>${pom.basedir}${s}docs${s}LODE${s}</docs>
+    <!--<docs>${pom.basedir}${s}docs${s}LODE${s}</docs>-->
 
-    <apiFolder>openapi/v2/org/omg/spec/api4kp/</apiFolder>
+    <apiFolder>openapi/v2/org/omg/spec/api4kp</apiFolder>
     <ontoFolder>ontologies</ontoFolder>
     <umlFolder>uml</umlFolder>
 
@@ -98,43 +98,17 @@
         </executions>
       </plugin>
 
-      <plugin>
-        <groupId>com.github.github</groupId>
-        <artifactId>site-maven-plugin</artifactId>
-        <version>0.12</version>
-        <configuration>
-          <message>Maven artifacts for ${project.name} ${project.version}</message>
-          <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
-          <branch>refs/heads/api4kbs</branch>
-          <includes><include>**/*</include></includes>
-          <repositoryName>mvn-repo</repositoryName>
-          <repositoryOwner>API4KBs</repositoryOwner>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>site</goal>
-            </goals>
-            <phase>deploy</phase>
-          </execution>
-        </executions>
-      </plugin>
+
     </plugins>
   </build>
 
 
   <distributionManagement>
     <repository>
-      <id>internal.repo</id>
-      <name>Temporary Staging Repository</name>
-      <url>file://${project.build.directory}/mvn-repo</url>
+      <id>bintray-api4kbs-API4KP-Mvn-Repo</id>
+      <name>api4kbs-API4KP-Mvn-Repo</name>
+      <url>https://api.bintray.com/maven/api4kbs/API4KP-Mvn-Repo/api4kbs/;override=1</url>
     </repository>
-    <snapshotRepository>
-      <id>internal.snap.repo</id>
-      <name>Temporary Staging Repository - Snapshots</name>
-      <url>file://${project.build.directory}/mvn-repo</url>
-    </snapshotRepository>
   </distributionManagement>
-
 
 </project>
