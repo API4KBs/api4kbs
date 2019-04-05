@@ -1,0 +1,277 @@
+swagger: '2.0'
+info:
+  description: |
+    This API will be leveraged to trans-represent between variant Expressions of the same Knowledge Assets. 
+    Supports API4KP transcriptions, translations, transcreations and other purely syntactic transformations that preserve the Knowledge Asset content. 
+    Implementations of this API are used to manipulate abstract and/or concrete expressions, impacting languages (as defined by metamodels, grammars and/or schemas), formats (aka serializations) and/or lexicons (aka terminology) used for representation. 
+  version: "1.2.0"
+  title: Language Service
+# host: petstore.swagger.io
+# basePath: /v2
+
+tags:
+- name: discovery
+  description: Describe available cross-Language Trans^ion Capabilities.
+- name: transxion
+  description: Apply available cross-Language Trans^ion Capabilities.
+- name: admin
+  description: Server administration/configuration.
+- name: detect
+  description: Detect Language(s) used in an Expression 
+- name: validate
+  description: Validate that an Expression conforms to a Language(s)
+- name: deserialize
+  description: Lift (parse) or Lower (serialize) an Expression
+
+#- name: declarative
+#  description: Endpoints that emphasize the platform Capabilities 
+#- name: imperative
+#  description: Endpoints that expose the platform Components 
+
+# schemes:
+# - http
+
+paths:
+
+###################################################################################################
+
+  
+  /transxions:
+    get:
+      tags: 
+      - discovery
+      #- core
+      summary: List public, static operators
+      description: Enumerates the TransrepresentationOperators that are persistent and publicly available
+      operationId: listOperators
+      responses:
+        200:
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer' # Pointer<TransrepresentationOperator>
+    
+    post:
+      tags:
+      - transxion
+      #- declarative
+      summary: Applies a trans-representation operation.
+      operationId: transrepresent
+      description: Tries to identify a compatible trans-representation operation, and requests to apply it. See doTransrepresent.
+      parameters:
+        - $ref: '#/parameters/from'
+        - $ref: '#/parameters/into'
+        - $ref: '#/parameters/method'
+      responses:
+        303:
+          description: The URL of a TransrepresentationOperator which accepts a document of the given from, to produce a document of the negotiated into format
+          headers:
+            Location: 
+              type: string  
+
+  
+      
+ 
+###################################################################################################
+ 
+ 
+  /detectors:
+     post:
+      tags:
+      - detect
+      summary: Identifies the representation(s) used in a given Artifact, setting it
+      description: Annotates the Artifact with inferred information about its representation
+      operationId: setRepresentation
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+        - $ref: '#/parameters/carrier'
+      responses:
+        200:
+          description: The detected Representations. 
+          schema:
+            $ref: '#/definitions/SyntacticRepresentation' 
+              
+  
+  /validators:
+    post:
+      tags:
+      - validate
+      summary: Determines if a given Artifact is a valid expression in a given Language
+      description: "Attempts to establish whether the Expression(s) carried by a given Knowledge Artifact are valid sentences of a given language, profile, lexicon and/or serialization." 
+      operationId: validate
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+        - $ref: '#/parameters/carrier'
+        - $ref: '#/parameters/into'
+      responses:
+        200:
+          description: "Succeeds if the artifact carries expressions that are valid according to the given language, profile, lexicon and/or serialization." 
+ 
+###################################################################################################
+
+
+  /parsers:
+    post:
+      tags:
+        - deserialize
+      summary: Parses a Knowledge Artifact    
+      description: "Decodes, deserializes and/or parses a Knowledge Artifact. The Into parameter determines the extent of the parsing. If language, format and encoding are specified, an AST will be returned. If format and encoding are specified, a parse tree will be returned. If just an encoding is specified, a string will be returned. If nothing is specified, a binary stream will be returned. If the input carrier is already at a higher level of abstraction, the operation will fail."
+      operationId: parse
+      consumes:
+      - multipart/form-data
+      parameters:
+        - $ref: '#/parameters/carrier'
+        - $ref: '#/parameters/into'
+      responses:
+        200:
+          description: The (de)serialized carrier. 
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier' 
+
+  /serializers:
+    post:
+      tags:
+        - deserialize
+      summary: Serialize a Knowledge Artifact    
+      description: "Serializes, encodes and/or streams a Knowledge Artifact. The Into parameter determines the extent of the serialization." 
+      operationId: serialize
+      consumes:
+      - multipart/form-data
+      parameters:
+        - $ref: '#/parameters/carrier'
+        - $ref: '#/parameters/into'
+      responses:
+        200:
+          description: The serialized carrier. 
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier' 
+
+
+###################################################################################################
+ 
+    
+parameters:
+
+  txId:
+    in: path
+    name: txId
+    description: The id of a Trans-representation component (aka Transrepresentator). Transrepresentator (resources) describe a knowledge platform component that has been instantiated and deployed in the knowledge platform underlying this server.
+    required: true
+    type: string
+ 
+  tx:
+    in: body
+    name: tx
+    description: A Trans-representation exemplar resource, used to describe a class of components
+    required: true
+    schema:
+      $ref: '#/definitions/Transrepresentation'
+    
+    
+  txionId:
+    in: path
+    name: txionId
+    description: The id of a Trans-representation operation. Operation (resources) describe a capability of the server, in terms of supported input and output representations (languages, formats, lexicon, etc.)
+    required: true
+    type: string
+  
+  carrier:
+    name: sourceArtifact
+    in: body
+    schema:
+      $ref: '#/definitions/KnowledgeCarrier'
+
+  level:
+    name: level
+    in: query
+    type: string
+    required: true
+  
+  from:
+    in: body
+    name: from
+    description: Additional information that precisely describes the representation language and/or format used in the source Knowledge Artifact
+    required: false
+    schema:
+      $ref: '#/definitions/SyntacticRepresentation'
+      
+  into:  
+    in: body
+    name: into
+    description: Additional information that describes the desired (acceptable) resulting representation(s)
+    required: false
+    schema:
+      $ref: '#/definitions/SyntacticRepresentation'
+    
+  method:  
+    in: query
+    name: method
+    description: Specifies the strategy by which a given operation is requested to be executed
+    required: false
+    type: string
+
+  
+  lambdaId:
+    in: path
+    name: lambdaId
+    description: The identifier of a transrepresentation operator, configured to apply a transrepresentation operation to a given class of artifacts, to produce new artifacts carrying variant expressions of the content of the source artifact.
+    required: true
+    type: string
+
+    
+            
+  
+  
+
+definitions:
+
+  KnowledgeCarrier:
+    type: object
+
+  Pointer:
+    type: object
+    description: TODO Reuse from Common
+    
+  SyntacticRepresentation:
+    type: object
+    description: "A data structure that describes a particular combination of (knowledge representation) language, format, lexicon (aka terminology) and locale used in the representation of a Knowledge Expression. Includes a summary coded value that is suitable both as a type identifier and a MIME type."
+  
+  Transrepresentator:
+    type: object
+    description: "A Knowledge Platform Component that possesses some syntactic manipulation capabilities, exposed as as service by means of this API. The resource provides descriptive information about this component, including the public ID of the software (library) that contains the binaries used to instantiate it."
+    
+  Transrepresentation:
+    type: object
+    description: "A resource that describes the capability of a Trans-representator comoponent to perform certain operations as a service. May include information about the method (e.g. algorithm) used, as well as the supported language(s) and format(s)."  
+  
+  TransrepresentationMethod:
+    type: object
+    description: "A resource that describes the method by which a source representation can be trans-represented into a tareget one, as implemented by at least one transrepresentation operation supplied by a transrepresentator component."
+    
+  TransrepresentationOperator:
+    type: object
+    description: "A resource that describes a Lambda - a (possibly temporary) runtime context that is configured to apply a specific transrepresentation to a fully determined class of input artifacts, producing a predetermined kind of output artifact. The operator may be persistent, or temporary, e.g. because is the result of an exchange between the client and the server, including content negotiation (and possibly other aspects such as permission or QoS)."
+    
+  
+  
+###################################################################################################
+  
+
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /mayo-clinic/LanguageService/1.0.0
+# schemes:
+#  - http
+# Added by API Auto Mocking Plugin
+schemes:
+ - https
+ - http

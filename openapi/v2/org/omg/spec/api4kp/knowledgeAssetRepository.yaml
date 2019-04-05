@@ -1,23 +1,22 @@
 swagger: '2.0'
 
 info:
-  #This version tag identifies the 'signature' as a whole, i.e. the acceptable combination of paths and associated behaviors. As such, it only impacts (one of) the URLs where the managed resources are accessed, not the identity of the Knowledge Resources themselves, whose versioning is built into the paths
   version: "1.2"
-  title: 'Semantic Knowledge Repository API'
+  title: 'Knowledge Asset Repository API'
   contact:
     name: Davide Sottara
     email: sottara.davide@mayo.edu
   license:
     name: Apache License, Version 2.0 
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  description: "APIs for a Semantic Knowledge Repository. \n\n Semantic Repositories abstract a Knowledge Artifact's content by means of known ontologies, recognize different forms of representation, and support descriptive knowledge management metadata (e.g. provenance, pedigree, applicability, usage, etc.). \n\n As such, Semantic Knowledge Repositories treat Knowledge Artifacts as gray boxes, as opposed to a (non-semantic) Repository, for which Artifacts are black boxes. \n\n Moreover, Semantic Repositories are transparent to location/federation, should support content negotiation, and may leverage transrepresentation capabilities to materialize ephemeral Knowledge Artifacts on demand. \n\n  Knowledge Assets are immaterial entities, and the Catalog is not always guaranteed to have direct access to any concrete manifestation. For this reason, the Catalog uses a Surrogate Resource to materialze the (meta) knowledge about an Asset."
+  description: "APIs for a Semantic Knowledge Asset Repository. \n\n Semantic Asset Repositories abstract a Knowledge Artifact's content by means of known ontologies, recognize different forms of representation, and support descriptive knowledge management metadata (e.g. provenance, pedigree, applicability, usage, etc.). \n\n As such, Knowledge Asset Repositories treat Knowledge Artifacts as gray boxes, as opposed to a Knowledge Artifact Repository, for which Artifacts are black boxes. \n\n Moreover, Asset Repositories are transparent to location/federation, should support content negotiation, and may leverage transrepresentation capabilities to materialize ephemeral Knowledge Artifacts on demand. \n\n Since Knowledge Assets are immaterial entities, the Repository is not always guaranteed to have direct access to any concrete manifestation. For this reason, the Knowledge Asset Repository supports a Surrogate Resource to materialze the (meta) knowledge about an Asset even when an Artifact is not available."
   
   
   
 tags:
   - name: Knowledge Asset Catalog
     description: "A Knowledge Asset Catalog is an indexed collection of Knowledge Assets. A Catalog identifies, versions, types/categorizes, and relates Assets to each other."
-  - name: Semantic Knowledge Repository
+  - name: Knowledge Asset Repository
     description: "A Semantic Knowledge Repository provides access to Knowledge Artifacts based on their content and representation thereof, rather than identity or location."
 
 
@@ -86,8 +85,8 @@ paths:
     
     post:
       tags:
-        - Knowledge Asset Catalog
-        #- Semantic Knowledge Repository
+        # - Knowledge Asset Catalog
+        - Knowledge Asset Repository
       summary: Create a new Knowledge Asset
       description: "Creates a new Knowledge Asset (Surrogate), assigning an asset ID in the process. \n If a Knowledge Artifact is provided, it should be considered an exemplar of the primary manifestation of the Asset, and that Artifact should be used to pre-populate the Knowledge Asset Surrogate. In particular, if an assetID can be inferred from the Artifact, that ID shall be used; otherwise a new one will minted using a server-determined strategy. \n\n This operation should use other support APIs such as LanguageService::detect to populate the Surrogate. \n If the Artifact is recognized to be a composite, the resulting Surrogate will have composite structure as well. "
       operationId: addKnowledgeAsset
@@ -143,7 +142,7 @@ paths:
   /cat/assets/{assetId}/versions:
     post:
       tags:
-        - Semantic Knowledge Repository
+        - Knowledge Asset Repository
         #- Knowledge Asset Catalog
       summary: Posts a newer version of a Knowledge Asset Surrogate.
       description: "Updates a Knowledge Asset Surrogate. The new Surrogate MUST either refer to the same Knowledge Asset or, if it refers to a new version of the Asset, it must either have no manifestations/carriers, or provide an exemplar."
@@ -231,8 +230,8 @@ paths:
             
     put:
       tags:
-        - Knowledge Asset Catalog
-        #- Semantic Knowledge Repository
+        #- Knowledge Asset Catalog
+        - Knowledge Asset Repository
       summary: Set/Initialize a specific version of a Knowledge Asset
       description: "Configures a Catalog Entry, for a known (version of) a Knowledge Asset. The client is required, at a minimum, to know/provide the Asset ID and version, and should provide a Surrogate consistent with that information. \n Furthermore, the client may provide an exemplar Carrier of that Asset."
       operationId: setVersionedKnowledgeAsset
@@ -261,7 +260,7 @@ paths:
   /cat/assets/{assetId}/versions/{versionTag}/carrier:
     get:
       tags:
-      - Semantic Knowledge Repository
+      - Knowledge Asset Repository
       #- core
       summary: Retrieve a Knowledge Artifact carrying the primary Manifestation of a Knowledge Asset. 
       description: "For a given version of a Knowledge Asset, looks up the Manifestations such that a Master Copy is either stored in, or accessible to the Semantic Repository, selects the one that is marked as primary, if any, and returns a copy thereof. If a specific manifestation type is indicated, the server SHOULD honor the request"
@@ -272,7 +271,7 @@ paths:
       parameters:
         - $ref: '#/parameters/assetId'
         - $ref: '#/parameters/versionTag'
-        # negotiatiable
+        # negotiable
         - $ref: '#/parameters/extAccept'
       responses:
         200:
@@ -298,7 +297,7 @@ paths:
   /cat/assets/{assetId}/versions/{versionTag}/carriers:
     get:
       tags:
-      - Semantic Knowledge Repository
+      - Knowledge Asset Repository
       #- core
       summary: Lists the known Carriers for a given Knowledge Asset
       description: "Retrieves Pointers to all the Knowledge Artifacts that are known to carry at least one expression, in some language, of the given version of a Knowledge Asset."
@@ -324,7 +323,7 @@ paths:
           
     post:
       tags:
-      - Semantic Knowledge Repository
+      - Knowledge Asset Repository
       #- core
       summary: Registers a new Carrier for a given Knowledge Asset
       description: "Registers a new Carrier for a given Knowledge Asset. An artifact ID will be inferred from the artifact content, or minted anew, and the Asset surrogate will be updated"
@@ -355,7 +354,7 @@ paths:
   /cat/assets/{assetId}/versions/{versionTag}/carriers/{artifactId}/versions/{artifactVersionTag}:
     get:
       tags:
-      - Semantic Knowledge Repository
+      - Knowledge Asset Repository
       #- core
       summary: Retrieves a specific Carrier for a given Knowledge Asset
       description: "Retrieves (a copy of a version of) an Artifact. That Artifact must be known to carry at least one expression, in some language, of the given Knowledge Asset."
@@ -379,7 +378,7 @@ paths:
           
     put:
       tags:
-      - Semantic Knowledge Repository
+      - Knowledge Asset Repository
       #- core
       summary: Registers a (version of a) Carrier for a given Knowledge Asset
       description: "Registers a Knowledge Artifact as the Carrier of an expression of a Knowledge Asset. As a consequence, the Asset (Surrogate) is updated, and its version is incremented."
@@ -414,15 +413,16 @@ paths:
   /cat/assets/{assetId}/versions/{versionTag}/bundle:       
     get:
       tags:
-      - Semantic Knowledge Repository
+      - Knowledge Asset Repository
       #- core
-      operationId: bundle
-      produces:
-        - "application/json"
-        - "application/xml"
+      operationId: getKnowledgeAssetBundle
+      summary: Retrieve a set of Knowledge Artifacts that includes (carriers of) the given asset, and its related assets. 
+      description: "Resolves the Asset for the given id and version, then resolves (recursively) all its related assets. Returns a collection of Knowledge Carriers, one per resolved asset. The resolution can be filtered by relationship type, and/or limited by depth."
       parameters:
         - $ref: '#/parameters/assetId'
         - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/assetRelationship'
+        - $ref: '#/parameters/depth'
       responses:
         200:
           description: Success
@@ -430,15 +430,23 @@ paths:
             type: array
             items:
               $ref: '#/definitions/KnowledgeCarrier'
+        404:
+          description: Asset Version not found    
+        500:
+          description: Internal error  
+        501:
+          description: Not implemented 
+  
+  
             
-  /cat/assets/{assetId}/versions/{versionTag}/expressions:
+  /cat/assets/{assetId}/versions/{versionTag}/struct:
     get:
       tags:
-      - Semantic Knowledge Repository
+      - Knowledge Asset Repository
       #- core
-      summary: Retrieve a Knowledge Artifact carrying the given version of the given Knowledge Asset. 
-      description: "Retrieves a self-contained Artifact that carries a concrete expression of the given Knowledge Asset. The client and server may engage in content negotiation. The server is not expected to store a master copy of the desired Artifact, as long as the server can leverage trans-representation and knowledge base services to create the required Artifact dynamically."
-      operationId: getKnowledgeAssetExpression
+      summary: Retrieve a Composite Knowledge Artifact, or the components thereof. 
+      description: "Retrieves a Composite Knowledge Asset, returning a collection that contains a Structuring Asset and its components, OR a single Asset that is the equivalent of flattening the Composite."
+      operationId: getCompositeKnowledgeAsset
       produces:
       - model/*
       - application/*
@@ -446,14 +454,21 @@ paths:
       parameters:
         - $ref: '#/parameters/assetId'
         - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/flat'
+        - $ref: '#/parameters/extAccept'
       responses:
         200:
           description: Success
           schema:
-            type: string
-            format: binary
-
-
+            type: array
+            items:
+              $ref: '#/definitions/KnowledgeCarrier'
+        404:
+          description: Asset Version not found    
+        500:
+          description: Internal error  
+        501:
+          description: Not implemented 
 
 
 parameters:
@@ -471,6 +486,13 @@ parameters:
     required: false
     type: string
     description: "A fully qualified (URI) term that denotes a concept that can be used to annotate assets."
+
+  assetRelationship:
+    in: query
+    name: assetRelationship
+    required: false
+    type: string
+    description: "A fully qualified (URI) term that denotes a relationship type that can be asserted between assets."
 
   assetId:
     in: path
@@ -500,6 +522,21 @@ parameters:
     type: string
     description: "The version tag a (version of a) Knowledge Artifact"  
  
+  depth:
+    in: query
+    name: depth
+    required: false
+    type: integer
+    description: "The maximum allowed relationship-induced distance between two assets. Two assets X and Y have distance N if there exist other N-1 distinct assets W such that A is related to W1, W1 is related to W2, .., Wn-1 is related to Y."  
+ 
+  flat:
+    in: query
+    name: flat
+    required: false
+    type: boolean
+    description: "Determines whether a Composite Asset should be flattened into a single Asset, or its Component Assets should be maintained separate."  
+ 
+  
   extAccept:
     in: header
     name: X-Accept
