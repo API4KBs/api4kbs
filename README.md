@@ -1,6 +1,7 @@
 api4kps - API for Knowledge Platforms
 =======
 [![Build Status](https://travis-ci.com/API4KBs/api4kbs.svg?branch=master)](https://travis-ci.com/API4KBs/api4kbs)
+[ ![Download](https://api.bintray.com/packages/api4kbs/API4KP-Mvn-Repo/api4kbs/images/download.svg) ](https://bintray.com/api4kbs/API4KP-Mvn-Repo/api4kbs/_latestVersion)
 
 
 This Repository contains the Technical Documents that constitute the response to the OMG API4KP standard RFP
