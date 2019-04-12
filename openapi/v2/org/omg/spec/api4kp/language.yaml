@@ -77,12 +77,12 @@ paths:
  
  
   /detectors:
-     post:
+    post:
       tags:
       - detect
       summary: Identifies the representation(s) used in a given Artifact, setting it
-      description: Annotates the Artifact with inferred information about its representation
-      operationId: setRepresentation
+      description: Returns the detected informtation
+      operationId: setDetectedRepresentation
       consumes:
       - multipart/form-data
       produces:
@@ -94,8 +94,43 @@ paths:
         200:
           description: The detected Representations. 
           schema:
-            $ref: '#/definitions/SyntacticRepresentation' 
-              
+            $ref: '#/definitions/KnowledgeCarrier'
+  
+  /detectors/supportedLanguages:
+    get:
+      tags:
+      - detect
+      summary: Returns a list of detectable languages
+      description: Returns a list of detectable languages, such that there is at least one component capable.
+      operationId: getDetectableLanguages
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        200:
+          description: The supported languages. 
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/SyntacticRepresentation' 
+    post:
+      tags:
+      - detect
+      summary: Identifies the representation(s) used in a given Artifact, returning it
+      description: Returns the detected informtation
+      operationId: getDetectedRepresentation
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+        - $ref: '#/parameters/carrier'
+      responses:
+        200:
+          description: The detected Representations. 
+          schema:
+            $ref: '#/definitions/SyntacticRepresentation'          
   
   /validators:
     post:
@@ -130,13 +165,26 @@ paths:
       - multipart/form-data
       parameters:
         - $ref: '#/parameters/carrier'
-        - $ref: '#/parameters/into'
+        - $ref: '#/parameters/level'
       responses:
         200:
           description: The (de)serialized carrier. 
           schema:
             $ref: '#/definitions/KnowledgeCarrier' 
-
+            
+  /parsers/supportedLanguages:
+    get:
+      tags:
+        - deserialize
+      operationId: getParsableLanguages
+      responses:
+        200:
+          description: The supported languages. 
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/SyntacticRepresentation' 
+              
   /serializers:
     post:
       tags:
@@ -148,12 +196,25 @@ paths:
       - multipart/form-data
       parameters:
         - $ref: '#/parameters/carrier'
-        - $ref: '#/parameters/into'
+        - $ref: '#/parameters/level'
       responses:
         200:
           description: The serialized carrier. 
           schema:
             $ref: '#/definitions/KnowledgeCarrier' 
+  
+  /serializers/supportedLanguages:
+    get:
+      tags:
+        - deserialize
+      operationId: getSerializableLanguages
+      responses:
+        200:
+          description: The supported languages. 
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/SyntacticRepresentation' 
 
 
 ###################################################################################################
@@ -190,12 +251,6 @@ parameters:
     schema:
       $ref: '#/definitions/KnowledgeCarrier'
 
-  level:
-    name: level
-    in: query
-    type: string
-    required: true
-  
   from:
     in: body
     name: from
@@ -203,14 +258,22 @@ parameters:
     required: false
     schema:
       $ref: '#/definitions/SyntacticRepresentation'
-      
-  into:  
+  
+  into:
     in: body
     name: into
+    description: Additional information that precisely describes the representation language and/or format used in the source Knowledge Artifact
+    required: false
+    schema:
+      $ref: '#/definitions/SyntacticRepresentation'    
+      
+  level:  
+    in: body
+    name: level
     description: Additional information that describes the desired (acceptable) resulting representation(s)
     required: false
     schema:
-      $ref: '#/definitions/SyntacticRepresentation'
+      $ref: '#/definitions/ParsingLevel'
     
   method:  
     in: query
@@ -240,11 +303,15 @@ definitions:
   Pointer:
     type: object
     description: TODO Reuse from Common
+
+  ParsingLevel:
+    type: string
+    description: "A vertical level of absraction on the binary/string/parse tree/AST/ASG chain"
     
   SyntacticRepresentation:
     type: object
     description: "A data structure that describes a particular combination of (knowledge representation) language, format, lexicon (aka terminology) and locale used in the representation of a Knowledge Expression. Includes a summary coded value that is suitable both as a type identifier and a MIME type."
-  
+    
   Transrepresentator:
     type: object
     description: "A Knowledge Platform Component that possesses some syntactic manipulation capabilities, exposed as as service by means of this API. The resource provides descriptive information about this component, including the public ID of the software (library) that contains the binaries used to instantiate it."
