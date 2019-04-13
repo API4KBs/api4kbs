@@ -39,11 +39,15 @@ paths:
   /transxions:
     get:
       tags: 
-      - discovery
+      - transxion
       #- core
       summary: List public, static operators
       description: Enumerates the TransrepresentationOperators that are persistent and publicly available
       operationId: listOperators
+      parameters:
+        - $ref: '#/parameters/from'
+        - $ref: '#/parameters/into'
+        - $ref: '#/parameters/method'
       responses:
         200:
           description: successful operation
@@ -58,20 +62,80 @@ paths:
       #- declarative
       summary: Applies a trans-representation operation.
       operationId: transrepresent
-      description: Tries to identify a compatible trans-representation operation, and requests to apply it. See doTransrepresent.
+      description: Tries to identify a compatible trans-representation operation, and requests to apply it.
       parameters:
+        - $ref: '#/parameters/carrier'
         - $ref: '#/parameters/from'
         - $ref: '#/parameters/into'
         - $ref: '#/parameters/method'
       responses:
-        303:
-          description: The URL of a TransrepresentationOperator which accepts a document of the given from, to produce a document of the negotiated into format
-          headers:
-            Location: 
-              type: string  
-
+        200:
+          description: The transformed artifact
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
   
+  /transxions/{txionId}:
+    get:
+      tags:
+      - transxion
+      #- declarative
+      summary: Describes trans-representation operation.
+      operationId: getTransrepresentation
+      parameters:
+        - $ref: '#/parameters/txionId'
+      responses:
+        200:
+          description: The transformed artifact
+          schema:
+            $ref: '#/definitions/TransrepresentationOperator'
       
+    post:
+      tags:
+      - transxion
+      #- declarative
+      summary: Applies a trans-representation operation.
+      operationId: applyTransrepresentation
+      description: Applies a trans-representation operation
+      parameters:
+        - $ref: '#/parameters/txionId'
+        - $ref: '#/parameters/carrier'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: The transformed artifact
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+      
+  /transxions/{txionId}/into:
+    get:
+      tags:
+      - transxion
+      #- declarative
+      summary: Describes trans-representation operation result.
+      operationId: getTransrepresentationOutput
+      parameters:
+        - $ref: '#/parameters/txionId'
+      responses:
+        200:
+          description: The type of output
+          schema:
+            $ref: '#/definitions/SyntacticRepresentation'
+  
+  /transxions/{txionId}/acceptedParams:
+    get:
+      tags:
+      - transxion
+      #- declarative
+      summary: Describes trans-representation operation result.
+      operationId: getTransrepresentationAcceptedParameters
+      parameters:
+        - $ref: '#/parameters/txionId'
+      responses:
+        200:
+          description: The type of output
+          schema:
+            $ref: '#/definitions/Parameters'
+  
  
 ###################################################################################################
  
@@ -153,14 +217,30 @@ paths:
  
 ###################################################################################################
 
+  /deserializers:
+    post:
+      tags:
+        - deserialize
+      summary: Parses a Knowledge Artifact    
+      operationId: ensureRepresentation
+      consumes:
+      - multipart/form-data
+      parameters:
+        - $ref: '#/parameters/carrier'
+        - $ref: '#/parameters/into'
+      responses:
+        200:
+          description: The (de)serialized carrier. 
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier' 
 
-  /parsers:
+  /deserializers/parsers:
     post:
       tags:
         - deserialize
       summary: Parses a Knowledge Artifact    
       description: "Decodes, deserializes and/or parses a Knowledge Artifact. The Into parameter determines the extent of the parsing. If language, format and encoding are specified, an AST will be returned. If format and encoding are specified, a parse tree will be returned. If just an encoding is specified, a string will be returned. If nothing is specified, a binary stream will be returned. If the input carrier is already at a higher level of abstraction, the operation will fail."
-      operationId: parse
+      operationId: lift
       consumes:
       - multipart/form-data
       parameters:
@@ -172,7 +252,7 @@ paths:
           schema:
             $ref: '#/definitions/KnowledgeCarrier' 
             
-  /parsers/supportedLanguages:
+  /deserializers/parsers/supportedLanguages:
     get:
       tags:
         - deserialize
@@ -185,13 +265,13 @@ paths:
             items:
               $ref: '#/definitions/SyntacticRepresentation' 
               
-  /serializers:
+  /deserializers/serializers:
     post:
       tags:
         - deserialize
       summary: Serialize a Knowledge Artifact    
       description: "Serializes, encodes and/or streams a Knowledge Artifact. The Into parameter determines the extent of the serialization." 
-      operationId: serialize
+      operationId: lower
       consumes:
       - multipart/form-data
       parameters:
@@ -203,7 +283,7 @@ paths:
           schema:
             $ref: '#/definitions/KnowledgeCarrier' 
   
-  /serializers/supportedLanguages:
+  /deserializers/serializers/supportedLanguages:
     get:
       tags:
         - deserialize
@@ -290,7 +370,12 @@ parameters:
     required: true
     type: string
 
-    
+  params:
+    in: body
+    name: params
+    required: false
+    schema:
+      $ref: '#/definitions/Parameters'
             
   
   
@@ -328,7 +413,10 @@ definitions:
     type: object
     description: "A resource that describes a Lambda - a (possibly temporary) runtime context that is configured to apply a specific transrepresentation to a fully determined class of input artifacts, producing a predetermined kind of output artifact. The operator may be persistent, or temporary, e.g. because is the result of an exchange between the client and the server, including content negotiation (and possibly other aspects such as permission or QoS)."
     
-  
+  Parameters:
+    type: object
+    additionalProperties:
+      type: string
   
 ###################################################################################################
   
