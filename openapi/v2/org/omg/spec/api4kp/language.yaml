@@ -36,7 +36,7 @@ paths:
 ###################################################################################################
 
   
-  /transxions:
+  /transxors:
     get:
       tags: 
       - transxion
@@ -54,27 +54,10 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Pointer' # Pointer<TransrepresentationOperator>
+              $ref: '#/definitions/TransrepresentationOperator'
     
-    post:
-      tags:
-      - transxion
-      #- declarative
-      summary: Applies a trans-representation operation.
-      operationId: transrepresent
-      description: Tries to identify a compatible trans-representation operation, and requests to apply it.
-      parameters:
-        - $ref: '#/parameters/carrier'
-        - $ref: '#/parameters/from'
-        - $ref: '#/parameters/into'
-        - $ref: '#/parameters/method'
-      responses:
-        200:
-          description: The transformed artifact
-          schema:
-            $ref: '#/definitions/KnowledgeCarrier'
   
-  /transxions/{txionId}:
+  /transxors/{txId}:
     get:
       tags:
       - transxion
@@ -82,7 +65,7 @@ paths:
       summary: Describes trans-representation operation.
       operationId: getTransrepresentation
       parameters:
-        - $ref: '#/parameters/txionId'
+        - $ref: '#/parameters/txId'
       responses:
         200:
           description: The transformed artifact
@@ -97,7 +80,7 @@ paths:
       operationId: applyTransrepresentation
       description: Applies a trans-representation operation
       parameters:
-        - $ref: '#/parameters/txionId'
+        - $ref: '#/parameters/txId'
         - $ref: '#/parameters/carrier'
         - $ref: '#/parameters/params'
       responses:
@@ -106,7 +89,7 @@ paths:
           schema:
             $ref: '#/definitions/KnowledgeCarrier'
       
-  /transxions/{txionId}/into:
+  /transxions/{txId}/into:
     get:
       tags:
       - transxion
@@ -114,14 +97,14 @@ paths:
       summary: Describes trans-representation operation result.
       operationId: getTransrepresentationOutput
       parameters:
-        - $ref: '#/parameters/txionId'
+        - $ref: '#/parameters/txId'
       responses:
         200:
           description: The type of output
           schema:
             $ref: '#/definitions/SyntacticRepresentation'
   
-  /transxions/{txionId}/acceptedParams:
+  /transxions/{txId}/acceptedParams:
     get:
       tags:
       - transxion
@@ -129,12 +112,12 @@ paths:
       summary: Describes trans-representation operation result.
       operationId: getTransrepresentationAcceptedParameters
       parameters:
-        - $ref: '#/parameters/txionId'
+        - $ref: '#/parameters/txId'
       responses:
         200:
-          description: The type of output
+          description: Accepable Parameters
           schema:
-            $ref: '#/definitions/Parameters'
+            $ref: '#/definitions/ParamDefinition'
   
  
 ###################################################################################################
@@ -417,6 +400,9 @@ definitions:
     type: object
     additionalProperties:
       type: string
+      
+  ParamDefinition:
+    type: object    
   
 ###################################################################################################
   
