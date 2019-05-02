@@ -247,6 +247,18 @@ paths:
             type: array
             items:
               $ref: '#/definitions/SyntacticRepresentation' 
+    post:
+      tags:
+        - deserialize
+      operationId: deserialize
+      parameters: 
+        - $ref: '#/parameters/carrier'
+        - $ref: '#/parameters/into'
+      responses:
+        200:
+          description: The deserialized carrier. 
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
               
   /deserializers/serializers:
     post:
@@ -278,7 +290,18 @@ paths:
             type: array
             items:
               $ref: '#/definitions/SyntacticRepresentation' 
-
+    post:
+      tags:
+        - deserialize
+      operationId: serialize
+      parameters: 
+        - $ref: '#/parameters/carrier'
+        - $ref: '#/parameters/into'
+      responses:
+        200:
+          description: The serialized carrier. 
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
 
 ###################################################################################################
  

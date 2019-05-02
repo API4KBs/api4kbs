@@ -2,6 +2,7 @@
 <rdf:RDF xmlns="http://edu.mayo.kmdp/registry#"
      xml:base="http://edu.mayo.kmdp/registry"
      xmlns:dol="http://www.omg.org/spec/DOL/DOL-terms/"
+     xmlns:AnnotationVocabulary1="https://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/"
      xmlns:redux="http://purl.net/dol/reduction/"
      xmlns:oasis="https://docs.oasis-open.org/"
      xmlns:mayo-o="http://ontology.mayo.edu/"
@@ -16,7 +17,6 @@
      xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
      xmlns:java="https://www.java.com/"
      xmlns:dct="http://purl.org/dc/terms/"
-     xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:rxnorm="https://www.nlm.nih.gov/research/umls/rxnorm/"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:json="http://json.org/"
@@ -42,10 +42,11 @@
      xmlns:terms1="http://open.vocab.org/terms/"
      xmlns:SpecificationMetadata="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
      xmlns:rruleml="http://reaction.ruleml.org/"
-     xmlns:trans="http://purl.net/dol/translations/">
+     xmlns:trans="http://purl.net/dol/translations/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="http://edu.mayo.kmdp/registry">
         <owl:versionIRI rdf:resource="http://edu.mayo.kmdp/2018/08/registry"/>
-        <owl:imports rdf:resource="http://www.omg.org/spec/API4KP/2018/06/DOL-Bridge"/>
+        <owl:imports rdf:resource="http://www.omg.org/spec/DOL/20171101/DOL-terms/"/>
     </owl:Ontology>
     
 
@@ -70,6 +71,12 @@
     <!-- http://purl.net/dol/1.0/standardization#standardizationStatus -->
 
     <owl:AnnotationProperty rdf:about="http://purl.net/dol/1.0/standardization#standardizationStatus"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/identifier -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/identifier"/>
     
 
 
@@ -559,10 +566,10 @@
 
     <owl:NamedIndividual rdf:about="http://hl7.org/CDSDatatype">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <dc:identifier>dt</dc:identifier>
         <dct:identifier>eb9d122340fa440f8fd0eee5427984f0</dct:identifier>
         <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/CDSDatatype/XML"/>
         <rdfs:label>ISO CDS Datatype v2</rdfs:label>
-        <dc:identifier>dt</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -572,10 +579,10 @@
     <owl:NamedIndividual rdf:about="http://hl7.org/QDM_5.0.2">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <dc:identifier>qdm</dc:identifier>
         <dct:identifier>70326512142a499c93ba0633d69094d5</dct:identifier>
         <rdfs:comment>Clinical Quality Data Model</rdfs:comment>
         <rdfs:label>QDM 5.0.2</rdfs:label>
-        <dc:identifier>qdm</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -584,10 +591,10 @@
 
     <owl:NamedIndividual rdf:about="http://hl7.org/ELM/1.2">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <dc:identifier>elm</dc:identifier>
         <dct:identifier>0b15adbc1e4a4aa68ce183ce1e99718c</dct:identifier>
         <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/CQL/ELM/XML"/>
         <rdfs:label>ELM 1.2</rdfs:label>
-        <dc:identifier>elm</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -597,11 +604,11 @@
     <owl:NamedIndividual rdf:about="http://hl7.org/KNART/1.3">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <dc:identifier>knart</dc:identifier>
         <dct:identifier>6a96069c26e94ab8d7c79e9518718adb</dct:identifier>
         <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/KNART/XML"/>
         <rdfs:comment>HL7 Clinical Decision Support &apos;Knowledge Artifact&apos;</rdfs:comment>
         <rdfs:label>KNART 1.3</rdfs:label>
-        <dc:identifier>knart</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -611,11 +618,11 @@
     <owl:NamedIndividual rdf:about="http://hl7.org/cql/1.2">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <dc:identifier>cql</dc:identifier>
         <dct:identifier>4ab4365c793b42c2b92317e3ec829a07</dct:identifier>
         <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/CQL/ELM/XML"/>
         <rdfs:comment>HL7 Clinical Quality Language</rdfs:comment>
         <rdfs:label>CQL 1.2</rdfs:label>
-        <dc:identifier>cql</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -626,10 +633,10 @@
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <dc:identifier>fhir2</dc:identifier>
         <dct:identifier>0a9d4b9c02584404bc055381fe56e513</dct:identifier>
         <dct:source>http://urn:hl7-org:fhir-dstu2</dct:source>
         <rdfs:label>FHIR DSTU2</rdfs:label>
-        <dc:identifier>fhir2</dc:identifier>
         <co:prefLabel>FHIR DSTU2</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -640,9 +647,9 @@
     <owl:NamedIndividual rdf:about="http://hl7.org/fhir/STU3">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <dc:identifier>fhir3</dc:identifier>
         <dct:identifier>6951fbd1b127430a9daa67a47b8c3f4d</dct:identifier>
         <rdfs:label>FHIR STU3</rdfs:label>
-        <dc:identifier>fhir3</dc:identifier>
         <co:prefLabel>FHIR STU3</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -652,9 +659,9 @@
 
     <owl:NamedIndividual rdf:about="http://hl7.org/fhirpath/STU1">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <dc:identifier>fhirpath</dc:identifier>
         <dct:identifier>99370feb0c97431a861d04963eaef3cf</dct:identifier>
         <rdfs:label>FHIRPath STU1</rdfs:label>
-        <dc:identifier>fhirpath</dc:identifier>
         <co:prefLabel>FHIRPath STU1</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -664,8 +671,8 @@
 
     <owl:NamedIndividual rdf:about="http://json.org/versions/20171201">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#MetaFormat"/>
-        <rdfs:label>JSON</rdfs:label>
         <dc:identifier>json</dc:identifier>
+        <rdfs:label>JSON</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -674,9 +681,9 @@
 
     <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/CognitiveCareProcessMetamodel">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <dc:identifier>ccpm</dc:identifier>
         <dct:identifier>6542d8f129ec4c97b152a57e692e536c</dct:identifier>
         <rdfs:label>Cognitive Care Process Meta Model</rdfs:label>
-        <dc:identifier>ccpm</dc:identifier>
         <co:prefLabel>Cognitive Care Process Meta-Model</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -686,9 +693,9 @@
 
     <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/GlossaryEntryMetamodel">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <dc:identifier>ccg</dc:identifier>
         <dct:identifier>6c9805fc85ca4614970fb8b06ef0f746</dct:identifier>
         <rdfs:label>Concept Glossary Entry Meta Model</rdfs:label>
-        <dc:identifier>ccg</dc:identifier>
         <co:prefLabel>Concept Glossary Entry Meta-Model</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -698,9 +705,9 @@
 
     <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/MCBT">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
+        <dc:identifier>mcbt</dc:identifier>
         <dct:source>http://terms.mayo.edu</dct:source>
         <rdfs:label>MCBT</rdfs:label>
-        <dc:identifier>mcbt</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -709,8 +716,8 @@
 
     <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/TXT">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#MetaFormat"/>
-        <rdfs:label>TXT</rdfs:label>
         <dc:identifier>text</dc:identifier>
+        <rdfs:label>TXT</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -721,10 +728,10 @@
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <dc:identifier>cctx</dc:identifier>
         <dct:identifier>1a1d49dcebd444c8f97a0be74cb4368c</dct:identifier>
         <dct:source>http://kmdp.mayo.edu/activity</dct:source>
         <rdfs:label>Activity Context</rdfs:label>
-        <dc:identifier>cctx</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -734,9 +741,9 @@
     <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/ServiceProfile/versions/1.0">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <dc:identifier>serviceprofile</dc:identifier>
         <dct:identifier>43ed326245cd4317a619a06a93f7a6c4</dct:identifier>
         <rdfs:label>Service Profile</rdfs:label>
-        <dc:identifier>serviceprofile</dc:identifier>
         <co:prefLabel>Service Profile</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -746,10 +753,10 @@
 
     <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/metadata/annotations">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <dc:identifier>ann</dc:identifier>
         <dct:identifier>340359d1f401475f93e080516707e7e4</dct:identifier>
         <dol:supportsSerialization rdf:resource="http://kmdp.mayo.edu/metadata/annotations/XML"/>
         <rdfs:label>Annotations</rdfs:label>
-        <dc:identifier>ann</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -759,10 +766,10 @@
     <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/metadata/surrogate">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <dc:identifier>surr</dc:identifier>
         <dct:identifier>6b2008a2f00b474ed6af70a8fd184da8</dct:identifier>
         <dol:supportsSerialization rdf:resource="http://kmdp.mayo.edu/metadata/surrogate/XML"/>
         <rdfs:label>Asset Surrogate</rdfs:label>
-        <dc:identifier>surr</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -772,9 +779,9 @@
     <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/metadata/annotations/XML">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
+        <dc:identifier>asset_ann_xml</dc:identifier>
         <dct:source>http://kmdp.mayo.edu/metadata/annotations</dct:source>
         <rdfs:label>Asset Annotations XML</rdfs:label>
-        <dc:identifier>asset_ann_xml</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -784,9 +791,9 @@
     <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/metadata/surrogate/XML">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
+        <dc:identifier>asset_surr_xml</dc:identifier>
         <dct:source>http://kmdp.mayo.edu/metadata/surrogate</dct:source>
         <rdfs:label>Asset Surrogate XML</rdfs:label>
-        <dc:identifier>asset_surr_xml</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -796,9 +803,9 @@
     <owl:NamedIndividual rdf:about="http://mustache.github.io/versions/1.1.2">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <dc:identifier>mustache</dc:identifier>
         <dct:identifier>decb6902a7c246739accf70f3a7154d3</dct:identifier>
         <rdfs:label>Mustache</rdfs:label>
-        <dc:identifier>mustache</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -807,10 +814,10 @@
 
     <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/PCO">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
+        <dc:identifier>pco</dc:identifier>
         <dct:source>http://ontology.mayo.edu/PCO</dct:source>
         <rdfs:label>PCO</rdfs:label>
         <co:altLabel>Propositional Concept Ontology</co:altLabel>
-        <dc:identifier>pco</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -820,6 +827,7 @@
     <owl:NamedIndividual rdf:about="http://purl.net/dol/languages/OWL2/DL">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
         <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CRecommendation"/>
+        <dc:identifier>DL</dc:identifier>
         <dct:source rdf:resource="http://www.w3.org/TR/2009/REC-owl2-overview-20091027/"/>
         <dol:hasExactLogicalExpressivity rdf:resource="http://purl.net/dol/logics/SROIQ"/>
         <dol:isMappableFrom rdf:resource="http://purl.net/dol/languages/OWL2/EL"/>
@@ -861,7 +869,6 @@
         <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/RDF/XML"/>
         <rdfs:comment>OWL 2 Web Ontology Language, Description Logic semantics (W3C Recommendation)</rdfs:comment>
         <rdfs:label>OWL 2 DL</rdfs:label>
-        <dc:identifier>DL</dc:identifier>
         <co:prefLabel>OWL 2 DL</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -872,6 +879,7 @@
     <owl:NamedIndividual rdf:about="http://purl.net/dol/languages/OWL2/EL">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
         <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CRecommendation"/>
+        <dc:identifier>EL</dc:identifier>
         <dct:source rdf:resource="http://www.w3.org/TR/2009/REC-owl2-profiles-20091027/#OWL_2_EL"/>
         <dol:hasExactLogicalExpressivity rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
         <dol:isMappableFrom rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
@@ -889,7 +897,6 @@
         <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/RDF/XML"/>
         <rdfs:comment>OWL 2 Web Ontology Language, EL Profile (W3C Recommendation)</rdfs:comment>
         <rdfs:label>OWL 2 EL</rdfs:label>
-        <dc:identifier>EL</dc:identifier>
         <co:prefLabel>OWL 2 EL</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -900,6 +907,7 @@
     <owl:NamedIndividual rdf:about="http://purl.net/dol/languages/OWL2/Full">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
         <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CRecommendation"/>
+        <dc:identifier>Full</dc:identifier>
         <dct:source rdf:resource="http://www.w3.org/TR/owl2-rdf-based-semantics/"/>
         <dol:hasExactLogicalExpressivity rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
         <dol:isMappableFrom rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
@@ -923,7 +931,6 @@
         <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/RDF/XML"/>
         <rdfs:comment>OWL 2 Web Ontology Language, RDF semantics (W3C Recommendation)</rdfs:comment>
         <rdfs:label>OWL 2 Full</rdfs:label>
-        <dc:identifier>Full</dc:identifier>
         <co:prefLabel>OWL 2 Full</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -934,6 +941,7 @@
     <owl:NamedIndividual rdf:about="http://purl.net/dol/languages/OWL2/QL">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
         <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CRecommendation"/>
+        <dc:identifier>QL</dc:identifier>
         <dct:source rdf:resource="http://www.w3.org/TR/2009/REC-owl2-profiles-20091027/#OWL_2_QL"/>
         <dol:hasExactLogicalExpressivity rdf:resource="http://purl.net/dol/logics/DLLiteR"/>
         <dol:isMappableFrom rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
@@ -951,7 +959,6 @@
         <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/RDF/XML"/>
         <rdfs:comment>OWL 2 Web Ontology Language, QL Profile (W3C Recommendation)</rdfs:comment>
         <rdfs:label>OWL 2 QL</rdfs:label>
-        <dc:identifier>QL</dc:identifier>
         <co:prefLabel>OWL 2 QL</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -962,6 +969,7 @@
     <owl:NamedIndividual rdf:about="http://purl.net/dol/languages/OWL2/RL">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
         <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CRecommendation"/>
+        <dc:identifier>RL</dc:identifier>
         <dct:source rdf:resource="http://www.w3.org/TR/2009/REC-owl2-profiles-20091027/#OWL_2_RL"/>
         <dol:hasExactLogicalExpressivity rdf:resource="http://purl.net/dol/logics/OWL2/RL"/>
         <dol:isMappableFrom rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
@@ -979,7 +987,6 @@
         <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/RDF/XML"/>
         <rdfs:comment>OWL 2 Web Ontology Language, RL Profile (W3C Recommendation)</rdfs:comment>
         <rdfs:label>OWL 2 RL</rdfs:label>
-        <dc:identifier>RL</dc:identifier>
         <co:prefLabel>OWL 2 RL</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -1970,8 +1977,8 @@
 
     <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/OWLFunctionalSyntax">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <rdfs:label>OWL Functional Syntax</rdfs:label>
         <dc:identifier>owl_ofn</dc:identifier>
+        <rdfs:label>OWL Functional Syntax</rdfs:label>
         <co:prefLabel>OWL Functional Syntax</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -1982,9 +1989,9 @@
     <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/XHTML">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
+        <dc:identifier>xhtml</dc:identifier>
         <dct:source>http://www.w3.org/1999/xhtml</dct:source>
         <rdfs:label>XHTML</rdfs:label>
-        <dc:identifier>xhtml</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -1994,8 +2001,8 @@
     <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/BPMN2/XML">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
-        <rdfs:label>BPMN2 XML</rdfs:label>
         <dc:identifier>bpmn_xml</dc:identifier>
+        <rdfs:label>BPMN2 XML</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2005,9 +2012,9 @@
     <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/CDSDatatype/XML">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
+        <dc:identifier>cds_dt_xml</dc:identifier>
         <dct:source>urn:hl7-org:cdsdt:r2</dct:source>
         <rdfs:label>CDS Datatype XML</rdfs:label>
-        <dc:identifier>cds_dt_xml</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2017,9 +2024,9 @@
     <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/CMMN/XML">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
+        <dc:identifier>cmmn_xml</dc:identifier>
         <dct:source>http://www.omg.org/spec/CMMN/20151109/MODEL</dct:source>
         <rdfs:label>CMMN XML</rdfs:label>
-        <dc:identifier>cmmn_xml</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2029,9 +2036,9 @@
     <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/CQL/ELM/XML">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
+        <dc:identifier>cql_elm_xml</dc:identifier>
         <dct:source>urn:hl7-org:elm:r1</dct:source>
         <rdfs:label>CQL/ELM XML</rdfs:label>
-        <dc:identifier>cql_elm_xml</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2041,10 +2048,10 @@
     <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/CommonLogic/CGIF">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#ISOStandard"/>
+        <dc:identifier>cgif</dc:identifier>
         <rdfs:label xml:lang="en">CGIF</rdfs:label>
         <rdfs:label xml:lang="en">Conceptual Graph Interchange Format</rdfs:label>
         <co:altLabel xml:lang="en">Conceptual Graph Interchange Format</co:altLabel>
-        <dc:identifier>cgif</dc:identifier>
         <co:prefLabel xml:lang="en">CGIF</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -2055,13 +2062,13 @@
     <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/CommonLogic/CLIF">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#ISOStandard"/>
+        <dc:identifier>clif</dc:identifier>
         <dol:altFilenameExtension>clf</dol:altFilenameExtension>
         <dol:prefFilenameExtension>clif</dol:prefFilenameExtension>
         <rdfs:comment>dol:mediaType is being worked on; see https://github.com/gruninger/Common-Logic/issues/38</rdfs:comment>
         <rdfs:label xml:lang="en">CLIF</rdfs:label>
         <rdfs:label xml:lang="en">Common Logic Interchange Format</rdfs:label>
         <co:altLabel xml:lang="en">Common Logic Interchange Format</co:altLabel>
-        <dc:identifier>clif</dc:identifier>
         <co:prefLabel xml:lang="en">CLIF</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -2072,11 +2079,11 @@
     <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/CommonLogic/XCL">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#ISOStandard"/>
+        <dc:identifier>cl_xml</dc:identifier>
         <dol:prefFilenameExtension>xcl</dol:prefFilenameExtension>
         <rdfs:comment>dol:mediaType is being worked on; see https://github.com/gruninger/Common-Logic/issues/38</rdfs:comment>
         <rdfs:label xml:lang="en">XCL</rdfs:label>
         <rdfs:label xml:lang="en">XML Notation for Common Logic</rdfs:label>
-        <dc:identifier>cl_xml</dc:identifier>
         <co:prefLabel xml:lang="en">XCL</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -2087,9 +2094,9 @@
     <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/DMN/XML">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
+        <dc:identifier>dmn_xml</dc:identifier>
         <dct:source>http://www.omg.org/spec/DMN/20151101/dmn.xsd</dct:source>
         <rdfs:label>DMN XML</rdfs:label>
-        <dc:identifier>dmn_xml</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2099,9 +2106,9 @@
     <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/KNART/XML">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
+        <dc:identifier>knart_xml</dc:identifier>
         <dct:source>urn:hl7-org:knowledgeartifact:r1</dct:source>
         <rdfs:label>KNART XML</rdfs:label>
-        <dc:identifier>knart_xml</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2111,6 +2118,7 @@
     <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/OWL2/Manchester">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CWorkingGroupNote"/>
+        <dc:identifier>owl_mns</dc:identifier>
         <dct:source rdf:resource="http://www.w3.org/TR/2009/NOTE-owl2-manchester-syntax-20091027/"/>
         <dol:mediaType>text/owl-manchester</dol:mediaType>
         <dol:prefFilenameExtension>omn</dol:prefFilenameExtension>
@@ -2120,7 +2128,6 @@
         <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/QL"/>
         <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/RL"/>
         <rdfs:label>OWL Manchester Syntax</rdfs:label>
-        <dc:identifier>owl_mns</dc:identifier>
         <co:prefLabel>OWL Manchester Syntax</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -2132,6 +2139,7 @@
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
         <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CRecommendation"/>
+        <dc:identifier>owl_xml</dc:identifier>
         <dct:source rdf:resource="http://www.w3.org/TR/2009/REC-owl2-xml-serialization-20091027/"/>
         <dol:mediaType>application/owl+xml</dol:mediaType>
         <dol:prefFilenameExtension>owx</dol:prefFilenameExtension>
@@ -2141,7 +2149,6 @@
         <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/QL"/>
         <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/RL"/>
         <rdfs:label xml:lang="en">OWL XML Serialization</rdfs:label>
-        <dc:identifier>owl_xml</dc:identifier>
         <co:prefLabel xml:lang="en">OWL XML Serialization</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -2152,6 +2159,7 @@
     <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/RDF/Turtle">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CTeamSubmission"/>
+        <dc:identifier>owl_ttl</dc:identifier>
         <dct:source rdf:resource="http://www.w3.org/TeamSubmission/turtle/"/>
         <dol:altFilenameExtension>ttl</dol:altFilenameExtension>
         <dol:mediaType>text/turtle</dol:mediaType>
@@ -2163,7 +2171,6 @@
         <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/RL"/>
         <rdfs:comment>Terse RDF Triple Language</rdfs:comment>
         <rdfs:label>Turtle</rdfs:label>
-        <dc:identifier>owl_ttl</dc:identifier>
         <co:prefLabel>Turtle</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -2174,6 +2181,7 @@
     <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/RDF/XML">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CRecommendation"/>
+        <dc:identifier>rdf_xml</dc:identifier>
         <dct:source rdf:resource="http://www.w3.org/TR/2004/REC-rdf-syntax-grammar-20040210/"/>
         <dol:mediaType>application/rdf+xml</dol:mediaType>
         <dol:prefFilenameExtension>rdf</dol:prefFilenameExtension>
@@ -2183,7 +2191,6 @@
         <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/QL"/>
         <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/RL"/>
         <rdfs:label xml:lang="en">RDF/XML Syntax</rdfs:label>
-        <dc:identifier>rdf_xml</dc:identifier>
         <co:prefLabel xml:lang="en">RDF/XML Syntax</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -2194,9 +2201,9 @@
     <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/XSD/XML">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
+        <dc:identifier>xsd_xml</dc:identifier>
         <dct:source>http://www.w3.org/2001/XMLSchema</dct:source>
         <rdfs:label>XSD XML Syntax</rdfs:label>
-        <dc:identifier>xsd_xml</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2206,9 +2213,9 @@
     <owl:NamedIndividual rdf:about="http://reaction.ruleml.org/1.02">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <dc:identifier>rruleml</dc:identifier>
         <dct:identifier>d1ee96751bb846d8a0d51ffc3f4c9725</dct:identifier>
         <rdfs:label>Reaction RuleML 1.2</rdfs:label>
-        <dc:identifier>rruleml</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2217,9 +2224,9 @@
 
     <owl:NamedIndividual rdf:about="http://snomed.info/sct/900000000000207008/version/20180731">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
+        <dc:identifier>sct</dc:identifier>
         <dct:source>http://snomed.info/id</dct:source>
         <rdfs:label>SNOMED-CT Int 07_18</rdfs:label>
-        <dc:identifier>sct</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2228,10 +2235,10 @@
 
     <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/1.0">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <dc:identifier>api4kp</dc:identifier>
         <dct:identifier>62b1dae8867a4b3c8725cc781f2c364e</dct:identifier>
         <dol:supportsSerialization rdf:resource="http://www.omg.org/spec/API4KP/1.0/XML"/>
         <rdfs:label>API4KP 1.0</rdfs:label>
-        <dc:identifier>api4kp</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2241,9 +2248,9 @@
     <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/1.0/XML">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
+        <dc:identifier>api4kp_xml</dc:identifier>
         <dct:source>http://www.omg.org/spec/API4KP/1.0</dct:source>
         <rdfs:label>API4KP XML</rdfs:label>
-        <dc:identifier>api4kp_xml</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2252,9 +2259,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/2018/06/rel">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
+        <dc:identifier>api4kp-rel</dc:identifier>
         <dct:source>http://www.omg.org/spec/API4KP/2018/06/rel</dct:source>
         <rdfs:label>API4KP Rel Jun18</rdfs:label>
-        <dc:identifier>api4kp-rel</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2263,10 +2270,10 @@
 
     <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/API4KP/1.0/Services">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <dc:identifier>api</dc:identifier>
         <dct:identifier>df08f877ffc740748d84cc7733fccb2d</dct:identifier>
         <dol:supportsSerialization rdf:resource="http://www.omg.org/spec/API4KP/API4KP/1.0/Services/XML"/>
         <rdfs:label>API4KP 1.0 APIs</rdfs:label>
-        <dc:identifier>api</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2276,9 +2283,9 @@
     <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/API4KP/1.0/Services/XML">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
+        <dc:identifier>api_xml</dc:identifier>
         <dct:source>http://www.omg.org/spec/API4KP/1.0/services</dct:source>
         <rdfs:label>API4KP 1.0 Services XML</rdfs:label>
-        <dc:identifier>api_xml</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2288,9 +2295,9 @@
     <owl:NamedIndividual rdf:about="http://www.openapis.org/versions/2.3.x">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <dc:identifier>openapi</dc:identifier>
         <dct:identifier>d3bfa91623954195bc582df0baee6b67</dct:identifier>
         <rdfs:label>OpenAPI 2.3</rdfs:label>
-        <dc:identifier>openapi</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2309,9 +2316,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.w3.org/2004/02/skos/core">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
+        <dc:identifier>skos</dc:identifier>
         <dct:source>https://www.w3.org/2009/08/skos-reference/skos.html</dct:source>
         <rdfs:label>SKOS</rdfs:label>
-        <dc:identifier>skos</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2320,9 +2327,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.w3.org/TR/HTML">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <dc:identifier>html</dc:identifier>
         <dct:identifier>47353562adcc43f2e30aeb7354c0041a</dct:identifier>
         <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/XHTML"/>
-        <dc:identifier>html</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2331,9 +2338,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.w3.org/TR/XHTML">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <dc:identifier>xhtml</dc:identifier>
         <dct:identifier>76f9e27184cf4b65c558616710d68612</dct:identifier>
         <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/XHTML"/>
-        <dc:identifier>xhtml</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2342,9 +2349,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.w3.org/TR/XMLNamespaces">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
+        <dc:identifier>xmlns</dc:identifier>
         <dct:source>http://www.w3.org/XML/1998/namespace</dct:source>
         <rdfs:label>XML Namespaces</rdfs:label>
-        <dc:identifier>xmlns</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2353,10 +2360,10 @@
 
     <owl:NamedIndividual rdf:about="http://www.w3.org/TR/XMLSchemaDefinition">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <dc:identifier>xsd</dc:identifier>
         <dct:identifier>945bd6fb49d04102fab2e5e5522fd016</dct:identifier>
         <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/XSD/XML"/>
         <rdfs:label>XML Schema Definition</rdfs:label>
-        <dc:identifier>xsd</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2365,9 +2372,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.w3.org/TR/XMLSchemaInstance">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
+        <dc:identifier>xsi</dc:identifier>
         <dct:source>http://www.w3.org/2001/XMLSchema-instance</dct:source>
         <rdfs:label>XML Schema Instance</rdfs:label>
-        <dc:identifier>xsi</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2387,11 +2394,11 @@
     <owl:NamedIndividual rdf:about="http://www.w3.org/TR/2012/REC-owl2-overview-20121211">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <dc:identifier>owl2</dc:identifier>
         <dct:identifier>384f6526b54043ff98c986999e00c401</dct:identifier>
         <dct:source>http://www.w3.org/TR/owl2-overview/</dct:source>
         <rdfs:comment>Ontology Web Language 2</rdfs:comment>
         <rdfs:label>OWL 2</rdfs:label>
-        <dc:identifier>owl2</dc:identifier>
         <co:prefLabel>OWL 2</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -2401,8 +2408,8 @@
 
     <owl:NamedIndividual rdf:about="http://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#MetaFormat"/>
-        <rdfs:label>RDF 1.1</rdfs:label>
         <dc:identifier>rdf</dc:identifier>
+        <rdfs:label>RDF 1.1</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2420,8 +2427,8 @@
 
     <owl:NamedIndividual rdf:about="http://yaml.org/spec/1.2">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#MetaFormat"/>
-        <rdfs:label>YAML 1.2</rdfs:label>
         <dc:identifier>yaml</dc:identifier>
+        <rdfs:label>YAML 1.2</rdfs:label>
         <co:prefLabel>YAML 1.2</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -2431,9 +2438,9 @@
 
     <owl:NamedIndividual rdf:about="https://docs.oasis-open.org/dita/v1.3">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <dc:identifier>dita</dc:identifier>
         <dct:identifier>2d851c63c44f4eb8a43d0967ee03df13</dct:identifier>
         <rdfs:label>DITA 1.3</rdfs:label>
-        <dc:identifier>dita</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2442,9 +2449,9 @@
 
     <owl:NamedIndividual rdf:about="https://loinc.org/oids/1.3.6.1.4.1.12009.10.2.3">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
+        <dc:identifier>loinc</dc:identifier>
         <dct:source>https://loinc.org/</dct:source>
         <rdfs:label>LOINC US</rdfs:label>
-        <dc:identifier>loinc</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2453,9 +2460,9 @@
 
     <owl:NamedIndividual rdf:about="https://www.java.com/java8">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <dc:identifier>java</dc:identifier>
         <dct:identifier>ccd53777e81346428390a4daf23375b4</dct:identifier>
         <rdfs:label>Java 8</rdfs:label>
-        <dc:identifier>java</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2464,9 +2471,9 @@
 
     <owl:NamedIndividual rdf:about="https://www.nlm.nih.gov/research/umls/rxnorm/">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
+        <dc:identifier>rxnorm</dc:identifier>
         <dct:source>https://www.nlm.nih.gov/research/umls/rxnorm/</dct:source>
         <rdfs:label>RxNORM</rdfs:label>
-        <dc:identifier>rxnorm</dc:identifier>
     </owl:NamedIndividual>
     
 
@@ -2476,10 +2483,10 @@
     <owl:NamedIndividual rdf:about="https://www.omg.org/spec/BPMN/2.0.2">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <dc:identifier>bpmn2</dc:identifier>
         <dct:identifier>b561379a6c4a4a8e9290ff85bf60f164</dct:identifier>
         <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/BPMN2/XML"/>
         <rdfs:label>BPMN 2.0.2</rdfs:label>
-        <dc:identifier>bpmn2</dc:identifier>
         <co:prefLabel>BPMN 2.0.2</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -2490,10 +2497,10 @@
     <owl:NamedIndividual rdf:about="https://www.omg.org/spec/CMMN/1.1">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <dc:identifier>cmmn</dc:identifier>
         <dct:identifier>83b39d2759e14b02acd10887bd0df132</dct:identifier>
         <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/CMMN/XML"/>
         <rdfs:label>CMMN 1.1</rdfs:label>
-        <dc:identifier>cmmn</dc:identifier>
         <co:prefLabel>CMMN 1.1</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -2504,11 +2511,11 @@
     <owl:NamedIndividual rdf:about="https://www.omg.org/spec/DMN/1.1">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <dc:identifier>dmn</dc:identifier>
         <dct:identifier>1467b7dfbb634050b9ec322736c5c5dd</dct:identifier>
         <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/DMN/XML"/>
         <rdfs:comment>OMG&apos;s Decision Modeling Notation, v1.1</rdfs:comment>
         <rdfs:label>DMN 1.1</rdfs:label>
-        <dc:identifier>dmn</dc:identifier>
         <co:prefLabel>DMN 1.1</co:prefLabel>
     </owl:NamedIndividual>
     
@@ -2518,9 +2525,9 @@
 
     <owl:NamedIndividual rdf:about="https://www.omg.org/spec/FEEL/1.1">
         <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+        <dc:identifier>feel</dc:identifier>
         <dct:identifier>9a3a99ecf09740a39fe1fd2f6fbdec30</dct:identifier>
         <rdfs:label>FEEL 1.1</rdfs:label>
-        <dc:identifier>feel</dc:identifier>
         <co:prefLabel>FEEL 1.1</co:prefLabel>
     </owl:NamedIndividual>
     
