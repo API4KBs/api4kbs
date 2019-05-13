@@ -1,2557 +1,953 @@
-<?xml version="1.0"?>
-<rdf:RDF xmlns="http://edu.mayo.kmdp/registry#"
-     xml:base="http://edu.mayo.kmdp/registry"
-     xmlns:dol="http://www.omg.org/spec/DOL/DOL-terms/"
-     xmlns:AnnotationVocabulary1="https://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/"
-     xmlns:redux="http://purl.net/dol/reduction/"
-     xmlns:oasis="https://docs.oasis-open.org/"
-     xmlns:mayo-o="http://ontology.mayo.edu/"
-     xmlns:log="http://www.w3.org/2000/10/swap/log#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:w3c="http://www.w3.org/"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:omg="https://www.omg.org/spec/"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:symbols="http://purl.net/dol/symbolKinds/"
-     xmlns:mustache="http://mustache.github.io/"
-     xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
-     xmlns:java="https://www.java.com/"
-     xmlns:dct="http://purl.org/dc/terms/"
-     xmlns:rxnorm="https://www.nlm.nih.gov/research/umls/rxnorm/"
-     xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:json="http://json.org/"
-     xmlns:langs="http://purl.net/dol/languages/"
-     xmlns:kmdp="http://kmdp.mayo.edu/"
-     xmlns:yaml="http://yaml.org/"
-     xmlns:api4kp="http://www.omg.org/spec/API4KP/"
-     xmlns:lnc="https://loinc.org/oids/"
-     xmlns:xcl="http://purl.org/xcl/1.0/#"
-     xmlns:ser="http://purl.net/dol/serializations/"
-     xmlns:registry="http://purl.net/dol/registry/"
-     xmlns:sta="http://purl.net/dol/1.0/standardization#"
-     xmlns:void="http://rdfs.org/ns/void#"
-     xmlns:sct="http://snomed.info/sct/"
-     xmlns:co="http://www.w3.org/2004/02/skos/core#"
-     xmlns:hl7="http://hl7.org/"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:oapi="http://www.openapis.org/"
-     xmlns:syntax="http://latin.omdoc.org/logics/syntax?"
-     xmlns:know="http://www.omg.org/spec/API4KP/core#"
-     xmlns:AnnotationVocabulary="http://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/"
-     xmlns:logic="http://purl.net/dol/logics/"
-     xmlns:terms1="http://open.vocab.org/terms/"
-     xmlns:SpecificationMetadata="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
-     xmlns:rruleml="http://reaction.ruleml.org/"
-     xmlns:trans="http://purl.net/dol/translations/"
-     xmlns:dc="http://purl.org/dc/elements/1.1/">
-    <owl:Ontology rdf:about="http://edu.mayo.kmdp/registry">
-        <owl:versionIRI rdf:resource="http://edu.mayo.kmdp/2018/08/registry"/>
-        <owl:imports rdf:resource="http://www.omg.org/spec/DOL/20171101/DOL-terms/"/>
-    </owl:Ontology>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Annotation properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://open.vocab.org/terms/defines -->
-
-    <owl:AnnotationProperty rdf:about="http://open.vocab.org/terms/defines"/>
-    
-
-
-    <!-- http://purl.net/dol/1.0/standardization#standardizationStatus -->
-
-    <owl:AnnotationProperty rdf:about="http://purl.net/dol/1.0/standardization#standardizationStatus"/>
-    
-
-
-    <!-- http://purl.org/dc/elements/1.1/identifier -->
-
-    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/identifier"/>
-    
-
-
-    <!-- http://purl.org/dc/terms/contributor -->
-
-    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/contributor"/>
-    
-
-
-    <!-- http://purl.org/dc/terms/identifier -->
-
-    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/identifier"/>
-    
-
-
-    <!-- http://purl.org/dc/terms/modified -->
-
-    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/modified"/>
-    
-
-
-    <!-- http://purl.org/dc/terms/publisher -->
-
-    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/publisher"/>
-    
-
-
-    <!-- http://purl.org/dc/terms/source -->
-
-    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/source"/>
-    
-
-
-    <!-- http://purl.org/dc/terms/subject -->
-
-    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/subject"/>
-    
-
-
-    <!-- http://rdfs.org/ns/void#classPartition -->
-
-    <owl:AnnotationProperty rdf:about="http://rdfs.org/ns/void#classPartition"/>
-    
-
-
-    <!-- http://rdfs.org/ns/void#dataDump -->
-
-    <owl:AnnotationProperty rdf:about="http://rdfs.org/ns/void#dataDump"/>
-    
-
-
-    <!-- http://rdfs.org/ns/void#exampleResource -->
-
-    <owl:AnnotationProperty rdf:about="http://rdfs.org/ns/void#exampleResource"/>
-    
-
-
-    <!-- http://rdfs.org/ns/void#uriSpace -->
-
-    <owl:AnnotationProperty rdf:about="http://rdfs.org/ns/void#uriSpace"/>
-    
-
-
-    <!-- http://rdfs.org/ns/void#vocabulary -->
-
-    <owl:AnnotationProperty rdf:about="http://rdfs.org/ns/void#vocabulary"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/altFilenameExtension -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/altFilenameExtension"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/hasExactLogicalExpressivity -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/hasExactLogicalExpressivity"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isEmbeddableInto -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isEmbeddableInto"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isExactlyMappableTo -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isExactlyMappableTo"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isFaithfullyMappableTo -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isFaithfullyMappableTo"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isMappableFrom -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isMappableFrom"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isMappableFromLanguage -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isMappableFromLanguage"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isMappableFromLogic -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isMappableFromLogic"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isMappableTo -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isMappableTo"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isMappableToLanguage -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isMappableToLanguage"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isMappableToLogic -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isMappableToLogic"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isModelBijectivelyMappableTo -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isModelBijectivelyMappableTo"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isModelExpansivelyMappableTo -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isModelExpansivelyMappableTo"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isPlainlyMappableTo -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isPlainlyMappableTo"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isProfileOf -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isProfileOf"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isReducibleFrom -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isReducibleFrom"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isReducibleTo -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isReducibleTo"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isSimplyTheoroidallyMappableTo -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isSimplyTheoroidallyMappableTo"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isSubLanguageOf -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isSubLanguageOf"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isSubLogicOf -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isSubLogicOf"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isTranslatableFrom -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isTranslatableFrom"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isTranslatableTo -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isTranslatableTo"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/isWeaklyExactlyMappableTo -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isWeaklyExactlyMappableTo"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/mediaType -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/mediaType"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/prefFilenameExtension -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/prefFilenameExtension"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/serializes -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/serializes"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/specifiesSemanticsOf -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/specifiesSemanticsOf"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/supportsLogic -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/supportsLogic"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/supportsSerialization -->
-
-    <owl:AnnotationProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/supportsSerialization"/>
-    
-
-
-    <!-- http://www.w3.org/2000/10/swap/log#forSome -->
-
-    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/10/swap/log#forSome"/>
-    
-
-
-    <!-- http://www.w3.org/2004/02/skos/core#altLabel -->
-
-    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#altLabel"/>
-    
-
-
-    <!-- http://www.w3.org/2004/02/skos/core#notation -->
-
-    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#notation"/>
-    
-
-
-    <!-- http://www.w3.org/2004/02/skos/core#prefLabel -->
-
-    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#prefLabel"/>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Datatypes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.w3.org/2001/XMLSchema-datatypes#date -->
-
-    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema-datatypes#date"/>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Object Properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.omg.org/spec/API4KP/core#associated-to -->
-
-    <owl:ObjectProperty rdf:about="http://www.omg.org/spec/API4KP/core#associated-to"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/supportsSerialization -->
-
-    <owl:ObjectProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/supportsSerialization"/>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Classes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://rdfs.org/ns/void#Dataset -->
-
-    <owl:Class rdf:about="http://rdfs.org/ns/void#Dataset"/>
-    
-
-
-    <!-- http://www.omg.org/spec/API4KP/core#ConstructedLanguage -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-    
-
-
-    <!-- http://www.omg.org/spec/API4KP/core#Lexicon -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KP/core#Lexicon"/>
-    
-
-
-    <!-- http://www.omg.org/spec/API4KP/core#MetaFormat -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/API4KP/core#MetaFormat"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/AbstractSyntax -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/AbstractSyntax"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/DefaultMapping -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/DefaultMapping"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/Embedding -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/Embedding"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/ExactMapping -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/ExactMapping"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/FaithfulMapping -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/FaithfulMapping"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/Language -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/Language"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/LanguageMapping -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/LanguageMapping"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/Logic -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/LogicMapping -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/LogicMapping"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/ModelBijectiveMapping -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/ModelBijectiveMapping"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/ModelExpansiveMapping -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/ModelExpansiveMapping"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/OMSMapping -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/OMSMapping"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/PlainMapping -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/PlainMapping"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/Profile -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/Reduction -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/Reduction"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/Serialization -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/SimpleTheoroidalMapping -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/SimpleTheoroidalMapping"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/SubLogic -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/SubLogic"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/Symbol -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/Symbol"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/Translation -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/Translation"/>
-    
-
-
-    <!-- http://www.omg.org/spec/DOL/DOL-terms/WeaklyExactMapping -->
-
-    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/WeaklyExactMapping"/>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Individuals
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://hl7.org/CDSDatatype -->
-
-    <owl:NamedIndividual rdf:about="http://hl7.org/CDSDatatype">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <dc:identifier>dt</dc:identifier>
-        <dct:identifier>eb9d122340fa440f8fd0eee5427984f0</dct:identifier>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/CDSDatatype/XML"/>
-        <rdfs:label>ISO CDS Datatype v2</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://hl7.org/QDM_5.0.2 -->
-
-    <owl:NamedIndividual rdf:about="http://hl7.org/QDM_5.0.2">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-        <dc:identifier>qdm</dc:identifier>
-        <dct:identifier>70326512142a499c93ba0633d69094d5</dct:identifier>
-        <rdfs:comment>Clinical Quality Data Model</rdfs:comment>
-        <rdfs:label>QDM 5.0.2</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://hl7.org/ELM/1.2 -->
-
-    <owl:NamedIndividual rdf:about="http://hl7.org/ELM/1.2">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <dc:identifier>elm</dc:identifier>
-        <dct:identifier>0b15adbc1e4a4aa68ce183ce1e99718c</dct:identifier>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/CQL/ELM/XML"/>
-        <rdfs:label>ELM 1.2</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://hl7.org/KNART/1.3 -->
-
-    <owl:NamedIndividual rdf:about="http://hl7.org/KNART/1.3">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-        <dc:identifier>knart</dc:identifier>
-        <dct:identifier>6a96069c26e94ab8d7c79e9518718adb</dct:identifier>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/KNART/XML"/>
-        <rdfs:comment>HL7 Clinical Decision Support &apos;Knowledge Artifact&apos;</rdfs:comment>
-        <rdfs:label>KNART 1.3</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://hl7.org/cql/1.2 -->
-
-    <owl:NamedIndividual rdf:about="http://hl7.org/cql/1.2">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-        <dc:identifier>cql</dc:identifier>
-        <dct:identifier>4ab4365c793b42c2b92317e3ec829a07</dct:identifier>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/CQL/ELM/XML"/>
-        <rdfs:comment>HL7 Clinical Quality Language</rdfs:comment>
-        <rdfs:label>CQL 1.2</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://hl7.org/fhir/DSTU2 -->
-
-    <owl:NamedIndividual rdf:about="http://hl7.org/fhir/DSTU2">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-        <dc:identifier>fhir2</dc:identifier>
-        <dct:identifier>0a9d4b9c02584404bc055381fe56e513</dct:identifier>
-        <dct:source>http://urn:hl7-org:fhir-dstu2</dct:source>
-        <rdfs:label>FHIR DSTU2</rdfs:label>
-        <co:prefLabel>FHIR DSTU2</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://hl7.org/fhir/STU3 -->
-
-    <owl:NamedIndividual rdf:about="http://hl7.org/fhir/STU3">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-        <dc:identifier>fhir3</dc:identifier>
-        <dct:identifier>6951fbd1b127430a9daa67a47b8c3f4d</dct:identifier>
-        <rdfs:label>FHIR STU3</rdfs:label>
-        <co:prefLabel>FHIR STU3</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://hl7.org/fhirpath/STU1 -->
-
-    <owl:NamedIndividual rdf:about="http://hl7.org/fhirpath/STU1">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <dc:identifier>fhirpath</dc:identifier>
-        <dct:identifier>99370feb0c97431a861d04963eaef3cf</dct:identifier>
-        <rdfs:label>FHIRPath STU1</rdfs:label>
-        <co:prefLabel>FHIRPath STU1</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://json.org/versions/20171201 -->
-
-    <owl:NamedIndividual rdf:about="http://json.org/versions/20171201">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#MetaFormat"/>
-        <dc:identifier>json</dc:identifier>
-        <rdfs:label>JSON</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://kmdp.mayo.edu/CognitiveCareProcessMetamodel -->
-
-    <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/CognitiveCareProcessMetamodel">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <dc:identifier>ccpm</dc:identifier>
-        <dct:identifier>6542d8f129ec4c97b152a57e692e536c</dct:identifier>
-        <rdfs:label>Cognitive Care Process Meta Model</rdfs:label>
-        <co:prefLabel>Cognitive Care Process Meta-Model</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://kmdp.mayo.edu/GlossaryEntryMetamodel -->
-
-    <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/GlossaryEntryMetamodel">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <dc:identifier>ccg</dc:identifier>
-        <dct:identifier>6c9805fc85ca4614970fb8b06ef0f746</dct:identifier>
-        <rdfs:label>Concept Glossary Entry Meta Model</rdfs:label>
-        <co:prefLabel>Concept Glossary Entry Meta-Model</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://kmdp.mayo.edu/MCBT -->
-
-    <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/MCBT">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
-        <dc:identifier>mcbt</dc:identifier>
-        <dct:source>http://terms.mayo.edu</dct:source>
-        <rdfs:label>MCBT</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://kmdp.mayo.edu/TXT -->
-
-    <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/TXT">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#MetaFormat"/>
-        <dc:identifier>text</dc:identifier>
-        <rdfs:label>TXT</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://kmdp.mayo.edu/ActivityContext/versions/1.0 -->
-
-    <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/ActivityContext/versions/1.0">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-        <dc:identifier>cctx</dc:identifier>
-        <dct:identifier>1a1d49dcebd444c8f97a0be74cb4368c</dct:identifier>
-        <dct:source>http://kmdp.mayo.edu/activity</dct:source>
-        <rdfs:label>Activity Context</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://kmdp.mayo.edu/ServiceProfile/versions/1.0 -->
-
-    <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/ServiceProfile/versions/1.0">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-        <dc:identifier>serviceprofile</dc:identifier>
-        <dct:identifier>43ed326245cd4317a619a06a93f7a6c4</dct:identifier>
-        <rdfs:label>Service Profile</rdfs:label>
-        <co:prefLabel>Service Profile</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://kmdp.mayo.edu/metadata/annotations -->
-
-    <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/metadata/annotations">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <dc:identifier>ann</dc:identifier>
-        <dct:identifier>340359d1f401475f93e080516707e7e4</dct:identifier>
-        <dol:supportsSerialization rdf:resource="http://kmdp.mayo.edu/metadata/annotations/XML"/>
-        <rdfs:label>Annotations</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://kmdp.mayo.edu/metadata/surrogate -->
-
-    <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/metadata/surrogate">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-        <dc:identifier>surr</dc:identifier>
-        <dct:identifier>6b2008a2f00b474ed6af70a8fd184da8</dct:identifier>
-        <dol:supportsSerialization rdf:resource="http://kmdp.mayo.edu/metadata/surrogate/XML"/>
-        <rdfs:label>Asset Surrogate</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://kmdp.mayo.edu/metadata/annotations/XML -->
-
-    <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/metadata/annotations/XML">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
-        <dc:identifier>asset_ann_xml</dc:identifier>
-        <dct:source>http://kmdp.mayo.edu/metadata/annotations</dct:source>
-        <rdfs:label>Asset Annotations XML</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://kmdp.mayo.edu/metadata/surrogate/XML -->
-
-    <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/metadata/surrogate/XML">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
-        <dc:identifier>asset_surr_xml</dc:identifier>
-        <dct:source>http://kmdp.mayo.edu/metadata/surrogate</dct:source>
-        <rdfs:label>Asset Surrogate XML</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://mustache.github.io/versions/1.1.2 -->
-
-    <owl:NamedIndividual rdf:about="http://mustache.github.io/versions/1.1.2">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-        <dc:identifier>mustache</dc:identifier>
-        <dct:identifier>decb6902a7c246739accf70f3a7154d3</dct:identifier>
-        <rdfs:label>Mustache</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://ontology.mayo.edu/PCO -->
-
-    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/PCO">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
-        <dc:identifier>pco</dc:identifier>
-        <dct:source>http://ontology.mayo.edu/PCO</dct:source>
-        <rdfs:label>PCO</rdfs:label>
-        <co:altLabel>Propositional Concept Ontology</co:altLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/languages/OWL2/DL -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/languages/OWL2/DL">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CRecommendation"/>
-        <dc:identifier>DL</dc:identifier>
-        <dct:source rdf:resource="http://www.w3.org/TR/2009/REC-owl2-overview-20091027/"/>
-        <dol:hasExactLogicalExpressivity rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/languages/OWL2/EL"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/languages/OWL2/QL"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/languages/OWL2/RL"/>
-        <dol:isMappableFromLanguage rdf:resource="http://purl.net/dol/languages/OWL2/EL"/>
-        <dol:isMappableFromLanguage rdf:resource="http://purl.net/dol/languages/OWL2/QL"/>
-        <dol:isMappableFromLanguage rdf:resource="http://purl.net/dol/languages/OWL2/RL"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/languages/OWL2/EL"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/languages/OWL2/QL"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/languages/OWL2/RL"/>
-        <dol:isMappableToLanguage rdf:resource="http://purl.net/dol/languages/OWL2/EL"/>
-        <dol:isMappableToLanguage rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <dol:isMappableToLanguage rdf:resource="http://purl.net/dol/languages/OWL2/QL"/>
-        <dol:isMappableToLanguage rdf:resource="http://purl.net/dol/languages/OWL2/RL"/>
-        <dol:isProfileOf rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <dol:isReducibleTo rdf:resource="http://purl.net/dol/languages/OWL2/EL"/>
-        <dol:isReducibleTo rdf:resource="http://purl.net/dol/languages/OWL2/QL"/>
-        <dol:isReducibleTo rdf:resource="http://purl.net/dol/languages/OWL2/RL"/>
-        <dol:isSubLanguageOf rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/languages/OWL2/EL"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/languages/OWL2/QL"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/languages/OWL2/RL"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/DDLOWL"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/DLLiteR"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/OBOOWL"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/OWL2/RL"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/OWL2/Manchester"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/OWL2/XML"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/RDF/Turtle"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/RDF/XML"/>
-        <rdfs:comment>OWL 2 Web Ontology Language, Description Logic semantics (W3C Recommendation)</rdfs:comment>
-        <rdfs:label>OWL 2 DL</rdfs:label>
-        <co:prefLabel>OWL 2 DL</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/languages/OWL2/EL -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/languages/OWL2/EL">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CRecommendation"/>
-        <dc:identifier>EL</dc:identifier>
-        <dct:source rdf:resource="http://www.w3.org/TR/2009/REC-owl2-profiles-20091027/#OWL_2_EL"/>
-        <dol:hasExactLogicalExpressivity rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isMappableFromLanguage rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isMappableToLanguage rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isProfileOf rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isReducibleFrom rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isSubLanguageOf rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/OWL2/Manchester"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/OWL2/XML"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/RDF/Turtle"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/RDF/XML"/>
-        <rdfs:comment>OWL 2 Web Ontology Language, EL Profile (W3C Recommendation)</rdfs:comment>
-        <rdfs:label>OWL 2 EL</rdfs:label>
-        <co:prefLabel>OWL 2 EL</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/languages/OWL2/Full -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/languages/OWL2/Full">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CRecommendation"/>
-        <dc:identifier>Full</dc:identifier>
-        <dct:source rdf:resource="http://www.w3.org/TR/owl2-rdf-based-semantics/"/>
-        <dol:hasExactLogicalExpressivity rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isMappableFromLanguage rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/DDLOWL"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/DLLiteR"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/OBOOWL"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/OWL2/RL"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/OWL2/Manchester"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/OWL2/XML"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/RDF/Turtle"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/RDF/XML"/>
-        <rdfs:comment>OWL 2 Web Ontology Language, RDF semantics (W3C Recommendation)</rdfs:comment>
-        <rdfs:label>OWL 2 Full</rdfs:label>
-        <co:prefLabel>OWL 2 Full</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/languages/OWL2/QL -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/languages/OWL2/QL">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CRecommendation"/>
-        <dc:identifier>QL</dc:identifier>
-        <dct:source rdf:resource="http://www.w3.org/TR/2009/REC-owl2-profiles-20091027/#OWL_2_QL"/>
-        <dol:hasExactLogicalExpressivity rdf:resource="http://purl.net/dol/logics/DLLiteR"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isMappableFromLanguage rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isMappableToLanguage rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isProfileOf rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isReducibleFrom rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isSubLanguageOf rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/DLLiteR"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/OWL2/Manchester"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/OWL2/XML"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/RDF/Turtle"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/RDF/XML"/>
-        <rdfs:comment>OWL 2 Web Ontology Language, QL Profile (W3C Recommendation)</rdfs:comment>
-        <rdfs:label>OWL 2 QL</rdfs:label>
-        <co:prefLabel>OWL 2 QL</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/languages/OWL2/RL -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/languages/OWL2/RL">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CRecommendation"/>
-        <dc:identifier>RL</dc:identifier>
-        <dct:source rdf:resource="http://www.w3.org/TR/2009/REC-owl2-profiles-20091027/#OWL_2_RL"/>
-        <dol:hasExactLogicalExpressivity rdf:resource="http://purl.net/dol/logics/OWL2/RL"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isMappableFromLanguage rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isMappableToLanguage rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isProfileOf rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isReducibleFrom rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isSubLanguageOf rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:supportsLogic rdf:resource="http://purl.net/dol/logics/OWL2/RL"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/OWL2/Manchester"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/OWL2/XML"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/RDF/Turtle"/>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/RDF/XML"/>
-        <rdfs:comment>OWL 2 Web Ontology Language, RL Profile (W3C Recommendation)</rdfs:comment>
-        <rdfs:label>OWL 2 RL</rdfs:label>
-        <co:prefLabel>OWL 2 RL</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/ChurchSimpleTypeTheory -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/ChurchSimpleTypeTheory">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isReducibleTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <rdfs:label xml:lang="en">Church Simple Type Theory</rdfs:label>
-        <co:prefLabel xml:lang="en">Church Simple Type Theory</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/CommonLogic -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/CommonLogic">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#ISOStandard"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/CommonLogic/WithoutSequences"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/CommonLogic/WithoutSequences"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/CommonLogic/WithoutSequences"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <rdfs:comment>Common Logic (ISO/IEC 24707)</rdfs:comment>
-        <rdfs:label xml:lang="en">Common Logic</rdfs:label>
-        <co:prefLabel xml:lang="en">Common Logic</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/DDLOWL -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/DDLOWL">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <rdfs:label>DDL^{OWL}</rdfs:label>
-        <co:prefLabel>DDL^{OWL}</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/DLLiteR -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/DLLiteR">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#AcademicLiterature"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isReducibleFrom rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/QL"/>
-        <rdfs:label>DL-Lite_R</rdfs:label>
-        <co:prefLabel>DL-Lite_R</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/ECoFOLeq -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/ECoFOLeq">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isReducibleTo rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <rdfs:label>E-Connections^{FOLeq}</rdfs:label>
-        <co:prefLabel>E-Connections^{FOLeq}</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/ECoOWL -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/ECoOWL">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/DDLOWL"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/DDLOWL"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isReducibleFrom rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/DDLOWL"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <rdfs:label>E-Connections^{OWL}</rdfs:label>
-        <co:prefLabel>E-Connections^{OWL}</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/ELplusplus -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/ELplusplus">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#AcademicLiterature"/>
-        <dct:source rdf:resource="http://lat.inf.tu-dresden.de/research/papers/2005/BaaderBrandtLutz-IJCAI-05.pdf"/>
-        <dct:source rdf:resource="http://www.webont.org/owled/2008dc/papers/owled2008dc_paper_3.pdf"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/OBOOWL"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/OBOOWL"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/registry/_g2"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/OBOOWL"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isReducibleFrom rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/OBOOWL"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/OBOOWL"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/EL"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <rdfs:label>EL⁺⁺</rdfs:label>
-        <co:prefLabel>EL⁺⁺</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/F-logic -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/F-logic">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#AcademicLiterature"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <rdfs:label xml:lang="en">F-logic</rdfs:label>
-        <co:prefLabel xml:lang="en">F-logic</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/FOL -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/FOL">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <rdfs:comment>first-order logic (without equality)</rdfs:comment>
-        <rdfs:label xml:lang="en">FOL</rdfs:label>
-        <rdfs:label xml:lang="en">first-order logic</rdfs:label>
-        <rdfs:label xml:lang="en">first-order logic (without equality)</rdfs:label>
-        <co:altLabel xml:lang="en">FOL</co:altLabel>
-        <co:altLabel xml:lang="en">first-order logic (without equality)</co:altLabel>
-        <co:prefLabel xml:lang="en">first-order logic</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/FOLeq -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/FOLeq">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic/WithoutSequences"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic/WithoutSequences"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/CommonLogic/WithoutSequences"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/CommonLogic/WithoutSequences"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic/WithoutSequences"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/CommonLogic/WithoutSequences"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic/WithoutSequences"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic/WithoutSequences"/>
-        <dol:isReducibleTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic/WithoutSequences"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/CommonLogic/WithoutSequences"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/CommonLogic/WithoutSequences"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic/WithoutSequences"/>
-        <rdfs:comment>first-order logic with equality</rdfs:comment>
-        <rdfs:label xml:lang="en">FOL⁼</rdfs:label>
-        <rdfs:label xml:lang="en">first-order logic with equality</rdfs:label>
-        <co:altLabel xml:lang="en">FOL⁼</co:altLabel>
-        <co:prefLabel xml:lang="en">first-order logic with equality</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/FOLeqms -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/FOLeqms">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/RelationalSchema"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/RelationalSchema"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isReducibleFrom rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isReducibleTo rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/ECoFOLeq"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/RelationalSchema"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SubPCFOLeq"/>
-        <rdfs:label xml:lang="en">many-sorted FOL with equality</rdfs:label>
-        <rdfs:label xml:lang="en">many-sorted first-order logic with equality</rdfs:label>
-        <co:altLabel xml:lang="en">many-sorted FOL with equality</co:altLabel>
-        <co:prefLabel xml:lang="en">many-sorted first-order logic with equality</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/OBOOWL -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/OBOOWL">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <rdfs:label>OBO^{OWL}</rdfs:label>
-        <co:prefLabel>OBO^{OWL}</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/Propositional -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/Propositional">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isReducibleFrom rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <rdfs:label xml:lang="en">propositional logic</rdfs:label>
-        <co:prefLabel xml:lang="en">propositional logic</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/RDF -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/RDF">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CRecommendation"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:isReducibleFrom rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isReducibleTo rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <rdfs:comment>RDF Resource Description Framework (W3C Recommendation)</rdfs:comment>
-        <rdfs:label>RDF</rdfs:label>
-        <co:prefLabel>RDF</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/RDFS -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/RDFS">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CRecommendation"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isReducibleFrom rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isReducibleTo rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <rdfs:comment>RDF Vocabulary Description Language (a.k.a. &apos;RDF Schema&apos;; W3C Recommendation)</rdfs:comment>
-        <rdfs:label>RDFS</rdfs:label>
-        <co:prefLabel>RDFS</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/RelationalSchema -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/RelationalSchema">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <rdfs:label xml:lang="en">relational database schema</rdfs:label>
-        <co:prefLabel xml:lang="en">relational database schema</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/SROIQ -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/SROIQ">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#AcademicLiterature"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/DDLOWL"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/DDLOWL"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/DLLiteR"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/RL"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/DDLOWL"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/DLLiteR"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/RL"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/DLLiteR"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/OBOOWL"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/OWL2/RL"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/DLLiteR"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/OBOOWL"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/OWL2/RL"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/DDLOWL"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/DLLiteR"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/RL"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/DDLOWL"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/DLLiteR"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/OWL2/RL"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/DDLOWL"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/DLLiteR"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/RL"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/DDLOWL"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/DLLiteR"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/RL"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/DDLOWL"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/DLLiteR"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/RL"/>
-        <dol:isReducibleFrom rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isReducibleTo rdf:resource="http://purl.net/dol/logics/DLLiteR"/>
-        <dol:isReducibleTo rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:isReducibleTo rdf:resource="http://purl.net/dol/logics/OWL2/RL"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/DDLOWL"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/DLLiteR"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/RL"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/DDLOWL"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/DLLiteR"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/ECoOWL"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/OBOOWL"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/Propositional"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/OWL2/RL"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/RDF/Simple"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/DDLOWL"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/F-logic"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/DDLOWL"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/DLLiteR"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/ELplusplus"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/Full"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/OWL2/RL"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <rdfs:comment>SROIQ, the logic of OWL 2 Web Ontology Language DL (W3C Recommendation)</rdfs:comment>
-        <rdfs:label>SROIQ</rdfs:label>
-        <co:prefLabel>SROIQ</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/SubPCFOLeq -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/SubPCFOLeq">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/ChurchSimpleTypeTheory"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/ChurchSimpleTypeTheory"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/ChurchSimpleTypeTheory"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/ChurchSimpleTypeTheory"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/ChurchSimpleTypeTheory"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/ChurchSimpleTypeTheory"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/ChurchSimpleTypeTheory"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/ChurchSimpleTypeTheory"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/ChurchSimpleTypeTheory"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isReducibleFrom rdf:resource="http://purl.net/dol/logics/ChurchSimpleTypeTheory"/>
-        <dol:isReducibleTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/ChurchSimpleTypeTheory"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/ChurchSimpleTypeTheory"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/ChurchSimpleTypeTheory"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/ChurchSimpleTypeTheory"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeqms"/>
-        <rdfs:comment></rdfs:comment>
-        <rdfs:label xml:lang="en">SubPCFOL⁼</rdfs:label>
-        <co:prefLabel xml:lang="en">SubPCFOL⁼</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/CommonLogic/WithoutSequences -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/CommonLogic/WithoutSequences">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/CommonLogic"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <rdfs:comment>Common Logic, restricted to sentences without sequence markers</rdfs:comment>
-        <rdfs:label xml:lang="en">CL⁻</rdfs:label>
-        <rdfs:label xml:lang="en">Common Logic without sequences</rdfs:label>
-        <co:altLabel xml:lang="en">Common Logic without sequences</co:altLabel>
-        <co:prefLabel xml:lang="en">CL⁻</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/OWL2/Full -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/OWL2/Full">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CRecommendation"/>
-        <dct:source rdf:resource="http://www.w3.org/TR/owl2-rdf-based-semantics/"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isReducibleTo rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:isTranslatableFrom rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/RDFS"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <rdfs:label>OWL 2 Full</rdfs:label>
-        <co:prefLabel>OWL 2 Full</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/OWL2/RL -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/OWL2/RL">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CRecommendation"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isReducibleFrom rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/RL"/>
-        <rdfs:label>OWL 2 RL</rdfs:label>
-        <co:prefLabel>OWL 2 RL</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/logics/RDF/Simple -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/logics/RDF/Simple">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Logic"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CRecommendation"/>
-        <dct:source rdf:resource="http://www.w3.org/TR/2004/REC-rdf-mt-20040210/#interp"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isEmbeddableInto rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isFaithfullyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableFrom rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isMappableFromLogic rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isMappableToLogic rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isModelBijectivelyMappableTo rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isModelExpansivelyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isPlainlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isReducibleFrom rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isSimplyTheoroidallyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isSubLogicOf rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isTranslatableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/FOLeq"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/RDF"/>
-        <dol:isWeaklyExactlyMappableTo rdf:resource="http://purl.net/dol/logics/SROIQ"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:specifiesSemanticsOf rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <rdfs:comment>Simple interpretations of RDF graphs</rdfs:comment>
-        <rdfs:label xml:lang="en">simple RDF</rdfs:label>
-        <co:prefLabel xml:lang="en">simple RDF</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/serializations/OWLFunctionalSyntax -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/OWLFunctionalSyntax">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <dc:identifier>owl_ofn</dc:identifier>
-        <rdfs:label>OWL Functional Syntax</rdfs:label>
-        <co:prefLabel>OWL Functional Syntax</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/serializations/XHTML -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/XHTML">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
-        <dc:identifier>xhtml</dc:identifier>
-        <dct:source>http://www.w3.org/1999/xhtml</dct:source>
-        <rdfs:label>XHTML</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/serializations/BPMN2/XML -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/BPMN2/XML">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
-        <dc:identifier>bpmn_xml</dc:identifier>
-        <rdfs:label>BPMN2 XML</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/serializations/CDSDatatype/XML -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/CDSDatatype/XML">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
-        <dc:identifier>cds_dt_xml</dc:identifier>
-        <dct:source>urn:hl7-org:cdsdt:r2</dct:source>
-        <rdfs:label>CDS Datatype XML</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/serializations/CMMN/XML -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/CMMN/XML">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
-        <dc:identifier>cmmn_xml</dc:identifier>
-        <dct:source>http://www.omg.org/spec/CMMN/20151109/MODEL</dct:source>
-        <rdfs:label>CMMN XML</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/serializations/CQL/ELM/XML -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/CQL/ELM/XML">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
-        <dc:identifier>cql_elm_xml</dc:identifier>
-        <dct:source>urn:hl7-org:elm:r1</dct:source>
-        <rdfs:label>CQL/ELM XML</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/serializations/CommonLogic/CGIF -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/CommonLogic/CGIF">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#ISOStandard"/>
-        <dc:identifier>cgif</dc:identifier>
-        <rdfs:label xml:lang="en">CGIF</rdfs:label>
-        <rdfs:label xml:lang="en">Conceptual Graph Interchange Format</rdfs:label>
-        <co:altLabel xml:lang="en">Conceptual Graph Interchange Format</co:altLabel>
-        <co:prefLabel xml:lang="en">CGIF</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/serializations/CommonLogic/CLIF -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/CommonLogic/CLIF">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#ISOStandard"/>
-        <dc:identifier>clif</dc:identifier>
-        <dol:altFilenameExtension>clf</dol:altFilenameExtension>
-        <dol:prefFilenameExtension>clif</dol:prefFilenameExtension>
-        <rdfs:comment>dol:mediaType is being worked on; see https://github.com/gruninger/Common-Logic/issues/38</rdfs:comment>
-        <rdfs:label xml:lang="en">CLIF</rdfs:label>
-        <rdfs:label xml:lang="en">Common Logic Interchange Format</rdfs:label>
-        <co:altLabel xml:lang="en">Common Logic Interchange Format</co:altLabel>
-        <co:prefLabel xml:lang="en">CLIF</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/serializations/CommonLogic/XCL -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/CommonLogic/XCL">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#ISOStandard"/>
-        <dc:identifier>cl_xml</dc:identifier>
-        <dol:prefFilenameExtension>xcl</dol:prefFilenameExtension>
-        <rdfs:comment>dol:mediaType is being worked on; see https://github.com/gruninger/Common-Logic/issues/38</rdfs:comment>
-        <rdfs:label xml:lang="en">XCL</rdfs:label>
-        <rdfs:label xml:lang="en">XML Notation for Common Logic</rdfs:label>
-        <co:prefLabel xml:lang="en">XCL</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/serializations/DMN/XML -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/DMN/XML">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
-        <dc:identifier>dmn_xml</dc:identifier>
-        <dct:source>http://www.omg.org/spec/DMN/20151101/dmn.xsd</dct:source>
-        <rdfs:label>DMN XML</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/serializations/KNART/XML -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/KNART/XML">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
-        <dc:identifier>knart_xml</dc:identifier>
-        <dct:source>urn:hl7-org:knowledgeartifact:r1</dct:source>
-        <rdfs:label>KNART XML</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/serializations/OWL2/Manchester -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/OWL2/Manchester">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CWorkingGroupNote"/>
-        <dc:identifier>owl_mns</dc:identifier>
-        <dct:source rdf:resource="http://www.w3.org/TR/2009/NOTE-owl2-manchester-syntax-20091027/"/>
-        <dol:mediaType>text/owl-manchester</dol:mediaType>
-        <dol:prefFilenameExtension>omn</dol:prefFilenameExtension>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/EL"/>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/QL"/>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/RL"/>
-        <rdfs:label>OWL Manchester Syntax</rdfs:label>
-        <co:prefLabel>OWL Manchester Syntax</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/serializations/OWL2/XML -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/OWL2/XML">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CRecommendation"/>
-        <dc:identifier>owl_xml</dc:identifier>
-        <dct:source rdf:resource="http://www.w3.org/TR/2009/REC-owl2-xml-serialization-20091027/"/>
-        <dol:mediaType>application/owl+xml</dol:mediaType>
-        <dol:prefFilenameExtension>owx</dol:prefFilenameExtension>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/EL"/>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/QL"/>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/RL"/>
-        <rdfs:label xml:lang="en">OWL XML Serialization</rdfs:label>
-        <co:prefLabel xml:lang="en">OWL XML Serialization</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/serializations/RDF/Turtle -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/RDF/Turtle">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CTeamSubmission"/>
-        <dc:identifier>owl_ttl</dc:identifier>
-        <dct:source rdf:resource="http://www.w3.org/TeamSubmission/turtle/"/>
-        <dol:altFilenameExtension>ttl</dol:altFilenameExtension>
-        <dol:mediaType>text/turtle</dol:mediaType>
-        <dol:prefFilenameExtension>turtle</dol:prefFilenameExtension>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/EL"/>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/QL"/>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/RL"/>
-        <rdfs:comment>Terse RDF Triple Language</rdfs:comment>
-        <rdfs:label>Turtle</rdfs:label>
-        <co:prefLabel>Turtle</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/serializations/RDF/XML -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/RDF/XML">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <sta:standardizationStatus rdf:resource="http://purl.net/dol/1.0/standardization#W3CRecommendation"/>
-        <dc:identifier>rdf_xml</dc:identifier>
-        <dct:source rdf:resource="http://www.w3.org/TR/2004/REC-rdf-syntax-grammar-20040210/"/>
-        <dol:mediaType>application/rdf+xml</dol:mediaType>
-        <dol:prefFilenameExtension>rdf</dol:prefFilenameExtension>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/DL"/>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/EL"/>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/Full"/>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/QL"/>
-        <dol:serializes rdf:resource="http://purl.net/dol/languages/OWL2/RL"/>
-        <rdfs:label xml:lang="en">RDF/XML Syntax</rdfs:label>
-        <co:prefLabel xml:lang="en">RDF/XML Syntax</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.net/dol/serializations/XSD/XML -->
-
-    <owl:NamedIndividual rdf:about="http://purl.net/dol/serializations/XSD/XML">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
-        <dc:identifier>xsd_xml</dc:identifier>
-        <dct:source>http://www.w3.org/2001/XMLSchema</dct:source>
-        <rdfs:label>XSD XML Syntax</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://reaction.ruleml.org/1.02 -->
-
-    <owl:NamedIndividual rdf:about="http://reaction.ruleml.org/1.02">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-        <dc:identifier>rruleml</dc:identifier>
-        <dct:identifier>d1ee96751bb846d8a0d51ffc3f4c9725</dct:identifier>
-        <rdfs:label>Reaction RuleML 1.2</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://snomed.info/sct/900000000000207008/version/20180731 -->
-
-    <owl:NamedIndividual rdf:about="http://snomed.info/sct/900000000000207008/version/20180731">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
-        <dc:identifier>sct</dc:identifier>
-        <dct:source>http://snomed.info/id</dct:source>
-        <rdfs:label>SNOMED-CT Int 07_18</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.omg.org/spec/API4KP/1.0 -->
-
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/1.0">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:api4kp="https://www.omg.org/spec/API4KP/api4kp/"
+    xmlns:api4kp-lang="http://ontology.mayo.edu/KMDP/registry/languages/api4kp/"
+    xmlns:api4kp-prof="http://ontology.mayo.edu/KMDP/registry/profiles/api4kp/"
+    xmlns:dol-lang="http://ontology.mayo.edu/KMDP/registry/languages/dol/"
+    xmlns:dol="http://www.omg.org/spec/DOL/DOL-terms"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:kmdp-lang="http://ontology.mayo.edu/KMDP/registry/languages/kmdp/"
+    xmlns:api4kp-lex="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/"
+    xmlns:api4kp-ser="http://ontology.mayo.edu/KMDP/registry/serializations/api4kp/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:j.0="http://www.omg.org/spec/DOL/DOL-terms/"
+    xmlns:dol-prof="http://ontology.mayo.edu/KMDP/registry/profiles/dol/"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:api4kp-fmt="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/"
+    xmlns:kmdp-ser="http://ontology.mayo.edu/KMDP/registry/serializations/kmdp/"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:dol-ser="http://ontology.mayo.edu/KMDP/registry/serializations/dol/"
+    xmlns:kmdp-lex="http://ontology.mayo.edu/KMDP/registry/lexica/kmdp/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <owl:Ontology rdf:about="http://ontology.mayo.edu/KMDP/registry/">
+    <owl:versionIRI rdf:resource="http://ontology.mayo.edu/KMDP/2018/08/registry/"/>
+  </owl:Ontology>
+  <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/MetaFormat"/>
+  <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/ConstructedLanguage"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/Profile">
+    <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/ConstructedLanguage"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+  <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+  <owl:ObjectProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/supportsSerialization"/>
+  <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/depends-on"/>
+  <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/uses-lexicon"/>
+  <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/governed-by"/>
+  <owl:ObjectProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isProfileOf"/>
+  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/kmdp/Java/versions/8.0">
+    <owl:versionInfo>v8</owl:versionInfo>
+    <dc:source>https://jcp.org/en/jsr/detail?id=337</dc:source>
+    <rdfs:comment>Java 8</rdfs:comment>
+    <dc:identifier>java</dc:identifier>
+    <skos:prefLabel>Java 8</skos:prefLabel>
+    <rdfs:label>Java 8</rdfs:label>
+  </api4kp:BaseConstructedLanguage>
+  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/api4kp/HTML5/versions/5.2">
+    <owl:versionInfo>v52</owl:versionInfo>
+    <dc:source>https://www.w3.org/TR/html5/</dc:source>
+    <rdfs:comment>HTML 5</rdfs:comment>
+    <dc:identifier>html</dc:identifier>
+    <skos:prefLabel>HTML</skos:prefLabel>
+    <rdfs:label>HTML</rdfs:label>
+  </api4kp:BaseConstructedLanguage>
+  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/kmdp/KNART/versions/1.3">
+    <rdfs:comment>HL7 Knowledge Artifact Metamodel 1.3</rdfs:comment>
+    <dc:identifier>knart</dc:identifier>
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/kmdp/KNARTXMLSyntax">
+        <api4kp:depends-on>
+          <api4kp:MetaFormat rdf:about="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/XML/versions/1.1">
+            <dc:source>http://www.w3.org/TR/xml11</dc:source>
+            <dc:identifier>xml</dc:identifier>
+            <skos:prefLabel>XML 1.1</skos:prefLabel>
+            <rdfs:label>XML 1.1</rdfs:label>
+          </api4kp:MetaFormat>
+        </api4kp:depends-on>
+        <owl:sameAs rdf:resource="urn:hl7-org:knowledgeartifact:r1"/>
+        <dc:source>https://www.hl7.org/implement/standards/product_brief.cfm?product_id=337</dc:source>
+        <rdfs:comment>KNART 1.3 XML Syntax</rdfs:comment>
+        <dc:identifier>knart+xml</dc:identifier>
+        <skos:prefLabel>KNART XML Syntax</skos:prefLabel>
+        <rdfs:label>KNART XML Syntax</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+    <owl:sameAs rdf:resource="http://hl7.org/KNART/1.3"/>
+    <rdfs:label>KNART 1.3</rdfs:label>
+    <owl:versionInfo>v13</owl:versionInfo>
+    <dc:source>https://www.hl7.org/implement/standards/product_brief.cfm?product_id=337</dc:source>
+    <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+    <skos:prefLabel>KNART 1.3</skos:prefLabel>
+  </api4kp:BaseConstructedLanguage>
+  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/api4kp/DMN/versions/1.1">
+    <rdfs:comment>Decision Modelling Notation 1.1</rdfs:comment>
+    <owl:sameAs rdf:resource="https://www.omg.org/spec/DMN/1.1/"/>
+    <owl:versionInfo>v11</owl:versionInfo>
+    <rdfs:label>DMN 1.1</rdfs:label>
+    <dc:source>https://www.omg.org/spec/DMN/1.1/</dc:source>
+    <dc:identifier>dmn</dc:identifier>
+    <skos:prefLabel>DMN 1.1</skos:prefLabel>
+    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/api4kp/DMN11XMLSyntax">
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/XML/versions/1.1"/>
+        <owl:sameAs rdf:resource="http://www.omg.org/spec/DMN/20151101/dmn.xsd"/>
+        <dc:source>https://www.omg.org/spec/DMN/1.1/</dc:source>
+        <rdfs:comment>DMN 1.1 XML Syntax</rdfs:comment>
+        <dc:identifier>dmn-v11+xml</dc:identifier>
+        <skos:prefLabel>DMN 1.1 XML Syntax</skos:prefLabel>
+        <rdfs:label>DMN 1.1 XML Syntax</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+  </j.0:OMSLanguage>
+  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/kmdp/ServiceProfile/versions/1.0">
+    <api4kp:uses-lexicon>
+      <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/kmdp/PCV/versions/2019.0">
+        <owl:sameAs rdf:resource="http://ontology.mayo.edu/taxonomies/PCV"/>
+        <rdfs:comment>Mayo Clinic Propositional Concept Vocabulary</rdfs:comment>
+        <dc:identifier>pcv</dc:identifier>
+        <skos:prefLabel>PCV</skos:prefLabel>
+        <rdfs:label>PCV</rdfs:label>
+      </api4kp:Lexicon>
+    </api4kp:uses-lexicon>
+    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+    <owl:versionInfo>v1</owl:versionInfo>
+    <rdfs:comment>Service Profile Metamodel</rdfs:comment>
+    <dc:identifier>sp</dc:identifier>
+    <skos:prefLabel>Service Profile</skos:prefLabel>
+    <rdfs:label>Service Profile</rdfs:label>
+  </j.0:OMSLanguage>
+  <j.0:Profile rdf:about="http://ontology.mayo.edu/KMDP/registry/profiles/api4kp/API4KPIdentifiers">
+    <j.0:isProfileOf>
+      <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/api4kp/API4KP/versions/1.0">
+        <api4kp:uses-lexicon>
+          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/KRLanguage/versions/201808">
+            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KRLanguage/2018/08/"/>
+            <dc:source>http://ontology.mayo.edu/KMDP/registry/</dc:source>
+            <rdfs:comment>Knowledge Representation and Reasoning Language</rdfs:comment>
+            <dc:identifier>krlang</dc:identifier>
+            <skos:prefLabel>KRR Language</skos:prefLabel>
+            <rdfs:label>KRR Language</rdfs:label>
+          </api4kp:Lexicon>
+        </api4kp:uses-lexicon>
+        <owl:sameAs rdf:resource="https://www.omg.org/spec/API4KP/1.0/"/>
+        <api4kp:uses-lexicon>
+          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/ParsingLevel/versions/2.0190101E7">
+            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/API4KP/ParsingLevel/20190801/"/>
+            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+            <rdfs:comment>Language Parsing Level</rdfs:comment>
+            <dc:identifier>vertical</dc:identifier>
+            <skos:prefLabel>Parsing Level</skos:prefLabel>
+            <rdfs:label>Parsing Level</rdfs:label>
+          </api4kp:Lexicon>
+        </api4kp:uses-lexicon>
+        <api4kp:uses-lexicon>
+          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/AssetCategory/versions/1.0">
+            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/KnowledgeAssetCategory/1.0"/>
+            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+            <rdfs:comment>Knowledge Asset Category</rdfs:comment>
+            <dc:identifier>asset-cat</dc:identifier>
+            <skos:prefLabel>Knowledge Asset Category</skos:prefLabel>
+            <rdfs:label>Knowledge Asset Category</rdfs:label>
+          </api4kp:Lexicon>
+        </api4kp:uses-lexicon>
+        <api4kp:uses-lexicon>
+          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/KRLexicon/versions/201808">
+            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/Lexicon/2018/08/"/>
+            <dc:source>http://ontology.mayo.edu/KMDP/registry/</dc:source>
+            <rdfs:comment>Knowledge Representation and Reasoning Lexicon</rdfs:comment>
+            <dc:identifier>lexicon</dc:identifier>
+            <skos:prefLabel>KRR Lexicon</skos:prefLabel>
+            <rdfs:label>KRR Lexicon</rdfs:label>
+          </api4kp:Lexicon>
+        </api4kp:uses-lexicon>
+        <rdfs:label>API4KP</rdfs:label>
+        <rdfs:comment>API 4 Knowledge Platform Metamodel</rdfs:comment>
+        <api4kp:uses-lexicon>
+          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/KRFormat/versions/201808">
+            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KRFormat/2018/08/"/>
+            <dc:source>http://ontology.mayo.edu/KMDP/registry/</dc:source>
+            <rdfs:comment>Knowledge Representation and Reasoning Serialization Format</rdfs:comment>
+            <dc:identifier>krfmt</dc:identifier>
+            <skos:prefLabel>KRR MetaFormat</skos:prefLabel>
+            <rdfs:label>KRR MetaFormat</rdfs:label>
+          </api4kp:Lexicon>
+        </api4kp:uses-lexicon>
         <dc:identifier>api4kp</dc:identifier>
-        <dct:identifier>62b1dae8867a4b3c8725cc781f2c364e</dct:identifier>
-        <dol:supportsSerialization rdf:resource="http://www.omg.org/spec/API4KP/1.0/XML"/>
-        <rdfs:label>API4KP 1.0</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.omg.org/spec/API4KP/1.0/XML -->
-
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/1.0/XML">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
-        <dc:identifier>api4kp_xml</dc:identifier>
-        <dct:source>http://www.omg.org/spec/API4KP/1.0</dct:source>
-        <rdfs:label>API4KP XML</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.omg.org/spec/API4KP/2018/06/rel -->
-
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/2018/06/rel">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
-        <dc:identifier>api4kp-rel</dc:identifier>
-        <dct:source>http://www.omg.org/spec/API4KP/2018/06/rel</dct:source>
-        <rdfs:label>API4KP Rel Jun18</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.omg.org/spec/API4KP/API4KP/1.0/Services -->
-
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/API4KP/1.0/Services">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <dc:identifier>api</dc:identifier>
-        <dct:identifier>df08f877ffc740748d84cc7733fccb2d</dct:identifier>
-        <dol:supportsSerialization rdf:resource="http://www.omg.org/spec/API4KP/API4KP/1.0/Services/XML"/>
-        <rdfs:label>API4KP 1.0 APIs</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.omg.org/spec/API4KP/API4KP/1.0/Services/XML -->
-
-    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/API4KP/1.0/Services/XML">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-        <know:associated-to rdf:resource="http://www.w3.org/TR/xml11"/>
-        <dc:identifier>api_xml</dc:identifier>
-        <dct:source>http://www.omg.org/spec/API4KP/1.0/services</dct:source>
-        <rdfs:label>API4KP 1.0 Services XML</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.openapis.org/versions/2.3.x -->
-
-    <owl:NamedIndividual rdf:about="http://www.openapis.org/versions/2.3.x">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-        <dc:identifier>openapi</dc:identifier>
-        <dct:identifier>d3bfa91623954195bc582df0baee6b67</dct:identifier>
-        <rdfs:label>OpenAPI 2.3</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.w3.org/WSDL -->
-
-    <owl:NamedIndividual rdf:about="http://www.w3.org/WSDL">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <dct:identifier>4a995c9896d4451eb5e17565fa0bcda0</dct:identifier>
-        <rdfs:label>WSDL</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.w3.org/2004/02/skos/core -->
-
-    <owl:NamedIndividual rdf:about="http://www.w3.org/2004/02/skos/core">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
-        <dc:identifier>skos</dc:identifier>
-        <dct:source>https://www.w3.org/2009/08/skos-reference/skos.html</dct:source>
-        <rdfs:label>SKOS</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.w3.org/TR/HTML -->
-
-    <owl:NamedIndividual rdf:about="http://www.w3.org/TR/HTML">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <dc:identifier>html</dc:identifier>
-        <dct:identifier>47353562adcc43f2e30aeb7354c0041a</dct:identifier>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/XHTML"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.w3.org/TR/XHTML -->
-
-    <owl:NamedIndividual rdf:about="http://www.w3.org/TR/XHTML">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <dc:identifier>xhtml</dc:identifier>
-        <dct:identifier>76f9e27184cf4b65c558616710d68612</dct:identifier>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/XHTML"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.w3.org/TR/XMLNamespaces -->
-
-    <owl:NamedIndividual rdf:about="http://www.w3.org/TR/XMLNamespaces">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
-        <dc:identifier>xmlns</dc:identifier>
-        <dct:source>http://www.w3.org/XML/1998/namespace</dct:source>
-        <rdfs:label>XML Namespaces</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.w3.org/TR/XMLSchemaDefinition -->
-
-    <owl:NamedIndividual rdf:about="http://www.w3.org/TR/XMLSchemaDefinition">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <dc:identifier>xsd</dc:identifier>
-        <dct:identifier>945bd6fb49d04102fab2e5e5522fd016</dct:identifier>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/XSD/XML"/>
-        <rdfs:label>XML Schema Definition</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.w3.org/TR/XMLSchemaInstance -->
-
-    <owl:NamedIndividual rdf:about="http://www.w3.org/TR/XMLSchemaInstance">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
-        <dc:identifier>xsi</dc:identifier>
-        <dct:source>http://www.w3.org/2001/XMLSchema-instance</dct:source>
-        <rdfs:label>XML Schema Instance</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.w3.org/TR/xml11 -->
-
-    <owl:NamedIndividual rdf:about="http://www.w3.org/TR/xml11">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#MetaFormat"/>
-        <dc:identifier>xml</dc:identifier>
-        <co:prefLabel>XML 1.1</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.w3.org/TR/2012/REC-owl2-overview-20121211 -->
-
-    <owl:NamedIndividual rdf:about="http://www.w3.org/TR/2012/REC-owl2-overview-20121211">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <api4kp:uses-lexicon>
+          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/KRProfile/versions/201808">
+            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KRProfile/2018/08/"/>
+            <dc:source>http://ontology.mayo.edu/KMDP/registry/</dc:source>
+            <rdfs:comment>Knowledge Representation and Reasoning Language Profile</rdfs:comment>
+            <dc:identifier>krprof</dc:identifier>
+            <skos:prefLabel>KRR Profile</skos:prefLabel>
+            <rdfs:label>KRR Profile</rdfs:label>
+          </api4kp:Lexicon>
+        </api4kp:uses-lexicon>
+        <api4kp:uses-lexicon>
+          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/AssetType/versions/1.0">
+            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/KnowledgeAssetType/1.0"/>
+            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+            <rdfs:comment>Knowledge Asset Type</rdfs:comment>
+            <dc:identifier>asset-type</dc:identifier>
+            <skos:prefLabel>Knowledge Asset Type</skos:prefLabel>
+            <rdfs:label>Knowledge Asset Type</rdfs:label>
+          </api4kp:Lexicon>
+        </api4kp:uses-lexicon>
+        <skos:prefLabel>API4KP</skos:prefLabel>
+        <owl:versionInfo>v1</owl:versionInfo>
+        <api4kp:uses-lexicon>
+          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/KRSerialization/versions/201808">
+            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KRSerialization/2018/08/"/>
+            <dc:source>http://ontology.mayo.edu/KMDP/registry/</dc:source>
+            <rdfs:comment>Knowledge Representation and Reasoning Serialization</rdfs:comment>
+            <dc:identifier>krser</dc:identifier>
+            <skos:prefLabel>KRR Serialization</skos:prefLabel>
+            <rdfs:label>KRR Serialization</rdfs:label>
+          </api4kp:Lexicon>
+        </api4kp:uses-lexicon>
+        <dc:source>https://www.omg.org/spec/API4KP/1.0/</dc:source>
+      </api4kp:BaseConstructedLanguage>
+    </j.0:isProfileOf>
+    <dc:source>https://www.omg.org/spec/API4KP/1.0/</dc:source>
+    <rdfs:comment>API4KP Identifiers</rdfs:comment>
+    <dc:identifier>id</dc:identifier>
+    <skos:prefLabel>API4KP Identifiers</skos:prefLabel>
+    <rdfs:label>API4KP Identifiers</rdfs:label>
+  </j.0:Profile>
+  <j.0:Profile rdf:about="http://ontology.mayo.edu/KMDP/registry/profiles/api4kp/API4KPDatatypes">
+    <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/KMDP/registry/languages/api4kp/API4KP/versions/1.0"/>
+    <dc:source>https://www.omg.org/spec/API4KP/1.0/</dc:source>
+    <rdfs:comment>API4KP Datatypes</rdfs:comment>
+    <dc:identifier>dtt</dc:identifier>
+    <skos:prefLabel>API4KP Datatypes</skos:prefLabel>
+    <rdfs:label>API4KP Datatypes</rdfs:label>
+  </j.0:Profile>
+  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/api4kp/XHTML/versions/1.0">
+    <owl:versionInfo>v1</owl:versionInfo>
+    <dc:source>https://www.w3.org/TR/xhtml1/</dc:source>
+    <rdfs:comment>X-HTML</rdfs:comment>
+    <dc:identifier>xhtml</dc:identifier>
+    <skos:prefLabel>XHTML</skos:prefLabel>
+    <rdfs:label>XHTML</rdfs:label>
+  </api4kp:BaseConstructedLanguage>
+  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/api4kp/DMN/versions/1.2">
+    <rdfs:label>DMN 1.2</rdfs:label>
+    <owl:sameAs rdf:resource="https://www.omg.org/spec/DMN/1.2/"/>
+    <dc:source>https://www.omg.org/spec/DMN/1.2/</dc:source>
+    <rdfs:comment>Decision Modelling Notation 1.2</rdfs:comment>
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/api4kp/DMN12XMLSyntax">
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/XML/versions/1.1"/>
+        <owl:sameAs rdf:resource="http://www.omg.org/spec/DMN/20180521/MODEL/"/>
+        <dc:source>https://www.omg.org/spec/DMN/1.2/</dc:source>
+        <rdfs:comment>DMN 1.2 XML Syntax</rdfs:comment>
+        <dc:identifier>dmn-v12+xml</dc:identifier>
+        <skos:prefLabel>DMN 1.2 XML Syntax</skos:prefLabel>
+        <rdfs:label>DMN 1.2 XML Syntax</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+    <owl:versionInfo>v12</owl:versionInfo>
+    <skos:prefLabel>DMN 1.2</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+    <dc:identifier>dmn</dc:identifier>
+  </api4kp:BaseConstructedLanguage>
+  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/kmdp/CCG/versions/1.0">
+    <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/KMDP/registry/lexica/kmdp/PCV/versions/2019.0"/>
+    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+    <owl:versionInfo>v1</owl:versionInfo>
+    <rdfs:comment>Clinical Concept Glossary Metamodel</rdfs:comment>
+    <dc:identifier>ccg</dc:identifier>
+    <skos:prefLabel>Clinical Concept Glossary</skos:prefLabel>
+    <rdfs:label>Clinical Concept Glossary</rdfs:label>
+  </j.0:OMSLanguage>
+  <j.0:Profile rdf:about="http://ontology.mayo.edu/KMDP/registry/profiles/api4kp/UMLResource">
+    <j.0:isProfileOf>
+      <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/api4kp/UML/versions/2.5">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <owl:sameAs rdf:resource="https://www.omg.org/spec/UML/2.5/"/>
+        <owl:versionInfo>v25</owl:versionInfo>
+        <dc:source>https://www.omg.org/spec/UML/2.5/</dc:source>
+        <rdfs:comment>Unified Modelling Language 2.5</rdfs:comment>
+        <dc:identifier>uml2</dc:identifier>
+        <skos:prefLabel>UML 2.5</skos:prefLabel>
+        <rdfs:label>UML 2.5</rdfs:label>
+      </j.0:OMSLanguage>
+    </j.0:isProfileOf>
+    <rdfs:comment>UML 2 Resource Profile</rdfs:comment>
+    <dc:identifier>Res</dc:identifier>
+    <skos:prefLabel>UML Resource</skos:prefLabel>
+    <rdfs:label>UML Resource</rdfs:label>
+  </j.0:Profile>
+  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/api4kp/CMMN/versions/1.1">
+    <skos:prefLabel>CMMN 1.1</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/api4kp/CMMN11XMLSyntax">
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/XML/versions/1.1"/>
+        <owl:sameAs rdf:resource="http://www.omg.org/spec/CMMN/20151109/MODEL"/>
+        <dc:source>https://www.omg.org/spec/CMMN/1.1/</dc:source>
+        <rdfs:comment>CMMN 1.1 XML Syntax</rdfs:comment>
+        <dc:identifier>cmmn-v11+xml</dc:identifier>
+        <skos:prefLabel>CMMN 1.1 XML Syntax</skos:prefLabel>
+        <rdfs:label>CMMN 1.1 XML Syntax</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+    <owl:sameAs rdf:resource="https://www.omg.org/spec/CMMN/1.1/"/>
+    <owl:versionInfo>v11</owl:versionInfo>
+    <dc:source>https://www.omg.org/spec/CMMN/1.1/</dc:source>
+    <rdfs:label>CMMN 1.1</rdfs:label>
+    <rdfs:comment>Case Modelling and Management Notation 1.1</rdfs:comment>
+    <dc:identifier>cmmn</dc:identifier>
+  </api4kp:BaseConstructedLanguage>
+  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/kmdp/Mustache/versions/1">
+    <owl:versionInfo>v1</owl:versionInfo>
+    <dc:source>http://mustache.github.io</dc:source>
+    <rdfs:comment>Mustache Templating Language</rdfs:comment>
+    <dc:identifier>mustache</dc:identifier>
+    <skos:prefLabel>Mustache</skos:prefLabel>
+    <rdfs:label>Mustache</rdfs:label>
+  </api4kp:BaseConstructedLanguage>
+  <j.0:Profile rdf:about="http://ontology.mayo.edu/KMDP/registry/profiles/dol/OWL2DL">
+    <j.0:isProfileOf>
+      <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/dol/OWL2/versions/20121211">
+        <skos:prefLabel>OWL-2</skos:prefLabel>
+        <j.0:supportsSerialization>
+          <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/dol/Turtle">
+            <api4kp:depends-on>
+              <api4kp:MetaFormat rdf:about="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/TXT">
+                <dc:identifier>text</dc:identifier>
+                <skos:prefLabel>TXT</skos:prefLabel>
+                <rdfs:label>TXT</rdfs:label>
+              </api4kp:MetaFormat>
+            </api4kp:depends-on>
+            <dc:source>https://www.w3.org/TR/turtle/</dc:source>
+            <rdfs:comment>Terse RDF Triple Language</rdfs:comment>
+            <dc:identifier>ttl</dc:identifier>
+            <skos:prefLabel>Turtle</skos:prefLabel>
+            <rdfs:label>Turtle</rdfs:label>
+          </j.0:Serialization>
+        </j.0:supportsSerialization>
+        <dc:source>https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/</dc:source>
+        <owl:sameAs rdf:resource="http://www.w3.org/2002/07/owl"/>
+        <rdfs:label>OWL-2</rdfs:label>
+        <j.0:supportsSerialization>
+          <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/dol/OWLFunctionalSyntax">
+            <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/TXT"/>
+            <dc:source>https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/</dc:source>
+            <rdfs:comment>OWL Functional Syntax</rdfs:comment>
+            <dc:identifier>ofn</dc:identifier>
+            <skos:prefLabel>OWL Functional Syntax</skos:prefLabel>
+            <rdfs:label>OWL Functional Syntax</rdfs:label>
+          </j.0:Serialization>
+        </j.0:supportsSerialization>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <j.0:supportsSerialization>
+          <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/dol/OWLManchesterSyntax">
+            <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/TXT"/>
+            <dc:source>https://www.w3.org/TR/owl2-manchester-syntax/</dc:source>
+            <rdfs:comment>OWL Manchester Syntax</rdfs:comment>
+            <dc:identifier>ms</dc:identifier>
+            <skos:prefLabel>OWL Manchester Syntax</skos:prefLabel>
+            <rdfs:label>OWL Manchester Syntax</rdfs:label>
+          </j.0:Serialization>
+        </j.0:supportsSerialization>
         <dc:identifier>owl2</dc:identifier>
-        <dct:identifier>384f6526b54043ff98c986999e00c401</dct:identifier>
-        <dct:source>http://www.w3.org/TR/owl2-overview/</dct:source>
-        <rdfs:comment>Ontology Web Language 2</rdfs:comment>
-        <rdfs:label>OWL 2</rdfs:label>
-        <co:prefLabel>OWL 2</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/ -->
-
-    <owl:NamedIndividual rdf:about="http://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#MetaFormat"/>
-        <dc:identifier>rdf</dc:identifier>
-        <rdfs:label>RDF 1.1</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.w3.org/TR/owl2-syntax/ -->
-
-    <owl:NamedIndividual rdf:about="http://www.w3.org/TR/owl2-syntax/">
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/AbstractSyntax"/>
-        <rdfs:label>OWL 2 Syntax</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://yaml.org/spec/1.2 -->
-
-    <owl:NamedIndividual rdf:about="http://yaml.org/spec/1.2">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#MetaFormat"/>
-        <dc:identifier>yaml</dc:identifier>
-        <rdfs:label>YAML 1.2</rdfs:label>
-        <co:prefLabel>YAML 1.2</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- https://docs.oasis-open.org/dita/v1.3 -->
-
-    <owl:NamedIndividual rdf:about="https://docs.oasis-open.org/dita/v1.3">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <dc:identifier>dita</dc:identifier>
-        <dct:identifier>2d851c63c44f4eb8a43d0967ee03df13</dct:identifier>
-        <rdfs:label>DITA 1.3</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- https://loinc.org/oids/1.3.6.1.4.1.12009.10.2.3 -->
-
-    <owl:NamedIndividual rdf:about="https://loinc.org/oids/1.3.6.1.4.1.12009.10.2.3">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
-        <dc:identifier>loinc</dc:identifier>
-        <dct:source>https://loinc.org/</dct:source>
-        <rdfs:label>LOINC US</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- https://www.java.com/java8 -->
-
-    <owl:NamedIndividual rdf:about="https://www.java.com/java8">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <dc:identifier>java</dc:identifier>
-        <dct:identifier>ccd53777e81346428390a4daf23375b4</dct:identifier>
-        <rdfs:label>Java 8</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- https://www.nlm.nih.gov/research/umls/rxnorm/ -->
-
-    <owl:NamedIndividual rdf:about="https://www.nlm.nih.gov/research/umls/rxnorm/">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#Lexicon"/>
+        <j.0:supportsSerialization>
+          <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/dol/OWLXMLSyntax">
+            <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/XML/versions/1.1"/>
+            <dc:source>https://www.w3.org/TR/owl2-xml-serialization/</dc:source>
+            <rdfs:comment>OWL XML Serialization</rdfs:comment>
+            <dc:identifier>xml</dc:identifier>
+            <skos:prefLabel>OWL XML Serialization</skos:prefLabel>
+            <rdfs:label>OWL XML Serialization</rdfs:label>
+          </j.0:Serialization>
+        </j.0:supportsSerialization>
+        <owl:versionInfo>v20121211</owl:versionInfo>
+        <j.0:supportsSerialization>
+          <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/dol/RDF_XMLSyntax">
+            <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/XML/versions/1.1"/>
+            <dc:source>https://www.w3.org/TR/owl2-mapping-to-rdf/</dc:source>
+            <rdfs:comment>RDF/XML Syntax</rdfs:comment>
+            <dc:identifier>rdf/xml</dc:identifier>
+            <skos:prefLabel>RDF/XML Syntax</skos:prefLabel>
+            <rdfs:label>RDF/XML Syntax</rdfs:label>
+          </j.0:Serialization>
+        </j.0:supportsSerialization>
+        <rdfs:comment>Web Ontology Language 2</rdfs:comment>
+      </j.0:OMSLanguage>
+    </j.0:isProfileOf>
+    <owl:sameAs rdf:resource="http://www.w3.org/ns/owl-profile/DL"/>
+    <dc:source>https://www.w3.org/TR/owl2-profiles/#OWL_2_DL</dc:source>
+    <rdfs:comment>OWL 2 Web Ontology Language, DL Profile</rdfs:comment>
+    <dc:identifier>DL</dc:identifier>
+    <skos:prefLabel>OWL2 DL</skos:prefLabel>
+    <rdfs:label>OWL2 DL</rdfs:label>
+  </j.0:Profile>
+  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/api4kp/XSLT/versions/3.0">
+    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+    <owl:sameAs rdf:resource="https://www.w3.org/TR/xslt-30/"/>
+    <owl:versionInfo>v3</owl:versionInfo>
+    <dc:source>https://www.w3.org/TR/2017/REC-xslt-30-20170608/</dc:source>
+    <rdfs:comment>Extensible Stylesheet Transformation 3.0</rdfs:comment>
+    <dc:identifier>xslt</dc:identifier>
+    <skos:prefLabel>XSLT 3.0</skos:prefLabel>
+    <rdfs:label>XSLT 3.0</rdfs:label>
+  </j.0:OMSLanguage>
+  <j.0:Profile rdf:about="http://ontology.mayo.edu/KMDP/registry/profiles/dol/OWL2QL">
+    <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/KMDP/registry/languages/dol/OWL2/versions/20121211"/>
+    <owl:sameAs rdf:resource="http://www.w3.org/ns/owl-profile/QL"/>
+    <dc:source>https://www.w3.org/TR/owl2-profiles/#OWL_2_QL</dc:source>
+    <rdfs:comment>OWL 2 Web Ontology Language, QL Profile</rdfs:comment>
+    <dc:identifier>QL</dc:identifier>
+    <skos:prefLabel>OWL2 QL</skos:prefLabel>
+    <rdfs:label>OWL2 QL</rdfs:label>
+  </j.0:Profile>
+  <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/SKOS/versions/2004.0">
+    <owl:sameAs rdf:resource="http://www.w3.org/2004/02/skos/core"/>
+    <rdfs:comment>Simple Knowledge Organization Scheme</rdfs:comment>
+    <dc:identifier>skos</dc:identifier>
+    <skos:prefLabel>SKOS</skos:prefLabel>
+    <rdfs:label>SKOS</rdfs:label>
+  </api4kp:Lexicon>
+  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/kmdp/FHIR/versions/DSTU2">
+    <owl:versionInfo>v2</owl:versionInfo>
+    <rdfs:label>FHIR DSTU2</rdfs:label>
+    <skos:prefLabel>FHIR DSTU2</skos:prefLabel>
+    <api4kp:uses-lexicon>
+      <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/kmdp/LOINC/versions/2.65">
+        <owl:sameAs rdf:resource="http://loinc.org/"/>
+        <rdfs:comment>Logical Observation Identifiers Names and Codes</rdfs:comment>
+        <dc:identifier>lnc</dc:identifier>
+        <skos:prefLabel>LOINC</skos:prefLabel>
+        <rdfs:label>LOINC</rdfs:label>
+      </api4kp:Lexicon>
+    </api4kp:uses-lexicon>
+    <owl:sameAs rdf:resource="http://hl7.org/fhir/DSTU2"/>
+    <api4kp:uses-lexicon>
+      <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/kmdp/RxNORM">
+        <owl:sameAs rdf:resource="https://www.nlm.nih.gov/research/umls/rxnorm/"/>
+        <rdfs:comment>RxNorm</rdfs:comment>
         <dc:identifier>rxnorm</dc:identifier>
-        <dct:source>https://www.nlm.nih.gov/research/umls/rxnorm/</dct:source>
+        <skos:prefLabel>RxNORM</skos:prefLabel>
         <rdfs:label>RxNORM</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- https://www.omg.org/spec/BPMN/2.0.2 -->
-
-    <owl:NamedIndividual rdf:about="https://www.omg.org/spec/BPMN/2.0.2">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
+      </api4kp:Lexicon>
+    </api4kp:uses-lexicon>
+    <dc:source>http://hl7.org/fhir/DSTU2</dc:source>
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/kmdp/FHIR2JSON">
+        <api4kp:depends-on>
+          <api4kp:MetaFormat rdf:about="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/JSON/versions/2.0171201E7">
+            <dc:source>http://json.org/20171201</dc:source>
+            <dc:identifier>json</dc:identifier>
+            <skos:prefLabel>JSON</skos:prefLabel>
+            <rdfs:label>JSON</rdfs:label>
+          </api4kp:MetaFormat>
+        </api4kp:depends-on>
+        <dc:source>https://www.hl7.org/fhir/DSTU2/json.html</dc:source>
+        <rdfs:comment>FHIR DSTU2 JSON Syntax</rdfs:comment>
+        <dc:identifier>fhir2+json</dc:identifier>
+        <skos:prefLabel>FHIR DSTU2 JSON Syntax</skos:prefLabel>
+        <rdfs:label>FHIR DSTU2 JSON Syntax</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+    <dc:identifier>fhir</dc:identifier>
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/kmdp/FHIR2XML">
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/XML/versions/1.1"/>
+        <dc:source>https://www.hl7.org/fhir/DSTU2/xml.html</dc:source>
+        <rdfs:comment>FHIR DSTU2 XML Syntax</rdfs:comment>
+        <dc:identifier>fhir2+xml</dc:identifier>
+        <skos:prefLabel>FHIR DSTU2 XML Syntax</skos:prefLabel>
+        <rdfs:label>FHIR DSTU2 XML Syntax</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/kmdp/FHIR2RDF">
+        <api4kp:depends-on>
+          <api4kp:MetaFormat rdf:about="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/RDF/versions/1.1">
+            <dc:source>https://www.w3.org/RDF/</dc:source>
+            <dc:identifier>rdf</dc:identifier>
+            <skos:prefLabel>RDF 1.1</skos:prefLabel>
+            <rdfs:label>RDF 1.1</rdfs:label>
+          </api4kp:MetaFormat>
+        </api4kp:depends-on>
+        <dc:source>https://www.hl7.org/fhir/DSTU2/rdf.html</dc:source>
+        <rdfs:comment>FHIR DSTU2 RDF Syntax</rdfs:comment>
+        <dc:identifier>fhir2+rdf</dc:identifier>
+        <skos:prefLabel>FHIR DSTU2 RDF Syntax</skos:prefLabel>
+        <rdfs:label>FHIR DSTU2 RDF Syntax</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+    <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+    <rdfs:comment>Fast Healthcare Interoperability Resources DSTU2</rdfs:comment>
+    <api4kp:uses-lexicon>
+      <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/kmdp/SNOMEDCT/versions/2.0180732E7">
+        <owl:sameAs rdf:resource="http://snomed.info/sct/900000000000207008/version/20180731"/>
+        <rdfs:comment>Systematized Nomenclature of Medicine -- Clinical Terms</rdfs:comment>
+        <dc:identifier>sct</dc:identifier>
+        <skos:prefLabel>SNOMED-CT</skos:prefLabel>
+        <rdfs:label>SNOMED</rdfs:label>
+      </api4kp:Lexicon>
+    </api4kp:uses-lexicon>
+  </api4kp:BaseConstructedLanguage>
+  <j.0:Profile rdf:about="http://ontology.mayo.edu/KMDP/registry/profiles/dol/OWL2Full">
+    <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/KMDP/registry/languages/dol/OWL2/versions/20121211"/>
+    <owl:sameAs rdf:resource="http://www.w3.org/ns/owl-profile/Full"/>
+    <dc:source>https://www.w3.org/TR/owl2-syntax/</dc:source>
+    <rdfs:comment>OWL 2 Web Ontology Language, RDF Semantics</rdfs:comment>
+    <dc:identifier>Full</dc:identifier>
+    <skos:prefLabel>OWL2 Full</skos:prefLabel>
+    <rdfs:label>OWL2 Full</rdfs:label>
+  </j.0:Profile>
+  <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/kmdp/XSI/versions/1.1">
+    <owl:sameAs rdf:resource="http://www.w3.org/2001/XMLSchema-instance"/>
+    <rdfs:comment>XML Schema Instance</rdfs:comment>
+    <dc:identifier>xsi</dc:identifier>
+    <skos:prefLabel>XML Schema Instance</skos:prefLabel>
+    <rdfs:label>XML Schema Instance</rdfs:label>
+  </api4kp:Lexicon>
+  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/api4kp/XSD/versions/1.1">
+    <owl:versionInfo>v11</owl:versionInfo>
+    <skos:prefLabel>XSD 1.1</skos:prefLabel>
+    <dc:identifier>xsd</dc:identifier>
+    <owl:sameAs rdf:resource="http://www.w3.org/2001/XMLSchema"/>
+    <dc:source>https://www.w3.org/TR/xmlschema11-1/</dc:source>
+    <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/api4kp/XSD11Syntax">
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/XML/versions/1.1"/>
+        <dc:source>https://www.w3.org/TR/xmlschema11-1/</dc:source>
+        <rdfs:comment>XSD XML 1.1 Syntax</rdfs:comment>
+        <dc:identifier>Xsd-v11+xml</dc:identifier>
+        <skos:prefLabel>XSD XML 1.1 Syntax</skos:prefLabel>
+        <rdfs:label>XSD XML 1.1 Syntax</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+    <rdfs:label>XSD 1.1</rdfs:label>
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/api4kp/XSDXML">
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/XML/versions/1.1"/>
+        <owl:sameAs rdf:resource="http://www.w3.org/2001/XMLSchema"/>
+        <rdfs:comment>XSD XML Syntax</rdfs:comment>
+        <dc:identifier>xsd+xml</dc:identifier>
+        <skos:prefLabel>XSD XML Syntax</skos:prefLabel>
+        <rdfs:label>XSD XML Syntax</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+    <rdfs:comment>XML Schema Definition Language 1.1</rdfs:comment>
+  </api4kp:BaseConstructedLanguage>
+  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/kmdp/DITA/versions/1.3">
+    <owl:versionInfo>v13</owl:versionInfo>
+    <dc:source>http://docs.oasis-open.org/dita/dita/v1.3/dita-v1.3-part0-overview.html</dc:source>
+    <rdfs:comment>Darwin Information Technology Architecture 1.3</rdfs:comment>
+    <dc:identifier>dita</dc:identifier>
+    <skos:prefLabel>DITA</skos:prefLabel>
+    <rdfs:label>DITA</rdfs:label>
+  </api4kp:BaseConstructedLanguage>
+  <j.0:Profile rdf:about="http://ontology.mayo.edu/KMDP/registry/profiles/dol/OWL2EL">
+    <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/KMDP/registry/languages/dol/OWL2/versions/20121211"/>
+    <owl:sameAs rdf:resource="http://www.w3.org/ns/owl-profile/EL"/>
+    <dc:source>https://www.w3.org/TR/owl2-profiles/#OWL_2_EL</dc:source>
+    <rdfs:comment>OWL 2 Web Ontology Language, EL Profile</rdfs:comment>
+    <dc:identifier>EL</dc:identifier>
+    <skos:prefLabel>OWL2 EL</skos:prefLabel>
+    <rdfs:label>OWL2 EL</rdfs:label>
+  </j.0:Profile>
+  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/api4kp/OpenAPI/versions/2.x">
+    <dc:identifier>openapi</dc:identifier>
+    <rdfs:comment>OpenAPI / Swagger v2.x</rdfs:comment>
+    <skos:prefLabel>OpenAPI 2.x</skos:prefLabel>
+    <rdfs:label>OpenAPI 2.x</rdfs:label>
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/api4kp/OpenAPI2JSONSyntax">
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/JSON/versions/2.0171201E7"/>
+        <dc:source>https://swagger.io/specification/#format</dc:source>
+        <rdfs:comment>OpenAPI 2 JSON Syntax</rdfs:comment>
+        <dc:identifier>openapi-v2+json</dc:identifier>
+        <skos:prefLabel>OpenAPI 2 JSON Syntax</skos:prefLabel>
+        <rdfs:label>OpenAPI 2 JSON Syntax</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/api4kp/OpenAPI2YAMLSyntax">
+        <api4kp:depends-on>
+          <api4kp:MetaFormat rdf:about="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/YAML/versions/1.2">
+            <dc:source>http://yaml.org/spec/1.2</dc:source>
+            <dc:identifier>yaml</dc:identifier>
+            <skos:prefLabel>YAML 1.2</skos:prefLabel>
+            <rdfs:label>YAML 1.2</rdfs:label>
+          </api4kp:MetaFormat>
+        </api4kp:depends-on>
+        <dc:source>https://swagger.io/specification/#format</dc:source>
+        <rdfs:comment>OpenAPI 2 YAML Syntax</rdfs:comment>
+        <dc:identifier>openapi-v2+yaml</dc:identifier>
+        <skos:prefLabel>OpenAPI 2 YAML Syntax</skos:prefLabel>
+        <rdfs:label>OpenAPI 2 YAML Syntax</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+    <owl:versionInfo>v2</owl:versionInfo>
+    <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+    <dc:source>https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md</dc:source>
+  </api4kp:BaseConstructedLanguage>
+  <j.0:Profile rdf:about="http://ontology.mayo.edu/KMDP/registry/profiles/api4kp/SurrogateAnnotations">
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/api4kp/AnnotationsMLSyntax">
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/XML/versions/1.1"/>
+        <owl:sameAs rdf:resource="http://kmdp.mayo.edu/metadata/annotations"/>
+        <dc:source>http://www.omg.org/spec/API4KP/1.0/</dc:source>
+        <rdfs:comment>Knowledge Asset Surrogate - Annotations - XML Syntax</rdfs:comment>
+        <dc:identifier>ann+xml</dc:identifier>
+        <skos:prefLabel>Knowledge Asset Annotations XML Syntax</skos:prefLabel>
+        <rdfs:label>Knowledge Asset Annotations XML Syntax</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+    <j.0:isProfileOf>
+      <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/api4kp/AssetSurrogate/versions/1.0">
+        <rdfs:label>Knowledge Asset Surrogate</rdfs:label>
+        <skos:prefLabel>Knowledge Asset Surrogate</skos:prefLabel>
+        <j.0:supportsSerialization>
+          <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/api4kp/SurrogateJSONSyntax">
+            <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/JSON/versions/2.0171201E7"/>
+            <dc:source>http://www.omg.org/spec/API4KP/1.0/</dc:source>
+            <rdfs:comment>Knowledge Asset Surrogate JSON Syntax</rdfs:comment>
+            <dc:identifier>surr+json</dc:identifier>
+            <skos:prefLabel>Knowledge Asset Surrogate JSON Syntax</skos:prefLabel>
+            <rdfs:label>Knowledge Asset Surrogate JSON Syntax</rdfs:label>
+          </j.0:Serialization>
+        </j.0:supportsSerialization>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/KRProfile/versions/201808"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/KRLanguage/versions/201808"/>
+        <dc:identifier>surr</dc:identifier>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/KRFormat/versions/201808"/>
+        <api4kp:uses-lexicon>
+          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/KRLanguageRole/versions/1.0">
+            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/LanguageRole/1.0"/>
+            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+            <rdfs:comment>Knowledge Representation and Reasoning Language Role</rdfs:comment>
+            <dc:identifier>lang-rol</dc:identifier>
+            <skos:prefLabel>KRR Language Role</skos:prefLabel>
+            <rdfs:label>KRR Language Role</rdfs:label>
+          </api4kp:Lexicon>
+        </api4kp:uses-lexicon>
+        <api4kp:uses-lexicon>
+          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/VariantRel/versions/2.0190101E7">
+            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/VariantRelType/20190801/"/>
+            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+            <rdfs:comment>Knowledge Asset Relationships - Variants</rdfs:comment>
+            <dc:identifier>variant</dc:identifier>
+            <skos:prefLabel>Asset Relationships - Variants</skos:prefLabel>
+            <rdfs:label>Asset Relationships - Variants</rdfs:label>
+          </api4kp:Lexicon>
+        </api4kp:uses-lexicon>
+        <api4kp:uses-lexicon>
+          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/SummaryRel/versions/2.0190101E7">
+            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/SummaryRelType/20190801/"/>
+            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+            <rdfs:comment>Knowledge Asset Relationships - Summary</rdfs:comment>
+            <dc:identifier>summary</dc:identifier>
+            <skos:prefLabel>Asset Relationships - Summary</skos:prefLabel>
+            <rdfs:label>Asset Relationships - Summary</rdfs:label>
+          </api4kp:Lexicon>
+        </api4kp:uses-lexicon>
+        <api4kp:uses-lexicon>
+          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/DerivationRel/versions/2.0190101E7">
+            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/DerivationRelType/20190801/"/>
+            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+            <rdfs:comment>Knowledge Asset Relationships - Derivations</rdfs:comment>
+            <dc:identifier>deriv</dc:identifier>
+            <skos:prefLabel>Asset Relationships - Derivations</skos:prefLabel>
+            <rdfs:label>Asset Relationships - Derivations</rdfs:label>
+          </api4kp:Lexicon>
+        </api4kp:uses-lexicon>
+        <api4kp:uses-lexicon>
+          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/CitationRel/versions/2018-02-16">
+            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/CitationRelType/2018-02-16"/>
+            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+            <rdfs:comment>Knowledge Asset Relationships - Citations</rdfs:comment>
+            <dc:identifier>cito</dc:identifier>
+            <skos:prefLabel>Asset Relationships - Citations</skos:prefLabel>
+            <rdfs:label>Asset Relationships - Citations</rdfs:label>
+          </api4kp:Lexicon>
+        </api4kp:uses-lexicon>
+        <api4kp:uses-lexicon>
+          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/VersionRel/versions/2.0190101E7">
+            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/RelatedVersionType/20190801/"/>
+            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+            <rdfs:comment>Knowledge Asset Relationships - Versions</rdfs:comment>
+            <dc:identifier>version</dc:identifier>
+            <skos:prefLabel>Asset Relationships - Versions</skos:prefLabel>
+            <rdfs:label>Asset Relationships - Versions</rdfs:label>
+          </api4kp:Lexicon>
+        </api4kp:uses-lexicon>
+        <api4kp:uses-lexicon>
+          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/NaturalLanguage/versions/2.0170801E7">
+            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/ISO639-1-LanguageCodes/20170801/"/>
+            <dc:source>https://www.omg.org/spec/LCC/Languages/ISO639-1-LanguageCodes/</dc:source>
+            <rdfs:comment>Natural Language (ISO 639-1 Standard)</rdfs:comment>
+            <dc:identifier>langs</dc:identifier>
+            <skos:prefLabel>Natural Language</skos:prefLabel>
+            <rdfs:label>Natural Language</rdfs:label>
+          </api4kp:Lexicon>
+        </api4kp:uses-lexicon>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/AssetType/versions/1.0"/>
+        <api4kp:uses-lexicon>
+          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/StructuralRel/versions/2.0190101E7">
+            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/StructuralRelType/20190801/"/>
+            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+            <rdfs:comment>Knowledge Asset Relationships - Structural</rdfs:comment>
+            <dc:identifier>struct</dc:identifier>
+            <skos:prefLabel>Asset Relationships - Structural</skos:prefLabel>
+            <rdfs:label>Asset Relationships - Structural</rdfs:label>
+          </api4kp:Lexicon>
+        </api4kp:uses-lexicon>
+        <dc:source>https://www.omg.org/spec/API4KP/1.0/</dc:source>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/ParsingLevel/versions/2.0190101E7"/>
+        <rdfs:comment>Knowledge Asset Surrogate Metamodel</rdfs:comment>
+        <api4kp:uses-lexicon>
+          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/KRTechnique/versions/1.0">
+            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/KnowledgeProcessingTechnique/1.0"/>
+            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+            <rdfs:comment>Knowledge Reasoning Technique</rdfs:comment>
+            <dc:identifier>krtech</dc:identifier>
+            <skos:prefLabel>KRR Technique</skos:prefLabel>
+            <rdfs:label>KRR Technique</rdfs:label>
+          </api4kp:Lexicon>
+        </api4kp:uses-lexicon>
+        <api4kp:uses-lexicon>
+          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/DependencyRel/versions/2.0190101E7">
+            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/DependencyRelType/20190801/"/>
+            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+            <rdfs:comment>Knowledge Asset Relationships - Dependencies</rdfs:comment>
+            <dc:identifier>depend</dc:identifier>
+            <skos:prefLabel>Asset Relationships - Dependencies</skos:prefLabel>
+            <rdfs:label>Asset Relationships - Dependencies</rdfs:label>
+          </api4kp:Lexicon>
+        </api4kp:uses-lexicon>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/KRLexicon/versions/201808"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/AssetCategory/versions/1.0"/>
+        <owl:versionInfo>v1</owl:versionInfo>
+        <owl:sameAs rdf:resource="http://kmdp.mayo.edu/metadata/surrogate"/>
+        <j.0:supportsSerialization>
+          <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/api4kp/SurrogateXMLSyntax">
+            <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/XML/versions/1.1"/>
+            <owl:sameAs rdf:resource="http://kmdp.mayo.edu/metadata/surrogate"/>
+            <dc:source>http://www.omg.org/spec/API4KP/1.0/</dc:source>
+            <rdfs:comment>Knowledge Asset Surrogate XML Syntax</rdfs:comment>
+            <dc:identifier>surr+xml</dc:identifier>
+            <skos:prefLabel>Knowledge Asset Surrogate XML Syntax</skos:prefLabel>
+            <rdfs:label>Knowledge Asset Surrogate XML Syntax</rdfs:label>
+          </j.0:Serialization>
+        </j.0:supportsSerialization>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/KMDP/registry/lexica/api4kp/KRSerialization/versions/201808"/>
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-        <dc:identifier>bpmn2</dc:identifier>
-        <dct:identifier>b561379a6c4a4a8e9290ff85bf60f164</dct:identifier>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/BPMN2/XML"/>
-        <rdfs:label>BPMN 2.0.2</rdfs:label>
-        <co:prefLabel>BPMN 2.0.2</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- https://www.omg.org/spec/CMMN/1.1 -->
-
-    <owl:NamedIndividual rdf:about="https://www.omg.org/spec/CMMN/1.1">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-        <dc:identifier>cmmn</dc:identifier>
-        <dct:identifier>83b39d2759e14b02acd10887bd0df132</dct:identifier>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/CMMN/XML"/>
-        <rdfs:label>CMMN 1.1</rdfs:label>
-        <co:prefLabel>CMMN 1.1</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- https://www.omg.org/spec/DMN/1.1 -->
-
-    <owl:NamedIndividual rdf:about="https://www.omg.org/spec/DMN/1.1">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-        <dc:identifier>dmn</dc:identifier>
-        <dct:identifier>1467b7dfbb634050b9ec322736c5c5dd</dct:identifier>
-        <dol:supportsSerialization rdf:resource="http://purl.net/dol/serializations/DMN/XML"/>
-        <rdfs:comment>OMG&apos;s Decision Modeling Notation, v1.1</rdfs:comment>
-        <rdfs:label>DMN 1.1</rdfs:label>
-        <co:prefLabel>DMN 1.1</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- https://www.omg.org/spec/FEEL/1.1 -->
-
-    <owl:NamedIndividual rdf:about="https://www.omg.org/spec/FEEL/1.1">
-        <rdf:type rdf:resource="http://www.omg.org/spec/API4KP/core#ConstructedLanguage"/>
-        <dc:identifier>feel</dc:identifier>
-        <dct:identifier>9a3a99ecf09740a39fe1fd2f6fbdec30</dct:identifier>
-        <rdfs:label>FEEL 1.1</rdfs:label>
-        <co:prefLabel>FEEL 1.1</co:prefLabel>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Annotations
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    <rdf:Description rdf:about="http://purl.net/dol/registry/_g0">
-        <log:forSome rdf:resource="http://purl.net/dol/registry/_g6"/>
-        <log:forSome rdf:resource="http://purl.net/dol/registry/_g4"/>
-        <log:forSome rdf:resource="http://purl.net/dol/registry/_g5"/>
-        <log:forSome rdf:resource="http://purl.net/dol/registry/_g2"/>
-        <log:forSome rdf:resource="http://purl.net/dol/registry/_g3"/>
-        <log:forSome rdf:resource="http://purl.net/dol/registry/_g1"/>
-    </rdf:Description>
+      </api4kp:BaseConstructedLanguage>
+    </j.0:isProfileOf>
+    <dc:source>https://www.omg.org/spec/API4KP/1.0/</dc:source>
+    <rdfs:comment>Knowledge Asset Surrogate Annotations</rdfs:comment>
+    <dc:identifier>ann</dc:identifier>
+    <skos:prefLabel>Knowledge Asset Surrogate Annotations</skos:prefLabel>
+    <rdfs:label>Knowledge Asset Surrogate Annotations</rdfs:label>
+  </j.0:Profile>
+  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/kmdp/CQL/versions/1.2">
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/kmdp/CQLSyntax">
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/TXT"/>
+        <dc:source>https://cql.hl7.org/grammar.html</dc:source>
+        <rdfs:comment>CQL Syntax</rdfs:comment>
+        <dc:identifier>cql+txt</dc:identifier>
+        <skos:prefLabel>CQL Syntax</skos:prefLabel>
+        <rdfs:label>CQL Syntax</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+    <owl:versionInfo>v12</owl:versionInfo>
+    <dc:source>https://cql.hl7.org/</dc:source>
+    <rdfs:comment>Clinical Quality Language 1.2</rdfs:comment>
+    <dc:identifier>cql</dc:identifier>
+    <skos:prefLabel>HL7 CQL</skos:prefLabel>
+    <rdfs:label>HL7 CQL</rdfs:label>
+  </j.0:OMSLanguage>
+  <j.0:Profile rdf:about="http://ontology.mayo.edu/KMDP/registry/profiles/dol/OWL2RL">
+    <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/KMDP/registry/languages/dol/OWL2/versions/20121211"/>
+    <owl:sameAs rdf:resource="http://www.w3.org/ns/owl-profile/RL"/>
+    <dc:source>https://www.w3.org/TR/owl2-profiles/#OWL_2_RL</dc:source>
+    <rdfs:comment>OWL 2 Web Ontology Language, RL Profile</rdfs:comment>
+    <dc:identifier>RL</dc:identifier>
+    <skos:prefLabel>OWL2 RL</skos:prefLabel>
+    <rdfs:label>OWL2 RL</rdfs:label>
+  </j.0:Profile>
+  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/api4kp/ReactionRuleML/versions/1.2">
+    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+    <owl:sameAs rdf:resource="http://reaction.ruleml.org/1.02/"/>
+    <owl:versionInfo>v12</owl:versionInfo>
+    <dc:source>http://reaction.ruleml.org/1.02/</dc:source>
+    <rdfs:comment>Reaction RuleML 1.2</rdfs:comment>
+    <dc:identifier>rruleml</dc:identifier>
+    <skos:prefLabel>Reaction RuleML 1.2</skos:prefLabel>
+    <rdfs:label>Reaction RuleML 1.2</rdfs:label>
+  </j.0:OMSLanguage>
+  <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/KMDP/registry/lexica/kmdp/XMLNS/versions/1.1">
+    <owl:sameAs rdf:resource="http://www.w3.org/XML/1998/namespace"/>
+    <rdfs:comment>XML Namespace</rdfs:comment>
+    <dc:identifier>xmlns</dc:identifier>
+    <skos:prefLabel>XML Namespace</skos:prefLabel>
+    <rdfs:label>XML Namespace</rdfs:label>
+  </api4kp:Lexicon>
+  <j.0:Profile rdf:about="http://ontology.mayo.edu/KMDP/registry/profiles/api4kp/API4KPServers">
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/api4kp/API4KPServiceJSONSyntax">
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/JSON/versions/2.0171201E7"/>
+        <dc:source>http://www.omg.org/spec/API4KP/1.0/</dc:source>
+        <rdfs:comment>API4KP JSON Syntax</rdfs:comment>
+        <dc:identifier>api+json</dc:identifier>
+        <skos:prefLabel>API4KP Service JSON Syntax</skos:prefLabel>
+        <rdfs:label>API4KP Service JSON Syntax</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/api4kp/API4KPServiceXMLSyntax">
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/XML/versions/1.1"/>
+        <owl:sameAs rdf:resource="http://www.omg.org/spec/API4KP/1.0/services"/>
+        <dc:source>http://www.omg.org/spec/API4KP/1.0/</dc:source>
+        <rdfs:comment>API4KP XML Syntax</rdfs:comment>
+        <dc:identifier>api+xml</dc:identifier>
+        <skos:prefLabel>API4KP Service XML Syntax</skos:prefLabel>
+        <rdfs:label>API4KP Service XML Syntax</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+    <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/KMDP/registry/languages/api4kp/API4KP/versions/1.0"/>
+    <dc:source>https://www.omg.org/spec/API4KP/1.0/</dc:source>
+    <rdfs:comment>API4KP Service Descriptors</rdfs:comment>
+    <dc:identifier>api</dc:identifier>
+    <skos:prefLabel>API4KP Service Descriptors</skos:prefLabel>
+    <rdfs:label>API4KP Service Descriptors</rdfs:label>
+  </j.0:Profile>
+  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/api4kp/FEEL/versions/1.1">
+    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+    <owl:versionInfo>v11</owl:versionInfo>
+    <dc:source>https://www.omg.org/spec/DMN/1.1/</dc:source>
+    <rdfs:comment>Friendly Enough Expression Lanaguage 1.1</rdfs:comment>
+    <dc:identifier>feel</dc:identifier>
+    <skos:prefLabel>FEEL</skos:prefLabel>
+    <rdfs:label>FEEL</rdfs:label>
+  </j.0:OMSLanguage>
+  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/kmdp/CognitiveCareProcessModel/versions/1.0">
+    <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/KMDP/registry/lexica/kmdp/PCV/versions/2019.0"/>
+    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+    <owl:versionInfo>v1</owl:versionInfo>
+    <rdfs:comment>Cognitive Care Process Models Metamodel</rdfs:comment>
+    <dc:identifier>ccpm</dc:identifier>
+    <skos:prefLabel>Cognitive Care Process Model</skos:prefLabel>
+    <rdfs:label>Cognitive Care Process Model</rdfs:label>
+  </j.0:OMSLanguage>
+  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/api4kp/BPMN/versions/2.0.2">
+    <dc:source>https://www.omg.org/spec/BPMN/2.0/</dc:source>
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/api4kp/BPMN2XMLSyntax">
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/XML/versions/1.1"/>
+        <dc:source>https://www.omg.org/spec/BPMN/2.0/</dc:source>
+        <rdfs:comment>BPMN 2.0 XML Syntax</rdfs:comment>
+        <dc:identifier>bpmn-v2+xml</dc:identifier>
+        <skos:prefLabel>BPMN 2.0 XML Syntax</skos:prefLabel>
+        <rdfs:label>BPMN 2.0 XML Syntax</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+    <rdfs:comment>Business Process Modelling Notation 2.0</rdfs:comment>
+    <dc:identifier>bpmn</dc:identifier>
+    <owl:sameAs rdf:resource="https://www.omg.org/spec/BPMN/2.0/"/>
+    <owl:versionInfo>v2</owl:versionInfo>
+    <rdfs:label>BPMN</rdfs:label>
+    <skos:prefLabel>BPMN 2.0</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+  </api4kp:BaseConstructedLanguage>
+  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/api4kp/CommonLogic/versions/1.0">
+    <dc:identifier>cl</dc:identifier>
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/dol/XCL">
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/XML/versions/1.1"/>
+        <dc:source>https://www.iso.org/standard/66249.html</dc:source>
+        <rdfs:comment>Common Logic XML Syntax</rdfs:comment>
+        <dc:identifier>xcl/xml</dc:identifier>
+        <skos:prefLabel>XCL</skos:prefLabel>
+        <rdfs:label>XCL</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+    <rdfs:label>Common Logic</rdfs:label>
+    <skos:prefLabel>Common Logic</skos:prefLabel>
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/dol/CLIF">
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/TXT"/>
+        <dc:source>https://www.iso.org/standard/66249.html</dc:source>
+        <rdfs:comment>Common Logic Interchange Format</rdfs:comment>
+        <dc:identifier>clif</dc:identifier>
+        <skos:prefLabel>CLIF</skos:prefLabel>
+        <rdfs:label>CLIF</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+    <rdfs:comment>Common Logic</rdfs:comment>
+    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+    <owl:versionInfo>v1</owl:versionInfo>
+    <dc:source>https://www.iso.org/standard/66249.html</dc:source>
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/dol/CGIF">
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/TXT"/>
+        <dc:source>https://www.iso.org/standard/66249.html</dc:source>
+        <rdfs:comment>Conceptual Graph Interchange Format</rdfs:comment>
+        <dc:identifier>cgif</dc:identifier>
+        <skos:prefLabel>CGIF</skos:prefLabel>
+        <rdfs:label>CGIF</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+  </j.0:OMSLanguage>
+  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/kmdp/FHIRPath/versions/STU1">
+    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+    <owl:versionInfo>v1</owl:versionInfo>
+    <dc:source>http://hl7.org/fhirpath/</dc:source>
+    <rdfs:comment>FHIRPath Path Language</rdfs:comment>
+    <dc:identifier>fhirpath</dc:identifier>
+    <skos:prefLabel>FHIRPath STU1</skos:prefLabel>
+    <rdfs:label>FHIRPath STU1</rdfs:label>
+  </j.0:OMSLanguage>
+  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/kmdp/ELM/versions/1.2">
+    <j.0:supportsSerialization>
+      <j.0:Serialization rdf:about="http://ontology.mayo.edu/KMDP/registry/serializations/kmdp/CQL_ELMXMLSyntax">
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/KMDP/registry/formats/api4kp/XML/versions/1.1"/>
+        <owl:sameAs rdf:resource="urn:hl7-org:elm:r1"/>
+        <dc:source>https://cql.hl7.org/elm.html</dc:source>
+        <rdfs:comment>CQL/ELM 1.2 XML Syntax</rdfs:comment>
+        <dc:identifier>cql+xml</dc:identifier>
+        <skos:prefLabel>CQL/ELM XML Syntax</skos:prefLabel>
+        <rdfs:label>CQL/ELM XML Syntax</rdfs:label>
+      </j.0:Serialization>
+    </j.0:supportsSerialization>
+    <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+    <owl:versionInfo>v12</owl:versionInfo>
+    <rdfs:comment>Clinical Quality Language – Expression Language Metamodel 1.2</rdfs:comment>
+    <rdfs:label>HL7 ELM</rdfs:label>
+    <dc:source>https://cql.hl7.org/</dc:source>
+    <dc:identifier>elm</dc:identifier>
+    <skos:prefLabel>HL7 ELM</skos:prefLabel>
+    <owl:sameAs rdf:resource="http://hl7.org/ELM/1.2"/>
+  </api4kp:BaseConstructedLanguage>
+  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/KMDP/registry/languages/kmdp/FHIR/versions/STU3">
+    <rdfs:comment>Fast Healthcare Interoperability Resources STU3</rdfs:comment>
+    <dc:identifier>fhir</dc:identifier>
+    <owl:sameAs rdf:resource="http://hl7.org/fhir/STU3"/>
+    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+    <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/KMDP/registry/lexica/kmdp/LOINC/versions/2.65"/>
+    <skos:prefLabel>FHIR STU3</skos:prefLabel>
+    <owl:versionInfo>v3</owl:versionInfo>
+    <rdfs:label>FHIR STU3</rdfs:label>
+    <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/KMDP/registry/lexica/kmdp/SNOMEDCT/versions/2.0180732E7"/>
+    <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/KMDP/registry/lexica/kmdp/RxNORM"/>
+    <dc:source>http://hl7.org/fhir/STU3</dc:source>
+  </j.0:OMSLanguage>
 </rdf:RDF>
-
-
-
-<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
-
