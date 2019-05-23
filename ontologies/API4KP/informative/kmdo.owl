@@ -1,8 +1,8 @@
-Prefix(:=<http://www.omg.org/spec/API4KP/KMO#>)
+Prefix(:=<http://ontology.mayo.edu/ontologies/KMDO/>)
 Prefix(dc:=<http://purl.org/dc/elements/1.1/>)
 Prefix(id:=<http://ontology.mayo.edu/WDO/Identifiers#>)
 Prefix(sm:=<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
-Prefix(kmo:=<http://www.omg.org/spec/API4KP/KMO#>)
+Prefix(kmo:=<http://ontology.mayo.edu/ontologies/KMDO/>)
 Prefix(obo:=<http://purl.obolibrary.org/obo/>)
 Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
 Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
@@ -15,11 +15,13 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 Prefix(skos:=<http://www.w3.org/2004/02/skos/core#>)
 Prefix(vann:=<http://purl.org/vocab/vann/>)
 Prefix(cidoc:=<http://www.cidoc-crm.org/cidoc-crm>)
+Prefix(api4kp:=<https://www.omg.org/spec/API4KP/api4kp/>)
 Prefix(DOL-terms:=<http://www.omg.org/spec/DOL/DOL-terms/>)
 
 
-Ontology(<http://www.omg.org/spec/API4KP/KMO>
-<http://www.omg.org/spec/API4KP/2018/06/KMO>
+Ontology(<http://ontology.mayo.edu/ontologies/KMDO/>
+<http://ontology.mayo.edu/ontologies/20180601/KMDO/>
+Import(<http://www.w3.org/2004/02/skos/core>)
 Annotation(dc:creator "Davide Sottara")
 Annotation(dc:creator "Jane Shellum")
 Annotation(dc:creator "Kris Pavek")
@@ -71,16 +73,23 @@ Declaration(Class(kmo:IdentifiedKnowledgeResource))
 Declaration(Class(kmo:InlinedKnowledgeResourceDescriptor))
 Declaration(Class(kmo:InternallyManagedResourceSurrogate))
 Declaration(Class(kmo:KnowledgeAcquisitionActivity))
+Declaration(Class(kmo:KnowledgeApprovalActivity))
 Declaration(Class(kmo:KnowledgeArtifactDirectory))
 Declaration(Class(kmo:KnowledgeArtifactEditor))
 Declaration(Class(kmo:KnowledgeArtifactInventory))
 Declaration(Class(kmo:KnowledgeAsset))
 Declaration(Class(kmo:KnowledgeAssetDescription))
+Declaration(Class(kmo:KnowledgeAuthoringActivity))
+Declaration(Class(kmo:KnowledgeCreationActivity))
+Declaration(Class(kmo:KnowledgeEditingActivity))
 Declaration(Class(kmo:KnowledgeEndorsingParty))
+Declaration(Class(kmo:KnowledgeManagementActivity))
 Declaration(Class(kmo:KnowledgeManagementServiceProvider))
 Declaration(Class(kmo:KnowledgeMetaDescriptor))
 Declaration(Class(kmo:KnowledgePublicationActivity))
 Declaration(Class(kmo:KnowledgeRepresentationEmbeddingSurrogate))
+Declaration(Class(kmo:KnowledgeReviewActivity))
+Declaration(Class(kmo:KnowledgeRevisionActivity))
 Declaration(Class(kmo:KnowledgeTransferActivity))
 Declaration(Class(kmo:MainstreamKnowledgeResource))
 Declaration(Class(kmo:MasterCopy))
@@ -92,66 +101,76 @@ Declaration(Class(kmo:SpecialistKnowledge))
 Declaration(Class(kmo:StandaloneKnowledgeResource))
 Declaration(Class(kmo:TacitKnowledge))
 Declaration(Class(kmo:UndegraduateLevelInstruction))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#AbstractExpression>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#ComplexConcept>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#ConcreteExpression>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#Identifier>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#InformationProcessingActivity>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#Knowledge>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#KnowledgeActivity>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#KnowledgeArtifact>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#KnowledgeArtifactRepository>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#KnowledgeAssetSurrogate>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#KnowledgeEndeavour>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#KnowledgeProcessingFunction>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#KnowledgeResource>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#KnowledgeResourceDescription>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#KnowledgeableAgent>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#NaturalLanguage>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#PieceOfKnowledge>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#SelfContainedKnowledgeArtifact>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#StructuredKnowledgeResource>))
-Declaration(Class(<http://www.omg.org/spec/API4KP/core#WorkOfKnowledge>))
+Declaration(Class(api4kp:AbstractExpression))
+Declaration(Class(api4kp:ComplexConcept))
+Declaration(Class(api4kp:ConcreteExpression))
+Declaration(Class(api4kp:Identifier))
+Declaration(Class(api4kp:InformationProcessingActivity))
+Declaration(Class(api4kp:Knowledge))
+Declaration(Class(api4kp:KnowledgeActivity))
+Declaration(Class(api4kp:KnowledgeArtifact))
+Declaration(Class(api4kp:KnowledgeArtifactRepository))
+Declaration(Class(api4kp:KnowledgeAssetSurrogate))
+Declaration(Class(api4kp:KnowledgeEndeavour))
+Declaration(Class(api4kp:KnowledgeProcessingFunction))
+Declaration(Class(api4kp:KnowledgeResource))
+Declaration(Class(api4kp:KnowledgeResourceDescription))
+Declaration(Class(api4kp:KnowledgeableAgent))
+Declaration(Class(api4kp:NaturalLanguage))
+Declaration(Class(api4kp:PieceOfKnowledge))
+Declaration(Class(api4kp:SelfContainedKnowledgeArtifact))
+Declaration(Class(api4kp:StructuredKnowledgeResource))
+Declaration(Class(api4kp:WorkOfKnowledge))
 Declaration(ObjectProperty(kmo:archived-in))
 Declaration(ObjectProperty(kmo:archives))
+Declaration(ObjectProperty(kmo:associated-with))
 Declaration(ObjectProperty(kmo:endorsed-by))
 Declaration(ObjectProperty(kmo:endorses))
+Declaration(ObjectProperty(kmo:focus))
 Declaration(ObjectProperty(kmo:possessed-by))
 Declaration(ObjectProperty(kmo:possesses))
+Declaration(ObjectProperty(kmo:primary-subject))
 Declaration(ObjectProperty(kmo:replica-of))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#carried-by>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#carries>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#concretely-expresses>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#denotes>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#faithfully-expresses>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#function-of>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#has-function>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#has-part>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#has-proper-part>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#has-subject>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#identified-by>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#internally-represented-by>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#internally-represents>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#involved-in>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#involves>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#is-about>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#knowledge-representation-of>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#performed-by>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#performs>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#proper-part-of>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#recipient-of>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#representation-of>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#stored-in>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#stores>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#targets>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#used-in>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/core#uses-language>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/rel#copy-of>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/rel#depends-on>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/rel#derived-from>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/rel#has-later-revision>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/rel#has-original>))
-Declaration(ObjectProperty(<http://www.omg.org/spec/API4KP/rel#is-later-revision-of>))
+Declaration(ObjectProperty(kmo:secondary-subject))
+Declaration(ObjectProperty(dc-t:audience))
+Declaration(ObjectProperty(dc-t:subject))
+Declaration(ObjectProperty(rdf:type))
+Declaration(ObjectProperty(api4kp:captures))
+Declaration(ObjectProperty(api4kp:carried-by))
+Declaration(ObjectProperty(api4kp:carries))
+Declaration(ObjectProperty(api4kp:concretely-expresses))
+Declaration(ObjectProperty(api4kp:copy-of))
+Declaration(ObjectProperty(api4kp:defined-in-terms-of))
+Declaration(ObjectProperty(api4kp:defines))
+Declaration(ObjectProperty(api4kp:denotes))
+Declaration(ObjectProperty(api4kp:depends-on))
+Declaration(ObjectProperty(api4kp:derived-from))
+Declaration(ObjectProperty(api4kp:faithfully-expresses))
+Declaration(ObjectProperty(api4kp:function-of))
+Declaration(ObjectProperty(api4kp:has-function))
+Declaration(ObjectProperty(api4kp:has-later-revision))
+Declaration(ObjectProperty(api4kp:has-original))
+Declaration(ObjectProperty(api4kp:has-part))
+Declaration(ObjectProperty(api4kp:has-proper-part))
+Declaration(ObjectProperty(api4kp:has-subject))
+Declaration(ObjectProperty(api4kp:identified-by))
+Declaration(ObjectProperty(api4kp:internally-represented-by))
+Declaration(ObjectProperty(api4kp:internally-represents))
+Declaration(ObjectProperty(api4kp:involved-in))
+Declaration(ObjectProperty(api4kp:involves))
+Declaration(ObjectProperty(api4kp:is-about))
+Declaration(ObjectProperty(api4kp:is-later-revision-of))
+Declaration(ObjectProperty(api4kp:knowledge-representation-of))
+Declaration(ObjectProperty(api4kp:performed-by))
+Declaration(ObjectProperty(api4kp:performs))
+Declaration(ObjectProperty(api4kp:proper-part-of))
+Declaration(ObjectProperty(api4kp:recipient-of))
+Declaration(ObjectProperty(api4kp:representation-of))
+Declaration(ObjectProperty(api4kp:stored-in))
+Declaration(ObjectProperty(api4kp:stores))
+Declaration(ObjectProperty(api4kp:targets))
+Declaration(ObjectProperty(api4kp:used-in))
+Declaration(ObjectProperty(api4kp:uses-language))
 Declaration(NamedIndividual(<http://purl.org/spar/pso/published>))
 Declaration(AnnotationProperty(dc:creator))
 Declaration(AnnotationProperty(dc:date))
@@ -172,55 +191,114 @@ Declaration(AnnotationProperty(skos:scopeNote))
 # Object Property: kmo:archived-in (archived in)
 
 AnnotationAssertion(rdfs:label kmo:archived-in "archived in")
-SubObjectPropertyOf(kmo:archived-in <http://www.omg.org/spec/API4KP/core#stored-in>)
+SubObjectPropertyOf(kmo:archived-in api4kp:stored-in)
 InverseObjectProperties(kmo:archived-in kmo:archives)
-ObjectPropertyDomain(kmo:archived-in <http://www.omg.org/spec/API4KP/core#KnowledgeArtifact>)
+ObjectPropertyDomain(kmo:archived-in api4kp:KnowledgeArtifact)
 
 # Object Property: kmo:archives (archives)
 
 AnnotationAssertion(rdfs:comment kmo:archives "Archival is a kind of storage implying no immediate use. Archiving is scoped to artifacts only")
 AnnotationAssertion(rdfs:label kmo:archives "archives")
-SubObjectPropertyOf(kmo:archives <http://www.omg.org/spec/API4KP/core#stores>)
-ObjectPropertyRange(kmo:archives <http://www.omg.org/spec/API4KP/core#KnowledgeArtifact>)
+SubObjectPropertyOf(kmo:archives api4kp:stores)
+ObjectPropertyRange(kmo:archives api4kp:KnowledgeArtifact)
 
 # Object Property: kmo:endorsed-by (endorsed by)
 
 AnnotationAssertion(rdfs:label kmo:endorsed-by "endorsed by")
-SubObjectPropertyOf(kmo:endorsed-by <http://www.omg.org/spec/API4KP/core#internally-represented-by>)
+SubObjectPropertyOf(kmo:endorsed-by api4kp:internally-represented-by)
 InverseObjectProperties(kmo:endorsed-by kmo:endorses)
-ObjectPropertyDomain(kmo:endorsed-by <http://www.omg.org/spec/API4KP/core#KnowledgeEndeavour>)
-ObjectPropertyRange(kmo:endorsed-by <http://www.omg.org/spec/API4KP/core#KnowledgeableAgent>)
+ObjectPropertyDomain(kmo:endorsed-by api4kp:KnowledgeEndeavour)
+ObjectPropertyRange(kmo:endorsed-by api4kp:KnowledgeableAgent)
 
 # Object Property: kmo:endorses (endorses)
 
 AnnotationAssertion(rdfs:label kmo:endorses "endorses")
 AnnotationAssertion(skos:definition kmo:endorses "An agent's endorsement of a knowledge endeavor implies (i) that the agent is able to understand the content of that endeavor, internally representing the knowledge (expressed by (the expression carried)) in the endeavor, (ii) that the agent transfers their reputation and trust to that endeavor")
-SubObjectPropertyOf(kmo:endorses <http://www.omg.org/spec/API4KP/core#internally-represents>)
-ObjectPropertyDomain(kmo:endorses <http://www.omg.org/spec/API4KP/core#KnowledgeableAgent>)
-ObjectPropertyRange(kmo:endorses <http://www.omg.org/spec/API4KP/core#KnowledgeEndeavour>)
+SubObjectPropertyOf(kmo:endorses api4kp:internally-represents)
+ObjectPropertyDomain(kmo:endorses api4kp:KnowledgeableAgent)
+ObjectPropertyRange(kmo:endorses api4kp:KnowledgeEndeavour)
+
+# Object Property: kmo:focus (has focus)
+
+AnnotationAssertion(rdfs:label kmo:focus "has focus")
+SubObjectPropertyOf(kmo:focus dc-t:subject)
 
 # Object Property: kmo:possessed-by ((knowledge) possessed by)
 
 AnnotationAssertion(rdfs:label kmo:possessed-by "(knowledge) possessed by")
 InverseObjectProperties(kmo:possessed-by kmo:possesses)
-ObjectPropertyDomain(kmo:possessed-by <http://www.omg.org/spec/API4KP/core#Knowledge>)
-ObjectPropertyRange(kmo:possessed-by <http://www.omg.org/spec/API4KP/core#KnowledgeableAgent>)
+ObjectPropertyDomain(kmo:possessed-by api4kp:Knowledge)
+ObjectPropertyRange(kmo:possessed-by api4kp:KnowledgeableAgent)
 
 # Object Property: kmo:possesses (possesses (knowledge))
 
 AnnotationAssertion(rdfs:label kmo:possesses "possesses (knowledge)")
 AnnotationAssertion(skos:definition kmo:possesses "An Agent possesses some Knowledge if they can conceptualize that Knowledge, and act based on that Knowledge")
 AnnotationAssertion(skos:note kmo:possesses "The possession of some Knowledge is the outcome of a Knowledge Acquisition Activity")
-ObjectPropertyDomain(kmo:possesses <http://www.omg.org/spec/API4KP/core#KnowledgeableAgent>)
-ObjectPropertyRange(kmo:possesses <http://www.omg.org/spec/API4KP/core#Knowledge>)
+ObjectPropertyDomain(kmo:possesses api4kp:KnowledgeableAgent)
+ObjectPropertyRange(kmo:possesses api4kp:Knowledge)
+
+# Object Property: kmo:primary-subject (has primary subject)
+
+AnnotationAssertion(rdfs:label kmo:primary-subject "has primary subject")
+SubObjectPropertyOf(kmo:primary-subject dc-t:subject)
 
 # Object Property: kmo:replica-of (replica of)
 
 AnnotationAssertion(rdfs:comment kmo:replica-of "An artifact that resulted from the copy of a 'master copy' is a replica of that copy")
 AnnotationAssertion(rdfs:label kmo:replica-of "replica of")
-SubObjectPropertyOf(kmo:replica-of <http://www.omg.org/spec/API4KP/rel#copy-of>)
-ObjectPropertyDomain(kmo:replica-of <http://www.omg.org/spec/API4KP/core#KnowledgeArtifact>)
+SubObjectPropertyOf(kmo:replica-of api4kp:copy-of)
+ObjectPropertyDomain(kmo:replica-of api4kp:KnowledgeArtifact)
 ObjectPropertyRange(kmo:replica-of kmo:MasterCopy)
+
+# Object Property: kmo:secondary-subject (kmo:secondary-subject)
+
+SubObjectPropertyOf(kmo:secondary-subject dc-t:subject)
+
+# Object Property: dc-t:audience (has audience)
+
+AnnotationAssertion(rdfs:label dc-t:audience "has audience")
+SubObjectPropertyOf(dc-t:audience kmo:associated-with)
+
+# Object Property: dc-t:subject (has subject)
+
+AnnotationAssertion(rdfs:label dc-t:subject "has subject")
+SubObjectPropertyOf(dc-t:subject api4kp:is-about)
+
+# Object Property: rdf:type (is a)
+
+AnnotationAssertion(rdfs:label rdf:type "is a")
+SubObjectPropertyOf(rdf:type kmo:associated-with)
+
+# Object Property: api4kp:captures (captures)
+
+AnnotationAssertion(rdfs:label api4kp:captures "captures")
+SubObjectPropertyOf(api4kp:captures api4kp:is-about)
+
+# Object Property: api4kp:defined-in-terms-of (in terms of)
+
+AnnotationAssertion(rdfs:label api4kp:defined-in-terms-of "in terms of")
+SubObjectPropertyOf(api4kp:defined-in-terms-of api4kp:is-about)
+
+# Object Property: api4kp:defines (defines)
+
+AnnotationAssertion(rdfs:label api4kp:defines "defines")
+SubObjectPropertyOf(api4kp:defines api4kp:is-about)
+
+# Object Property: api4kp:identified-by (has ID)
+
+AnnotationAssertion(rdfs:label api4kp:identified-by "has ID")
+SubObjectPropertyOf(api4kp:identified-by kmo:associated-with)
+
+# Object Property: api4kp:is-about (is about)
+
+AnnotationAssertion(rdfs:label api4kp:is-about "is about")
+SubObjectPropertyOf(api4kp:is-about kmo:associated-with)
+
+# Object Property: api4kp:knowledge-representation-of (represents)
+
+AnnotationAssertion(rdfs:label api4kp:knowledge-representation-of "represents")
+SubObjectPropertyOf(api4kp:knowledge-representation-of api4kp:is-about)
 
 
 
@@ -231,30 +309,30 @@ ObjectPropertyRange(kmo:replica-of kmo:MasterCopy)
 # Class: kmo:AdvancedKnowledge (advanced knowledge)
 
 AnnotationAssertion(rdfs:label kmo:AdvancedKnowledge "advanced knowledge"@en)
-EquivalentClasses(kmo:AdvancedKnowledge ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#Knowledge> ObjectComplementOf(kmo:CommonKnowledge)))
-SubClassOf(kmo:AdvancedKnowledge <http://www.omg.org/spec/API4KP/core#Knowledge>)
+EquivalentClasses(kmo:AdvancedKnowledge ObjectIntersectionOf(api4kp:Knowledge ObjectComplementOf(kmo:CommonKnowledge)))
+SubClassOf(kmo:AdvancedKnowledge api4kp:Knowledge)
 
 # Class: kmo:AnonymousKnowledgeResource (anonymous knowledge resource)
 
 AnnotationAssertion(rdfs:label kmo:AnonymousKnowledgeResource "anonymous knowledge resource"@en)
 AnnotationAssertion(skos:definition kmo:AnonymousKnowledgeResource "Knowledge Resource that is not identified by a an ID assigned by a central identification authority")
-EquivalentClasses(kmo:AnonymousKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResource> ObjectComplementOf(ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#identified-by> <http://www.omg.org/spec/API4KP/core#Identifier>))))
-SubClassOf(kmo:AnonymousKnowledgeResource <http://www.omg.org/spec/API4KP/core#KnowledgeResource>)
+EquivalentClasses(kmo:AnonymousKnowledgeResource ObjectIntersectionOf(api4kp:KnowledgeResource ObjectComplementOf(ObjectSomeValuesFrom(api4kp:identified-by api4kp:Identifier))))
+SubClassOf(kmo:AnonymousKnowledgeResource api4kp:KnowledgeResource)
 DisjointClasses(kmo:AnonymousKnowledgeResource kmo:IdentifiedKnowledgeResource)
 
 # Class: kmo:ApproachableKnowledgeResource (approachable knowledge resource)
 
 AnnotationAssertion(rdfs:label kmo:ApproachableKnowledgeResource "approachable knowledge resource"@en)
 EquivalentClasses(kmo:ApproachableKnowledgeResource ObjectIntersectionOf(kmo:AvailableKnowledgeResource kmo:BroadlyUnderstandableKnowledgeResource))
-SubClassOf(kmo:ApproachableKnowledgeResource <http://www.omg.org/spec/API4KP/core#KnowledgeResource>)
+SubClassOf(kmo:ApproachableKnowledgeResource api4kp:KnowledgeResource)
 
 # Class: kmo:AvailableKnowledgeResource (available knowledge resource)
 
 AnnotationAssertion(rdfs:label kmo:AvailableKnowledgeResource "available knowledge resource"@en)
 AnnotationAssertion(skos:definition kmo:AvailableKnowledgeResource "There exists a repository where an agent is allowed to obtain a copy of (some artifact that carries) the knowledge resource")
 AnnotationAssertion(skos:note kmo:AvailableKnowledgeResource "More specifically, an artifact that carries a representation of the expression of some (version of a) work of knowledge")
-EquivalentClasses(kmo:AvailableKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResource> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#carried-by> <http://www.omg.org/spec/API4KP/core#KnowledgeArtifact>) ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#stored-in> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-function> kmo:DigitalKnowledgeArtifactRepository))))
-SubClassOf(kmo:AvailableKnowledgeResource <http://www.omg.org/spec/API4KP/core#KnowledgeResource>)
+EquivalentClasses(kmo:AvailableKnowledgeResource ObjectIntersectionOf(api4kp:KnowledgeResource ObjectSomeValuesFrom(api4kp:carried-by api4kp:KnowledgeArtifact) ObjectSomeValuesFrom(api4kp:stored-in ObjectSomeValuesFrom(api4kp:has-function kmo:DigitalKnowledgeArtifactRepository))))
+SubClassOf(kmo:AvailableKnowledgeResource api4kp:KnowledgeResource)
 
 # Class: kmo:BodyofKnowledge (body of knowledge)
 
@@ -269,7 +347,7 @@ AnnotationAssertion(skos:definition kmo:BroadlyUnderstandableKnowledgeResource "
 AnnotationAssertion(skos:note kmo:BroadlyUnderstandableKnowledgeResource "\"Understandability' is defined at the concept level, so that an agent can (re)construct an internal representation of the knowledge, reconnecting the it to the related concepts that agent is expected to possess, and possibly make pragmatic use of it.
  
 The availability of a carrier, and the expression of the knowledge in a language that can be parsed by the agent are necessary, but not sufficient conditions.")
-SubClassOf(kmo:BroadlyUnderstandableKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResource> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#internally-represented-by> ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeableAgent> ObjectSomeValuesFrom(kmo:possesses kmo:CommonKnowledge)))))
+SubClassOf(kmo:BroadlyUnderstandableKnowledgeResource ObjectIntersectionOf(api4kp:KnowledgeResource ObjectSomeValuesFrom(api4kp:internally-represented-by ObjectIntersectionOf(api4kp:KnowledgeableAgent ObjectSomeValuesFrom(kmo:possesses kmo:CommonKnowledge)))))
 
 # Class: kmo:BusinessDomain (business domain)
 
@@ -278,7 +356,7 @@ AnnotationAssertion(skos:definition kmo:BusinessDomain "A concept that synthesiz
 AnnotationAssertion(skos:example kmo:BusinessDomain "cooking")
 AnnotationAssertion(skos:example kmo:BusinessDomain "finance")
 AnnotationAssertion(skos:example kmo:BusinessDomain "healthcare")
-SubClassOf(kmo:BusinessDomain <http://www.omg.org/spec/API4KP/core#ComplexConcept>)
+SubClassOf(kmo:BusinessDomain api4kp:ComplexConcept)
 
 # Class: kmo:CanonicalKnowledgeRepresentation (TODO canonical knowledge Representation - Reposition)
 
@@ -287,9 +365,9 @@ AnnotationAssertion(skos:definition kmo:CanonicalKnowledgeRepresentation "Knowle
 (i) expresses a Work of Knowledge that captures no more and no less than an intended Piece of Knowledge
 (ii) is expressed using the preferred language for the kind of work the resource represents
 (iii) faithufully represents that Work of Knowledge")
-SubClassOf(kmo:CanonicalKnowledgeRepresentation <http://www.omg.org/spec/API4KP/core#KnowledgeResource>)
-SubClassOf(kmo:CanonicalKnowledgeRepresentation ObjectExactCardinality(1 <http://www.omg.org/spec/API4KP/core#faithfully-expresses> <http://www.omg.org/spec/API4KP/core#WorkOfKnowledge>))
-SubClassOf(kmo:CanonicalKnowledgeRepresentation ObjectExactCardinality(1 <http://www.omg.org/spec/API4KP/core#knowledge-representation-of> <http://www.omg.org/spec/API4KP/core#PieceOfKnowledge>))
+SubClassOf(kmo:CanonicalKnowledgeRepresentation api4kp:KnowledgeResource)
+SubClassOf(kmo:CanonicalKnowledgeRepresentation ObjectExactCardinality(1 api4kp:faithfully-expresses api4kp:WorkOfKnowledge))
+SubClassOf(kmo:CanonicalKnowledgeRepresentation ObjectExactCardinality(1 api4kp:knowledge-representation-of api4kp:PieceOfKnowledge))
 
 # Class: kmo:ClinicalBusinessDomain (clinical business domain)
 
@@ -302,14 +380,14 @@ SubClassOf(kmo:ClinicalBusinessDomain kmo:MedicalBusinessDomain)
 
 AnnotationAssertion(rdfs:label kmo:ClinicalKnowledgeResource "clinical knowledge resource"@en)
 AnnotationAssertion(skos:definition kmo:ClinicalKnowledgeResource "Asset that is the realization of a Work of Knowledge, whose subject includes on one or more concepts from some Clinical Domain")
-EquivalentClasses(kmo:ClinicalKnowledgeResource ObjectIntersectionOf(kmo:DomainSpecificKnowledgeResource ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#knowledge-representation-of> ObjectIntersectionOf(kmo:DomainKnowledge ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#is-about> kmo:ClinicalBusinessDomain)))))
+EquivalentClasses(kmo:ClinicalKnowledgeResource ObjectIntersectionOf(kmo:DomainSpecificKnowledgeResource ObjectSomeValuesFrom(api4kp:knowledge-representation-of ObjectIntersectionOf(kmo:DomainKnowledge ObjectSomeValuesFrom(api4kp:is-about kmo:ClinicalBusinessDomain)))))
 SubClassOf(kmo:ClinicalKnowledgeResource kmo:DomainSpecificKnowledgeResource)
 
 # Class: kmo:CommonKnowledge (common knowledge)
 
 AnnotationAssertion(rdfs:label kmo:CommonKnowledge "common knowledge"@en)
 AnnotationAssertion(skos:definition kmo:CommonKnowledge "Knowledge that everyone has, and everyone is known to have")
-SubClassOf(kmo:CommonKnowledge <http://www.omg.org/spec/API4KP/core#Knowledge>)
+SubClassOf(kmo:CommonKnowledge api4kp:Knowledge)
 
 # Class: kmo:ConcretizedPieceOfContent ((concretely realized) piece of content)
 
@@ -325,7 +403,7 @@ AnnotationAssertion(rdfs:label kmo:ConcretizedPieceOfKnowledge "(concretely real
 AnnotationAssertion(skos:altLabel kmo:ConcretizedPieceOfKnowledge "PoK")
 AnnotationAssertion(skos:definition kmo:ConcretizedPieceOfKnowledge "A Piece of Knowledge is a Distributable, Concrete Expression of an Intellectual Work of Knowledge")
 SubClassOf(kmo:ConcretizedPieceOfKnowledge kmo:DistributableExpression)
-SubClassOf(kmo:ConcretizedPieceOfKnowledge ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/core#concretely-expresses> <http://www.omg.org/spec/API4KP/core#WorkOfKnowledge>))
+SubClassOf(kmo:ConcretizedPieceOfKnowledge ObjectAllValuesFrom(api4kp:concretely-expresses api4kp:WorkOfKnowledge))
 
 # Class: kmo:ConcretizedPieceOfKnowledgeContent ((concretely realized) piece of knowledge content)
 
@@ -341,13 +419,13 @@ AnnotationAssertion(rdfs:label kmo:CoreKnowledgeAsset "core knowledge asset"@en)
 AnnotationAssertion(skos:definition kmo:CoreKnowledgeAsset "Asset such that Assets may be derived from it, but is not itself derived from any other Asset (although it could be a derivative of another Resource)")
 EquivalentClasses(kmo:CoreKnowledgeAsset ObjectIntersectionOf(kmo:KnowledgeAsset ObjectIntersectionOf(kmo:CanonicalKnowledgeRepresentation kmo:EndorsedKnowledgeResource kmo:MainstreamKnowledgeResource)))
 SubClassOf(kmo:CoreKnowledgeAsset kmo:KnowledgeAsset)
-SubClassOf(kmo:CoreKnowledgeAsset ObjectComplementOf(ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/rel#derived-from> kmo:KnowledgeAsset)))
+SubClassOf(kmo:CoreKnowledgeAsset ObjectComplementOf(ObjectSomeValuesFrom(api4kp:derived-from kmo:KnowledgeAsset)))
 
 # Class: kmo:DigitalKnowledgeArtifact (digital knowledge artifact)
 
 AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeArtifact "digital knowledge artifact"@en)
 AnnotationAssertion(skos:definition kmo:DigitalKnowledgeArtifact "An artifact that carries some form of knowledge encoded by means of discretized signals")
-SubClassOf(kmo:DigitalKnowledgeArtifact <http://www.omg.org/spec/API4KP/core#KnowledgeArtifact>)
+SubClassOf(kmo:DigitalKnowledgeArtifact api4kp:KnowledgeArtifact)
 
 # Class: kmo:DigitalKnowledgeArtifactDirectory (digital knowledge artifact directory)
 
@@ -359,13 +437,13 @@ SubClassOf(kmo:DigitalKnowledgeArtifactDirectory kmo:KnowledgeArtifactDirectory)
 
 AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeArtifactRepository "digital knowledge artifact repository"@en)
 AnnotationAssertion(skos:definition kmo:DigitalKnowledgeArtifactRepository "Function served by an entity that stores Digital Knowledge Artifacts")
-SubClassOf(kmo:DigitalKnowledgeArtifactRepository <http://www.omg.org/spec/API4KP/core#KnowledgeArtifactRepository>)
-SubClassOf(kmo:DigitalKnowledgeArtifactRepository ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#function-of> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#stores> kmo:DigitalKnowledgeArtifact)))
+SubClassOf(kmo:DigitalKnowledgeArtifactRepository api4kp:KnowledgeArtifactRepository)
+SubClassOf(kmo:DigitalKnowledgeArtifactRepository ObjectSomeValuesFrom(api4kp:function-of ObjectSomeValuesFrom(api4kp:stores kmo:DigitalKnowledgeArtifact)))
 
 # Class: kmo:DigitalKnowledgeAssetSurrogate (digital knowledge asset surrogate)
 
 AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeAssetSurrogate "digital knowledge asset surrogate"@en)
-EquivalentClasses(kmo:DigitalKnowledgeAssetSurrogate ObjectIntersectionOf(kmo:DigitalKnowledgeArtifact <http://www.omg.org/spec/API4KP/core#KnowledgeAssetSurrogate>))
+EquivalentClasses(kmo:DigitalKnowledgeAssetSurrogate ObjectIntersectionOf(kmo:DigitalKnowledgeArtifact api4kp:KnowledgeAssetSurrogate))
 SubClassOf(kmo:DigitalKnowledgeAssetSurrogate kmo:DigitalKnowledgeArtifact)
 
 # Class: kmo:DigitalKnowledgeAssetSurrogateRepository (digital knowledge asset surrogate repository)
@@ -373,43 +451,43 @@ SubClassOf(kmo:DigitalKnowledgeAssetSurrogate kmo:DigitalKnowledgeArtifact)
 AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeAssetSurrogateRepository "digital knowledge asset surrogate repository"@en)
 AnnotationAssertion(skos:definition kmo:DigitalKnowledgeAssetSurrogateRepository "a repository specialized in digital asset surrogates")
 SubClassOf(kmo:DigitalKnowledgeAssetSurrogateRepository kmo:DigitalKnowledgeArtifactRepository)
-SubClassOf(kmo:DigitalKnowledgeAssetSurrogateRepository ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#function-of> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#stores> kmo:DigitalKnowledgeAssetSurrogate)))
+SubClassOf(kmo:DigitalKnowledgeAssetSurrogateRepository ObjectSomeValuesFrom(api4kp:function-of ObjectSomeValuesFrom(api4kp:stores kmo:DigitalKnowledgeAssetSurrogate)))
 
 # Class: kmo:DigitalKnowledgeManagementServiceProvider (digital knowledge management dervice provider)
 
 AnnotationAssertion(rdfs:label kmo:DigitalKnowledgeManagementServiceProvider "digital knowledge management dervice provider"@en)
 AnnotationAssertion(skos:definition kmo:DigitalKnowledgeManagementServiceProvider "knowledge management service provider for digital knowledge artifacts")
 SubClassOf(kmo:DigitalKnowledgeManagementServiceProvider kmo:KnowledgeManagementServiceProvider)
-SubClassOf(kmo:DigitalKnowledgeManagementServiceProvider ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-part> kmo:DigitalKnowledgeArtifactDirectory))
-SubClassOf(kmo:DigitalKnowledgeManagementServiceProvider ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-part> kmo:DigitalKnowledgeArtifactRepository))
-SubClassOf(kmo:DigitalKnowledgeManagementServiceProvider ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-part> kmo:KnowledgeArtifactEditor))
+SubClassOf(kmo:DigitalKnowledgeManagementServiceProvider ObjectSomeValuesFrom(api4kp:has-part kmo:DigitalKnowledgeArtifactDirectory))
+SubClassOf(kmo:DigitalKnowledgeManagementServiceProvider ObjectSomeValuesFrom(api4kp:has-part kmo:DigitalKnowledgeArtifactRepository))
+SubClassOf(kmo:DigitalKnowledgeManagementServiceProvider ObjectSomeValuesFrom(api4kp:has-part kmo:KnowledgeArtifactEditor))
 
 # Class: kmo:DistributableExpression (distributable expression)
 
 AnnotationAssertion(rdfs:label kmo:DistributableExpression "distributable expression"@en)
 AnnotationAssertion(skos:definition kmo:DistributableExpression "Concrete Expression that is realized by a self-contained knowledge artifact, and suitable to be used in a knowledge transfer activity")
-SubClassOf(kmo:DistributableExpression <http://www.omg.org/spec/API4KP/core#ConcreteExpression>)
-SubClassOf(kmo:DistributableExpression ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#carried-by> <http://www.omg.org/spec/API4KP/core#SelfContainedKnowledgeArtifact>))
-SubClassOf(kmo:DistributableExpression ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#involved-in> kmo:KnowledgeTransferActivity))
+SubClassOf(kmo:DistributableExpression api4kp:ConcreteExpression)
+SubClassOf(kmo:DistributableExpression ObjectSomeValuesFrom(api4kp:carried-by api4kp:SelfContainedKnowledgeArtifact))
+SubClassOf(kmo:DistributableExpression ObjectSomeValuesFrom(api4kp:involved-in kmo:KnowledgeTransferActivity))
 
 # Class: kmo:DomainKnowledge (domain knowledge)
 
 AnnotationAssertion(rdfs:label kmo:DomainKnowledge "domain knowledge"@en)
 AnnotationAssertion(skos:definition kmo:DomainKnowledge "Knowledge specifically about, and thus scoped by, some Business Domain (e.g. healthcare)")
-SubClassOf(kmo:DomainKnowledge ObjectIntersectionOf(kmo:ExplicitKnowledge ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#is-about> kmo:BusinessDomain)))
+SubClassOf(kmo:DomainKnowledge ObjectIntersectionOf(kmo:ExplicitKnowledge ObjectSomeValuesFrom(api4kp:is-about kmo:BusinessDomain)))
 
 # Class: kmo:DomainSpecificKnowledgeResource (TODO fix def domain-specific knowledge resource)
 
 AnnotationAssertion(rdfs:label kmo:DomainSpecificKnowledgeResource "TODO fix def domain-specific knowledge resource"@en)
 AnnotationAssertion(skos:definition kmo:DomainSpecificKnowledgeResource "Knowledge resource that expresses a work of knowledge that captures a piece of domain specific knowledge")
-EquivalentClasses(kmo:DomainSpecificKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResource> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#knowledge-representation-of> kmo:DomainKnowledge)))
-SubClassOf(kmo:DomainSpecificKnowledgeResource <http://www.omg.org/spec/API4KP/core#KnowledgeResource>)
+EquivalentClasses(kmo:DomainSpecificKnowledgeResource ObjectIntersectionOf(api4kp:KnowledgeResource ObjectSomeValuesFrom(api4kp:knowledge-representation-of kmo:DomainKnowledge)))
+SubClassOf(kmo:DomainSpecificKnowledgeResource api4kp:KnowledgeResource)
 
 # Class: kmo:DomainSpecificWorkOfKnowledge (domain-specific work of knowledge)
 
 AnnotationAssertion(rdfs:label kmo:DomainSpecificWorkOfKnowledge "domain-specific work of knowledge")
 AnnotationAssertion(skos:definition kmo:DomainSpecificWorkOfKnowledge "Knowledge Work that has subject some aspect of a single Business Domain")
-EquivalentClasses(kmo:DomainSpecificWorkOfKnowledge ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#WorkOfKnowledge> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-subject> kmo:DomainKnowledge)))
+EquivalentClasses(kmo:DomainSpecificWorkOfKnowledge ObjectIntersectionOf(api4kp:WorkOfKnowledge ObjectSomeValuesFrom(api4kp:has-subject kmo:DomainKnowledge)))
 
 # Class: kmo:EndorsedKnowledgeResource (endorsed knowledge resource)
 
@@ -417,8 +495,8 @@ AnnotationAssertion(rdfs:label kmo:EndorsedKnowledgeResource "endorsed knowledge
 AnnotationAssertion(skos:definition kmo:EndorsedKnowledgeResource "Knowledge Resource that is endorsed by an agent / party. 
 
 That agent is expected to have adequate subject matter expertise, must have the permission, and should have the authority to do so")
-EquivalentClasses(kmo:EndorsedKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResource> ObjectSomeValuesFrom(kmo:endorsed-by kmo:KnowledgeEndorsingParty)))
-SubClassOf(kmo:EndorsedKnowledgeResource <http://www.omg.org/spec/API4KP/core#KnowledgeResource>)
+EquivalentClasses(kmo:EndorsedKnowledgeResource ObjectIntersectionOf(api4kp:KnowledgeResource ObjectSomeValuesFrom(kmo:endorsed-by kmo:KnowledgeEndorsingParty)))
+SubClassOf(kmo:EndorsedKnowledgeResource api4kp:KnowledgeResource)
 
 # Class: kmo:ExperientialLearningActivity (experiential learning activity)
 
@@ -431,41 +509,41 @@ SubClassOf(kmo:ExperientialLearningActivity kmo:KnowledgeAcquisitionActivity)
 AnnotationAssertion(rdfs:label kmo:ExpertKnowledge "expert knowledge"@en)
 AnnotationAssertion(skos:definition kmo:ExpertKnowledge "Domain Knowledge acquired by advanced certified training, practice and/or research")
 SubClassOf(kmo:ExpertKnowledge kmo:DomainKnowledge)
-SubClassOf(kmo:ExpertKnowledge ObjectSomeValuesFrom(kmo:possessed-by ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeableAgent> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#performs> kmo:ExperientialLearningActivity) ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#recipient-of> kmo:GraduateLevelInstruction))))
+SubClassOf(kmo:ExpertKnowledge ObjectSomeValuesFrom(kmo:possessed-by ObjectIntersectionOf(api4kp:KnowledgeableAgent ObjectSomeValuesFrom(api4kp:performs kmo:ExperientialLearningActivity) ObjectSomeValuesFrom(api4kp:recipient-of kmo:GraduateLevelInstruction))))
 
 # Class: kmo:ExplicitKnowledge (explicit knowledge)
 
 AnnotationAssertion(rdfs:label kmo:ExplicitKnowledge "explicit knowledge"@en)
 AnnotationAssertion(skos:definition kmo:ExplicitKnowledge "Knowledge that can be communicated from agent to agent")
-SubClassOf(kmo:ExplicitKnowledge <http://www.omg.org/spec/API4KP/core#Knowledge>)
+SubClassOf(kmo:ExplicitKnowledge api4kp:Knowledge)
 DisjointClasses(kmo:ExplicitKnowledge kmo:TacitKnowledge)
 
 # Class: kmo:ExternallyCataloguedResourceSurrogate (surrogate of externally catalogued resource)
 
 AnnotationAssertion(rdfs:label kmo:ExternallyCataloguedResourceSurrogate "surrogate of externally catalogued resource"@en)
 AnnotationAssertion(skos:definition kmo:ExternallyCataloguedResourceSurrogate "(Meta) Surrogate S that carries the description of a Surrogate T, and such that S and T are not stored in the same repository")
-SubClassOf(kmo:ExternallyCataloguedResourceSurrogate <http://www.omg.org/spec/API4KP/core#KnowledgeAssetSurrogate>)
-SubClassOf(kmo:ExternallyCataloguedResourceSurrogate ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#carries> kmo:KnowledgeMetaDescriptor))
+SubClassOf(kmo:ExternallyCataloguedResourceSurrogate api4kp:KnowledgeAssetSurrogate)
+SubClassOf(kmo:ExternallyCataloguedResourceSurrogate ObjectSomeValuesFrom(api4kp:carries kmo:KnowledgeMetaDescriptor))
 
 # Class: kmo:ExternallyManagedResourceSurrogate (surrogate of externally managed resource)
 
 AnnotationAssertion(rdfs:label kmo:ExternallyManagedResourceSurrogate "surrogate of externally managed resource"@en)
 AnnotationAssertion(skos:definition kmo:ExternallyManagedResourceSurrogate "a surrogate S that carries a resource description D about a resource R, and such that S is not stored in the same repository as the master copy of R")
-SubClassOf(kmo:ExternallyManagedResourceSurrogate <http://www.omg.org/spec/API4KP/core#KnowledgeAssetSurrogate>)
+SubClassOf(kmo:ExternallyManagedResourceSurrogate api4kp:KnowledgeAssetSurrogate)
 
 # Class: kmo:FoundationalKnowledge (foundational knowledge)
 
 AnnotationAssertion(rdfs:label kmo:FoundationalKnowledge "foundational knowledge"@en)
 AnnotationAssertion(skos:definition kmo:FoundationalKnowledge "Knowledge that is acquired by means of formal training in a domain (e.g. equivalent to a MS level)")
 SubClassOf(kmo:FoundationalKnowledge kmo:DomainKnowledge)
-SubClassOf(kmo:FoundationalKnowledge ObjectSomeValuesFrom(kmo:possessed-by ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeableAgent> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#recipient-of> kmo:UndegraduateLevelInstruction))))
+SubClassOf(kmo:FoundationalKnowledge ObjectSomeValuesFrom(kmo:possessed-by ObjectIntersectionOf(api4kp:KnowledgeableAgent ObjectSomeValuesFrom(api4kp:recipient-of kmo:UndegraduateLevelInstruction))))
 
 # Class: kmo:FrontalInstruction (frontal delivery of instruction)
 
 AnnotationAssertion(rdfs:label kmo:FrontalInstruction "frontal delivery of instruction"@en)
 AnnotationAssertion(skos:definition kmo:FrontalInstruction "A knowledge transfer activity that assumes the spatio-temporal co-location of two agents, where direct communication is used to transfer Knowlege from one to the other")
 SubClassOf(kmo:FrontalInstruction kmo:KnowledgeTransferActivity)
-SubClassOf(kmo:FrontalInstruction ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#targets> <http://www.omg.org/spec/API4KP/core#KnowledgeableAgent>))
+SubClassOf(kmo:FrontalInstruction ObjectSomeValuesFrom(api4kp:targets api4kp:KnowledgeableAgent))
 
 # Class: kmo:GraduateLevelInstruction (delivery of graduate-level instruction)
 
@@ -476,56 +554,63 @@ DisjointClasses(kmo:GraduateLevelInstruction kmo:UndegraduateLevelInstruction)
 # Class: kmo:HumanConsumableExpression (human consumable expression)
 
 AnnotationAssertion(rdfs:label kmo:HumanConsumableExpression "human consumable expression")
-SubClassOf(kmo:HumanConsumableExpression <http://www.omg.org/spec/API4KP/core#ConcreteExpression>)
-SubClassOf(kmo:HumanConsumableExpression ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#uses-language> <http://www.omg.org/spec/API4KP/core#NaturalLanguage>))
-SubClassOf(kmo:HumanConsumableExpression ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/core#uses-language> <http://www.omg.org/spec/API4KP/core#NaturalLanguage>))
+SubClassOf(kmo:HumanConsumableExpression api4kp:ConcreteExpression)
+SubClassOf(kmo:HumanConsumableExpression ObjectSomeValuesFrom(api4kp:uses-language api4kp:NaturalLanguage))
+SubClassOf(kmo:HumanConsumableExpression ObjectAllValuesFrom(api4kp:uses-language api4kp:NaturalLanguage))
 
 # Class: kmo:IdentifiedKnowledgeResource (identified knowledge resource)
 
 AnnotationAssertion(rdfs:label kmo:IdentifiedKnowledgeResource "identified knowledge resource"@en)
 AnnotationAssertion(skos:definition kmo:IdentifiedKnowledgeResource "Knowledge Resource that is identified by a an ID assigned by a central identification authority")
-EquivalentClasses(kmo:IdentifiedKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResource> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#identified-by> <http://www.omg.org/spec/API4KP/core#Identifier>)))
+EquivalentClasses(kmo:IdentifiedKnowledgeResource ObjectIntersectionOf(api4kp:KnowledgeResource ObjectSomeValuesFrom(api4kp:identified-by api4kp:Identifier)))
 
 # Class: kmo:InlinedKnowledgeResourceDescriptor (inlined knowledge resource description)
 
 AnnotationAssertion(rdfs:label kmo:InlinedKnowledgeResourceDescriptor "inlined knowledge resource description"@en)
 AnnotationAssertion(skos:definition kmo:InlinedKnowledgeResourceDescriptor "A descriptor that is a proper sub-part of the (same) structured knowledge resource that has, as a proper sub-part, the resource the descriptor is providing information about")
-EquivalentClasses(kmo:InlinedKnowledgeResourceDescriptor ObjectIntersectionOf(kmo:KnowledgeAssetDescription ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#proper-part-of> ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#StructuredKnowledgeResource> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-proper-part> <http://www.omg.org/spec/API4KP/core#KnowledgeResource>)))))
+EquivalentClasses(kmo:InlinedKnowledgeResourceDescriptor ObjectIntersectionOf(kmo:KnowledgeAssetDescription ObjectSomeValuesFrom(api4kp:proper-part-of ObjectIntersectionOf(api4kp:StructuredKnowledgeResource ObjectSomeValuesFrom(api4kp:has-proper-part api4kp:KnowledgeResource)))))
 SubClassOf(kmo:InlinedKnowledgeResourceDescriptor kmo:KnowledgeAssetDescription)
 
 # Class: kmo:InternallyManagedResourceSurrogate (surrogate of internally managed resource)
 
 AnnotationAssertion(rdfs:label kmo:InternallyManagedResourceSurrogate "surrogate of internally managed resource"@en)
 AnnotationAssertion(skos:definition kmo:InternallyManagedResourceSurrogate "a surrogate S that carries a resource description D about a resource R, and such that S is stored in the same repository as the master copy of R")
-SubClassOf(kmo:InternallyManagedResourceSurrogate <http://www.omg.org/spec/API4KP/core#KnowledgeAssetSurrogate>)
+SubClassOf(kmo:InternallyManagedResourceSurrogate api4kp:KnowledgeAssetSurrogate)
 
 # Class: kmo:KnowledgeAcquisitionActivity (knowledge acquisition activity)
 
 AnnotationAssertion(rdfs:label kmo:KnowledgeAcquisitionActivity "knowledge acquisition activity"@en)
 AnnotationAssertion(skos:definition kmo:KnowledgeAcquisitionActivity "An abstract activity that allows the agent performing it to gain some Knowledge. Concrete examples include learning, observing, experiencing, and combinations thereof.")
-SubClassOf(kmo:KnowledgeAcquisitionActivity <http://www.omg.org/spec/API4KP/core#InformationProcessingActivity>)
-SubClassOf(kmo:KnowledgeAcquisitionActivity ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#performed-by> <http://www.omg.org/spec/API4KP/core#KnowledgeableAgent>))
+SubClassOf(kmo:KnowledgeAcquisitionActivity api4kp:InformationProcessingActivity)
+SubClassOf(kmo:KnowledgeAcquisitionActivity ObjectSomeValuesFrom(api4kp:performed-by api4kp:KnowledgeableAgent))
+
+# Class: kmo:KnowledgeApprovalActivity (knowledge approval activity)
+
+AnnotationAssertion(rdfs:comment kmo:KnowledgeApprovalActivity "The act by which an designated party (a knowledge approval body) transfers their authority to a knowledge asset")
+AnnotationAssertion(rdfs:label kmo:KnowledgeApprovalActivity "knowledge approval activity")
+AnnotationAssertion(skos:prefLabel kmo:KnowledgeApprovalActivity "approval")
+SubClassOf(kmo:KnowledgeApprovalActivity kmo:KnowledgeManagementActivity)
 
 # Class: kmo:KnowledgeArtifactDirectory (knowledge artifact directory)
 
 AnnotationAssertion(rdfs:label kmo:KnowledgeArtifactDirectory "knowledge artifact directory"@en)
 AnnotationAssertion(skos:definition kmo:KnowledgeArtifactDirectory "function of an agent that can be queried to resolve the identity and/or location of certain knowledge artifacts. The function is enabled by the agent's internal representation of an artifact inventory")
-SubClassOf(kmo:KnowledgeArtifactDirectory <http://www.omg.org/spec/API4KP/core#KnowledgeProcessingFunction>)
-SubClassOf(kmo:KnowledgeArtifactDirectory ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#function-of> ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeableAgent> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#internally-represents> kmo:KnowledgeArtifactInventory))))
+SubClassOf(kmo:KnowledgeArtifactDirectory api4kp:KnowledgeProcessingFunction)
+SubClassOf(kmo:KnowledgeArtifactDirectory ObjectSomeValuesFrom(api4kp:function-of ObjectIntersectionOf(api4kp:KnowledgeableAgent ObjectSomeValuesFrom(api4kp:internally-represents kmo:KnowledgeArtifactInventory))))
 
 # Class: kmo:KnowledgeArtifactEditor (knowledge artifact editor)
 
 AnnotationAssertion(rdfs:comment kmo:KnowledgeArtifactEditor "function of a tool that is used in activities that involve the creation, editing and curation of knowledge artifacts, both from a content and form perspective")
 AnnotationAssertion(rdfs:label kmo:KnowledgeArtifactEditor "knowledge artifact editor"@en)
-SubClassOf(kmo:KnowledgeArtifactEditor <http://www.omg.org/spec/API4KP/core#KnowledgeProcessingFunction>)
-SubClassOf(kmo:KnowledgeArtifactEditor ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#function-of> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#used-in> ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeActivity> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#targets> <http://www.omg.org/spec/API4KP/core#KnowledgeArtifact>)))))
+SubClassOf(kmo:KnowledgeArtifactEditor api4kp:KnowledgeProcessingFunction)
+SubClassOf(kmo:KnowledgeArtifactEditor ObjectSomeValuesFrom(api4kp:function-of ObjectSomeValuesFrom(api4kp:used-in ObjectIntersectionOf(api4kp:KnowledgeActivity ObjectSomeValuesFrom(api4kp:targets api4kp:KnowledgeArtifact)))))
 
 # Class: kmo:KnowledgeArtifactInventory (knowledge artifact inventory)
 
 AnnotationAssertion(rdfs:label kmo:KnowledgeArtifactInventory "knowledge artifact inventory"@en)
 AnnotationAssertion(skos:definition kmo:KnowledgeArtifactInventory "A complex collection of references to one or more Knowledge Artifacts")
-SubClassOf(kmo:KnowledgeArtifactInventory <http://www.omg.org/spec/API4KP/core#AbstractExpression>)
-SubClassOf(kmo:KnowledgeArtifactInventory ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-proper-part> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#denotes> <http://www.omg.org/spec/API4KP/core#KnowledgeArtifact>)))
+SubClassOf(kmo:KnowledgeArtifactInventory api4kp:AbstractExpression)
+SubClassOf(kmo:KnowledgeArtifactInventory ObjectSomeValuesFrom(api4kp:has-proper-part ObjectSomeValuesFrom(api4kp:denotes api4kp:KnowledgeArtifact)))
 
 # Class: kmo:KnowledgeAsset (knowledge asset)
 
@@ -539,25 +624,51 @@ SubClassOf(kmo:KnowledgeAsset kmo:IdentifiedKnowledgeResource)
 AnnotationAssertion(rdfs:label kmo:KnowledgeAssetDescription "knowledge asset description"@en)
 AnnotationAssertion(skos:altLabel kmo:KnowledgeAssetDescription "knowledge asset metadata")
 AnnotationAssertion(skos:definition kmo:KnowledgeAssetDescription "a Knowledge Asset that has another Asset as subject")
-EquivalentClasses(kmo:KnowledgeAssetDescription ObjectIntersectionOf(kmo:KnowledgeAsset ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResourceDescription> ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/core#representation-of> kmo:KnowledgeAsset))))
+EquivalentClasses(kmo:KnowledgeAssetDescription ObjectIntersectionOf(kmo:KnowledgeAsset ObjectIntersectionOf(api4kp:KnowledgeResourceDescription ObjectAllValuesFrom(api4kp:representation-of kmo:KnowledgeAsset))))
 SubClassOf(kmo:KnowledgeAssetDescription kmo:KnowledgeAsset)
 SubClassOf(kmo:KnowledgeAssetDescription kmo:KnowledgeAssetDescription)
+
+# Class: kmo:KnowledgeAuthoringActivity (knowledge authoring activity)
+
+AnnotationAssertion(rdfs:comment kmo:KnowledgeAuthoringActivity "The act of expressing a Work of Knowledge in some language")
+AnnotationAssertion(rdfs:label kmo:KnowledgeAuthoringActivity "knowledge authoring activity")
+AnnotationAssertion(skos:prefLabel kmo:KnowledgeAuthoringActivity "authoring")
+SubClassOf(kmo:KnowledgeAuthoringActivity kmo:KnowledgeManagementActivity)
+
+# Class: kmo:KnowledgeCreationActivity (knowledge creation activity)
+
+AnnotationAssertion(rdfs:comment kmo:KnowledgeCreationActivity "An expert's act of creating a new Work of Knowledge")
+AnnotationAssertion(rdfs:label kmo:KnowledgeCreationActivity "knowledge creation activity")
+AnnotationAssertion(skos:prefLabel kmo:KnowledgeCreationActivity "creation")
+SubClassOf(kmo:KnowledgeCreationActivity kmo:KnowledgeManagementActivity)
+
+# Class: kmo:KnowledgeEditingActivity (knowledge editing activity)
+
+AnnotationAssertion(rdfs:comment kmo:KnowledgeEditingActivity "The act of formatting and typesetting a Knowledge Expression to fit a designated carrier")
+AnnotationAssertion(rdfs:label kmo:KnowledgeEditingActivity "knowledge editing activity")
+AnnotationAssertion(skos:prefLabel kmo:KnowledgeEditingActivity "editing")
+SubClassOf(kmo:KnowledgeEditingActivity kmo:KnowledgeManagementActivity)
 
 # Class: kmo:KnowledgeEndorsingParty (knowledge endorsing party)
 
 AnnotationAssertion(rdfs:label kmo:KnowledgeEndorsingParty "knowledge endorsing party"@en)
 AnnotationAssertion(skos:definition kmo:KnowledgeEndorsingParty "Party that has the authority and the subject matter expertise to endorse some Work of Knowledge. The trust in the Party gets transferred to the Work of Knowledge")
-SubClassOf(kmo:KnowledgeEndorsingParty <http://www.omg.org/spec/API4KP/core#KnowledgeableAgent>)
-SubClassOf(kmo:KnowledgeEndorsingParty ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#internally-represents> kmo:AdvancedKnowledge))
+SubClassOf(kmo:KnowledgeEndorsingParty api4kp:KnowledgeableAgent)
+SubClassOf(kmo:KnowledgeEndorsingParty ObjectSomeValuesFrom(api4kp:internally-represents kmo:AdvancedKnowledge))
+
+# Class: kmo:KnowledgeManagementActivity (knowledge management activity)
+
+AnnotationAssertion(rdfs:label kmo:KnowledgeManagementActivity "knowledge management activity")
+SubClassOf(kmo:KnowledgeManagementActivity api4kp:InformationProcessingActivity)
 
 # Class: kmo:KnowledgeManagementServiceProvider (knowledge management service provider)
 
 AnnotationAssertion(rdfs:label kmo:KnowledgeManagementServiceProvider "knowledge management service provider"@en)
 AnnotationAssertion(skos:definition kmo:KnowledgeManagementServiceProvider "The function of an entity that serves the role of Knowledge Manager, enabling the creation, maintenance, storage, cataloguing, and delivery/distribution of knowledge artifacts")
-SubClassOf(kmo:KnowledgeManagementServiceProvider <http://www.omg.org/spec/API4KP/core#KnowledgeProcessingFunction>)
-SubClassOf(kmo:KnowledgeManagementServiceProvider ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-part> kmo:KnowledgeArtifactDirectory))
-SubClassOf(kmo:KnowledgeManagementServiceProvider ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-part> kmo:KnowledgeArtifactEditor))
-SubClassOf(kmo:KnowledgeManagementServiceProvider ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-part> <http://www.omg.org/spec/API4KP/core#KnowledgeArtifactRepository>))
+SubClassOf(kmo:KnowledgeManagementServiceProvider api4kp:KnowledgeProcessingFunction)
+SubClassOf(kmo:KnowledgeManagementServiceProvider ObjectSomeValuesFrom(api4kp:has-part kmo:KnowledgeArtifactDirectory))
+SubClassOf(kmo:KnowledgeManagementServiceProvider ObjectSomeValuesFrom(api4kp:has-part kmo:KnowledgeArtifactEditor))
+SubClassOf(kmo:KnowledgeManagementServiceProvider ObjectSomeValuesFrom(api4kp:has-part api4kp:KnowledgeArtifactRepository))
 
 # Class: kmo:KnowledgeMetaDescriptor (knowledge meta-description)
 
@@ -565,39 +676,54 @@ AnnotationAssertion(rdfs:label kmo:KnowledgeMetaDescriptor "knowledge meta-descr
 AnnotationAssertion(skos:definition kmo:KnowledgeMetaDescriptor "A knowledge resource description whose subject is another knowledge description")
 AnnotationAssertion(skos:note kmo:KnowledgeMetaDescriptor "For the purpose of knowledge management, knowledge asset descriptions are assets that can be assembled into a knowledge base, and used for reasoning. 
 Meta-descriptions can be materialized as needed for such knowledge bases, allowing to use a model-driven approach to knowledge management")
-EquivalentClasses(kmo:KnowledgeMetaDescriptor ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResourceDescription> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#representation-of> <http://www.omg.org/spec/API4KP/core#KnowledgeResourceDescription>)))
-SubClassOf(kmo:KnowledgeMetaDescriptor <http://www.omg.org/spec/API4KP/core#KnowledgeResourceDescription>)
+EquivalentClasses(kmo:KnowledgeMetaDescriptor ObjectIntersectionOf(api4kp:KnowledgeResourceDescription ObjectSomeValuesFrom(api4kp:representation-of api4kp:KnowledgeResourceDescription)))
+SubClassOf(kmo:KnowledgeMetaDescriptor api4kp:KnowledgeResourceDescription)
 
 # Class: kmo:KnowledgePublicationActivity (knowledge publication activity)
 
 AnnotationAssertion(rdfs:label kmo:KnowledgePublicationActivity "knowledge publication activity")
 AnnotationAssertion(skos:altLabel kmo:KnowledgePublicationActivity "knowledge release activity")
 AnnotationAssertion(skos:definition kmo:KnowledgePublicationActivity "activity by which an endorsed knowledge resource is released to the public, to be used, making it possible for agents to acquire it")
-SubClassOf(kmo:KnowledgePublicationActivity <http://www.omg.org/spec/API4KP/core#InformationProcessingActivity>)
-SubClassOf(kmo:KnowledgePublicationActivity ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#involves> kmo:EndorsedKnowledgeResource))
-SubClassOf(kmo:KnowledgePublicationActivity ObjectAllValuesFrom(<http://www.omg.org/spec/API4KP/core#targets> kmo:PublishedKnowledgeResource))
+AnnotationAssertion(skos:prefLabel kmo:KnowledgePublicationActivity "publication")
+SubClassOf(kmo:KnowledgePublicationActivity kmo:KnowledgeManagementActivity)
+SubClassOf(kmo:KnowledgePublicationActivity ObjectSomeValuesFrom(api4kp:involves kmo:EndorsedKnowledgeResource))
+SubClassOf(kmo:KnowledgePublicationActivity ObjectAllValuesFrom(api4kp:targets kmo:PublishedKnowledgeResource))
 
 # Class: kmo:KnowledgeRepresentationEmbeddingSurrogate (knowledge representation embedding surrogate)
 
 AnnotationAssertion(rdfs:label kmo:KnowledgeRepresentationEmbeddingSurrogate "knowledge representation embedding surrogate"@en)
 AnnotationAssertion(skos:definition kmo:KnowledgeRepresentationEmbeddingSurrogate "A Surrogate that realizes a knowledge descriptor, and embeds a representation of either the knowledge resource it describes, or a derivative thereof.
 (This concept is defined at the manifestation/item level. The two expressions are realized independently and included in the same manifestation, with the surrogate being the primary entity the manifestation is realizing)")
-SubClassOf(kmo:KnowledgeRepresentationEmbeddingSurrogate <http://www.omg.org/spec/API4KP/core#KnowledgeAssetSurrogate>)
-SubClassOf(kmo:KnowledgeRepresentationEmbeddingSurrogate ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#has-part> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#carries> <http://www.omg.org/spec/API4KP/core#KnowledgeResource>)))
+SubClassOf(kmo:KnowledgeRepresentationEmbeddingSurrogate api4kp:KnowledgeAssetSurrogate)
+SubClassOf(kmo:KnowledgeRepresentationEmbeddingSurrogate ObjectSomeValuesFrom(api4kp:has-part ObjectSomeValuesFrom(api4kp:carries api4kp:KnowledgeResource)))
+
+# Class: kmo:KnowledgeReviewActivity (knowledge review activity)
+
+AnnotationAssertion(rdfs:comment kmo:KnowledgeReviewActivity "An expert's comparison of a knowledge asset with their subject matter expertise, to determine whether the work is still accurate, faithful and up to date")
+AnnotationAssertion(rdfs:label kmo:KnowledgeReviewActivity "knowledge review activity")
+AnnotationAssertion(skos:prefLabel kmo:KnowledgeReviewActivity "review")
+SubClassOf(kmo:KnowledgeReviewActivity kmo:KnowledgeManagementActivity)
+
+# Class: kmo:KnowledgeRevisionActivity (knowledge revision activity)
+
+AnnotationAssertion(rdfs:comment kmo:KnowledgeRevisionActivity "A knowledge review that results in a new version of a knowledge asset")
+AnnotationAssertion(rdfs:label kmo:KnowledgeRevisionActivity "knowledge revision activity")
+AnnotationAssertion(skos:prefLabel kmo:KnowledgeRevisionActivity "revision")
+SubClassOf(kmo:KnowledgeRevisionActivity kmo:KnowledgeReviewActivity)
 
 # Class: kmo:KnowledgeTransferActivity (knowledge transfer activity)
 
 AnnotationAssertion(rdfs:label kmo:KnowledgeTransferActivity "knowledge transfer activity")
 AnnotationAssertion(skos:definition kmo:KnowledgeTransferActivity "Activity with 2 or more participant agents. Before it is performed, there exists 2 participants A and B, such that A possesses some knowledge K, and B does not. After the activity is completed, B will possess that knowledge K.")
 SubClassOf(kmo:KnowledgeTransferActivity kmo:KnowledgeAcquisitionActivity)
-SubClassOf(kmo:KnowledgeTransferActivity ObjectMinCardinality(2 <http://www.omg.org/spec/API4KP/core#performed-by> <http://www.omg.org/spec/API4KP/core#KnowledgeableAgent>))
+SubClassOf(kmo:KnowledgeTransferActivity ObjectMinCardinality(2 api4kp:performed-by api4kp:KnowledgeableAgent))
 
 # Class: kmo:MainstreamKnowledgeResource (mainstream knowledge resource)
 
 AnnotationAssertion(rdfs:label kmo:MainstreamKnowledgeResource "mainstream knowledge resource"@en)
 AnnotationAssertion(skos:definition kmo:MainstreamKnowledgeResource "Latest Published Version of a Knowledge Resource.
 i.e. Published Knowledge Resource such that there is no revision that is also Published.")
-EquivalentClasses(kmo:MainstreamKnowledgeResource ObjectIntersectionOf(kmo:PublishedKnowledgeResource ObjectComplementOf(ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/rel#has-later-revision> kmo:PublishedKnowledgeResource))))
+EquivalentClasses(kmo:MainstreamKnowledgeResource ObjectIntersectionOf(kmo:PublishedKnowledgeResource ObjectComplementOf(ObjectSomeValuesFrom(api4kp:has-later-revision kmo:PublishedKnowledgeResource))))
 SubClassOf(kmo:MainstreamKnowledgeResource kmo:PublishedKnowledgeResource)
 
 # Class: kmo:MasterCopy (master copy)
@@ -606,7 +732,7 @@ AnnotationAssertion(rdfs:comment kmo:MasterCopy "TODO Deprecated. Moved to the c
 AnnotationAssertion(rdfs:comment kmo:MasterCopy "master copies are usually stored in dedicated repositories, from where copies can be obtained")
 AnnotationAssertion(rdfs:label kmo:MasterCopy "master copy")
 AnnotationAssertion(skos:definition kmo:MasterCopy "artifact that is used as the source in replication activities")
-SubClassOf(kmo:MasterCopy <http://www.omg.org/spec/API4KP/core#KnowledgeArtifact>)
+SubClassOf(kmo:MasterCopy api4kp:KnowledgeArtifact)
 
 # Class: kmo:MedicalBusinessDomain (medical business domain)
 
@@ -618,55 +744,55 @@ SubClassOf(kmo:MedicalBusinessDomain kmo:BusinessDomain)
 
 AnnotationAssertion(rdfs:label kmo:OriginalKnowledgeResource "original knowledge resource"@en)
 AnnotationAssertion(skos:definition kmo:OriginalKnowledgeResource "The first (version of an) Knowledge Resource, such that there are no predecessor (expressions of previous) Works that have been used during its creation.")
-EquivalentClasses(kmo:OriginalKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResource> ObjectComplementOf(ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/rel#is-later-revision-of> <http://www.omg.org/spec/API4KP/core#KnowledgeResource>))))
-SubClassOf(kmo:OriginalKnowledgeResource ObjectSomeValuesFrom(ObjectInverseOf(<http://www.omg.org/spec/API4KP/rel#has-original>) <http://www.omg.org/spec/API4KP/core#KnowledgeResource>))
+EquivalentClasses(kmo:OriginalKnowledgeResource ObjectIntersectionOf(api4kp:KnowledgeResource ObjectComplementOf(ObjectSomeValuesFrom(api4kp:is-later-revision-of api4kp:KnowledgeResource))))
+SubClassOf(kmo:OriginalKnowledgeResource ObjectSomeValuesFrom(ObjectInverseOf(api4kp:has-original) api4kp:KnowledgeResource))
 
 # Class: kmo:PublishedKnowledgeResource (published knowledge resource)
 
 AnnotationAssertion(rdfs:label kmo:PublishedKnowledgeResource "published knowledge resource"@en)
 AnnotationAssertion(skos:definition kmo:PublishedKnowledgeResource "resource that has been published by means of a publication activity")
-EquivalentClasses(kmo:PublishedKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResource> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#recipient-of> kmo:KnowledgePublicationActivity)))
+EquivalentClasses(kmo:PublishedKnowledgeResource ObjectIntersectionOf(api4kp:KnowledgeResource ObjectSomeValuesFrom(api4kp:recipient-of kmo:KnowledgePublicationActivity)))
 
 # Class: kmo:SophisticatedKnowledgeResource (sophisticated knowledge resource)
 
 AnnotationAssertion(rdfs:label kmo:SophisticatedKnowledgeResource "sophisticated knowledge resource"@en)
 AnnotationAssertion(skos:definition kmo:SophisticatedKnowledgeResource "Knowledge Resource that can be interpreted only by an agent that possesses some Knowledge other than Common Knowledge, or that requires some (other) Knowledge Resource
 i.e.: not Standalone or not Broadly Understandable")
-EquivalentClasses(kmo:SophisticatedKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResource> ObjectUnionOf(ObjectComplementOf(kmo:BroadlyUnderstandableKnowledgeResource) ObjectComplementOf(kmo:StandaloneKnowledgeResource))))
-SubClassOf(kmo:SophisticatedKnowledgeResource <http://www.omg.org/spec/API4KP/core#KnowledgeResource>)
-SubClassOf(kmo:SophisticatedKnowledgeResource ObjectAllValuesFrom(kmo:possessed-by ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeableAgent> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#internally-represents> kmo:AdvancedKnowledge))))
+EquivalentClasses(kmo:SophisticatedKnowledgeResource ObjectIntersectionOf(api4kp:KnowledgeResource ObjectUnionOf(ObjectComplementOf(kmo:BroadlyUnderstandableKnowledgeResource) ObjectComplementOf(kmo:StandaloneKnowledgeResource))))
+SubClassOf(kmo:SophisticatedKnowledgeResource api4kp:KnowledgeResource)
+SubClassOf(kmo:SophisticatedKnowledgeResource ObjectAllValuesFrom(kmo:possessed-by ObjectIntersectionOf(api4kp:KnowledgeableAgent ObjectSomeValuesFrom(api4kp:internally-represents kmo:AdvancedKnowledge))))
 
 # Class: kmo:SpecialistKnowledge (specialist knowledge)
 
 AnnotationAssertion(rdfs:label kmo:SpecialistKnowledge "specialist knowledge"@en)
 AnnotationAssertion(skos:definition kmo:SpecialistKnowledge "Domain Knowledge acquired by advanced certified training")
 SubClassOf(kmo:SpecialistKnowledge kmo:DomainKnowledge)
-SubClassOf(kmo:SpecialistKnowledge ObjectSomeValuesFrom(kmo:possessed-by ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeableAgent> ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/core#recipient-of> kmo:GraduateLevelInstruction))))
+SubClassOf(kmo:SpecialistKnowledge ObjectSomeValuesFrom(kmo:possessed-by ObjectIntersectionOf(api4kp:KnowledgeableAgent ObjectSomeValuesFrom(api4kp:recipient-of kmo:GraduateLevelInstruction))))
 
 # Class: kmo:StandaloneKnowledgeResource (standalone knowledge resource)
 
 AnnotationAssertion(rdfs:comment kmo:StandaloneKnowledgeResource "Such a Resource can be interpreted by an agent (that has the appropriate knowledge pre-requisites) without the need to look up any additional Knowledge Resources")
 AnnotationAssertion(rdfs:label kmo:StandaloneKnowledgeResource "standalone knowledge resource"@en)
 AnnotationAssertion(skos:definition kmo:StandaloneKnowledgeResource "Knowledge Resource that does not depend on any other resource")
-EquivalentClasses(kmo:StandaloneKnowledgeResource ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/core#KnowledgeResource> ObjectComplementOf(ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/rel#depends-on> <http://www.omg.org/spec/API4KP/core#KnowledgeResource>))))
+EquivalentClasses(kmo:StandaloneKnowledgeResource ObjectIntersectionOf(api4kp:KnowledgeResource ObjectComplementOf(ObjectSomeValuesFrom(api4kp:depends-on api4kp:KnowledgeResource))))
 
 # Class: kmo:TacitKnowledge (tacit knowledge)
 
 AnnotationAssertion(rdfs:label kmo:TacitKnowledge "tacit knowledge"@en)
 AnnotationAssertion(skos:definition kmo:TacitKnowledge "Knowledge that can not be transfered to another agent by means of direct communication")
-SubClassOf(kmo:TacitKnowledge <http://www.omg.org/spec/API4KP/core#Knowledge>)
+SubClassOf(kmo:TacitKnowledge api4kp:Knowledge)
 
 # Class: kmo:UndegraduateLevelInstruction (delivery of undergraduate level instruction)
 
 AnnotationAssertion(rdfs:label kmo:UndegraduateLevelInstruction "delivery of undergraduate level instruction"@en)
 SubClassOf(kmo:UndegraduateLevelInstruction kmo:KnowledgeTransferActivity)
 
-# Class: <http://www.omg.org/spec/API4KP/core#WorkOfKnowledge> (work of knowledge)
+# Class: api4kp:WorkOfKnowledge (api4kp:WorkOfKnowledge)
 
-SubClassOf(<http://www.omg.org/spec/API4KP/core#WorkOfKnowledge> kmo:ExplicitKnowledge)
+SubClassOf(api4kp:WorkOfKnowledge kmo:ExplicitKnowledge)
 
 
 
-SubObjectPropertyOf(ObjectPropertyChain(<http://www.omg.org/spec/API4KP/core#internally-represents> <http://www.omg.org/spec/API4KP/core#knowledge-representation-of>) kmo:possesses)
+SubObjectPropertyOf(ObjectPropertyChain(api4kp:internally-represents api4kp:knowledge-representation-of) kmo:possesses)
 AnnotationAssertion(rdfs:comment <http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeRepresentationAndReasoningLanguage> "Machine Executable Language that is used to create Knowledge Resources (that are expressions of Pieces of Knowledge).")
 )

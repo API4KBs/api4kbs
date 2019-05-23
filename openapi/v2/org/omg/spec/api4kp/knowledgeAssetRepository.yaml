@@ -9,19 +9,35 @@ info:
   license:
     name: Apache License, Version 2.0 
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  description: "APIs for a Semantic Knowledge Asset Repository. \n\n Semantic Asset Repositories abstract a Knowledge Artifact's content by means of known ontologies, recognize different forms of representation, and support descriptive knowledge management metadata (e.g. provenance, pedigree, applicability, usage, etc.). \n\n As such, Knowledge Asset Repositories treat Knowledge Artifacts as gray boxes, as opposed to a Knowledge Artifact Repository, for which Artifacts are black boxes. \n\n Moreover, Asset Repositories are transparent to location/federation, should support content negotiation, and may leverage transrepresentation capabilities to materialize ephemeral Knowledge Artifacts on demand. \n\n Since Knowledge Assets are immaterial entities, the Repository is not always guaranteed to have direct access to any concrete manifestation. For this reason, the Knowledge Asset Repository supports a Surrogate Resource to materialze the (meta) knowledge about an Asset even when an Artifact is not available."
+  description: |
+    APIs for a Semantic Knowledge Asset Repository.
+    
+    Knowledge Assets are immutable, versioned works of knowledge (aka piece of knowledge, or piece of content), which are expressible in any form that is fit for consumption by a designated audience(s). Assets stored in an Asset Repository are more specifically _Enterprise_ Knowledge Assets, i.e. assets whose content is endorsed by some Subject Matter Expert, and whose identification and life cycle is managed by an Authority.
+    
+    Unlike Knowledge Artifact Repositories, for which Artifacts are black boxes, Knowledge _Asset_ Repositories consider pieces of knowledge and/or content as gray boxes. 
+    
+    Since Knowledge Assets are immaterial entities, an Asset Repository may not always have access to any concrete carrier of that Knowledge. For this reason, the Asset Repository uses a (Knowledge Asset) Surrogate Resource to provide descriptive metadata and pointers to the actual Artifact(s).
   
-  
+    Semantic Asset Repositories categorize a Knowledge Artifact's content by means of known ontologies, recognize different forms of representation, and support descriptive knowledge management metadata (e.g. provenance, pedigree, applicability, usage, etc.). 
+    Asset Repositories are also transparent to location/federation, support content negotiation, and may leverage transrepresentation capabilities to materialize ephemeral Knowledge Artifacts on demand. ('Ephemeral' Knowledge Artifacts are not physically stored in the Repository, but can be generated at runtime).  
+    Asset Repositories are expected to support and leverage relationships between Assets, including composition, dependency, derivation and variance, as well as domain-specific semantic "annotations".
+    
+    Assets (and their carrier Artifacts) should be searchable/retrievable based on a combinations of identifiers and metadata, including types/categories and annotations. Retrieval based on relationships is handled using the bundle/struct APIs. More advanced search/filtering/retrieval should be available through GraphQL support.  
   
 tags:
   - name: Knowledge Asset Catalog
-    description: "A Knowledge Asset Catalog is an indexed collection of Knowledge Assets. A Catalog identifies, versions, types/categorizes, and relates Assets to each other."
+    description: |
+      A Knowledge Asset Catalog is an indexed collection of Knowledge Assets. A Catalog identifies, versions, types/categorizes, and relates Assets to each other.
   - name: Knowledge Asset Repository
-    description: "A Semantic Knowledge Repository provides access to Knowledge Artifacts based on their content and representation thereof, rather than identity or location."
+    description: |
+      A Semantic Knowledge Repository provides access to Knowledge Artifacts based on their content and representation thereof, rather than identity or location
 
 
 #schemas:
 # - http
+
+basePath: /www.omg.org/spec/API4KP/KnowledgeAssetRepository/v1.2
+
 
 paths:
 
@@ -39,7 +55,8 @@ paths:
         - Knowledge Asset Catalog
         #- core
       summary: Describe Knowledge Asset Catalog. 
-      description: "Returns a Knowledge Asset Catalog Resource that summarizes the current state of the Catalog available at this endpoint."
+      description: |
+        Returns a Knowledge Asset Catalog Resource that summarizes the current state of the Catalog available at this endpoint.
       operationId: getAssetCatalog
       produces:
         - application/json
@@ -49,8 +66,12 @@ paths:
           description: Success
           schema:
             $ref: '#/definitions/KnowledgeAssetCatalog'
+        403:
+          description: |
+            The client cannot acces this repository
         500:
-          description: Internal Error
+          description: |
+            Internal Error
 
 
 ####################################################################################################  
@@ -60,9 +81,11 @@ paths:
     get:
       tags:
         - Knowledge Asset Catalog
-        #- core
       summary: List Knowledge Assets. 
-      description: "Returns a collection of resources that (summarily) describe the Assets managed under this Catalog, i.e. such that a Knowledge Asset Surrogate has been registered. Filtering should be allowed based on asset type and asset annotations"
+      description: |
+        Returns a collection of resources that (summarily) describe the Assets managed under this Catalog, i.e. such that a Knowledge Asset Surrogate has been registered. The collection will be empty if the repository is empty.
+        Basic Filtering is allowed on asset type and annotations. 
+        The collection should also not include any Asset that the client does not have the permissions to access (i.e. getKnowledgeAsset would fail with a 403 status code). If the client has access to the repository, but does not have access to any of the assets currently contained, the returned collection will be empty.
       operationId: listKnowledgeAssets
       produces:
         - application/json
@@ -70,26 +93,32 @@ paths:
       parameters:
         - $ref: '#/parameters/assetType'
         - $ref: '#/parameters/assetAnnotation'
-        # pageable
+        # pageable # TODO inherit from common parameters shared across APIs
         - $ref: '#/parameters/offset'
         - $ref: '#/parameters/limit' 
       responses:
         200:
-          description: Success
+          description: |
+            Returns a list of Pointers to Assets that the client has access to. 
           schema:
             type: array
             items:
               $ref: '#/definitions/Pointer'
+        403:
+          description: |
+            The client cannot acces this repository      
         500:
-          description: Internal error
+          description: |
+            Internal error
     
     post:
       tags:
-        # - Knowledge Asset Catalog
         - Knowledge Asset Repository
-      summary: Create a new Knowledge Asset
-      description: "Creates a new Knowledge Asset (Surrogate), assigning an asset ID in the process. \n If a Knowledge Artifact is provided, it should be considered an exemplar of the primary manifestation of the Asset, and that Artifact should be used to pre-populate the Knowledge Asset Surrogate. In particular, if an assetID can be inferred from the Artifact, that ID shall be used; otherwise a new one will minted using a server-determined strategy. \n\n This operation should use other support APIs such as LanguageService::detect to populate the Surrogate. \n If the Artifact is recognized to be a composite, the resulting Surrogate will have composite structure as well. "
-      operationId: addKnowledgeAsset
+      summary: Create a new Knowledge Asset.
+      description: |
+        Creates a new Knowledge Asset (Surrogate) Series, assigning an asset ID in the process. 
+        In particular, if an assetID can be inferred from the Artifact, that ID shall be used; otherwise a new one will minted using a server-determined strategy. This operation should use other support APIs such as LanguageService.Detect to populate the Surrogate. If the Artifact is recognized to be a composite, the resulting Surrogate will have composite structure as well.
+      operationId: initKnowledgeAsset
       consumes: 
         - application/xml
         - application/json
@@ -108,7 +137,7 @@ paths:
         500:
           description: Internal error     
         501: 
-          description: Not implemented     
+          description: Not implemented    
               
                   
 
@@ -625,5 +654,3 @@ host: virtserver.swaggerhub.com
 # basePath: /mea-3d/KnowledgeRepository/1.0
 schemes:
  - https
-# Added by API Auto Mocking Plugin
-basePath: /mayo-clinic/SemanticKnowledgeRepository/1.0.0
