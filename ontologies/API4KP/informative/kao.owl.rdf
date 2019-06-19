@@ -187,6 +187,18 @@
     
 
 
+    <!-- http://ontology.mayo.edu/ontology/KAO/ClinicalProtocol -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/ClinicalProtocol">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/ClinicalKnowledgeAsset"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/Protocol"/>
+        <rdfs:comment>Protocol applicable in a clinical situation, such that it directs the behavior of patients and/or providers</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://ontology.mayo.edu/ontology/KAO"/>
+        <rdfs:label>Clinical Protocol</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.mayo.edu/ontology/KAO/ClinicalRule -->
 
     <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/ClinicalRule">
@@ -203,6 +215,27 @@
         <owl:annotatedProperty rdf:resource="http://www.w3.org/2004/02/skos/core#example"/>
         <owl:annotatedTarget xml:lang="en">The &apos;HGB value prior to RBC transfusion&apos; Recommendation Rule</owl:annotatedTarget>
         <rdfs:seeAlso rdf:resource="https://clinicalknowledgemanagement.mayo.edu/mayo-clinic-rules-catalog/asset/km-asset/KAT-20323041"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontology/KAO/ClinicalTrialProtocol -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/ClinicalTrialProtocol">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/ClinicalProtocol"/>
+        <rdfs:comment>Descriptions of the objectives, design, methodology, statistical considerations and aspects related to the organization of clinical trials.
+
+Trial protocols provide the background and rationale for conducting a study, highlighting specific research questions that are addressed, and taking into consideration ethical issues. Trial protocols must meet a standard that adheres to the principles of Good Clinical Practice, and are used to obtain ethics approval by local Ethics Committees or Institutional Review Boards.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://ontology.mayo.edu/ontology/KAO"/>
+        <rdfs:label>Clinical Trial Protocol</rdfs:label>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://ontology.mayo.edu/ontology/KAO/ClinicalTrialProtocol"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#comment"/>
+        <owl:annotatedTarget>Descriptions of the objectives, design, methodology, statistical considerations and aspects related to the organization of clinical trials.
+
+Trial protocols provide the background and rationale for conducting a study, highlighting specific research questions that are addressed, and taking into consideration ethical issues. Trial protocols must meet a standard that adheres to the principles of Good Clinical Practice, and are used to obtain ethics approval by local Ethics Committees or Institutional Review Boards.</owl:annotatedTarget>
+        <rdfs:isDefinedBy>https://www.ncbi.nlm.nih.gov/pubmed/20815294</rdfs:isDefinedBy>
     </owl:Axiom>
     
 
@@ -467,6 +500,12 @@ c) Associations, Correlations and Causal Relationships between phenomena, some o
     <owl:Axiom>
         <owl:annotatedSource rdf:resource="http://ontology.mayo.edu/ontology/KAO/InferentialAsset"/>
         <owl:annotatedProperty rdf:resource="http://www.w3.org/2004/02/skos/core#example"/>
+        <owl:annotatedTarget xml:lang="en">A Pain assessment scale</owl:annotatedTarget>
+        <rdfs:seeAlso rdf:resource="https://clinicalknowledgemanagement.mayo.edu/mayo-clinic-rules-catalog/asset/km-asset/KAT-20381849"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://ontology.mayo.edu/ontology/KAO/InferentialAsset"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2004/02/skos/core#example"/>
         <owl:annotatedTarget xml:lang="en">The Cockcroft-Gault equation</owl:annotatedTarget>
         <rdfs:seeAlso rdf:resource="https://clinicalknowledgemanagement.mayo.edu/mayo-clinic-rules-catalog/asset/km-asset/KAT-20359526"/>
     </owl:Axiom>
@@ -487,12 +526,6 @@ c) Associations, Correlations and Causal Relationships between phenomena, some o
         <owl:annotatedProperty rdf:resource="http://www.w3.org/2004/02/skos/core#example"/>
         <owl:annotatedTarget xml:lang="en">A FRAX Fracture Risk Score Calculator</owl:annotatedTarget>
         <rdfs:seeAlso rdf:resource="https://clinicalknowledgemanagement.mayo.edu/mayo-clinic-rules-catalog/asset/assessment-tool/LNK-20147628"/>
-    </owl:Axiom>
-    <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://ontology.mayo.edu/ontology/KAO/InferentialAsset"/>
-        <owl:annotatedProperty rdf:resource="http://www.w3.org/2004/02/skos/core#example"/>
-        <owl:annotatedTarget xml:lang="en">A Pain assessment scale</owl:annotatedTarget>
-        <rdfs:seeAlso rdf:resource="https://clinicalknowledgemanagement.mayo.edu/mayo-clinic-rules-catalog/asset/km-asset/KAT-20381849"/>
     </owl:Axiom>
     
 
@@ -622,6 +655,17 @@ c) Associations, Correlations and Causal Relationships between phenomena, some o
     
 
 
+    <!-- http://ontology.mayo.edu/ontology/KAO/NursingProtocol -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/NursingProtocol">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/ClinicalProtocol"/>
+        <rdfs:comment>Protocol that directs the behavior of nurses</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://ontology.mayo.edu/ontology/KAO"/>
+        <rdfs:label>Nursing Protocol</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://ontology.mayo.edu/ontology/KAO/OntologyLanguage -->
 
     <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/OntologyLanguage">
@@ -691,6 +735,17 @@ Some definitions have conditional applicability, limiting the class of situation
         <skos:definition>Knowledge about how to perform (complex) activities, properly orchestrated over time, so to achieve certain objectives and goals</skos:definition>
         <skos:prefLabel>Plans, Processes, Pathways and Protocol Definitions</skos:prefLabel>
         <skos:scopeNote>Does not cover &apos;natural&apos; processes that do not occur as a consequence of an agent&apos;s explicit intentions</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontology/KAO/Protocol -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/Protocol">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/ProcessAsset"/>
+        <rdfs:comment>A shared, endorsed, justified, imperative specification of the expected behavior of one or more agents in a specific situation</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://ontology.mayo.edu/ontology/KAO"/>
+        <rdfs:label>Protocol</rdfs:label>
     </owl:Class>
     
 
