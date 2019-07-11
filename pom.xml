@@ -5,7 +5,7 @@
 
   <artifactId>API4KP</artifactId>
   <groupId>org.omg.spec</groupId>
-  <version>1.0.2</version>
+  <version>2.0.0</version>
   <packaging>jar</packaging>
   <modelVersion>4.0.0</modelVersion>
 
@@ -55,9 +55,7 @@
     <url>https://github.com/API4KBs/api4kbs/tree/master</url>
   </scm>
 
-
   <build>
-
     <resources>
 
       <resource>
@@ -77,67 +75,82 @@
 
     </resources>
 
-    <plugins>
-      <plugin>
-        <groupId>io.swagger</groupId>
-        <artifactId>swaggerhub-maven-plugin</artifactId>
-        <version>1.0.2</version>
-        <configuration>
-          <owner>mc-kmdp</owner>
-          <format>yaml</format>
-        </configuration>
-        <executions>
-          <execution>
-            <id>krepo</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>download</goal>
-            </goals>
-            <configuration>
-              <api>KnowledgeRepository</api>
-              <version>1.2</version>
-              <outputFile>${project.basedir}/${apiFolder}/knowledgeArtifactRepository.yaml</outputFile>
-            </configuration>
-          </execution>
-          <execution>
-            <id>kac</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>download</goal>
-            </goals>
-            <configuration>
-              <api>SemanticKnowledgeRepository</api>
-              <version>1.2</version>
-              <outputFile>${project.basedir}/${apiFolder}/knowledgeAssetRepository.yaml</outputFile>
-            </configuration>
-          </execution>
-          <execution>
-            <id>lang</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>download</goal>
-            </goals>
-            <configuration>
-              <api>LanguageService</api>
-              <version>1.2.0</version>
-              <outputFile>${project.basedir}/${apiFolder}/language.yaml</outputFile>
-            </configuration>
-          </execution>
-
-        </executions>
-      </plugin>
-
-
-    </plugins>
   </build>
 
+  <profiles>
+    <profile>
+      <id>public</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
 
-  <distributionManagement>
-    <repository>
-      <id>bintray-api4kbs-API4KP-Mvn-Repo</id>
-      <name>api4kbs-API4KP-Mvn-Repo</name>
-      <url>https://api.bintray.com/maven/api4kbs/API4KP-Mvn-Repo/api4kbs/;override=1;publish=1</url>
-    </repository>
-  </distributionManagement>
+      <distributionManagement>
+        <repository>
+          <id>bintray-api4kbs-API4KP-Mvn-Repo</id>
+          <name>api4kbs-API4KP-Mvn-Repo</name>
+          <url>https://api.bintray.com/maven/api4kbs/API4KP-Mvn-Repo/api4kbs/;override=1;publish=1</url>
+        </repository>
+      </distributionManagement>
+    </profile>
+
+    <profile>
+      <id>swaggerhub-download</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>io.swagger</groupId>
+            <artifactId>swaggerhub-maven-plugin</artifactId>
+            <version>1.0.6</version>
+            <configuration>
+              <owner>mc-kmdp</owner>
+              <format>yaml</format>
+            </configuration>
+            <executions>
+              <execution>
+                <id>krepo</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>download</goal>
+                </goals>
+                <configuration>
+                  <api>KnowledgeArtifactRepository</api>
+                  <version>2.0.0</version>
+                  <outputFile>${project.basedir}/${apiFolder}/2.0.0/knowledgeArtifactRepository.yaml</outputFile>
+                </configuration>
+              </execution>
+              <execution>
+                <id>kac</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>download</goal>
+                </goals>
+                <configuration>
+                  <api>KnowledgeAssetRepository</api>
+                  <version>2.0.0</version>
+                  <outputFile>${project.basedir}/${apiFolder}/2.0.0/knowledgeAssetRepository.yaml</outputFile>
+                </configuration>
+              </execution>
+              <execution>
+                <id>lang</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>download</goal>
+                </goals>
+                <configuration>
+                  <api>KnowledgeTransrepresentation</api>
+                  <version>2.0.0</version>
+                  <outputFile>${project.basedir}/${apiFolder}/2.0.0/knowledgeTransrepresentation.yaml</outputFile>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>
+
