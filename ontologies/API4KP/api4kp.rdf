@@ -9,12 +9,12 @@
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:sm="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:lcc-lr="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"
+     xmlns:lcc-lr="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"
      xmlns:api4kp="https://www.omg.org/spec/API4KP/api4kp/">
     <owl:Ontology rdf:about="https://www.omg.org/spec/API4KP/api4kp/">
         <owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/20190801/api4kp/"/>
         <owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
-        <owl:imports rdf:resource="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+        <owl:imports rdf:resource="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
         <sm:copyright>Copyright (c) 2014-2019 Mayo Clinic</sm:copyright>
         <sm:filename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">api4kp.rdf</sm:filename>
         <sm:copyright>Copyright (c) 2014-2019 Freie Universitat Berlin</sm:copyright>
@@ -794,8 +794,8 @@ Moreover, this relationships implies that:
         <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-later-revision"/>
         <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-succesor-version"/>
         <owl:inverseOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/is-later-versioned-revision-of"/>
-        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeEndeavor"/>
-        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeEndeavor"/>
+        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeResource"/>
+        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeResource"/>
         <rdfs:label xml:lang="en">has later versioned revision</rdfs:label>
         <skos:altLabel>is previous version of</skos:altLabel>
         <skos:definition>the &apos;has revision&apos; relationship, where both subject and object are versioned according to a common versioning scheme that determines the version identifiers assigned to either endeavors</skos:definition>
@@ -808,8 +808,8 @@ Moreover, this relationships implies that:
 
     <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/has-latest">
         <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-later-versioned-revision"/>
-        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeEndeavor"/>
-        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeEndeavor"/>
+        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeResource"/>
+        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeResource"/>
         <rdfs:label>has latest</rdfs:label>
         <skos:definition>the relationship between an endeavor E and the (versioned) revision L within  that endeavor&apos;s series, such that there are no later revisions of L</skos:definition>
         <has-aspect rdf:resource="https://www.omg.org/spec/API4KP/api4kp/material-relationship"/>
@@ -823,8 +823,8 @@ Moreover, this relationships implies that:
         <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-later-versioned-revision"/>
         <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-next-version"/>
         <owl:inverseOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/is-immediate-next-versioned-revision-of"/>
-        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeEndeavor"/>
-        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeEndeavor"/>
+        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeResource"/>
+        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeResource"/>
         <rdfs:label xml:lang="en">has next immediate versioned revision</rdfs:label>
         <skos:definition>The relationship between two expressions E1 and E2, with E2 a work-preserving revision of E1, where both are ordered by the same (partially) ordered versioning scheme v, and such that v(E1) &lt; v(E2), and there is no E3 such that v(E1) &lt; v(E3) &lt; v(E2)</skos:definition>
         <has-aspect rdf:resource="https://www.omg.org/spec/API4KP/api4kp/material-relationship"/>
@@ -851,8 +851,8 @@ Moreover, this relationships implies that:
 
     <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/has-original">
         <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/is-later-versioned-revision-of"/>
-        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeEndeavor"/>
-        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeEndeavor"/>
+        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeResource"/>
+        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeResource"/>
         <rdfs:label>has original</rdfs:label>
         <skos:definition>the relationship between an endeavor E and the (versioned) revision O within that endeavor&apos;s series, such that there are no prior revisions of O</skos:definition>
         <has-aspect rdf:resource="https://www.omg.org/spec/API4KP/api4kp/material-relationship"/>
@@ -1118,8 +1118,8 @@ Conceptually, this relationship is mediated by an &apos;entity qua&apos; individ
     <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/is-immediate-next-versioned-revision-of">
         <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-previous-version"/>
         <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/is-later-versioned-revision-of"/>
-        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeEndeavor"/>
-        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeEndeavor"/>
+        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeResource"/>
+        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeResource"/>
         <rdfs:label xml:lang="en">is immediate next versioned revision of</rdfs:label>
         <skos:altLabel>has next previous immediate versioned revision</skos:altLabel>
         <has-aspect rdf:resource="https://www.omg.org/spec/API4KP/api4kp/material-relationship"/>
@@ -1145,8 +1145,8 @@ Conceptually, this relationship is mediated by an &apos;entity qua&apos; individ
     <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/is-later-versioned-revision-of">
         <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-prior-version"/>
         <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/is-later-revision-of"/>
-        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeEndeavor"/>
-        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeEndeavor"/>
+        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeResource"/>
+        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeResource"/>
         <rdfs:label xml:lang="en">is later versioned revision of</rdfs:label>
         <skos:altLabel>has previous versioned revision</skos:altLabel>
         <has-aspect rdf:resource="https://www.omg.org/spec/API4KP/api4kp/material-relationship"/>
@@ -1896,25 +1896,25 @@ This is necessarily true when the former language is embedded in the latter, but
     
 
 
-    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Identifier -->
+    <!-- https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Identifier -->
 
-    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Identifier">
+    <owl:Class rdf:about="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Identifier">
         <owl:equivalentClass rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Identifier"/>
     </owl:Class>
     
 
 
-    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language -->
+    <!-- https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language -->
 
-    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language">
+    <owl:Class rdf:about="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/Language">
         <owl:equivalentClass rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Language"/>
     </owl:Class>
     
 
 
-    <!-- http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/NaturalLanguage -->
+    <!-- https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/NaturalLanguage -->
 
-    <owl:Class rdf:about="http://www.omg.org/spec/LCC/Languages/LanguageRepresentation/NaturalLanguage">
+    <owl:Class rdf:about="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/NaturalLanguage">
         <owl:equivalentClass rdf:resource="https://www.omg.org/spec/API4KP/api4kp/NaturalLanguage"/>
     </owl:Class>
     
@@ -3704,13 +3704,7 @@ For comparison, see &apos;Notation&apos; and &apos;Formal Grammar&apos;</rdfs:co
         <rdfs:label>versioned identifier</rdfs:label>
         <skos:definition>Identifier of a particular version of a given entity, i.e. the particular configuration of (mutable) qualities of a given entity over a specific period of time</skos:definition>
     </owl:Class>
-    
 
-
-    <!-- https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeEndeavor -->
-
-    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeEndeavor"/>
-    
 
 
     <!-- https://www.omg.org/spec/API4KP/api4kp/VersionedKnowledgeResource -->
