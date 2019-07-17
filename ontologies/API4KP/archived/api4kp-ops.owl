@@ -1,37 +1,45 @@
-Prefix(:=<http://www.omg.org/spec/API4KP/Operations#>)
-Prefix(sm:=<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
+Prefix(:=<https://www.omg.org/spec/API4KP/api4kp-ops/>)
+Prefix(sm:=<https://www.omg.org/techprocess/ab/SpecificationMetadata/>)
 Prefix(DOL:=<http://www.omg.org/spec/DOL/DOL-terms/>)
-Prefix(ops:=<http://www.omg.org/spec/API4KP/Operations#>)
+Prefix(ops:=<https://www.omg.org/spec/API4KP/api4kp-ops/>)
 Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
 Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
 Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
 Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
-Prefix(know:=<http://www.omg.org/spec/API4KP/core#>)
 Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+Prefix(api4kp:=<https://www.omg.org/spec/API4KP/api4kp>)
 
 
-Ontology(<http://www.omg.org/spec/API4KP/Operations>
-<http://www.omg.org/spec/API4KP/2018/06//Operations>
-Import(<http://www.omg.org/spec/API4KP/2018/06/core>)
-Import(<http://www.omg.org/spec/API4KP/20160801/Aspects/>)
-Import(<http://www.omg.org/spec/API4KP/2018/06/rel>)
-Import(<http://www.omg.org/spec/API4KP/2018/06/KR/>)
+Ontology(<https://www.omg.org/spec/API4KP/api4kp-ops/>
+<https://www.omg.org/spec/API4KP/20190801/api4kp-ops/>
+Import(<https://www.omg.org/spec/API4KP/20190801/api4kp/>)
 Annotation(<http://purl.org/dc/terms/license> "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
+Annotation(rdfs:comment "Ontology of API4KP Operations")
 Annotation(sm:copyright "Copyright (c) 2014-2017 Arizona State University
 Copyright (c) 2014-2017 Freie Universitat Berlin
 Copyright (c) 2014-2017 Athan Services
 Copyright (c) 2014-2017 Mayo Clinic
 Copyright (c) 2014-2017 Thematix Partners LLC
 Copyright (c) 2014-2017 Object Management Group, Inc."^^xsd:string)
-Annotation(rdfs:comment "Ontology of API4KP Operations")
 
+Declaration(Class(<http://www.omg.org/spec/API4KP/KR/ComputationalComplexityClass>))
+Declaration(Class(<http://www.omg.org/spec/API4KP/KR/ImmutableEntity>))
+Declaration(Class(<http://www.omg.org/spec/API4KP/KR/KnowledgeBase>))
+Declaration(Class(<http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))
+Declaration(Class(<http://www.omg.org/spec/API4KP/KR/Mapping>))
+Declaration(Class(<http://www.omg.org/spec/API4KP/KR/WorkingKnowledgeBase>))
+Declaration(Class(DOL:LanguageMapping))
+Declaration(Class(DOL:Logic))
+Declaration(Class(DOL:Query))
 Declaration(Class(ops:AbridgmentTask))
 Declaration(Class(ops:AtomicKnowledgeProcessingActivity))
 Declaration(Class(ops:AtomicKnowledgeProcessingTask))
 Declaration(Class(ops:CarvingTask))
 Declaration(Class(ops:CherrypickingTask))
+Declaration(Class(ops:ClassificationTask))
 Declaration(Class(ops:ClearLocationTask))
 Declaration(Class(ops:ClosedKnowledgeProcessingTask))
+Declaration(Class(ops:ClosureTask))
 Declaration(Class(ops:ComplexKnowledgeProcessingActivity))
 Declaration(Class(ops:ComplexKnowledgeProcessingTask))
 Declaration(Class(ops:ConfigurationParameter))
@@ -42,6 +50,7 @@ Declaration(Class(ops:DetectComplexityTask))
 Declaration(Class(ops:DetectLanguageInformationTask))
 Declaration(Class(ops:DetectLogicTask))
 Declaration(Class(ops:DetectSignatureTask))
+Declaration(Class(ops:DiffingTask))
 Declaration(Class(ops:DiscoverCompatibleResourcesTask))
 Declaration(Class(ops:EncodingTask))
 Declaration(Class(ops:EntailmentCheckTask))
@@ -73,6 +82,7 @@ Declaration(Class(ops:KnowledgeReasoningTask))
 Declaration(Class(ops:KnowledgeRepositoryTask))
 Declaration(Class(ops:KnowledgeReshapingTask))
 Declaration(Class(ops:KnowledgeResourceAggregationTask))
+Declaration(Class(ops:KnowledgeResourceAssemblyTask))
 Declaration(Class(ops:KnowledgeResourceCompositionTask))
 Declaration(Class(ops:KnowledgeResourceConstructionTask))
 Declaration(Class(ops:KnowledgeResourceDecompositionTask))
@@ -120,6 +130,7 @@ Declaration(Class(ops:SeriesManagementTask))
 Declaration(Class(ops:SimplificationTask))
 Declaration(Class(ops:SnapshotTask))
 Declaration(Class(ops:StoreArtifactAtLocationTask))
+Declaration(Class(ops:SubsumptionTask))
 Declaration(Class(ops:SummarizationTask))
 Declaration(Class(ops:SyntacticAnalysisTask))
 Declaration(Class(ops:SyntacticKnowledgeProcessingTask))
@@ -127,13 +138,6 @@ Declaration(Class(ops:SyntacticParaphraseTask))
 Declaration(Class(ops:SyntacticParsingTask))
 Declaration(Class(ops:SyntacticTranscriptionTask))
 Declaration(Class(ops:SyntacticTranslationTask))
-Declaration(Class(ops:TODOTODO_ClassificationTask))
-Declaration(Class(ops:TODOTODO_ClosureTask))
-Declaration(Class(ops:TODOTODO_DependencyOrganizationTask))
-Declaration(Class(ops:TODOTODO_Diffing_Lexical_and_Logical))
-Declaration(Class(ops:TODOTODO_KnowledgeResourceAssemblyTask))
-Declaration(Class(ops:TODOTODO_SubsumptionTask))
-Declaration(Class(ops:TODOTransmigrationTask))
 Declaration(Class(ops:TranscreationTask))
 Declaration(Class(ops:TranscriptionTask))
 Declaration(Class(ops:TranslationTask))
@@ -141,6 +145,44 @@ Declaration(Class(ops:UnionTask))
 Declaration(Class(ops:VerticalKnowledgeProcessingTask))
 Declaration(Class(ops:WellFormednessCheckTask))
 Declaration(Class(ops:WriteTask))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/AbstractExpression>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/AbstractSemanticGraph>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/AbstractSyntax>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/AbstractSyntaxTree>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/Agent>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/AgentiveRole>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/CompositeKnowledgeResource>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/ConcreteExpression>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/DeconstructableKnowledgeResource>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/EncodedKnowledgeExpression>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/Encoding>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/FlattenedKnowledgeResource>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/Identifier>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/KnowledgeActivity>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifactRepository>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/KnowledgeAssetSurrogate>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/KnowledgeCarrier>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/KnowledgeElement>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/KnowledgeEndeavour>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/KnowledgeExpression>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/KnowledgeProcessingMethod>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/KnowledgeProcessingPlan>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/KnowledgeResourceDescription>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/Language>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/Lexicon>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/ParseTree>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/PassiveRole>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/PieceOfKnowledge>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/Profile>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/Serialization>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/StructuredKnowledgeResource>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/StructuringKnowledgeResource>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/Syntax>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/VersionedIdentifier>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp/WorkOfKnowledge>))
 Declaration(ObjectProperty(ops:commences-with))
 Declaration(ObjectProperty(ops:composed-into))
 Declaration(ObjectProperty(ops:composed-with))
@@ -152,6 +194,24 @@ Declaration(ObjectProperty(ops:has-role))
 Declaration(ObjectProperty(ops:has-subtask))
 Declaration(ObjectProperty(ops:initiated-by))
 Declaration(ObjectProperty(ops:played-by))
+Declaration(ObjectProperty(<https://www.omg.org/spec/API4KP/api4kp/archetyped-by>))
+Declaration(ObjectProperty(<https://www.omg.org/spec/API4KP/api4kp/archetypes>))
+Declaration(ObjectProperty(<https://www.omg.org/spec/API4KP/api4kp/associated-to>))
+Declaration(ObjectProperty(<https://www.omg.org/spec/API4KP/api4kp/based-on>))
+Declaration(ObjectProperty(<https://www.omg.org/spec/API4KP/api4kp/concretely-expresses>))
+Declaration(ObjectProperty(<https://www.omg.org/spec/API4KP/api4kp/copy-of>))
+Declaration(ObjectProperty(<https://www.omg.org/spec/API4KP/api4kp/defined-by>))
+Declaration(ObjectProperty(<https://www.omg.org/spec/API4KP/api4kp/expresses>))
+Declaration(ObjectProperty(<https://www.omg.org/spec/API4KP/api4kp/has-function>))
+Declaration(ObjectProperty(<https://www.omg.org/spec/API4KP/api4kp/has-part>))
+Declaration(ObjectProperty(<https://www.omg.org/spec/API4KP/api4kp/has-product>))
+Declaration(ObjectProperty(<https://www.omg.org/spec/API4KP/api4kp/makes-use-of>))
+Declaration(ObjectProperty(<https://www.omg.org/spec/API4KP/api4kp/preserves>))
+Declaration(ObjectProperty(<https://www.omg.org/spec/API4KP/api4kp/representation-of>))
+Declaration(ObjectProperty(<https://www.omg.org/spec/API4KP/api4kp/structured-with>))
+Declaration(ObjectProperty(<https://www.omg.org/spec/API4KP/api4kp/uses-concept>))
+Declaration(AnnotationProperty(<http://www.omg.org/spec/API4KP/Aspects/has-aspect>))
+Declaration(AnnotationProperty(sm:copyright))
 
 ############################
 #   Object Properties
@@ -161,9 +221,9 @@ Declaration(ObjectProperty(ops:played-by))
 
 AnnotationAssertion(rdfs:label ops:commences-with "commences with")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:commences-with "A task T commences with a given subtask S if T is defined by a plan P that is initiated by S")
-SubObjectPropertyOf(ops:commences-with know:associated-to)
-ObjectPropertyDomain(ops:commences-with know:InformationProcessingTask)
-ObjectPropertyRange(ops:commences-with know:InformationProcessingTask)
+SubObjectPropertyOf(ops:commences-with <https://www.omg.org/spec/API4KP/api4kp/associated-to>)
+ObjectPropertyDomain(ops:commences-with <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask>)
+ObjectPropertyRange(ops:commences-with <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask>)
 
 # Object Property: ops:composed-into (then)
 
@@ -193,7 +253,7 @@ ObjectPropertyRange(ops:composed-with ops:AtomicKnowledgeProcessingTask)
 AnnotationAssertion(rdfs:label ops:configures "configures")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:configures "A parameter configures a method by fixing one of the degrees of freedom that the method allows")
 ObjectPropertyDomain(ops:configures ops:ConfigurationParameter)
-ObjectPropertyRange(ops:configures know:KnowledgeProcessingMethod)
+ObjectPropertyRange(ops:configures <https://www.omg.org/spec/API4KP/api4kp/KnowledgeProcessingMethod>)
 
 # Object Property: ops:encapsulates (encapsulates)
 
@@ -202,55 +262,55 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:encapsu
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:encapsulates "The target task is usually an atomic task, or an open (complex) task, but can also be another closed task, e.g. to handle the involvement of third parties")
 SubObjectPropertyOf(ops:encapsulates ops:has-primary-subtask)
 ObjectPropertyDomain(ops:encapsulates ops:ClosedKnowledgeProcessingTask)
-ObjectPropertyRange(ops:encapsulates know:InformationProcessingTask)
+ObjectPropertyRange(ops:encapsulates <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask>)
 
 # Object Property: ops:filled-by (filled by)
 
 AnnotationAssertion(rdfs:label ops:filled-by "filled by")
-SubObjectPropertyOf(ops:filled-by know:archetypes)
-ObjectPropertyDomain(ops:filled-by know:PassiveRole)
+SubObjectPropertyOf(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/archetypes>)
+ObjectPropertyDomain(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/PassiveRole>)
 
 # Object Property: ops:has-primary-subtask (has primary sub-task)
 
 AnnotationAssertion(rdfs:label ops:has-primary-subtask "has primary sub-task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:has-primary-subtask "a task T has a primary sub-task P, if not achieving the goals of the plan that defines P necessarily implies not achieving the goals of the plan that defines T")
 SubObjectPropertyOf(ops:has-primary-subtask ops:has-subtask)
-ObjectPropertyDomain(ops:has-primary-subtask know:InformationProcessingTask)
-ObjectPropertyRange(ops:has-primary-subtask know:InformationProcessingTask)
+ObjectPropertyDomain(ops:has-primary-subtask <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask>)
+ObjectPropertyRange(ops:has-primary-subtask <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask>)
 
 # Object Property: ops:has-role (has role)
 
 AnnotationAssertion(rdfs:label ops:has-role "has role")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:has-role "the relationship between a task T and a role R, such that when an activity A is performed and A is archetyped by T, there exists at least one agent or a resource that participats in A and is archetyped by R")
-SubObjectPropertyOf(ops:has-role know:has-part)
-ObjectPropertyDomain(ops:has-role know:InformationProcessingTask)
-ObjectPropertyRange(ops:has-role ObjectUnionOf(know:AgentiveRole know:PassiveRole))
+SubObjectPropertyOf(ops:has-role <https://www.omg.org/spec/API4KP/api4kp/has-part>)
+ObjectPropertyDomain(ops:has-role <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask>)
+ObjectPropertyRange(ops:has-role ObjectUnionOf(<https://www.omg.org/spec/API4KP/api4kp/AgentiveRole> <https://www.omg.org/spec/API4KP/api4kp/PassiveRole>))
 
 # Object Property: ops:has-subtask (has sub-task)
 
 AnnotationAssertion(rdfs:label ops:has-subtask "has sub-task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:has-subtask "the relationship between a task T and a task S, such that an activity of kind T will have an activity of type S as a sub-activity, i.e. as a (temporal) proper process part")
-SubObjectPropertyOf(ops:has-subtask know:has-part)
-ObjectPropertyDomain(ops:has-subtask know:InformationProcessingTask)
-ObjectPropertyRange(ops:has-subtask know:InformationProcessingTask)
+SubObjectPropertyOf(ops:has-subtask <https://www.omg.org/spec/API4KP/api4kp/has-part>)
+ObjectPropertyDomain(ops:has-subtask <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask>)
+ObjectPropertyRange(ops:has-subtask <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask>)
 
 # Object Property: ops:initiated-by (initiated by)
 
 AnnotationAssertion(rdfs:label ops:initiated-by "initiated by")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:initiated-by "A plan P is initiated by a task T if any activity of the kind defined by P starts (temporally) with a sub-activity of kind T")
-ObjectPropertyDomain(ops:initiated-by know:KnowledgeProcessingPlan)
-ObjectPropertyRange(ops:initiated-by know:InformationProcessingTask)
+ObjectPropertyDomain(ops:initiated-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeProcessingPlan>)
+ObjectPropertyRange(ops:initiated-by <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask>)
 
 # Object Property: ops:played-by (played by)
 
 AnnotationAssertion(rdfs:label ops:played-by "played by")
-SubObjectPropertyOf(ops:played-by know:archetypes)
-ObjectPropertyDomain(ops:played-by know:AgentiveRole)
-ObjectPropertyRange(ops:played-by know:Agent)
+SubObjectPropertyOf(ops:played-by <https://www.omg.org/spec/API4KP/api4kp/archetypes>)
+ObjectPropertyDomain(ops:played-by <https://www.omg.org/spec/API4KP/api4kp/AgentiveRole>)
+ObjectPropertyRange(ops:played-by <https://www.omg.org/spec/API4KP/api4kp/Agent>)
 
-# Object Property: know:based-on (based on)
+# Object Property: <https://www.omg.org/spec/API4KP/api4kp/based-on> (<https://www.omg.org/spec/API4KP/api4kp/based-on>)
 
-SubObjectPropertyOf(know:based-on know:structured-with)
+SubObjectPropertyOf(<https://www.omg.org/spec/API4KP/api4kp/based-on> <https://www.omg.org/spec/API4KP/api4kp/structured-with>)
 
 
 
@@ -268,8 +328,8 @@ SubClassOf(ops:AbridgmentTask ops:ParaphraseTask)
 
 AnnotationAssertion(rdfs:label ops:AtomicKnowledgeProcessingActivity "atomic knowledge processing activity")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:AtomicKnowledgeProcessingActivity "a knowledge processing activity that is not meant be further decomposed into simpler parts that are knowledge processing activities themselves")
-EquivalentClasses(ops:AtomicKnowledgeProcessingActivity ObjectIntersectionOf(know:KnowledgeActivity ObjectComplementOf(ObjectSomeValuesFrom(know:has-part know:KnowledgeActivity))))
-SubClassOf(ops:AtomicKnowledgeProcessingActivity know:KnowledgeActivity)
+EquivalentClasses(ops:AtomicKnowledgeProcessingActivity ObjectIntersectionOf(<https://www.omg.org/spec/API4KP/api4kp/KnowledgeActivity> ObjectComplementOf(ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/has-part> <https://www.omg.org/spec/API4KP/api4kp/KnowledgeActivity>))))
+SubClassOf(ops:AtomicKnowledgeProcessingActivity <https://www.omg.org/spec/API4KP/api4kp/KnowledgeActivity>)
 DisjointClasses(ops:AtomicKnowledgeProcessingActivity ops:ComplexKnowledgeProcessingActivity)
 
 # Class: ops:AtomicKnowledgeProcessingTask (atomic knowledge processing task)
@@ -277,9 +337,9 @@ DisjointClasses(ops:AtomicKnowledgeProcessingActivity ops:ComplexKnowledgeProces
 AnnotationAssertion(rdfs:comment ops:AtomicKnowledgeProcessingTask "each 'atomic knowledge processing task' is the concept that abstracts a specific class of atomic knowledge processing activities")
 AnnotationAssertion(rdfs:label ops:AtomicKnowledgeProcessingTask "atomic knowledge processing task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:AtomicKnowledgeProcessingTask "task that is executed in an atomic activity, i.e. an activity that is not further explicitly decomposed")
-SubClassOf(ops:AtomicKnowledgeProcessingTask know:InformationProcessingTask)
-SubClassOf(ops:AtomicKnowledgeProcessingTask ObjectSomeValuesFrom(know:archetypes ops:AtomicKnowledgeProcessingActivity))
-SubClassOf(ops:AtomicKnowledgeProcessingTask ObjectAllValuesFrom(know:archetypes ops:AtomicKnowledgeProcessingActivity))
+SubClassOf(ops:AtomicKnowledgeProcessingTask <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask>)
+SubClassOf(ops:AtomicKnowledgeProcessingTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/archetypes> ops:AtomicKnowledgeProcessingActivity))
+SubClassOf(ops:AtomicKnowledgeProcessingTask ObjectAllValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/archetypes> ops:AtomicKnowledgeProcessingActivity))
 
 # Class: ops:CarvingTask (syntactic carving task)
 
@@ -295,6 +355,15 @@ AnnotationAssertion(rdfs:label ops:CherrypickingTask "cherrypicking task")
 AnnotationAssertion(rdfs:seeAlso ops:CherrypickingTask "http://precedings.nature.com/documents/3574/version/1")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:CherrypickingTask "The act of selecting a subset of the concepts in the original WoK, to derive a new WoK to be expressed")
 SubClassOf(ops:CherrypickingTask ops:SelectionTask)
+
+# Class: ops:ClassificationTask (classification task)
+
+AnnotationAssertion(rdfs:comment ops:ClassificationTask "given a set of concepts (classes), determines whether 
+(i) an individual is necessarily instance (member) of which concepts (classes)
+(ii) a concept (class) is narrower (subclass) of which concepts (classes)")
+AnnotationAssertion(rdfs:label ops:ClassificationTask "classification task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#note> ops:ClassificationTask "needs refining")
+SubClassOf(ops:ClassificationTask ops:LogicBasedReasoningTask)
 
 # Class: ops:ClearLocationTask (clear location task)
 
@@ -314,15 +383,21 @@ AnnotationAssertion(rdfs:label ops:ClosedKnowledgeProcessingTask "closed knowled
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ClosedKnowledgeProcessingTask "A closed knowledge processing task is a task than can be executed with persistent consequences, even if the (artificial) agent that performs it is destroyed.
 The 'core' of such a task is another knowledge processing task, or composition thereof")
 SubClassOf(ops:ClosedKnowledgeProcessingTask ops:ComplexKnowledgeProcessingTask)
-SubClassOf(ops:ClosedKnowledgeProcessingTask ObjectSomeValuesFrom(ops:encapsulates know:InformationProcessingTask))
-SubClassOf(ops:ClosedKnowledgeProcessingTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by know:KnowledgeArtifact)))
+SubClassOf(ops:ClosedKnowledgeProcessingTask ObjectSomeValuesFrom(ops:encapsulates <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask>))
+SubClassOf(ops:ClosedKnowledgeProcessingTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact>)))
+
+# Class: ops:ClosureTask (knowledge resource closure task)
+
+AnnotationAssertion(rdfs:comment ops:ClosureTask "A transitive, recursive assembly of knowledge resources")
+AnnotationAssertion(rdfs:label ops:ClosureTask "knowledge resource closure task")
+SubClassOf(ops:ClosureTask ops:KnowledgeResourceAssemblyTask)
 
 # Class: ops:ComplexKnowledgeProcessingActivity (complex knowledge processing activity)
 
 AnnotationAssertion(rdfs:label ops:ComplexKnowledgeProcessingActivity "complex knowledge processing activity")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ComplexKnowledgeProcessingActivity "A knowledge processing activity that is complex, and can be broken down into simpler parts, each one representing a stage of the activity")
-EquivalentClasses(ops:ComplexKnowledgeProcessingActivity ObjectIntersectionOf(know:KnowledgeActivity ObjectSomeValuesFrom(know:has-part know:KnowledgeActivity)))
-SubClassOf(ops:ComplexKnowledgeProcessingActivity know:KnowledgeActivity)
+EquivalentClasses(ops:ComplexKnowledgeProcessingActivity ObjectIntersectionOf(<https://www.omg.org/spec/API4KP/api4kp/KnowledgeActivity> ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/has-part> <https://www.omg.org/spec/API4KP/api4kp/KnowledgeActivity>)))
+SubClassOf(ops:ComplexKnowledgeProcessingActivity <https://www.omg.org/spec/API4KP/api4kp/KnowledgeActivity>)
 
 # Class: ops:ComplexKnowledgeProcessingTask (complex knowledge processing task)
 
@@ -331,10 +406,10 @@ AnnotationAssertion(rdfs:label ops:ComplexKnowledgeProcessingTask "complex knowl
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ComplexKnowledgeProcessingTask "each 'complex knowledge processing task' is the concept that abstracts a specific class of complex knowledge processing activities. 
 
 The concept is defined by a plan which organizes the simpler tasks that are part of the complex task, and defines its roles, methods and goals.")
-EquivalentClasses(ops:ComplexKnowledgeProcessingTask ObjectIntersectionOf(know:InformationProcessingTask ObjectSomeValuesFrom(ops:has-subtask know:InformationProcessingTask)))
-SubClassOf(ops:ComplexKnowledgeProcessingTask know:InformationProcessingTask)
-SubClassOf(ops:ComplexKnowledgeProcessingTask ObjectSomeValuesFrom(know:archetypes ops:ComplexKnowledgeProcessingActivity))
-SubClassOf(ops:ComplexKnowledgeProcessingTask ObjectSomeValuesFrom(know:defined-by know:KnowledgeProcessingPlan))
+EquivalentClasses(ops:ComplexKnowledgeProcessingTask ObjectIntersectionOf(<https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask> ObjectSomeValuesFrom(ops:has-subtask <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask>)))
+SubClassOf(ops:ComplexKnowledgeProcessingTask <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask>)
+SubClassOf(ops:ComplexKnowledgeProcessingTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/archetypes> ops:ComplexKnowledgeProcessingActivity))
+SubClassOf(ops:ComplexKnowledgeProcessingTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/defined-by> <https://www.omg.org/spec/API4KP/api4kp/KnowledgeProcessingPlan>))
 
 # Class: ops:ConfigurationParameter (configuration parameter)
 
@@ -343,7 +418,7 @@ AnnotationAssertion(rdfs:comment ops:ConfigurationParameter "role played by a va
 AnnotationAssertion(rdfs:label ops:ConfigurationParameter "configuration parameter")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:ConfigurationParameter "actual parameter")
 SubClassOf(ops:ConfigurationParameter ops:OptionalInput)
-SubClassOf(ops:ConfigurationParameter ObjectSomeValuesFrom(ops:configures know:KnowledgeProcessingMethod))
+SubClassOf(ops:ConfigurationParameter ObjectSomeValuesFrom(ops:configures <https://www.omg.org/spec/API4KP/api4kp/KnowledgeProcessingMethod>))
 
 # Class: ops:ConsistencyCheckTask (consistency check task)
 
@@ -365,7 +440,7 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:CreateWo
 This task is defined explicitly because it is not uncommon for reasoners to execute tasks of this type internally")
 SubClassOf(ops:CreateWorkingKnowledgeBaseTask ops:ComplexKnowledgeProcessingTask)
 SubClassOf(ops:CreateWorkingKnowledgeBaseTask ops:KnowledgeBaseBuildingTask)
-SubClassOf(ops:CreateWorkingKnowledgeBaseTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by ObjectIntersectionOf(know:CompositeKnowledgeResource ObjectSomeValuesFrom(know:expresses <http://www.omg.org/spec/API4KP/KR/KnowledgeBase>))))))
+SubClassOf(ops:CreateWorkingKnowledgeBaseTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by ObjectIntersectionOf(<https://www.omg.org/spec/API4KP/api4kp/CompositeKnowledgeResource> ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/expresses> <http://www.omg.org/spec/API4KP/KR/KnowledgeBase>))))))
 SubClassOf(ops:CreateWorkingKnowledgeBaseTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/WorkingKnowledgeBase>))))
 
 # Class: ops:DecodingTask (decoding task)
@@ -378,9 +453,9 @@ AnnotationAssertion(rdfs:label ops:DecodingTask "decoding task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:DecodingTask "the act of recreating a concrete expression from its encoded version")
 SubClassOf(ops:DecodingTask ops:AtomicKnowledgeProcessingTask)
 SubClassOf(ops:DecodingTask ops:LiftingTask)
-SubClassOf(ops:DecodingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:EncodedKnowledgeExpression))))
-SubClassOf(ops:DecodingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
-SubClassOf(ops:DecodingTask ObjectSomeValuesFrom(know:based-on know:Encoding))
+SubClassOf(ops:DecodingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/EncodedKnowledgeExpression>))))
+SubClassOf(ops:DecodingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/ConcreteExpression>))))
+SubClassOf(ops:DecodingTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> <https://www.omg.org/spec/API4KP/api4kp/Encoding>))
 
 # Class: ops:DetectComplexityTask (detect computational complexity task)
 
@@ -392,7 +467,7 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:DetectC
 The detection is based on the aspects of logic underlying the language(s) used in the expression, that are actually used in the expression")
 SubClassOf(ops:DetectComplexityTask ops:ComplexKnowledgeProcessingTask)
 SubClassOf(ops:DetectComplexityTask ops:KnowledgeAnalyticTask)
-SubClassOf(ops:DetectComplexityTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
+SubClassOf(ops:DetectComplexityTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/ConcreteExpression>))))
 SubClassOf(ops:DetectComplexityTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/ComputationalComplexityClass>))))
 SubClassOf(ops:DetectComplexityTask ObjectSomeValuesFrom(ops:has-subtask ops:ParsingTask))
 
@@ -406,9 +481,9 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:DetectL
 SubClassOf(ops:DetectLanguageInformationTask ops:ComplexKnowledgeProcessingTask)
 SubClassOf(ops:DetectLanguageInformationTask ops:KnowledgeAnalyticTask)
 SubClassOf(ops:DetectLanguageInformationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Output ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))))
-SubClassOf(ops:DetectLanguageInformationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Output ObjectSomeValuesFrom(ops:filled-by know:Profile))))
-SubClassOf(ops:DetectLanguageInformationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
-SubClassOf(ops:DetectLanguageInformationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:Language))))
+SubClassOf(ops:DetectLanguageInformationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Output ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/Profile>))))
+SubClassOf(ops:DetectLanguageInformationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/ConcreteExpression>))))
+SubClassOf(ops:DetectLanguageInformationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/Language>))))
 SubClassOf(ops:DetectLanguageInformationTask ObjectSomeValuesFrom(ops:has-subtask ops:ParsingTask))
 
 # Class: ops:DetectLogicTask (detect logic task)
@@ -420,7 +495,7 @@ AnnotationAssertion(rdfs:label ops:DetectLogicTask "detect logic task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:DetectLogicTask "identifies the (simplest) logic that is expressive enough to formalize given knowledge expression.")
 SubClassOf(ops:DetectLogicTask ops:ComplexKnowledgeProcessingTask)
 SubClassOf(ops:DetectLogicTask ops:KnowledgeAnalyticTask)
-SubClassOf(ops:DetectLogicTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
+SubClassOf(ops:DetectLogicTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/ConcreteExpression>))))
 SubClassOf(ops:DetectLogicTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by DOL:Logic))))
 SubClassOf(ops:DetectLogicTask ObjectSomeValuesFrom(ops:has-subtask ops:ParsingTask))
 
@@ -433,9 +508,17 @@ AnnotationAssertion(rdfs:label ops:DetectSignatureTask "detect signature task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:DetectSignatureTask "extracts the non-logical symbols (aka \"terms\" - concretizations of linguistic elements that express atomic concepts) used in an expression, identifying the lexicon they have been extracted from")
 SubClassOf(ops:DetectSignatureTask ops:ComplexKnowledgeProcessingTask)
 SubClassOf(ops:DetectSignatureTask ops:KnowledgeAnalyticTask)
-SubClassOf(ops:DetectSignatureTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Output ObjectSomeValuesFrom(ops:filled-by know:Lexicon))))
-SubClassOf(ops:DetectSignatureTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
-SubClassOf(ops:DetectSignatureTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeElement))))
+SubClassOf(ops:DetectSignatureTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Output ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/Lexicon>))))
+SubClassOf(ops:DetectSignatureTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/ConcreteExpression>))))
+SubClassOf(ops:DetectSignatureTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeElement>))))
+
+# Class: ops:DiffingTask (diffing task)
+
+AnnotationAssertion(rdfs:comment ops:DiffingTask "The act of comparing two knowledge resources to determine overlap and differences, returning a similarity degree, and pointers to the differences.
+
+Should leverage graph comparison, tree comparison or text line comparison ('diff').")
+AnnotationAssertion(rdfs:label ops:DiffingTask "diffing task")
+SubClassOf(ops:DiffingTask ops:KnowledgeAnalyticTask)
 
 # Class: ops:DiscoverCompatibleResourcesTask (discover compatible resources task)
 
@@ -445,8 +528,8 @@ AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:Disc
 AnnotationAssertion(rdfs:label ops:DiscoverCompatibleResourcesTask "discover compatible resources task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:DiscoverCompatibleResourcesTask "Returns a collection of resources that are compatible (composable) with a given resource")
 SubClassOf(ops:DiscoverCompatibleResourcesTask ops:SemanticKnowledgeManagementTask)
-SubClassOf(ops:DiscoverCompatibleResourcesTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResource))))
-SubClassOf(ops:DiscoverCompatibleResourcesTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResource))))
+SubClassOf(ops:DiscoverCompatibleResourcesTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource>))))
+SubClassOf(ops:DiscoverCompatibleResourcesTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource>))))
 
 # Class: ops:EncodingTask (encoding task)
 
@@ -460,9 +543,9 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:Encodin
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#example> ops:EncodingTask "Converting characters into sequences of bits, according to an encoding method, so that they can be written to a RAM, ROM or magnetic disk")
 SubClassOf(ops:EncodingTask ops:AtomicKnowledgeProcessingTask)
 SubClassOf(ops:EncodingTask ops:LoweringTask)
-SubClassOf(ops:EncodingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
-SubClassOf(ops:EncodingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:EncodedKnowledgeExpression))))
-SubClassOf(ops:EncodingTask ObjectSomeValuesFrom(know:based-on know:Encoding))
+SubClassOf(ops:EncodingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/ConcreteExpression>))))
+SubClassOf(ops:EncodingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/EncodedKnowledgeExpression>))))
+SubClassOf(ops:EncodingTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> <https://www.omg.org/spec/API4KP/api4kp/Encoding>))
 
 # Class: ops:EntailmentCheckTask (entailment check test)
 
@@ -479,7 +562,7 @@ SubClassOf(ops:EntailmentCheckTask ops:LogicBasedReasoningTask)
 AnnotationAssertion(rdfs:label ops:Explanation "explanation")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:Explanation "An expression, generated as part of the execution of a (knowledge processing) activity, of knowledge about that course of that activity and/or its inputs and outputs")
 SubClassOf(ops:Explanation ops:SecondaryOutput)
-SubClassOf(ops:Explanation ObjectSomeValuesFrom(know:archetypes ObjectIntersectionOf(know:KnowledgeExpression ObjectSomeValuesFrom(know:representation-of know:KnowledgeActivity))))
+SubClassOf(ops:Explanation ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/archetypes> ObjectIntersectionOf(<https://www.omg.org/spec/API4KP/api4kp/KnowledgeExpression> ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/representation-of> <https://www.omg.org/spec/API4KP/api4kp/KnowledgeActivity>))))
 
 # Class: ops:ExpressionTask (expression task)
 
@@ -491,10 +574,10 @@ AnnotationAssertion(rdfs:label ops:ExpressionTask "expression task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ExpressionTask "the act of creating an expression in a given language (sytnax and dictionary), from the information content of a work of knowledge")
 SubClassOf(ops:ExpressionTask ops:AtomicKnowledgeProcessingTask)
 SubClassOf(ops:ExpressionTask ops:LoweringTask)
-SubClassOf(ops:ExpressionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by know:AbstractSyntax))))
-SubClassOf(ops:ExpressionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by know:Lexicon))))
-SubClassOf(ops:ExpressionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:AbstractSemanticGraph))))
-SubClassOf(ops:ExpressionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:AbstractSyntaxTree))))
+SubClassOf(ops:ExpressionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/AbstractSyntax>))))
+SubClassOf(ops:ExpressionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/Lexicon>))))
+SubClassOf(ops:ExpressionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/AbstractSemanticGraph>))))
+SubClassOf(ops:ExpressionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/AbstractSyntaxTree>))))
 
 # Class: ops:ExtensionTask (extension task)
 
@@ -512,8 +595,8 @@ AnnotationAssertion(rdfs:label ops:ExtractDescriptionTask "extract description t
 SubClassOf(ops:ExtractDescriptionTask ops:ComplexKnowledgeProcessingTask)
 SubClassOf(ops:ExtractDescriptionTask ops:RetrieveResourceDescriptionTask)
 SubClassOf(ops:ExtractDescriptionTask ops:SemanticKnowledgeManagementTask)
-SubClassOf(ops:ExtractDescriptionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:AbstractExpression))))
-SubClassOf(ops:ExtractDescriptionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResourceDescription))))
+SubClassOf(ops:ExtractDescriptionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/AbstractExpression>))))
+SubClassOf(ops:ExtractDescriptionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeResourceDescription>))))
 
 # Class: ops:ExtractionTask (extraction task)
 
@@ -534,8 +617,8 @@ AnnotationAssertion(rdfs:comment ops:FusionTask "Fusing two or more resources is
 AnnotationAssertion(rdfs:label ops:FusionTask "fusion task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:FusionTask "The act of creating a new resource by the combination of two or more resources, such that the identity of the individual resources is not preserved")
 SubClassOf(ops:FusionTask ops:KnowledgeResourceWeavingTask)
-SubClassOf(ops:FusionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectMinCardinality(2 ops:filled-by know:KnowledgeResource))))
-SubClassOf(ops:FusionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectExactCardinality(1 ops:filled-by know:KnowledgeResource))))
+SubClassOf(ops:FusionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectMinCardinality(2 ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource>))))
+SubClassOf(ops:FusionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectExactCardinality(1 ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource>))))
 
 # Class: ops:HorizontalKnowledgeProcessingTask (horizontal knowledge processing task)
 
@@ -548,9 +631,9 @@ While the input I and the product O are different entities, both will refer to t
 Regardless of the level, horizontal tasks of this class always preserve the WoK at the foundation of an endeavor")
 SubClassOf(ops:HorizontalKnowledgeProcessingTask ops:ComplexKnowledgeProcessingTask)
 SubClassOf(ops:HorizontalKnowledgeProcessingTask ops:KnowledgeManipulationTask)
-SubClassOf(ops:HorizontalKnowledgeProcessingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeEndeavour))))
-SubClassOf(ops:HorizontalKnowledgeProcessingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Product ObjectSomeValuesFrom(ops:filled-by know:KnowledgeEndeavour))))
-SubClassOf(ops:HorizontalKnowledgeProcessingTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:WorkOfKnowledge)))
+SubClassOf(ops:HorizontalKnowledgeProcessingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeEndeavour>))))
+SubClassOf(ops:HorizontalKnowledgeProcessingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Product ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeEndeavour>))))
+SubClassOf(ops:HorizontalKnowledgeProcessingTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/preserves> <https://www.omg.org/spec/API4KP/api4kp/WorkOfKnowledge>)))
 
 # Class: ops:IdentityLookupTask (identity lookup task)
 
@@ -573,14 +656,14 @@ SubClassOf(ops:IdentityNegotiationTask ops:IdentityResolutionTask)
 AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:IdentityResolutionTask <http://www.omg.org/spec/API4KP/Aspects/chainable-operation>)
 AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:IdentityResolutionTask <http://www.omg.org/spec/API4KP/Aspects/idempotent-operation>)
 AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:IdentityResolutionTask <http://www.omg.org/spec/API4KP/Aspects/pure-operation>)
-AnnotationAssertion(rdfs:label ops:IdentityResolutionTask "Associates identifiers (and or names) to the entity they denote, its location, or information about it")
+AnnotationAssertion(rdfs:comment ops:IdentityResolutionTask "Associates identifiers (and or names) to the entity they denote, its location, or information about it")
 AnnotationAssertion(rdfs:label ops:IdentityResolutionTask "identity resolution task")
 AnnotationAssertion(rdfs:seeAlso ops:IdentityResolutionTask "https://tools.ietf.org/html/rfc2483")
 SubClassOf(ops:IdentityResolutionTask ops:ClosedKnowledgeProcessingTask)
 SubClassOf(ops:IdentityResolutionTask ops:KnowledgeManagementTask)
-SubClassOf(ops:IdentityResolutionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:Identifier))))
-SubClassOf(ops:IdentityResolutionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:Identifier))))
-SubClassOf(ops:IdentityResolutionTask ObjectSomeValuesFrom(know:based-on <http://www.omg.org/spec/API4KP/KR/Mapping>))
+SubClassOf(ops:IdentityResolutionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/Identifier>))))
+SubClassOf(ops:IdentityResolutionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/Identifier>))))
+SubClassOf(ops:IdentityResolutionTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> <http://www.omg.org/spec/API4KP/KR/Mapping>))
 
 # Class: ops:InferenceTask (inference task)
 
@@ -593,7 +676,7 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:Inferenc
 SubClassOf(ops:InferenceTask ops:AtomicKnowledgeProcessingTask)
 SubClassOf(ops:InferenceTask ops:LogicBasedReasoningTask)
 SubClassOf(ops:InferenceTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:InputOutput ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/WorkingKnowledgeBase>))))
-SubClassOf(ops:InferenceTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResource))))
+SubClassOf(ops:InferenceTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource>))))
 
 # Class: ops:InjectionTask (injection task)
 
@@ -605,7 +688,7 @@ SubClassOf(ops:InjectionTask ops:FusionTask)
 
 AnnotationAssertion(rdfs:label ops:Input "input")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:Input "role played by an entity that is used in an activity, and exists before that activity is started")
-SubClassOf(ops:Input know:PassiveRole)
+SubClassOf(ops:Input <https://www.omg.org/spec/API4KP/api4kp/PassiveRole>)
 
 # Class: ops:InputOutput (input/output)
 
@@ -623,7 +706,7 @@ Locations are logical entities, identified by a (location) identifier, regardles
 SubClassOf(ops:InternalRepositoryTask ops:AtomicKnowledgeProcessingTask)
 SubClassOf(ops:InternalRepositoryTask ops:ClosedKnowledgeProcessingTask)
 SubClassOf(ops:InternalRepositoryTask ops:KnowledgeRepositoryTask)
-SubClassOf(ops:InternalRepositoryTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:Identifier))))
+SubClassOf(ops:InternalRepositoryTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/Identifier>))))
 
 # Class: ops:InterpretationTask (conceptualization task)
 
@@ -636,8 +719,8 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:Interpret
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:InterpretationTask "The act of extracting the information content expressed by a knowledge expression, by means of analyzing the AST of that expression")
 SubClassOf(ops:InterpretationTask ops:AtomicKnowledgeProcessingTask)
 SubClassOf(ops:InterpretationTask ops:LiftingTask)
-SubClassOf(ops:InterpretationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:AbstractSyntaxTree))))
-SubClassOf(ops:InterpretationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:AbstractSemanticGraph))))
+SubClassOf(ops:InterpretationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/AbstractSyntaxTree>))))
+SubClassOf(ops:InterpretationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/AbstractSemanticGraph>))))
 
 # Class: ops:KnowledgeAnalyticTask (knowledge analytic task)
 
@@ -657,19 +740,19 @@ SubClassOf(ops:KnowledgeBaseBuildingTask ObjectSomeValuesFrom(ops:has-role Objec
 AnnotationAssertion(rdfs:label ops:KnowledgeCompositionalTask "knowledge compositional task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeCompositionalTask "task that deals with the structure-mediated organization of knowledge resources in composites")
 SubClassOf(ops:KnowledgeCompositionalTask ops:KnowledgeStructuringTask)
-SubClassOf(ops:KnowledgeCompositionalTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by know:StructuredKnowledgeResource)))
+SubClassOf(ops:KnowledgeCompositionalTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/StructuredKnowledgeResource>)))
 
 # Class: ops:KnowledgeManagementTask (knowledge management task)
 
 AnnotationAssertion(rdfs:label ops:KnowledgeManagementTask "knowledge management task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeManagementTask "A task that deals with the life cycle of a knowledge resource and/or the artifact(s) that carry it")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:KnowledgeManagementTask "Tasks of this kind cover elicitation, authoring, curation, storage and retrieval, cataloguing, distribution of knowledge resources, but treat resources (and artifacts) as black boxes, ignoring their syntactic, semantic and pragmatic characteristics")
-SubClassOf(ops:KnowledgeManagementTask know:InformationProcessingTask)
-SubClassOf(ops:KnowledgeManagementTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by know:KnowledgeArtifact)))
+SubClassOf(ops:KnowledgeManagementTask <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask>)
+SubClassOf(ops:KnowledgeManagementTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact>)))
 
 # Class: ops:KnowledgeManipulationTask (knowledge manipulation task)
 
-AnnotationAssertion(rdfs:label ops:KnowledgeManipulationTask "a task that generates new knowledge endeavors, according to methods that only leverage the syntactic and semantic aspects of a knowledge resource, but not its pragmatic ones.")
+AnnotationAssertion(rdfs:comment ops:KnowledgeManipulationTask "a task that generates new knowledge endeavors, according to methods that only leverage the syntactic and semantic aspects of a knowledge resource, but not its pragmatic ones.")
 AnnotationAssertion(rdfs:label ops:KnowledgeManipulationTask "knowledge manipulation task")
 SubClassOf(ops:KnowledgeManipulationTask ops:OpenKnowledgeProcessingTask)
 
@@ -679,7 +762,7 @@ AnnotationAssertion(rdfs:label ops:KnowledgeProcessingOperation "knowledge proce
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeProcessingOperation "(knowledge processing) operations are complex activities that involve knowledge artifacts as inputs and/or outputs")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:KnowledgeProcessingOperation "In API4KP, operations are usually performed 'as a service', i.e. by a (software) agent that acts on behalf of another agent")
 SubClassOf(ops:KnowledgeProcessingOperation ops:ComplexKnowledgeProcessingActivity)
-SubClassOf(ops:KnowledgeProcessingOperation ObjectUnionOf(ObjectSomeValuesFrom(know:has-product know:KnowledgeArtifact) ObjectSomeValuesFrom(know:makes-use-of know:KnowledgeArtifact)))
+SubClassOf(ops:KnowledgeProcessingOperation ObjectUnionOf(ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/has-product> <https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact>) ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/makes-use-of> <https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact>)))
 
 # Class: ops:KnowledgeProcessingServiceTask (knowledge processing service task)
 
@@ -695,7 +778,7 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:Knowledg
 SubClassOf(ops:KnowledgeProcessingServiceTask ops:ClosedKnowledgeProcessingTask)
 SubClassOf(ops:KnowledgeProcessingServiceTask ObjectSomeValuesFrom(ops:has-role ops:ConfigurationParameter))
 SubClassOf(ops:KnowledgeProcessingServiceTask ObjectSomeValuesFrom(ops:has-role ops:PrimaryInput))
-SubClassOf(ops:KnowledgeProcessingServiceTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Explanation ObjectSomeValuesFrom(ops:filled-by know:KnowledgeExpression))))
+SubClassOf(ops:KnowledgeProcessingServiceTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Explanation ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeExpression>))))
 
 # Class: ops:KnowledgeReasoningTask (knowledge reasoning task)
 
@@ -708,7 +791,7 @@ SubClassOf(ops:KnowledgeReasoningTask ObjectSomeValuesFrom(ops:has-role ObjectSo
 
 AnnotationAssertion(rdfs:label ops:KnowledgeRepositoryTask "knowledge repository task")
 SubClassOf(ops:KnowledgeRepositoryTask ops:KnowledgeManagementTask)
-SubClassOf(ops:KnowledgeRepositoryTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by ObjectSomeValuesFrom(know:has-function know:KnowledgeArtifactRepository))))
+SubClassOf(ops:KnowledgeRepositoryTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/has-function> <https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifactRepository>))))
 
 # Class: ops:KnowledgeReshapingTask (knowledge reshaping task)
 
@@ -720,15 +803,21 @@ The resulting WoK is expressed by means of an (abstract) expression - a knowledg
 Both original and new WoKs capture (different aspects) of the same Piece of Knowledge")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:KnowledgeReshapingTask "Because reshaping is a semantic operation, tasks are defined in terms of abstract knowledge expressions as a proxy for the WoK they express: any detail about serialization and encoding is irrelevent")
 SubClassOf(ops:KnowledgeReshapingTask ops:KnowledgeStructuringTask)
-SubClassOf(ops:KnowledgeReshapingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:AbstractExpression))))
-SubClassOf(ops:KnowledgeReshapingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:AbstractExpression))))
-SubClassOf(ops:KnowledgeReshapingTask ObjectSomeValuesFrom(know:based-on ObjectIntersectionOf(ObjectSomeValuesFrom(know:preserves know:Language) ObjectSomeValuesFrom(know:preserves know:PieceOfKnowledge))))
+SubClassOf(ops:KnowledgeReshapingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/AbstractExpression>))))
+SubClassOf(ops:KnowledgeReshapingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/AbstractExpression>))))
+SubClassOf(ops:KnowledgeReshapingTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> ObjectIntersectionOf(ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/preserves> <https://www.omg.org/spec/API4KP/api4kp/Language>) ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/preserves> <https://www.omg.org/spec/API4KP/api4kp/PieceOfKnowledge>))))
 
 # Class: ops:KnowledgeResourceAggregationTask (knowledge resource aggregation task)
 
 AnnotationAssertion(rdfs:label ops:KnowledgeResourceAggregationTask "knowledge resource aggregation task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeResourceAggregationTask "construction of a set-oriented structure")
 SubClassOf(ops:KnowledgeResourceAggregationTask ops:KnowledgeResourceConstructionTask)
+
+# Class: ops:KnowledgeResourceAssemblyTask (knowledge resource assembly task)
+
+AnnotationAssertion(rdfs:label ops:KnowledgeResourceAssemblyTask "knowledge resource assembly task")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#note> ops:KnowledgeResourceAssemblyTask "The generation of a single, self-contained, complex Knowledge Resource that expresses the same work as a Composite Knowledge Resource. The implicit version of this operation is more specifically called ‘merging’, while the explicit one is called ‘flattening’")
+SubClassOf(ops:KnowledgeResourceAssemblyTask ops:KnowledgeResourceWeavingTask)
 
 # Class: ops:KnowledgeResourceCompositionTask (knowledge resource composition task)
 
@@ -741,8 +830,8 @@ SubClassOf(ops:KnowledgeResourceCompositionTask ops:KnowledgeResourceConstructio
 AnnotationAssertion(rdfs:label ops:KnowledgeResourceConstructionTask "knowledge resource construction task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeResourceConstructionTask "Creates a structuring knowledge resource that has two or more knowledge resources as referenced components")
 SubClassOf(ops:KnowledgeResourceConstructionTask ops:KnowledgeCompositionalTask)
-SubClassOf(ops:KnowledgeResourceConstructionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResource))))
-SubClassOf(ops:KnowledgeResourceConstructionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:StructuringKnowledgeResource))))
+SubClassOf(ops:KnowledgeResourceConstructionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource>))))
+SubClassOf(ops:KnowledgeResourceConstructionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/StructuringKnowledgeResource>))))
 
 # Class: ops:KnowledgeResourceDecompositionTask (knowledge resource decomposition task)
 
@@ -758,8 +847,8 @@ AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:Know
 AnnotationAssertion(rdfs:label ops:KnowledgeResourceDeconstructionTask "knowledge resource deconstruction task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeResourceDeconstructionTask "superimposes a structure on a non-composite, but deconstructable knowledge resource")
 SubClassOf(ops:KnowledgeResourceDeconstructionTask ops:KnowledgeCompositionalTask)
-SubClassOf(ops:KnowledgeResourceDeconstructionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:DeconstructableKnowledgeResource))))
-SubClassOf(ops:KnowledgeResourceDeconstructionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:StructuringKnowledgeResource))))
+SubClassOf(ops:KnowledgeResourceDeconstructionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/DeconstructableKnowledgeResource>))))
+SubClassOf(ops:KnowledgeResourceDeconstructionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/StructuringKnowledgeResource>))))
 
 # Class: ops:KnowledgeResourceDisaggregationTask (knowledge resource disaggregation task)
 
@@ -772,9 +861,9 @@ SubClassOf(ops:KnowledgeResourceDisaggregationTask ops:KnowledgeResourceDeconstr
 AnnotationAssertion(rdfs:label ops:KnowledgeResourceDisassemblyTask "knowledge resource disassembly task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeResourceDisassemblyTask "breaking apart a deconstructable knowledge resource, following a structure, to obtain the componenets")
 SubClassOf(ops:KnowledgeResourceDisassemblyTask ops:KnowledgeResourceWeavingTask)
-SubClassOf(ops:KnowledgeResourceDisassemblyTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:DeconstructableKnowledgeResource))))
-SubClassOf(ops:KnowledgeResourceDisassemblyTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:StructuringKnowledgeResource))))
-SubClassOf(ops:KnowledgeResourceDisassemblyTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectMinCardinality(2 ops:filled-by know:KnowledgeResource))))
+SubClassOf(ops:KnowledgeResourceDisassemblyTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/DeconstructableKnowledgeResource>))))
+SubClassOf(ops:KnowledgeResourceDisassemblyTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/StructuringKnowledgeResource>))))
+SubClassOf(ops:KnowledgeResourceDisassemblyTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectMinCardinality(2 ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource>))))
 
 # Class: ops:KnowledgeResourceFlatteningTask (knowledge resource flattening task)
 
@@ -784,13 +873,12 @@ AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:Know
 AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:KnowledgeResourceFlatteningTask <http://www.omg.org/spec/API4KP/Aspects/single-output-operation>)
 AnnotationAssertion(rdfs:comment ops:KnowledgeResourceFlatteningTask "The flattening may require some manipulation of the component resources before they can be merged")
 AnnotationAssertion(rdfs:label ops:KnowledgeResourceFlatteningTask "knowledge resource flattening task")
-AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:KnowledgeResourceFlatteningTask "knowledge resource assembly task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeResourceFlatteningTask "The act of creating a single, flattened knowledge resource from a composite knowledge resource and its component structured resources, according to the plan specified by a structure.")
 SubClassOf(ops:KnowledgeResourceFlatteningTask ops:ComplexKnowledgeProcessingTask)
-SubClassOf(ops:KnowledgeResourceFlatteningTask ops:TODOTODO_KnowledgeResourceAssemblyTask)
-SubClassOf(ops:KnowledgeResourceFlatteningTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:CompositeKnowledgeResource))))
-SubClassOf(ops:KnowledgeResourceFlatteningTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:FlattenedKnowledgeResource))))
-SubClassOf(ops:KnowledgeResourceFlatteningTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by know:StructuringKnowledgeResource)))
+SubClassOf(ops:KnowledgeResourceFlatteningTask ops:KnowledgeResourceAssemblyTask)
+SubClassOf(ops:KnowledgeResourceFlatteningTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/CompositeKnowledgeResource>))))
+SubClassOf(ops:KnowledgeResourceFlatteningTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/FlattenedKnowledgeResource>))))
+SubClassOf(ops:KnowledgeResourceFlatteningTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/StructuringKnowledgeResource>)))
 
 # Class: ops:KnowledgeResourceRearrangementTask (knowledge resource rearrangement task)
 
@@ -800,8 +888,8 @@ AnnotationAssertion(rdfs:comment ops:KnowledgeResourceRearrangementTask "The ope
 AnnotationAssertion(rdfs:label ops:KnowledgeResourceRearrangementTask "knowledge resource rearrangement task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:KnowledgeResourceRearrangementTask "A rearrangement changes the mutual relationships between the structured resources in a composite, but does not affect the resources themselves")
 SubClassOf(ops:KnowledgeResourceRearrangementTask ops:KnowledgeCompositionalTask)
-SubClassOf(ops:KnowledgeResourceRearrangementTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by know:StructuringKnowledgeResource))))
-SubClassOf(ops:KnowledgeResourceRearrangementTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Output ObjectSomeValuesFrom(ops:filled-by know:StructuringKnowledgeResource))))
+SubClassOf(ops:KnowledgeResourceRearrangementTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/StructuringKnowledgeResource>))))
+SubClassOf(ops:KnowledgeResourceRearrangementTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Output ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/StructuringKnowledgeResource>))))
 
 # Class: ops:KnowledgeResourceWeavingTask (knowledge resource weaving task)
 
@@ -821,7 +909,7 @@ To remain aligned, in API4KP 'structuring' denotes manipulations other than 'hor
 Hence, 'structuring' tasks do not preserve the WoK 
 'Structuring' is then further partitioned into 'Composition' - dealing with API4KP structures and composite resources - and 'Reshaping' - dealing with non-WoK preserving transrepresentations")
 SubClassOf(ops:KnowledgeStructuringTask ops:KnowledgeManipulationTask)
-SubClassOf(ops:KnowledgeStructuringTask ObjectSomeValuesFrom(know:based-on ObjectIntersectionOf(know:KnowledgeProcessingMethod ObjectComplementOf(ObjectSomeValuesFrom(know:preserves know:WorkOfKnowledge)))))
+SubClassOf(ops:KnowledgeStructuringTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> ObjectIntersectionOf(<https://www.omg.org/spec/API4KP/api4kp/KnowledgeProcessingMethod> ObjectComplementOf(ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/preserves> <https://www.omg.org/spec/API4KP/api4kp/WorkOfKnowledge>)))))
 
 # Class: ops:LiftingTask (lifting task)
 
@@ -835,7 +923,7 @@ AnnotationAssertion(rdfs:label ops:LogicBasedReasoningTask "logic-based reasonin
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:LogicBasedReasoningTask "Reasoning task based on the semantics and pragmatics of some underlying logic, based on symbolic methods, suitable to be peformed by 'reasoners'")
 SubClassOf(ops:LogicBasedReasoningTask ops:KnowledgeReasoningTask)
 SubClassOf(ops:LogicBasedReasoningTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/WorkingKnowledgeBase>))))
-SubClassOf(ops:LogicBasedReasoningTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:uses-concept DOL:Logic)))
+SubClassOf(ops:LogicBasedReasoningTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/uses-concept> DOL:Logic)))
 
 # Class: ops:LoweringTask (lowering task)
 
@@ -854,7 +942,7 @@ AnnotationAssertion(rdfs:label ops:OpenKnowledgeProcessingTask "open knowledge p
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:OpenKnowledgeProcessingTask "An open knowledge processing task is a task whose execution and outcomes specifically depend on the agent that is performing it. 
 
 As such, they can be chained without the need of communication or other forms of mediation, but require closure in order to have persistent effects")
-SubClassOf(ops:OpenKnowledgeProcessingTask know:InformationProcessingTask)
+SubClassOf(ops:OpenKnowledgeProcessingTask <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask>)
 
 # Class: ops:OptionalInput (optional input)
 
@@ -867,7 +955,7 @@ SubClassOf(ops:OptionalInput ops:Input)
 AnnotationAssertion(rdfs:label ops:Output "output")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:Output "product")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:Output "Role played by an entity that is produced by a (knowledge processing) activity")
-SubClassOf(ops:Output know:PassiveRole)
+SubClassOf(ops:Output <https://www.omg.org/spec/API4KP/api4kp/PassiveRole>)
 
 # Class: ops:ParaphraseTask (paraphrase task)
 
@@ -879,9 +967,9 @@ Meaning (work of knowledge), language and format are preserved, but not the inte
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#note> ops:ParaphraseTask "Paraphrase is only admissible in languages that are redundant, i.e. allow alternative, different expressions of the same meaning")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> ops:ParaphraseTask "Interesting 'paraphrases' are the ones that cast an expression, in a given language, within the boundaries of a profile of that language")
 SubClassOf(ops:ParaphraseTask ops:HorizontalKnowledgeProcessingTask)
-SubClassOf(ops:ParaphraseTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by know:KnowledgeExpression))))
-SubClassOf(ops:ParaphraseTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Product ObjectSomeValuesFrom(ops:filled-by know:KnowledgeExpression))))
-SubClassOf(ops:ParaphraseTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:Language)))
+SubClassOf(ops:ParaphraseTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeExpression>))))
+SubClassOf(ops:ParaphraseTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Product ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeExpression>))))
+SubClassOf(ops:ParaphraseTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/preserves> <https://www.omg.org/spec/API4KP/api4kp/Language>)))
 
 # Class: ops:ParsingTask (parsing task)
 
@@ -893,9 +981,9 @@ AnnotationAssertion(rdfs:label ops:ParsingTask "parsing task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ParsingTask "the act of creating an AST (of an abstract knowldge expression) from a concrete knowledge expression")
 SubClassOf(ops:ParsingTask ops:ComplexKnowledgeProcessingTask)
 SubClassOf(ops:ParsingTask ops:LiftingTask)
-SubClassOf(ops:ParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
-SubClassOf(ops:ParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:AbstractSyntaxTree))))
-SubClassOf(ops:ParsingTask ObjectSomeValuesFrom(know:based-on ObjectIntersectionOf(ObjectSomeValuesFrom(know:preserves know:AbstractSyntax) ObjectSomeValuesFrom(know:uses-concept <http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))))
+SubClassOf(ops:ParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/ConcreteExpression>))))
+SubClassOf(ops:ParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/AbstractSyntaxTree>))))
+SubClassOf(ops:ParsingTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> ObjectIntersectionOf(ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/preserves> <https://www.omg.org/spec/API4KP/api4kp/AbstractSyntax>) ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/uses-concept> <http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))))
 
 # Class: ops:PartitionTask (partition task)
 
@@ -927,7 +1015,7 @@ SubClassOf(ops:Product ops:PrimaryOutput)
 AnnotationAssertion(rdfs:label ops:ProofGenerationTask "proof generation task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ProofGenerationTask "The act of generating a proof that justifies how an expression is a logical consequence of a knowledge base")
 SubClassOf(ops:ProofGenerationTask ops:LogicBasedReasoningTask)
-SubClassOf(ops:ProofGenerationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeExpression))))
+SubClassOf(ops:ProofGenerationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeExpression>))))
 
 # Class: ops:QueryAnswerTask (query answering task)
 
@@ -936,7 +1024,7 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:QueryAn
 SubClassOf(ops:QueryAnswerTask ops:AtomicKnowledgeProcessingTask)
 SubClassOf(ops:QueryAnswerTask ops:LogicBasedReasoningTask)
 SubClassOf(ops:QueryAnswerTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by DOL:Query))))
-SubClassOf(ops:QueryAnswerTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeExpression))))
+SubClassOf(ops:QueryAnswerTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeExpression>))))
 
 # Class: ops:ReadTask (I/O read task)
 
@@ -945,8 +1033,8 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:ReadTask 
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ReadTask "A task that extracts an encoded knowledge expression from a carrier")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#example> ops:ReadTask "opening a file and reading the stream of Unicode-encoded characters")
 SubClassOf(ops:ReadTask ops:AtomicKnowledgeProcessingTask)
-SubClassOf(ops:ReadTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeCarrier))))
-SubClassOf(ops:ReadTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:EncodedKnowledgeExpression))))
+SubClassOf(ops:ReadTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeCarrier>))))
+SubClassOf(ops:ReadTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/EncodedKnowledgeExpression>))))
 
 # Class: ops:RedactionTask (syntactic redaction task)
 
@@ -975,9 +1063,9 @@ AnnotationAssertion(rdfs:label ops:ReplaceArtifactAtLocationTask "replace artifa
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ReplaceArtifactAtLocationTask "replaces an artifact at location, preserving any previously stored artifact")
 SubClassOf(ops:ReplaceArtifactAtLocationTask ops:ComplexKnowledgeProcessingActivity)
 SubClassOf(ops:ReplaceArtifactAtLocationTask ops:InternalRepositoryTask)
-SubClassOf(ops:ReplaceArtifactAtLocationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Output ObjectSomeValuesFrom(ops:filled-by know:VersionedIdentifier))))
-SubClassOf(ops:ReplaceArtifactAtLocationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeArtifact))))
-SubClassOf(ops:ReplaceArtifactAtLocationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeArtifact))))
+SubClassOf(ops:ReplaceArtifactAtLocationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Output ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/VersionedIdentifier>))))
+SubClassOf(ops:ReplaceArtifactAtLocationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact>))))
+SubClassOf(ops:ReplaceArtifactAtLocationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact>))))
 SubClassOf(ops:ReplaceArtifactAtLocationTask ObjectSomeValuesFrom(ops:has-subtask ops:StoreArtifactAtLocationTask))
 
 # Class: ops:ReplicationTask (replication task)
@@ -989,7 +1077,7 @@ AnnotationAssertion(rdfs:label ops:ReplicationTask "replication task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ReplicationTask "Task that creates a new, equal, copy of the input endeavor. 
 As such, it creates a new istance of the same type as the input entity.")
 SubClassOf(ops:ReplicationTask ops:HorizontalKnowledgeProcessingTask)
-SubClassOf(ops:ReplicationTask ObjectAllValuesFrom(ops:has-role ObjectIntersectionOf(ops:Product ObjectSomeValuesFrom(ops:filled-by ObjectIntersectionOf(know:KnowledgeEndeavour ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/rel#copy-of> know:KnowledgeEndeavour))))))
+SubClassOf(ops:ReplicationTask ObjectAllValuesFrom(ops:has-role ObjectIntersectionOf(ops:Product ObjectSomeValuesFrom(ops:filled-by ObjectIntersectionOf(<https://www.omg.org/spec/API4KP/api4kp/KnowledgeEndeavour> ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/copy-of> <https://www.omg.org/spec/API4KP/api4kp/KnowledgeEndeavour>))))))
 
 # Class: ops:ResolveClosureTask (resolve dependency closure task)
 
@@ -1005,8 +1093,8 @@ AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:Reso
 AnnotationAssertion(rdfs:label ops:ResolveDependenciesTask "resolve dependencies task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:ResolveDependenciesTask "Retrieves the resources that a given resource depends on")
 SubClassOf(ops:ResolveDependenciesTask ops:SemanticKnowledgeManagementTask)
-SubClassOf(ops:ResolveDependenciesTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResource))))
-SubClassOf(ops:ResolveDependenciesTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResource))))
+SubClassOf(ops:ResolveDependenciesTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource>))))
+SubClassOf(ops:ResolveDependenciesTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource>))))
 
 # Class: ops:RetrieveArtifactFromLocationTask (retrieve artifact from location task)
 
@@ -1028,8 +1116,8 @@ AnnotationAssertion(rdfs:label ops:RetrieveArtifactTask "retrieve artifact task"
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:RetrieveArtifactTask "resolves the identifier of a knowledge artifact, and retrieves (a copy of) that artifact")
 SubClassOf(ops:RetrieveArtifactTask ops:ComplexKnowledgeProcessingTask)
 SubClassOf(ops:RetrieveArtifactTask ops:KnowledgeManagementTask)
-SubClassOf(ops:RetrieveArtifactTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:Identifier))))
-SubClassOf(ops:RetrieveArtifactTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/rel#copy-of> know:KnowledgeArtifact)))))
+SubClassOf(ops:RetrieveArtifactTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/Identifier>))))
+SubClassOf(ops:RetrieveArtifactTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/copy-of> <https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact>)))))
 
 # Class: ops:RetrieveResourceDescriptionTask (retrieve resource description task)
 
@@ -1040,7 +1128,7 @@ AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:Retr
 AnnotationAssertion(rdfs:label ops:RetrieveResourceDescriptionTask "retrieve resource description task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:RetrieveResourceDescriptionTask "retrieves a resource that is the description of another resource")
 SubClassOf(ops:RetrieveResourceDescriptionTask ops:RetrieveResourceTask)
-SubClassOf(ops:RetrieveResourceDescriptionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectAllValuesFrom(ops:filled-by ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/rel#copy-of> ObjectIntersectionOf(know:ConcreteExpression ObjectSomeValuesFrom(know:concretely-expresses know:KnowledgeResourceDescription)))))))
+SubClassOf(ops:RetrieveResourceDescriptionTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectAllValuesFrom(ops:filled-by ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/copy-of> ObjectIntersectionOf(<https://www.omg.org/spec/API4KP/api4kp/ConcreteExpression> ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/concretely-expresses> <https://www.omg.org/spec/API4KP/api4kp/KnowledgeResourceDescription>)))))))
 
 # Class: ops:RetrieveResourceTask (retrieve resource task)
 
@@ -1052,8 +1140,8 @@ AnnotationAssertion(rdfs:label ops:RetrieveResourceTask "retrieve resource task"
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:RetrieveResourceTask "retrieves a concrete knowledge resource, extracting it from the master copy stored at a location that resolves the identifier provided as input")
 SubClassOf(ops:RetrieveResourceTask ops:ComplexKnowledgeProcessingTask)
 SubClassOf(ops:RetrieveResourceTask ops:KnowledgeManagementTask)
-SubClassOf(ops:RetrieveResourceTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:Identifier))))
-SubClassOf(ops:RetrieveResourceTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/rel#copy-of> know:ConcreteExpression)))))
+SubClassOf(ops:RetrieveResourceTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/Identifier>))))
+SubClassOf(ops:RetrieveResourceTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/copy-of> <https://www.omg.org/spec/API4KP/api4kp/ConcreteExpression>)))))
 
 # Class: ops:RetrieveSurrogateTask (retrieve surrogate task)
 
@@ -1064,7 +1152,7 @@ AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:Retr
 AnnotationAssertion(rdfs:label ops:RetrieveSurrogateTask "retrieve surrogate task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:RetrieveSurrogateTask "resolves the identifier of an asset (or an artifact) to the identifier of a surrogate that describes it, and retrieves a copy of that surrogate")
 SubClassOf(ops:RetrieveSurrogateTask ops:RetrieveArtifactTask)
-SubClassOf(ops:RetrieveSurrogateTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectAllValuesFrom(ops:filled-by ObjectSomeValuesFrom(<http://www.omg.org/spec/API4KP/rel#copy-of> know:KnowledgeAssetSurrogate)))))
+SubClassOf(ops:RetrieveSurrogateTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectAllValuesFrom(ops:filled-by ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/copy-of> <https://www.omg.org/spec/API4KP/api4kp/KnowledgeAssetSurrogate>)))))
 
 # Class: ops:SatisfiabilityCheckTask (satisfiability check task)
 
@@ -1097,7 +1185,7 @@ AnnotationAssertion(rdfs:label ops:SemanticKnowledgeManagementTask "semantic kno
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SemanticKnowledgeManagementTask "A 'semantic' knowledge management task treats artifacts and resources as a black box, but makes use of their descriptions (and the surrogates that carry them)")
 SubClassOf(ops:SemanticKnowledgeManagementTask ops:KnowledgeManagementTask)
 SubClassOf(ops:SemanticKnowledgeManagementTask ops:KnowledgeReasoningTask)
-SubClassOf(ops:SemanticKnowledgeManagementTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResourceDescription)))
+SubClassOf(ops:SemanticKnowledgeManagementTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeResourceDescription>)))
 
 # Class: ops:SeparationTask (separation task)
 
@@ -1105,8 +1193,8 @@ AnnotationAssertion(rdfs:comment ops:SeparationTask "Conceptually equivalent to 
 AnnotationAssertion(rdfs:label ops:SeparationTask "separation task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SeparationTask "The act of breaking a (deconstructable) knowledge resource into its component, which are returned as individual resources")
 SubClassOf(ops:SeparationTask ops:KnowledgeResourceWeavingTask)
-SubClassOf(ops:SeparationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:DeconstructableKnowledgeResource))))
-SubClassOf(ops:SeparationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectMinCardinality(2 ops:filled-by know:KnowledgeResource))))
+SubClassOf(ops:SeparationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/DeconstructableKnowledgeResource>))))
+SubClassOf(ops:SeparationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectMinCardinality(2 ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource>))))
 
 # Class: ops:SerializationTask (serialization task)
 
@@ -1119,16 +1207,16 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:Seriali
 SubClassOf(ops:SerializationTask ops:AtomicKnowledgeProcessingTask)
 SubClassOf(ops:SerializationTask ops:LoweringTask)
 SubClassOf(ops:SerializationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by <http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))))
-SubClassOf(ops:SerializationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:AbstractExpression))))
-SubClassOf(ops:SerializationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
-SubClassOf(ops:SerializationTask ObjectSomeValuesFrom(know:based-on ObjectIntersectionOf(ObjectSomeValuesFrom(know:preserves know:AbstractSyntax) ObjectSomeValuesFrom(know:uses-concept <http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))))
+SubClassOf(ops:SerializationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/AbstractExpression>))))
+SubClassOf(ops:SerializationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/ConcreteExpression>))))
+SubClassOf(ops:SerializationTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> ObjectIntersectionOf(ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/preserves> <https://www.omg.org/spec/API4KP/api4kp/AbstractSyntax>) ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/uses-concept> <http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))))
 
 # Class: ops:SeriesManagementTask (series management task)
 
 AnnotationAssertion(rdfs:label ops:SeriesManagementTask "series management task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SeriesManagementTask "Tasks dealing with the management 'series' of temporally and version related knowledge endeavors")
 SubClassOf(ops:SeriesManagementTask ops:KnowledgeManagementTask)
-SubClassOf(ops:SeriesManagementTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by know:VersionedIdentifier)))
+SubClassOf(ops:SeriesManagementTask ObjectSomeValuesFrom(ops:has-role ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/VersionedIdentifier>)))
 
 # Class: ops:SimplificationTask (simplification task)
 
@@ -1150,9 +1238,9 @@ AnnotationAssertion(rdfs:label ops:SnapshotTask "snapshot task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SnapshotTask "task that, when executed, makes an exact, immutable copy of a knowledge endeavor (expression or artifact), and assigns the result a versioned identifier")
 SubClassOf(ops:SnapshotTask ops:AtomicKnowledgeProcessingTask)
 SubClassOf(ops:SnapshotTask ops:SeriesManagementTask)
-SubClassOf(ops:SnapshotTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Output ObjectSomeValuesFrom(ops:filled-by know:VersionedIdentifier))))
-SubClassOf(ops:SnapshotTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeEndeavour))))
-SubClassOf(ops:SnapshotTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/KR/ImmutableEntity> know:KnowledgeEndeavour)))))
+SubClassOf(ops:SnapshotTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Output ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/VersionedIdentifier>))))
+SubClassOf(ops:SnapshotTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeEndeavour>))))
+SubClassOf(ops:SnapshotTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by ObjectIntersectionOf(<http://www.omg.org/spec/API4KP/KR/ImmutableEntity> <https://www.omg.org/spec/API4KP/api4kp/KnowledgeEndeavour>)))))
 
 # Class: ops:StoreArtifactAtLocationTask (store artifact at location task)
 
@@ -1163,7 +1251,13 @@ AnnotationAssertion(<http://www.omg.org/spec/API4KP/Aspects/has-aspect> ops:Stor
 AnnotationAssertion(rdfs:label ops:StoreArtifactAtLocationTask "store artifact at location task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:StoreArtifactAtLocationTask "ensures that an artifact is available at a given location")
 SubClassOf(ops:StoreArtifactAtLocationTask ops:InternalRepositoryTask)
-SubClassOf(ops:StoreArtifactAtLocationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeArtifact))))
+SubClassOf(ops:StoreArtifactAtLocationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact>))))
+
+# Class: ops:SubsumptionTask (subsumption task)
+
+AnnotationAssertion(rdfs:comment ops:SubsumptionTask "given two concepts, determines whether one is necessarily broader than the other")
+AnnotationAssertion(rdfs:label ops:SubsumptionTask "subsumption task")
+SubClassOf(ops:SubsumptionTask ops:LogicBasedReasoningTask)
 
 # Class: ops:SummarizationTask (summarization task)
 
@@ -1181,18 +1275,18 @@ AnnotationAssertion(rdfs:label ops:SyntacticAnalysisTask "syntactic analysis tas
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SyntacticAnalysisTask "the act of deriving an AST from a parse tree")
 SubClassOf(ops:SyntacticAnalysisTask ops:AtomicKnowledgeProcessingTask)
 SubClassOf(ops:SyntacticAnalysisTask ops:LiftingTask)
-SubClassOf(ops:SyntacticAnalysisTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ParseTree))))
-SubClassOf(ops:SyntacticAnalysisTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:AbstractSyntaxTree))))
-SubClassOf(ops:SyntacticAnalysisTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:AbstractSyntax)))
+SubClassOf(ops:SyntacticAnalysisTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/ParseTree>))))
+SubClassOf(ops:SyntacticAnalysisTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/AbstractSyntaxTree>))))
+SubClassOf(ops:SyntacticAnalysisTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/preserves> <https://www.omg.org/spec/API4KP/api4kp/AbstractSyntax>)))
 
 # Class: ops:SyntacticKnowledgeProcessingTask (syntactic knowledge processing task)
 
 AnnotationAssertion(rdfs:label ops:SyntacticKnowledgeProcessingTask "syntactic knowledge processing task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SyntacticKnowledgeProcessingTask "a task that is based on methods that only leverage the syntactic aspects of a knowledge resource, but not its semantic and pragmatic ones")
 SubClassOf(ops:SyntacticKnowledgeProcessingTask ops:KnowledgeManipulationTask)
-SubClassOf(ops:SyntacticKnowledgeProcessingTask ObjectSomeValuesFrom(know:based-on ObjectIntersectionOf(ObjectSomeValuesFrom(know:preserves know:WorkOfKnowledge) ObjectSomeValuesFrom(know:uses-concept know:Language))))
-SubClassOf(ops:SyntacticKnowledgeProcessingTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:WorkOfKnowledge)))
-SubClassOf(ops:SyntacticKnowledgeProcessingTask ObjectAllValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:WorkOfKnowledge)))
+SubClassOf(ops:SyntacticKnowledgeProcessingTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> ObjectIntersectionOf(ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/preserves> <https://www.omg.org/spec/API4KP/api4kp/WorkOfKnowledge>) ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/uses-concept> <https://www.omg.org/spec/API4KP/api4kp/Language>))))
+SubClassOf(ops:SyntacticKnowledgeProcessingTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/preserves> <https://www.omg.org/spec/API4KP/api4kp/WorkOfKnowledge>)))
+SubClassOf(ops:SyntacticKnowledgeProcessingTask ObjectAllValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/preserves> <https://www.omg.org/spec/API4KP/api4kp/WorkOfKnowledge>)))
 
 # Class: ops:SyntacticParaphraseTask (syntactic paraphrase task)
 
@@ -1215,9 +1309,9 @@ AnnotationAssertion(rdfs:label ops:SyntacticParsingTask "syntactic parsing task"
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SyntacticParsingTask "the act of creating a parse tree from a concrete knowledge expression. scanning and tokenization are considered sub-atomic parts of this task")
 SubClassOf(ops:SyntacticParsingTask ops:AtomicKnowledgeProcessingTask)
 SubClassOf(ops:SyntacticParsingTask ops:LiftingTask)
-SubClassOf(ops:SyntacticParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
-SubClassOf(ops:SyntacticParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:ParseTree))))
-SubClassOf(ops:SyntacticParsingTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:preserves know:Serialization)))
+SubClassOf(ops:SyntacticParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/ConcreteExpression>))))
+SubClassOf(ops:SyntacticParsingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/ParseTree>))))
+SubClassOf(ops:SyntacticParsingTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/preserves> <https://www.omg.org/spec/API4KP/api4kp/Serialization>)))
 
 # Class: ops:SyntacticTranscriptionTask (syntactic transcription task)
 
@@ -1228,7 +1322,7 @@ AnnotationAssertion(rdfs:label ops:SyntacticTranscriptionTask "syntactic transcr
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SyntacticTranscriptionTask "transcription purely based on syntactic criteria")
 SubClassOf(ops:SyntacticTranscriptionTask ops:SyntacticKnowledgeProcessingTask)
 SubClassOf(ops:SyntacticTranscriptionTask ops:TranscriptionTask)
-SubClassOf(ops:SyntacticTranscriptionTask ObjectAllValuesFrom(know:based-on ObjectIntersectionOf(DOL:LanguageMapping ObjectExactCardinality(1 know:uses-concept know:Language) ObjectExactCardinality(2 know:uses-concept <http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))))
+SubClassOf(ops:SyntacticTranscriptionTask ObjectAllValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> ObjectIntersectionOf(DOL:LanguageMapping ObjectExactCardinality(1 <https://www.omg.org/spec/API4KP/api4kp/uses-concept> <https://www.omg.org/spec/API4KP/api4kp/Language>) ObjectExactCardinality(2 <https://www.omg.org/spec/API4KP/api4kp/uses-concept> <http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))))
 
 # Class: ops:SyntacticTranslationTask (syntactic translation task)
 
@@ -1236,32 +1330,7 @@ AnnotationAssertion(rdfs:label ops:SyntacticTranslationTask "syntactic translati
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:SyntacticTranslationTask "A translation task based merely on syntactic methods")
 SubClassOf(ops:SyntacticTranslationTask ops:SyntacticKnowledgeProcessingTask)
 SubClassOf(ops:SyntacticTranslationTask ops:TranslationTask)
-SubClassOf(ops:SyntacticTranslationTask ObjectAllValuesFrom(know:based-on ObjectIntersectionOf(DOL:LanguageMapping ObjectExactCardinality(2 know:uses-concept know:Language))))
-
-# Class: ops:TODOTODO_ClassificationTask (ops:TODOTODO_ClassificationTask)
-
-SubClassOf(ops:TODOTODO_ClassificationTask ops:LogicBasedReasoningTask)
-
-# Class: ops:TODOTODO_ClosureTask (ops:TODOTODO_ClosureTask)
-
-SubClassOf(ops:TODOTODO_ClosureTask ops:FusionTask)
-
-# Class: ops:TODOTODO_DependencyOrganizationTask (ops:TODOTODO_DependencyOrganizationTask)
-
-SubClassOf(ops:TODOTODO_DependencyOrganizationTask ops:KnowledgeResourceCompositionTask)
-
-# Class: ops:TODOTODO_Diffing_Lexical_and_Logical (ops:TODOTODO_Diffing_Lexical_and_Logical)
-
-SubClassOf(ops:TODOTODO_Diffing_Lexical_and_Logical ops:KnowledgeAnalyticTask)
-
-# Class: ops:TODOTODO_KnowledgeResourceAssemblyTask (ops:TODOTODO_KnowledgeResourceAssemblyTask)
-
-AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#note> ops:TODOTODO_KnowledgeResourceAssemblyTask "The generation of a single, self-contained, complex Knowledge Resource that expresses the same work as a Composite Knowledge Resource. The implicit version of this operation is more specifically called ‘merging’, while the explicit one is called ‘flattening’")
-SubClassOf(ops:TODOTODO_KnowledgeResourceAssemblyTask ops:KnowledgeResourceWeavingTask)
-
-# Class: ops:TODOTODO_SubsumptionTask (ops:TODOTODO_SubsumptionTask)
-
-SubClassOf(ops:TODOTODO_SubsumptionTask ops:LogicBasedReasoningTask)
+SubClassOf(ops:SyntacticTranslationTask ObjectAllValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> ObjectIntersectionOf(DOL:LanguageMapping ObjectExactCardinality(2 <https://www.omg.org/spec/API4KP/api4kp/uses-concept> <https://www.omg.org/spec/API4KP/api4kp/Language>))))
 
 # Class: ops:TranscreationTask (transcreation task)
 
@@ -1270,8 +1339,8 @@ AnnotationAssertion(rdfs:comment ops:TranscreationTask "Unlike translations, tra
 AnnotationAssertion(rdfs:label ops:TranscreationTask "transcreation task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:TranscreationTask "complex transformation that alters the semantics and pragmatics of a work of knowledge")
 SubClassOf(ops:TranscreationTask ops:KnowledgeReshapingTask)
-SubClassOf(ops:TranscreationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResource))))
-SubClassOf(ops:TranscreationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeResource))))
+SubClassOf(ops:TranscreationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource>))))
+SubClassOf(ops:TranscreationTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource>))))
 
 # Class: ops:TranscriptionTask (transcription task)
 
@@ -1282,7 +1351,7 @@ AnnotationAssertion(rdfs:label ops:TranscriptionTask "transcription task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:TranscriptionTask "The act of creating a different serialization of a concrete expression in a given language.
 The target serialization must be supported by the language")
 SubClassOf(ops:TranscriptionTask ops:HorizontalKnowledgeProcessingTask)
-SubClassOf(ops:TranscriptionTask ObjectSomeValuesFrom(know:based-on ObjectIntersectionOf(ObjectExactCardinality(1 know:uses-concept know:Language) ObjectExactCardinality(2 know:uses-concept <http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))))
+SubClassOf(ops:TranscriptionTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> ObjectIntersectionOf(ObjectExactCardinality(1 <https://www.omg.org/spec/API4KP/api4kp/uses-concept> <https://www.omg.org/spec/API4KP/api4kp/Language>) ObjectExactCardinality(2 <https://www.omg.org/spec/API4KP/api4kp/uses-concept> <http://www.omg.org/spec/API4KP/KR/KnowledgeSerialization>))))
 
 # Class: ops:TranslationTask (translation task)
 
@@ -1293,7 +1362,7 @@ AnnotationAssertion(rdfs:label ops:TranslationTask "translation task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:TranslationTask "The act of creating a different expression of a work of knowledge in a given language.
 Translations are exact, requiring not only to use a method that actually preserves the meaning, but also that the target language is expressive enough.")
 SubClassOf(ops:TranslationTask ops:HorizontalKnowledgeProcessingTask)
-SubClassOf(ops:TranslationTask ObjectSomeValuesFrom(know:based-on ObjectIntersectionOf(DOL:LanguageMapping ObjectExactCardinality(2 know:uses-concept know:Language))))
+SubClassOf(ops:TranslationTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> ObjectIntersectionOf(DOL:LanguageMapping ObjectExactCardinality(2 <https://www.omg.org/spec/API4KP/api4kp/uses-concept> <https://www.omg.org/spec/API4KP/api4kp/Language>))))
 
 # Class: ops:UnionTask (union task)
 
@@ -1307,8 +1376,8 @@ AnnotationAssertion(rdfs:comment ops:VerticalKnowledgeProcessingTask "task that,
 AnnotationAssertion(rdfs:label ops:VerticalKnowledgeProcessingTask "vertical knowledge processing task")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:VerticalKnowledgeProcessingTask "task that produces endevavors at higher or lower level of abstraction along the \"artifact - encoding - concrete - abstract - work\" chain")
 SubClassOf(ops:VerticalKnowledgeProcessingTask ops:SyntacticKnowledgeProcessingTask)
-SubClassOf(ops:VerticalKnowledgeProcessingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeEndeavour))))
-SubClassOf(ops:VerticalKnowledgeProcessingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Product ObjectSomeValuesFrom(ops:filled-by know:KnowledgeEndeavour))))
+SubClassOf(ops:VerticalKnowledgeProcessingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeEndeavour>))))
+SubClassOf(ops:VerticalKnowledgeProcessingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Product ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeEndeavour>))))
 
 # Class: ops:WellFormednessCheckTask (well-formedness check task)
 
@@ -1319,10 +1388,10 @@ AnnotationAssertion(rdfs:label ops:WellFormednessCheckTask "well-formedness chec
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:WellFormednessCheckTask "the act of checking whether a knowledge expression is a valid sentence according to the syntax - abstract and/or concrete - of some language, or profile thereof.")
 SubClassOf(ops:WellFormednessCheckTask ops:ComplexKnowledgeProcessingTask)
 SubClassOf(ops:WellFormednessCheckTask ops:KnowledgeAnalyticTask)
-SubClassOf(ops:WellFormednessCheckTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by know:Language))))
-SubClassOf(ops:WellFormednessCheckTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:ConcreteExpression))))
+SubClassOf(ops:WellFormednessCheckTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:Input ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/Language>))))
+SubClassOf(ops:WellFormednessCheckTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/ConcreteExpression>))))
 SubClassOf(ops:WellFormednessCheckTask ObjectSomeValuesFrom(ops:has-subtask ops:ParsingTask))
-SubClassOf(ops:WellFormednessCheckTask ObjectSomeValuesFrom(know:based-on ObjectSomeValuesFrom(know:uses-concept ObjectIntersectionOf(know:Language ObjectSomeValuesFrom(know:defined-by know:Syntax)))))
+SubClassOf(ops:WellFormednessCheckTask ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/based-on> ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/uses-concept> ObjectIntersectionOf(<https://www.omg.org/spec/API4KP/api4kp/Language> ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/defined-by> <https://www.omg.org/spec/API4KP/api4kp/Syntax>)))))
 
 # Class: ops:WriteTask (I/O write task)
 
@@ -1331,25 +1400,25 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#altLabel> ops:WriteTask
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> ops:WriteTask "The task of imprinting an encoded expression on a carrier")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#example> ops:WriteTask "writing a stream of ASCII characters to a (text) file")
 SubClassOf(ops:WriteTask ops:AtomicKnowledgeProcessingTask)
-SubClassOf(ops:WriteTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by know:EncodedKnowledgeExpression))))
-SubClassOf(ops:WriteTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by know:KnowledgeCarrier))))
+SubClassOf(ops:WriteTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryInput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/EncodedKnowledgeExpression>))))
+SubClassOf(ops:WriteTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ops:PrimaryOutput ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeCarrier>))))
 
-# Class: know:InformationProcessingTask (knowledge processing task)
+# Class: <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask> (knowledge processing task)
 
-AnnotationAssertion(rdfs:comment know:InformationProcessingTask "A knowledge processing task abstracts the role that knowledge endeavors play in a knowledge processing activity, as inputs, outputs or both")
-AnnotationAssertion(rdfs:comment know:InformationProcessingTask "Some tasks, those that are executed according to a method that has some degrees of freedom, can be configured using parameters")
-AnnotationAssertion(rdfs:comment know:InformationProcessingTask "The execution of a Knowledge Processing tasks may involve the generation of an 'explanation'")
-AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> know:InformationProcessingTask "A Knowledge Processing Task includes a Goal, i.e. a formal description of the expected situation that is the outcome of the execution of an Activity of the type defined by the Task.
+AnnotationAssertion(rdfs:comment <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask> "A knowledge processing task abstracts the role that knowledge endeavors play in a knowledge processing activity, as inputs, outputs or both")
+AnnotationAssertion(rdfs:comment <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask> "Some tasks, those that are executed according to a method that has some degrees of freedom, can be configured using parameters")
+AnnotationAssertion(rdfs:comment <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask> "The execution of a Knowledge Processing tasks may involve the generation of an 'explanation'")
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#definition> <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask> "A Knowledge Processing Task includes a Goal, i.e. a formal description of the expected situation that is the outcome of the execution of an Activity of the type defined by the Task.
 When the outcome matches the Goal - i.e. the description of the outcome is subsumed by the Goal - the activity is considered to be successful. Otherwise, it is considered to be failed")
-AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> know:InformationProcessingTask "The classes in this part of the taxonomy are scoped to knowledge endeavors. Many of them generalize to expressions and information objects that are not necessarily representation of \"knowledge\", which however are not in the scope of this ontology.
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask> "The classes in this part of the taxonomy are scoped to knowledge endeavors. Many of them generalize to expressions and information objects that are not necessarily representation of \"knowledge\", which however are not in the scope of this ontology.
 
 As such, those classes in the API4KP namespace should be considered subclasses of their more general counterparts defined in other ontologies")
-SubClassOf(know:InformationProcessingTask ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ObjectUnionOf(ops:Input ops:Output) ObjectSomeValuesFrom(ops:filled-by know:KnowledgeEndeavour))))
+SubClassOf(<https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask> ObjectSomeValuesFrom(ops:has-role ObjectIntersectionOf(ObjectUnionOf(ops:Input ops:Output) ObjectSomeValuesFrom(ops:filled-by <https://www.omg.org/spec/API4KP/api4kp/KnowledgeEndeavour>))))
 
-# Class: know:KnowledgeActivity (knowledge processing activity)
+# Class: <https://www.omg.org/spec/API4KP/api4kp/KnowledgeActivity> (knowledge processing activity)
 
-AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> know:KnowledgeActivity "Like any other Activity, an (instance of a) knowledge processing activity is a process that takes place in space and time")
-SubClassOf(know:KnowledgeActivity ObjectSomeValuesFrom(know:archetyped-by know:InformationProcessingTask))
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#scopeNote> <https://www.omg.org/spec/API4KP/api4kp/KnowledgeActivity> "Like any other Activity, an (instance of a) knowledge processing activity is a process that takes place in space and time")
+SubClassOf(<https://www.omg.org/spec/API4KP/api4kp/KnowledgeActivity> ObjectSomeValuesFrom(<https://www.omg.org/spec/API4KP/api4kp/archetyped-by> <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask>))
 
 
 SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:IdentityResolutionTask ObjectIntersectionOf(ObjectSomeValuesFrom(ops:composed-into ops:ParsingTask) ObjectSomeValuesFrom(ops:composed-into ops:RetrieveArtifactFromLocationTask)))) ops:RetrieveResourceTask)
@@ -1361,9 +1430,9 @@ SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:Know
 SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:KnowledgeResourceDeconstructionTask ObjectSomeValuesFrom(ops:composed-into ops:KnowledgeResourceDisassemblyTask))) ops:SeparationTask)
 SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:KnowledgeResourceFlatteningTask ObjectSomeValuesFrom(ops:composed-into ops:SnapshotTask))) ops:CreateWorkingKnowledgeBaseTask)
 SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:ParsingTask ObjectSomeValuesFrom(ops:composed-into ops:SerializationTask))) ops:SyntacticTranscriptionTask)
-SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:ReadTask ObjectSomeValuesFrom(ops:composed-into ObjectIntersectionOf(ops:DecodingTask ObjectSomeValuesFrom(ops:composed-into ObjectIntersectionOf(know:InformationProcessingTask ObjectSomeValuesFrom(ops:composed-into ObjectIntersectionOf(ops:EncodingTask ObjectSomeValuesFrom(ops:composed-into ops:WriteTask))))))))) ops:ClosedKnowledgeProcessingTask)
+SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:ReadTask ObjectSomeValuesFrom(ops:composed-into ObjectIntersectionOf(ops:DecodingTask ObjectSomeValuesFrom(ops:composed-into ObjectIntersectionOf(<https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask> ObjectSomeValuesFrom(ops:composed-into ObjectIntersectionOf(ops:EncodingTask ObjectSomeValuesFrom(ops:composed-into ops:WriteTask))))))))) ops:ClosedKnowledgeProcessingTask)
 SubClassOf(ObjectSomeValuesFrom(ops:commences-with ObjectIntersectionOf(ops:SyntacticParsingTask ObjectSomeValuesFrom(ops:composed-into ops:SyntacticAnalysisTask))) ops:ParsingTask)
-SubClassOf(ObjectSomeValuesFrom(ops:has-role ops:ConfigurationParameter) know:InformationProcessingTask)
-SubClassOf(ObjectSomeValuesFrom(ops:has-role ops:Explanation) know:InformationProcessingTask)
-SubObjectPropertyOf(ObjectPropertyChain(know:defined-by ops:initiated-by) ops:commences-with)
+SubClassOf(ObjectSomeValuesFrom(ops:has-role ops:ConfigurationParameter) <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask>)
+SubClassOf(ObjectSomeValuesFrom(ops:has-role ops:Explanation) <https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask>)
+SubObjectPropertyOf(ObjectPropertyChain(<https://www.omg.org/spec/API4KP/api4kp/defined-by> ops:initiated-by) ops:commences-with)
 )

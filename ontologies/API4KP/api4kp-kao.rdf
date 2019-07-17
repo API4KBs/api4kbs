@@ -1,22 +1,20 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://ontology.mayo.edu/ontology/KAO/"
-     xml:base="http://ontology.mayo.edu/ontology/KAO/"
+<rdf:RDF xmlns="https://www.omg.org/spec/API4KP/api4kp-kao/"
+     xml:base="https://www.omg.org/spec/API4KP/api4kp-kao/"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:kao="http://ontology.mayo.edu/ontology/KAO/"
+     xmlns:kao="https://www.omg.org/spec/API4KP/api4kp-kao/"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:SpecificationMetadata="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
-     xmlns:api4kp="https://www.omg.org/spec/API4KP/api4kp/"
-     xmlns:kmdo="http://ontology.mayo.edu/ontologies/20180601/KMDO/">
-    <owl:Ontology rdf:about="http://ontology.mayo.edu/ontology/KAO/">
-        <owl:versionIRI rdf:resource="http://ontology.mayo.edu/ontology/KAO/1.0"/>
+     xmlns:api4kp="https://www.omg.org/spec/API4KP/api4kp/">
+    <owl:Ontology rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/">
+        <owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/20190801/api4kp-kao"/>
         <owl:imports rdf:resource="https://www.omg.org/spec/API4KP/20190801/api4kp/"/>
-        <owl:imports rdf:resource="http://ontology.mayo.edu/ontologies/20190601/KMDO"/>
         <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
         <terms:creator>Davide Sottara (sottara.davide@mayo.edu)</terms:creator>
         <dc:title>Knowledge Asset Ontology</dc:title>
@@ -24,23 +22,7 @@
     </owl:Ontology>
     
 
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Annotation properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.w3.org/2004/02/skos/core#notation -->
-
-    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#notation"/>
-    
-
++
 
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -85,39 +67,33 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
 
 
-    <!-- http://ontology.mayo.edu/ontologies/KMDO/DomainSpecificWorkOfKnowledge -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/KMDO/DomainSpecificWorkOfKnowledge"/>
-    
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/AnnotationLanguage -->
 
-
-    <!-- http://ontology.mayo.edu/ontology/KAO/AnnotationLanguage -->
-
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/AnnotationLanguage">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/DedicatedLanguage"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/AnnotationLanguage">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/DedicatedLanguage"/>
         <rdfs:label>annotation language</rdfs:label>
         <skos:definition>language used to express &quot;meta&quot; knowledge</skos:definition>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/AssessmentModel -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/AssessmentModel -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/AssessmentModel">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/InferentialAsset"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/AssessmentModel">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/InferentialAsset"/>
         <rdfs:comment>knowledge that allows to infer an otherwise unknown or not directly observable state or situation</rdfs:comment>
         <rdfs:label>Assessment Model</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/BusinessRuleAsset -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/BusinessRuleAsset -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/BusinessRuleAsset">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/CategorizedKnowledgeAsset"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/BusinessRuleAsset">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/CategorizedKnowledgeAsset"/>
         <rdfs:comment>Assets in this category describe or specify how to limit an agent&apos;s degree of freedom, to prevent undesirable behaviors, in favor of more desirable ones.</rdfs:comment>
         <rdfs:comment>At its essence, knowledge of this kind is expressed using &quot;IF..DO..&quot; rules, usually by means of constraint-oriented languages with ECA and/or deontic aspects</rdfs:comment>
         <rdfs:label>Rule-Oriented Knowledge Asset</rdfs:label>
@@ -128,22 +104,22 @@
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/CategorizedKnowledgeAsset -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/CategorizedKnowledgeAsset -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/CategorizedKnowledgeAsset">
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/CategorizedKnowledgeAsset">
         <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeAsset"/>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/CognitiveProcessModel -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/CognitiveProcessModel -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/CognitiveProcessModel">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/ProcessAsset"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/CognitiveProcessModel">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/ProcessAsset"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-part"/>
-                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontology/KAO/DecisionModel"/>
+                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/DecisionModel"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Knowledge Asset that captures how information is processed internally by an intelligent agent</rdfs:comment>
@@ -152,30 +128,30 @@
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/CohortDefinition -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/CohortDefinition -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/CohortDefinition">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/InferentialAsset"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/CohortDefinition">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/InferentialAsset"/>
         <rdfs:comment>Definition used to classify persons into classes defined by some common characteristic</rdfs:comment>
         <rdfs:label>Cohort Definition</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/ComponentKnowledgeAsset -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/ComponentKnowledgeAsset -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/ComponentKnowledgeAsset">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/ExplicitRoleKnowledgeAsset"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/ComponentKnowledgeAsset">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/ExplicitRoleKnowledgeAsset"/>
         <rdfs:label>Component Knowledge Asset</rdfs:label>
         <skos:definition>Knowledge Asset that is part of some other (Composite) Knowledge Asset. The component may play a specific role within the broader Composite Asset</skos:definition>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/CompositeKnowledgeAsset -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/CompositeKnowledgeAsset -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/CompositeKnowledgeAsset">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/ExplicitRoleKnowledgeAsset"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/CompositeKnowledgeAsset">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/ExplicitRoleKnowledgeAsset"/>
         <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/CompositeKnowledgeResource"/>
         <rdfs:label>Composite Knowledge Asset</rdfs:label>
         <skos:definition>Knowledge Asset that has part some other Knowledge Asset</skos:definition>
@@ -183,31 +159,31 @@
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/ComputableDecisionModel -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/ComputableDecisionModel -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/ComputableDecisionModel">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/DecisionModel"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/ComputableDecisionModel">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/DecisionModel"/>
         <rdfs:comment>Decision Model that includes an explicit specification of its decision making logic, suitable to be faithfully expressed in a computable language</rdfs:comment>
         <rdfs:label>Computable Decision Model</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/ComputationalTechnique -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/ComputationalTechnique -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/ComputationalTechnique">
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/ComputationalTechnique">
         <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeProcessingTechnique"/>
-        <owl:disjointWith rdf:resource="http://ontology.mayo.edu/ontology/KAO/NaturalisticTechnique"/>
+        <owl:disjointWith rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/NaturalisticTechnique"/>
         <rdfs:label>computational technique</rdfs:label>
         <skos:definition>Technique used in some knowledge processing task method specification that can be faithfully expressed in some machine-computable language</skos:definition>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/ConceptualModel -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/ConceptualModel -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/ConceptualModel">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/SemanticAsset"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/ConceptualModel">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/SemanticAsset"/>
         <rdfs:comment>Abstraction of the structure and/or behavior of the entities in a given domain</rdfs:comment>
         <rdfs:label>Conceptual (Domain) Model</rdfs:label>
         <skos:altLabel>domain conceptualization</skos:altLabel>
@@ -215,49 +191,49 @@
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/ContextualizabledKnowledge -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/ContextualizabledKnowledge -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/ContextualizabledKnowledge">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/ConceptualModel"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/ContextualizabledKnowledge">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/ConceptualModel"/>
         <rdfs:comment>Conceptual Work of Knowledge that has been adapted for a given context</rdfs:comment>
         <rdfs:label>Contextualizable Knowledge</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/DecisionMakingTask -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/DecisionMakingTask -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/DecisionMakingTask">
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/DecisionMakingTask">
         <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/InformationProcessingTask"/>
         <rdfs:label>decision making task</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/DecisionModel -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/DecisionModel -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/DecisionModel">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/AssessmentModel"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/DecisionModel">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/AssessmentModel"/>
         <rdfs:comment>Assessment that can be abstracted by means of a question, which requires to select one out of a set of admissible options</rdfs:comment>
         <rdfs:label>Decision Model</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/DecisionTaskModel -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/DecisionTaskModel -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/DecisionTaskModel">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/CognitiveProcessModel"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/DecisionTaskModel">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/CognitiveProcessModel"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/defines"/>
-                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontology/KAO/DecisionMakingTask"/>
+                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/DecisionMakingTask"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/part-of"/>
-                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontology/KAO/CognitiveProcessModel"/>
+                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/CognitiveProcessModel"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Model of who, when, where and why a Decision is made, usually as part of a broader process. Also known as Decision Making Process Model, usually includes a Decision Model that specifies how to actually choose the optimal option</rdfs:comment>
@@ -266,9 +242,9 @@
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/DedicatedLanguage -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/DedicatedLanguage -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/DedicatedLanguage">
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/DedicatedLanguage">
         <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/ConstructedLanguage"/>
         <rdfs:label>Dedicated Language</rdfs:label>
         <skos:definition>Language that has been designed specifically, and thus can be used, to faithfully express certain categories of works of knowledge, i.e. language that is known to provide constructs for some of the concepts that are expected (implied) by the type of knowledge being expressed</skos:definition>
@@ -278,40 +254,30 @@
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/DocumentationTemplate -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/DocumentationTemplate -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/DocumentationTemplate">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/InformationAsset"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/DocumentationTemplate">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/InformationAsset"/>
         <rdfs:comment>An organized collection of determinable concepts, possibly associated to questions, which are meant to be resolved in a particular context</rdfs:comment>
         <rdfs:label>Documentation Template</rdfs:label>
         <skos:scopeNote>more general than questionnaires, whose questions are meant to be answered by a human agent (possibly with computer aid), documentation templates can be used  by software agents as well</skos:scopeNote>
     </owl:Class>
-    
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/DomainSpecificKnowledgeAsset -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/DomainSpecificKnowledgeAsset">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/KMDO/DomainSpecificWorkOfKnowledge"/>
-        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeAsset"/>
-        <rdfs:label>domain-specific knowledge asset</rdfs:label>
-    </owl:Class>
-    
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/Equation -->
 
-
-    <!-- http://ontology.mayo.edu/ontology/KAO/Equation -->
-
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/Equation">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/FunctionalExpression"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/Equation">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/FunctionalExpression"/>
         <rdfs:comment>A functional expression, defined in terms of two functional expressions connected by means of the well known equality operator.</rdfs:comment>
         <rdfs:label>Equation</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/ExplicitRoleKnowledgeAsset -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/ExplicitRoleKnowledgeAsset -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/ExplicitRoleKnowledgeAsset">
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/ExplicitRoleKnowledgeAsset">
         <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeAsset"/>
         <rdfs:comment>Asset that is necessarily related to some entity, which has a specific type itself</rdfs:comment>
         <rdfs:label>Explicit Role Knowledge Asset</rdfs:label>
@@ -319,20 +285,20 @@
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/ExpressionLanguage -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/ExpressionLanguage -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/ExpressionLanguage">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/DedicatedLanguage"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/ExpressionLanguage">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/DedicatedLanguage"/>
         <rdfs:label>expression language</rdfs:label>
         <skos:definition>language used to express functional derivations</skos:definition>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/FactualKnowledge -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/FactualKnowledge -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/FactualKnowledge">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/ConceptualModel"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/FactualKnowledge">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/ConceptualModel"/>
         <rdfs:comment>Facts are suitable to be asserted</rdfs:comment>
         <rdfs:comment>Knowledge that is held to be a faithful conceptualization of the state of affairs in a given domain by all agents that share (and understand) it.</rdfs:comment>
         <rdfs:label>Factual Knowledge</rdfs:label>
@@ -340,20 +306,20 @@
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/FormalOntology -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/FormalOntology -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/FormalOntology">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/ConceptualModel"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/FormalOntology">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/ConceptualModel"/>
         <rdfs:comment>conceptual model that is based on formal principles, such as that allow to make inferences and/or verify the consistency of the model</rdfs:comment>
         <rdfs:label>Formal Ontology</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/FunctionalExpression -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/FunctionalExpression -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/FunctionalExpression">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/AssessmentModel"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/FunctionalExpression">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/AssessmentModel"/>
         <rdfs:comment>Knowledge about the application of well-known information processing methods, possibly chained together, which are stateless, functional and idempotent in nature.</rdfs:comment>
         <rdfs:label>Functional Expression</rdfs:label>
         <skos:example>&apos;mass&apos; times the square of the speed of light</skos:example>
@@ -361,10 +327,10 @@
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/InferentialAsset -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/InferentialAsset -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/InferentialAsset">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/CategorizedKnowledgeAsset"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/InferentialAsset">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/CategorizedKnowledgeAsset"/>
         <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Definition"/>
         <rdfs:comment>When qualitiative, knowledge of this kind can be generally abstracted by means of &quot;if..then..&quot; rules (or analogous formalisms). The quantitative counterpart is expressed by means of mathematical formulas. 
 
@@ -384,31 +350,31 @@ b) Clinical or health-related scoring formulas for the purposes of predicting or
 c) Associations, Correlations and Causal Relationships between phenomena, some of which may not be directly observable</skos:scopeNote>
     </owl:Class>
     <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://ontology.mayo.edu/ontology/KAO/InferentialAsset"/>
+        <owl:annotatedSource rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/InferentialAsset"/>
         <owl:annotatedProperty rdf:resource="http://www.w3.org/2004/02/skos/core#example"/>
         <owl:annotatedTarget>A BMI Calculator</owl:annotatedTarget>
         <rdfs:seeAlso rdf:resource="https://clinicalknowledgemanagement.mayo.edu/mayo-clinic-rules-catalog/asset/assessment-tool/LNK-20146551"/>
     </owl:Axiom>
     <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://ontology.mayo.edu/ontology/KAO/InferentialAsset"/>
+        <owl:annotatedSource rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/InferentialAsset"/>
         <owl:annotatedProperty rdf:resource="http://www.w3.org/2004/02/skos/core#example"/>
         <owl:annotatedTarget xml:lang="en">A FRAX Fracture Risk Score Calculator</owl:annotatedTarget>
         <rdfs:seeAlso rdf:resource="https://clinicalknowledgemanagement.mayo.edu/mayo-clinic-rules-catalog/asset/assessment-tool/LNK-20147628"/>
     </owl:Axiom>
     <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://ontology.mayo.edu/ontology/KAO/InferentialAsset"/>
+        <owl:annotatedSource rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/InferentialAsset"/>
         <owl:annotatedProperty rdf:resource="http://www.w3.org/2004/02/skos/core#example"/>
         <owl:annotatedTarget xml:lang="en">A Pain assessment scale</owl:annotatedTarget>
         <rdfs:seeAlso rdf:resource="https://clinicalknowledgemanagement.mayo.edu/mayo-clinic-rules-catalog/asset/km-asset/KAT-20381849"/>
     </owl:Axiom>
     <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://ontology.mayo.edu/ontology/KAO/InferentialAsset"/>
+        <owl:annotatedSource rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/InferentialAsset"/>
         <owl:annotatedProperty rdf:resource="http://www.w3.org/2004/02/skos/core#example"/>
         <owl:annotatedTarget xml:lang="en">The Cockcroft-Gault equation</owl:annotatedTarget>
         <rdfs:seeAlso rdf:resource="https://clinicalknowledgemanagement.mayo.edu/mayo-clinic-rules-catalog/asset/km-asset/KAT-20359526"/>
     </owl:Axiom>
     <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://ontology.mayo.edu/ontology/KAO/InferentialAsset"/>
+        <owl:annotatedSource rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/InferentialAsset"/>
         <owl:annotatedProperty rdf:resource="http://www.w3.org/2004/02/skos/core#example"/>
         <owl:annotatedTarget xml:lang="en">The Scoring Model used to calculate the CHA2DS2-VASc score</owl:annotatedTarget>
         <rdfs:seeAlso rdf:resource="https://clinicalknowledgemanagement.mayo.edu/mayo-clinic-rules-catalog/asset/km-asset/KAT-20359512"/>
@@ -416,10 +382,10 @@ c) Associations, Correlations and Causal Relationships between phenomena, some o
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/InformationAsset -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/InformationAsset -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/InformationAsset">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/CategorizedKnowledgeAsset"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/InformationAsset">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/CategorizedKnowledgeAsset"/>
         <rdfs:label>Information-Oriented Knowledge Asset</rdfs:label>
         <skos:definition>Knowledge about how to acquire, represent, organize, store and distribute data, about some domain of interest, using structured formats.</skos:definition>
         <skos:example>A logical information model for the documentation of a Blood Pressure test panel, such that it could be expressed by means of a CIMI model</skos:example>
@@ -429,13 +395,13 @@ c) Associations, Correlations and Causal Relationships between phenomena, some o
         <skos:scopeNote>This category includes assets whose manifestations are meant to be used during the entire lifecycle, including documentation templates and questionnaires (acquisition), as well as logical information models and schemas (storage) and messaging models used for data sharing and interoperability.</skos:scopeNote>
     </owl:Class>
     <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://ontology.mayo.edu/ontology/KAO/InformationAsset"/>
+        <owl:annotatedSource rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/InformationAsset"/>
         <owl:annotatedProperty rdf:resource="http://www.w3.org/2004/02/skos/core#example"/>
         <owl:annotatedTarget>A pediatric documentation template, such that it could be manifested in a digital, interactive, form-based data acquisition tool</owl:annotatedTarget>
         <rdfs:seeAlso>https://healthit.ahrq.gov/health-it-tools-and-resources/pediatric-resources/pediatric-documentation-templates/pediatric-asthma-template</rdfs:seeAlso>
     </owl:Axiom>
     <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://ontology.mayo.edu/ontology/KAO/InformationAsset"/>
+        <owl:annotatedSource rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/InformationAsset"/>
         <owl:annotatedProperty rdf:resource="http://www.w3.org/2004/02/skos/core#example"/>
         <owl:annotatedTarget>A logical information model for the documentation of a Blood Pressure test panel, such that it could be expressed by means of a CIMI model</owl:annotatedTarget>
         <rdfs:seeAlso rdf:resource="http://www.clinicalelement.com/cimi-browser/#/20180124/CIMI/CIMI-CORE-CompoundClinicalStatement.blood_pressure_panel.v1.0.0"/>
@@ -443,10 +409,10 @@ c) Associations, Correlations and Causal Relationships between phenomena, some o
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/InformationModel -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/InformationModel -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/InformationModel">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/InformationAsset"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/InformationModel">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/InformationAsset"/>
         <rdfs:comment>(Meta) model that defines which information should be captured about some kind of domain</rdfs:comment>
         <rdfs:label>Information Model</rdfs:label>
         <skos:altLabel>logical data model</skos:altLabel>
@@ -454,30 +420,30 @@ c) Associations, Correlations and Causal Relationships between phenomena, some o
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/InquirySpecification -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/InquirySpecification -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/InquirySpecification">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/ProcessAsset"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/InquirySpecification">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/ProcessAsset"/>
         <rdfs:comment>The definition of how (and possibly when and where) to ask a question, following some kind of protocol, for the purpose of receiving a specific answer, with the goal of gaining information in the process</rdfs:comment>
         <rdfs:label>Inquiry Specification</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/InteractiveTechnique -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/InteractiveTechnique -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/InteractiveTechnique">
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/InteractiveTechnique">
         <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeProcessingTechnique"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-part"/>
-                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontology/KAO/ComputationalTechnique"/>
+                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/ComputationalTechnique"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-part"/>
-                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontology/KAO/NaturalisticTechnique"/>
+                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/NaturalisticTechnique"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label>HCI interactive technique</rdfs:label>
@@ -486,20 +452,20 @@ c) Associations, Correlations and Causal Relationships between phenomena, some o
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/LogicBasedTechnique -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/LogicBasedTechnique -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/LogicBasedTechnique">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/QualitativeTechnique"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/LogicBasedTechnique">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/QualitativeTechnique"/>
         <rdfs:comment>Technique based on formal logic</rdfs:comment>
         <rdfs:label>logic based technique</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/MetricAsset -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/MetricAsset -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/MetricAsset">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/CategorizedKnowledgeAsset"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/MetricAsset">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/CategorizedKnowledgeAsset"/>
         <rdfs:comment>Knowledge of this kind usually builds directly on Assessment Models (for the quantification) and Process Models (to relate the measures to the processes and their goals).</rdfs:comment>
         <rdfs:isDefinedBy>http://ontology.mayo.edu/ontology/KAO</rdfs:isDefinedBy>
         <rdfs:label>Metric-Oriented Knowledge Asset</rdfs:label>
@@ -510,29 +476,29 @@ c) Associations, Correlations and Causal Relationships between phenomena, some o
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/MultiAgentDecisionTaskModel -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/MultiAgentDecisionTaskModel -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/MultiAgentDecisionTaskModel">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/DecisionTaskModel"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/MultiAgentDecisionTaskModel">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/DecisionTaskModel"/>
         <rdfs:comment>Decision Task Model that requires the participation of two or more agents</rdfs:comment>
         <rdfs:label>Multi-Agent Decision Task Model</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/NLPTechnique -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/NLPTechnique -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/NLPTechnique">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/ComputationalTechnique"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/NLPTechnique">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/ComputationalTechnique"/>
         <rdfs:label>natural language processing technique</rdfs:label>
         <skos:definition>Computational Technique based on computations applied to expressions in natural language</skos:definition>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/NaturalisticTechnique -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/NaturalisticTechnique -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/NaturalisticTechnique">
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/NaturalisticTechnique">
         <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeProcessingTechnique"/>
         <rdfs:comment>I.e. technique such that a computer would not be able to apply it, and achieve the goal of a task executed (following a method) using this technique</rdfs:comment>
         <rdfs:label>naturalistic technique</rdfs:label>
@@ -541,20 +507,20 @@ c) Associations, Correlations and Causal Relationships between phenomena, some o
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/OntologyLanguage -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/OntologyLanguage -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/OntologyLanguage">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/DedicatedLanguage"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/OntologyLanguage">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/DedicatedLanguage"/>
         <rdfs:label>ontology language</rdfs:label>
         <skos:definition>Language used to express ontological Knowledge</skos:definition>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/OperationalConceptDefinition -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/OperationalConceptDefinition -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/OperationalConceptDefinition">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/ExplicitRoleKnowledgeAsset"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/OperationalConceptDefinition">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/ExplicitRoleKnowledgeAsset"/>
         <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/ConstructiveDefinition"/>
         <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeProcessingMethodSpecification"/>
         <rdfs:subClassOf>
@@ -570,20 +536,20 @@ Some definitions have conditional applicability, limiting the class of situation
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/PredictiveModel -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/PredictiveModel -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/PredictiveModel">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/AssessmentModel"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/PredictiveModel">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/AssessmentModel"/>
         <rdfs:comment>assessment of some state that is unobservable due to being in the future</rdfs:comment>
         <rdfs:label>Predictive Model</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/ProcessAsset -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/ProcessAsset -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/ProcessAsset">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/CategorizedKnowledgeAsset"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/ProcessAsset">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/CategorizedKnowledgeAsset"/>
         <rdfs:comment>Specifications can be imperative (define what to do) or adaptive (define what not to do), depending on how many degrees of freedom are left to an agent</rdfs:comment>
         <rdfs:comment>The knowledge pertains specifically to the orchestration of the activities in relation to the goals, but usually relies on more ontologic, foundational definitions of the tasks to be performed as part of the process (as well as their related participants, roles, resources, etc.)</rdfs:comment>
         <rdfs:label>Process-Oriented Knowledge Asset</rdfs:label>
@@ -594,10 +560,10 @@ Some definitions have conditional applicability, limiting the class of situation
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/Protocol -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/Protocol -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/Protocol">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/ProcessAsset"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/Protocol">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/ProcessAsset"/>
         <rdfs:comment>A shared, endorsed, justified, imperative specification of the expected behavior of one or more agents in a specific situation</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://ontology.mayo.edu/ontology/KAO"/>
         <rdfs:label>Protocol</rdfs:label>
@@ -605,10 +571,10 @@ Some definitions have conditional applicability, limiting the class of situation
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/QualitativeTechnique -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/QualitativeTechnique -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/QualitativeTechnique">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/ComputationalTechnique"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/QualitativeTechnique">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/ComputationalTechnique"/>
         <rdfs:label>qualitative computational technique</rdfs:label>
         <skos:altLabel>Symbolic Technique</skos:altLabel>
         <skos:definition>Computational Technique based on symbolic and/or logic-based principles</skos:definition>
@@ -616,10 +582,10 @@ Some definitions have conditional applicability, limiting the class of situation
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/QuantitativeTechnique -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/QuantitativeTechnique -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/QuantitativeTechnique">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/ComputationalTechnique"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/QuantitativeTechnique">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/ComputationalTechnique"/>
         <rdfs:label>quantitative computational technique</rdfs:label>
         <skos:altLabel>Subsymbolic Technique</skos:altLabel>
         <skos:definition>Computational Technique that is based on mathematical, statistical and/or numerical principles</skos:definition>
@@ -627,19 +593,19 @@ Some definitions have conditional applicability, limiting the class of situation
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/QueryLanguage -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/QueryLanguage -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/QueryLanguage">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/DedicatedLanguage"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/QueryLanguage">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/DedicatedLanguage"/>
         <rdfs:label>query language</rdfs:label>
         <skos:definition>language used to express queries</skos:definition>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/QueryTechnique -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/QueryTechnique -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/QueryTechnique">
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/QueryTechnique">
         <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeProcessingTechnique"/>
         <rdfs:label>query based technique</rdfs:label>
         <skos:definition>Technique that involves requesting another agent to actually perform the task, from which the products can be obtained</skos:definition>
@@ -647,10 +613,10 @@ Some definitions have conditional applicability, limiting the class of situation
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/Questionnaire -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/Questionnaire -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/Questionnaire">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/DocumentationTemplate"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/Questionnaire">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/DocumentationTemplate"/>
         <rdfs:comment xml:lang="en">An organized collection of questions intended to solicit information from patients, providers or other individuals in the healthcare domain</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://ontology.mayo.edu/ontology/KAO"/>
         <rdfs:label xml:lang="en">Questionnaire</rdfs:label>
@@ -658,7 +624,7 @@ Some definitions have conditional applicability, limiting the class of situation
         <skos:prefLabel xml:lang="en">Questionnaire</skos:prefLabel>
     </owl:Class>
     <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://ontology.mayo.edu/ontology/KAO/Questionnaire"/>
+        <owl:annotatedSource rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/Questionnaire"/>
         <owl:annotatedProperty rdf:resource="http://www.w3.org/2004/02/skos/core#example"/>
         <owl:annotatedTarget xml:lang="en">First Visit Questionnaire</owl:annotatedTarget>
         <rdfs:seeAlso rdf:resource="http://mayoweb.mayo.edu/sp-forms/mc20600-mc20699/mchs20617.pdf"/>
@@ -666,30 +632,30 @@ Some definitions have conditional applicability, limiting the class of situation
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/RuleLanguage -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/RuleLanguage -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/RuleLanguage">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/DedicatedLanguage"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/RuleLanguage">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/DedicatedLanguage"/>
         <rdfs:label>rule language</rdfs:label>
         <skos:definition>Language used in the expression of (business) formal rules</skos:definition>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/SchemaLanguage -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/SchemaLanguage -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/SchemaLanguage">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/DedicatedLanguage"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/SchemaLanguage">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/DedicatedLanguage"/>
         <rdfs:label>schema language</rdfs:label>
         <skos:definition>Language used for data and information (meta)modeling</skos:definition>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/SemanticAsset -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/SemanticAsset -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/SemanticAsset">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/CategorizedKnowledgeAsset"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/SemanticAsset">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/CategorizedKnowledgeAsset"/>
         <rdfs:comment>Assets in this category can be classified along the semantic spectrum</rdfs:comment>
         <rdfs:comment>Knowledge of this kind is usually structural, universal, and expressed using declarative languages</rdfs:comment>
         <rdfs:isDefinedBy>http://ontology.mayo.edu/ontology/KAO</rdfs:isDefinedBy>
@@ -702,7 +668,7 @@ Some definitions have conditional applicability, limiting the class of situation
         <skos:prefLabel>Terminology, Ontology and Assertional KBs</skos:prefLabel>
     </owl:Class>
     <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://ontology.mayo.edu/ontology/KAO/SemanticAsset"/>
+        <owl:annotatedSource rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/SemanticAsset"/>
         <owl:annotatedProperty rdf:resource="http://www.w3.org/2004/02/skos/core#example"/>
         <owl:annotatedTarget>The Mayo Clinic Asthma Value Set</owl:annotatedTarget>
         <rdfs:seeAlso rdf:resource="http://ckm.ontology.mayo.edu/ontology/%5C%5Cmfad.mfroot.org%5Crchdept%5CTerms%5CTerminology%20Web%5C2_ValueSets%5CMCBT_ClinicalProblemAsthma.pdf"/>
@@ -710,24 +676,24 @@ Some definitions have conditional applicability, limiting the class of situation
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/SemanticDecisionModel -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/SemanticDecisionModel -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/SemanticDecisionModel">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/DecisionModel"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/SemanticDecisionModel">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/DecisionModel"/>
         <rdfs:comment>Decision Model that includes an unambiguous definition of every concept involved</rdfs:comment>
         <rdfs:label>Semantic Decision Model</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/SemanticInformationModel -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/SemanticInformationModel -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/SemanticInformationModel">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/InformationModel"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/SemanticInformationModel">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/InformationModel"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-part"/>
-                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontology/KAO/SemanticInformationModel"/>
+                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/SemanticInformationModel"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Information Model designed such that instances have one and only one interpretation</rdfs:comment>
@@ -736,9 +702,9 @@ Some definitions have conditional applicability, limiting the class of situation
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/ServiceBasedTechnique -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/ServiceBasedTechnique -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/ServiceBasedTechnique">
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/ServiceBasedTechnique">
         <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeProcessingTechnique"/>
         <rdfs:comment>Technique based on delegation to another entity</rdfs:comment>
         <rdfs:label>service based technique</rdfs:label>
@@ -746,29 +712,29 @@ Some definitions have conditional applicability, limiting the class of situation
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/ServiceDescription -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/ServiceDescription -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/ServiceDescription">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/ProcessAsset"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/ServiceDescription">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/ProcessAsset"/>
         <rdfs:label>Service Description</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/ServiceProfile -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/ServiceProfile -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/ServiceProfile">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/ServiceDescription"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/ServiceProfile">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/ServiceDescription"/>
         <rdfs:comment>Service Description that refines (by constraint), and thus depends on, some Service Description</rdfs:comment>
         <rdfs:label>Service Profile</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- http://ontology.mayo.edu/ontology/KAO/ValueSet -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/ValueSet -->
 
-    <owl:Class rdf:about="http://ontology.mayo.edu/ontology/KAO/ValueSet">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/SemanticAsset"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/ValueSet">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/SemanticAsset"/>
         <rdfs:comment xml:lang="en">A set of pairs of &quot;codes&quot;, drawn from one or more code systems, and human-readable terms that represent clinical concepts (e.g. &quot;diabetes type II&quot;)</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://ontology.mayo.edu/ontology/KAO"/>
         <rdfs:label xml:lang="en">Value Set</rdfs:label>
@@ -776,7 +742,7 @@ Some definitions have conditional applicability, limiting the class of situation
         <skos:prefLabel xml:lang="en">Value Set</skos:prefLabel>
     </owl:Class>
     <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://ontology.mayo.edu/ontology/KAO/ValueSet"/>
+        <owl:annotatedSource rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/ValueSet"/>
         <owl:annotatedProperty rdf:resource="http://www.w3.org/2004/02/skos/core#example"/>
         <owl:annotatedTarget xml:lang="en">The Asthma Value Set</owl:annotatedTarget>
         <rdfs:seeAlso rdf:resource="http://ckm.ontology.mayo.edu/ontology/%5C%5Cmfad.mfroot.org%5Crchdept%5CTerms%5CTerminology%20Web%5C2_ValueSets%5CMCBT_ClinicalProblemAsthma.pdf"/>
@@ -811,7 +777,7 @@ Some definitions have conditional applicability, limiting the class of situation
     <!-- https://www.omg.org/spec/API4KP/api4kp/Grammar -->
 
     <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/Grammar">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/InformationAsset"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/InformationAsset"/>
     </owl:Class>
     
 
@@ -843,7 +809,7 @@ Some definitions have conditional applicability, limiting the class of situation
     <!-- https://www.omg.org/spec/API4KP/api4kp/Lexicon -->
 
     <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/Lexicon">
-        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontology/KAO/SemanticAsset"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/SemanticAsset"/>
     </owl:Class>
     
 
@@ -851,6 +817,8 @@ Some definitions have conditional applicability, limiting the class of situation
     <!-- https://www.omg.org/spec/API4KP/api4kp/ResolvableConcept -->
 
     <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/ResolvableConcept"/>
+
+
 </rdf:RDF>
 
 
