@@ -1,953 +1,1925 @@
-<rdf:RDF
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:api4kp="https://www.omg.org/spec/API4KP/api4kp/"
-    xmlns:api4kp-lang="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/"
-    xmlns:api4kp-prof="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/api4kp/"
-    xmlns:dol-lang="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/dol/"
-    xmlns:dol="http://www.omg.org/spec/DOL/DOL-terms"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns:kmdp-lang="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/"
-    xmlns:api4kp-lex="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/"
-    xmlns:api4kp-ser="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/"
-    xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:j.0="http://www.omg.org/spec/DOL/DOL-terms/"
-    xmlns:dol-prof="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/dol/"
-    xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:api4kp-fmt="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/"
-    xmlns:kmdp-ser="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/"
-    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-    xmlns:dol-ser="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/"
-    xmlns:kmdp-lex="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
-  <owl:Ontology rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/">
-    <owl:versionIRI rdf:resource="http://ontology.mayo.edu/ontologies/20190801/kmdp-registry/"/>
-  </owl:Ontology>
-  <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/MetaFormat"/>
-  <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/ConstructedLanguage"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/Profile">
-    <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/ConstructedLanguage"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
-  <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
-  <owl:ObjectProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/supportsSerialization"/>
-  <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/depends-on"/>
-  <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/uses-lexicon"/>
-  <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/governed-by"/>
-  <owl:ObjectProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isProfileOf"/>
-  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/Java/versions/8.0">
-    <owl:versionInfo>v8</owl:versionInfo>
-    <dc:source>https://jcp.org/en/jsr/detail?id=337</dc:source>
-    <rdfs:comment>Java 8</rdfs:comment>
-    <dc:identifier>java</dc:identifier>
-    <skos:prefLabel>Java 8</skos:prefLabel>
-    <rdfs:label>Java 8</rdfs:label>
-  </api4kp:BaseConstructedLanguage>
-  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/HTML5/versions/5.2">
-    <owl:versionInfo>v52</owl:versionInfo>
-    <dc:source>https://www.w3.org/TR/html5/</dc:source>
-    <rdfs:comment>HTML 5</rdfs:comment>
-    <dc:identifier>html</dc:identifier>
-    <skos:prefLabel>HTML</skos:prefLabel>
-    <rdfs:label>HTML</rdfs:label>
-  </api4kp:BaseConstructedLanguage>
-  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/KNART/versions/1.3">
-    <rdfs:comment>HL7 Knowledge Artifact Metamodel 1.3</rdfs:comment>
-    <dc:identifier>knart</dc:identifier>
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/KNARTXMLSyntax">
-        <api4kp:depends-on>
-          <api4kp:MetaFormat rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1">
-            <dc:source>http://www.w3.org/TR/xml11</dc:source>
-            <dc:identifier>xml</dc:identifier>
-            <skos:prefLabel>XML 1.1</skos:prefLabel>
-            <rdfs:label>XML 1.1</rdfs:label>
-          </api4kp:MetaFormat>
-        </api4kp:depends-on>
-        <owl:sameAs rdf:resource="urn:hl7-org:knowledgeartifact:r1"/>
-        <dc:source>https://www.hl7.org/implement/standards/product_brief.cfm?product_id=337</dc:source>
-        <rdfs:comment>KNART 1.3 XML Syntax</rdfs:comment>
-        <dc:identifier>knart+xml</dc:identifier>
-        <skos:prefLabel>KNART XML Syntax</skos:prefLabel>
-        <rdfs:label>KNART XML Syntax</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-    <owl:sameAs rdf:resource="http://hl7.org/KNART/1.3"/>
-    <rdfs:label>KNART 1.3</rdfs:label>
-    <owl:versionInfo>v13</owl:versionInfo>
-    <dc:source>https://www.hl7.org/implement/standards/product_brief.cfm?product_id=337</dc:source>
-    <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-    <skos:prefLabel>KNART 1.3</skos:prefLabel>
-  </api4kp:BaseConstructedLanguage>
-  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/DMN/versions/1.1">
-    <rdfs:comment>Decision Modelling Notation 1.1</rdfs:comment>
-    <owl:sameAs rdf:resource="https://www.omg.org/spec/DMN/1.1/"/>
-    <owl:versionInfo>v11</owl:versionInfo>
-    <rdfs:label>DMN 1.1</rdfs:label>
-    <dc:source>https://www.omg.org/spec/DMN/1.1/</dc:source>
-    <dc:identifier>dmn</dc:identifier>
-    <skos:prefLabel>DMN 1.1</skos:prefLabel>
-    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/DMN11XMLSyntax">
-        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
-        <owl:sameAs rdf:resource="http://www.omg.org/spec/DMN/20151101/dmn.xsd"/>
-        <dc:source>https://www.omg.org/spec/DMN/1.1/</dc:source>
-        <rdfs:comment>DMN 1.1 XML Syntax</rdfs:comment>
-        <dc:identifier>dmn-v11+xml</dc:identifier>
-        <skos:prefLabel>DMN 1.1 XML Syntax</skos:prefLabel>
-        <rdfs:label>DMN 1.1 XML Syntax</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-  </j.0:OMSLanguage>
-  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/ServiceProfile/versions/1.0">
-    <api4kp:uses-lexicon>
-      <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/PCV/versions/2019.0">
-        <owl:sameAs rdf:resource="http://ontology.mayo.edu/taxonomies/PCV"/>
-        <rdfs:comment>Mayo Clinic Propositional Concept Vocabulary</rdfs:comment>
-        <dc:identifier>pcv</dc:identifier>
-        <skos:prefLabel>PCV</skos:prefLabel>
-        <rdfs:label>PCV</rdfs:label>
-      </api4kp:Lexicon>
-    </api4kp:uses-lexicon>
-    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
-    <owl:versionInfo>v1</owl:versionInfo>
-    <rdfs:comment>Service Profile Metamodel</rdfs:comment>
-    <dc:identifier>sp</dc:identifier>
-    <skos:prefLabel>Service Profile</skos:prefLabel>
-    <rdfs:label>Service Profile</rdfs:label>
-  </j.0:OMSLanguage>
-  <j.0:Profile rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/api4kp/API4KPIdentifiers">
-    <j.0:isProfileOf>
-      <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/API4KP/versions/1.0">
-        <api4kp:uses-lexicon>
-          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRLanguage/versions/201808">
-            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KRLanguage/2018/08/"/>
-            <dc:source>http://ontology.mayo.edu/ontologies/kmdp-registry/</dc:source>
-            <rdfs:comment>Knowledge Representation and Reasoning Language</rdfs:comment>
-            <dc:identifier>krlang</dc:identifier>
-            <skos:prefLabel>KRR Language</skos:prefLabel>
-            <rdfs:label>KRR Language</rdfs:label>
-          </api4kp:Lexicon>
-        </api4kp:uses-lexicon>
-        <owl:sameAs rdf:resource="https://www.omg.org/spec/API4KP/1.0/"/>
-        <api4kp:uses-lexicon>
-          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/ParsingLevel/versions/2.0190101E7">
-            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/API4KP/ParsingLevel/20190801/"/>
-            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
-            <rdfs:comment>Language Parsing Level</rdfs:comment>
-            <dc:identifier>vertical</dc:identifier>
-            <skos:prefLabel>Parsing Level</skos:prefLabel>
-            <rdfs:label>Parsing Level</rdfs:label>
-          </api4kp:Lexicon>
-        </api4kp:uses-lexicon>
-        <api4kp:uses-lexicon>
-          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/AssetCategory/versions/1.0">
-            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/KnowledgeAssetCategory/1.0"/>
-            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
-            <rdfs:comment>Knowledge Asset Category</rdfs:comment>
-            <dc:identifier>asset-cat</dc:identifier>
-            <skos:prefLabel>Knowledge Asset Category</skos:prefLabel>
-            <rdfs:label>Knowledge Asset Category</rdfs:label>
-          </api4kp:Lexicon>
-        </api4kp:uses-lexicon>
-        <api4kp:uses-lexicon>
-          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRLexicon/versions/201808">
-            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/Lexicon/2018/08/"/>
-            <dc:source>http://ontology.mayo.edu/ontologies/kmdp-registry/</dc:source>
-            <rdfs:comment>Knowledge Representation and Reasoning Lexicon</rdfs:comment>
-            <dc:identifier>lexicon</dc:identifier>
-            <skos:prefLabel>KRR Lexicon</skos:prefLabel>
-            <rdfs:label>KRR Lexicon</rdfs:label>
-          </api4kp:Lexicon>
-        </api4kp:uses-lexicon>
-        <rdfs:label>API4KP</rdfs:label>
-        <rdfs:comment>API 4 Knowledge Platform Metamodel</rdfs:comment>
-        <api4kp:uses-lexicon>
-          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRFormat/versions/201808">
-            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KRFormat/2018/08/"/>
-            <dc:source>http://ontology.mayo.edu/ontologies/kmdp-registry/</dc:source>
-            <rdfs:comment>Knowledge Representation and Reasoning Serialization Format</rdfs:comment>
-            <dc:identifier>krfmt</dc:identifier>
-            <skos:prefLabel>KRR MetaFormat</skos:prefLabel>
-            <rdfs:label>KRR MetaFormat</rdfs:label>
-          </api4kp:Lexicon>
-        </api4kp:uses-lexicon>
-        <dc:identifier>api4kp</dc:identifier>
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://ontology.mayo.edu/ontologies/kmdp-registry/"
+     xml:base="http://ontology.mayo.edu/ontologies/kmdp-registry/"
+     xmlns:dol="http://www.omg.org/spec/DOL/DOL-terms"
+     xmlns:api4kp-lang="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:api4kp-fmt="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/"
+     xmlns:dol-prof="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/dol/"
+     xmlns:api4kp-prof="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/api4kp/"
+     xmlns:api4kp-ser="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:kmdp-lex="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:kmdp-ser="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/"
+     xmlns:api4kp-lex="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/"
+     xmlns:j.0="http://www.omg.org/spec/DOL/DOL-terms/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dol-ser="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:kmdp-lang="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/"
+     xmlns:dol-lang="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/dol/"
+     xmlns:api4kp="https://www.omg.org/spec/API4KP/api4kp/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <owl:Ontology rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/">
+        <owl:versionIRI rdf:resource="http://ontology.mayo.edu/ontologies/20190801/kmdp-registry/"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/identifier -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/identifier"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/source -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/source"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#prefLabel -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#prefLabel"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.omg.org/spec/DOL/DOL-terms/isProfileOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isProfileOf"/>
+    
+
+
+    <!-- http://www.omg.org/spec/DOL/DOL-terms/supportsSerialization -->
+
+    <owl:ObjectProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/supportsSerialization"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/depends-on -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/depends-on"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/governed-by -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/governed-by"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/uses-lexicon -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/uses-lexicon"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+    
+
+
+    <!-- http://www.omg.org/spec/DOL/DOL-terms/Profile -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/Profile">
+        <rdfs:subClassOf rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/ConstructedLanguage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.omg.org/spec/DOL/DOL-terms/Serialization -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/ConstructedLanguage"/>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/ConstructedLanguage -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/ConstructedLanguage"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/Lexicon -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/MetaFormat -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/MetaFormat"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://hl7.org/ELM/1.2 -->
+
+    <owl:NamedIndividual rdf:about="http://hl7.org/ELM/1.2">
+        <owl:sameAs rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/ELM/versions/1.2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://hl7.org/KNART/1.3 -->
+
+    <owl:NamedIndividual rdf:about="http://hl7.org/KNART/1.3">
+        <owl:sameAs rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/KNART/versions/1.3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://hl7.org/fhir/DSTU2 -->
+
+    <owl:NamedIndividual rdf:about="http://hl7.org/fhir/DSTU2">
+        <owl:sameAs rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/FHIR/versions/DSTU2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://hl7.org/fhir/STU3 -->
+
+    <owl:NamedIndividual rdf:about="http://hl7.org/fhir/STU3">
+        <owl:sameAs rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/FHIR/versions/STU3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://kmdp.mayo.edu/metadata/annotations -->
+
+    <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/metadata/annotations">
+        <owl:sameAs rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/AnnotationsMLSyntax"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://kmdp.mayo.edu/metadata/surrogate -->
+
+    <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/metadata/surrogate">
+        <owl:sameAs rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/AssetSurrogate/versions/1.0"/>
+        <owl:sameAs rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/SurrogateXMLSyntax"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://loinc.org/ -->
+
+    <owl:NamedIndividual rdf:about="http://loinc.org/">
+        <owl:sameAs rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/LOINC/versions/2.65"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/TXT -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/TXT">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/MetaFormat"/>
+        <dc:identifier>text</dc:identifier>
+        <rdfs:label>TXT</rdfs:label>
+        <skos:prefLabel>TXT</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/JSON/versions/2.0171201E7 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/JSON/versions/2.0171201E7">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/MetaFormat"/>
+        <dc:identifier>json</dc:identifier>
+        <dc:source>http://json.org/20171201</dc:source>
+        <rdfs:label>JSON</rdfs:label>
+        <skos:prefLabel>JSON</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/RDF/versions/1.1 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/RDF/versions/1.1">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/MetaFormat"/>
+        <dc:identifier>rdf</dc:identifier>
+        <dc:source>https://www.w3.org/RDF/</dc:source>
+        <rdfs:label>RDF 1.1</rdfs:label>
+        <skos:prefLabel>RDF 1.1</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/MetaFormat"/>
+        <dc:identifier>xml</dc:identifier>
+        <dc:source>http://www.w3.org/TR/xml11</dc:source>
+        <rdfs:label>XML 1.1</rdfs:label>
+        <skos:prefLabel>XML 1.1</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/YAML/versions/1.2 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/YAML/versions/1.2">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/MetaFormat"/>
+        <dc:identifier>yaml</dc:identifier>
+        <dc:source>http://yaml.org/spec/1.2</dc:source>
+        <rdfs:label>YAML 1.2</rdfs:label>
+        <skos:prefLabel>YAML 1.2</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/API4KP/versions/1.0 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/API4KP/versions/1.0">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-        <api4kp:uses-lexicon>
-          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRProfile/versions/201808">
-            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KRProfile/2018/08/"/>
-            <dc:source>http://ontology.mayo.edu/ontologies/kmdp-registry/</dc:source>
-            <rdfs:comment>Knowledge Representation and Reasoning Language Profile</rdfs:comment>
-            <dc:identifier>krprof</dc:identifier>
-            <skos:prefLabel>KRR Profile</skos:prefLabel>
-            <rdfs:label>KRR Profile</rdfs:label>
-          </api4kp:Lexicon>
-        </api4kp:uses-lexicon>
-        <api4kp:uses-lexicon>
-          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/AssetType/versions/1.0">
-            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/KnowledgeAssetType/1.0"/>
-            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
-            <rdfs:comment>Knowledge Asset Type</rdfs:comment>
-            <dc:identifier>asset-type</dc:identifier>
-            <skos:prefLabel>Knowledge Asset Type</skos:prefLabel>
-            <rdfs:label>Knowledge Asset Type</rdfs:label>
-          </api4kp:Lexicon>
-        </api4kp:uses-lexicon>
-        <skos:prefLabel>API4KP</skos:prefLabel>
-        <owl:versionInfo>v1</owl:versionInfo>
-        <api4kp:uses-lexicon>
-          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRSerialization/versions/201808">
-            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KRSerialization/2018/08/"/>
-            <dc:source>http://ontology.mayo.edu/ontologies/kmdp-registry/</dc:source>
-            <rdfs:comment>Knowledge Representation and Reasoning Serialization</rdfs:comment>
-            <dc:identifier>krser</dc:identifier>
-            <skos:prefLabel>KRR Serialization</skos:prefLabel>
-            <rdfs:label>KRR Serialization</rdfs:label>
-          </api4kp:Lexicon>
-        </api4kp:uses-lexicon>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <owl:sameAs rdf:resource="https://www.omg.org/spec/API4KP/1.0/"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/AssetCategory/versions/1.0"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/AssetType/versions/1.0"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRFormat/versions/201808"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRLanguage/versions/201808"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRLexicon/versions/201808"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRProfile/versions/201808"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRSerialization/versions/201808"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/ParsingLevel/versions/2.0190101E7"/>
+        <dc:identifier>api4kp</dc:identifier>
         <dc:source>https://www.omg.org/spec/API4KP/1.0/</dc:source>
-      </api4kp:BaseConstructedLanguage>
-    </j.0:isProfileOf>
-    <dc:source>https://www.omg.org/spec/API4KP/1.0/</dc:source>
-    <rdfs:comment>API4KP Identifiers</rdfs:comment>
-    <dc:identifier>id</dc:identifier>
-    <skos:prefLabel>API4KP Identifiers</skos:prefLabel>
-    <rdfs:label>API4KP Identifiers</rdfs:label>
-  </j.0:Profile>
-  <j.0:Profile rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/api4kp/API4KPDatatypes">
-    <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/API4KP/versions/1.0"/>
-    <dc:source>https://www.omg.org/spec/API4KP/1.0/</dc:source>
-    <rdfs:comment>API4KP Datatypes</rdfs:comment>
-    <dc:identifier>dtt</dc:identifier>
-    <skos:prefLabel>API4KP Datatypes</skos:prefLabel>
-    <rdfs:label>API4KP Datatypes</rdfs:label>
-  </j.0:Profile>
-  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/XHTML/versions/1.0">
-    <owl:versionInfo>v1</owl:versionInfo>
-    <dc:source>https://www.w3.org/TR/xhtml1/</dc:source>
-    <rdfs:comment>X-HTML</rdfs:comment>
-    <dc:identifier>xhtml</dc:identifier>
-    <skos:prefLabel>XHTML</skos:prefLabel>
-    <rdfs:label>XHTML</rdfs:label>
-  </api4kp:BaseConstructedLanguage>
-  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/DMN/versions/1.2">
-    <rdfs:label>DMN 1.2</rdfs:label>
-    <owl:sameAs rdf:resource="https://www.omg.org/spec/DMN/1.2/"/>
-    <dc:source>https://www.omg.org/spec/DMN/1.2/</dc:source>
-    <rdfs:comment>Decision Modelling Notation 1.2</rdfs:comment>
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/DMN12XMLSyntax">
-        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
-        <owl:sameAs rdf:resource="http://www.omg.org/spec/DMN/20180521/MODEL/"/>
+        <rdfs:comment>API 4 Knowledge Platform Metamodel</rdfs:comment>
+        <rdfs:label>API4KP</rdfs:label>
+        <owl:versionInfo>v1</owl:versionInfo>
+        <skos:prefLabel>API4KP</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/AssetSurrogate/versions/1.0 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/AssetSurrogate/versions/1.0">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/SurrogateJSONSyntax"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/SurrogateXMLSyntax"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/AssetCategory/versions/1.0"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/AssetType/versions/1.0"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/CitationRel/versions/2018-02-16"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/DependencyRel/versions/2.0190101E7"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/DerivationRel/versions/2.0190101E7"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRFormat/versions/201808"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRLanguage/versions/201808"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRLanguageRole/versions/1.0"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRLexicon/versions/201808"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRProfile/versions/201808"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRSerialization/versions/201808"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRTechnique/versions/1.0"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/NaturalLanguage/versions/2.0170801E7"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/ParsingLevel/versions/2.0190101E7"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/StructuralRel/versions/2.0190101E7"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/SummaryRel/versions/2.0190101E7"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/VariantRel/versions/2.0190101E7"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/VersionRel/versions/2.0190101E7"/>
+        <dc:identifier>surr</dc:identifier>
+        <dc:source>https://www.omg.org/spec/API4KP/1.0/</dc:source>
+        <rdfs:comment>Knowledge Asset Surrogate Metamodel</rdfs:comment>
+        <rdfs:label>Knowledge Asset Surrogate</rdfs:label>
+        <owl:versionInfo>v1</owl:versionInfo>
+        <skos:prefLabel>Knowledge Asset Surrogate</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/BPMN/versions/2.0.2 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/BPMN/versions/2.0.2">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <owl:sameAs rdf:resource="https://www.omg.org/spec/BPMN/2.0/"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/BPMN2XMLSyntax"/>
+        <dc:identifier>bpmn</dc:identifier>
+        <dc:source>https://www.omg.org/spec/BPMN/2.0/</dc:source>
+        <rdfs:comment>Business Process Modelling Notation 2.0</rdfs:comment>
+        <rdfs:label>BPMN</rdfs:label>
+        <owl:versionInfo>v2</owl:versionInfo>
+        <skos:prefLabel>BPMN 2.0</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/CMMN/versions/1.1 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/CMMN/versions/1.1">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <owl:sameAs rdf:resource="https://www.omg.org/spec/CMMN/1.1/"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/CMMN11XMLSyntax"/>
+        <dc:identifier>cmmn</dc:identifier>
+        <dc:source>https://www.omg.org/spec/CMMN/1.1/</dc:source>
+        <rdfs:comment>Case Modelling and Management Notation 1.1</rdfs:comment>
+        <rdfs:label>CMMN 1.1</rdfs:label>
+        <owl:versionInfo>v11</owl:versionInfo>
+        <skos:prefLabel>CMMN 1.1</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/CommonLogic/versions/1.0 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/CommonLogic/versions/1.0">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/CGIF"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/CLIF"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/XCL"/>
+        <dc:identifier>cl</dc:identifier>
+        <dc:source>https://www.iso.org/standard/66249.html</dc:source>
+        <rdfs:comment>Common Logic</rdfs:comment>
+        <rdfs:label>Common Logic</rdfs:label>
+        <owl:versionInfo>v1</owl:versionInfo>
+        <skos:prefLabel>Common Logic</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/DMN/versions/1.1 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/DMN/versions/1.1">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <owl:sameAs rdf:resource="https://www.omg.org/spec/DMN/1.1/"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/DMN11XMLSyntax"/>
+        <dc:identifier>dmn</dc:identifier>
+        <dc:source>https://www.omg.org/spec/DMN/1.1/</dc:source>
+        <rdfs:comment>Decision Modelling Notation 1.1</rdfs:comment>
+        <rdfs:label>DMN 1.1</rdfs:label>
+        <owl:versionInfo>v11</owl:versionInfo>
+        <skos:prefLabel>DMN 1.1</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/DMN/versions/1.2 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/DMN/versions/1.2">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <owl:sameAs rdf:resource="https://www.omg.org/spec/DMN/1.2/"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/DMN12XMLSyntax"/>
+        <dc:identifier>dmn</dc:identifier>
         <dc:source>https://www.omg.org/spec/DMN/1.2/</dc:source>
-        <rdfs:comment>DMN 1.2 XML Syntax</rdfs:comment>
-        <dc:identifier>dmn-v12+xml</dc:identifier>
-        <skos:prefLabel>DMN 1.2 XML Syntax</skos:prefLabel>
-        <rdfs:label>DMN 1.2 XML Syntax</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-    <owl:versionInfo>v12</owl:versionInfo>
-    <skos:prefLabel>DMN 1.2</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-    <dc:identifier>dmn</dc:identifier>
-  </api4kp:BaseConstructedLanguage>
-  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/CCG/versions/1.0">
-    <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/PCV/versions/2019.0"/>
-    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
-    <owl:versionInfo>v1</owl:versionInfo>
-    <rdfs:comment>Clinical Concept Glossary Metamodel</rdfs:comment>
-    <dc:identifier>ccg</dc:identifier>
-    <skos:prefLabel>Clinical Concept Glossary</skos:prefLabel>
-    <rdfs:label>Clinical Concept Glossary</rdfs:label>
-  </j.0:OMSLanguage>
-  <j.0:Profile rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/api4kp/UMLResource">
-    <j.0:isProfileOf>
-      <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/UML/versions/2.5">
+        <rdfs:comment>Decision Modelling Notation 1.2</rdfs:comment>
+        <rdfs:label>DMN 1.2</rdfs:label>
+        <owl:versionInfo>v12</owl:versionInfo>
+        <skos:prefLabel>DMN 1.2</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/FEEL/versions/1.1 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/FEEL/versions/1.1">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <dc:identifier>feel</dc:identifier>
+        <dc:source>https://www.omg.org/spec/DMN/1.1/</dc:source>
+        <rdfs:comment>Friendly Enough Expression Lanaguage 1.1</rdfs:comment>
+        <rdfs:label>FEEL</rdfs:label>
+        <owl:versionInfo>v11</owl:versionInfo>
+        <skos:prefLabel>FEEL</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/HTML5/versions/5.2 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/HTML5/versions/5.2">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <dc:identifier>html</dc:identifier>
+        <dc:source>https://www.w3.org/TR/html5/</dc:source>
+        <rdfs:comment>HTML 5</rdfs:comment>
+        <rdfs:label>HTML</rdfs:label>
+        <owl:versionInfo>v52</owl:versionInfo>
+        <skos:prefLabel>HTML</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/OpenAPI/versions/2.x -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/OpenAPI/versions/2.x">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/OpenAPI2JSONSyntax"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/OpenAPI2YAMLSyntax"/>
+        <dc:identifier>openapi</dc:identifier>
+        <dc:source>https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md</dc:source>
+        <rdfs:comment>OpenAPI / Swagger v2.x</rdfs:comment>
+        <rdfs:label>OpenAPI 2.x</rdfs:label>
+        <owl:versionInfo>v2</owl:versionInfo>
+        <skos:prefLabel>OpenAPI 2.x</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/ReactionRuleML/versions/1.2 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/ReactionRuleML/versions/1.2">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <owl:sameAs rdf:resource="http://reaction.ruleml.org/1.02/"/>
+        <dc:identifier>rruleml</dc:identifier>
+        <dc:source>http://reaction.ruleml.org/1.02/</dc:source>
+        <rdfs:comment>Reaction RuleML 1.2</rdfs:comment>
+        <rdfs:label>Reaction RuleML 1.2</rdfs:label>
+        <owl:versionInfo>v12</owl:versionInfo>
+        <skos:prefLabel>Reaction RuleML 1.2</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/UML/versions/2.5 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/UML/versions/2.5">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
         <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
         <owl:sameAs rdf:resource="https://www.omg.org/spec/UML/2.5/"/>
-        <owl:versionInfo>v25</owl:versionInfo>
+        <dc:identifier>uml2</dc:identifier>
         <dc:source>https://www.omg.org/spec/UML/2.5/</dc:source>
         <rdfs:comment>Unified Modelling Language 2.5</rdfs:comment>
-        <dc:identifier>uml2</dc:identifier>
-        <skos:prefLabel>UML 2.5</skos:prefLabel>
         <rdfs:label>UML 2.5</rdfs:label>
-      </j.0:OMSLanguage>
-    </j.0:isProfileOf>
-    <rdfs:comment>UML 2 Resource Profile</rdfs:comment>
-    <dc:identifier>Res</dc:identifier>
-    <skos:prefLabel>UML Resource</skos:prefLabel>
-    <rdfs:label>UML Resource</rdfs:label>
-  </j.0:Profile>
-  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/CMMN/versions/1.1">
-    <skos:prefLabel>CMMN 1.1</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/CMMN11XMLSyntax">
-        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
-        <owl:sameAs rdf:resource="http://www.omg.org/spec/CMMN/20151109/MODEL"/>
-        <dc:source>https://www.omg.org/spec/CMMN/1.1/</dc:source>
-        <rdfs:comment>CMMN 1.1 XML Syntax</rdfs:comment>
-        <dc:identifier>cmmn-v11+xml</dc:identifier>
-        <skos:prefLabel>CMMN 1.1 XML Syntax</skos:prefLabel>
-        <rdfs:label>CMMN 1.1 XML Syntax</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-    <owl:sameAs rdf:resource="https://www.omg.org/spec/CMMN/1.1/"/>
-    <owl:versionInfo>v11</owl:versionInfo>
-    <dc:source>https://www.omg.org/spec/CMMN/1.1/</dc:source>
-    <rdfs:label>CMMN 1.1</rdfs:label>
-    <rdfs:comment>Case Modelling and Management Notation 1.1</rdfs:comment>
-    <dc:identifier>cmmn</dc:identifier>
-  </api4kp:BaseConstructedLanguage>
-  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/Mustache/versions/1">
-    <owl:versionInfo>v1</owl:versionInfo>
-    <dc:source>http://mustache.github.io</dc:source>
-    <rdfs:comment>Mustache Templating Language</rdfs:comment>
-    <dc:identifier>mustache</dc:identifier>
-    <skos:prefLabel>Mustache</skos:prefLabel>
-    <rdfs:label>Mustache</rdfs:label>
-  </api4kp:BaseConstructedLanguage>
-  <j.0:Profile rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/dol/OWL2DL">
-    <j.0:isProfileOf>
-      <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/dol/OWL2/versions/20121211">
-        <skos:prefLabel>OWL-2</skos:prefLabel>
-        <j.0:supportsSerialization>
-          <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/Turtle">
-            <api4kp:depends-on>
-              <api4kp:MetaFormat rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/TXT">
-                <dc:identifier>text</dc:identifier>
-                <skos:prefLabel>TXT</skos:prefLabel>
-                <rdfs:label>TXT</rdfs:label>
-              </api4kp:MetaFormat>
-            </api4kp:depends-on>
-            <dc:source>https://www.w3.org/TR/turtle/</dc:source>
-            <rdfs:comment>Terse RDF Triple Language</rdfs:comment>
-            <dc:identifier>ttl</dc:identifier>
-            <skos:prefLabel>Turtle</skos:prefLabel>
-            <rdfs:label>Turtle</rdfs:label>
-          </j.0:Serialization>
-        </j.0:supportsSerialization>
-        <dc:source>https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/</dc:source>
-        <owl:sameAs rdf:resource="http://www.w3.org/2002/07/owl"/>
-        <rdfs:label>OWL-2</rdfs:label>
-        <j.0:supportsSerialization>
-          <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/OWLFunctionalSyntax">
-            <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/TXT"/>
-            <dc:source>https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/</dc:source>
-            <rdfs:comment>OWL Functional Syntax</rdfs:comment>
-            <dc:identifier>ofn</dc:identifier>
-            <skos:prefLabel>OWL Functional Syntax</skos:prefLabel>
-            <rdfs:label>OWL Functional Syntax</rdfs:label>
-          </j.0:Serialization>
-        </j.0:supportsSerialization>
+        <owl:versionInfo>v25</owl:versionInfo>
+        <skos:prefLabel>UML 2.5</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/XHTML/versions/1.0 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/XHTML/versions/1.0">
         <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
-        <j.0:supportsSerialization>
-          <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/OWLManchesterSyntax">
-            <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/TXT"/>
-            <dc:source>https://www.w3.org/TR/owl2-manchester-syntax/</dc:source>
-            <rdfs:comment>OWL Manchester Syntax</rdfs:comment>
-            <dc:identifier>ms</dc:identifier>
-            <skos:prefLabel>OWL Manchester Syntax</skos:prefLabel>
-            <rdfs:label>OWL Manchester Syntax</rdfs:label>
-          </j.0:Serialization>
-        </j.0:supportsSerialization>
-        <dc:identifier>owl2</dc:identifier>
-        <j.0:supportsSerialization>
-          <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/OWLXMLSyntax">
-            <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
-            <dc:source>https://www.w3.org/TR/owl2-xml-serialization/</dc:source>
-            <rdfs:comment>OWL XML Serialization</rdfs:comment>
-            <dc:identifier>xml</dc:identifier>
-            <skos:prefLabel>OWL XML Serialization</skos:prefLabel>
-            <rdfs:label>OWL XML Serialization</rdfs:label>
-          </j.0:Serialization>
-        </j.0:supportsSerialization>
-        <owl:versionInfo>v20121211</owl:versionInfo>
-        <j.0:supportsSerialization>
-          <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/RDF_XMLSyntax">
-            <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
-            <dc:source>https://www.w3.org/TR/owl2-mapping-to-rdf/</dc:source>
-            <rdfs:comment>RDF/XML Syntax</rdfs:comment>
-            <dc:identifier>rdf/xml</dc:identifier>
-            <skos:prefLabel>RDF/XML Syntax</skos:prefLabel>
-            <rdfs:label>RDF/XML Syntax</rdfs:label>
-          </j.0:Serialization>
-        </j.0:supportsSerialization>
-        <rdfs:comment>Web Ontology Language 2</rdfs:comment>
-      </j.0:OMSLanguage>
-    </j.0:isProfileOf>
-    <owl:sameAs rdf:resource="http://www.w3.org/ns/owl-profile/DL"/>
-    <dc:source>https://www.w3.org/TR/owl2-profiles/#OWL_2_DL</dc:source>
-    <rdfs:comment>OWL 2 Web Ontology Language, DL Profile</rdfs:comment>
-    <dc:identifier>DL</dc:identifier>
-    <skos:prefLabel>OWL2 DL</skos:prefLabel>
-    <rdfs:label>OWL2 DL</rdfs:label>
-  </j.0:Profile>
-  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/XSLT/versions/3.0">
-    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
-    <owl:sameAs rdf:resource="https://www.w3.org/TR/xslt-30/"/>
-    <owl:versionInfo>v3</owl:versionInfo>
-    <dc:source>https://www.w3.org/TR/2017/REC-xslt-30-20170608/</dc:source>
-    <rdfs:comment>Extensible Stylesheet Transformation 3.0</rdfs:comment>
-    <dc:identifier>xslt</dc:identifier>
-    <skos:prefLabel>XSLT 3.0</skos:prefLabel>
-    <rdfs:label>XSLT 3.0</rdfs:label>
-  </j.0:OMSLanguage>
-  <j.0:Profile rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/dol/OWL2QL">
-    <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/dol/OWL2/versions/20121211"/>
-    <owl:sameAs rdf:resource="http://www.w3.org/ns/owl-profile/QL"/>
-    <dc:source>https://www.w3.org/TR/owl2-profiles/#OWL_2_QL</dc:source>
-    <rdfs:comment>OWL 2 Web Ontology Language, QL Profile</rdfs:comment>
-    <dc:identifier>QL</dc:identifier>
-    <skos:prefLabel>OWL2 QL</skos:prefLabel>
-    <rdfs:label>OWL2 QL</rdfs:label>
-  </j.0:Profile>
-  <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/SKOS/versions/2004.0">
-    <owl:sameAs rdf:resource="http://www.w3.org/2004/02/skos/core"/>
-    <rdfs:comment>Simple Knowledge Organization Scheme</rdfs:comment>
-    <dc:identifier>skos</dc:identifier>
-    <skos:prefLabel>SKOS</skos:prefLabel>
-    <rdfs:label>SKOS</rdfs:label>
-  </api4kp:Lexicon>
-  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/FHIR/versions/DSTU2">
-    <owl:versionInfo>v2</owl:versionInfo>
-    <rdfs:label>FHIR DSTU2</rdfs:label>
-    <skos:prefLabel>FHIR DSTU2</skos:prefLabel>
-    <api4kp:uses-lexicon>
-      <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/LOINC/versions/2.65">
-        <owl:sameAs rdf:resource="http://loinc.org/"/>
-        <rdfs:comment>Logical Observation Identifiers Names and Codes</rdfs:comment>
-        <dc:identifier>lnc</dc:identifier>
-        <skos:prefLabel>LOINC</skos:prefLabel>
-        <rdfs:label>LOINC</rdfs:label>
-      </api4kp:Lexicon>
-    </api4kp:uses-lexicon>
-    <owl:sameAs rdf:resource="http://hl7.org/fhir/DSTU2"/>
-    <api4kp:uses-lexicon>
-      <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/RxNORM">
-        <owl:sameAs rdf:resource="https://www.nlm.nih.gov/research/umls/rxnorm/"/>
-        <rdfs:comment>RxNorm</rdfs:comment>
-        <dc:identifier>rxnorm</dc:identifier>
-        <skos:prefLabel>RxNORM</skos:prefLabel>
-        <rdfs:label>RxNORM</rdfs:label>
-      </api4kp:Lexicon>
-    </api4kp:uses-lexicon>
-    <dc:source>http://hl7.org/fhir/DSTU2</dc:source>
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/FHIR2JSON">
-        <api4kp:depends-on>
-          <api4kp:MetaFormat rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/JSON/versions/2.0171201E7">
-            <dc:source>http://json.org/20171201</dc:source>
-            <dc:identifier>json</dc:identifier>
-            <skos:prefLabel>JSON</skos:prefLabel>
-            <rdfs:label>JSON</rdfs:label>
-          </api4kp:MetaFormat>
-        </api4kp:depends-on>
-        <dc:source>https://www.hl7.org/fhir/DSTU2/json.html</dc:source>
-        <rdfs:comment>FHIR DSTU2 JSON Syntax</rdfs:comment>
-        <dc:identifier>fhir2+json</dc:identifier>
-        <skos:prefLabel>FHIR DSTU2 JSON Syntax</skos:prefLabel>
-        <rdfs:label>FHIR DSTU2 JSON Syntax</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-    <dc:identifier>fhir</dc:identifier>
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/FHIR2XML">
-        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
-        <dc:source>https://www.hl7.org/fhir/DSTU2/xml.html</dc:source>
-        <rdfs:comment>FHIR DSTU2 XML Syntax</rdfs:comment>
-        <dc:identifier>fhir2+xml</dc:identifier>
-        <skos:prefLabel>FHIR DSTU2 XML Syntax</skos:prefLabel>
-        <rdfs:label>FHIR DSTU2 XML Syntax</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/FHIR2RDF">
-        <api4kp:depends-on>
-          <api4kp:MetaFormat rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/RDF/versions/1.1">
-            <dc:source>https://www.w3.org/RDF/</dc:source>
-            <dc:identifier>rdf</dc:identifier>
-            <skos:prefLabel>RDF 1.1</skos:prefLabel>
-            <rdfs:label>RDF 1.1</rdfs:label>
-          </api4kp:MetaFormat>
-        </api4kp:depends-on>
-        <dc:source>https://www.hl7.org/fhir/DSTU2/rdf.html</dc:source>
-        <rdfs:comment>FHIR DSTU2 RDF Syntax</rdfs:comment>
-        <dc:identifier>fhir2+rdf</dc:identifier>
-        <skos:prefLabel>FHIR DSTU2 RDF Syntax</skos:prefLabel>
-        <rdfs:label>FHIR DSTU2 RDF Syntax</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-    <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-    <rdfs:comment>Fast Healthcare Interoperability Resources DSTU2</rdfs:comment>
-    <api4kp:uses-lexicon>
-      <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/SNOMEDCT/versions/2.0180732E7">
-        <owl:sameAs rdf:resource="http://snomed.info/sct/900000000000207008/version/20180731"/>
-        <rdfs:comment>Systematized Nomenclature of Medicine -- Clinical Terms</rdfs:comment>
-        <dc:identifier>sct</dc:identifier>
-        <skos:prefLabel>SNOMED-CT</skos:prefLabel>
-        <rdfs:label>SNOMED</rdfs:label>
-      </api4kp:Lexicon>
-    </api4kp:uses-lexicon>
-  </api4kp:BaseConstructedLanguage>
-  <j.0:Profile rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/dol/OWL2Full">
-    <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/dol/OWL2/versions/20121211"/>
-    <owl:sameAs rdf:resource="http://www.w3.org/ns/owl-profile/Full"/>
-    <dc:source>https://www.w3.org/TR/owl2-syntax/</dc:source>
-    <rdfs:comment>OWL 2 Web Ontology Language, RDF Semantics</rdfs:comment>
-    <dc:identifier>Full</dc:identifier>
-    <skos:prefLabel>OWL2 Full</skos:prefLabel>
-    <rdfs:label>OWL2 Full</rdfs:label>
-  </j.0:Profile>
-  <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/XSI/versions/1.1">
-    <owl:sameAs rdf:resource="http://www.w3.org/2001/XMLSchema-instance"/>
-    <rdfs:comment>XML Schema Instance</rdfs:comment>
-    <dc:identifier>xsi</dc:identifier>
-    <skos:prefLabel>XML Schema Instance</skos:prefLabel>
-    <rdfs:label>XML Schema Instance</rdfs:label>
-  </api4kp:Lexicon>
-  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/XSD/versions/1.1">
-    <owl:versionInfo>v11</owl:versionInfo>
-    <skos:prefLabel>XSD 1.1</skos:prefLabel>
-    <dc:identifier>xsd</dc:identifier>
-    <owl:sameAs rdf:resource="http://www.w3.org/2001/XMLSchema"/>
-    <dc:source>https://www.w3.org/TR/xmlschema11-1/</dc:source>
-    <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/XSD11Syntax">
-        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
-        <dc:source>https://www.w3.org/TR/xmlschema11-1/</dc:source>
-        <rdfs:comment>XSD XML 1.1 Syntax</rdfs:comment>
-        <dc:identifier>Xsd-v11+xml</dc:identifier>
-        <skos:prefLabel>XSD XML 1.1 Syntax</skos:prefLabel>
-        <rdfs:label>XSD XML 1.1 Syntax</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-    <rdfs:label>XSD 1.1</rdfs:label>
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/XSDXML">
-        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
-        <owl:sameAs rdf:resource="http://www.w3.org/2001/XMLSchema"/>
-        <rdfs:comment>XSD XML Syntax</rdfs:comment>
-        <dc:identifier>xsd+xml</dc:identifier>
-        <skos:prefLabel>XSD XML Syntax</skos:prefLabel>
-        <rdfs:label>XSD XML Syntax</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-    <rdfs:comment>XML Schema Definition Language 1.1</rdfs:comment>
-  </api4kp:BaseConstructedLanguage>
-  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/DITA/versions/1.3">
-    <owl:versionInfo>v13</owl:versionInfo>
-    <dc:source>http://docs.oasis-open.org/dita/dita/v1.3/dita-v1.3-part0-overview.html</dc:source>
-    <rdfs:comment>Darwin Information Technology Architecture 1.3</rdfs:comment>
-    <dc:identifier>dita</dc:identifier>
-    <skos:prefLabel>DITA</skos:prefLabel>
-    <rdfs:label>DITA</rdfs:label>
-  </api4kp:BaseConstructedLanguage>
-  <j.0:Profile rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/dol/OWL2EL">
-    <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/dol/OWL2/versions/20121211"/>
-    <owl:sameAs rdf:resource="http://www.w3.org/ns/owl-profile/EL"/>
-    <dc:source>https://www.w3.org/TR/owl2-profiles/#OWL_2_EL</dc:source>
-    <rdfs:comment>OWL 2 Web Ontology Language, EL Profile</rdfs:comment>
-    <dc:identifier>EL</dc:identifier>
-    <skos:prefLabel>OWL2 EL</skos:prefLabel>
-    <rdfs:label>OWL2 EL</rdfs:label>
-  </j.0:Profile>
-  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/OpenAPI/versions/2.x">
-    <dc:identifier>openapi</dc:identifier>
-    <rdfs:comment>OpenAPI / Swagger v2.x</rdfs:comment>
-    <skos:prefLabel>OpenAPI 2.x</skos:prefLabel>
-    <rdfs:label>OpenAPI 2.x</rdfs:label>
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/OpenAPI2JSONSyntax">
-        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/JSON/versions/2.0171201E7"/>
-        <dc:source>https://swagger.io/specification/#format</dc:source>
-        <rdfs:comment>OpenAPI 2 JSON Syntax</rdfs:comment>
-        <dc:identifier>openapi-v2+json</dc:identifier>
-        <skos:prefLabel>OpenAPI 2 JSON Syntax</skos:prefLabel>
-        <rdfs:label>OpenAPI 2 JSON Syntax</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/OpenAPI2YAMLSyntax">
-        <api4kp:depends-on>
-          <api4kp:MetaFormat rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/YAML/versions/1.2">
-            <dc:source>http://yaml.org/spec/1.2</dc:source>
-            <dc:identifier>yaml</dc:identifier>
-            <skos:prefLabel>YAML 1.2</skos:prefLabel>
-            <rdfs:label>YAML 1.2</rdfs:label>
-          </api4kp:MetaFormat>
-        </api4kp:depends-on>
-        <dc:source>https://swagger.io/specification/#format</dc:source>
-        <rdfs:comment>OpenAPI 2 YAML Syntax</rdfs:comment>
-        <dc:identifier>openapi-v2+yaml</dc:identifier>
-        <skos:prefLabel>OpenAPI 2 YAML Syntax</skos:prefLabel>
-        <rdfs:label>OpenAPI 2 YAML Syntax</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-    <owl:versionInfo>v2</owl:versionInfo>
-    <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-    <dc:source>https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md</dc:source>
-  </api4kp:BaseConstructedLanguage>
-  <j.0:Profile rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/api4kp/SurrogateAnnotations">
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/AnnotationsMLSyntax">
-        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
-        <owl:sameAs rdf:resource="http://kmdp.mayo.edu/metadata/annotations"/>
-        <dc:source>http://www.omg.org/spec/API4KP/1.0/</dc:source>
-        <rdfs:comment>Knowledge Asset Surrogate - Annotations - XML Syntax</rdfs:comment>
-        <dc:identifier>ann+xml</dc:identifier>
-        <skos:prefLabel>Knowledge Asset Annotations XML Syntax</skos:prefLabel>
-        <rdfs:label>Knowledge Asset Annotations XML Syntax</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-    <j.0:isProfileOf>
-      <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/AssetSurrogate/versions/1.0">
-        <rdfs:label>Knowledge Asset Surrogate</rdfs:label>
-        <skos:prefLabel>Knowledge Asset Surrogate</skos:prefLabel>
-        <j.0:supportsSerialization>
-          <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/SurrogateJSONSyntax">
-            <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/JSON/versions/2.0171201E7"/>
-            <dc:source>http://www.omg.org/spec/API4KP/1.0/</dc:source>
-            <rdfs:comment>Knowledge Asset Surrogate JSON Syntax</rdfs:comment>
-            <dc:identifier>surr+json</dc:identifier>
-            <skos:prefLabel>Knowledge Asset Surrogate JSON Syntax</skos:prefLabel>
-            <rdfs:label>Knowledge Asset Surrogate JSON Syntax</rdfs:label>
-          </j.0:Serialization>
-        </j.0:supportsSerialization>
-        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRProfile/versions/201808"/>
-        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRLanguage/versions/201808"/>
-        <dc:identifier>surr</dc:identifier>
-        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRFormat/versions/201808"/>
-        <api4kp:uses-lexicon>
-          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRLanguageRole/versions/1.0">
-            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/LanguageRole/1.0"/>
-            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
-            <rdfs:comment>Knowledge Representation and Reasoning Language Role</rdfs:comment>
-            <dc:identifier>lang-rol</dc:identifier>
-            <skos:prefLabel>KRR Language Role</skos:prefLabel>
-            <rdfs:label>KRR Language Role</rdfs:label>
-          </api4kp:Lexicon>
-        </api4kp:uses-lexicon>
-        <api4kp:uses-lexicon>
-          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/VariantRel/versions/2.0190101E7">
-            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/VariantRelType/20190801/"/>
-            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
-            <rdfs:comment>Knowledge Asset Relationships - Variants</rdfs:comment>
-            <dc:identifier>variant</dc:identifier>
-            <skos:prefLabel>Asset Relationships - Variants</skos:prefLabel>
-            <rdfs:label>Asset Relationships - Variants</rdfs:label>
-          </api4kp:Lexicon>
-        </api4kp:uses-lexicon>
-        <api4kp:uses-lexicon>
-          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/SummaryRel/versions/2.0190101E7">
-            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/SummaryRelType/20190801/"/>
-            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
-            <rdfs:comment>Knowledge Asset Relationships - Summary</rdfs:comment>
-            <dc:identifier>summary</dc:identifier>
-            <skos:prefLabel>Asset Relationships - Summary</skos:prefLabel>
-            <rdfs:label>Asset Relationships - Summary</rdfs:label>
-          </api4kp:Lexicon>
-        </api4kp:uses-lexicon>
-        <api4kp:uses-lexicon>
-          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/DerivationRel/versions/2.0190101E7">
-            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/DerivationRelType/20190801/"/>
-            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
-            <rdfs:comment>Knowledge Asset Relationships - Derivations</rdfs:comment>
-            <dc:identifier>deriv</dc:identifier>
-            <skos:prefLabel>Asset Relationships - Derivations</skos:prefLabel>
-            <rdfs:label>Asset Relationships - Derivations</rdfs:label>
-          </api4kp:Lexicon>
-        </api4kp:uses-lexicon>
-        <api4kp:uses-lexicon>
-          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/CitationRel/versions/2018-02-16">
-            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/CitationRelType/2018-02-16"/>
-            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
-            <rdfs:comment>Knowledge Asset Relationships - Citations</rdfs:comment>
-            <dc:identifier>cito</dc:identifier>
-            <skos:prefLabel>Asset Relationships - Citations</skos:prefLabel>
-            <rdfs:label>Asset Relationships - Citations</rdfs:label>
-          </api4kp:Lexicon>
-        </api4kp:uses-lexicon>
-        <api4kp:uses-lexicon>
-          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/VersionRel/versions/2.0190101E7">
-            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/RelatedVersionType/20190801/"/>
-            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
-            <rdfs:comment>Knowledge Asset Relationships - Versions</rdfs:comment>
-            <dc:identifier>version</dc:identifier>
-            <skos:prefLabel>Asset Relationships - Versions</skos:prefLabel>
-            <rdfs:label>Asset Relationships - Versions</rdfs:label>
-          </api4kp:Lexicon>
-        </api4kp:uses-lexicon>
-        <api4kp:uses-lexicon>
-          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/NaturalLanguage/versions/2.0170801E7">
-            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/ISO639-1-LanguageCodes/20170801/"/>
-            <dc:source>https://www.omg.org/spec/LCC/Languages/ISO639-1-LanguageCodes/</dc:source>
-            <rdfs:comment>Natural Language (ISO 639-1 Standard)</rdfs:comment>
-            <dc:identifier>langs</dc:identifier>
-            <skos:prefLabel>Natural Language</skos:prefLabel>
-            <rdfs:label>Natural Language</rdfs:label>
-          </api4kp:Lexicon>
-        </api4kp:uses-lexicon>
-        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/AssetType/versions/1.0"/>
-        <api4kp:uses-lexicon>
-          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/StructuralRel/versions/2.0190101E7">
-            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/StructuralRelType/20190801/"/>
-            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
-            <rdfs:comment>Knowledge Asset Relationships - Structural</rdfs:comment>
-            <dc:identifier>struct</dc:identifier>
-            <skos:prefLabel>Asset Relationships - Structural</skos:prefLabel>
-            <rdfs:label>Asset Relationships - Structural</rdfs:label>
-          </api4kp:Lexicon>
-        </api4kp:uses-lexicon>
-        <dc:source>https://www.omg.org/spec/API4KP/1.0/</dc:source>
-        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/ParsingLevel/versions/2.0190101E7"/>
-        <rdfs:comment>Knowledge Asset Surrogate Metamodel</rdfs:comment>
-        <api4kp:uses-lexicon>
-          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRTechnique/versions/1.0">
-            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/KnowledgeProcessingTechnique/1.0"/>
-            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
-            <rdfs:comment>Knowledge Reasoning Technique</rdfs:comment>
-            <dc:identifier>krtech</dc:identifier>
-            <skos:prefLabel>KRR Technique</skos:prefLabel>
-            <rdfs:label>KRR Technique</rdfs:label>
-          </api4kp:Lexicon>
-        </api4kp:uses-lexicon>
-        <api4kp:uses-lexicon>
-          <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/DependencyRel/versions/2.0190101E7">
-            <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/DependencyRelType/20190801/"/>
-            <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
-            <rdfs:comment>Knowledge Asset Relationships - Dependencies</rdfs:comment>
-            <dc:identifier>depend</dc:identifier>
-            <skos:prefLabel>Asset Relationships - Dependencies</skos:prefLabel>
-            <rdfs:label>Asset Relationships - Dependencies</rdfs:label>
-          </api4kp:Lexicon>
-        </api4kp:uses-lexicon>
-        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRLexicon/versions/201808"/>
-        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/AssetCategory/versions/1.0"/>
+        <dc:identifier>xhtml</dc:identifier>
+        <dc:source>https://www.w3.org/TR/xhtml1/</dc:source>
+        <rdfs:comment>X-HTML</rdfs:comment>
+        <rdfs:label>XHTML</rdfs:label>
         <owl:versionInfo>v1</owl:versionInfo>
-        <owl:sameAs rdf:resource="http://kmdp.mayo.edu/metadata/surrogate"/>
-        <j.0:supportsSerialization>
-          <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/SurrogateXMLSyntax">
-            <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
-            <owl:sameAs rdf:resource="http://kmdp.mayo.edu/metadata/surrogate"/>
-            <dc:source>http://www.omg.org/spec/API4KP/1.0/</dc:source>
-            <rdfs:comment>Knowledge Asset Surrogate XML Syntax</rdfs:comment>
-            <dc:identifier>surr+xml</dc:identifier>
-            <skos:prefLabel>Knowledge Asset Surrogate XML Syntax</skos:prefLabel>
-            <rdfs:label>Knowledge Asset Surrogate XML Syntax</rdfs:label>
-          </j.0:Serialization>
-        </j.0:supportsSerialization>
-        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRSerialization/versions/201808"/>
+        <skos:prefLabel>XHTML</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/XSD/versions/1.1 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/XSD/versions/1.1">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-      </api4kp:BaseConstructedLanguage>
-    </j.0:isProfileOf>
-    <dc:source>https://www.omg.org/spec/API4KP/1.0/</dc:source>
-    <rdfs:comment>Knowledge Asset Surrogate Annotations</rdfs:comment>
-    <dc:identifier>ann</dc:identifier>
-    <skos:prefLabel>Knowledge Asset Surrogate Annotations</skos:prefLabel>
-    <rdfs:label>Knowledge Asset Surrogate Annotations</rdfs:label>
-  </j.0:Profile>
-  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/CQL/versions/1.2">
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/CQLSyntax">
-        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/TXT"/>
-        <dc:source>https://cql.hl7.org/grammar.html</dc:source>
-        <rdfs:comment>CQL Syntax</rdfs:comment>
-        <dc:identifier>cql+txt</dc:identifier>
-        <skos:prefLabel>CQL Syntax</skos:prefLabel>
-        <rdfs:label>CQL Syntax</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
-    <owl:versionInfo>v12</owl:versionInfo>
-    <dc:source>https://cql.hl7.org/</dc:source>
-    <rdfs:comment>Clinical Quality Language 1.2</rdfs:comment>
-    <dc:identifier>cql</dc:identifier>
-    <skos:prefLabel>HL7 CQL</skos:prefLabel>
-    <rdfs:label>HL7 CQL</rdfs:label>
-  </j.0:OMSLanguage>
-  <j.0:Profile rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/dol/OWL2RL">
-    <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/dol/OWL2/versions/20121211"/>
-    <owl:sameAs rdf:resource="http://www.w3.org/ns/owl-profile/RL"/>
-    <dc:source>https://www.w3.org/TR/owl2-profiles/#OWL_2_RL</dc:source>
-    <rdfs:comment>OWL 2 Web Ontology Language, RL Profile</rdfs:comment>
-    <dc:identifier>RL</dc:identifier>
-    <skos:prefLabel>OWL2 RL</skos:prefLabel>
-    <rdfs:label>OWL2 RL</rdfs:label>
-  </j.0:Profile>
-  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/ReactionRuleML/versions/1.2">
-    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
-    <owl:sameAs rdf:resource="http://reaction.ruleml.org/1.02/"/>
-    <owl:versionInfo>v12</owl:versionInfo>
-    <dc:source>http://reaction.ruleml.org/1.02/</dc:source>
-    <rdfs:comment>Reaction RuleML 1.2</rdfs:comment>
-    <dc:identifier>rruleml</dc:identifier>
-    <skos:prefLabel>Reaction RuleML 1.2</skos:prefLabel>
-    <rdfs:label>Reaction RuleML 1.2</rdfs:label>
-  </j.0:OMSLanguage>
-  <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/XMLNS/versions/1.1">
-    <owl:sameAs rdf:resource="http://www.w3.org/XML/1998/namespace"/>
-    <rdfs:comment>XML Namespace</rdfs:comment>
-    <dc:identifier>xmlns</dc:identifier>
-    <skos:prefLabel>XML Namespace</skos:prefLabel>
-    <rdfs:label>XML Namespace</rdfs:label>
-  </api4kp:Lexicon>
-  <j.0:Profile rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/api4kp/API4KPServers">
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/API4KPServiceJSONSyntax">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <owl:sameAs rdf:resource="http://www.w3.org/2001/XMLSchema"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/XSD11Syntax"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/XSDXML"/>
+        <dc:identifier>xsd</dc:identifier>
+        <dc:source>https://www.w3.org/TR/xmlschema11-1/</dc:source>
+        <rdfs:comment>XML Schema Definition Language 1.1</rdfs:comment>
+        <rdfs:label>XSD 1.1</rdfs:label>
+        <owl:versionInfo>v11</owl:versionInfo>
+        <skos:prefLabel>XSD 1.1</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/XSLT/versions/3.0 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/XSLT/versions/3.0">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <owl:sameAs rdf:resource="https://www.w3.org/TR/xslt-30/"/>
+        <dc:identifier>xslt</dc:identifier>
+        <dc:source>https://www.w3.org/TR/2017/REC-xslt-30-20170608/</dc:source>
+        <rdfs:comment>Extensible Stylesheet Transformation 3.0</rdfs:comment>
+        <rdfs:label>XSLT 3.0</rdfs:label>
+        <owl:versionInfo>v3</owl:versionInfo>
+        <skos:prefLabel>XSLT 3.0</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/dol/OWL2/versions/20121211 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/dol/OWL2/versions/20121211">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <owl:sameAs rdf:resource="http://www.w3.org/2002/07/owl"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/OWLFunctionalSyntax"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/OWLManchesterSyntax"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/OWLXMLSyntax"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/RDF_XMLSyntax"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/Turtle"/>
+        <dc:identifier>owl2</dc:identifier>
+        <dc:source>https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/</dc:source>
+        <rdfs:comment>Web Ontology Language 2</rdfs:comment>
+        <rdfs:label>OWL-2</rdfs:label>
+        <owl:versionInfo>v20121211</owl:versionInfo>
+        <skos:prefLabel>OWL-2</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/CCG/versions/1.0 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/CCG/versions/1.0">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/PCV/versions/2019.0"/>
+        <dc:identifier>ccg</dc:identifier>
+        <rdfs:comment>Clinical Concept Glossary Metamodel</rdfs:comment>
+        <rdfs:label>Clinical Concept Glossary</rdfs:label>
+        <owl:versionInfo>v1</owl:versionInfo>
+        <skos:prefLabel>Clinical Concept Glossary</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/CQL/versions/1.2 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/CQL/versions/1.2">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/CQLSyntax"/>
+        <dc:identifier>cql</dc:identifier>
+        <dc:source>https://cql.hl7.org/</dc:source>
+        <rdfs:comment>Clinical Quality Language 1.2</rdfs:comment>
+        <rdfs:label>HL7 CQL</rdfs:label>
+        <owl:versionInfo>v12</owl:versionInfo>
+        <skos:prefLabel>HL7 CQL</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/CognitiveCareProcessModel/versions/1.0 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/CognitiveCareProcessModel/versions/1.0">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/PCV/versions/2019.0"/>
+        <dc:identifier>ccpm</dc:identifier>
+        <rdfs:comment>Cognitive Care Process Models Metamodel</rdfs:comment>
+        <rdfs:label>Cognitive Care Process Model</rdfs:label>
+        <owl:versionInfo>v1</owl:versionInfo>
+        <skos:prefLabel>Cognitive Care Process Model</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/DITA/versions/1.3 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/DITA/versions/1.3">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <dc:identifier>dita</dc:identifier>
+        <dc:source>http://docs.oasis-open.org/dita/dita/v1.3/dita-v1.3-part0-overview.html</dc:source>
+        <rdfs:comment>Darwin Information Technology Architecture 1.3</rdfs:comment>
+        <rdfs:label>DITA</rdfs:label>
+        <owl:versionInfo>v13</owl:versionInfo>
+        <skos:prefLabel>DITA</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/ELM/versions/1.2 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/ELM/versions/1.2">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/CQL_ELMXMLSyntax"/>
+        <dc:identifier>elm</dc:identifier>
+        <dc:source>https://cql.hl7.org/</dc:source>
+        <rdfs:comment>Clinical Quality Language, Expression Language Metamodel 1.2</rdfs:comment>
+        <rdfs:label>HL7 ELM</rdfs:label>
+        <owl:versionInfo>v12</owl:versionInfo>
+        <skos:prefLabel>HL7 ELM</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/FHIR/versions/DSTU2 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/FHIR/versions/DSTU2">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/FHIR2JSON"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/FHIR2RDF"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/FHIR2XML"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/RxNORM"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/LOINC/versions/2.65"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/SNOMEDCT/versions/2.0180732E7"/>
+        <dc:identifier>fhir</dc:identifier>
+        <dc:source>http://hl7.org/fhir/DSTU2</dc:source>
+        <rdfs:comment>Fast Healthcare Interoperability Resources DSTU2</rdfs:comment>
+        <rdfs:label>FHIR DSTU2</rdfs:label>
+        <owl:versionInfo>v2</owl:versionInfo>
+        <skos:prefLabel>FHIR DSTU2</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/FHIR/versions/STU3 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/FHIR/versions/STU3">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/RxNORM"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/LOINC/versions/2.65"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/SNOMEDCT/versions/2.0180732E7"/>
+        <dc:identifier>fhir</dc:identifier>
+        <dc:source>http://hl7.org/fhir/STU3</dc:source>
+        <rdfs:comment>Fast Healthcare Interoperability Resources STU3</rdfs:comment>
+        <rdfs:label>FHIR STU3</rdfs:label>
+        <owl:versionInfo>v3</owl:versionInfo>
+        <skos:prefLabel>FHIR STU3</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/FHIRPath/versions/STU1 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/FHIRPath/versions/STU1">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <dc:identifier>fhirpath</dc:identifier>
+        <dc:source>http://hl7.org/fhirpath/</dc:source>
+        <rdfs:comment>FHIRPath Path Language</rdfs:comment>
+        <rdfs:label>FHIRPath STU1</rdfs:label>
+        <owl:versionInfo>v1</owl:versionInfo>
+        <skos:prefLabel>FHIRPath STU1</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/Java/versions/8.0 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/Java/versions/8.0">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <dc:identifier>java</dc:identifier>
+        <dc:source>https://jcp.org/en/jsr/detail?id=337</dc:source>
+        <rdfs:comment>Java 8</rdfs:comment>
+        <rdfs:label>Java 8</rdfs:label>
+        <owl:versionInfo>v8</owl:versionInfo>
+        <skos:prefLabel>Java 8</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/KNART/versions/1.3 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/KNART/versions/1.3">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/KNARTXMLSyntax"/>
+        <dc:identifier>knart</dc:identifier>
+        <dc:source>https://www.hl7.org/implement/standards/product_brief.cfm?product_id=337</dc:source>
+        <rdfs:comment>HL7 Knowledge Artifact Metamodel 1.3</rdfs:comment>
+        <rdfs:label>KNART 1.3</rdfs:label>
+        <owl:versionInfo>v13</owl:versionInfo>
+        <skos:prefLabel>KNART 1.3</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/Mustache/versions/1 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/Mustache/versions/1">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <dc:identifier>mustache</dc:identifier>
+        <dc:source>http://mustache.github.io</dc:source>
+        <rdfs:comment>Mustache Templating Language</rdfs:comment>
+        <rdfs:label>Mustache</rdfs:label>
+        <owl:versionInfo>v1</owl:versionInfo>
+        <skos:prefLabel>Mustache</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/ServiceProfile/versions/1.0 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/ServiceProfile/versions/1.0">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
+        <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/PCV/versions/2019.0"/>
+        <dc:identifier>sp</dc:identifier>
+        <rdfs:comment>Service Profile Metamodel</rdfs:comment>
+        <rdfs:label>Service Profile</rdfs:label>
+        <owl:versionInfo>v1</owl:versionInfo>
+        <skos:prefLabel>Service Profile</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/AssetCategory/versions/1.0 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/AssetCategory/versions/1.0">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/KnowledgeAssetCategory/1.0"/>
+        <dc:identifier>asset-cat</dc:identifier>
+        <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+        <rdfs:comment>Knowledge Asset Category</rdfs:comment>
+        <rdfs:label>Knowledge Asset Category</rdfs:label>
+        <skos:prefLabel>Knowledge Asset Category</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/AssetType/versions/1.0 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/AssetType/versions/1.0">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/KnowledgeAssetType/1.0"/>
+        <dc:identifier>asset-type</dc:identifier>
+        <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+        <rdfs:comment>Knowledge Asset Type</rdfs:comment>
+        <rdfs:label>Knowledge Asset Type</rdfs:label>
+        <skos:prefLabel>Knowledge Asset Type</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/CitationRel/versions/2018-02-16 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/CitationRel/versions/2018-02-16">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/CitationRelType/2018-02-16"/>
+        <dc:identifier>cito</dc:identifier>
+        <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+        <rdfs:comment>Knowledge Asset Relationships - Citations</rdfs:comment>
+        <rdfs:label>Asset Relationships - Citations</rdfs:label>
+        <skos:prefLabel>Asset Relationships - Citations</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/DependencyRel/versions/2.0190101E7 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/DependencyRel/versions/2.0190101E7">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/DependencyRelType/20190801/"/>
+        <dc:identifier>depend</dc:identifier>
+        <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+        <rdfs:comment>Knowledge Asset Relationships - Dependencies</rdfs:comment>
+        <rdfs:label>Asset Relationships - Dependencies</rdfs:label>
+        <skos:prefLabel>Asset Relationships - Dependencies</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/DerivationRel/versions/2.0190101E7 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/DerivationRel/versions/2.0190101E7">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/DerivationRelType/20190801/"/>
+        <dc:identifier>deriv</dc:identifier>
+        <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+        <rdfs:comment>Knowledge Asset Relationships - Derivations</rdfs:comment>
+        <rdfs:label>Asset Relationships - Derivations</rdfs:label>
+        <skos:prefLabel>Asset Relationships - Derivations</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRFormat/versions/201808 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRFormat/versions/201808">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KRFormat/2018/08/"/>
+        <dc:identifier>krfmt</dc:identifier>
+        <dc:source>http://ontology.mayo.edu/ontologies/kmdp-registry/</dc:source>
+        <rdfs:comment>Knowledge Representation and Reasoning Serialization Format</rdfs:comment>
+        <rdfs:label>KRR MetaFormat</rdfs:label>
+        <skos:prefLabel>KRR MetaFormat</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRLanguage/versions/201808 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRLanguage/versions/201808">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KRLanguage/2018/08/"/>
+        <dc:identifier>krlang</dc:identifier>
+        <dc:source>http://ontology.mayo.edu/ontologies/kmdp-registry/</dc:source>
+        <rdfs:comment>Knowledge Representation and Reasoning Language</rdfs:comment>
+        <rdfs:label>KRR Language</rdfs:label>
+        <skos:prefLabel>KRR Language</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRLanguageRole/versions/1.0 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRLanguageRole/versions/1.0">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/LanguageRole/1.0"/>
+        <dc:identifier>lang-rol</dc:identifier>
+        <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+        <rdfs:comment>Knowledge Representation and Reasoning Language Role</rdfs:comment>
+        <rdfs:label>KRR Language Role</rdfs:label>
+        <skos:prefLabel>KRR Language Role</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRLexicon/versions/201808 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRLexicon/versions/201808">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/Lexicon/2018/08/"/>
+        <dc:identifier>lexicon</dc:identifier>
+        <dc:source>http://ontology.mayo.edu/ontologies/kmdp-registry/</dc:source>
+        <rdfs:comment>Knowledge Representation and Reasoning Lexicon</rdfs:comment>
+        <rdfs:label>KRR Lexicon</rdfs:label>
+        <skos:prefLabel>KRR Lexicon</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRProfile/versions/201808 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRProfile/versions/201808">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KRProfile/2018/08/"/>
+        <dc:identifier>krprof</dc:identifier>
+        <dc:source>http://ontology.mayo.edu/ontologies/kmdp-registry/</dc:source>
+        <rdfs:comment>Knowledge Representation and Reasoning Language Profile</rdfs:comment>
+        <rdfs:label>KRR Profile</rdfs:label>
+        <skos:prefLabel>KRR Profile</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRSerialization/versions/201808 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRSerialization/versions/201808">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KRSerialization/2018/08/"/>
+        <dc:identifier>krser</dc:identifier>
+        <dc:source>http://ontology.mayo.edu/ontologies/kmdp-registry/</dc:source>
+        <rdfs:comment>Knowledge Representation and Reasoning Serialization</rdfs:comment>
+        <rdfs:label>KRR Serialization</rdfs:label>
+        <skos:prefLabel>KRR Serialization</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRTechnique/versions/1.0 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/KRTechnique/versions/1.0">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/KnowledgeProcessingTechnique/1.0"/>
+        <dc:identifier>krtech</dc:identifier>
+        <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+        <rdfs:comment>Knowledge Reasoning Technique</rdfs:comment>
+        <rdfs:label>KRR Technique</rdfs:label>
+        <skos:prefLabel>KRR Technique</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/NaturalLanguage/versions/2.0170801E7 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/NaturalLanguage/versions/2.0170801E7">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/ISO639-1-LanguageCodes/20170801/"/>
+        <dc:identifier>langs</dc:identifier>
+        <dc:source>https://www.omg.org/spec/LCC/Languages/ISO639-1-LanguageCodes/</dc:source>
+        <rdfs:comment>Natural Language (ISO 639-1 Standard)</rdfs:comment>
+        <rdfs:label>Natural Language</rdfs:label>
+        <skos:prefLabel>Natural Language</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/ParsingLevel/versions/2.0190101E7 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/ParsingLevel/versions/2.0190101E7">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/API4KP/ParsingLevel/20190801/"/>
+        <dc:identifier>vertical</dc:identifier>
+        <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+        <rdfs:comment>Language Parsing Level</rdfs:comment>
+        <rdfs:label>Parsing Level</rdfs:label>
+        <skos:prefLabel>Parsing Level</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/SKOS/versions/2004.0 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/SKOS/versions/2004.0">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="http://www.w3.org/2004/02/skos/core"/>
+        <dc:identifier>skos</dc:identifier>
+        <rdfs:comment>Simple Knowledge Organization Scheme</rdfs:comment>
+        <rdfs:label>SKOS</rdfs:label>
+        <skos:prefLabel>SKOS</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/StructuralRel/versions/2.0190101E7 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/StructuralRel/versions/2.0190101E7">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/StructuralRelType/20190801/"/>
+        <dc:identifier>struct</dc:identifier>
+        <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+        <rdfs:comment>Knowledge Asset Relationships - Structural</rdfs:comment>
+        <rdfs:label>Asset Relationships - Structural</rdfs:label>
+        <skos:prefLabel>Asset Relationships - Structural</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/SummaryRel/versions/2.0190101E7 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/SummaryRel/versions/2.0190101E7">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/SummaryRelType/20190801/"/>
+        <dc:identifier>summary</dc:identifier>
+        <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+        <rdfs:comment>Knowledge Asset Relationships - Summary</rdfs:comment>
+        <rdfs:label>Asset Relationships - Summary</rdfs:label>
+        <skos:prefLabel>Asset Relationships - Summary</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/VariantRel/versions/2.0190101E7 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/VariantRel/versions/2.0190101E7">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/VariantRelType/20190801/"/>
+        <dc:identifier>variant</dc:identifier>
+        <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+        <rdfs:comment>Knowledge Asset Relationships - Variants</rdfs:comment>
+        <rdfs:label>Asset Relationships - Variants</rdfs:label>
+        <skos:prefLabel>Asset Relationships - Variants</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/VersionRel/versions/2.0190101E7 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/api4kp/VersionRel/versions/2.0190101E7">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/RelatedVersionType/20190801/"/>
+        <dc:identifier>version</dc:identifier>
+        <dc:source>https://www.omg.org/spec/API4KP/api4kp/</dc:source>
+        <rdfs:comment>Knowledge Asset Relationships - Versions</rdfs:comment>
+        <rdfs:label>Asset Relationships - Versions</rdfs:label>
+        <skos:prefLabel>Asset Relationships - Versions</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/RxNORM -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/RxNORM">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="https://www.nlm.nih.gov/research/umls/rxnorm/"/>
+        <dc:identifier>rxnorm</dc:identifier>
+        <rdfs:comment>RxNorm</rdfs:comment>
+        <rdfs:label>RxNORM</rdfs:label>
+        <skos:prefLabel>RxNORM</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/LOINC/versions/2.65 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/LOINC/versions/2.65">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <dc:identifier>lnc</dc:identifier>
+        <rdfs:comment>Logical Observation Identifiers Names and Codes</rdfs:comment>
+        <rdfs:label>LOINC</rdfs:label>
+        <skos:prefLabel>LOINC</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/PCV/versions/2019.0 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/PCV/versions/2019.0">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="http://ontology.mayo.edu/taxonomies/PCV"/>
+        <dc:identifier>pcv</dc:identifier>
+        <rdfs:comment>Mayo Clinic Propositional Concept Vocabulary</rdfs:comment>
+        <rdfs:label>PCV</rdfs:label>
+        <skos:prefLabel>PCV</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/SNOMEDCT/versions/2.0180732E7 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/SNOMEDCT/versions/2.0180732E7">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="http://snomed.info/sct/900000000000207008/version/20180731"/>
+        <dc:identifier>sct</dc:identifier>
+        <rdfs:comment>Systematized Nomenclature of Medicine -- Clinical Terms</rdfs:comment>
+        <rdfs:label>SNOMED</rdfs:label>
+        <skos:prefLabel>SNOMED-CT</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/XMLNS/versions/1.1 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/XMLNS/versions/1.1">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="http://www.w3.org/XML/1998/namespace"/>
+        <dc:identifier>xmlns</dc:identifier>
+        <rdfs:comment>XML Namespace</rdfs:comment>
+        <rdfs:label>XML Namespace</rdfs:label>
+        <skos:prefLabel>XML Namespace</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/XSI/versions/1.1 -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/XSI/versions/1.1">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+        <owl:sameAs rdf:resource="http://www.w3.org/2001/XMLSchema-instance"/>
+        <dc:identifier>xsi</dc:identifier>
+        <rdfs:comment>XML Schema Instance</rdfs:comment>
+        <rdfs:label>XML Schema Instance</rdfs:label>
+        <skos:prefLabel>XML Schema Instance</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/api4kp/API4KPDatatypes -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/api4kp/API4KPDatatypes">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
+        <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/API4KP/versions/1.0"/>
+        <dc:identifier>dtt</dc:identifier>
+        <dc:source>https://www.omg.org/spec/API4KP/1.0/</dc:source>
+        <rdfs:comment>API4KP Datatypes</rdfs:comment>
+        <rdfs:label>API4KP Datatypes</rdfs:label>
+        <skos:prefLabel>API4KP Datatypes</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/api4kp/API4KPIdentifiers -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/api4kp/API4KPIdentifiers">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
+        <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/API4KP/versions/1.0"/>
+        <dc:identifier>id</dc:identifier>
+        <dc:source>https://www.omg.org/spec/API4KP/1.0/</dc:source>
+        <rdfs:comment>API4KP Identifiers</rdfs:comment>
+        <rdfs:label>API4KP Identifiers</rdfs:label>
+        <skos:prefLabel>API4KP Identifiers</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/api4kp/API4KPServers -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/api4kp/API4KPServers">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
+        <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/API4KP/versions/1.0"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/API4KPServiceJSONSyntax"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/API4KPServiceXMLSyntax"/>
+        <dc:identifier>api</dc:identifier>
+        <dc:source>https://www.omg.org/spec/API4KP/1.0/</dc:source>
+        <rdfs:comment>API4KP Service Descriptors</rdfs:comment>
+        <rdfs:label>API4KP Service Descriptors</rdfs:label>
+        <skos:prefLabel>API4KP Service Descriptors</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/api4kp/SurrogateAnnotations -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/api4kp/SurrogateAnnotations">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
+        <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/AssetSurrogate/versions/1.0"/>
+        <j.0:supportsSerialization rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/AnnotationsMLSyntax"/>
+        <dc:identifier>ann</dc:identifier>
+        <dc:source>https://www.omg.org/spec/API4KP/1.0/</dc:source>
+        <rdfs:comment>Knowledge Asset Surrogate Annotations</rdfs:comment>
+        <rdfs:label>Knowledge Asset Surrogate Annotations</rdfs:label>
+        <skos:prefLabel>Knowledge Asset Surrogate Annotations</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/api4kp/UMLResource -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/api4kp/UMLResource">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
+        <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/UML/versions/2.5"/>
+        <dc:identifier>Res</dc:identifier>
+        <rdfs:comment>UML 2 Resource Profile</rdfs:comment>
+        <rdfs:label>UML Resource</rdfs:label>
+        <skos:prefLabel>UML Resource</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/dol/OWL2DL -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/dol/OWL2DL">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
+        <owl:sameAs rdf:resource="http://www.w3.org/ns/owl-profile/DL"/>
+        <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/dol/OWL2/versions/20121211"/>
+        <dc:identifier>DL</dc:identifier>
+        <dc:source>https://www.w3.org/TR/owl2-profiles/#OWL_2_DL</dc:source>
+        <rdfs:comment>OWL 2 Web Ontology Language, DL Profile</rdfs:comment>
+        <rdfs:label>OWL2 DL</rdfs:label>
+        <skos:prefLabel>OWL2 DL</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/dol/OWL2EL -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/dol/OWL2EL">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
+        <owl:sameAs rdf:resource="http://www.w3.org/ns/owl-profile/EL"/>
+        <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/dol/OWL2/versions/20121211"/>
+        <dc:identifier>EL</dc:identifier>
+        <dc:source>https://www.w3.org/TR/owl2-profiles/#OWL_2_EL</dc:source>
+        <rdfs:comment>OWL 2 Web Ontology Language, EL Profile</rdfs:comment>
+        <rdfs:label>OWL2 EL</rdfs:label>
+        <skos:prefLabel>OWL2 EL</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/dol/OWL2Full -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/dol/OWL2Full">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
+        <owl:sameAs rdf:resource="http://www.w3.org/ns/owl-profile/Full"/>
+        <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/dol/OWL2/versions/20121211"/>
+        <dc:identifier>Full</dc:identifier>
+        <dc:source>https://www.w3.org/TR/owl2-syntax/</dc:source>
+        <rdfs:comment>OWL 2 Web Ontology Language, RDF Semantics</rdfs:comment>
+        <rdfs:label>OWL2 Full</rdfs:label>
+        <skos:prefLabel>OWL2 Full</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/dol/OWL2QL -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/dol/OWL2QL">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
+        <owl:sameAs rdf:resource="http://www.w3.org/ns/owl-profile/QL"/>
+        <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/dol/OWL2/versions/20121211"/>
+        <dc:identifier>QL</dc:identifier>
+        <dc:source>https://www.w3.org/TR/owl2-profiles/#OWL_2_QL</dc:source>
+        <rdfs:comment>OWL 2 Web Ontology Language, QL Profile</rdfs:comment>
+        <rdfs:label>OWL2 QL</rdfs:label>
+        <skos:prefLabel>OWL2 QL</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/dol/OWL2RL -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/dol/OWL2RL">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
+        <owl:sameAs rdf:resource="http://www.w3.org/ns/owl-profile/RL"/>
+        <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/dol/OWL2/versions/20121211"/>
+        <dc:identifier>RL</dc:identifier>
+        <dc:source>https://www.w3.org/TR/owl2-profiles/#OWL_2_RL</dc:source>
+        <rdfs:comment>OWL 2 Web Ontology Language, RL Profile</rdfs:comment>
+        <rdfs:label>OWL2 RL</rdfs:label>
+        <skos:prefLabel>OWL2 RL</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/kmdp/cql-essentials -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/profiles/kmdp/cql-essentials">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
+        <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/CQL/versions/1.2"/>
+        <dc:identifier>Exx</dc:identifier>
+        <rdfs:comment>Essential elements of CQL, scoped to simple expressions, used to evaluate context variables</rdfs:comment>
+        <rdfs:label>CQL Essentials</rdfs:label>
+        <skos:prefLabel>CQL Essentials</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/API4KPServiceJSONSyntax -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/API4KPServiceJSONSyntax">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/JSON/versions/2.0171201E7"/>
+        <dc:identifier>api+json</dc:identifier>
         <dc:source>http://www.omg.org/spec/API4KP/1.0/</dc:source>
         <rdfs:comment>API4KP JSON Syntax</rdfs:comment>
-        <dc:identifier>api+json</dc:identifier>
-        <skos:prefLabel>API4KP Service JSON Syntax</skos:prefLabel>
         <rdfs:label>API4KP Service JSON Syntax</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/API4KPServiceXMLSyntax">
-        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
+        <skos:prefLabel>API4KP Service JSON Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/API4KPServiceXMLSyntax -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/API4KPServiceXMLSyntax">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <owl:sameAs rdf:resource="http://www.omg.org/spec/API4KP/1.0/services"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
+        <dc:identifier>api+xml</dc:identifier>
         <dc:source>http://www.omg.org/spec/API4KP/1.0/</dc:source>
         <rdfs:comment>API4KP XML Syntax</rdfs:comment>
-        <dc:identifier>api+xml</dc:identifier>
-        <skos:prefLabel>API4KP Service XML Syntax</skos:prefLabel>
         <rdfs:label>API4KP Service XML Syntax</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-    <j.0:isProfileOf rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/API4KP/versions/1.0"/>
-    <dc:source>https://www.omg.org/spec/API4KP/1.0/</dc:source>
-    <rdfs:comment>API4KP Service Descriptors</rdfs:comment>
-    <dc:identifier>api</dc:identifier>
-    <skos:prefLabel>API4KP Service Descriptors</skos:prefLabel>
-    <rdfs:label>API4KP Service Descriptors</rdfs:label>
-  </j.0:Profile>
-  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/FEEL/versions/1.1">
-    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
-    <owl:versionInfo>v11</owl:versionInfo>
-    <dc:source>https://www.omg.org/spec/DMN/1.1/</dc:source>
-    <rdfs:comment>Friendly Enough Expression Lanaguage 1.1</rdfs:comment>
-    <dc:identifier>feel</dc:identifier>
-    <skos:prefLabel>FEEL</skos:prefLabel>
-    <rdfs:label>FEEL</rdfs:label>
-  </j.0:OMSLanguage>
-  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/CognitiveCareProcessModel/versions/1.0">
-    <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/PCV/versions/2019.0"/>
-    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
-    <owl:versionInfo>v1</owl:versionInfo>
-    <rdfs:comment>Cognitive Care Process Models Metamodel</rdfs:comment>
-    <dc:identifier>ccpm</dc:identifier>
-    <skos:prefLabel>Cognitive Care Process Model</skos:prefLabel>
-    <rdfs:label>Cognitive Care Process Model</rdfs:label>
-  </j.0:OMSLanguage>
-  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/BPMN/versions/2.0.2">
-    <dc:source>https://www.omg.org/spec/BPMN/2.0/</dc:source>
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/BPMN2XMLSyntax">
+        <skos:prefLabel>API4KP Service XML Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/AnnotationsMLSyntax -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/AnnotationsMLSyntax">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
+        <dc:identifier>ann+xml</dc:identifier>
+        <dc:source>http://www.omg.org/spec/API4KP/1.0/</dc:source>
+        <rdfs:comment>Knowledge Asset Surrogate - Annotations - XML Syntax</rdfs:comment>
+        <rdfs:label>Knowledge Asset Annotations XML Syntax</rdfs:label>
+        <skos:prefLabel>Knowledge Asset Annotations XML Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/BPMN2XMLSyntax -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/BPMN2XMLSyntax">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
+        <dc:identifier>bpmn-v2+xml</dc:identifier>
         <dc:source>https://www.omg.org/spec/BPMN/2.0/</dc:source>
         <rdfs:comment>BPMN 2.0 XML Syntax</rdfs:comment>
-        <dc:identifier>bpmn-v2+xml</dc:identifier>
-        <skos:prefLabel>BPMN 2.0 XML Syntax</skos:prefLabel>
         <rdfs:label>BPMN 2.0 XML Syntax</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-    <rdfs:comment>Business Process Modelling Notation 2.0</rdfs:comment>
-    <dc:identifier>bpmn</dc:identifier>
-    <owl:sameAs rdf:resource="https://www.omg.org/spec/BPMN/2.0/"/>
-    <owl:versionInfo>v2</owl:versionInfo>
-    <rdfs:label>BPMN</rdfs:label>
-    <skos:prefLabel>BPMN 2.0</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-  </api4kp:BaseConstructedLanguage>
-  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/api4kp/CommonLogic/versions/1.0">
-    <dc:identifier>cl</dc:identifier>
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/XCL">
+        <skos:prefLabel>BPMN 2.0 XML Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/CMMN11XMLSyntax -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/CMMN11XMLSyntax">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <owl:sameAs rdf:resource="http://www.omg.org/spec/CMMN/20151109/MODEL"/>
         <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
-        <dc:source>https://www.iso.org/standard/66249.html</dc:source>
-        <rdfs:comment>Common Logic XML Syntax</rdfs:comment>
-        <dc:identifier>xcl/xml</dc:identifier>
-        <skos:prefLabel>XCL</skos:prefLabel>
-        <rdfs:label>XCL</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-    <rdfs:label>Common Logic</rdfs:label>
-    <skos:prefLabel>Common Logic</skos:prefLabel>
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/CLIF">
+        <dc:identifier>cmmn-v11+xml</dc:identifier>
+        <dc:source>https://www.omg.org/spec/CMMN/1.1/</dc:source>
+        <rdfs:comment>CMMN 1.1 XML Syntax</rdfs:comment>
+        <rdfs:label>CMMN 1.1 XML Syntax</rdfs:label>
+        <skos:prefLabel>CMMN 1.1 XML Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/DMN11XMLSyntax -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/DMN11XMLSyntax">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <owl:sameAs rdf:resource="http://www.omg.org/spec/DMN/20151101/dmn.xsd"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
+        <dc:identifier>dmn-v11+xml</dc:identifier>
+        <dc:source>https://www.omg.org/spec/DMN/1.1/</dc:source>
+        <rdfs:comment>DMN 1.1 XML Syntax</rdfs:comment>
+        <rdfs:label>DMN 1.1 XML Syntax</rdfs:label>
+        <skos:prefLabel>DMN 1.1 XML Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/DMN12XMLSyntax -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/DMN12XMLSyntax">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <owl:sameAs rdf:resource="http://www.omg.org/spec/DMN/20180521/MODEL/"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
+        <dc:identifier>dmn-v12+xml</dc:identifier>
+        <dc:source>https://www.omg.org/spec/DMN/1.2/</dc:source>
+        <rdfs:comment>DMN 1.2 XML Syntax</rdfs:comment>
+        <rdfs:label>DMN 1.2 XML Syntax</rdfs:label>
+        <skos:prefLabel>DMN 1.2 XML Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/OpenAPI2JSONSyntax -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/OpenAPI2JSONSyntax">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/JSON/versions/2.0171201E7"/>
+        <dc:identifier>openapi-v2+json</dc:identifier>
+        <dc:source>https://swagger.io/specification/#format</dc:source>
+        <rdfs:comment>OpenAPI 2 JSON Syntax</rdfs:comment>
+        <rdfs:label>OpenAPI 2 JSON Syntax</rdfs:label>
+        <skos:prefLabel>OpenAPI 2 JSON Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/OpenAPI2YAMLSyntax -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/OpenAPI2YAMLSyntax">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/YAML/versions/1.2"/>
+        <dc:identifier>openapi-v2+yaml</dc:identifier>
+        <dc:source>https://swagger.io/specification/#format</dc:source>
+        <rdfs:comment>OpenAPI 2 YAML Syntax</rdfs:comment>
+        <rdfs:label>OpenAPI 2 YAML Syntax</rdfs:label>
+        <skos:prefLabel>OpenAPI 2 YAML Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/SurrogateJSONSyntax -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/SurrogateJSONSyntax">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/JSON/versions/2.0171201E7"/>
+        <dc:identifier>surr+json</dc:identifier>
+        <dc:source>http://www.omg.org/spec/API4KP/1.0/</dc:source>
+        <rdfs:comment>Knowledge Asset Surrogate JSON Syntax</rdfs:comment>
+        <rdfs:label>Knowledge Asset Surrogate JSON Syntax</rdfs:label>
+        <skos:prefLabel>Knowledge Asset Surrogate JSON Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/SurrogateXMLSyntax -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/SurrogateXMLSyntax">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
+        <dc:identifier>surr+xml</dc:identifier>
+        <dc:source>http://www.omg.org/spec/API4KP/1.0/</dc:source>
+        <rdfs:comment>Knowledge Asset Surrogate XML Syntax</rdfs:comment>
+        <rdfs:label>Knowledge Asset Surrogate XML Syntax</rdfs:label>
+        <skos:prefLabel>Knowledge Asset Surrogate XML Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/XSD11Syntax -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/XSD11Syntax">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
+        <dc:identifier>Xsd-v11+xml</dc:identifier>
+        <dc:source>https://www.w3.org/TR/xmlschema11-1/</dc:source>
+        <rdfs:comment>XSD XML 1.1 Syntax</rdfs:comment>
+        <rdfs:label>XSD XML 1.1 Syntax</rdfs:label>
+        <skos:prefLabel>XSD XML 1.1 Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/XSDXML -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/api4kp/XSDXML">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <owl:sameAs rdf:resource="http://www.w3.org/2001/XMLSchema"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
+        <dc:identifier>xsd+xml</dc:identifier>
+        <rdfs:comment>XSD XML Syntax</rdfs:comment>
+        <rdfs:label>XSD XML Syntax</rdfs:label>
+        <skos:prefLabel>XSD XML Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/CGIF -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/CGIF">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/TXT"/>
-        <dc:source>https://www.iso.org/standard/66249.html</dc:source>
-        <rdfs:comment>Common Logic Interchange Format</rdfs:comment>
-        <dc:identifier>clif</dc:identifier>
-        <skos:prefLabel>CLIF</skos:prefLabel>
-        <rdfs:label>CLIF</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-    <rdfs:comment>Common Logic</rdfs:comment>
-    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
-    <owl:versionInfo>v1</owl:versionInfo>
-    <dc:source>https://www.iso.org/standard/66249.html</dc:source>
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/CGIF">
-        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/TXT"/>
+        <dc:identifier>cgif</dc:identifier>
         <dc:source>https://www.iso.org/standard/66249.html</dc:source>
         <rdfs:comment>Conceptual Graph Interchange Format</rdfs:comment>
-        <dc:identifier>cgif</dc:identifier>
-        <skos:prefLabel>CGIF</skos:prefLabel>
         <rdfs:label>CGIF</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-  </j.0:OMSLanguage>
-  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/FHIRPath/versions/STU1">
-    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
-    <owl:versionInfo>v1</owl:versionInfo>
-    <dc:source>http://hl7.org/fhirpath/</dc:source>
-    <rdfs:comment>FHIRPath Path Language</rdfs:comment>
-    <dc:identifier>fhirpath</dc:identifier>
-    <skos:prefLabel>FHIRPath STU1</skos:prefLabel>
-    <rdfs:label>FHIRPath STU1</rdfs:label>
-  </j.0:OMSLanguage>
-  <api4kp:BaseConstructedLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/ELM/versions/1.2">
-    <j.0:supportsSerialization>
-      <j.0:Serialization rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/CQL_ELMXMLSyntax">
+        <skos:prefLabel>CGIF</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/CLIF -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/CLIF">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/TXT"/>
+        <dc:identifier>clif</dc:identifier>
+        <dc:source>https://www.iso.org/standard/66249.html</dc:source>
+        <rdfs:comment>Common Logic Interchange Format</rdfs:comment>
+        <rdfs:label>CLIF</rdfs:label>
+        <skos:prefLabel>CLIF</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/OWLFunctionalSyntax -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/OWLFunctionalSyntax">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/TXT"/>
+        <dc:identifier>ofn</dc:identifier>
+        <dc:source>https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/</dc:source>
+        <rdfs:comment>OWL Functional Syntax</rdfs:comment>
+        <rdfs:label>OWL Functional Syntax</rdfs:label>
+        <skos:prefLabel>OWL Functional Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/OWLManchesterSyntax -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/OWLManchesterSyntax">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/TXT"/>
+        <dc:identifier>ms</dc:identifier>
+        <dc:source>https://www.w3.org/TR/owl2-manchester-syntax/</dc:source>
+        <rdfs:comment>OWL Manchester Syntax</rdfs:comment>
+        <rdfs:label>OWL Manchester Syntax</rdfs:label>
+        <skos:prefLabel>OWL Manchester Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/OWLXMLSyntax -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/OWLXMLSyntax">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
+        <dc:identifier>xml</dc:identifier>
+        <dc:source>https://www.w3.org/TR/owl2-xml-serialization/</dc:source>
+        <rdfs:comment>OWL XML Serialization</rdfs:comment>
+        <rdfs:label>OWL XML Serialization</rdfs:label>
+        <skos:prefLabel>OWL XML Serialization</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/RDF_XMLSyntax -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/RDF_XMLSyntax">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
+        <dc:identifier>rdf/xml</dc:identifier>
+        <dc:source>https://www.w3.org/TR/owl2-mapping-to-rdf/</dc:source>
+        <rdfs:comment>RDF/XML Syntax</rdfs:comment>
+        <rdfs:label>RDF/XML Syntax</rdfs:label>
+        <skos:prefLabel>RDF/XML Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/Turtle -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/Turtle">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/TXT"/>
+        <dc:identifier>ttl</dc:identifier>
+        <dc:source>https://www.w3.org/TR/turtle/</dc:source>
+        <rdfs:comment>Terse RDF Triple Language</rdfs:comment>
+        <rdfs:label>Turtle</rdfs:label>
+        <skos:prefLabel>Turtle</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/XCL -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/dol/XCL">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
+        <dc:identifier>xcl/xml</dc:identifier>
+        <dc:source>https://www.iso.org/standard/66249.html</dc:source>
+        <rdfs:comment>Common Logic XML Syntax</rdfs:comment>
+        <rdfs:label>XCL</rdfs:label>
+        <skos:prefLabel>XCL</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/CQLSyntax -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/CQLSyntax">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/TXT"/>
+        <dc:identifier>cql+txt</dc:identifier>
+        <dc:source>https://cql.hl7.org/grammar.html</dc:source>
+        <rdfs:comment>CQL Syntax</rdfs:comment>
+        <rdfs:label>CQL Syntax</rdfs:label>
+        <skos:prefLabel>CQL Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/CQL_ELMXMLSyntax -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/CQL_ELMXMLSyntax">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <owl:sameAs rdf:resource="urn:hl7-org:elm:r1"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
+        <dc:identifier>cql+xml</dc:identifier>
         <dc:source>https://cql.hl7.org/elm.html</dc:source>
         <rdfs:comment>CQL/ELM 1.2 XML Syntax</rdfs:comment>
-        <dc:identifier>cql+xml</dc:identifier>
-        <skos:prefLabel>CQL/ELM XML Syntax</skos:prefLabel>
         <rdfs:label>CQL/ELM XML Syntax</rdfs:label>
-      </j.0:Serialization>
-    </j.0:supportsSerialization>
-    <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
-    <owl:versionInfo>v12</owl:versionInfo>
-    <rdfs:comment>Clinical Quality Language, Expression Language Metamodel 1.2</rdfs:comment>
-    <rdfs:label>HL7 ELM</rdfs:label>
-    <dc:source>https://cql.hl7.org/</dc:source>
-    <dc:identifier>elm</dc:identifier>
-    <skos:prefLabel>HL7 ELM</skos:prefLabel>
-    <owl:sameAs rdf:resource="http://hl7.org/ELM/1.2"/>
-  </api4kp:BaseConstructedLanguage>
-  <j.0:OMSLanguage rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/languages/kmdp/FHIR/versions/STU3">
-    <rdfs:comment>Fast Healthcare Interoperability Resources STU3</rdfs:comment>
-    <dc:identifier>fhir</dc:identifier>
-    <owl:sameAs rdf:resource="http://hl7.org/fhir/STU3"/>
-    <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/BaseConstructedLanguage"/>
-    <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/LOINC/versions/2.65"/>
-    <skos:prefLabel>FHIR STU3</skos:prefLabel>
-    <owl:versionInfo>v3</owl:versionInfo>
-    <rdfs:label>FHIR STU3</rdfs:label>
-    <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/SNOMEDCT/versions/2.0180732E7"/>
-    <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/lexica/kmdp/RxNORM"/>
-    <dc:source>http://hl7.org/fhir/STU3</dc:source>
-  </j.0:OMSLanguage>
+        <skos:prefLabel>CQL/ELM XML Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/FHIR2JSON -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/FHIR2JSON">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/JSON/versions/2.0171201E7"/>
+        <dc:identifier>fhir2+json</dc:identifier>
+        <dc:source>https://www.hl7.org/fhir/DSTU2/json.html</dc:source>
+        <rdfs:comment>FHIR DSTU2 JSON Syntax</rdfs:comment>
+        <rdfs:label>FHIR DSTU2 JSON Syntax</rdfs:label>
+        <skos:prefLabel>FHIR DSTU2 JSON Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/FHIR2RDF -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/FHIR2RDF">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/RDF/versions/1.1"/>
+        <dc:identifier>fhir2+rdf</dc:identifier>
+        <dc:source>https://www.hl7.org/fhir/DSTU2/rdf.html</dc:source>
+        <rdfs:comment>FHIR DSTU2 RDF Syntax</rdfs:comment>
+        <rdfs:label>FHIR DSTU2 RDF Syntax</rdfs:label>
+        <skos:prefLabel>FHIR DSTU2 RDF Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/FHIR2XML -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/FHIR2XML">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
+        <dc:identifier>fhir2+xml</dc:identifier>
+        <dc:source>https://www.hl7.org/fhir/DSTU2/xml.html</dc:source>
+        <rdfs:comment>FHIR DSTU2 XML Syntax</rdfs:comment>
+        <rdfs:label>FHIR DSTU2 XML Syntax</rdfs:label>
+        <skos:prefLabel>FHIR DSTU2 XML Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/KNARTXMLSyntax -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/ontologies/kmdp-registry/serializations/kmdp/KNARTXMLSyntax">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <owl:sameAs rdf:resource="urn:hl7-org:knowledgeartifact:r1"/>
+        <api4kp:depends-on rdf:resource="http://ontology.mayo.edu/ontologies/kmdp-registry/formats/api4kp/XML/versions/1.1"/>
+        <dc:identifier>knart+xml</dc:identifier>
+        <dc:source>https://www.hl7.org/implement/standards/product_brief.cfm?product_id=337</dc:source>
+        <rdfs:comment>KNART 1.3 XML Syntax</rdfs:comment>
+        <rdfs:label>KNART XML Syntax</rdfs:label>
+        <skos:prefLabel>KNART XML Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://ontology.mayo.edu/taxonomies/PCV -->
+
+    <owl:NamedIndividual rdf:about="http://ontology.mayo.edu/taxonomies/PCV"/>
+    
+
+
+    <!-- http://reaction.ruleml.org/1.02/ -->
+
+    <owl:NamedIndividual rdf:about="http://reaction.ruleml.org/1.02/"/>
+    
+
+
+    <!-- http://snomed.info/sct/900000000000207008/version/20180731 -->
+
+    <owl:NamedIndividual rdf:about="http://snomed.info/sct/900000000000207008/version/20180731"/>
+    
+
+
+    <!-- http://www.omg.org/spec/API4KP/1.0/services -->
+
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/API4KP/1.0/services"/>
+    
+
+
+    <!-- http://www.omg.org/spec/CMMN/20151109/MODEL -->
+
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/CMMN/20151109/MODEL"/>
+    
+
+
+    <!-- http://www.omg.org/spec/DMN/20151101/dmn.xsd -->
+
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/DMN/20151101/dmn.xsd"/>
+    
+
+
+    <!-- http://www.omg.org/spec/DMN/20180521/MODEL/ -->
+
+    <owl:NamedIndividual rdf:about="http://www.omg.org/spec/DMN/20180521/MODEL/"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema -->
+
+    <owl:NamedIndividual rdf:about="http://www.w3.org/2001/XMLSchema"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema-instance -->
+
+    <owl:NamedIndividual rdf:about="http://www.w3.org/2001/XMLSchema-instance"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl -->
+
+    <owl:NamedIndividual rdf:about="http://www.w3.org/2002/07/owl"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core -->
+
+    <owl:NamedIndividual rdf:about="http://www.w3.org/2004/02/skos/core"/>
+    
+
+
+    <!-- http://www.w3.org/XML/1998/namespace -->
+
+    <owl:NamedIndividual rdf:about="http://www.w3.org/XML/1998/namespace"/>
+    
+
+
+    <!-- http://www.w3.org/ns/owl-profile/DL -->
+
+    <owl:NamedIndividual rdf:about="http://www.w3.org/ns/owl-profile/DL"/>
+    
+
+
+    <!-- http://www.w3.org/ns/owl-profile/EL -->
+
+    <owl:NamedIndividual rdf:about="http://www.w3.org/ns/owl-profile/EL"/>
+    
+
+
+    <!-- http://www.w3.org/ns/owl-profile/Full -->
+
+    <owl:NamedIndividual rdf:about="http://www.w3.org/ns/owl-profile/Full"/>
+    
+
+
+    <!-- http://www.w3.org/ns/owl-profile/QL -->
+
+    <owl:NamedIndividual rdf:about="http://www.w3.org/ns/owl-profile/QL"/>
+    
+
+
+    <!-- http://www.w3.org/ns/owl-profile/RL -->
+
+    <owl:NamedIndividual rdf:about="http://www.w3.org/ns/owl-profile/RL"/>
+    
+
+
+    <!-- https://ontology.mayo.edu/taxonomies/API4KP/ParsingLevel/20190801/ -->
+
+    <owl:NamedIndividual rdf:about="https://ontology.mayo.edu/taxonomies/API4KP/ParsingLevel/20190801/"/>
+    
+
+
+    <!-- https://ontology.mayo.edu/taxonomies/ISO639-1-LanguageCodes/20170801/ -->
+
+    <owl:NamedIndividual rdf:about="https://ontology.mayo.edu/taxonomies/ISO639-1-LanguageCodes/20170801/"/>
+    
+
+
+    <!-- https://ontology.mayo.edu/taxonomies/KAO/KnowledgeAssetCategory/1.0 -->
+
+    <owl:NamedIndividual rdf:about="https://ontology.mayo.edu/taxonomies/KAO/KnowledgeAssetCategory/1.0"/>
+    
+
+
+    <!-- https://ontology.mayo.edu/taxonomies/KAO/KnowledgeAssetType/1.0 -->
+
+    <owl:NamedIndividual rdf:about="https://ontology.mayo.edu/taxonomies/KAO/KnowledgeAssetType/1.0"/>
+    
+
+
+    <!-- https://ontology.mayo.edu/taxonomies/KAO/KnowledgeProcessingTechnique/1.0 -->
+
+    <owl:NamedIndividual rdf:about="https://ontology.mayo.edu/taxonomies/KAO/KnowledgeProcessingTechnique/1.0"/>
+    
+
+
+    <!-- https://ontology.mayo.edu/taxonomies/KAO/LanguageRole/1.0 -->
+
+    <owl:NamedIndividual rdf:about="https://ontology.mayo.edu/taxonomies/KAO/LanguageRole/1.0"/>
+    
+
+
+    <!-- https://ontology.mayo.edu/taxonomies/KAO/Rel/CitationRelType/2018-02-16 -->
+
+    <owl:NamedIndividual rdf:about="https://ontology.mayo.edu/taxonomies/KAO/Rel/CitationRelType/2018-02-16"/>
+    
+
+
+    <!-- https://ontology.mayo.edu/taxonomies/KAO/Rel/DependencyRelType/20190801/ -->
+
+    <owl:NamedIndividual rdf:about="https://ontology.mayo.edu/taxonomies/KAO/Rel/DependencyRelType/20190801/"/>
+    
+
+
+    <!-- https://ontology.mayo.edu/taxonomies/KAO/Rel/DerivationRelType/20190801/ -->
+
+    <owl:NamedIndividual rdf:about="https://ontology.mayo.edu/taxonomies/KAO/Rel/DerivationRelType/20190801/"/>
+    
+
+
+    <!-- https://ontology.mayo.edu/taxonomies/KAO/Rel/RelatedVersionType/20190801/ -->
+
+    <owl:NamedIndividual rdf:about="https://ontology.mayo.edu/taxonomies/KAO/Rel/RelatedVersionType/20190801/"/>
+    
+
+
+    <!-- https://ontology.mayo.edu/taxonomies/KAO/Rel/StructuralRelType/20190801/ -->
+
+    <owl:NamedIndividual rdf:about="https://ontology.mayo.edu/taxonomies/KAO/Rel/StructuralRelType/20190801/"/>
+    
+
+
+    <!-- https://ontology.mayo.edu/taxonomies/KAO/Rel/SummaryRelType/20190801/ -->
+
+    <owl:NamedIndividual rdf:about="https://ontology.mayo.edu/taxonomies/KAO/Rel/SummaryRelType/20190801/"/>
+    
+
+
+    <!-- https://ontology.mayo.edu/taxonomies/KAO/Rel/VariantRelType/20190801/ -->
+
+    <owl:NamedIndividual rdf:about="https://ontology.mayo.edu/taxonomies/KAO/Rel/VariantRelType/20190801/"/>
+    
+
+
+    <!-- https://ontology.mayo.edu/taxonomies/KRFormat/2018/08/ -->
+
+    <owl:NamedIndividual rdf:about="https://ontology.mayo.edu/taxonomies/KRFormat/2018/08/"/>
+    
+
+
+    <!-- https://ontology.mayo.edu/taxonomies/KRLanguage/2018/08/ -->
+
+    <owl:NamedIndividual rdf:about="https://ontology.mayo.edu/taxonomies/KRLanguage/2018/08/"/>
+    
+
+
+    <!-- https://ontology.mayo.edu/taxonomies/KRProfile/2018/08/ -->
+
+    <owl:NamedIndividual rdf:about="https://ontology.mayo.edu/taxonomies/KRProfile/2018/08/"/>
+    
+
+
+    <!-- https://ontology.mayo.edu/taxonomies/KRSerialization/2018/08/ -->
+
+    <owl:NamedIndividual rdf:about="https://ontology.mayo.edu/taxonomies/KRSerialization/2018/08/"/>
+    
+
+
+    <!-- https://ontology.mayo.edu/taxonomies/Lexicon/2018/08/ -->
+
+    <owl:NamedIndividual rdf:about="https://ontology.mayo.edu/taxonomies/Lexicon/2018/08/"/>
+    
+
+
+    <!-- https://www.nlm.nih.gov/research/umls/rxnorm/ -->
+
+    <owl:NamedIndividual rdf:about="https://www.nlm.nih.gov/research/umls/rxnorm/"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/1.0/ -->
+
+    <owl:NamedIndividual rdf:about="https://www.omg.org/spec/API4KP/1.0/"/>
+    
+
+
+    <!-- https://www.omg.org/spec/BPMN/2.0/ -->
+
+    <owl:NamedIndividual rdf:about="https://www.omg.org/spec/BPMN/2.0/"/>
+    
+
+
+    <!-- https://www.omg.org/spec/CMMN/1.1/ -->
+
+    <owl:NamedIndividual rdf:about="https://www.omg.org/spec/CMMN/1.1/"/>
+    
+
+
+    <!-- https://www.omg.org/spec/DMN/1.1/ -->
+
+    <owl:NamedIndividual rdf:about="https://www.omg.org/spec/DMN/1.1/"/>
+    
+
+
+    <!-- https://www.omg.org/spec/DMN/1.2/ -->
+
+    <owl:NamedIndividual rdf:about="https://www.omg.org/spec/DMN/1.2/"/>
+    
+
+
+    <!-- https://www.omg.org/spec/UML/2.5/ -->
+
+    <owl:NamedIndividual rdf:about="https://www.omg.org/spec/UML/2.5/"/>
+    
+
+
+    <!-- https://www.w3.org/TR/xslt-30/ -->
+
+    <owl:NamedIndividual rdf:about="https://www.w3.org/TR/xslt-30/"/>
+    
+
+
+    <!-- urn:hl7-org:elm:r1 -->
+
+    <owl:NamedIndividual rdf:about="urn:hl7-org:elm:r1"/>
+    
+
+
+    <!-- urn:hl7-org:knowledgeartifact:r1 -->
+
+    <owl:NamedIndividual rdf:about="urn:hl7-org:knowledgeartifact:r1"/>
 </rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+
