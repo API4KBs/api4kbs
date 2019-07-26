@@ -1,0 +1,1925 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/"
+     xml:base="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:dc-t="http://purl.org/dc/terms/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:kmo="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:cidoc="http://www.cidoc-crm.org/cidoc-crm"
+     xmlns:sm="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
+     xmlns:DOL-terms="http://www.omg.org/spec/DOL/DOL-terms/"
+     xmlns:id="http://ontology.mayo.edu/WDO/Identifiers#"
+     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:obo="http://purl.obolibrary.org/obo/"
+     xmlns:prov="http://www.w3.org/ns/prov#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:api4kp="https://www.omg.org/spec/API4KP/api4kp/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <owl:Ontology rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/">
+        <owl:versionIRI rdf:resource="http://ontology.mayo.edu/ontologies/20190801/knowledgemanagementdelivery"/>
+        <owl:imports rdf:resource="https://www.omg.org/spec/API4KP/20190801/api4kp/"/>
+        <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
+        <dc:creator>Sivaram Arabandi</dc:creator>
+        <dc:creator>Davide Sottara</dc:creator>
+        <dc:creator>Matthew Burton</dc:creator>
+        <dc:title>Ontology of Knowledge Management and Delivery</dc:title>
+        <dc:creator>Jane Shellum</dc:creator>
+        <dc:creator>Michael Panzer</dc:creator>
+        <dc:description>The purpose of this ontology is to define &apos;knowledge&apos; and the related concepts that play a role in managing and delivering that knowledge to different audiences.</dc:description>
+        <dc-t:license rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense</dc-t:license>
+        <sm:copyright>Copyright (c) 2014-2017 Arizona State University
+Copyright (c) 2014-2017 Mayo Clinic</sm:copyright>
+        <dc:creator>Kris Pavek</dc:creator>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/creator -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/date -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/description -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/description"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/title -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/title"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/license -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/license"/>
+    
+
+
+    <!-- http://www.omg.org/techprocess/ab/SpecificationMetadata/copyright -->
+
+    <owl:AnnotationProperty rdf:about="http://www.omg.org/techprocess/ab/SpecificationMetadata/copyright"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#altLabel -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#altLabel"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#definition -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#definition"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#example -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#example"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#note -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#note"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#scopeNote -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#scopeNote"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/archived-in -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/archived-in">
+        <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/stored-in"/>
+        <owl:inverseOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/archives"/>
+        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact"/>
+        <rdfs:label>archived in</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/archives -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/archives">
+        <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/stores"/>
+        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact"/>
+        <rdfs:comment>Archival is a kind of storage implying no immediate use. Archiving is scoped to artifacts only</rdfs:comment>
+        <rdfs:label>archives</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/associated-with -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/associated-with"/>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/endorsed-by -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/endorsed-by">
+        <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/internally-represented-by"/>
+        <owl:inverseOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/endorses"/>
+        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeEndeavour"/>
+        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeableAgent"/>
+        <rdfs:label>endorsed by</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/endorses -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/endorses">
+        <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/internally-represents"/>
+        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeableAgent"/>
+        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeEndeavour"/>
+        <rdfs:label>endorses</rdfs:label>
+        <skos:definition>An agent&apos;s endorsement of a knowledge endeavor implies (i) that the agent is able to understand the content of that endeavor, internally representing the knowledge (expressed by (the expression carried)) in the endeavor, (ii) that the agent transfers their reputation and trust to that endeavor</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/focus -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/focus">
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/subject"/>
+        <rdfs:label>has focus</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/possessed-by -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/possessed-by">
+        <owl:inverseOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/possesses"/>
+        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Knowledge"/>
+        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeableAgent"/>
+        <rdfs:label>(knowledge) possessed by</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/possesses -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/possesses">
+        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeableAgent"/>
+        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Knowledge"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/internally-represents"/>
+            <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/knowledge-representation-of"/>
+        </owl:propertyChainAxiom>
+        <rdfs:label>possesses (knowledge)</rdfs:label>
+        <skos:definition>An Agent possesses some Knowledge if they can conceptualize that Knowledge, and act based on that Knowledge</skos:definition>
+        <skos:note>The possession of some Knowledge is the outcome of a Knowledge Acquisition Activity</skos:note>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/primary-subject -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/primary-subject">
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/subject"/>
+        <rdfs:label>has primary subject</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/replica-of -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/replica-of">
+        <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/copy-of"/>
+        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact"/>
+        <rdfs:range rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/MasterCopy"/>
+        <rdfs:comment>An artifact that resulted from the copy of a &apos;master copy&apos; is a replica of that copy</rdfs:comment>
+        <rdfs:label>replica of</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/secondary-subject -->
+
+    <owl:ObjectProperty rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/secondary-subject">
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/subject"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/dc/terms/audience -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/dc/terms/audience">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/associated-with"/>
+        <rdfs:label>has audience</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/dc/terms/subject -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/dc/terms/subject">
+        <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/is-about"/>
+        <rdfs:label>has subject</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#type -->
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/associated-with"/>
+        <rdfs:label>is a</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/captures -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/captures">
+        <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/is-about"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/carried-by -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/carried-by"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/carries -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/carries"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/concretely-expresses -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/concretely-expresses"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/copy-of -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/copy-of"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/defined-in-terms-of -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/defined-in-terms-of">
+        <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/is-about"/>
+        <rdfs:label>in terms of</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/defines -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/defines">
+        <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/is-about"/>
+        <rdfs:label>defines</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/denotes -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/denotes"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/depends-on -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/depends-on"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/derived-from -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/derived-from"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/faithfully-expresses -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/faithfully-expresses"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/function-of -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/function-of"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/has-function -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/has-function"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/has-later-revision -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/has-later-revision"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/has-original -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/has-original"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/has-part -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/has-part"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/has-proper-part -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/has-proper-part"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/has-subject -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/has-subject"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/identified-by -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/identified-by">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/associated-with"/>
+        <skos:prefLabel>has ID</skos:prefLabel>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/internally-represented-by -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/internally-represented-by"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/internally-represents -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/internally-represents"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/involved-in -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/involved-in"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/involves -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/involves"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/is-about -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/is-about">
+        <rdfs:subPropertyOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/associated-with"/>
+        <rdfs:label>is about</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/is-later-revision-of -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/is-later-revision-of"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/knowledge-representation-of -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/knowledge-representation-of">
+        <rdfs:subPropertyOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/is-about"/>
+        <rdfs:label>represents</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/performed-by -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/performed-by"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/performs -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/performs"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/proper-part-of -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/proper-part-of"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/recipient-of -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/recipient-of"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/representation-of -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/representation-of"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/stored-in -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/stored-in"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/stores -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/stores"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/targets -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/targets"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/used-in -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/used-in"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/uses-language -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/uses-language"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/AdvancedKnowledge -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/AdvancedKnowledge">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/Knowledge"/>
+                    <owl:Class>
+                        <owl:complementOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/CommonKnowledge"/>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Knowledge"/>
+        <rdfs:label xml:lang="en">advanced knowledge</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/AnonymousKnowledgeResource -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/AnonymousKnowledgeResource">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+                    <owl:Class>
+                        <owl:complementOf>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/identified-by"/>
+                                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Identifier"/>
+                            </owl:Restriction>
+                        </owl:complementOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+        <owl:disjointWith rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/IdentifiedKnowledgeResource"/>
+        <rdfs:label xml:lang="en">anonymous knowledge resource</rdfs:label>
+        <skos:definition>Knowledge Resource that is not identified by a an ID assigned by a central identification authority</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ApproachableKnowledgeResource -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ApproachableKnowledgeResource">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/AvailableKnowledgeResource"/>
+                    <rdf:Description rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/BroadlyUnderstandableKnowledgeResource"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+        <rdfs:label xml:lang="en">approachable knowledge resource</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/AvailableKnowledgeResource -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/AvailableKnowledgeResource">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/carried-by"/>
+                        <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/stored-in"/>
+                        <owl:someValuesFrom>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-function"/>
+                                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeArtifactRepository"/>
+                            </owl:Restriction>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+        <rdfs:label xml:lang="en">available knowledge resource</rdfs:label>
+        <skos:definition>There exists a repository where an agent is allowed to obtain a copy of (some artifact that carries) the knowledge resource</skos:definition>
+        <skos:note>More specifically, an artifact that carries a representation of the expression of some (version of a) work of knowledge</skos:note>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/BodyofKnowledge -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/BodyofKnowledge">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DomainSpecificWorkOfKnowledge"/>
+        <rdfs:label>body of knowledge</rdfs:label>
+        <skos:definition>A complex corpus that encompasses the entirety of the knowledge about a specific Business Domain</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/BroadlyUnderstandableKnowledgeResource -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/BroadlyUnderstandableKnowledgeResource">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/internally-represented-by"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeableAgent"/>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/possesses"/>
+                                        <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/CommonKnowledge"/>
+                                    </owl:Restriction>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">broadly understandable knowledge resource</rdfs:label>
+        <skos:definition>Knowledge Resource that is interpreted by an agent that possesses Common Knowledge, and can be interpreted by an agent even if Common Knowledge is all the Knowledge they possess</skos:definition>
+        <skos:note>&quot;Understandability&apos; is defined at the concept level, so that an agent can (re)construct an internal representation of the knowledge, reconnecting the it to the related concepts that agent is expected to possess, and possibly make pragmatic use of it.
+ 
+The availability of a carrier, and the expression of the knowledge in a language that can be parsed by the agent are necessary, but not sufficient conditions.</skos:note>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/BusinessDomain -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/BusinessDomain">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/ComplexConcept"/>
+        <rdfs:label xml:lang="en">business domain</rdfs:label>
+        <skos:definition>A concept that synthesizes, abstracting and implying it, a functional complex of more granular concepts that define all the entities and relationships (actors, roles, activities and processes, resources, information, responsibilities, etc...) pertaining to a field or discipline</skos:definition>
+        <skos:example>cooking</skos:example>
+        <skos:example>finance</skos:example>
+        <skos:example>healthcare</skos:example>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ClinicalBusinessDomain -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ClinicalBusinessDomain">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/MedicalBusinessDomain"/>
+        <rdfs:label xml:lang="en">clinical business domain</rdfs:label>
+        <skos:definition>A domain that includes concepts dealing with risk/cause, evaluation, diagnosis, treatment, prevention and management of health and wellness conditions, including methods for the appropriate application of tests, procedures, drugs, and treatments.</skos:definition>
+        <skos:scopeNote>This is considered a class since there are multiple notions of &apos;Clinical Domain&apos;, varying e.g. by country or over time.</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ClinicalKnowledgeResource -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ClinicalKnowledgeResource">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DomainSpecificKnowledgeResource"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/knowledge-representation-of"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DomainKnowledge"/>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/is-about"/>
+                                        <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ClinicalBusinessDomain"/>
+                                    </owl:Restriction>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DomainSpecificKnowledgeResource"/>
+        <rdfs:label xml:lang="en">clinical knowledge resource</rdfs:label>
+        <skos:definition>Asset that is the realization of a Work of Knowledge, whose subject includes on one or more concepts from some Clinical Domain</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/CommonKnowledge -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/CommonKnowledge">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Knowledge"/>
+        <rdfs:label xml:lang="en">common knowledge</rdfs:label>
+        <skos:definition>Knowledge that everyone has, and everyone is known to have</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ConcretizedPieceOfContent -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ConcretizedPieceOfContent">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DistributableExpression"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/HumanConsumableExpression"/>
+        <rdfs:label xml:lang="en">(concretely realized) piece of content</rdfs:label>
+        <skos:altLabel>PoC</skos:altLabel>
+        <skos:definition>Distributable, Concrete Expression of some Intellectual Work, in some Human Consumable Language</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ConcretizedPieceOfKnowledge -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ConcretizedPieceOfKnowledge">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DistributableExpression"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/concretely-expresses"/>
+                <owl:allValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/WorkOfKnowledge"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">(concretely realized) piece of knowledge</rdfs:label>
+        <skos:altLabel>PoK</skos:altLabel>
+        <skos:definition>A Piece of Knowledge is a Distributable, Concrete Expression of an Intellectual Work of Knowledge</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ConcretizedPieceOfKnowledgeContent -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ConcretizedPieceOfKnowledgeContent">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ConcretizedPieceOfContent"/>
+                    <rdf:Description rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ConcretizedPieceOfKnowledge"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:label xml:lang="en">(concretely realized) piece of knowledge content</rdfs:label>
+        <skos:altLabel>PoCK</skos:altLabel>
+        <skos:definition>Piece of Content that is the expression of a Work of knowledge</skos:definition>
+        <skos:note>Like any Piece of Content, a PoCK is expressed using some natural language, and formatted for consumption by a human audience (as opposed to be used for computation by a software)</skos:note>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/CoreKnowledgeAsset -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/CoreKnowledgeAsset">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/EndorsedKnowledgeResource"/>
+                    <rdf:Description rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeAsset"/>
+                    <rdf:Description rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/MainstreamKnowledgeResource"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeAsset"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:complementOf>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/derived-from"/>
+                        <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeAsset"/>
+                    </owl:Restriction>
+                </owl:complementOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">core knowledge asset</rdfs:label>
+        <skos:definition>Asset such that Assets may be derived from it, but is not itself derived from any other Asset (although it could be a derivative of another Resource)</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeArtifact -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeArtifact">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact"/>
+        <rdfs:label xml:lang="en">digital knowledge artifact</rdfs:label>
+        <skos:definition>An artifact that carries some form of knowledge encoded by means of discretized signals</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeArtifactDirectory -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeArtifactDirectory">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeArtifactDirectory"/>
+        <rdfs:label xml:lang="en">digital knowledge artifact directory</rdfs:label>
+        <skos:definition>Function of a (software) agent that relies on a Knowledge Artifact Inventory that references Digital Knowledge Artifacts</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeArtifactRepository -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeArtifactRepository">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifactRepository"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/function-of"/>
+                <owl:someValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/stores"/>
+                        <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeArtifact"/>
+                    </owl:Restriction>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">digital knowledge artifact repository</rdfs:label>
+        <skos:definition>Function served by an entity that stores Digital Knowledge Artifacts</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeAssetSurrogate -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeAssetSurrogate">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeArtifact"/>
+                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeSurrogate"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeArtifact"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeSurrogate"/>
+        <rdfs:label xml:lang="en">digital knowledge asset surrogate</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeAssetSurrogateRepository -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeAssetSurrogateRepository">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeArtifactRepository"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/function-of"/>
+                <owl:someValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/stores"/>
+                        <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeAssetSurrogate"/>
+                    </owl:Restriction>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">digital knowledge asset surrogate repository</rdfs:label>
+        <skos:definition>a repository specialized in digital asset surrogates</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeManagementServiceProvider -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeManagementServiceProvider">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeManagementServiceProvider"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-part"/>
+                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeArtifactDirectory"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-part"/>
+                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DigitalKnowledgeArtifactRepository"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-part"/>
+                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeArtifactEditor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">digital knowledge management dervice provider</rdfs:label>
+        <skos:definition>knowledge management service provider for digital knowledge artifacts</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DistributableExpression -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DistributableExpression">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/ConcreteExpression"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/carried-by"/>
+                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/SelfContainedKnowledgeArtifact"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/involved-in"/>
+                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeTransferActivity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">distributable expression</rdfs:label>
+        <skos:definition>Concrete Expression that is realized by a self-contained knowledge artifact, and suitable to be used in a knowledge transfer activity</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DomainKnowledge -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DomainKnowledge">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ExplicitKnowledge"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/is-about"/>
+                        <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/BusinessDomain"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">domain knowledge</rdfs:label>
+        <skos:definition>Knowledge specifically about, and thus scoped by, some Business Domain (e.g. healthcare)</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DomainSpecificKnowledgeResource -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DomainSpecificKnowledgeResource">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/knowledge-representation-of"/>
+                        <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DomainKnowledge"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+        <rdfs:label xml:lang="en">domain-specific knowledge resource</rdfs:label>
+        <skos:definition>Knowledge resource that expresses a work of knowledge that captures a piece of domain specific knowledge</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DomainSpecificWorkOfKnowledge -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DomainSpecificWorkOfKnowledge">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/WorkOfKnowledge"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-subject"/>
+                        <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DomainKnowledge"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:label>domain-specific work of knowledge</rdfs:label>
+        <skos:definition>Knowledge Work that has subject some aspect of a single Business Domain</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/EndorsedKnowledgeResource -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/EndorsedKnowledgeResource">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/endorsed-by"/>
+                        <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeEndorsingParty"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+        <rdfs:label xml:lang="en">endorsed knowledge resource</rdfs:label>
+        <skos:definition>Knowledge Resource that is endorsed by an agent / party. 
+
+That agent is expected to have adequate subject matter expertise, must have the permission, and should have the authority to do so</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ExperientialLearningActivity -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ExperientialLearningActivity">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeAcquisitionActivity"/>
+        <rdfs:label xml:lang="en">experiential learning activity</rdfs:label>
+        <skos:definition>activity where an agent gains knowledge through individual experience, as opposed to transfer from a different agent that already possesses that knowledge</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ExpertKnowledge -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ExpertKnowledge">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DomainKnowledge"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/possessed-by"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeableAgent"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/performs"/>
+                                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ExperientialLearningActivity"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/recipient-of"/>
+                                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/GraduateLevelInstruction"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">expert knowledge</rdfs:label>
+        <skos:definition>Domain Knowledge acquired by advanced certified training, practice and/or research</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ExplicitKnowledge -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ExplicitKnowledge">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Knowledge"/>
+        <owl:disjointWith rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/TacitKnowledge"/>
+        <rdfs:label xml:lang="en">explicit knowledge</rdfs:label>
+        <skos:definition>Knowledge that can be communicated from agent to agent</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ExternallyCataloguedResourceSurrogate -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ExternallyCataloguedResourceSurrogate">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeSurrogate"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/carries"/>
+                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeMetaDescriptor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">surrogate of externally catalogued resource</rdfs:label>
+        <skos:definition>(Meta) Surrogate S that carries the description of a Surrogate T, and such that S and T are not stored in the same repository</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ExternallyManagedResourceSurrogate -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ExternallyManagedResourceSurrogate">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeSurrogate"/>
+        <rdfs:label xml:lang="en">surrogate of externally managed resource</rdfs:label>
+        <skos:definition>a surrogate S that carries a resource description D about a resource R, and such that S is not stored in the same repository as the master copy of R</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/FoundationalKnowledge -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/FoundationalKnowledge">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DomainKnowledge"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/possessed-by"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeableAgent"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/recipient-of"/>
+                                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/UndegraduateLevelInstruction"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">foundational knowledge</rdfs:label>
+        <skos:definition>Knowledge that is acquired by means of formal training in a domain (e.g. equivalent to a MS level)</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/FrontalInstruction -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/FrontalInstruction">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeTransferActivity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/targets"/>
+                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeableAgent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">frontal delivery of instruction</rdfs:label>
+        <skos:definition>A knowledge transfer activity that assumes the spatio-temporal co-location of two agents, where direct communication is used to transfer Knowlege from one to the other</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/GraduateLevelInstruction -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/GraduateLevelInstruction">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeTransferActivity"/>
+        <owl:disjointWith rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/UndegraduateLevelInstruction"/>
+        <rdfs:label xml:lang="en">delivery of graduate-level instruction</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/HumanConsumableExpression -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/HumanConsumableExpression">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/ConcreteExpression"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/uses-language"/>
+                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/NaturalLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/uses-language"/>
+                <owl:allValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/NaturalLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>human consumable expression</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/IdentifiedKnowledgeResource -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/IdentifiedKnowledgeResource">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/identified-by"/>
+                        <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Identifier"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:label xml:lang="en">identified knowledge resource</rdfs:label>
+        <skos:definition>Knowledge Resource that is identified by a an ID assigned by a central identification authority</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/InlinedKnowledgeResourceDescriptor -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/InlinedKnowledgeResourceDescriptor">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeAssetDescription"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/proper-part-of"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/StructuredKnowledgeResource"/>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-proper-part"/>
+                                        <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+                                    </owl:Restriction>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeAssetDescription"/>
+        <rdfs:label xml:lang="en">inlined knowledge resource description</rdfs:label>
+        <skos:definition>A descriptor that is a proper sub-part of the (same) structured knowledge resource that has, as a proper sub-part, the resource the descriptor is providing information about</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/InternallyManagedResourceSurrogate -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/InternallyManagedResourceSurrogate">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeSurrogate"/>
+        <rdfs:label xml:lang="en">surrogate of internally managed resource</rdfs:label>
+        <skos:definition>a surrogate S that carries a resource description D about a resource R, and such that S is stored in the same repository as the master copy of R</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeAcquisitionActivity -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeAcquisitionActivity">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/InformationProcessingActivity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/performed-by"/>
+                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeableAgent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">knowledge acquisition activity</rdfs:label>
+        <skos:definition>An abstract activity that allows the agent performing it to gain some Knowledge. Concrete examples include learning, observing, experiencing, and combinations thereof.</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeApprovalActivity -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeApprovalActivity">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeManagementActivity"/>
+        <rdfs:comment>The act by which an designated party (a knowledge approval body) transfers their authority to a knowledge asset</rdfs:comment>
+        <rdfs:label>knowledge approval activity</rdfs:label>
+        <skos:prefLabel>approval</skos:prefLabel>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeArtifactDirectory -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeArtifactDirectory">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeProcessingFunction"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/function-of"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeableAgent"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/internally-represents"/>
+                                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeArtifactInventory"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">knowledge artifact directory</rdfs:label>
+        <skos:definition>function of an agent that can be queried to resolve the identity and/or location of certain knowledge artifacts. The function is enabled by the agent&apos;s internal representation of an artifact inventory</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeArtifactEditor -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeArtifactEditor">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeProcessingFunction"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/function-of"/>
+                <owl:someValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/used-in"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeActivity"/>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/targets"/>
+                                        <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact"/>
+                                    </owl:Restriction>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>function of a tool that is used in activities that involve the creation, editing and curation of knowledge artifacts, both from a content and form perspective</rdfs:comment>
+        <rdfs:label xml:lang="en">knowledge artifact editor</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeArtifactInventory -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeArtifactInventory">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/AbstractExpression"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-proper-part"/>
+                <owl:someValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/denotes"/>
+                        <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact"/>
+                    </owl:Restriction>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">knowledge artifact inventory</rdfs:label>
+        <skos:definition>A complex collection of references to one or more Knowledge Artifacts</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeAsset -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeAsset">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/IdentifiedKnowledgeResource"/>
+        <rdfs:label xml:lang="en">knowledge asset</rdfs:label>
+        <skos:definition>Identified Knowledge Resource, i.e. that is identified by an ID assigned by a central identification authority
+Assets are valuable to parties acting within that domain.</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeAssetDescription -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeAssetDescription">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeAsset"/>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResourceDescription"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/representation-of"/>
+                                <owl:allValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeAsset"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeAsset"/>
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeAssetDescription"/>
+        <rdfs:label xml:lang="en">knowledge asset description</rdfs:label>
+        <skos:altLabel>knowledge asset metadata</skos:altLabel>
+        <skos:definition>a Knowledge Asset that has another Asset as subject</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeAuthoringActivity -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeAuthoringActivity">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeManagementActivity"/>
+        <rdfs:comment>The act of expressing a Work of Knowledge in some language</rdfs:comment>
+        <rdfs:label>knowledge authoring activity</rdfs:label>
+        <skos:prefLabel>authoring</skos:prefLabel>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeCreationActivity -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeCreationActivity">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeManagementActivity"/>
+        <rdfs:comment>An expert&apos;s act of creating a new Work of Knowledge</rdfs:comment>
+        <rdfs:label>knowledge creation activity</rdfs:label>
+        <skos:prefLabel>creation</skos:prefLabel>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeEditingActivity -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeEditingActivity">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeManagementActivity"/>
+        <rdfs:comment>The act of formatting and typesetting a Knowledge Expression to fit a designated carrier</rdfs:comment>
+        <rdfs:label>knowledge editing activity</rdfs:label>
+        <skos:prefLabel>editing</skos:prefLabel>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeEndorsingParty -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeEndorsingParty">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeableAgent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/internally-represents"/>
+                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/AdvancedKnowledge"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">knowledge endorsing party</rdfs:label>
+        <skos:definition>Party that has the authority and the subject matter expertise to endorse some Work of Knowledge. The trust in the Party gets transferred to the Work of Knowledge</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeManagementActivity -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeManagementActivity">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/InformationProcessingActivity"/>
+        <rdfs:label>knowledge management activity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeManagementServiceProvider -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeManagementServiceProvider">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeProcessingFunction"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-part"/>
+                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeArtifactDirectory"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-part"/>
+                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeArtifactEditor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-part"/>
+                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifactRepository"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">knowledge management service provider</rdfs:label>
+        <skos:definition>The function of an entity that serves the role of Knowledge Manager, enabling the creation, maintenance, storage, cataloguing, and delivery/distribution of knowledge artifacts</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeMetaDescriptor -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeMetaDescriptor">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResourceDescription"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/representation-of"/>
+                        <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResourceDescription"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResourceDescription"/>
+        <rdfs:label xml:lang="en">knowledge meta-description</rdfs:label>
+        <skos:definition>A knowledge resource description whose subject is another knowledge description</skos:definition>
+        <skos:note>For the purpose of knowledge management, knowledge asset descriptions are assets that can be assembled into a knowledge base, and used for reasoning. 
+Meta-descriptions can be materialized as needed for such knowledge bases, allowing to use a model-driven approach to knowledge management</skos:note>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgePublicationActivity -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgePublicationActivity">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeManagementActivity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/involves"/>
+                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/EndorsedKnowledgeResource"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/targets"/>
+                <owl:allValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/PublishedKnowledgeResource"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>knowledge publication activity</rdfs:label>
+        <skos:altLabel>knowledge release activity</skos:altLabel>
+        <skos:definition>activity by which an endorsed knowledge resource is released to the public, to be used, making it possible for agents to acquire it</skos:definition>
+        <skos:prefLabel>publication</skos:prefLabel>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeRepresentationEmbeddingSurrogate -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeRepresentationEmbeddingSurrogate">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeSurrogate"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-part"/>
+                <owl:someValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/carries"/>
+                        <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+                    </owl:Restriction>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">knowledge representation embedding surrogate</rdfs:label>
+        <skos:definition>A Surrogate that realizes a knowledge descriptor, and embeds a representation of either the knowledge resource it describes, or a derivative thereof.
+(This concept is defined at the manifestation/item level. The two expressions are realized independently and included in the same manifestation, with the surrogate being the primary entity the manifestation is realizing)</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeReviewActivity -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeReviewActivity">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeManagementActivity"/>
+        <rdfs:comment>An expert&apos;s comparison of a knowledge asset with their subject matter expertise, to determine whether the work is still accurate, faithful and up to date</rdfs:comment>
+        <rdfs:label>knowledge review activity</rdfs:label>
+        <skos:prefLabel>review</skos:prefLabel>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeRevisionActivity -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeRevisionActivity">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeReviewActivity"/>
+        <rdfs:comment>A knowledge review that results in a new version of a knowledge asset</rdfs:comment>
+        <rdfs:label>knowledge revision activity</rdfs:label>
+        <skos:prefLabel>revision</skos:prefLabel>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeTransferActivity -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeTransferActivity">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeAcquisitionActivity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/performed-by"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeableAgent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>knowledge transfer activity</rdfs:label>
+        <skos:definition>Activity with 2 or more participant agents. Before it is performed, there exists 2 participants A and B, such that A possesses some knowledge K, and B does not. After the activity is completed, B will possess that knowledge K.</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/MainstreamKnowledgeResource -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/MainstreamKnowledgeResource">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/PublishedKnowledgeResource"/>
+                    <owl:Class>
+                        <owl:complementOf>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-later-revision"/>
+                                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/PublishedKnowledgeResource"/>
+                            </owl:Restriction>
+                        </owl:complementOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/PublishedKnowledgeResource"/>
+        <rdfs:label xml:lang="en">mainstream knowledge resource</rdfs:label>
+        <skos:definition>Latest Published Version of a Knowledge Resource.
+i.e. Published Knowledge Resource such that there is no revision that is also Published.</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/MasterCopy -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/MasterCopy">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact"/>
+        <rdfs:comment>TODO Deprecated. Moved to the core ONTOLOGY</rdfs:comment>
+        <rdfs:comment>master copies are usually stored in dedicated repositories, from where copies can be obtained</rdfs:comment>
+        <rdfs:label>master copy</rdfs:label>
+        <skos:definition>artifact that is used as the source in replication activities</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/MedicalBusinessDomain -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/MedicalBusinessDomain">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/BusinessDomain"/>
+        <rdfs:label xml:lang="en">medical business domain</rdfs:label>
+        <skos:definition>domain that encompasses the science of health in general: including, but not limited to, the study the human body (anatomy and physiology), the practice of medicine as the prevention and treatment of diseaes, pharmacology as the science of substances that can affect the human body</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/OriginalKnowledgeResource -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/OriginalKnowledgeResource">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+                    <owl:Class>
+                        <owl:complementOf>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/is-later-revision-of"/>
+                                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+                            </owl:Restriction>
+                        </owl:complementOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty>
+                    <rdf:Description>
+                        <owl:inverseOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/has-original"/>
+                    </rdf:Description>
+                </owl:onProperty>
+                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">original knowledge resource</rdfs:label>
+        <skos:definition>The first (version of an) Knowledge Resource, such that there are no predecessor (expressions of previous) Works that have been used during its creation.</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/PublishedKnowledgeResource -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/PublishedKnowledgeResource">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/recipient-of"/>
+                        <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgePublicationActivity"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:label xml:lang="en">published knowledge resource</rdfs:label>
+        <skos:definition>resource that has been published by means of a publication activity</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/SophisticatedKnowledgeResource -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/SophisticatedKnowledgeResource">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Class>
+                                <owl:complementOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/BroadlyUnderstandableKnowledgeResource"/>
+                            </owl:Class>
+                            <owl:Class>
+                                <owl:complementOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/StandaloneKnowledgeResource"/>
+                            </owl:Class>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/possessed-by"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeableAgent"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/internally-represents"/>
+                                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/AdvancedKnowledge"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">sophisticated knowledge resource</rdfs:label>
+        <skos:definition>Knowledge Resource that can be interpreted only by an agent that possesses some Knowledge other than Common Knowledge, or that requires some (other) Knowledge Resource
+i.e.: not Standalone or not Broadly Understandable</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/SpecialistKnowledge -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/SpecialistKnowledge">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/DomainKnowledge"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/possessed-by"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeableAgent"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/recipient-of"/>
+                                <owl:someValuesFrom rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/GraduateLevelInstruction"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">specialist knowledge</rdfs:label>
+        <skos:definition>Domain Knowledge acquired by advanced certified training</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/StandaloneKnowledgeResource -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/StandaloneKnowledgeResource">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+                    <owl:Class>
+                        <owl:complementOf>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/depends-on"/>
+                                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+                            </owl:Restriction>
+                        </owl:complementOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:comment>Such a Resource can be interpreted by an agent (that has the appropriate knowledge pre-requisites) without the need to look up any additional Knowledge Resources</rdfs:comment>
+        <rdfs:label xml:lang="en">standalone knowledge resource</rdfs:label>
+        <skos:definition>Knowledge Resource that does not depend on any other resource</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/TacitKnowledge -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/TacitKnowledge">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Knowledge"/>
+        <rdfs:label xml:lang="en">tacit knowledge</rdfs:label>
+        <skos:definition>Knowledge that can not be transfered to another agent by means of direct communication</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/UndegraduateLevelInstruction -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/UndegraduateLevelInstruction">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/KnowledgeTransferActivity"/>
+        <rdfs:label xml:lang="en">delivery of undergraduate level instruction</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/AbstractExpression -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/AbstractExpression"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/ComplexConcept -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/ComplexConcept"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/ConcreteExpression -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/ConcreteExpression"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/Identifier -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/Identifier"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/InformationProcessingActivity -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/InformationProcessingActivity"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/Knowledge -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/Knowledge"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/KnowledgeActivity -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeActivity"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifactRepository -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifactRepository"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/KnowledgeEndeavour -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeEndeavour"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/KnowledgeProcessingFunction -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeProcessingFunction"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResource"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/KnowledgeResourceDescription -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeResourceDescription">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/MainstreamKnowledgeResource"/>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/KnowledgeableAgent -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeableAgent"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/NaturalLanguage -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/NaturalLanguage"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/PieceOfKnowledge -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/PieceOfKnowledge"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/SelfContainedKnowledgeArtifact -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/SelfContainedKnowledgeArtifact"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/StructuredKnowledgeResource -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/StructuredKnowledgeResource"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/WorkOfKnowledge -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/WorkOfKnowledge">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/knowledgemanagementdelivery/ExplicitKnowledge"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/spar/pso/published -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/spar/pso/published"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://www.omg.org/spec/API4KP/FRBR-KR#KnowledgeRepresentationAndReasoningLanguage">
+        <rdfs:comment>Machine Executable Language that is used to create Knowledge Resources (that are expressions of Pieces of Knowledge).</rdfs:comment>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

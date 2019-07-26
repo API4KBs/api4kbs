@@ -1,0 +1,54 @@
+Prefix(:=<https://www.omg.org/spec/API4KP/api4kp-inst/>)
+Prefix(dc:=<http://purl.org/dc/elements/1.1/>)
+Prefix(apikp:=<https://www.omg.org/spec/API4KP/api4kp/>)
+Prefix(sm:=<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(inst:=<https://www.omg.org/spec/API4KP/api4kp-inst/>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<https://www.omg.org/spec/API4KP/api4kp-inst/>
+<https://www.omg.org/spec/API4KP/20190801/api4kp-inst/>
+Import(<https://www.omg.org/spec/API4KP/20190801/api4kp/>)
+Annotation(dc:creator "Davide Sottara")
+Annotation(<http://purl.org/dc/terms/license> "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
+Annotation(sm:copyright "Copyright (c) 2014-2017 Arizona State University
+Copyright (c) 2014-2017 Mayo Clinic")
+Annotation(rdfs:label "API4KP Ontology of Known Platform Components")
+
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp-inst/DLReasoner>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp-inst/Drools>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp-inst/Drools5_6>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp-inst/HermiT>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp-inst/Hermit1_3_8_413>))
+Declaration(Class(<https://www.omg.org/spec/API4KP/api4kp-inst/ProductionRuleEngine>))
+Declaration(AnnotationProperty(dc:creator))
+
+
+############################
+#   Classes
+############################
+
+# Class: <https://www.omg.org/spec/API4KP/api4kp-inst/Drools> (<https://www.omg.org/spec/API4KP/api4kp-inst/Drools>)
+
+SubClassOf(<https://www.omg.org/spec/API4KP/api4kp-inst/Drools> <https://www.omg.org/spec/API4KP/api4kp-inst/ProductionRuleEngine>)
+
+# Class: <https://www.omg.org/spec/API4KP/api4kp-inst/Drools5_6> (Drools 5.6)
+
+AnnotationAssertion(rdfs:label <https://www.omg.org/spec/API4KP/api4kp-inst/Drools5_6> "Drools 5.6")
+SubClassOf(<https://www.omg.org/spec/API4KP/api4kp-inst/Drools5_6> <https://www.omg.org/spec/API4KP/api4kp-inst/Drools>)
+
+# Class: <https://www.omg.org/spec/API4KP/api4kp-inst/HermiT> (<https://www.omg.org/spec/API4KP/api4kp-inst/HermiT>)
+
+SubClassOf(<https://www.omg.org/spec/API4KP/api4kp-inst/HermiT> <https://www.omg.org/spec/API4KP/api4kp-inst/DLReasoner>)
+
+# Class: <https://www.omg.org/spec/API4KP/api4kp-inst/Hermit1_3_8_413> (HermiT v1.3.8.413)
+
+AnnotationAssertion(rdfs:label <https://www.omg.org/spec/API4KP/api4kp-inst/Hermit1_3_8_413> "HermiT v1.3.8.413")
+SubClassOf(<https://www.omg.org/spec/API4KP/api4kp-inst/Hermit1_3_8_413> <https://www.omg.org/spec/API4KP/api4kp-inst/HermiT>)
+
+
+)

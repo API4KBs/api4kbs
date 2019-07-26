@@ -1,0 +1,191 @@
+Prefix(:=<https://www.omg.org/spec/API4KP/api4kp-kp/>)
+Prefix(api4kp-kp:=<https://www.omg.org/spec/API4KP/api4kp-kp/>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(api4kp:=<https://www.omg.org/spec/API4KP/api4kp/>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+Prefix(skos:=<http://www.w3.org/2004/02/skos/core#>)
+Prefix(sm:=<http://www.omg.org/techprocess/ab/SpecificationMetadata/>)
+
+
+Ontology(<https://www.omg.org/spec/API4KP/api4kp-kp/>
+<https://www.omg.org/spec/API4KP/20190801/api4kp-kp/>
+Annotation(rdfs:comment "API4KP Ontology of Knowledge Platforms")
+Annotation(<http://purl.org/dc/terms/license> "http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense"^^xsd:anyURI)
+Annotation(sm:copyright "Copyright (c) 2014-2017 Arizona State University
+Copyright (c) 2014-2017 Freie Universitat Berlin
+Copyright (c) 2014-2017 Athan Services
+Copyright (c) 2014-2017 Mayo Clinic
+Copyright (c) 2014-2017 Thematix Partners LLC
+Copyright (c) 2014-2017 Object Management Group, Inc."^^xsd:string)
+
+Declaration(Class(api4kp-kp:DLReasoner))
+Declaration(Class(api4kp-kp:DeployedSoftware))
+Declaration(Class(api4kp-kp:ExecutionEnvironment))
+Declaration(Class(api4kp-kp:KnowledgePlatform))
+Declaration(Class(api4kp-kp:KnowledgePlatformModule))
+Declaration(Class(api4kp-kp:ProductionRuleEngine))
+Declaration(Class(api4kp-kp:Reasoner))
+Declaration(Class(api4kp-kp:RuleEngine))
+Declaration(Class(api4kp-kp:Server))
+Declaration(Class(api4kp-kp:SoftwareExecution))
+Declaration(Class(api4kp:Activity))
+Declaration(Class(api4kp:Agent))
+Declaration(Class(api4kp:KnowledgeActivity))
+Declaration(Class(api4kp:KnowledgeArtifact))
+Declaration(Class(api4kp:KnowledgeEndeavour))
+Declaration(Class(api4kp:Software))
+Declaration(ObjectProperty(api4kp-kp:deployment-of))
+Declaration(ObjectProperty(api4kp-kp:executes))
+Declaration(ObjectProperty(api4kp-kp:hosts))
+Declaration(ObjectProperty(api4kp-kp:instantiation-of))
+Declaration(ObjectProperty(api4kp-kp:runs))
+Declaration(ObjectProperty(api4kp-kp:sustains))
+Declaration(ObjectProperty(api4kp:internally-represents))
+Declaration(ObjectProperty(api4kp:part-of))
+Declaration(ObjectProperty(api4kp:performs))
+Declaration(ObjectProperty(api4kp:uses-language))
+Declaration(AnnotationProperty(skos:altLabel))
+Declaration(AnnotationProperty(skos:definition))
+Declaration(AnnotationProperty(skos:example))
+Declaration(AnnotationProperty(skos:note))
+Declaration(AnnotationProperty(skos:scopeNote))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: api4kp-kp:deployment-of (deployment of)
+
+AnnotationAssertion(rdfs:label api4kp-kp:deployment-of "deployment of")
+ObjectPropertyDomain(api4kp-kp:deployment-of api4kp-kp:DeployedSoftware)
+ObjectPropertyRange(api4kp-kp:deployment-of api4kp:Software)
+
+# Object Property: api4kp-kp:executes (executes)
+
+AnnotationAssertion(rdfs:label api4kp-kp:executes "executes")
+AnnotationAssertion(skos:definition api4kp-kp:executes "The relationship between an environment that provides the computational resources (e.g. CPU, memory, I/O) which enable the act of executing the instructions specified by some software, and that act.")
+ObjectPropertyDomain(api4kp-kp:executes api4kp-kp:ExecutionEnvironment)
+ObjectPropertyRange(api4kp-kp:executes api4kp-kp:SoftwareExecution)
+
+# Object Property: api4kp-kp:hosts (api4kp-kp:hosts)
+
+AnnotationAssertion(skos:definition api4kp-kp:hosts "The relationship between an execution environment, and a software that has been launched and/or deployed in that environment")
+ObjectPropertyDomain(api4kp-kp:hosts api4kp-kp:ExecutionEnvironment)
+ObjectPropertyRange(api4kp-kp:hosts api4kp-kp:DeployedSoftware)
+
+# Object Property: api4kp-kp:instantiation-of (instantiation of)
+
+AnnotationAssertion(rdfs:comment api4kp-kp:instantiation-of "The relationship between a Software Execution, and the Software that was run during that execution")
+AnnotationAssertion(rdfs:label api4kp-kp:instantiation-of "instantiation of")
+ObjectPropertyDomain(api4kp-kp:instantiation-of api4kp-kp:SoftwareExecution)
+ObjectPropertyRange(api4kp-kp:instantiation-of api4kp:Software)
+
+# Object Property: api4kp-kp:runs (api4kp-kp:runs)
+
+AnnotationAssertion(skos:definition api4kp-kp:runs "The relationship that holds between an execution environment, and any software (code) that is being run on that environment at a given point in time.
+
+More specifically, an environment runs a software if there is an execution activity in progress that uses computational resources of that environment to execute a program, as specified by the instructions in the software source code.")
+ObjectPropertyDomain(api4kp-kp:runs api4kp-kp:ExecutionEnvironment)
+ObjectPropertyRange(api4kp-kp:runs api4kp:Software)
+
+# Object Property: api4kp-kp:sustains (api4kp-kp:sustains)
+
+AnnotationAssertion(rdfs:comment api4kp-kp:sustains "The relationship between the execution of a software by a (virtual) machine, and its \"phenotypical\" manifestation")
+ObjectPropertyDomain(api4kp-kp:sustains api4kp-kp:SoftwareExecution)
+ObjectPropertyRange(api4kp-kp:sustains api4kp-kp:DeployedSoftware)
+
+# Object Property: api4kp:internally-represents (api4kp:internally-represents)
+
+ObjectPropertyDomain(api4kp:internally-represents api4kp-kp:DeployedSoftware)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: api4kp-kp:DLReasoner (description logic reasoner)
+
+AnnotationAssertion(rdfs:label api4kp-kp:DLReasoner "description logic reasoner")
+AnnotationAssertion(skos:definition api4kp-kp:DLReasoner "reasoner that supports reasoning operations with expressions that use a language that supports some of, and only, the aspects of description logics")
+SubClassOf(api4kp-kp:DLReasoner api4kp-kp:Reasoner)
+
+# Class: api4kp-kp:DeployedSoftware (Deployed Software Module)
+
+AnnotationAssertion(rdfs:comment api4kp-kp:DeployedSoftware "test")
+AnnotationAssertion(rdfs:label api4kp-kp:DeployedSoftware "Deployed Software")
+AnnotationAssertion(rdfs:label api4kp-kp:DeployedSoftware "Deployed Software Module")
+AnnotationAssertion(skos:definition api4kp-kp:DeployedSoftware "A packaged copy of a Software, which has been deployed (installed) on some Execution Environment")
+SubClassOf(api4kp-kp:DeployedSoftware api4kp:KnowledgeArtifact)
+SubClassOf(api4kp-kp:DeployedSoftware ObjectSomeValuesFrom(api4kp-kp:deployment-of api4kp:Software))
+
+# Class: api4kp-kp:ExecutionEnvironment (Execution Environment)
+
+AnnotationAssertion(rdfs:label api4kp-kp:ExecutionEnvironment "Execution Environment")
+AnnotationAssertion(skos:definition api4kp-kp:ExecutionEnvironment "General concept that abstracts hardware, OS, Virtual Machines, Containers, or combinations thereof")
+SubClassOf(api4kp-kp:ExecutionEnvironment ObjectSomeValuesFrom(api4kp-kp:hosts api4kp-kp:DeployedSoftware))
+SubClassOf(api4kp-kp:ExecutionEnvironment ObjectSomeValuesFrom(api4kp-kp:runs api4kp:Software))
+
+# Class: api4kp-kp:KnowledgePlatform (Knowledge Platform)
+
+AnnotationAssertion(rdfs:label api4kp-kp:KnowledgePlatform "Knowledge Platform")
+EquivalentClasses(api4kp-kp:KnowledgePlatform ObjectIntersectionOf(api4kp-kp:ExecutionEnvironment ObjectSomeValuesFrom(api4kp-kp:hosts ObjectIntersectionOf(api4kp-kp:KnowledgePlatformModule ObjectSomeValuesFrom(api4kp:performs api4kp:KnowledgeActivity)))))
+SubClassOf(api4kp-kp:KnowledgePlatform api4kp-kp:ExecutionEnvironment)
+
+# Class: api4kp-kp:KnowledgePlatformModule (Knowledge Platform Module)
+
+AnnotationAssertion(rdfs:label api4kp-kp:KnowledgePlatformModule "Knowledge Platform Component")
+AnnotationAssertion(rdfs:label api4kp-kp:KnowledgePlatformModule "Knowledge Platform Module")
+SubClassOf(api4kp-kp:KnowledgePlatformModule api4kp-kp:Server)
+SubClassOf(api4kp-kp:KnowledgePlatformModule api4kp:Agent)
+SubClassOf(api4kp-kp:KnowledgePlatformModule ObjectSomeValuesFrom(api4kp:internally-represents api4kp:KnowledgeEndeavour))
+SubClassOf(api4kp-kp:KnowledgePlatformModule ObjectSomeValuesFrom(api4kp:part-of api4kp-kp:KnowledgePlatform))
+SubClassOf(api4kp-kp:KnowledgePlatformModule ObjectSomeValuesFrom(api4kp:performs api4kp:KnowledgeActivity))
+
+# Class: api4kp-kp:ProductionRuleEngine (production rule engine)
+
+AnnotationAssertion(rdfs:label api4kp-kp:ProductionRuleEngine "production rule engine")
+AnnotationAssertion(skos:definition api4kp-kp:ProductionRuleEngine "rule engine optimized for production (condition-action) rules")
+SubClassOf(api4kp-kp:ProductionRuleEngine api4kp-kp:RuleEngine)
+
+# Class: api4kp-kp:Reasoner (reasoner)
+
+AnnotationAssertion(rdfs:comment api4kp-kp:Reasoner "software that has the capability of performing reasoning operations")
+AnnotationAssertion(rdfs:label api4kp-kp:Reasoner "reasoner")
+AnnotationAssertion(skos:altLabel api4kp-kp:Reasoner "engine")
+SubClassOf(api4kp-kp:Reasoner api4kp:Software)
+
+# Class: api4kp-kp:RuleEngine (rule engine)
+
+AnnotationAssertion(rdfs:label api4kp-kp:RuleEngine "rule engine")
+AnnotationAssertion(skos:definition api4kp-kp:RuleEngine "reasoner that supports reasoning operations performed on rule bases - structured knowldege bases whose elements are expressed in some rule language that supports logic aspects commonly used to construct 'if-then' rules")
+SubClassOf(api4kp-kp:RuleEngine api4kp-kp:Reasoner)
+
+# Class: api4kp-kp:Server (api4kp-kp:Server)
+
+SubClassOf(api4kp-kp:Server api4kp-kp:DeployedSoftware)
+
+# Class: api4kp-kp:Server (api4kp-kp:server)
+
+AnnotationAssertion(rdfs:label api4kp-kp:Server "TODO server")
+SubClassOf(api4kp-kp:Server api4kp-kp:AgentiveRole)
+SubClassOf(api4kp-kp:Server ObjectIntersectionOf(api4kp-kp:AgentiveRole ObjectSomeValuesFrom(api4kp:archetypes api4kp:Software)))
+
+
+# Class: api4kp-kp:SoftwareExecution (Software Execution)
+
+AnnotationAssertion(rdfs:comment api4kp-kp:SoftwareExecution "The process by which a (virtual) machine interpretes and executes the instructions that are fragments of a Software.")
+AnnotationAssertion(rdfs:label api4kp-kp:SoftwareExecution "Software Execution")
+SubClassOf(api4kp-kp:SoftwareExecution api4kp:Activity)
+SubClassOf(api4kp-kp:SoftwareExecution ObjectSomeValuesFrom(api4kp-kp:sustains api4kp-kp:DeployedSoftware))
+
+
+SubObjectPropertyOf(ObjectPropertyChain(api4kp-kp:executes api4kp-kp:instantiation-of) api4kp-kp:runs)
+SubObjectPropertyOf(ObjectPropertyChain(api4kp-kp:executes api4kp-kp:sustains) api4kp-kp:hosts)
+SubObjectPropertyOf(ObjectPropertyChain(api4kp-kp:executes api4kp-kp:sustains api4kp-kp:deployment-of) api4kp-kp:runs)
+SubObjectPropertyOf(ObjectPropertyChain(api4kp-kp:hosts api4kp-kp:deployment-of) api4kp-kp:runs)
+SubObjectPropertyOf(ObjectPropertyChain(api4kp-kp:sustains api4kp-kp:deployment-of) api4kp-kp:instantiation-of)
+)
