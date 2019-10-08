@@ -1,0 +1,428 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://www.omg.org/spec/API4KP/api4kp-kp/"
+     xml:base="https://www.omg.org/spec/API4KP/api4kp-kp/"
+     xmlns:api4kp-kp="https://www.omg.org/spec/API4KP/api4kp-kp/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:sm="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:api4kp="https://www.omg.org/spec/API4KP/api4kp/">
+    <owl:Ontology rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/">
+        <owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/LATEST/api4kp-kp/"/>
+        <sm:copyright rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Copyright (c) 2014-2017 Arizona State University
+Copyright (c) 2014-2017 Freie Universitat Berlin
+Copyright (c) 2014-2017 Athan Services
+Copyright (c) 2014-2017 Mayo Clinic
+Copyright (c) 2014-2017 Thematix Partners LLC
+Copyright (c) 2014-2017 Object Management Group, Inc.</sm:copyright>
+        <rdfs:comment>API4KP Ontology of Knowledge Platforms</rdfs:comment>
+        <terms:license rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.omg.org/techprocess/ab/SpecificationMetadata/MITLicense</terms:license>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#altLabel -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#altLabel"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#definition -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#definition"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#example -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#example"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#note -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#note"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#scopeNote -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#scopeNote"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kp/deployment-of -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/deployment-of">
+        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/DeployedSoftware"/>
+        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Software"/>
+        <rdfs:label>deployment of</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kp/executes -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/executes">
+        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/ExecutionEnvironment"/>
+        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/SoftwareExecution"/>
+        <rdfs:label>executes</rdfs:label>
+        <skos:definition>The relationship between an environment that provides the computational resources (e.g. CPU, memory, I/O) which enable the act of executing the instructions specified by some software, and that act.</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kp/hosts -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/hosts">
+        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/ExecutionEnvironment"/>
+        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/DeployedSoftware"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/executes"/>
+            <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/sustains"/>
+        </owl:propertyChainAxiom>
+        <skos:definition>The relationship between an execution environment, and a software that has been launched and/or deployed in that environment</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kp/instantiation-of -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/instantiation-of">
+        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/SoftwareExecution"/>
+        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Software"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/sustains"/>
+            <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/deployment-of"/>
+        </owl:propertyChainAxiom>
+        <rdfs:comment>The relationship between a Software Execution, and the Software that was run during that execution</rdfs:comment>
+        <rdfs:label>instantiation of</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kp/runs -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/runs">
+        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/ExecutionEnvironment"/>
+        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Software"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/executes"/>
+            <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/instantiation-of"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/executes"/>
+            <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/sustains"/>
+            <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/deployment-of"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/hosts"/>
+            <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/deployment-of"/>
+        </owl:propertyChainAxiom>
+        <skos:definition>The relationship that holds between an execution environment, and any software (code) that is being run on that environment at a given point in time.
+
+More specifically, an environment runs a software if there is an execution activity in progress that uses computational resources of that environment to execute a program, as specified by the instructions in the software source code.</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kp/sustains -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/sustains">
+        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/SoftwareExecution"/>
+        <rdfs:range rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/DeployedSoftware"/>
+        <rdfs:comment>The relationship between the execution of a software by a (virtual) machine, and its &quot;phenotypical&quot; manifestation</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/archetypes -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/archetypes"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/internally-represents -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/internally-represents">
+        <rdfs:domain rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/DeployedSoftware"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/part-of -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/part-of"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/performs -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/performs"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/uses-language -->
+
+    <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/uses-language"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kp/AgentiveRole -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/AgentiveRole"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kp/DLReasoner -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/DLReasoner">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/Reasoner"/>
+        <rdfs:label>description logic reasoner</rdfs:label>
+        <skos:definition>reasoner that supports reasoning operations with expressions that use a language that supports some of, and only, the aspects of description logics</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kp/DeployedSoftware -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/DeployedSoftware">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/deployment-of"/>
+                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Software"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>test</rdfs:comment>
+        <rdfs:label>Deployed Software</rdfs:label>
+        <rdfs:label>Deployed Software Module</rdfs:label>
+        <skos:definition>A packaged copy of a Software, which has been deployed (installed) on some Execution Environment</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kp/ExecutionEnvironment -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/ExecutionEnvironment">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/hosts"/>
+                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/DeployedSoftware"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/runs"/>
+                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Software"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>Execution Environment</rdfs:label>
+        <skos:definition>General concept that abstracts hardware, OS, Virtual Machines, Containers, or combinations thereof</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kp/KnowledgePlatform -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/KnowledgePlatform">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/ExecutionEnvironment"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/hosts"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/KnowledgePlatformModule"/>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/performs"/>
+                                        <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeActivity"/>
+                                    </owl:Restriction>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/ExecutionEnvironment"/>
+        <rdfs:label>Knowledge Platform</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kp/KnowledgePlatformModule -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/KnowledgePlatformModule">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/Server"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Agent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/internally-represents"/>
+                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeEndeavour"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/part-of"/>
+                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/KnowledgePlatform"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/performs"/>
+                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeActivity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>Knowledge Platform Component</rdfs:label>
+        <rdfs:label>Knowledge Platform Module</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kp/ProductionRuleEngine -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/ProductionRuleEngine">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/RuleEngine"/>
+        <rdfs:label>production rule engine</rdfs:label>
+        <skos:definition>rule engine optimized for production (condition-action) rules</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kp/Reasoner -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/Reasoner">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Software"/>
+        <rdfs:comment>software that has the capability of performing reasoning operations</rdfs:comment>
+        <rdfs:label>reasoner</rdfs:label>
+        <skos:altLabel>engine</skos:altLabel>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kp/RuleEngine -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/RuleEngine">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/Reasoner"/>
+        <rdfs:label>rule engine</rdfs:label>
+        <skos:definition>reasoner that supports reasoning operations performed on rule bases - structured knowldege bases whose elements are expressed in some rule language that supports logic aspects commonly used to construct &apos;if-then&apos; rules</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kp/Server -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/Server">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/AgentiveRole"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/DeployedSoftware"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/AgentiveRole"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp/archetypes"/>
+                        <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Software"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:label>TODO server</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kp/SoftwareExecution -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/SoftwareExecution">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/Activity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/sustains"/>
+                <owl:someValuesFrom rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kp/DeployedSoftware"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>The process by which a (virtual) machine interpretes and executes the instructions that are fragments of a Software.</rdfs:comment>
+        <rdfs:label>Software Execution</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/Activity -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/Activity"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/Agent -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/Agent"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/KnowledgeActivity -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeActivity"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeArtifact"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/KnowledgeEndeavour -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/KnowledgeEndeavour"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp/Software -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/Software"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

@@ -1,0 +1,284 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/"
+     xml:base="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/"
+     xmlns:api4kp-kao="https://www.omg.org/spec/API4KP/api4kp-kao/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:ckao="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:SpecificationMetadata="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:api4kp="https://www.omg.org/spec/API4KP/api4kp/">
+    <owl:Ontology rdf:about="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/">
+        <owl:versionIRI rdf:resource="http://ontology.mayo.edu/ontologies/LATEST/clinicalknowledgeassets/"/>
+        <owl:imports rdf:resource="https://www.omg.org/spec/API4KP/LATEST/api4kp-kao/"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#altLabel -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#altLabel"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#definition -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#definition"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#editorialNote -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#editorialNote"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#example -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#example"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#prefLabel -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#prefLabel"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#scopeNote -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#scopeNote"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/CareProcessModel -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/CareProcessModel">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalKnowledgeAsset"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/ProcessAsset"/>
+        <rdfs:comment>Adaptive specification of how to perform (complex) clinical activities, properly orchestrated over time, so to achieve certain objectives and goals</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://ontology.mayo.edu/ontology/KAO"/>
+        <rdfs:label xml:lang="en">Care Process Model</rdfs:label>
+        <skos:altLabel xml:lang="en">CPM</skos:altLabel>
+        <skos:example xml:lang="en">The Mayo Clinic Rectal Adenocarcinoma CPM</skos:example>
+        <skos:scopeNote xml:lang="en">Includes AME Care Process Models (CPM)</skos:scopeNote>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/CareProcessModel"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2004/02/skos/core#example"/>
+        <owl:annotatedTarget xml:lang="en">The Mayo Clinic Rectal Adenocarcinoma CPM</owl:annotatedTarget>
+        <rdfs:seeAlso rdf:resource="https://clinicalknowledgemanagement.mayo.edu/topic/clinical-answers/CNT-20141231/CPM-20211573"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalKnowledgeAsset -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalKnowledgeAsset">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/DomainSpecificKnowledgeAsset"/>
+        <rdfs:label>clinical knowledge asset</rdfs:label>
+        <skos:definition>knowledge asset that uses primarily concepts from the clinical business domain</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalPracticeGuideline -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalPracticeGuideline">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalKnowledgeAsset"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/BusinessRuleAsset"/>
+        <rdfs:comment xml:lang="en">Systematically developed statements to assist provider decisions about appropriate healthcare for specific clinical situations</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://ontology.mayo.edu/ontology/KAO"/>
+        <rdfs:label xml:lang="en">Clinical Practice Guideline</rdfs:label>
+        <skos:altLabel xml:lang="en">Clinical Practice Guideline</skos:altLabel>
+        <skos:example xml:lang="en">The Mayo Clinic Sternotomy Guideline</skos:example>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalPracticeGuideline"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2004/02/skos/core#example"/>
+        <owl:annotatedTarget xml:lang="en">The Mayo Clinic Sternotomy Guideline</owl:annotatedTarget>
+        <rdfs:seeAlso rdf:resource="http://mayoweb.mayo.edu/pmr/documents/PracticeGuidelineTemplateSternotomy.pdf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalProtocol -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalProtocol">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalKnowledgeAsset"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/Protocol"/>
+        <rdfs:comment>Protocol applicable in a clinical situation, such that it directs the behavior of patients and/or providers</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://ontology.mayo.edu/ontology/KAO"/>
+        <rdfs:label>Clinical Protocol</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalRule -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalRule">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalKnowledgeAsset"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/BusinessRuleAsset"/>
+        <rdfs:comment xml:lang="en">Computational logic to direct clinical interventions that is typically expressed as if/then statements but may also be represented by a diagram, decision table or other representation language</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://ontology.mayo.edu/ontology/KAO"/>
+        <rdfs:label xml:lang="en">Clinical Business Rule</rdfs:label>
+        <skos:altLabel xml:lang="en">CDS Rule</skos:altLabel>
+        <skos:example xml:lang="en">The &apos;HGB value prior to RBC transfusion&apos; Recommendation Rule</skos:example>
+        <skos:prefLabel xml:lang="en">Clinical Rule</skos:prefLabel>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalRule"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2004/02/skos/core#example"/>
+        <owl:annotatedTarget xml:lang="en">The &apos;HGB value prior to RBC transfusion&apos; Recommendation Rule</owl:annotatedTarget>
+        <rdfs:seeAlso rdf:resource="https://clinicalknowledgemanagement.mayo.edu/mayo-clinic-rules-catalog/asset/km-asset/KAT-20323041"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalTrialProtocol -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalTrialProtocol">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalProtocol"/>
+        <rdfs:comment>Descriptions of the objectives, design, methodology, statistical considerations and aspects related to the organization of clinical trials.
+
+Trial protocols provide the background and rationale for conducting a study, highlighting specific research questions that are addressed, and taking into consideration ethical issues. Trial protocols must meet a standard that adheres to the principles of Good Clinical Practice, and are used to obtain ethics approval by local Ethics Committees or Institutional Review Boards.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://ontology.mayo.edu/ontology/KAO"/>
+        <rdfs:label>Clinical Trial Protocol</rdfs:label>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalTrialProtocol"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#comment"/>
+        <owl:annotatedTarget>Descriptions of the objectives, design, methodology, statistical considerations and aspects related to the organization of clinical trials.
+
+Trial protocols provide the background and rationale for conducting a study, highlighting specific research questions that are addressed, and taking into consideration ethical issues. Trial protocols must meet a standard that adheres to the principles of Good Clinical Practice, and are used to obtain ethics approval by local Ethics Committees or Institutional Review Boards.</owl:annotatedTarget>
+        <rdfs:isDefinedBy>https://www.ncbi.nlm.nih.gov/pubmed/20815294</rdfs:isDefinedBy>
+    </owl:Axiom>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/CognitiveCareProcessModel -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/CognitiveCareProcessModel">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/CareProcessModel"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/CognitiveProcessModel"/>
+        <rdfs:comment>Knowledge whose primary subject is the cognitive aspects of a Care Process</rdfs:comment>
+        <rdfs:label>Cognitive Care Process Model</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/NursingProtocol -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/NursingProtocol">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalProtocol"/>
+        <rdfs:comment>Protocol that directs the behavior of nurses</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://ontology.mayo.edu/ontology/KAO"/>
+        <rdfs:label>Nursing Protocol</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/OrderSet -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/OrderSet">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalKnowledgeAsset"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/ProcessAsset"/>
+        <rdfs:comment xml:lang="en">A standardized list of orders for a specific diagnosis</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://ontology.mayo.edu/ontology/KAO"/>
+        <rdfs:label xml:lang="en">Order Set</rdfs:label>
+        <skos:editorialNote xml:lang="en">Verify the defintion that restricts the ordersets to be developed by OSPAG, vs produced or endorsed</skos:editorialNote>
+        <skos:example xml:lang="en">The Heart Failure Medication Titration Order Set</skos:example>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/OrderSet"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2004/02/skos/core#example"/>
+        <owl:annotatedTarget xml:lang="en">The Heart Failure Medication Titration Order Set</owl:annotatedTarget>
+        <rdfs:seeAlso rdf:resource="http://forms.mayo.edu/index.html?orderset#MC1156-1356"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/QualityMeasure -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/QualityMeasure">
+        <rdfs:subClassOf rdf:resource="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/ClinicalKnowledgeAsset"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/MetricAsset"/>
+        <rdfs:comment>CQMs are tools that help measure or quantify healthcare processes, outcomes, patient
+perceptions and organizational structure and/or systems that are associated with the ability to provide high-
+quality healthcare and/or that relate to one or more quality goals</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://ontology.mayo.edu/ontology/KAO"/>
+        <rdfs:seeAlso rdf:resource="https://www.cms.gov/Medicare/Quality-Initiatives-Patient-Assessment-Instruments/QualityMeasures/index.html"/>
+        <skos:prefLabel>Clinical Quality Measure</skos:prefLabel>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/BusinessRuleAsset -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/BusinessRuleAsset"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/CognitiveProcessModel -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/CognitiveProcessModel"/>
+    
+
+
+    <!-- http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/DomainSpecificKnowledgeAsset -->
+
+    <owl:Class rdf:about="http://ontology.mayo.edu/ontologies/clinicalknowledgeassets/DomainSpecificKnowledgeAsset">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/KnowledgeAsset"/>
+        <rdfs:label>domain-specific knowledge asset</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/MetricAsset -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/MetricAsset"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/ProcessAsset -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/ProcessAsset"/>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-kao/Protocol -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/Protocol"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+
