@@ -1,9 +1,15 @@
 language: java
 install: true
 deploy:
-  provider: script
-  script: mvn deploy -Ppublic -s .travis.settings.xml
-  skip_cleanup: true
+  - provider: script
+    script: mvn deploy -Ppublic -s .travis.settings.xml
+    skip_cleanup: true
+    on:
+      branch: master
+  - provider: script
+    script: mvn deploy -Ppublic -s .travis.settings.xml
+    on:
+      branch: develop
 env:
   global:
   - secure: YfzsJAIUALNUW2/zv3NKWpA+7DzK9JnTtCnHrUmBGJGAwJmCaOiO4dPSp6R0/SoxQGD5dIv7vE5i/8RdHqm/py2ViRLxJFjgVN9mu4YOPnnUVbSD2DOJg/q8NpJDobZgHM67g3SmIDmOtuqKCLItRrKZ5OBOAt9nS2+0QLS1oF//7jmIqDcPzm97UWXMvnhi5vMfym+g3F2RbiIVPk5V+eyCRppSuXsazJiW1YLLNRNNW6eYkokj7RnMWoV3Gbn4LiAWETHXcb8g4IF4wvcMcokAqxKXhlwy4/kbmp/vKz97+8tqXK105SEFTTSgvxnWs2/OOHUVmZujVBWpqLX3LuSgFhSn1mQtMYUHEsQfhVMohuqxo0VpnaMp/N+/vdiO8FdEElYue0Eb6Q9/7MqE7jB/uSF4A3cXaJgPiAblKRx+Ei6FT7tncYFW4YWT2eoJKyIrkb5Bshr3ZVkyww4qz4hp/oiXwRxwDJ+hF4czJqLmPtWttJihcfyYVT+ycPtoph83a2eJS2aZlSdJm5QjdizIc8Xhdg/WgDCt6elA/r/AMn3yJbtDhey5/f+I+GfTSLuSvBDaEOg0+Qag1HNZQUVZbypiVTBTgPQz8BCXGH1pfj6cSYzefC4QNPgGptN8q0eivmsVwq0MjQ5yVq38uw35hM8KGQVlBcXsiYih9XA=
