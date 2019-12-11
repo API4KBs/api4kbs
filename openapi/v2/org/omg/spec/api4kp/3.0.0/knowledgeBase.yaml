@@ -1,0 +1,69 @@
+swagger: '2.0'
+info:
+  description: This is a simple API
+  version: "3.0.0"
+  title: KnowledgeBase API
+  # put the contact info for your development or API team
+  contact:
+    email: Sottara.Davide@mayo.edu
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+tags:
+  - name: metadataExtraction
+    description: Extract Surrogates from
+
+paths:
+  /extractors/{lambdaId}/assets/{assetId}/versions/{versionTag}:
+    post:
+      tags:
+        - metadataExtraction
+      summary: 'Extract Asset metadata from a Knowledge Artifact'
+      operationId: extractSurrogate
+      parameters:
+        - $ref: '#/parameters/lambdaId'
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - name: sourceArtifact
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+      responses:
+        200:
+          description: The Surrogate that results from the application of the operator
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+definitions:
+
+  KnowledgeCarrier:
+    type: object
+
+parameters:
+
+  lambdaId:
+    in: path
+    name: lambdaId
+    description: TODO
+    required: true
+    type: string
+
+  assetId:
+    in: path
+    name: assetId
+    required: true
+    type: string
+    description: "The id of the Knowledge Asset (Series)."
+
+  versionTag:
+    in: path
+    name: versionTag
+    required: true
+    type: string
+    description: "The version tag of a Versioned Entity. \n Versioned Identifiers identify specific,
+    Immutable Versions of Mutable Entities, which reflect the state of that Entity at a given point
+    in time. Where a version(ed) identifier is universal, the Tag represents the local part of that
+    identifier, under the scope of the identifier that denotes the Entity (series)."
