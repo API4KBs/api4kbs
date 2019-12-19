@@ -12,20 +12,22 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 
 tags:
-  - name: metadataExtraction
-    description: Extract Surrogates from
+  - name: Introspection
+    description: Extract Surrogates from Knowledge Artifacts
+  - name: KnowledgeBase
+    description: Manage KnowledgeBases
+  - name: Reasoning
+    description: Make inferences
 
 paths:
-  /extractors/{lambdaId}/assets/{assetId}/versions/{versionTag}:
+  /extractors/{lambdaId}:
     post:
       tags:
-        - metadataExtraction
+        - Introspection
       summary: 'Extract Asset metadata from a Knowledge Artifact'
       operationId: extractSurrogate
       parameters:
         - $ref: '#/parameters/lambdaId'
-        - $ref: '#/parameters/assetId'
-        - $ref: '#/parameters/versionTag'
         - name: sourceArtifact
           in: body
           required: true
@@ -36,13 +38,122 @@ paths:
           description: The Surrogate that results from the application of the operator
           schema:
             $ref: '#/definitions/KnowledgeCarrier'
+  /binders/{lambdaId}:
+    post:
+      tags:
+        - Reasoning
+      summary: 'Bind values to a formula with open variables'
+      operationId: bind
+      parameters:
+        - $ref: '#/parameters/lambdaId'
+        - name: sourceExpression
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        - name: bindings
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Bindings'
+      responses:
+        200:
+          description: The bound expression
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+
+##########################################################################################
+
+  /kbases:
+    post:
+      tags:
+        - KnowledgeBase
+      operationId: initKnowledgeBase
+      parameters:
+        - $ref: '#/parameters/asset'
+      responses:
+        200:
+          description: A reference to a newly created knowledgebase
+          schema:
+            $ref: '#/definitions/KnowledgeBase'
+
+  /kbases/{kbaseId}/versions/{versionTag}:
+    post:
+      tags:
+        - KnowledgeBase
+      operationId: populateKnowledgeBase
+      parameters:
+        - $ref: '#/parameters/kbaseId'
+        - $ref: '#/parameters/versionTag'
+        - name: sourceArtifact
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+      responses:
+        200:
+          description: The ID of the newly created knowledgebase
+          schema:
+            $ref: '#/definitions/KnowledgeBase'
+
+
+##########################################################################################
+
+
+  /oracles/{lambdaId}:
+    post:
+      tags:
+        - Reasoning
+      operationId: askQuery
+      parameters:
+        - $ref: '#/parameters/lambdaId'
+        - name: kBase
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/KnowledgeBase'
+        - name: query
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+      responses:
+        200:
+          description: The bound expression
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Bindings'
 
 definitions:
+
+  KnowledgeAsset:
+    type: object
 
   KnowledgeCarrier:
     type: object
 
+  KnowledgeBase:
+    type: object
+
 parameters:
+
+  asset:
+    in: body
+    name: asset
+    description: TODO
+    required: false
+    schema:
+      $ref: '#/definitions/KnowledgeAsset'
+
+  kbaseId:
+    in: path
+    name: kbaseId
+    description: TODO
+    required: true
+    type: string
+    format: uuid
 
   lambdaId:
     in: path
@@ -50,6 +161,7 @@ parameters:
     description: TODO
     required: true
     type: string
+    format: uuid
 
   assetId:
     in: path
