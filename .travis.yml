@@ -1,5 +1,9 @@
 language: java
 install: true
+branches:
+  only:
+    - master
+    - develop
 deploy:
   - provider: script
     script: mvn deploy -Ppublic -s .travis.settings.xml
