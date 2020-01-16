@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  description: This is a simple API
+  description: Knowledge Base Construction APIs - EARLY DEVELOPMENT
   version: "3.0.0"
   title: KnowledgeBase API
   # put the contact info for your development or API team
@@ -15,11 +15,10 @@ tags:
   - name: Introspection
     description: Extract Surrogates from Knowledge Artifacts
   - name: KnowledgeBase
-    description: Manage KnowledgeBases
-  - name: Reasoning
-    description: Make inferences
+    description: Construct KnowledgeBases
 
 paths:
+
   /extractors/{lambdaId}:
     post:
       tags:
@@ -38,34 +37,13 @@ paths:
           description: The Surrogate that results from the application of the operator
           schema:
             $ref: '#/definitions/KnowledgeCarrier'
-  /binders/{lambdaId}:
-    post:
-      tags:
-        - Reasoning
-      summary: 'Bind values to a formula with open variables'
-      operationId: bind
-      parameters:
-        - $ref: '#/parameters/lambdaId'
-        - name: sourceExpression
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/KnowledgeCarrier'
-        - name: bindings
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/Bindings'
-      responses:
-        200:
-          description: The bound expression
-          schema:
-            $ref: '#/definitions/KnowledgeCarrier'
+            
+  
 
 
 ##########################################################################################
 
-  /kbases:
+  /knowledgebases:
     post:
       tags:
         - KnowledgeBase
@@ -76,9 +54,23 @@ paths:
         200:
           description: A reference to a newly created knowledgebase
           schema:
-            $ref: '#/definitions/KnowledgeBase'
+            $ref: '#/definitions/Pointer'
+            
 
-  /kbases/{kbaseId}/versions/{versionTag}:
+
+  /knowledgebases/{kbaseId}/versions/{versionTag}:
+    get:
+      tags:
+        - KnowledgeBase
+      operationId: getKnowledgeBase
+      parameters:
+        - $ref: '#/parameters/kbaseId'
+        - $ref: '#/parameters/versionTag'
+      responses:
+        200:
+          description: The knowledgebase
+          schema:
+            $ref: '#/definitions/KnowledgeBase'
     post:
       tags:
         - KnowledgeBase
@@ -95,36 +87,27 @@ paths:
         200:
           description: The ID of the newly created knowledgebase
           schema:
-            $ref: '#/definitions/KnowledgeBase'
+            $ref: '#/definitions/Pointer'
 
-
-##########################################################################################
-
-
-  /oracles/{lambdaId}:
+  /knowledgebases/{kbaseId}/versions/{versionTag}/binders:
     post:
       tags:
-        - Reasoning
-      operationId: askQuery
+        - KnowledgeBase
+      summary: 'Bind values to a formula with open variables'
+      operationId: bind
       parameters:
-        - $ref: '#/parameters/lambdaId'
-        - name: kBase
+        - $ref: '#/parameters/kbaseId'
+        - $ref: '#/parameters/versionTag'
+        - name: bindings
           in: body
           required: true
           schema:
-            $ref: '#/definitions/KnowledgeBase'
-        - name: query
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/KnowledgeCarrier'
+            $ref: '#/definitions/Bindings'
       responses:
         200:
           description: The bound expression
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/Bindings'
+            $ref: '#/definitions/Pointer'
 
 definitions:
 
@@ -135,6 +118,12 @@ definitions:
     type: object
 
   KnowledgeBase:
+    type: object
+    
+  Bindings:
+    type: object
+    
+  Pointer:
     type: object
 
 parameters:
@@ -179,3 +168,8 @@ parameters:
     Immutable Versions of Mutable Entities, which reflect the state of that Entity at a given point
     in time. Where a version(ed) identifier is universal, the Tag represents the local part of that
     identifier, under the scope of the identifier that denotes the Entity (series)."
+
+
+schemes:
+  - https
+basePath: /kmdp.mayo.edu/knowledgebase/v3/

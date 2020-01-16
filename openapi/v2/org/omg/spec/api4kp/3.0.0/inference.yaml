@@ -5,67 +5,16 @@ info:
 
     ### Summary
 
-    **Knowledge-Oriented Reasoning (web) Service that supports the (stateless) execution of Inferences, and subsequent Queries, on one or more Knowledge Bases (aka 'Models').**
-
-    ### Background
+    **Knowledge-Driven Reasoning (web) Service that supports the (stateless) execution of
+    Inferences, Queries, and related information processing tasks on one or more Knowledge Bases
+    (aka 'Models').**
 
     #### Identification
-
-    In this context, a 'Model' is a predetermined Knowledge Base, which often consists of a single, possibly composite, Knowledge Asset. The Knowledge Base/Asset MUST have a unique identifier.  In the context of this server, the ID will reference the 'executable' version of the Asset, regardless of any transformation that the server may have applied at deployment, processing or runtime.
-
-    In particular, this API does not differentiate between Models that have a Manifestation in some Knowledge Representation Language, and are deployed within an execution engine, and Models that are implemented directly in some programming language, or combinations thereof.
-
-
-    #### Computational Nature
-
-    Semantically, when the Knowledge has a quantitative/mathematical/statistical nature, Assets of the kind relevant to this service are often called (Predictive) Models in the more narrow sense defined e.g. by PMML; when the Knowledge has a qualitative, 'symbolic' or logic-based nature, relevant Assets are often loosely called Rules, even if not all Rule Bases meet the criteria of this service.
-    *This specification covers both categories of representations, restricting to those Assets that have functional, inferential nature*, such that can be expressed, for example, by means of expression languages (e.g. CQL, FEEL), mathematics/statistics oriented languages (e.g. PMML), inferential Prolog-like rule languages (e.g. Deliberation RuleML), or properly profiled production rule languages (KNART, DMN, Reaction RuleML)L
-    Herein, they are denoted using term 'Model' in the default sense for the primary audience - data scientists and business analysts - but the terms is highly overloaded, and its use requires particular care.
-
-    In the most general case, the 'Model' is decomposable into a stratified Knowledge Base, where stratum is an inferential Knowledge Base itself. The strate are responsible for the following conceptual tasks.
-    1. Mapping primitive input DATA (asserted facts) to input features.
-    1. Mapping the input FEATURES to output inferences (inferred facts).
-    1. Mapping the output INFERENCES to output INTERPRETATIONS.
-
-    At runtime, 'Data', 'Features', 'Inferences' and 'Interpretations' can be considered ground sets of variable bindings. Data and Interpretation variables MUST have a semantic type (condition that is necessary, while not sufficient, to have business value). Feature and Inference variables COULD have a semantic type.
-
-    ### Functional Specification
-
-    A Model Evaluation is a special kind of Inference (a Reasoning task), and includes both predictions and assessments.
-    Computationally, it consists in a **stateless**, **idempotent** and **functional** application of knowledge to data, i.e.
-    ```Y[1..m] = f_Model( X[1..n] )```
-    where both **X** and **Y** are either variables or vectors thereof.
-    Applying the layers of stratification, more specifically
-
-    ```I = f_interpret( Y = f_infer( F = f_extract( X ) ) )```
-
-    Each Variable MUST have a **data type** (e.g. *xml#int*, *xml#string*, *xml#boolean*, ...) that can be validatd according to a known, resolvable schema.
-    Each Variable SHOULD also have a fully qualified **semantic type** (e.g. *foo#number_of_employees*, *bar#age*, *trm#123-456*) that can be resolved in a known ontology or terminology system.
-
-    In this invocation paradigm, the server MUST possess the Knowledge. The client SHALL either (i) provide the input data, or provide enough context so that (ii) the server or (iii) a third party delegate can gather the data, although (iv) combinations thereof are possible. The specific interaction protocols and responsibilities to gather the inputs are out of the scope of this API. They MIGHT be further defined by an implementation, be part of the SLA between client and server, or even be based on runtime negotiation.
-
-    For this reason, the client server interaction is not guaranteed to be idempotent, even if the model evaluation itself is. Hence, the server MUST make its input requirements and capabilities discoverable by the client.
-
-    Formally, one should assume that the input vector **X** can be partitioned into two subsets **Xc** (client-supplied) and **Xr** (resolvable), where Xr can be possibly empty.
-    While Xc MUST necessarily be non-empty and provided by the client, the additional variables Xr, _if any_, are such that they MIGHT be resolved or computed by the server, as a function of Xc[] and, possibly, some additional context C maintained by the server.
-
-    ```Xr = r( Xc, C )```
-
-    Any negotiation, then, will determine whether providing Xr will be a responsibility of either the client or the server, based on the mutual capabilities and the awareness of the context C.
-
-
-    The server COULD also provide the resolution function(s) r as a lambda expression, for transparency and/or for the client to evaluate.
-
-    #### *Example*
-
-    A Model 'as a service' predicts the life expectancy of a person based on that person's sex and age. If a person identifier is shared between the client and the server, and both have access to a directory, sex could be resolved directly, and age could be resolved directly or indirectly, as a function of that person's date of birth, which is also resolvable.
-
-    ### Behavioral Specification (some TODOs)
-
-    This API supports both synchronous and asynchronous evaluations, to allow for time-consuming jobs. Moreover, it supports both single and collection-oriented evaluations, applying the function to data sets.
-
-    In the asynchronous mode, the client SHOULD provide a callback URL where the result of the evaluation will be POSTed, following the HTTP callback paradigm (TODO do we have/need better options?), in particular ensuring that the server has the rights to make the callback. Otherwise, the server will be responsible for storing the results and making them available at a server-determined URLs.
-    Either way, any asynchronous evaluation SHALL follow the 'task state' pattern, allowing the client to poll for the job state, eventually redirecting the client to the URL where the data can be retrieved. Specifically, when the client provides a callback URL and the server is able to successfully POST the results, that URL SHALL be the redirect URL. Otherwise, the server will direct the client to the appropriate URL.
+    In this context, a 'Model' is a Knowledge Base - regardless of whether it consists of a known,
+    single Knowledge Asset, or is the result of an Assembly on-the-fly.
+    Knowledge Bases have a unique identifier: in this server, deployed Knowledge Base
+    (i.e. the instantiation of a Knowledge Base in some software) and possibly even deployments are
+    tracked with different IDs.
 
 
   version: "3.0.0"
@@ -82,11 +31,13 @@ info:
 # tags are used for organizing operations
 tags:
   - name: model
-    description: "Endpoints that expose (metadata about) the model itself"
-  - name: functional
-    description: "Endpoints that expose the model's computation capabilities as a function"
-  - name: asynch
-    description: "Endpoints that expose the model's asynchronous computation"
+    description: "Endpoints that expose (metadata about) the deployed model itself"
+  - name: inference
+    description: "Endpoints that expose a model's computation capabilities as a function"
+  - name: query
+    description: "Query"
+  #- name: asynch
+  #  description: "Endpoints that expose the model's asynchronous computation"
 
 paths:
   /models:
@@ -107,60 +58,7 @@ paths:
           schema:
             type: array
             items:
-              # TODO: Should we use a generic 'Pointer' resource, or should we allow for partial, summary views of the 'Model' resource - which in this case is KnowledgeExpression ?
               $ref: '#/definitions/Pointer'
-
-  /models/{modelId}/versions/{versionTag}/broker:
-    get:
-      tags:
-        - model
-      summary: Describe Model I/O
-      operationId: getModelDefinitions
-      description: "Return the definitions of the Data Concepts (DATA, FEATURE and CONTEXT) that this server can consume and/or produce."
-      produces:
-        - application/json
-        - application/xml
-      parameters:
-        - $ref: '#/parameters/modelId'
-        - $ref: '#/parameters/versionTag'
-      responses:
-        200:
-          description: "Definitions of DATA, FEATURE and/or CONTEXT Concepts"
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/DataConceptDefinition'
-    post:
-      tags:
-        - asynch
-      summary: Evaluate Model
-      operationId: evaluate
-      description: "Submits a dataset to be evaluated. For each entry, the server will try to ensure that all required input FEATURES are available before invoking the model. To this end, it will use any CONTEXT to resolve DATA and FEATURES; and any available inference to generate FEATURES from (resolved) DATA. The server MUST respond with ouput DATA and FEATURES."
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - $ref: '#/parameters/modelId'
-        - $ref: '#/parameters/versionTag'
-        - in: body
-          name: facts
-          required: true
-          schema:
-            $ref: '#/definitions/Dataset'
-        # TODO: Callbacks are first class citizens in OpenAPI 3. This should be migrated when upgrading
-        - in: query
-          name: callbackURL
-          description: "A URL where the client expects to be notified in case the server determines that the computation will be asynchronous."
-          required: false
-          type: string
-      responses:
-        202:
-          description: "The URL of a 'deliberation' resource that represents an ongoing asynchronous computation, where the model has been applied to the data"
-          headers:
-            Location:
-              type: string
-              format: url  #TODO is this even accepted?
 
   /models/{modelId}/versions/{versionTag}:
     get:
@@ -177,36 +75,26 @@ paths:
         - $ref: '#/parameters/versionTag'
       responses:
         200:
-          description: "Information about the computable knowledge that is being executed as a service, including enough information to resolve the Knowledge Asset of which this server is an instantiation."
+          description: "Information about the computable knowledge that is being executed
+          as a service, including enough information to resolve the Knowledge Asset of
+          which the model is an instantiation."
           schema:
             $ref: '#/definitions/KnowledgeCarrier'
 
   /models/{modelId}/versions/{versionTag}/logic:
-    get:
-      tags:
-        - model
-      summary: Describe Model I/O
-      operationId: getModelFeatureDefinitions
-      description: "Return the definitions of the FEATURE Data Concepts that this server can consume and/or produce."
-      produces:
-        - application/json
-        - application/xml
-      parameters:
-        - $ref: '#/parameters/modelId'
-        - $ref: '#/parameters/versionTag'
-      responses:
-        200:
-          description: "Definition of FEATURE data concepts that the server can consume, and FEATURE and (possibly) DATA concepts that the server can produce."
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/DataConceptDefinition'
     post:
       tags:
-        - functional
+        - inference
       summary: Evaluate / Infer
       operationId: infer
-      description: "Submits a dataset for evaluation. The model will be applied to each item in the dataset, returning a new dataset with the inferred values. Each evaluation will be independent. The Dataset MUST contain all the FEATURES required for model evaluation, as the server will not attempt to resolve any, ignoring the CONTEXT. If both DATA and FEATURES are provided, the server MIGHT try to infer the FEATURES from the DATA; if, for a given data concept, the provided and inferred values are not identical, the server will respond with an exception. As a result of a successful evaluation, the server MUST respond with a DataSet that contains the computed output FEATURES, and SHOULD also include the output DATA Concepts."
+      description: "Submits a dataset for evaluation. The model will be applied to each item in
+      the dataset, returning a new dataset with the inferred values. Each evaluation will be
+      independent. The Dataset MUST contain all the FEATURES required for model evaluation, as
+      the server will not attempt to resolve any, ignoring the CONTEXT. If both DATA and FEATURES
+      are provided, the server MIGHT try to infer the FEATURES from the DATA; if, for a given data
+      concept, the provided and inferred values are not identical, the server will respond with an
+      exception. As a result of a successful evaluation, the server MUST respond with a DataSet that
+      contains the computed output FEATURES, and SHOULD also include the output DATA Concepts."
       consumes:
         - application/json
       produces:
@@ -225,92 +113,30 @@ paths:
           schema:
             $ref: '#/definitions/Map'
 
+  ##########################################################################################
 
-  /models/{modelId}/versions/{versionTag}/deliberations/{deliberationId}:
-    get:
+
+  /models/{modelId}/versions/{versionTag}/oracle:
+    post:
       tags:
-        - asynch
-      summary: Get Evaluation State
-      operationId: getModelEvaluationStatus
-      description: "In the case of asynchronous, long-lasting model evaluations, a Deliberation resource represents either a queued or ongoing evaluation process."
+        - query
+      operationId: askQuery
+      description: submits a query to a KnowledgeBase
       parameters:
         - $ref: '#/parameters/modelId'
         - $ref: '#/parameters/versionTag'
-        - $ref: '#/parameters/deliberationId'
+        - name: query
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
       responses:
         200:
-          description: "Returns the status of the evaluation when ongoing."
+          description: The bound expression
           schema:
-            $ref: '#/definitions/Deliberation'
-        303:
-          #TODO Based on open discussion, this URL is ultimately determined by the server, possibly based on the client's suggested callback URL
-          description: "Points to a URL where the results can be retrieved."
-          headers:
-            Location:
-              type: string
-              format: url
-        404:
-          description: "The computation has terminated"
-          # Discussion: some authors recommend 410, but that requires the server to somehow keep track of which computation(s) it performed in the past. This does not seem appropriate for a stateless, functional server.
-          #410:
-          #description: "The computation has terminated, and the results are no longer available"
-
-    delete:
-      tags:
-        - asynch
-      summary: Cancel Evaluation
-      operationId: cancelEvaluation
-      description: "Ensures that a model evaluation job will not start, or will no longer be running. Does not have effect if the job is in a terminal state."
-      parameters:
-        - $ref: '#/parameters/modelId'
-        - $ref: '#/parameters/versionTag'
-        - $ref: '#/parameters/deliberationId'
-      responses:
-        200:
-          description: "Returns the state of the known job, after successfully ensuring it is no longer running."
-          schema:
-            $ref: '#/definitions/Deliberation'
-        404:
-          description: "The computation could not be found: either an invalid id was provided, or the computation has terminated and has been forgotten."
-
-
-  /models/{modelId}/versions/{versionTag}/inferences/{inferenceId}:
-    get:
-      tags:
-        - asynch
-      summary: Get Inference Results
-      operationId: getInferenceResults
-      description: "In the case of asynchronous, long-lasting reasoning tasks, the server may hold the inferred facts for the client to fetch them, possibly after being notified."
-      produces:
-        - application/json
-      parameters:
-        - $ref: '#/parameters/modelId'
-        - $ref: '#/parameters/versionTag'
-        - $ref: '#/parameters/inferenceId'
-      responses:
-        200:
-          description: "Returns the product of an Inference task."
-          schema:
-            $ref: '#/definitions/Dataset'
-        404:
-          description: "The results could not be found"
-    delete:
-      tags:
-        - asynch
-      summary: Remove Inference Results
-      operationId: clearInference
-      description: "Removes the inferred facts from the server, if still present."
-      parameters:
-        - $ref: '#/parameters/modelId'
-        - $ref: '#/parameters/versionTag'
-        - $ref: '#/parameters/inferenceId'
-      responses:
-        200:
-          description: "Returns the state of the known job, after successfully ensuring it is no longer running."
-          schema:
-            $ref: '#/definitions/Deliberation'
-        404:
-          description: "The inference results could not be found: either an invalid id was provided, or they have already been retrieved."
+            type: array
+            items:
+              $ref: '#/definitions/Bindings'
 
 parameters:
   modelId:
@@ -319,41 +145,31 @@ parameters:
     type: string
     format: uuid
     required: true
-    description: "The Identifier of a known Inferential Knowledge Asset (aka kao#Assessment) that is deployed and executed as a Service. This identifier SHOULD be an ID of the Asset itself, not of the manifestation of the Asset within the server."
+    description: "The Identifier of a known Inferential Knowledge Asset (aka kao#Assessment) that
+    is deployed and executed as a Service. This identifier SHOULD be an ID of the Asset itself,
+    not of the manifestation of the Asset within the server."
 
   versionTag:
     in: path
     name: versionTag
     type: string
     required: true
-    description: "The Identifier os a specific version of a Model, within the series identified by a modelId."
-
-
-  deliberationId:
+    description: "The Identifier os a specific version of a Model, within the series identified
+    by a modelId."
+    
+  lambdaId:
     in: path
-    name: deliberationId
+    name: lambdaId
+    description: TODO
+    required: true
     type: string
     format: uuid
-    required: true
-    description: "The Identifier of a specific instance of a model execution, in the context of a client-server interaction."
-
-  inferenceId:
-    in: path
-    name: inferenceId
-    type: string
-    format: uuid
-    required: true
-    description: "The Identifier of the results of a model execution. Formally, it identifies an Inferred Knowledge Base, generated as the product of an instance of Inference Task. The ID is opaque with respect to the inference task that created it."
-
 
 definitions:
   Pointer:
     type: object
-    description: "Compact proxy object that carries references to another Resource. This object us ed in operations that browse and list collections."
-
-  Deliberation:
-    type: object
-    description: "A Resource that rerpesents the state of an ongoing Reasoning Process."
+    description: "Compact proxy object that carries references to another Resource. This object
+    used in operations that browse and list collections."
 
   KnowledgeCarrier:
     type: object
@@ -361,11 +177,15 @@ definitions:
 
   Map:
     type: object
-    description: "A single table row, implemented by means of a map, where the 'column' keys SHALL correspond to either the names or the concept URIs of one or more Data Concepts, and the values is one array of uniform length."
+    description: "A single table row, implemented by means of a map, where the 'column' keys
+    SHALL correspond to either the names or the concept URIs of one or more Data Concepts,
+    and the values is one array of uniform length."
 
+    
+  Bindings:
+    type: object
 
 # Added by API Auto Mocking Plugin
 schemes:
   - https
-
-basePath: /kmdp.mayo.edu/kbase/inference/v3/
+basePath: /kmdp.mayo.edu/reasoning/v3/
