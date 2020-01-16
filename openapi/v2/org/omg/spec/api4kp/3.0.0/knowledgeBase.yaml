@@ -1,0 +1,175 @@
+swagger: '2.0'
+info:
+  description: Knowledge Base Construction APIs - EARLY DEVELOPMENT
+  version: "3.0.0"
+  title: KnowledgeBase API
+  # put the contact info for your development or API team
+  contact:
+    email: Sottara.Davide@mayo.edu
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+tags:
+  - name: Introspection
+    description: Extract Surrogates from Knowledge Artifacts
+  - name: KnowledgeBase
+    description: Construct KnowledgeBases
+
+paths:
+
+  /extractors/{lambdaId}:
+    post:
+      tags:
+        - Introspection
+      summary: 'Extract Asset metadata from a Knowledge Artifact'
+      operationId: extractSurrogate
+      parameters:
+        - $ref: '#/parameters/lambdaId'
+        - name: sourceArtifact
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+      responses:
+        200:
+          description: The Surrogate that results from the application of the operator
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+            
+  
+
+
+##########################################################################################
+
+  /knowledgebases:
+    post:
+      tags:
+        - KnowledgeBase
+      operationId: initKnowledgeBase
+      parameters:
+        - $ref: '#/parameters/asset'
+      responses:
+        200:
+          description: A reference to a newly created knowledgebase
+          schema:
+            $ref: '#/definitions/Pointer'
+            
+
+
+  /knowledgebases/{kbaseId}/versions/{versionTag}:
+    get:
+      tags:
+        - KnowledgeBase
+      operationId: getKnowledgeBase
+      parameters:
+        - $ref: '#/parameters/kbaseId'
+        - $ref: '#/parameters/versionTag'
+      responses:
+        200:
+          description: The knowledgebase
+          schema:
+            $ref: '#/definitions/KnowledgeBase'
+    post:
+      tags:
+        - KnowledgeBase
+      operationId: populateKnowledgeBase
+      parameters:
+        - $ref: '#/parameters/kbaseId'
+        - $ref: '#/parameters/versionTag'
+        - name: sourceArtifact
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+      responses:
+        200:
+          description: The ID of the newly created knowledgebase
+          schema:
+            $ref: '#/definitions/Pointer'
+
+  /knowledgebases/{kbaseId}/versions/{versionTag}/binders:
+    post:
+      tags:
+        - KnowledgeBase
+      summary: 'Bind values to a formula with open variables'
+      operationId: bind
+      parameters:
+        - $ref: '#/parameters/kbaseId'
+        - $ref: '#/parameters/versionTag'
+        - name: bindings
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Bindings'
+      responses:
+        200:
+          description: The bound expression
+          schema:
+            $ref: '#/definitions/Pointer'
+
+definitions:
+
+  KnowledgeAsset:
+    type: object
+
+  KnowledgeCarrier:
+    type: object
+
+  KnowledgeBase:
+    type: object
+    
+  Bindings:
+    type: object
+    
+  Pointer:
+    type: object
+
+parameters:
+
+  asset:
+    in: body
+    name: asset
+    description: TODO
+    required: false
+    schema:
+      $ref: '#/definitions/KnowledgeAsset'
+
+  kbaseId:
+    in: path
+    name: kbaseId
+    description: TODO
+    required: true
+    type: string
+    format: uuid
+
+  lambdaId:
+    in: path
+    name: lambdaId
+    description: TODO
+    required: true
+    type: string
+    format: uuid
+
+  assetId:
+    in: path
+    name: assetId
+    required: true
+    type: string
+    description: "The id of the Knowledge Asset (Series)."
+
+  versionTag:
+    in: path
+    name: versionTag
+    required: true
+    type: string
+    description: "The version tag of a Versioned Entity. \n Versioned Identifiers identify specific,
+    Immutable Versions of Mutable Entities, which reflect the state of that Entity at a given point
+    in time. Where a version(ed) identifier is universal, the Tag represents the local part of that
+    identifier, under the scope of the identifier that denotes the Entity (series)."
+
+
+schemes:
+  - https
+basePath: /kmdp.mayo.edu/knowledgebase/v3/

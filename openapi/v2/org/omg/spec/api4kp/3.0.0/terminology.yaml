@@ -1,0 +1,88 @@
+swagger: '2.0'
+info:
+  description: |
+    This is a demo terminology API built on top of the API4KP framework
+  version: "3.0.0"
+  title: Demo Terminology Server API
+  # put the contact info for your development or API team
+  contact:
+    email: dsotty@gmail.com
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+# tags are used for organizing operations
+tags:
+- name: Terms
+  description: Terminology related operations
+
+paths:
+  /vocabularies:
+    get:
+      tags:
+      - Terms
+      summary: Lists available terminologies
+      operationId: listTerminologies
+      description: |
+        Enumerates the terminologies currently managed by this server
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+  /vocabularies/{vocabularyId}/versions/{versionTag}:
+    get:
+      tags:
+      - Terms
+      summary: Lists terms in a terminology system
+      operationId: getTerms
+      description: |
+        Lists the terms in a given Vocabulary
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+        - name: vocabularyId
+          in: path
+          description: The id of the terminology system
+          required: true
+          type: string
+          format: uuid
+        - name: versionTag
+          in: path
+          description: The version of the terminology system
+          required: true
+          type: string
+        - name: label
+          in: query
+          description: Filters by terms with matching label
+          required: false
+          type: string
+          
+      responses:
+        200:
+          description: success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ConceptIdentifier'
+        400:
+          description: vocabulary not found
+
+definitions:
+  Pointer:
+    type: object
+  ConceptIdentifier:
+    type: object
+    
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /kmdp.mayo.edu/terms/v3/
+schemes:
+ - https

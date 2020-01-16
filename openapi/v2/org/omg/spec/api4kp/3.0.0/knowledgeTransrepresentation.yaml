@@ -45,9 +45,26 @@ paths:
             type: array
             items:
               $ref: '#/definitions/TransrepresentationOperator'
-    
-  
-  /transxors/{txId}:
+
+  /transxors/into:
+    post:
+      tags:
+        - transxion
+      #- declarative
+      summary: Applies a trans-representation operation.
+      operationId: applyTransrepresentationInto
+      description: Applies a trans-representation operation
+      parameters:
+        - $ref: '#/parameters/carrier'
+        - $ref: '#/parameters/into'
+      responses:
+        200:
+          description: The transformed artifact
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+
+  /transxors/txors/{txId}:
     get:
       tags:
       - transxion
@@ -78,8 +95,8 @@ paths:
           description: The transformed artifact
           schema:
             $ref: '#/definitions/KnowledgeCarrier'
-      
-  /transxions/{txId}/into:
+
+  /transxions/txors/{txId}/into:
     get:
       tags:
       - transxion
@@ -94,7 +111,7 @@ paths:
           schema:
             $ref: '#/definitions/SyntacticRepresentation'
   
-  /transxions/{txId}/acceptedParams:
+  /transxions/txors/{txId}/acceptedParams:
     get:
       tags:
       - transxion
@@ -416,8 +433,7 @@ definitions:
       
   ParamDefinition:
     type: object
-# Added by API Auto Mocking Plugin
-host: virtserver.swaggerhub.com
-basePath: /kmdp.mayo.edu/repository/tranx/v3
+    
+basePath: /kmdp.mayo.edu/tranx/v3
 schemes:
  - https
