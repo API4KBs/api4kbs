@@ -50,10 +50,44 @@
 		<sm:fileAbbreviation>reg</sm:fileAbbreviation>
         <owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
         <owl:imports rdf:resource="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
-        <owl:imports rdf:resource="https://www.omg.org/spec/API4KP/api4kp/"/>
+        <owl:imports rdf:resource="https://www.omg.org/spec/API4KP/SNAPSHOT/api4kp/"/>
         <owl:imports rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/"/>		
         <owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/SNAPSHOT/api4kp-registry/"/>
-   </owl:Ontology>	
+    </owl:Ontology>
+
+    <!--
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/Profile">
+       <rdfs:comment>Provisional - TODO - fixme</rdfs:comment>
+       <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp/ConstructedLanguage"/>
+       <rdfs:subClassOf>
+         <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+       </rdfs:subClassOf>
+     </owl:Class>
+       <owl:Class rdf:about="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+       <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp/Lexicon"/>
+
+
+    <!--
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+       <owl:ObjectProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/supportsSerialization"/>
+       <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/depends-on"/>
+       <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/uses-lexicon"/>
+       <owl:ObjectProperty rdf:about="https://www.omg.org/spec/API4KP/api4kp/governed-by"/>
+       <owl:ObjectProperty rdf:about="http://www.omg.org/spec/DOL/DOL-terms/isProfileOf"/>
 
  
     <!-- 
@@ -115,10 +149,10 @@
         <rdfs:label>CLIF</rdfs:label>
       </dol:Serialization>
     </dol:supportsSerialization>
-    <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+    <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
   </dol:OMSLanguage>
   <dol:OMSLanguage rdf:about="https://www.omg.org/spec/DMN/1.2/FEEL">
-    <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+    <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
     <owl:versionInfo>v12</owl:versionInfo>
     <dct:source>https://www.omg.org/spec/DMN/1.2/</dct:source>
     <rdfs:comment>Friendly Enough Expression Lanaguage 1.2</rdfs:comment>
@@ -137,7 +171,7 @@
         <rdfs:label>KNART XML Syntax</rdfs:label>
       </dol:Serialization>
     </dol:supportsSerialization>
-    <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+    <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
     <owl:versionInfo>v13</owl:versionInfo>
     <dct:source>https://www.hl7.org/implement/standards/product_brief.cfm?product_id=337</dct:source>
     <rdfs:comment>HL7 Knowledge Artifact Metamodel 1.3</rdfs:comment>
@@ -158,7 +192,7 @@
             <rdfs:label>CQL Syntax</rdfs:label>
           </dol:Serialization>
         </dol:supportsSerialization>
-        <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+        <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
         <owl:versionInfo>v12</owl:versionInfo>
         <dct:source>https://cql.hl7.org/</dct:source>
         <rdfs:comment>Clinical Quality Language 1.2</rdfs:comment>
@@ -208,7 +242,7 @@
             <rdfs:label>OWL Manchester Syntax</rdfs:label>
           </dol:Serialization>
         </dol:supportsSerialization>
-        <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+        <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
         <skos:prefLabel>OWL-2</skos:prefLabel>
         <dct:source>https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/</dct:source>
         <dol:supportsSerialization>
@@ -252,7 +286,7 @@
         <rdfs:label>BPMN 2.0 XML Syntax</rdfs:label>
       </dol:Serialization>
     </dol:supportsSerialization>
-    <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+    <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
     <owl:versionInfo>v2</owl:versionInfo>
     <dct:source>https://www.omg.org/spec/BPMN/2.0/</dct:source>
     <rdfs:comment>Business Process Modelling Notation 2.0</rdfs:comment>
@@ -285,7 +319,7 @@
         <rdfs:label>XSD XML 1.1 Syntax</rdfs:label>
       </dol:Serialization>
     </dol:supportsSerialization>
-    <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+    <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
     <owl:versionInfo>v11</owl:versionInfo>
     <dct:source>https://www.w3.org/TR/xmlschema11-1/</dct:source>
     <rdfs:comment>XML Schema Definition Language 1.1</rdfs:comment>
@@ -293,18 +327,18 @@
     <skos:prefLabel>XSD 1.1</skos:prefLabel>
     <rdfs:label>XSD 1.1</rdfs:label>
   </dol:OMSLanguage>
-  <api4kp:BaseConstructedLanguage rdf:about="https://www.w3.org/TR/xhtml1/">
+  <api4kp:ConstructedLanguage rdf:about="https://www.w3.org/TR/xhtml1/">
     <owl:versionInfo>v1</owl:versionInfo>
     <dct:source>https://www.w3.org/TR/xhtml1/</dct:source>
     <rdfs:comment>X-HTML</rdfs:comment>
     <dct:identifier>xhtml</dct:identifier>
     <skos:prefLabel>XHTML</skos:prefLabel>
     <rdfs:label>XHTML</rdfs:label>
-  </api4kp:BaseConstructedLanguage>
+  </api4kp:ConstructedLanguage>
   <dol:Profile rdf:about="https://www.omg.org/spec/UML/profiles/resource">
     <dol:isProfileOf>
       <dol:OMSLanguage rdf:about="https://www.omg.org/spec/UML/2.5/">
-        <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+        <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
         <owl:versionInfo>v25</owl:versionInfo>
         <dct:source>https://www.omg.org/spec/UML/2.5/</dct:source>
         <rdfs:comment>Unified Modelling Language 2.5</rdfs:comment>
@@ -318,14 +352,14 @@
     <skos:prefLabel>UML Resource</skos:prefLabel>
     <rdfs:label>UML Resource</rdfs:label>
   </dol:Profile>
-  <api4kp:BaseConstructedLanguage rdf:about="https://www.w3.org/TR/html52/">
+  <api4kp:ConstructedLanguage rdf:about="https://www.w3.org/TR/html52/">
     <owl:versionInfo>v52</owl:versionInfo>
     <dct:source>https://www.w3.org/TR/html5/</dct:source>
     <rdfs:comment>HTML 5</rdfs:comment>
     <dct:identifier>html</dct:identifier>
     <skos:prefLabel>HTML</skos:prefLabel>
     <rdfs:label>HTML</rdfs:label>
-  </api4kp:BaseConstructedLanguage>
+  </api4kp:ConstructedLanguage>
   <dol:Profile rdf:about="https://www.omg.org/spec/API4KP/1.0/datatypes">
     <dol:isProfileOf>
       <dol:OMSLanguage rdf:about="https://www.omg.org/spec/API4KP/1.0/">
@@ -407,7 +441,7 @@
           </api4kp:Lexicon>
         </api4kp:uses-lexicon>
         <dct:identifier>api4kp</dct:identifier>
-        <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+        <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
       </dol:OMSLanguage>
     </dol:isProfileOf>
     <dct:source>https://www.omg.org/spec/API4KP/1.0/</dct:source>
@@ -416,7 +450,7 @@
     <skos:prefLabel>API4KP Datatypes</skos:prefLabel>
     <rdfs:label>API4KP Datatypes</rdfs:label>
   </dol:Profile>
-  <api4kp:BaseConstructedLanguage rdf:about="https://swagger.io/specification/2-0">
+  <api4kp:ConstructedLanguage rdf:about="https://swagger.io/specification/2-0">
     <rdfs:comment>OpenAPI / Swagger v2.x</rdfs:comment>
     <owl:versionInfo>v2</owl:versionInfo>
     <skos:prefLabel>OpenAPI 2.x</skos:prefLabel>
@@ -458,7 +492,7 @@
       </dol:Serialization>
     </dol:supportsSerialization>
     <dct:identifier>openapi</dct:identifier>
-  </api4kp:BaseConstructedLanguage>
+  </api4kp:ConstructedLanguage>
   <dol:Profile rdf:about="https://www.omg.org/spec/API4KP/1.0/identifiers">
     <dol:isProfileOf rdf:resource="https://www.omg.org/spec/API4KP/1.0/"/>
     <dct:source>https://www.omg.org/spec/API4KP/1.0/</dct:source>
@@ -527,7 +561,7 @@
       </api4kp:Lexicon>
     </api4kp:uses-lexicon>
     <dct:source>https://www.omg.org/spec/API4KP/1.0/</dct:source>
-    <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+    <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
     <api4kp:uses-lexicon>
       <api4kp:Lexicon rdf:about="https://ontology.mayo.edu/taxonomies/KAO/Rel/CitationRelType/2018-02-16">
         <dct:source>&api4kp;</dct:source>
@@ -590,16 +624,16 @@
     </dol:supportsSerialization>
     <dct:identifier>surr</dct:identifier>
   </dol:OMSLanguage>
-  <api4kp:BaseConstructedLanguage rdf:about="http://docs.oasis-open.org/dita/dita/v1.3/">
+  <api4kp:ConstructedLanguage rdf:about="http://docs.oasis-open.org/dita/dita/v1.3/">
     <owl:versionInfo>v13</owl:versionInfo>
     <dct:source>http://docs.oasis-open.org/dita/dita/v1.3/dita-v1.3-part0-overview.html</dct:source>
     <rdfs:comment>Darwin Information Technology Architecture 1.3</rdfs:comment>
     <dct:identifier>dita</dct:identifier>
     <skos:prefLabel>DITA</skos:prefLabel>
     <rdfs:label>DITA</rdfs:label>
-  </api4kp:BaseConstructedLanguage>
+  </api4kp:ConstructedLanguage>
   <dol:OMSLanguage rdf:about="https://www.omg.org/spec/DMN/1.1/FEEL">
-    <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+    <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
     <owl:versionInfo>v11</owl:versionInfo>
     <dct:source>https://www.omg.org/spec/DMN/1.1/</dct:source>
     <rdfs:comment>Friendly Enough Expression Lanaguage 1.1</rdfs:comment>
@@ -616,7 +650,7 @@
     <rdfs:label>OWL2 DL</rdfs:label>
   </dol:Profile>
   <dol:OMSLanguage rdf:about="https://www.w3.org/TR/xslt-30/">
-    <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+    <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
     <owl:versionInfo>v3</owl:versionInfo>
     <dct:source>https://www.w3.org/TR/2017/REC-xslt-30-20170608/</dct:source>
     <rdfs:comment>Extensible Stylesheet Transformation 3.0</rdfs:comment>
@@ -635,7 +669,7 @@
         <rdfs:label>CQL/ELM XML Syntax</rdfs:label>
       </dol:Serialization>
     </dol:supportsSerialization>
-    <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+    <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
     <owl:versionInfo>v12</owl:versionInfo>
     <dct:source>https://cql.hl7.org/</dct:source>
     <rdfs:comment>Clinical Quality Language, Expression Language Metamodel 1.2</rdfs:comment>
@@ -652,7 +686,7 @@
     <rdfs:label>OWL2 RL</rdfs:label>
   </dol:Profile>
   <dol:OMSLanguage rdf:about="http://reaction.ruleml.org/1.02/">
-    <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+    <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
     <owl:versionInfo>v12</owl:versionInfo>
     <dct:source>http://reaction.ruleml.org/1.02/</dct:source>
     <rdfs:comment>Reaction RuleML 1.2</rdfs:comment>
@@ -705,7 +739,7 @@
         <rdfs:label>DMN 1.2 XML Syntax</rdfs:label>
       </dol:Serialization>
     </dol:supportsSerialization>
-    <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+    <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
     <owl:versionInfo>v12</owl:versionInfo>
     <dct:source>https://www.omg.org/spec/DMN/1.2/</dct:source>
     <rdfs:comment>Decision Modelling Notation 1.2</rdfs:comment>
@@ -713,14 +747,14 @@
     <skos:prefLabel>DMN 1.2</skos:prefLabel>
     <rdfs:label>DMN 1.2</rdfs:label>
   </dol:OMSLanguage>
-  <api4kp:BaseConstructedLanguage rdf:about="https://jdk.java.net/8/">
+  <api4kp:ConstructedLanguage rdf:about="https://jdk.java.net/8/">
     <owl:versionInfo>v8</owl:versionInfo>
     <dct:source>https://jcp.org/en/jsr/detail?id=337</dct:source>
     <rdfs:comment>Java 8</rdfs:comment>
     <dct:identifier>java</dct:identifier>
     <skos:prefLabel>Java 8</skos:prefLabel>
     <rdfs:label>Java 8</rdfs:label>
-  </api4kp:BaseConstructedLanguage>
+  </api4kp:ConstructedLanguage>
   <dol:OMSLanguage rdf:about="http://kmdp.mayo.edu/ccg/1.0">
     <api4kp:uses-lexicon>
       <api4kp:Lexicon rdf:about="http://ontology.mayo.edu/taxonomies/PCV">
@@ -730,7 +764,7 @@
         <rdfs:label>PCV</rdfs:label>
       </api4kp:Lexicon>
     </api4kp:uses-lexicon>
-    <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+    <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
     <owl:versionInfo>v1</owl:versionInfo>
     <rdfs:comment>Clinical Concept Glossary Metamodel</rdfs:comment>
     <dct:identifier>ccg</dct:identifier>
@@ -768,7 +802,7 @@
     <dct:identifier>fhir</dct:identifier>
     <dct:source>http://hl7.org/fhir/STU3</dct:source>
     <rdfs:comment>Fast Healthcare Interoperability Resources STU3</rdfs:comment>
-    <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+    <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
   </dol:OMSLanguage>
   <dol:OMSLanguage rdf:about="https://www.w3.org/TR/sparql11-query/">
     <dol:supportsSerialization>
@@ -781,7 +815,7 @@
         <rdfs:label>SPARQL Syntax</rdfs:label>
       </dol:Serialization>
     </dol:supportsSerialization>
-    <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+    <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
     <owl:versionInfo>v11</owl:versionInfo>
     <dct:source>https://www.w3.org/TR/2013/REC-sparql11-query-20130321/</dct:source>
     <rdfs:comment>SPARQL Protocol and RDF Query Language</rdfs:comment>
@@ -801,7 +835,7 @@
       </dol:Serialization>
     </dol:supportsSerialization>
     <dol:isProfileOf>
-      <api4kp:BaseConstructedLanguage rdf:about="https://www.omg.org/spec/API4KP/1.0/surrogate">
+      <api4kp:ConstructedLanguage rdf:about="https://www.omg.org/spec/API4KP/1.0/surrogate">
         <api4kp:uses-lexicon rdf:resource="https://ontology.mayo.edu/taxonomies/API4KP/ParsingLevel/20190801/"/>
         <api4kp:uses-lexicon rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/RelatedVersionType/20190801/"/>
         <api4kp:uses-lexicon rdf:resource="https://ontology.mayo.edu/taxonomies/Lexicon/20190801/"/>
@@ -847,7 +881,7 @@
         <api4kp:uses-lexicon rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/KnowledgeProcessingTechnique/20190801/"/>
         <api4kp:uses-lexicon rdf:resource="https://ontology.mayo.edu/taxonomies/KRSerialization/20190801/"/>
         <api4kp:uses-lexicon rdf:resource="https://ontology.mayo.edu/taxonomies/KAO/Rel/DerivationRelType/20190801/"/>
-      </api4kp:BaseConstructedLanguage>
+      </api4kp:ConstructedLanguage>
     </dol:isProfileOf>
     <dct:source>https://www.omg.org/spec/API4KP/1.0/</dct:source>
     <rdfs:comment>Knowledge Asset Surrogate Annotations</rdfs:comment>
@@ -865,7 +899,7 @@
   </dol:Profile>
   <dol:OMSLanguage rdf:about="http://kmdp.mayo.edu/serviceprofile/1.0">
     <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/taxonomies/PCV"/>
-    <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+    <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
     <owl:versionInfo>v1</owl:versionInfo>
     <rdfs:comment>Service Profile Metamodel</rdfs:comment>
     <dct:identifier>sp</dct:identifier>
@@ -885,7 +919,7 @@
             <rdfs:label>GraphQL Syntax</rdfs:label>
           </dol:Serialization>
         </dol:supportsSerialization>
-        <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+        <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
         <owl:versionInfo>vJun2018</owl:versionInfo>
         <dct:source>https://graphql.github.io/graphql-spec/June2018/</dct:source>
         <rdfs:comment>GraphQL June 2018 Release</rdfs:comment>
@@ -901,7 +935,7 @@
     <rdfs:label>GraphQL Queries</rdfs:label>
   </dol:Profile>
   <dol:OMSLanguage rdf:about="http://hl7.org/fhirpath/">
-    <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+    <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
     <owl:versionInfo>v1</owl:versionInfo>
     <dct:source>http://hl7.org/fhirpath/</dct:source>
     <rdfs:comment>FHIRPath Path Language</rdfs:comment>
@@ -911,21 +945,21 @@
   </dol:OMSLanguage>
   <dol:OMSLanguage rdf:about="http://kmdp.mayo.edu/ccpm/1.0">
     <api4kp:uses-lexicon rdf:resource="http://ontology.mayo.edu/taxonomies/PCV"/>
-    <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+    <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
     <owl:versionInfo>v1</owl:versionInfo>
     <rdfs:comment>Cognitive Care Process Models Metamodel</rdfs:comment>
     <dct:identifier>ccpm</dct:identifier>
     <skos:prefLabel>Cognitive Care Process Model</skos:prefLabel>
     <rdfs:label>Cognitive Care Process Model</rdfs:label>
   </dol:OMSLanguage>
-  <api4kp:BaseConstructedLanguage rdf:about="https://mustache.github.io/">
+  <api4kp:ConstructedLanguage rdf:about="https://mustache.github.io/">
     <owl:versionInfo>v1</owl:versionInfo>
     <dct:source>http://mustache.github.io</dct:source>
     <rdfs:comment>Mustache Templating Language</rdfs:comment>
     <dct:identifier>mustache</dct:identifier>
     <skos:prefLabel>Mustache</skos:prefLabel>
     <rdfs:label>Mustache</rdfs:label>
-  </api4kp:BaseConstructedLanguage>
+  </api4kp:ConstructedLanguage>
   <dol:Profile rdf:about="https://graphql.github.io/graphql-spec/schemas">
     <dol:isProfileOf rdf:resource="https://graphql.github.io/graphql-spec/June2018/"/>
     <dct:source>https://graphql.github.io/graphql-spec/schemas</dct:source>
@@ -945,7 +979,7 @@
         <rdfs:label>DMN 1.1 XML Syntax</rdfs:label>
       </dol:Serialization>
     </dol:supportsSerialization>
-    <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+    <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
     <owl:versionInfo>v11</owl:versionInfo>
     <dct:source>https://www.omg.org/spec/DMN/1.1/</dct:source>
     <rdfs:comment>Decision Modelling Notation 1.1</rdfs:comment>
@@ -964,7 +998,7 @@
         <rdfs:label>CMMN 1.1 XML Syntax</rdfs:label>
       </dol:Serialization>
     </dol:supportsSerialization>
-    <rdf:type rdf:resource="&api4kp;BaseConstructedLanguage"/>
+    <rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
     <owl:versionInfo>v11</owl:versionInfo>
     <dct:source>https://www.omg.org/spec/CMMN/1.1/</dct:source>
     <rdfs:comment>Case Modelling and Management Notation 1.1</rdfs:comment>
@@ -972,7 +1006,7 @@
     <skos:prefLabel>CMMN 1.1</skos:prefLabel>
     <rdfs:label>CMMN 1.1</rdfs:label>
   </dol:OMSLanguage>
-  <api4kp:BaseConstructedLanguage rdf:about="http://hl7.org/fhir/DSTU2">
+  <api4kp:ConstructedLanguage rdf:about="http://hl7.org/fhir/DSTU2">
     <dol:supportsSerialization>
       <dol:Serialization rdf:about="http://hl7.org/fhir/rdf">
         <api4kp:depends-on>
@@ -1020,5 +1054,5 @@
     <rdf:type rdf:resource="&dol;OMSLanguage"/>
     <dct:identifier>fhir</dct:identifier>
     <api4kp:uses-lexicon rdf:resource="http://snomed.info/sct/900000000000207008/version/20180731"/>
-  </api4kp:BaseConstructedLanguage>
+  </api4kp:ConstructedLanguage>
 </rdf:RDF>
