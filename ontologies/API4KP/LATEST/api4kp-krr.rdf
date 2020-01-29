@@ -51,7 +51,7 @@
         <owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
         <owl:imports rdf:resource="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
         <owl:imports rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/"/>
-        <owl:imports rdf:resource="https://www.omg.org/spec/API4KP/SNAPSHOT/api4kp/"/>
+        <owl:imports rdf:resource="https://www.omg.org/spec/API4KP/api4kp/"/>
         <owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/SNAPSHOT/api4kp-krr/"/>
     </owl:Ontology>
     
@@ -309,28 +309,6 @@ This ontology differs from other versions of the series only in the natural lang
         <rdfs:comment>An KB can be immutable by nature. Otherwise, any snapshot of a KB at a given point in time (including the time of its creation) is considered immutable.</rdfs:comment>
         <rdfs:label>immutable knowledgebase</rdfs:label>
         <skos:definition>Knowledge Base that is immutable</skos:definition>
-    </owl:Class>
-
-    <owl:Class rdf:about="&krr;KRRKnowledgeEndeavor">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&krr;ImmutableEntity"/>
-                    <rdf:Description rdf:about="&krr;KnowledgeSource"/>
-                    <rdf:Description rdf:about="&api4kp;KnowledgeEndeavour"/>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <owl:disjointUnionOf rdf:parseType="Collection">
-            <rdf:Description rdf:about="&krr;MachinableKnowledgeArtifact"/>
-            <rdf:Description rdf:about="&krr;MachinableKnowledgeResource"/>
-            <rdf:Description rdf:about="&krr;MachineReadableWorkOfKnowledge"/>
-            <rdf:Description rdf:about="&krr;SerializedMachinableKnowledgeExpression"/>
-        </owl:disjointUnionOf>
-        <rdfs:comment>Knowledge Endeavors are per se immutable. Should any part change as a result of some (cognitive) activity, a new distinct Endeavor is created, that is a new version (derivative) of the original one</rdfs:comment>
-        <rdfs:label>(KRR) knowledge endeavor</rdfs:label>
-        <skos:definition rdf:datatype="&xsd;string">a knowledge source that is an immutable entity</skos:definition>
-        <skos:note>May be identified to be at one of the following levels of abstraction; piece of knowledge, machine readable knowledge resource, knowledge manifestation, or machine readable knowledge artifact.</skos:note>
     </owl:Class>
 
     <owl:Class rdf:about="&krr;KnowledgeBase">

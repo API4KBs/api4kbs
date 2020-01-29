@@ -75,8 +75,8 @@
 
     <owl:ObjectProperty rdf:about="&api4kp;lifts">
         <owl:inverseOf rdf:resource="&api4kp;lowers"/>
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label>lifts</rdfs:label>
         <skos:definition>The relationship between endeavors E1 and E2, where E1 is at a higher level of abstraction</skos:definition>
     </owl:ObjectProperty>
@@ -193,16 +193,16 @@ AND
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&api4kp;compact-representation-of">
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label>compact representation of</rdfs:label>
         <skos:definition>a source endeavor is more compact than a target endeavor if it uses less elements to capture (a salient, proper part of) the piece of knowledge captured by the target endeavor</skos:definition>
         <api4kp:has-aspect rdf:resource="&api4kp;formal-relationship"/>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&api4kp;compatible-with">
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:comment>sometimes the complementary notion of &apos;incompatibility&apos; may be of interest. Two endeavors are incompatible if their involvement in the same activity will necessarily cause that activity to fail</rdfs:comment>
         <rdfs:label>compatible with</rdfs:label>
         <skos:definition>An endeavor X is compatible with an another endeavor Y if there is at least one activity that can successfully completed when both X and Y are involved in that activity</skos:definition>
@@ -211,8 +211,8 @@ AND
     
     <owl:ObjectProperty rdf:about="&api4kp;complements">
         <rdfs:subPropertyOf rdf:resource="&api4kp;compatible-with"/>
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label>complements</rdfs:label>
         <skos:definition>An endeavor X complements another endeavor Y if Y does not depend on X, bu Y can be used to extend X</skos:definition>
         <skos:note>this relationship implies that (tree-oriented) structuring of X and Y is possible, but not necessary nor actual</skos:note>
@@ -228,8 +228,8 @@ AND
     
     <owl:ObjectProperty rdf:about="&api4kp;complies-with">
         <rdfs:subPropertyOf rdf:resource="&api4kp;compatible-with"/>
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label>complies with</rdfs:label>
         <skos:definition>An endeavor X complies with an endeavor Y if it satisfies all the constraints in Y</skos:definition>
         <skos:scopeNote>The compliant endeavor is supposed to be, or to contain, some kind of specification</skos:scopeNote>
@@ -302,8 +302,8 @@ AND
     
     <owl:ObjectProperty rdf:about="&api4kp;copy-of">
         <rdfs:subPropertyOf rdf:resource="&api4kp;equal-to"/>
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label>copy of</rdfs:label>
         <skos:definition>An endeavor E1 is a copy of another endeavor E2 if they are equal, and E2 is the product of an activity (&quot;copying&quot;) that used E1 as a primary input</skos:definition>
         <api4kp:has-aspect rdf:resource="&api4kp;material-relationship"/>
@@ -344,8 +344,8 @@ AND
     
     <owl:ObjectProperty rdf:about="&api4kp;depends-on">
         <rdfs:subPropertyOf rdf:resource="&api4kp;compatible-with"/>
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label xml:lang="en">depends on</rdfs:label>
         <skos:altLabel>requires</skos:altLabel>
         <skos:definition>An endeavor X depends on an another endeavor Y if any activity that involves X must also involve Y in order to be successful.</skos:definition>
@@ -354,8 +354,8 @@ AND
  
     <owl:ObjectProperty rdf:about="&api4kp;derived-from">
         <owl:inverseOf rdf:resource="&api4kp;has-derivative"/>
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label>derived from</rdfs:label>
         <skos:definition>An endeavor E1 is derived from an endeavor E2 if the activity that produced E2 used E1 as a primary input</skos:definition>
         <api4kp:has-aspect rdf:resource="&api4kp;material-relationship"/>
@@ -380,8 +380,8 @@ AND
     
     <owl:ObjectProperty rdf:about="&api4kp;effectuates">
         <rdfs:subPropertyOf rdf:resource="&api4kp;compatible-with"/>
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label>effectuates</rdfs:label>
         <skos:definition>The relationship between two endeavors X and Y, such that:
 - X is a knowledge endeavor, which either is or can be conceptualized as a knowledge processing method specification 
@@ -423,8 +423,8 @@ If an expression in L1 happens to delegate to L2, &quot;uses as sub-language&quo
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&api4kp;equal-to">
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label>equal to</rdfs:label>
         <skos:definition>Like any other individual, an endeavor is equal to itself at any given point in time.
 
@@ -508,8 +508,8 @@ expresses (WoK) o captures -&gt; expresses</skos:note>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&api4kp;has-derivative">
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label>has derivative</rdfs:label>
         <api4kp:has-aspect rdf:resource="&api4kp;material-relationship"/>
     </owl:ObjectProperty>
@@ -545,8 +545,8 @@ expresses (WoK) o captures -&gt; expresses</skos:note>
     <owl:ObjectProperty rdf:about="&api4kp;has-later-revision">
         <rdfs:subPropertyOf rdf:resource="&api4kp;has-derivative"/>
         <owl:inverseOf rdf:resource="&api4kp;is-later-revision-of"/>
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:comment>Scoped to Work of Knowledge:
 A revision of a WoK is a new WoK that preserves the same Piece of Knowledge. That is, the new WoK will choose a different set of concepts (and associations thereof) to ensure that the WoK can be communicated more properly.
 
@@ -600,8 +600,8 @@ Moreover, this relationships implies that:
     <owl:ObjectProperty rdf:about="&api4kp;has-next-version">
         <rdfs:subPropertyOf rdf:resource="&api4kp;has-succesor-version"/>
         <owl:inverseOf rdf:resource="&api4kp;has-previous-version"/>
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label>has next version</rdfs:label>
         <skos:altLabel>next</skos:altLabel>
         <skos:definition>given the subject E1 and its successor object E2, there is no E3 such that v(E1) &lt; v(E3) &lt; v(E2)</skos:definition>
@@ -632,8 +632,8 @@ Moreover, this relationships implies that:
     <owl:ObjectProperty rdf:about="&api4kp;has-prior-version">
         <rdfs:subPropertyOf rdf:resource="&api4kp;in-series-with"/>
         <owl:inverseOf rdf:resource="&api4kp;has-succesor-version"/>
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label>has prior version</rdfs:label>
         <api4kp:has-aspect rdf:resource="&api4kp;formal-relationship"/>
     </owl:ObjectProperty>
@@ -671,8 +671,8 @@ Moreover, this relationships implies that:
     
     <owl:ObjectProperty rdf:about="&api4kp;has-succesor-version">
         <rdfs:subPropertyOf rdf:resource="&api4kp;in-series-with"/>
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:comment>Being related by means of a versioning scheme, in general, does not imply derivation: when preparing a new endeavor to be released as part of a series, It is not uncommon to &apos;start from scratch&apos;.
 Hence, versioning due to revision is treated as a special case, at the intersection of versioning and revision</rdfs:comment>
         <rdfs:label>has successor version</rdfs:label>
@@ -707,8 +707,8 @@ Hence, versioning due to revision is treated as a special case, at the intersect
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&api4kp;in-series-with">
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label>in series with</rdfs:label>
         <skos:definition>The relationship between two endeavors that belong to the same series, in the context of a versioning scheme</skos:definition>
     </owl:ObjectProperty>
@@ -735,14 +735,14 @@ Hence, versioning due to revision is treated as a special case, at the intersect
     
     <owl:ObjectProperty rdf:about="&api4kp;internally-represented-by">
         <owl:inverseOf rdf:resource="&api4kp;internally-represents"/>
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:range rdf:resource="&api4kp;KnowledgeableAgent"/>
         <rdfs:label>internally represented by</rdfs:label>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&api4kp;internally-represents">
         <rdfs:domain rdf:resource="&api4kp;KnowledgeableAgent"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label>has internal representation of</rdfs:label>
         <rdfs:label xml:lang="en">internally represents</rdfs:label>
         <skos:definition>An Agent an internal representation of a Knowledge Endeavor if and only if there exists an internal &apos;carrier&apos; (neurons, but also a digital memory) that carries an encoded representation of all the Concepts, and their associations, scoped by the Endeavor</skos:definition>
@@ -784,8 +784,8 @@ Conceptually, this relationship is mediated by an &apos;entity qua&apos; individ
     
     <owl:ObjectProperty rdf:about="&api4kp;is-later-revision-of">
         <rdfs:subPropertyOf rdf:resource="&api4kp;derived-from"/>
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label>is later revision of</rdfs:label>
         <skos:altLabel>revision of</skos:altLabel>
         <api4kp:has-aspect rdf:resource="&api4kp;material-relationship"/>
@@ -847,8 +847,8 @@ Conceptually, this relationship is mediated by an &apos;entity qua&apos; individ
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&api4kp;lowers">
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label>lowers</rdfs:label>
         <skos:definition>The relationship between endeavors E1 and E2, where E1 is at a lower level of abstraction</skos:definition>
     </owl:ObjectProperty>
@@ -1017,13 +1017,13 @@ then:
 
     <owl:ObjectProperty rdf:about="&api4kp;stored-in">
         <owl:inverseOf rdf:resource="&api4kp;stores"/>
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label>stored in</rdfs:label>
         <skos:definition>an artifact (as a carrier of the expression of a piece of knowledge) is stored in a container that has the function of a knowledge repository</skos:definition>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&api4kp;stores">
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label>Notice that only Artifacts can be stored in practice. Storing a Work or an Expression implies the existence of an Artifact that carries (the Expression that realized) that Work. 
 Nevertheless, the relationship can be asserted at any level, to shift the focus on the entity that is valuable for the purpose of storage</rdfs:label>
         <rdfs:label>stores</rdfs:label>
@@ -1076,8 +1076,8 @@ An entity stores a Work, Expression or Artifact if it is able to keep (a copy of
 
     <owl:ObjectProperty rdf:about="&api4kp;supplements">
         <rdfs:subPropertyOf rdf:resource="&api4kp;compatible-with"/>
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label>supplements</rdfs:label>
         <skos:definition>An endeavor X supplements another endeavor Y if Y does not depend on X, bu Y can be used in parallel with X</skos:definition>
         <skos:note>this relationship implies that (set-oriented) structuring of X and Y is possible, but not necessary nor actual</skos:note>
@@ -1291,8 +1291,8 @@ This is necessarily true when the former language is embedded in the latter, but
     
     <owl:ObjectProperty rdf:about="&api4kp;variant-of">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
-        <rdfs:domain rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:range rdf:resource="&api4kp;KnowledgeEndeavour"/>
+        <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+        <rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
         <rdfs:label>alternative representation of</rdfs:label>
         <rdfs:label>variant of</rdfs:label>
         <skos:altLabel>iso-semantic representation of</skos:altLabel>
@@ -1318,7 +1318,7 @@ This is necessarily true when the former language is embedded in the latter, but
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&api4kp;knowledge-representation-of"/>
-                <owl:someValuesFrom rdf:resource="&api4kp;PieceOfKnowledge"/>
+                <owl:someValuesFrom rdf:resource="&api4kp;Knowledge"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1413,8 +1413,8 @@ The intent is to be refined/redefined/concretized when this ontology is used in 
         <skos:definition>concept that archetypes an Agent, and whose definition specifies how it participates (actively) in some Activity</skos:definition>
     </owl:Class>
     
-    <owl:Class rdf:about="&api4kp;ArityClassifierAspect">
-        <rdfs:subClassOf rdf:resource="&api4kp;SyntacticClassifierAspect"/>
+    <owl:Class rdf:about="&api4kp;ArityClassifier">
+        <rdfs:subClassOf rdf:resource="&api4kp;SyntacticClassifier"/>
         <rdfs:label>arity classifier (aspect)</rdfs:label>
     </owl:Class>
     
@@ -1430,7 +1430,7 @@ The intent is to be refined/redefined/concretized when this ontology is used in 
     </owl:Class>
     
     <owl:Class rdf:about="&api4kp;AtomicConcept">
-        <rdfs:subClassOf rdf:resource="&api4kp;PieceOfKnowledge"/>
+        <rdfs:subClassOf rdf:resource="&api4kp;Knowledge"/>
         <rdfs:comment>Individual concepts - instances of this class - are universals whose extension can be formally expressed (in OWL) by means of an OWL class, which represents the set of all past, present and future particular individuals that can be classified by the concept</rdfs:comment>
         <rdfs:comment>This notion of Concept is defined as a generically dependent continuant which, consistently with its semiotic interpretation, is &apos;about&apos; some referent.
 
@@ -1442,9 +1442,11 @@ The corresponding notion of a specifically dependent continuant - i.e. the conce
         <skos:definition>An atomic piece of knowledge that can be used for the construction of more complex pieces of knowledge</skos:definition>
     </owl:Class>
     
-    <owl:Class rdf:about="&api4kp;ClassifierAspect">
+    <owl:Class rdf:about="&api4kp;Classifier">
         <rdfs:label>classifier aspect</rdfs:label>
-    </owl:Class>
+		<skos:definition>a standardized classification or delineation for something, per some scheme for such delineation, within a specified context</skos:definition>
+		<dct:source>ISO/IEC 11179-3 Information technology - Metadata registries (MDR) - Part 3: Registry metamodel and basic attributes, Third edition, 2013-02-15</dct:source>
+	</owl:Class>
     
     <owl:Class rdf:about="&api4kp;ComplexConcept">
         <owl:equivalentClass>
@@ -1458,7 +1460,7 @@ The corresponding notion of a specifically dependent continuant - i.e. the conce
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&api4kp;AtomicConcept"/>
+        <rdfs:subClassOf rdf:resource="&api4kp;Knowledge"/>
         <rdfs:comment>When expressed in OWL, complex concepts are described in terms of their relationships to other concepts, using subClassOf or equivalentClass axioms</rdfs:comment>
         <rdfs:label>complex concept</rdfs:label>
         <skos:definition>A Concept that can be decomposed into a complex association of other Concepts, ans such that there is at least one Work of Knowledge that captures those Concepts and their relationships</skos:definition>
@@ -1736,8 +1738,8 @@ The structure of that composite can be overlyed on top of the deconstructable re
         <skos:definition>A conceptualization of the set of rules and constraints that define (the valid sentences of) a language</skos:definition>
     </owl:Class>
  
-    <owl:Class rdf:about="&api4kp;GranularityOperationClassifierAspect">
-        <rdfs:subClassOf rdf:resource="&api4kp;OperationClassifierAspect"/>
+    <owl:Class rdf:about="&api4kp;GranularityOperationClassifier">
+        <rdfs:subClassOf rdf:resource="&api4kp;OperationClassifier"/>
         <rdfs:label>granularity operation classifier (aspect)</rdfs:label>
         <skos:definition>classifier based on the decomposability of an operation into simpler operations</skos:definition>
     </owl:Class>
@@ -1778,14 +1780,6 @@ The structure of that composite can be overlyed on top of the deconstructable re
         <skos:definition>The conceptual abstraction of any knowledge processing activity</skos:definition>
         <skos:scopeNote>this class is intended to be limited to tasks regarding the processing of knowledge. As such it should always be narrower than the general notion of &apos;task&apos; usually defined in upper ontologies</skos:scopeNote>
     </owl:Class>
-
-    <owl:Class rdf:about="&api4kp;IntellectualWork">
-        <rdfs:subClassOf rdf:resource="&api4kp;KnowledgeEndeavour"/>
-        <rdfs:comment>Initially, it generically depends on some Agent, that carries its internal representation, until it can be carried by a concrete manifestation and possibly assimilated by other Agents.</rdfs:comment>
-        <rdfs:comment>Semiotically, an Intellectual Work is situated at the Meaning level: It needs to be expressed (and carried by a medium) in order to be communicated</rdfs:comment>
-        <rdfs:label xml:lang="en">intellectual work</rdfs:label>
-        <skos:definition>The conceptual outcome of an intellectual creative activity. It has as a subject, and thus is about, some kind of Thing (e.g. idea, person, place, etc..).</skos:definition>
-    </owl:Class>
  
     <owl:Class rdf:about="&api4kp;Knowledge">
         <rdfs:subClassOf>
@@ -1794,9 +1788,18 @@ The structure of that composite can be overlyed on top of the deconstructable re
                 <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&api4kp;part-of"/>
+                <owl:someValuesFrom rdf:resource="&api4kp;Knowledge"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="en">knowledge</rdfs:label>
         <skos:definition>The cognition (know-what), pragmatics (know-how) and understanding (know-why) - about the nature and/or behaviour of some Thing</skos:definition>
-    </owl:Class>
+        <skos:definition>A finite, complex association of one or more Concepts, intended as generically dependent representational units.</skos:definition>
+        <skos:scopeNote>A Piece of Knowledge must be interpreted as a generically dependent continuant (GDC): an instance is the (abstract) information content that any agent can represent internally, or that any artifact can carry, without depending on any one specific agent or carrier. As such, pieces of knowledge correspond to the class of equivalence of the internal and/or carried representations, across different agents and/or carriers. 
+Members of that class - e.g. the knowledge as internally represented by one specific agent  - are specifically dependent continuants (SDC). Specifically dependent continuants may realize the knowledge with some variation in practice, but are not of interest until communicated and diffused again, possibly as a variation/derivation/evolution of the original knowledge. Hence, the API4KP notion of Knowledge focuses on GDC, recognizing the role of individual SDCs.</skos:scopeNote>
+	</owl:Class>
     
     <owl:Class rdf:about="&api4kp;KnowledgeActivity">
         <owl:equivalentClass>
@@ -1892,6 +1895,12 @@ In OWL-DL, it is not possible to express at the same time the extensional defini
 
 The asset, an abstract entity, corresponds to the class of equivalence of all variant representations of the same work of knowledge</skos:definition>
     </owl:Class>
+	
+	<owl:Class rdf:about="&api4kp;KnowledgeAssetSurrogate">
+        <rdfs:subClassOf rdf:resource="&api4kp;KnowledgeExpression"/>
+        <rdfs:label>knowledge asset surogate</rdfs:label>
+        <skos:definition>***TODO***</skos:definition>
+    </owl:Class>
     
     <owl:Class rdf:about="&api4kp;KnowledgeCarrier">
         <rdfs:subClassOf rdf:resource="&api4kp;KnowledgeResource"/>
@@ -1904,7 +1913,7 @@ The asset, an abstract entity, corresponds to the class of equivalence of all va
                             <rdf:Description rdf:about="&api4kp;ConcreteExpression"/>
                             <owl:Restriction>
                                 <owl:onProperty rdf:resource="&api4kp;representation-of"/>
-                                <owl:someValuesFrom rdf:resource="&api4kp;PieceOfKnowledge"/>
+                                <owl:someValuesFrom rdf:resource="&api4kp;Knowledge"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -1952,12 +1961,6 @@ The asset, an abstract entity, corresponds to the class of equivalence of all va
         <rdfs:seeAlso>http://www.w3.org/ns/lemon/ontolex#LexicalEntry</rdfs:seeAlso>
         <skos:definition>fragment that expresses exactly one concept in a given interpretation context</skos:definition>
         <skos:note>knowledge expression elements are the leaves of an expression&apos;s AST, and as such are derived from (a subset of) the tokens into which a concrete expression is broken during its parsing.</skos:note>
-    </owl:Class>
-
-    <owl:Class rdf:about="&api4kp;KnowledgeEndeavour">
-        <rdfs:label>knowledge endeavour</rdfs:label>
-        <skos:altLabel>knowledge source</skos:altLabel>
-        <skos:definition>Endurant that embeds, directly or indirectly, some Piece of Knowledge</skos:definition>
     </owl:Class>
  
     <owl:Class rdf:about="&api4kp;KnowledgeExpression">
@@ -2151,9 +2154,11 @@ KRR Languages are formal, and usually designed to be parsed and computed by a (r
     </owl:Class>
 
     <owl:Class rdf:about="&api4kp;KnowledgeResource">
-        <rdfs:subClassOf rdf:resource="&api4kp;KnowledgeEndeavour"/>
         <rdfs:label>knowledge resource</rdfs:label>
-        <skos:definition>An immutable, identifiable, versionable knowledge endeavor</skos:definition>
+        <skos:definition>An immutable, identifiable, versionable knowledge endeavor - ***TODO***</skos:definition>
+        <rdfs:label>knowledge endeavour</rdfs:label>
+        <skos:altLabel>knowledge source</skos:altLabel>
+        <skos:definition>Endurant that embeds, directly or indirectly, some Piece of Knowledge</skos:definition>
     </owl:Class>
  
     <owl:Class rdf:about="&api4kp;KnowledgeResourceDescription">
@@ -2239,7 +2244,7 @@ KRR Languages are formal, and usually designed to be parsed and computed by a (r
     </owl:Class>
 
     <owl:Class rdf:about="&api4kp;Lexicon">
-        <rdfs:subClassOf rdf:resource="&api4kp;PieceOfKnowledge"/>
+        <rdfs:subClassOf rdf:resource="&api4kp;Knowledge"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&api4kp;has-part"/>
@@ -2402,14 +2407,14 @@ A language for which it is not possible to define an explicit, tractable grammar
         <skos:definition>descriptive expression of knowledge about the structural, necessary aspects of a domain of interest</skos:definition>
     </owl:Class>
  
-    <owl:Class rdf:about="&api4kp;OperationClassifierAspect">
-        <rdfs:subClassOf rdf:resource="&api4kp;ClassifierAspect"/>
+    <owl:Class rdf:about="&api4kp;OperationClassifier">
+        <rdfs:subClassOf rdf:resource="&api4kp;Classifier"/>
         <rdfs:label>operation classifier (aspect)</rdfs:label>
         <skos:definition>A higher order category which specifically applies to (API4KP) operations</skos:definition>
     </owl:Class>
 
-    <owl:Class rdf:about="&api4kp;OutputArityClassifierAspect">
-        <rdfs:subClassOf rdf:resource="&api4kp;SyntacticClassifierAspect"/>
+    <owl:Class rdf:about="&api4kp;OutputArityClassifier">
+        <rdfs:subClassOf rdf:resource="&api4kp;SyntacticClassifier"/>
         <rdfs:label>output arity classifier (aspect)</rdfs:label>
     </owl:Class>
  
@@ -2441,23 +2446,6 @@ A language for which it is not possible to define an explicit, tractable grammar
         <rdfs:subClassOf rdf:resource="&api4kp;DefinedConcept"/>
         <rdfs:label>passive role</rdfs:label>
         <skos:definition>Role played by an entity that participates passively in an activity, e.g. as a resource, or as the subject/target of the activity</skos:definition>
-    </owl:Class>
- 
-    <owl:Class rdf:about="&api4kp;PieceOfKnowledge">
-        <rdfs:subClassOf rdf:resource="&api4kp;Knowledge"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&api4kp;part-of"/>
-                <owl:someValuesFrom rdf:resource="&api4kp;Knowledge"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment>When an agent represents the complex internally, the agent possess some Knowledge (i.e. Knowledge about *some* thing)</rdfs:comment>
-        <rdfs:label>piece of knowledge</rdfs:label>
-        <skos:definition>A finite, complex association of one or more Concepts, intended as generically dependent representational units.</skos:definition>
-        <skos:example>the knowledge of how to extract the square number of a positive, integer number</skos:example>
-        <skos:example>the knowledge of what the square root of a number is, including a few examples</skos:example>
-        <skos:scopeNote>A Piece of Knowledge must be interpreted as a generically dependent continuant (GDC): an instance is the (abstract) information content that any agent can represent internally, or that any artifact can carry, without depending on any one specific agent or carrier. As such, pieces of knowledge correspond to the class of equivalence of the internal and/or carried representations, across different agents and/or carriers. 
-Members of that class - e.g. the knowledge as internally represented by one specific agent  - are specifically dependent continuants (SDC). Specifically dependent continuants may realize the knowledge with some variation in practice, but are not of interest until communicated and diffused again, possibly as a variation/derivation/evolution of the original knowledge. Hence, the API4KP notion of Knowledge focuses on GDC, recognizing the role of individual SDCs.</skos:scopeNote>
     </owl:Class>
 
     <owl:Class rdf:about="&api4kp;PrescriptiveGrammar">
@@ -2526,8 +2514,8 @@ This class of &apos;primitive&apos; concept does not make a distinction, and ass
         <skos:definition>A profile is a restricted abstract syntax that limits the expressvity of (the admissible expression in) a given language, usually to reduce the complexity, narrow the scope, and/or improve the semantic clarity of the expressions</skos:definition>
     </owl:Class>
 
-    <owl:Class rdf:about="&api4kp;RelationshipClassifierAspect">
-        <rdfs:subClassOf rdf:resource="&api4kp;ClassifierAspect"/>
+    <owl:Class rdf:about="&api4kp;RelationshipClassifier">
+        <rdfs:subClassOf rdf:resource="&api4kp;Classifier"/>
         <rdfs:label>relationship classifier (aspect)</rdfs:label>
     </owl:Class>
 
@@ -2544,14 +2532,14 @@ This class of &apos;primitive&apos; concept does not make a distinction, and ass
         <skos:definition>A Knowledge Artifact that is an exemplar of a self-contained manifestation</skos:definition>
     </owl:Class>
 
-    <owl:Class rdf:about="&api4kp;SemanticClassifierAspect">
-        <rdfs:subClassOf rdf:resource="&api4kp;OperationClassifierAspect"/>
+    <owl:Class rdf:about="&api4kp;SemanticClassifier">
+        <rdfs:subClassOf rdf:resource="&api4kp;OperationClassifier"/>
         <rdfs:label>semantic operation classifier (aspect)</rdfs:label>
         <skos:definition>aspects of an operation based on its computational semantics</skos:definition>
     </owl:Class>
 
-    <owl:Class rdf:about="&api4kp;SemanticRelationshipClassifierAspect">
-        <rdfs:subClassOf rdf:resource="&api4kp;RelationshipClassifierAspect"/>
+    <owl:Class rdf:about="&api4kp;SemanticRelationshipClassifier">
+        <rdfs:subClassOf rdf:resource="&api4kp;RelationshipClassifier"/>
         <rdfs:label>semantic relationship classifier (aspect)</rdfs:label>
         <skos:definition>classifier based on the formal semantics of a relationship</skos:definition>
     </owl:Class>
@@ -2586,8 +2574,8 @@ This class of &apos;primitive&apos; concept does not make a distinction, and ass
         <skos:definition>The set of structures and/or rules that constrain the parse tree of a valid sentence of a language, itself expressed in some (meta) language</skos:definition>
     </owl:Class>
 
-    <owl:Class rdf:about="&api4kp;SideEffectClassifierAspect">
-        <rdfs:subClassOf rdf:resource="&api4kp;SemanticClassifierAspect"/>
+    <owl:Class rdf:about="&api4kp;SideEffectClassifier">
+        <rdfs:subClassOf rdf:resource="&api4kp;SemanticClassifier"/>
         <rdfs:label>side-effect classifier (aspect)</rdfs:label>
         <skos:definition>aspects based on an operation&apos;s (not) causing side effects as part of its computation</skos:definition>
     </owl:Class>
@@ -2674,8 +2662,8 @@ This class of &apos;primitive&apos; concept does not make a distinction, and ass
         <skos:scopeNote>Structures can describe or define how Resources at any level of abstraction are combined. However, structures themselves are modelled at the level of representations (expressions), to emphasize their explicit nature and their use in communication and information processing</skos:scopeNote>
     </owl:Class>
     
-    <owl:Class rdf:about="&api4kp;SyntacticClassifierAspect">
-        <rdfs:subClassOf rdf:resource="&api4kp;OperationClassifierAspect"/>
+    <owl:Class rdf:about="&api4kp;SyntacticClassifier">
+        <rdfs:subClassOf rdf:resource="&api4kp;OperationClassifier"/>
         <rdfs:label>syntactic operation classifier (aspect)</rdfs:label>
         <skos:definition>aspects of an operation based on its signature</skos:definition>
     </owl:Class>
@@ -2695,8 +2683,8 @@ For comparison, see &apos;Notation&apos; and &apos;Formal Grammar&apos;</rdfs:co
         <skos:definition>The set of structures and/or rules that constrain a valid sentence of a language, itself expressed in some (meta) language</skos:definition>
     </owl:Class>
     
-    <owl:Class rdf:about="&api4kp;TypeClassifierAspect">
-        <rdfs:subClassOf rdf:resource="&api4kp;SyntacticClassifierAspect"/>
+    <owl:Class rdf:about="&api4kp;TypeClassifier">
+        <rdfs:subClassOf rdf:resource="&api4kp;SyntacticClassifier"/>
         <rdfs:label>I/O type classifier (aspect)</rdfs:label>
         <skos:definition>Syntactic aspect that specifies the type of input and/or output.</skos:definition>
     </owl:Class>
@@ -2721,12 +2709,11 @@ For comparison, see &apos;Notation&apos; and &apos;Formal Grammar&apos;</rdfs:co
     </owl:Class>
 
     <owl:Class rdf:about="&api4kp;WorkOfKnowledge">
-        <rdfs:subClassOf rdf:resource="&api4kp;IntellectualWork"/>
-        <rdfs:subClassOf rdf:resource="&api4kp;PieceOfKnowledge"/>
+        <rdfs:subClassOf rdf:resource="&api4kp;Knowledge"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&api4kp;captures"/>
-                <owl:someValuesFrom rdf:resource="&api4kp;PieceOfKnowledge"/>
+                <owl:someValuesFrom rdf:resource="&api4kp;Knowledge"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2754,6 +2741,9 @@ For comparison, see &apos;Notation&apos; and &apos;Formal Grammar&apos;</rdfs:co
         <skos:example>a statistician&apos;s description of a stochastic process by means of a Markov model</skos:example>
         <skos:example>an algorithm for the extraction of the square root of a number</skos:example>
         <skos:example>the content of a newspaper article, as determined by a journalist deciding what facts and/or opinions to include, and how to present them, independently of any editorial and/or formatting</skos:example>
+        <rdfs:comment>Initially, it generically depends on some Agent, that carries its internal representation, until it can be carried by a concrete manifestation and possibly assimilated by other Agents.</rdfs:comment>
+        <rdfs:comment>Semiotically, an Intellectual Work is situated at the Meaning level: It needs to be expressed (and carried by a medium) in order to be communicated</rdfs:comment>
+        <skos:definition>The conceptual outcome of an intellectual creative activity. It has as a subject, and thus is about, some kind of Thing (e.g. idea, person, place, etc..).</skos:definition>
     </owl:Class>
     
 
@@ -2766,33 +2756,33 @@ For comparison, see &apos;Notation&apos; and &apos;Formal Grammar&apos;</rdfs:co
      -->
 
     <owl:NamedIndividual rdf:about="&api4kp;atomic-operation">
-        <rdf:type rdf:resource="&api4kp;GranularityOperationClassifierAspect"/>
+        <rdf:type rdf:resource="&api4kp;GranularityOperationClassifier"/>
         <rdfs:label>atomic</rdfs:label>
         <rdfs:seeAlso>https://en.wikipedia.org/wiki/Composite_pattern</rdfs:seeAlso>
         <skos:definition>atomic operations cannot be further decomposed into simpler actions witihin a given framework that defines the boundaries of atomicity (as opposed to sub-atomic components)</skos:definition>
     </owl:NamedIndividual>
     
     <owl:NamedIndividual rdf:about="&api4kp;augmented-operation">
-        <rdf:type rdf:resource="&api4kp;OutputArityClassifierAspect"/>
+        <rdf:type rdf:resource="&api4kp;OutputArityClassifier"/>
         <rdfs:label>augmented</rdfs:label>
         <skos:definition>operation that has one primary output argument, and one or more (optional) secondary arguments</skos:definition>
     </owl:NamedIndividual>
     
     <owl:NamedIndividual rdf:about="&api4kp;binary-operation">
-        <rdf:type rdf:resource="&api4kp;ArityClassifierAspect"/>
+        <rdf:type rdf:resource="&api4kp;ArityClassifier"/>
         <rdfs:label>binary</rdfs:label>
         <rdfs:seeAlso>https://en.wikipedia.org/wiki/Arity</rdfs:seeAlso>
         <skos:definition>operation that has exactly two input arguments</skos:definition>
     </owl:NamedIndividual>
     
     <owl:NamedIndividual rdf:about="&api4kp;chainable-operation">
-        <rdf:type rdf:resource="&api4kp;SyntacticClassifierAspect"/>
+        <rdf:type rdf:resource="&api4kp;SyntacticClassifier"/>
         <rdfs:label>chainable</rdfs:label>
         <skos:definition>a safe, idempotent operation that has one primary input (unary) and at most one primary output, so that is can composed into a chain of invocations</skos:definition>
     </owl:NamedIndividual>
     
     <owl:NamedIndividual rdf:about="&api4kp;composite-operation">
-        <rdf:type rdf:resource="&api4kp;GranularityOperationClassifierAspect"/>
+        <rdf:type rdf:resource="&api4kp;GranularityOperationClassifier"/>
         <rdfs:label>composite</rdfs:label>
         <rdfs:seeAlso>https://en.wikipedia.org/wiki/Composite_pattern</rdfs:seeAlso>
         <skos:altLabel>complex</skos:altLabel>
@@ -2800,13 +2790,13 @@ For comparison, see &apos;Notation&apos; and &apos;Formal Grammar&apos;</rdfs:co
     </owl:NamedIndividual>
     
     <owl:NamedIndividual rdf:about="&api4kp;formal-relationship">
-        <rdf:type rdf:resource="&api4kp;SemanticRelationshipClassifierAspect"/>
+        <rdf:type rdf:resource="&api4kp;SemanticRelationshipClassifier"/>
         <rdfs:label>formal</rdfs:label>
         <skos:definition>A relationship that uniquely depends on the qualities of the related individuals, without any mediating entity (event, activity, etc...)</skos:definition>
     </owl:NamedIndividual>
     
     <owl:NamedIndividual rdf:about="&api4kp;idempotent-operation">
-        <rdf:type rdf:resource="&api4kp;SemanticClassifierAspect"/>
+        <rdf:type rdf:resource="&api4kp;SemanticClassifier"/>
         <rdfs:label>idempotent</rdfs:label>
         <rdfs:seeAlso>https://en.wikipedia.org/wiki/Idempotence</rdfs:seeAlso>
         <skos:definition>an idempotent operation can be composed with itself multiple times, without changing the result of the first, initial application.</skos:definition>
@@ -2815,33 +2805,33 @@ where abs is the function that extracts the absolute value of a number</skos:exa
     </owl:NamedIndividual>
     
     <owl:NamedIndividual rdf:about="&api4kp;material-relationship">
-        <rdf:type rdf:resource="&api4kp;SemanticRelationshipClassifierAspect"/>
+        <rdf:type rdf:resource="&api4kp;SemanticRelationshipClassifier"/>
         <rdfs:label>material</rdfs:label>
         <skos:definition>A relationship that is mediated by a supporting third entity (e.g. event, action, etc...)</skos:definition>
     </owl:NamedIndividual>
     
     <owl:NamedIndividual rdf:about="&api4kp;multi-output-operation">
-        <rdf:type rdf:resource="&api4kp;OutputArityClassifierAspect"/>
+        <rdf:type rdf:resource="&api4kp;OutputArityClassifier"/>
         <rdfs:label>multi output</rdfs:label>
         <skos:definition>an operations that has two or more output arguments</skos:definition>
     </owl:NamedIndividual>
     
     <owl:NamedIndividual rdf:about="&api4kp;nary-operation">
-        <rdf:type rdf:resource="&api4kp;ArityClassifierAspect"/>
+        <rdf:type rdf:resource="&api4kp;ArityClassifier"/>
         <rdfs:label>n-ary</rdfs:label>
         <rdfs:seeAlso>https://en.wikipedia.org/wiki/Arity</rdfs:seeAlso>
         <skos:definition>an operation that takes a number n of arguments</skos:definition>
     </owl:NamedIndividual>
     
     <owl:NamedIndividual rdf:about="&api4kp;nullary-operation">
-        <rdf:type rdf:resource="&api4kp;ArityClassifierAspect"/>
+        <rdf:type rdf:resource="&api4kp;ArityClassifier"/>
         <rdfs:label>nullary</rdfs:label>
         <rdfs:seeAlso>https://en.wikipedia.org/wiki/Arity</rdfs:seeAlso>
         <skos:definition>an operation that has no explicit input arguments</skos:definition>
     </owl:NamedIndividual>
     
     <owl:NamedIndividual rdf:about="&api4kp;pure-operation">
-        <rdf:type rdf:resource="&api4kp;SideEffectClassifierAspect"/>
+        <rdf:type rdf:resource="&api4kp;SideEffectClassifier"/>
         <rdfs:label>pure</rdfs:label>
         <rdfs:seeAlso>https://en.wikipedia.org/wiki/Side_effect_(computer_science)</rdfs:seeAlso>
         <skos:altLabel>side effect free</skos:altLabel>
@@ -2849,34 +2839,34 @@ where abs is the function that extracts the absolute value of a number</skos:exa
     </owl:NamedIndividual>
     
     <owl:NamedIndividual rdf:about="&api4kp;side-effecful-operation">
-        <rdf:type rdf:resource="&api4kp;SideEffectClassifierAspect"/>
+        <rdf:type rdf:resource="&api4kp;SideEffectClassifier"/>
         <rdfs:label>side effectful</rdfs:label>
         <rdfs:seeAlso>https://en.wikipedia.org/wiki/Side_effect_(computer_science)</rdfs:seeAlso>
         <skos:definition>an operation with side effects other than the computation of the returned output values</skos:definition>
     </owl:NamedIndividual>
     
     <owl:NamedIndividual rdf:about="&api4kp;single-output-operation">
-        <rdf:type rdf:resource="&api4kp;OutputArityClassifierAspect"/>
+        <rdf:type rdf:resource="&api4kp;OutputArityClassifier"/>
         <rdfs:label>single output</rdfs:label>
         <skos:definition>an operation that has exactly one output argument</skos:definition>
     </owl:NamedIndividual>
     
     <owl:NamedIndividual rdf:about="&api4kp;ternary-operation">
-        <rdf:type rdf:resource="&api4kp;ArityClassifierAspect"/>
+        <rdf:type rdf:resource="&api4kp;ArityClassifier"/>
         <rdfs:label>ternary</rdfs:label>
         <rdfs:seeAlso>https://en.wikipedia.org/wiki/Arity</rdfs:seeAlso>
         <skos:definition>an operation that has exactly three input arguments</skos:definition>
     </owl:NamedIndividual>
     
     <owl:NamedIndividual rdf:about="&api4kp;unary-operation">
-        <rdf:type rdf:resource="&api4kp;ArityClassifierAspect"/>
+        <rdf:type rdf:resource="&api4kp;ArityClassifier"/>
         <rdfs:label>unary</rdfs:label>
         <rdfs:seeAlso>https://en.wikipedia.org/wiki/Arity</rdfs:seeAlso>
         <skos:definition>an operation that has a single input argument</skos:definition>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&api4kp;void-operation">
-        <rdf:type rdf:resource="&api4kp;OutputArityClassifierAspect"/>
+        <rdf:type rdf:resource="&api4kp;OutputArityClassifier"/>
         <rdfs:label>void</rdfs:label>
         <skos:definition>an operation that has no ouptut arguments</skos:definition>
     </owl:NamedIndividual>
@@ -2903,7 +2893,7 @@ where abs is the function that extracts the absolute value of a number</skos:exa
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&api4kp;IntellectualWork"/>
+            <rdf:Description rdf:about="&api4kp;KnowledgeAsset"/>
             <rdf:Description rdf:about="&api4kp;KnowledgeArtifact"/>
             <rdf:Description rdf:about="&api4kp;KnowledgeExpression"/>
         </owl:members>
