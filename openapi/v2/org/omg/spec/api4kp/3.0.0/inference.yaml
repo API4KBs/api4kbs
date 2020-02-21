@@ -19,7 +19,6 @@ info:
 
   version: "3.0.0"
   title: "Model Evaluation Reasoning Service"
-  # put the contact info for your development or API team
   contact:
     name: Davide Sottara
     email: Sottara.Davide@mayo.edu
@@ -28,22 +27,113 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 
-# tags are used for organizing operations
 tags:
-  - name: model
+  - name: Model
     description: "Endpoints that expose (metadata about) the deployed model itself"
-  - name: inference
+  - name: Introspection
+    description: "Extract Surrogates from Knowledge Artifacts"
+  - name: Inference
     description: "Endpoints that expose a model's computation capabilities as a function"
-  - name: query
+  - name: Query
     description: "Query"
   #- name: asynch
   #  description: "Endpoints that expose the model's asynchronous computation"
 
 paths:
+
+  #TODO Harmonize Introspectors and Evaluators
+  
+
+  /introspectors:
+    get:
+      tags:
+        - Introspection
+      summary: 'List available introspectors'
+      description: |
+        Enumerates the currently available introspectors
+      operationId: listIntrospectors
+      responses:
+        200:
+          description: The ID of the introspector function
+          schema:
+            $ref: '#/definitions/Pointer'
+
+    post:
+      tags:
+        - Introspection
+      summary: 'Initialize an Introspector'
+      description: |
+        Initializes an introspector with an optional piece of knowledge,
+        which provides addotional context for the metadata extraction. 
+        Conceptually, the server will use that artifact to seed/augment a knowledgebase,
+        which can be specific to the Artifact to be introspected
+        (thus making the introspector artifact-specific), or shared.
+        The process of metadata extraction, then, is conceptually an inference based
+        on the context knowledge and the content of the artifact itself
+      operationId: initIntrospector
+      parameters:
+        - $ref: '#/parameters/sourceArtifact'
+      responses:
+        200:
+          description: The ID of the introspector function
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+    
+
+  /introspectors/{lambdaId}:
+    get:
+      tags:
+        - Introspection
+      summary: 'Describes the Surrogate Extraction strategy'
+      operationId: getIntrospector
+      description: |
+        Provides information about a specific metadata extractor
+      parameters:
+        - $ref: '#/parameters/lambdaId'  
+      responses:
+        200:
+          description: OK
+          # schema : TODO
+    
+    post:
+      tags:
+        - Introspection
+      summary: 'Extract a Knowledge Asset Surrogate from a given Knowledge Artifact'
+      description: |
+        The operation abstracts the actual strategy, which can be initialized to be 
+        specific to an Artifact, or a class thereof, but is supposed to be stateless
+        and idempotent.
+        The operation is also independent of the actual metadata model used to carry
+        the results, but the client SHOULD be able to use content negotiation to
+        express their preference in terms of model, profile, serialization format, etc.
+      operationId: introspect
+      parameters:
+        - $ref: '#/parameters/lambdaId'
+        - $ref: '#/parameters/sourceArtifact'
+        - $ref: '#/parameters/xAccept'
+      responses:
+        200:
+          description: The Surrogate that results from the application of the operator
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+    delete:
+      summary: 'Disables an introspector'
+      tags:
+        - Introspection
+      description: |
+        Disables an introspector, which will no longer be available for use
+      parameters:
+        - $ref: '#/parameters/lambdaId'
+      responses:
+        200:
+          description: OK
+    
+
   /models:
     get:
       tags:
-        - model
+        - Model
       summary: List Models
       operationId: listModels
       description: "List the Models running on this server."
@@ -63,7 +153,7 @@ paths:
   /models/{modelId}/versions/{versionTag}:
     get:
       tags:
-        - model
+        - Model
       summary: Describe Model
       operationId: getModel
       description: "Return descriptive metadata about a specific model"
@@ -84,7 +174,7 @@ paths:
   /models/{modelId}/versions/{versionTag}/logic:
     post:
       tags:
-        - inference
+        - Inference
       summary: Evaluate / Infer
       operationId: infer
       description: "Submits a dataset for evaluation. The model will be applied to each item in
@@ -119,7 +209,7 @@ paths:
   /models/{modelId}/versions/{versionTag}/oracle:
     post:
       tags:
-        - query
+        - Query
       operationId: askQuery
       description: submits a query to a KnowledgeBase
       parameters:
@@ -164,6 +254,22 @@ parameters:
     required: true
     type: string
     format: uuid
+    
+  sourceArtifact:
+    name: sourceArtifact
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/KnowledgeCarrier'  
+      
+  xAccept:
+    in: query
+    name: xAccept
+    description: |
+      A formal MIME type used for content negotiation 
+    required: false
+    type: string    
+    
 
 definitions:
   Pointer:

@@ -1,0 +1,228 @@
+swagger: '2.0'
+info:
+  description: |
+    This is a demo terminology API built on top of the API4KP framework
+  version: "4.0.0"
+  title: Demo Terminology Server API
+  # put the contact info for your development or API team
+  contact:
+    email: dsotty@gmail.com
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+# tags are used for organizing operations
+tags:
+- name: Terms
+  description: Terminology related operations
+
+#TODO revisit the path naming strategy
+
+paths:
+  /vocabularies:
+    get:
+      # priority: high
+      tags:
+      - Terms
+      summary: Lists available terminologies
+      operationId: listTerminologies
+      description: |
+        Enumerates the terminologies currently managed by this server
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+              
+              
+              
+  /vocabularies/{vocabularyId}/versions/{versionTag}:
+    get:
+      # priority: medium-low
+      tags:
+      - Terms
+      summary: Returns a representation of a vocabulary
+      description: |
+        Returns a representation of this version of the vocabulary.
+        Supports content negotiation to handle e.g. RDF vs FHIR
+      operationId: getVocabulary
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+        - $ref: '#/parameters/vocabularyId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/xAccept'
+      responses:
+        200:
+          description: success
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        400:
+          description: vocabulary not found   
+          
+    post:
+      # priority: high for concept ids, low for post-coordinated expressions
+      tags:
+      - Terms
+      summary: Resolves a concept (expression) within a terminology system
+      operationId: isMember
+      description: |
+        Determines is a concept is a member of this vocabulary.
+        Implementations depend on whether the vocabulary is enumerated, vs having
+        a computable definition.
+        The client can provide either a concept identifier, or a post-coordinated expression
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+        - $ref: '#/parameters/vocabularyId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/conceptExpression'
+      responses:
+        200:
+          description: success
+        400:
+          description: vocabulary not found           
+              
+  /vocabularies/{vocabularyId}/versions/{versionTag}/terms:
+    get:
+      # priority: high
+      tags:
+      - Terms
+      summary: Lists terms in a terminology system
+      operationId: getTerms
+      description: |
+        Lists the terms in a given Vocabulary. Supports simple search by filtering
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+        - $ref: '#/parameters/vocabularyId'
+        - $ref: '#/parameters/versionTag'
+        - name: label
+          in: query
+          description: Filters by terms with matching label
+          required: false
+          type: string
+          
+      responses:
+        200:
+          description: success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ConceptIdentifier'
+        400:
+          description: vocabulary not found
+
+  /vocabularies/{vocabularyId}/versions/{versionTag}/terms/{conceptId}:
+    get:
+      # priority: high
+      tags:
+      - Terms
+      summary: Describes a concept
+      operationId: getTerm
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+        - $ref: '#/parameters/vocabularyId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/conceptId'
+      responses:
+        200:
+          description: success
+          schema:
+            $ref: '#/definitions/ConceptIdentifier'
+        400:
+          description: vocabulary or concept not found
+
+    post:
+      # priority: low
+      tags:
+      - Terms
+      summary: Determines if two concepts are related - default by subsumption (isA)
+      operationId: relatesTo
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+        - $ref: '#/parameters/vocabularyId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/conceptId'
+        - $ref: '#/parameters/relationshipId'
+
+      responses:
+        200:
+          description: success
+        400:
+          description: vocabulary not found     
+          
+parameters:
+
+  vocabularyId:
+    name: vocabularyId
+    in: path
+    description: The id of the terminology system
+    required: true
+    type: string
+    format: uuid
+    
+  conceptId:
+    name: conceptId
+    in: path
+    description: The id of a concept
+    required: true
+    type: string
+
+    
+  conceptExpression:
+    name: conceptExpression
+    in: query
+    description: The id of a concept
+    required: true
+    type: string
+    
+  relationshipId:
+    name: relationshipId
+    in: query
+    description: The id of a concept relationsho[]
+    required: false
+    type: string
+
+  versionTag:
+    name: versionTag
+    in: path
+    description: The version of the terminology system
+    required: true
+    type: string
+
+  xAccept:
+    name: xAccept
+    in: query
+    description: A formal MIME type that express the client's preferences during content negotiation
+    required: false
+    type: string
+
+
+
+definitions:
+  Pointer:
+    type: object
+  ConceptIdentifier:
+    type: object
+  KnowledgeCarrier:
+    type: object
+    
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /kmdp.mayo.edu/terms/v3/
+schemes:
+ - https
