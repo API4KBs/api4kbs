@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+	<!ENTITY api4kp "https://www.omg.org/spec/API4KP/api4kp/">
+	<!ENTITY api4kp-rel "https://www.omg.org/spec/API4KP/api4kp-rel/">
+	<!ENTITY dct "http://purl.org/dc/terms/">
+	<!ENTITY dol "http://www.omg.org/spec/DOL/DOL-terms/">
+	<!ENTITY lcc-lr "https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/">
+	<!ENTITY olex "http://www.w3.org/ns/lemon/ontolex#">
+	<!ENTITY owl "http://www.w3.org/2002/07/owl#">
+	<!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+	<!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+	<!ENTITY skos "http://www.w3.org/2004/02/skos/core#">
+	<!ENTITY sm "http://www.omg.org/techprocess/ab/SpecificationMetadata/">
+	<!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+]>
+<rdf:RDF xml:base="https://www.omg.org/spec/API4KP/api4kp-rel/"
+	xmlns="https://www.omg.org/spec/API4KP/api4kp-rel/"
+	xmlns:api4kp="https://www.omg.org/spec/API4KP/api4kp/"
+	xmlns:api4kp-rel="https://www.omg.org/spec/API4KP/api4kp-rel/"
+	xmlns:dct="http://purl.org/dc/terms/"
+	xmlns:dol="http://www.omg.org/spec/DOL/DOL-terms/"
+	xmlns:lcc-lr="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"
+	xmlns:olex="http://www.w3.org/ns/lemon/ontolex#"
+	xmlns:owl="http://www.w3.org/2002/07/owl#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:sm="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+	
+	<owl:Ontology rdf:about="https://www.omg.org/spec/API4KP/api4kp-rel/">
+		<rdfs:label>API4KP Ontology of Knowledge Resources Relationships</rdfs:label>
+		<dct:abstract>A module of the API4KP ontology that focuses on relationships between Knowledge Resources</dct:abstract>
+		<dct:creator>Davide Sottara (sottara.davide at mayo.edu)</dct:creator>
+		<dct:license rdf:datatype="&xsd;anyURI">http://opensource.org/licenses/MIT</dct:license>
+		<sm:contentLanguage rdf:datatype="&xsd;anyURI">http://www.w3.org/standards/techs/owl#w3c_all</sm:contentLanguage>
+		<sm:copyright>Copyright (c) 2014-2020 88 Solutions</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2020 Adaptive</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2020 Arizona State University</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2020 Athan Services</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2020 Fraunhofer FOKUS</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2020 Freie Universitat Berlin</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2020 Mayo Clinic</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2020 Model Driven Solutions</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2020 Thematix Partners LLC</sm:copyright>
+		<sm:copyright>Copyright (c) 2015-2020 Object Management Group, Inc.</sm:copyright>
+		<sm:copyright>Copyright (c) 2019-2020 Micro Focus</sm:copyright>
+		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/API4KP/api4kp/</sm:dependsOn>
+		<sm:fileAbbreviation>api4kp-rel</sm:fileAbbreviation>
+		<sm:filename>api4kp-rel.rdf</sm:filename>
+		<owl:imports rdf:resource="http://www.omg.org/spec/DOL/20171101/DOL-terms/"/>
+		<owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
+		<owl:imports rdf:resource="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+		<owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/SNAPSHOT/api4kp-rel/"/>
+	</owl:Ontology>
+	
+	<owl:AnnotationProperty rdf:about="&skos;altLabel">
+	</owl:AnnotationProperty>
+	
+	<owl:AnnotationProperty rdf:about="&skos;definition">
+	</owl:AnnotationProperty>
+	
+	<owl:AnnotationProperty rdf:about="&skos;note">
+	</owl:AnnotationProperty>
+	
+	<owl:AnnotationProperty rdf:about="&skos;scopeNote">
+	</owl:AnnotationProperty>
+	
+	<owl:Class rdf:about="&api4kp;AbstractExpression">
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp;CompositeKnowledgeResource">
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp;depends-on"/>
+				<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeRepresentation"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp;ConcreteExpression">
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp;EncodedKnowledgeExpression">
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp;FlattenedKnowledgeResource">
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp;flattening-of"/>
+				<owl:someValuesFrom rdf:resource="&api4kp;CompositeKnowledgeResource"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp;KnowledgeExpression">
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp;KnowledgeRepresentation">
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp;KnowledgeResource">
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp;StructuredKnowledgeResource">
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp;WorkOfKnowledge">
+	</owl:Class>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;abridgement-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;compact-representation-of"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;derived-from"/>
+		<rdfs:label>abdridgement of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeExpression"/>
+		<skos:definition>An expression E1 is an abridgement of an expression E2 if
+- both express the same Work of Knowledge
+AND
+  - they have equivalent ASTs ( i.e. parse(E1) = parse(E2) ), but the parse  tree of E2 is a subtree of the parse tree of E1.
+  OR
+  - the AST of E2 is a subtree of the AST of E1,</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;adaptation-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;derived-from"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;variant-of"/>
+		<rdfs:label>adaptation of</rdfs:label>
+		<rdfs:comment>The concepts used by the derived work are more suitable from a certain perspective, including but not limited to delivering to an audience or a setting, or expressing in some language</rdfs:comment>
+		<rdfs:domain rdf:resource="&api4kp;WorkOfKnowledge"/>
+		<rdfs:range rdf:resource="&api4kp;WorkOfKnowledge"/>
+		<skos:definition>the relationship between two derivative works of knowledge that capture the same piece of knowledge</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;compact-representation-of">
+		<rdfs:label>compact representation of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<skos:definition>a source endeavor is more compact than a target endeavor if it uses less elements to capture (a salient, proper part of) the piece of knowledge captured by the target endeavor</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;compatible-with">
+		<rdfs:label>compatible with</rdfs:label>
+		<rdfs:comment>sometimes the complementary notion of &apos;incompatibility&apos; may be of interest. Two endeavors are incompatible if their involvement in the same activity will necessarily cause that activity to fail</rdfs:comment>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<skos:definition>An endeavor X is compatible with an another endeavor Y if there is at least one activity that can successfully completed when both X and Y are involved in that activity</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;complements">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;compatible-with"/>
+		<rdfs:label>complements</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<skos:definition>An endeavor X complements another endeavor Y if Y does not depend on X, bu Y can be used to extend X</skos:definition>
+		<skos:note>this relationship implies that (tree-oriented) structuring of X and Y is possible, but not necessary nor actual</skos:note>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;complies-with">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;compatible-with"/>
+		<rdfs:label>complies with</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<skos:definition>An endeavor X complies with an endeavor Y if it satisfies all the constraints in Y</skos:definition>
+		<skos:scopeNote>The compliant endeavor is supposed to be, or to contain, some kind of specification</skos:scopeNote>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;compression-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;compact-representation-of"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;transcodification-of"/>
+		<rdfs:label>compression of</rdfs:label>
+		<skos:definition>transcodification such that the target encoding requires less space in order to be engraved on a carrier, may be lossy or lossless</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;copy-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;equal-to"/>
+		<rdfs:label>copy of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<skos:definition>An endeavor E1 is a copy of another endeavor E2 if they are equal, and E2 is the product of an activity (&quot;copying&quot;) that used E1 as a primary input</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;depends-on">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;compatible-with"/>
+		<rdfs:label xml:lang="en">depends on</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<skos:altLabel>requires</skos:altLabel>
+		<skos:definition>An endeavor X depends on an another endeavor Y if any activity that involves X must also involve Y in order to be successful.</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;derived-from">
+		<rdfs:label>derived from</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<owl:inverseOf rdf:resource="&api4kp;has-derivative"/>
+		<skos:definition>An endeavor E1 is derived from an endeavor E2 if the activity that produced E2 used E1 as a primary input</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;digest-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;summarization-of"/>
+		<rdfs:label>digest of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeExpression"/>
+		<skos:altLabel>condensation of</skos:altLabel>
+		<skos:definition>An expression E1 is a digest of another expression E2 if the WoK that conceptualizes E2 cannot be completely reconstructed from the WoK that conceptualizes E1 without additional contextual knowledge</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;effectuates">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;compatible-with"/>
+		<rdfs:label>effectuates</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<skos:definition>The relationship between two endeavors X and Y, such that:
+- X is a knowledge endeavor, which either is or can be conceptualized as a knowledge processing method specification
+- When X is used in a knowledge processing activity, that activity will produce another knowledge endeavor Z
+- Z complies with Y</skos:definition>
+		<skos:note>The definition needs to be formalized as a rule</skos:note>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;equal-to">
+		<rdfs:label>equal to</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<skos:definition>Like any other individual, an endeavor is equal to itself at any given point in time.
+
+Two distinct (according to some principle of identity) endeavors are equal if and only if they are indistinguishable:
+- two semantic graphs have equal nodes and edges
+- two (abstract or concrete) trees have equal nodes and parent/child edges
+- two artifacts carry the same (or equal) concrete expressions, and all their other qualities and configurations are equal</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;flattening-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;derived-from"/>
+		<rdfs:label>flattening of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;FlattenedKnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;CompositeKnowledgeResource"/>
+		<skos:definition>a particular kind of derivation, relating a flattened resource to the composite it was generated from</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;has-derivative">
+		<rdfs:label>has derivative</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;has-later-revision">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;has-derivative"/>
+		<rdfs:label>has later revision</rdfs:label>
+		<rdfs:comment>Scoped to Work of Knowledge:
+A revision of a WoK is a new WoK that preserves the same Piece of Knowledge. That is, the new WoK will choose a different set of concepts (and associations thereof) to ensure that the WoK can be communicated more properly.
+
+Scoped to Knowledge Expressions:
+The new expression preserves the WoK: conceptualizing either the previous or the later revision will yield the same WoK. However, the new revision alters the AST (or the Parse tree) to reduce the cost and/or the likelihood of errors in the act of conceptualizing its WoK content</rdfs:comment>
+		<rdfs:comment>revisions may, but do not need to, be tied to an explicit versioning scheme</rdfs:comment>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<owl:inverseOf rdf:resource="&api4kp;is-later-revision-of"/>
+		<skos:altLabel>has revision</skos:altLabel>
+		<skos:definition>The relationship between two endeavors E1 and E2, where E2 is explicitly derived from E1, and E2 is intended to be preferred to E1 in activities where either would be suitably involved.
+
+Moreover, this relationships implies that:
+- both endeavors are defined at the same level of abstraction
+- both refer to the same entity at the higher level(s) of abstraction
+- the two endeavors have different information content
+- the derivation preserves the representation methods (as applicable): language, serialization, and/or carrier</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;has-later-versioned-revision">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;has-later-revision"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;has-succesor-version"/>
+		<rdfs:label xml:lang="en">has later versioned revision</rdfs:label>
+		<owl:inverseOf rdf:resource="&api4kp;is-later-versioned-revision-of"/>
+		<skos:altLabel>is previous version of</skos:altLabel>
+		<skos:definition>the &apos;has revision&apos; relationship, where both subject and object are versioned according to a common versioning scheme that determines the version identifiers assigned to either endeavors</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;has-latest">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;has-later-versioned-revision"/>
+		<rdfs:label>has latest</rdfs:label>
+		<skos:definition>the relationship between an endeavor E and the (versioned) revision L within  that endeavor&apos;s series, such that there are no later revisions of L</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;has-next-immediate-versioned-revision">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;has-later-versioned-revision"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;has-next-version"/>
+		<rdfs:label xml:lang="en">has next immediate versioned revision</rdfs:label>
+		<owl:inverseOf rdf:resource="&api4kp;is-immediate-next-versioned-revision-of"/>
+		<skos:definition>The relationship between two expressions E1 and E2, with E2 a work-preserving revision of E1, where both are ordered by the same (partially) ordered versioning scheme v, and such that v(E1) &lt; v(E2), and there is no E3 such that v(E1) &lt; v(E3) &lt; v(E2)</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;has-next-version">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;has-succesor-version"/>
+		<rdfs:label>has next version</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<owl:inverseOf rdf:resource="&api4kp;has-previous-version"/>
+		<skos:altLabel>next</skos:altLabel>
+		<skos:definition>given the subject E1 and its successor object E2, there is no E3 such that v(E1) &lt; v(E3) &lt; v(E2)</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;has-original">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;is-later-versioned-revision-of"/>
+		<rdfs:label>has original</rdfs:label>
+		<skos:definition>the relationship between an endeavor E and the (versioned) revision O within that endeavor&apos;s series, such that there are no prior revisions of O</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;has-previous-version">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;has-prior-version"/>
+		<rdfs:label>has previous version</rdfs:label>
+		<skos:altLabel>previous</skos:altLabel>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;has-prior-version">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;in-series-with"/>
+		<rdfs:label>has prior version</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<owl:inverseOf rdf:resource="&api4kp;has-succesor-version"/>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;has-succesor-version">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;in-series-with"/>
+		<rdfs:label>has successor version</rdfs:label>
+		<rdfs:comment>Being related by means of a versioning scheme, in general, does not imply derivation: when preparing a new endeavor to be released as part of a series, It is not uncommon to &apos;start from scratch&apos;.
+Hence, versioning due to revision is treated as a special case, at the intersection of versioning and revision</rdfs:comment>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<skos:definition>The relationship between two endeavors E1 and E2 part of the same series, where both are ordered by the same (partially) ordered versioning scheme v, and such that v(E1) &lt; v(E2).</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;imitation-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;equal-to"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;inspired-by"/>
+		<rdfs:label>imitation of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;WorkOfKnowledge"/>
+		<rdfs:range rdf:resource="&api4kp;WorkOfKnowledge"/>
+		<skos:definition>A derivative Work W1 is an actual imitation of a Work W2 if the similarity between the underlying concept graphs is sufficient so that they can be considered equal</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;imports">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;depends-on"/>
+		<rdfs:label>imports</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeRepresentation"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeRepresentation"/>
+		<skos:definition>A Representation S imports another Representation T if there is at least one fragment of S that implicitly declares the need to perform a structuring operation involving S and T before S can be used in a knowledge processing activity</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;in-series-with">
+		<rdfs:label>in series with</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<skos:definition>The relationship between two endeavors that belong to the same series, in the context of a versioning scheme</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;includes">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;imports"/>
+		<rdfs:label>includes</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeRepresentation"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeRepresentation"/>
+		<skos:definition>A stronger form of import, stating that the target representation T must be injected into the source S
+(i.e. there is an implicit tree-based structure where S is a parent of T)</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;inspired-by">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;derived-from"/>
+		<rdfs:label>inspired by</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;WorkOfKnowledge"/>
+		<rdfs:range rdf:resource="&api4kp;WorkOfKnowledge"/>
+		<rdfs:seeAlso>https://people.eecs.berkeley.edu/~aramdas/reports/DBreport.pdf</rdfs:seeAlso>
+		<skos:definition>a derivative work W1 is inspired by another work W2 if the underlying semantic graphs are similar enough according to some similarity measure (i.e. if the derivative work uses enough of the same concepts and associations as the original one)</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;is-immediate-next-versioned-revision-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;has-previous-version"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;is-later-versioned-revision-of"/>
+		<rdfs:label xml:lang="en">is immediate next versioned revision of</rdfs:label>
+		<skos:altLabel>has next previous immediate versioned revision</skos:altLabel>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;is-later-revision-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;derived-from"/>
+		<rdfs:label>is later revision of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<skos:altLabel>revision of</skos:altLabel>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;is-later-versioned-revision-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;has-prior-version"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;is-later-revision-of"/>
+		<rdfs:label xml:lang="en">is later versioned revision of</rdfs:label>
+		<skos:altLabel>has previous versioned revision</skos:altLabel>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;linguistic-adaptation-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;adaptation-of"/>
+		<rdfs:label>linguistic adaptation of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;WorkOfKnowledge"/>
+		<rdfs:range rdf:resource="&api4kp;WorkOfKnowledge"/>
+		<skos:definition>An adaptation that facilitates the expression of the derivative WoK in some language</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;paraphrase-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;derived-from"/>
+		<rdfs:label>paraphrase of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;AbstractExpression"/>
+		<rdfs:range rdf:resource="&api4kp;AbstractExpression"/>
+		<skos:definition>An expression of a Work W1 paraphrases an expression of a Work W2 if the two use different concepts, but W1 entails W2 and vice versa. As such, both expression capture the same piece of knowledge</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;rearrangement-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;derived-from"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;variant-of"/>
+		<rdfs:label>rearrangement of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;StructuredKnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;StructuredKnowledgeResource"/>
+		<skos:definition>A structured resource R1 is a rearrangement of another structured resource R2 if they have different structure and components, but their flattening yields two Resources F1 and F2 that express the same Work of Knowledge</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;summarization-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;compact-representation-of"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;derived-from"/>
+		<rdfs:label>summarization of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeExpression"/>
+		<skos:definition>An expresison E1 summarizes an expression E2 if the WoK that conceptualizes E1 uses a subset of the concepts (and associations thereof) used by the WoK that conceptualizes E2</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;supplements">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;compatible-with"/>
+		<rdfs:label>supplements</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<skos:definition>An endeavor X supplements another endeavor Y if Y does not depend on X, bu Y can be used in parallel with X</skos:definition>
+		<skos:note>this relationship implies that (set-oriented) structuring of X and Y is possible, but not necessary nor actual</skos:note>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;synopsis-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;summarization-of"/>
+		<rdfs:label>synopsis of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeExpression"/>
+		<skos:definition>A synopsis is a summary such that the original WoK (i.e. the WoK that conceptualizes the expression that is the target of this relationship) can be inferred from the WoK that conceptualizes the derived WoK</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;transcodification-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;derived-from"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;variant-of"/>
+		<rdfs:label>transcodification of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;EncodedKnowledgeExpression"/>
+		<rdfs:range rdf:resource="&api4kp;EncodedKnowledgeExpression"/>
+		<skos:definition>A relationship between two encodings of the same concrete expression that use two different encoding mechanisms</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;transcreation-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;adaptation-of"/>
+		<rdfs:label>transcreation of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;WorkOfKnowledge"/>
+		<rdfs:range rdf:resource="&api4kp;WorkOfKnowledge"/>
+		<skos:definition>Adaptation that facilitates the interpretation of (an expression of) the derived WoK by a target audience, for which all the concepts used by the derived Work are common knowledge, but some of the ones used in the original WoK are not</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;transcription-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;derived-from"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;variant-of"/>
+		<rdfs:label>transcription of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;ConcreteExpression"/>
+		<rdfs:range rdf:resource="&api4kp;ConcreteExpression"/>
+		<skos:definition>A relationship between two concrete expressions, in the same language but two different concrete syntaxes, that concretize the same abstract expression (and thus express the same work of knowledge), such that the subject is derived from the object by means of a transcription operation</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;translation-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;derived-from"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;variant-of"/>
+		<rdfs:label>translation of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;AbstractExpression"/>
+		<rdfs:range rdf:resource="&api4kp;AbstractExpression"/>
+		<skos:definition>A relationship between two abstract expressions, in two different languages, that express the same work of knowledge, such that the subject is derived from the object by means of a translation operation</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;transliteration-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;derived-from"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;variant-of"/>
+		<rdfs:label>transliteration of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;ConcreteExpression"/>
+		<rdfs:range rdf:resource="&api4kp;ConcreteExpression"/>
+		<skos:definition>A relationship between two concretizations C1 and C2 of the same abstract expression, in the same language and using the same lexicon, but such that the tokens are constructed using alternative alphabets</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;transwordation-of">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;derived-from"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;variant-of"/>
+		<rdfs:label>transwordation of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;ConcreteExpression"/>
+		<rdfs:range rdf:resource="&api4kp;ConcreteExpression"/>
+		<skos:definition>A relationship between two expressions, such that the lexical tokens (&apos;words&apos;) used to express atomic concepts in the source are replaced by synonyms in the target</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;variant-of">
+		<rdf:type rdf:resource="&owl;SymmetricProperty"/>
+		<rdfs:label>alternative representation of</rdfs:label>
+		<rdfs:label>variant of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<skos:altLabel>iso-semantic representation of</skos:altLabel>
+		<skos:definition>an endeavor is a variant of another endeavor if
+- the two endeavors represent the same piece of knowledge
+- both exist at the same level of abstraction (work, expression, serialization, encoding/artifact)
+- both refer to the same entity at the higher level(s) of abstraction
+- the two are iso-semantic, i.e. they preserve the information content at the same level, but differ in the choice of concepts (to capture the same knowledge), language (for the same work), serialization (for the same language), or carrier (for the same concretization)</skos:definition>
+	</owl:ObjectProperty>
+
+</rdf:RDF>
