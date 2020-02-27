@@ -115,7 +115,16 @@
 	</owl:Class>
 	
 	<owl:Class rdf:about="&dol;Term">
-		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeFragment"/>
+		<rdfs:subClassOf>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&api4kp;KnowledgeExpression">
+					</rdf:Description>
+					<rdf:Description rdf:about="&api4kp;KnowledgeFragment">
+					</rdf:Description>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:subClassOf>
 	</owl:Class>
 	
 	<owl:ObjectProperty rdf:about="&dol;formalizes">
@@ -207,7 +216,7 @@
 		<rdfs:subClassOf rdf:resource="&api4kp;ComplexKnowledgeResource"/>
 		<rdfs:subClassOf>
 			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp;hasStructuralComponent"/>
+				<owl:onProperty rdf:resource="&api4kp;hasProperPart"/>
 				<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
@@ -386,6 +395,12 @@ In OWL-DL, unless punning is adopted, &apos;items&apos; are individual members o
 		<skos:scopeNote>includes but not limited to books, pictures, documents, files, waves, but also neural patterns</skos:scopeNote>
 	</owl:Class>
 	
+	<owl:Class rdf:about="&api4kp;KnowledgeElement">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeFragment"/>
+		<skos:definition>atomic fragment that uses a single construct of the language used in the expression the fragment is part of</skos:definition>
+		<skos:prefLabel>knowledge element</skos:prefLabel>
+	</owl:Class>
+	
 	<owl:Class rdf:about="&api4kp;KnowledgeExpression">
 		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeResource"/>
 		<rdfs:subClassOf>
@@ -412,34 +427,16 @@ In OWL-DL, unless punning is adopted, &apos;items&apos; are individual members o
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp;KnowledgeFragment">
-		<rdfs:subClassOf rdf:resource="&api4kp;AbstractKnowledgeExpression"/>
-		<rdfs:subClassOf>
-			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp;expresses"/>
-				<owl:someValuesFrom>
-					<owl:Class>
-						<owl:intersectionOf rdf:parseType="Collection">
-							<owl:Class>
-								<owl:complementOf rdf:resource="&api4kp;WorkOfKnowledge"/>
-							</owl:Class>
-							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp;properPartOf"/>
-								<owl:someValuesFrom rdf:resource="&api4kp;WorkOfKnowledge"/>
-							</owl:Restriction>
-						</owl:intersectionOf>
-					</owl:Class>
-				</owl:someValuesFrom>
-			</owl:Restriction>
-		</rdfs:subClassOf>
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeResource"/>
 		<rdfs:comment>fragments express proper parts of a knowledge asset</rdfs:comment>
 		<owl:equivalentClass>
 			<owl:Class>
 				<owl:intersectionOf rdf:parseType="Collection">
-					<rdf:Description rdf:about="&api4kp;AbstractKnowledgeExpression">
+					<rdf:Description rdf:about="&api4kp;KnowledgeResource">
 					</rdf:Description>
 					<owl:Restriction>
 						<owl:onProperty rdf:resource="&api4kp;properPartOf"/>
-						<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeAsset"/>
+						<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeExpression"/>
 					</owl:Restriction>
 				</owl:intersectionOf>
 			</owl:Class>
@@ -813,21 +810,18 @@ The instances would have to be scoped by the same context</rdfs:comment>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;hasProperPart">
 		<rdfs:subPropertyOf rdf:resource="&dol;hasPart"/>
-		<owl:inverseOf rdf:resource="&api4kp;properPartOf"/>
-		<skos:definition>has part that is identifiable and distinct from the whole</skos:definition>
-		<skos:prefLabel>has proper part</skos:prefLabel>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;hasStructuralComponent">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;hasProperPart"/>
 		<rdfs:label>has proper part that is a functional component (i.e. plays a role with respect to the other parts of the same composite it is part of)</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp;CompositeKnowledgeResource"/>
 		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<owl:inverseOf rdf:resource="&api4kp;properPartOf"/>
+		<skos:definition>has part that is identifiable and distinct from the whole</skos:definition>
+		<skos:prefLabel>has proper part</skos:prefLabel>
 		<skos:prefLabel>has structural component</skos:prefLabel>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;hasStructuringComponent">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;hasStructuralComponent"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;hasProperPart"/>
 		<rdfs:domain rdf:resource="&api4kp;CompositeKnowledgeResource"/>
 		<rdfs:range rdf:resource="&api4kp;StructuringKnowledgeExpression"/>
 		<skos:definition>has structural component whose role is to define roles and relationships between the other components</skos:definition>
