@@ -71,10 +71,21 @@
 	<owl:AnnotationProperty rdf:about="&skos;scopeNote">
 	</owl:AnnotationProperty>
 	
+	<owl:ObjectProperty rdf:about="&api4kp-rel;abridges">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;abbreviates"/>
+		<rdfs:comment>the expression is &apos;minimal&apos; in the sense that no fragment can be removed while still realizing the same knowledge asset</rdfs:comment>
+		<skos:definition>is a minimal expression that preserves, or allows to reconstruct by inference, all the concepts used by the target expression</skos:definition>
+		<skos:prefLabel>abridges</skos:prefLabel>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-rel;compendiates">
+		<rdfs:subPropertyOf rdf:resource="&api4kp-rel;summarizes"/>
+		<skos:definition>summarizes using a minimum number of fragments, and only uses concepts that are most closely related to the main subject</skos:definition>
+		<skos:prefLabel>compendiates</skos:prefLabel>
+	</owl:ObjectProperty>
+	
 	<owl:ObjectProperty rdf:about="&api4kp-rel;conformsWith">
 		<rdfs:subPropertyOf rdf:resource="&api4kp-rel;isComplementedBy"/>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
 		<skos:definition>satisfies the constraints in the target resource</skos:definition>
 		<skos:prefLabel>conforms with</skos:prefLabel>
 		<skos:scopeNote>the compliant resource is supposed to be, express or carry some kind of specification</skos:scopeNote>
@@ -84,8 +95,6 @@
 		<rdfs:subPropertyOf rdf:resource="&api4kp-rel;isComplementedBy"/>
 		<rdfs:label>effectuates</rdfs:label>
 		<rdfs:comment>the knowledge of the products can be used to predict and validate what the products will look like</rdfs:comment>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
 		<skos:definition>is used in activities that generate entities of which the target resource is knowledge of</skos:definition>
 	</owl:ObjectProperty>
 	
@@ -93,34 +102,47 @@
 		<rdfs:subPropertyOf rdf:resource="&api4kp-rel;isSupplementedBy"/>
 		<rdfs:subPropertyOf rdf:resource="&api4kp-rel;references"/>
 		<rdfs:label>imports</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
 		<skos:definition>references a (part of a) supplemental knowledge resource, with the expectation that some structuring operation is performed to resolve the dependency before this resource is used</skos:definition>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp-rel;includes">
+	<owl:ObjectProperty rdf:about="&api4kp-rel;includesByReference">
 		<rdfs:subPropertyOf rdf:resource="&api4kp-rel;imports"/>
-		<rdfs:label>includes</rdfs:label>
 		<rdfs:comment>inclusions must be resolved, and the resolution of the dependency does not preserve the identity of the target resource</rdfs:comment>
 		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
 		<rdfs:range rdf:resource="&api4kp;KnowledgeExpression"/>
 		<skos:definition>imports a resource that is a necessary supplement, and expects that that resource is injected into itself</skos:definition>
+		<skos:prefLabel>includes by reference</skos:prefLabel>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-rel;isComplementedBy">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;dependsOn"/>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
 		<skos:definition>optional dependency on a resource whose availability is beneficial</skos:definition>
 		<skos:prefLabel>is complemented by</skos:prefLabel>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-rel;isCompressionOf">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;abbreviates"/>
+		<skos:definition>uses a minimal subset of the fragments and/or symbols of the target expression while trying to maximize the concepts used by both expressions</skos:definition>
+		<skos:prefLabel>is compression of</skos:prefLabel>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-rel;isDigestOf">
+		<rdfs:subPropertyOf rdf:resource="&api4kp-rel;summarizes"/>
+		<rdfs:range rdf:resource="&api4kp;CompositeKnowledgeResource"/>
+		<skos:definition>summarizes a composite resource having fragments that summarize each one of the components</skos:definition>
+		<skos:prefLabel>is digest of</skos:prefLabel>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-rel;isLosslessCompressionOf">
+		<rdfs:subPropertyOf rdf:resource="&api4kp-rel;isCompressionOf"/>
+		<skos:definition>compression that preserves all the concepts used by the target expression, or allows to reconstruct them by inference</skos:definition>
+		<skos:prefLabel>is lossless compression of</skos:prefLabel>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-rel;isSupplementedBy">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;dependsOn"/>
 		<rdfs:label>supplements</rdfs:label>
 		<rdfs:comment>supplemental dependencies may be mandatory if their lack of availabliity makes the use of the depending resource impossible</rdfs:comment>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
 		<skos:definition>dependency on a resource whose lack of availability is detrimental</skos:definition>
 		<skos:prefLabel>is supplemented by</skos:prefLabel>
 	</owl:ObjectProperty>
@@ -168,16 +190,23 @@
 		<rdfs:subPropertyOf rdf:resource="&api4kp;derivedFrom"/>
 		<rdfs:domain rdf:resource="&api4kp;CompositeKnowledgeResource"/>
 		<rdfs:range rdf:resource="&api4kp;CompositeKnowledgeResource"/>
-		<skos:definition>composite resource derived by means of an operation that preserved the structural components, but altered the structure</skos:definition>
+		<skos:definition>derived by means of an operation that preserved the structural components, but altered the structure</skos:definition>
 		<skos:prefLabel>rearrangement of</skos:prefLabel>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-rel;references">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;dependsOn"/>
 		<rdfs:comment>has at least one proper, identifiable part (e.g. concept, fragment) that is related to a (part of) a different knowledge resource, but not to (part of) the same resource</rdfs:comment>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
 		<skos:prefLabel>references</skos:prefLabel>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-rel;summarizes">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;abbreviates"/>
+		<rdfs:label>summarization of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeExpression"/>
+		<skos:definition>uses a subset of the concepts of the target expression</skos:definition>
+		<skos:prefLabel>summarizes</skos:prefLabel>
 	</owl:ObjectProperty>
 	
 	<owl:Class rdf:about="&api4kp;AbstractExpression">
@@ -207,18 +236,12 @@
 	<owl:Class rdf:about="&api4kp;WorkOfKnowledge">
 	</owl:Class>
 	
-	<owl:ObjectProperty rdf:about="&api4kp;abridgement-of">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;compact-representation-of"/>
-		<rdfs:subPropertyOf rdf:resource="&api4kp;derivedFrom"/>
-		<rdfs:label>abdridgement of</rdfs:label>
+	<owl:ObjectProperty rdf:about="&api4kp;abbreviates">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;associatedTo"/>
 		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
 		<rdfs:range rdf:resource="&api4kp;KnowledgeExpression"/>
-		<skos:definition>An expression E1 is an abridgement of an expression E2 if
-- both express the same Work of Knowledge
-AND
-  - they have equivalent ASTs ( i.e. parse(E1) = parse(E2) ), but the parse  tree of E2 is a subtree of the parse tree of E1.
-  OR
-  - the AST of E2 is a subtree of the AST of E1,</skos:definition>
+		<skos:definition>uses a smaller number of symbols, fragments, and/or concepts than the target expression, while sharing at least subject and topic</skos:definition>
+		<skos:prefLabel>abbreviates</skos:prefLabel>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;adaptation-of">
@@ -237,20 +260,6 @@ AND
 		<skos:prefLabel>associated to</skos:prefLabel>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp;compact-representation-of">
-		<rdfs:label>compact representation of</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
-		<skos:definition>a source endeavor is more compact than a target endeavor if it uses less elements to capture (a salient, proper part of) the piece of knowledge captured by the target endeavor</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;compression-of">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;compact-representation-of"/>
-		<rdfs:subPropertyOf rdf:resource="&api4kp;transcodification-of"/>
-		<rdfs:label>compression of</rdfs:label>
-		<skos:definition>transcodification such that the target encoding requires less space in order to be engraved on a carrier, may be lossy or lossless</skos:definition>
-	</owl:ObjectProperty>
-	
 	<owl:ObjectProperty rdf:about="&api4kp;dependsOn">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;associatedTo"/>
 		<rdfs:comment>an asset may depend on another asset if the latter is background knowledge that facilitates the understanding of the former.</rdfs:comment>
@@ -263,25 +272,15 @@ AND
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;derivedFrom">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;associatedTo"/>
+		<rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
 		<rdfs:comment>a resource may be a derivative of any number of resources, all which need to contribute at least some concept.</rdfs:comment>
 		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
 		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
-		<owl:inverseOf rdf:resource="&api4kp;has-derivative"/>
 		<skos:definition>created as the product of an activity that used another resource as an input, and such that some of the concepts used in the input resource ended up being used in this resource</skos:definition>
 		<skos:prefLabel>derived from</skos:prefLabel>
 		<skos:scopeNote>it is often, but not necessarily always, the case that the next version of a resource is a derivative of some previous version of the same resource</skos:scopeNote>
 		<skos:scopeNote>resources that are used during the creation of a new resource, but do not contribute concepts, are usually still expected to be cited</skos:scopeNote>
 		<skos:scopeNote>some derivations generate variant expressions of the same asset, but not all variants are derivatives: in particular, variants can be created through the application of a knowledge operation, or happen to be equivalent to the product of such an operation.</skos:scopeNote>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;digest-of">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;summarization-of"/>
-		<rdfs:label>digest of</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeExpression"/>
-		<skos:altLabel>condensation of</skos:altLabel>
-		<skos:definition>An expression E1 is a digest of another expression E2 if the WoK that conceptualizes E2 cannot be completely reconstructed from the WoK that conceptualizes E1 without additional contextual knowledge</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;flattening-of">
@@ -291,14 +290,8 @@ AND
 		<skos:definition>a particular kind of derivation, relating a flattened resource to the composite it was generated from</skos:definition>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp;has-derivative">
-		<rdfs:label>has derivative</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
-	</owl:ObjectProperty>
-	
 	<owl:ObjectProperty rdf:about="&api4kp;has-later-revision">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;has-derivative"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;derivedFrom"/>
 		<rdfs:label>has later revision</rdfs:label>
 		<rdfs:comment>Scoped to Work of Knowledge:
 A revision of a WoK is a new WoK that preserves the same Piece of Knowledge. That is, the new WoK will choose a different set of concepts (and associations thereof) to ensure that the WoK can be communicated more properly.
@@ -320,7 +313,6 @@ Moreover, this relationships implies that:
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;has-later-versioned-revision">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;has-later-revision"/>
 		<rdfs:subPropertyOf rdf:resource="&api4kp;has-succesor-version"/>
 		<rdfs:label xml:lang="en">has later versioned revision</rdfs:label>
 		<owl:inverseOf rdf:resource="&api4kp;is-later-versioned-revision-of"/>
@@ -387,6 +379,7 @@ Hence, versioning due to revision is treated as a special case, at the intersect
 	</rdf:Description>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;in-series-with">
+		<rdf:type rdf:resource="&owl;SymmetricProperty"/>
 		<rdfs:label>in series with</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
 		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
@@ -438,23 +431,6 @@ Hence, versioning due to revision is treated as a special case, at the intersect
 		<rdfs:domain rdf:resource="&api4kp;AbstractExpression"/>
 		<rdfs:range rdf:resource="&api4kp;AbstractExpression"/>
 		<skos:definition>An expression of a Work W1 paraphrases an expression of a Work W2 if the two use different concepts, but W1 entails W2 and vice versa. As such, both expression capture the same piece of knowledge</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;summarization-of">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;compact-representation-of"/>
-		<rdfs:subPropertyOf rdf:resource="&api4kp;derivedFrom"/>
-		<rdfs:label>summarization of</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeExpression"/>
-		<skos:definition>An expresison E1 summarizes an expression E2 if the WoK that conceptualizes E1 uses a subset of the concepts (and associations thereof) used by the WoK that conceptualizes E2</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;synopsis-of">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;summarization-of"/>
-		<rdfs:label>synopsis of</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeExpression"/>
-		<skos:definition>A synopsis is a summary such that the original WoK (i.e. the WoK that conceptualizes the expression that is the target of this relationship) can be inferred from the WoK that conceptualizes the derived WoK</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;transcodification-of">
