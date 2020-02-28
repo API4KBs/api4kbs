@@ -3,6 +3,7 @@
 	<!ENTITY AnnotationVocabulary "https://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/">
 	<!ENTITY AnnotationVocabulary1 "http://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/">
 	<!ENTITY api4kp "https://www.omg.org/spec/API4KP/api4kp/">
+	<!ENTITY api4kp-series "https://www.omg.org/spec/API4KP/api4kp-series/">
 	<!ENTITY dct "http://purl.org/dc/terms/">
 	<!ENTITY dol "http://www.omg.org/spec/DOL/DOL-terms/">
 	<!ENTITY lcc-lr "https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/">
@@ -18,6 +19,7 @@
 	xmlns:AnnotationVocabulary="https://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/"
 	xmlns:AnnotationVocabulary1="http://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/"
 	xmlns:api4kp="https://www.omg.org/spec/API4KP/api4kp/"
+	xmlns:api4kp-series="https://www.omg.org/spec/API4KP/api4kp-series/"
 	xmlns:dct="http://purl.org/dc/terms/"
 	xmlns:dol="http://www.omg.org/spec/DOL/DOL-terms/"
 	xmlns:lcc-lr="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"
@@ -50,6 +52,7 @@
 		<sm:filename>api4kp.rdf</sm:filename>
 		<owl:imports rdf:resource="http://www.omg.org/spec/DOL/20171101/DOL-terms/"/>
 		<owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
+		<owl:imports rdf:resource="https://www.omg.org/spec/API4KP/SNAPSHOT/api4kp-series/"/>
 		<owl:imports rdf:resource="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
 		<owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/SNAPSHOT/api4kp/"/>
 	</owl:Ontology>
@@ -128,13 +131,7 @@
 	</owl:Class>
 	
 	<owl:ObjectProperty rdf:about="&dol;formalizes">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;faithfullyExpresses"/>
 		<rdfs:subPropertyOf rdf:resource="&api4kp;knowledge-representation-of"/>
-		<rdfs:subPropertyOf rdf:resource="&api4kp;laconicallyExpresses"/>
-		<rdfs:subPropertyOf rdf:resource="&api4kp;lucidlyExpresses"/>
-		<rdfs:subPropertyOf rdf:resource="&api4kp;soundlyExpresses"/>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeAsset"/>
 		<skos:definition>faithfully, concisely, consistently and unambiguously expresses a knowledge asset using a formal language, if not a knowledge representation language</skos:definition>
 	</owl:ObjectProperty>
 	
@@ -466,12 +463,7 @@ In OWL-DL, unless punning is adopted, &apos;items&apos; are individual members o
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp;KnowledgeResource">
-		<rdfs:subClassOf>
-			<owl:Restriction>
-				<owl:onProperty rdf:resource="&lcc-lr;isIdentifiedBy"/>
-				<owl:someValuesFrom rdf:resource="&api4kp;VersionedIdentifier"/>
-			</owl:Restriction>
-		</rdfs:subClassOf>
+		<rdfs:subClassOf rdf:resource="&api4kp-series;version"/>
 		<skos:altLabel>knowledge source</skos:altLabel>
 		<skos:definition>immutable, identifiable, versionable entity that is, expresses or carries some piece of knowledge</skos:definition>
 		<skos:prefLabel>knowledge resource</skos:prefLabel>
@@ -581,29 +573,6 @@ The more philosophical discussion on &apos;innate concepts&apos; - concepts such
 some structures are tree-oritented: there is a type of relationship (e.g. dependency) that imposes a tree-based ordering between the components</skos:scopeNote>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&api4kp;VersionedIdentifier">
-		<rdfs:subClassOf rdf:resource="&lcc-lr;Identifier"/>
-		<rdfs:subClassOf>
-			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp;hasProperPart"/>
-				<owl:someValuesFrom>
-					<owl:Class>
-						<owl:intersectionOf rdf:parseType="Collection">
-							<rdf:Description rdf:about="&lcc-lr;Identifier">
-							</rdf:Description>
-							<owl:Class>
-								<owl:complementOf rdf:resource="&api4kp;VersionedIdentifier"/>
-							</owl:Class>
-						</owl:intersectionOf>
-					</owl:Class>
-				</owl:someValuesFrom>
-			</owl:Restriction>
-		</rdfs:subClassOf>
-		<skos:definition>identifier of a particular version of a given entity that also has proper part some version-agnostic identifier of that entity</skos:definition>
-		<skos:note>given an entity that spans over time, versions of that entity correspond to (immutable) configurations of (mutable) qualities of that entity at a point in time</skos:note>
-		<skos:prefLabel>versioned identifier</skos:prefLabel>
-	</owl:Class>
-	
 	<owl:Class rdf:about="&api4kp;WorkOfKnowledge">
 		<rdfs:subClassOf rdf:resource="&api4kp;PieceOfKnowledge"/>
 		<rdfs:subClassOf>
@@ -705,7 +674,7 @@ The curation act of a work of knowledge consists in scoping and externalizing a 
 	</owl:NamedIndividual>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;conceptualizes">
-		<rdfs:subPropertyOf rdf:resource="&dol;formalizes"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;formallyRepresents"/>
 		<rdfs:domain rdf:resource="&dol;Ontology"/>
 		<skos:definition>provides a formalization of the necessary aspects of</skos:definition>
 		<skos:prefLabel>conceptualizes</skos:prefLabel>
@@ -791,6 +760,16 @@ The instances would have to be scoped by the same context</rdfs:comment>
 	
 	<owl:NamedIndividual rdf:about="&api4kp;formal-relationship">
 	</owl:NamedIndividual>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;formallyRepresents">
+		<rdfs:subPropertyOf rdf:resource="&dol;formalizes"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;faithfullyExpresses"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;laconicallyExpresses"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;soundlyExpresses"/>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
+		<skos:definition>is an expression that represents something using principles based in logics and mathematics</skos:definition>
+		<skos:prefLabel>formally represents</skos:prefLabel>
+	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;hasAssetSurrogate">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;manifestedIn"/>
@@ -942,7 +921,7 @@ one grammatical construct can be used to represent the same ontological construc
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;models">
-		<rdfs:subPropertyOf rdf:resource="&dol;formalizes"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;formallyRepresents"/>
 		<rdfs:domain rdf:resource="&dol;Model"/>
 		<skos:definition>provides a descriptive formalization of the necessary and contigent aspects of</skos:definition>
 		<skos:prefLabel>models</skos:prefLabel>
@@ -1008,7 +987,7 @@ one grammatical construct can be used to represent the same ontological construc
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;specifies">
-		<rdfs:subPropertyOf rdf:resource="&dol;formalizes"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;formallyRepresents"/>
 		<rdfs:domain rdf:resource="&dol;Specification"/>
 		<skos:definition>provides a prescriptive formalization of the normative and informative aspects of</skos:definition>
 		<skos:prefLabel>specifies</skos:prefLabel>
@@ -1046,6 +1025,16 @@ one grammatical construct can be used to represent the same ontological construc
 	</owl:Class>
 	
 	<owl:Class rdf:about="&lcc-lr;Language">
+		<rdfs:subClassOf>
+			<owl:Class>
+				<owl:intersectionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&api4kp-series;MutableEntity">
+					</rdf:Description>
+					<rdf:Description rdf:about="&api4kp;Knowledge">
+					</rdf:Description>
+				</owl:intersectionOf>
+			</owl:Class>
+		</rdfs:subClassOf>
 	</owl:Class>
 	
 	<owl:ObjectProperty rdf:about="&lcc-lr;denotes">

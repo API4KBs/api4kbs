@@ -54,6 +54,7 @@
 		<sm:filename>api4kp-lang.rdf</sm:filename>
 		<owl:imports rdf:resource="http://www.omg.org/spec/DOL/20171101/DOL-terms/"/>
 		<owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
+		<owl:imports rdf:resource="https://www.omg.org/spec/API4KP/SNAPSHOT/api4kp/"/>
 		<owl:imports rdf:resource="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
 		<owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/SNAPSHOT/api4kp-lang/"/>
 	</owl:Ontology>
@@ -315,12 +316,6 @@
 				<owl:someValuesFrom rdf:resource="&api4kp-lang;Grammar"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
-		<rdfs:subClassOf>
-			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp;specifies"/>
-				<owl:someValuesFrom rdf:resource="&lcc-lr;Language"/>
-			</owl:Restriction>
-		</rdfs:subClassOf>
 		<rdfs:comment>Syntaxes are &apos;reconstructed&apos; from natural languages, but &apos;designed&apos; in the case of constructed languages</rdfs:comment>
 		<owl:equivalentClass>
 			<owl:Class>
@@ -328,7 +323,7 @@
 					<rdf:Description rdf:about="&dol;Specification">
 					</rdf:Description>
 					<owl:Restriction>
-						<owl:onProperty rdf:resource="&dol;formalizes"/>
+						<owl:onProperty rdf:resource="&api4kp;specifies"/>
 						<owl:someValuesFrom rdf:resource="&api4kp-lang;Grammar"/>
 					</owl:Restriction>
 				</owl:intersectionOf>
