@@ -312,79 +312,9 @@ Moreover, this relationships implies that:
 - the derivation preserves the representation methods (as applicable): language, serialization, and/or carrier</skos:definition>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp;has-later-versioned-revision">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;has-succesor-version"/>
-		<rdfs:label xml:lang="en">has later versioned revision</rdfs:label>
-		<owl:inverseOf rdf:resource="&api4kp;is-later-versioned-revision-of"/>
-		<skos:altLabel>is previous version of</skos:altLabel>
-		<skos:definition>the &apos;has revision&apos; relationship, where both subject and object are versioned according to a common versioning scheme that determines the version identifiers assigned to either endeavors</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;has-latest">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;has-later-versioned-revision"/>
-		<rdfs:label>has latest</rdfs:label>
-		<skos:definition>the relationship between an endeavor E and the (versioned) revision L within  that endeavor&apos;s series, such that there are no later revisions of L</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;has-next-immediate-versioned-revision">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;has-later-versioned-revision"/>
-		<rdfs:subPropertyOf rdf:resource="&api4kp;has-next-version"/>
-		<rdfs:label xml:lang="en">has next immediate versioned revision</rdfs:label>
-		<owl:inverseOf rdf:resource="&api4kp;is-immediate-next-versioned-revision-of"/>
-		<skos:definition>The relationship between two expressions E1 and E2, with E2 a work-preserving revision of E1, where both are ordered by the same (partially) ordered versioning scheme v, and such that v(E1) &lt; v(E2), and there is no E3 such that v(E1) &lt; v(E3) &lt; v(E2)</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;has-next-version">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;has-succesor-version"/>
-		<rdfs:label>has next version</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
-		<owl:inverseOf rdf:resource="&api4kp;has-previous-version"/>
-		<skos:altLabel>next</skos:altLabel>
-		<skos:definition>given the subject E1 and its successor object E2, there is no E3 such that v(E1) &lt; v(E3) &lt; v(E2)</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;has-original">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;is-later-versioned-revision-of"/>
-		<rdfs:label>has original</rdfs:label>
-		<skos:definition>the relationship between an endeavor E and the (versioned) revision O within that endeavor&apos;s series, such that there are no prior revisions of O</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;has-previous-version">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;has-prior-version"/>
-		<rdfs:label>has previous version</rdfs:label>
-		<skos:altLabel>previous</skos:altLabel>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;has-prior-version">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;in-series-with"/>
-		<rdfs:label>has prior version</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
-		<owl:inverseOf rdf:resource="&api4kp;has-succesor-version"/>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;has-succesor-version">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;in-series-with"/>
-		<rdfs:label>has successor version</rdfs:label>
-		<rdfs:comment>Being related by means of a versioning scheme, in general, does not imply derivation: when preparing a new endeavor to be released as part of a series, It is not uncommon to &apos;start from scratch&apos;.
-Hence, versioning due to revision is treated as a special case, at the intersection of versioning and revision</rdfs:comment>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
-		<skos:definition>The relationship between two endeavors E1 and E2 part of the same series, where both are ordered by the same (partially) ordered versioning scheme v, and such that v(E1) &lt; v(E2).</skos:definition>
-	</owl:ObjectProperty>
-	
 	<rdf:Description rdf:about="&api4kp;hasProperPart">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;associatedTo"/>
 	</rdf:Description>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;in-series-with">
-		<rdf:type rdf:resource="&owl;SymmetricProperty"/>
-		<rdfs:label>in series with</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
-		<skos:definition>The relationship between two endeavors that belong to the same series, in the context of a versioning scheme</skos:definition>
-	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;inspired-by">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;derivedFrom"/>
@@ -395,26 +325,12 @@ Hence, versioning due to revision is treated as a special case, at the intersect
 		<skos:definition>a derivative work W1 is inspired by another work W2 if the underlying semantic graphs are similar enough according to some similarity measure (i.e. if the derivative work uses enough of the same concepts and associations as the original one)</skos:definition>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp;is-immediate-next-versioned-revision-of">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;has-previous-version"/>
-		<rdfs:subPropertyOf rdf:resource="&api4kp;is-later-versioned-revision-of"/>
-		<rdfs:label xml:lang="en">is immediate next versioned revision of</rdfs:label>
-		<skos:altLabel>has next previous immediate versioned revision</skos:altLabel>
-	</owl:ObjectProperty>
-	
 	<owl:ObjectProperty rdf:about="&api4kp;is-later-revision-of">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;derivedFrom"/>
 		<rdfs:label>is later revision of</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
 		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
 		<skos:altLabel>revision of</skos:altLabel>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;is-later-versioned-revision-of">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;has-prior-version"/>
-		<rdfs:subPropertyOf rdf:resource="&api4kp;is-later-revision-of"/>
-		<rdfs:label xml:lang="en">is later versioned revision of</rdfs:label>
-		<skos:altLabel>has previous versioned revision</skos:altLabel>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;linguistic-adaptation-of">
