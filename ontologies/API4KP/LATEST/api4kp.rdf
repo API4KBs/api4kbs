@@ -602,12 +602,27 @@ some structures are tree-oritented: there is a type of relationship (e.g. depend
 		<skos:prefLabel>work of knowledge</skos:prefLabel>
 	</owl:Class>
 	
+	<owl:ObjectProperty rdf:about="&api4kp;abbreviates">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;associatedTo"/>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeExpression"/>
+		<skos:definition>uses a smaller number of symbols, fragments, and/or concepts than the target expression, while sharing at least subject and topic</skos:definition>
+		<skos:prefLabel>abbreviates</skos:prefLabel>
+	</owl:ObjectProperty>
+	
 	<owl:ObjectProperty rdf:about="&api4kp;archetypes">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;is-about"/>
 		<rdfs:label>archetypes</rdfs:label>
 		<rdfs:comment>abstracts the common qualities of a class of individuals</rdfs:comment>
 		<rdfs:domain rdf:resource="&api4kp;DefinedConcept"/>
 		<rdfs:seeAlso>http://www.w3.org/ns/lemon/ontolex#isConceptOf</rdfs:seeAlso>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;associatedTo">
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<skos:definition>generically related to</skos:definition>
+		<skos:prefLabel>associated to</skos:prefLabel>
 	</owl:ObjectProperty>
 	
 	<owl:NamedIndividual rdf:about="&api4kp;atomic-operation">
@@ -705,6 +720,17 @@ The instances would have to be scoped by the same context</rdfs:comment>
 		<skos:prefLabel>defines in terms of</skos:prefLabel>
 	</owl:ObjectProperty>
 	
+	<owl:ObjectProperty rdf:about="&api4kp;dependsOn">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;associatedTo"/>
+		<rdfs:comment>an asset may depend on another asset if the latter is background knowledge that facilitates the understanding of the former.</rdfs:comment>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<skos:altLabel>leverages</skos:altLabel>
+		<skos:definition>such that its use is impacted by the availability of the target resource</skos:definition>
+		<skos:prefLabel xml:lang="en">depends on</skos:prefLabel>
+		<skos:scopeNote>includes mandatory vs optional dependencies, named vs type-based dependencies, and early vs late resolution</skos:scopeNote>
+	</owl:ObjectProperty>
+	
 	<owl:ObjectProperty rdf:about="&api4kp;embodiedIn">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;manifestedIn"/>
 		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
@@ -789,13 +815,17 @@ The instances would have to be scoped by the same context</rdfs:comment>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;hasProperPart">
 		<rdfs:subPropertyOf rdf:resource="&dol;hasPart"/>
-		<rdfs:subPropertyOf rdf:resource="&api4kp;hasProperPart"/>
-		<rdfs:label>has proper part that is a functional component (i.e. plays a role with respect to the other parts of the same composite it is part of)</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;CompositeKnowledgeResource"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
 		<owl:inverseOf rdf:resource="&api4kp;properPartOf"/>
 		<skos:definition>has part that is identifiable and distinct from the whole</skos:definition>
 		<skos:prefLabel>has proper part</skos:prefLabel>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;hasStructuralComponent">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;associatedTo"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;hasProperPart"/>
+		<rdfs:domain rdf:resource="&api4kp;CompositeKnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<skos:definition>has proper part that is a functional component (i.e. plays a role with respect to the other parts of the same composite it is part of)</skos:definition>
 		<skos:prefLabel>has structural component</skos:prefLabel>
 	</owl:ObjectProperty>
 	
@@ -855,6 +885,43 @@ The instances would have to be scoped by the same context</rdfs:comment>
 	<owl:ObjectProperty rdf:about="&api4kp;isAbout">
 		<skos:definition>relates to a particular subject</skos:definition>
 		<skos:prefLabel>is about</skos:prefLabel>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;isDerivedFrom">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;associatedTo"/>
+		<rdfs:comment>a resource may be a derivative of any number of resources, all which need to contribute at least some concept.</rdfs:comment>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<skos:definition>created as the product of an activity that used another resource as an input, and such that some of the concepts used in the input resource ended up being used in this resource</skos:definition>
+		<skos:prefLabel>is derived from</skos:prefLabel>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;isVariantOf">
+		<rdf:type rdf:resource="&owl;SymmetricProperty"/>
+		<rdf:type rdf:resource="&owl;TransitiveProperty"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;associatedTo"/>
+		<rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&api4kp;KnowledgeArtifact">
+					</rdf:Description>
+					<rdf:Description rdf:about="&api4kp;KnowledgeExpression">
+					</rdf:Description>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+		<rdfs:range>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&api4kp;KnowledgeArtifact">
+					</rdf:Description>
+					<rdf:Description rdf:about="&api4kp;KnowledgeExpression">
+					</rdf:Description>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:range>
+		<skos:definition>expresses or carries the same knowledge asset as, but differs in at least one of language, serialization, lexicon, alphabet, encoding, or internal arrangement thereof</skos:definition>
+		<skos:prefLabel>is variant of</skos:prefLabel>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;knowledge-representation-of">
