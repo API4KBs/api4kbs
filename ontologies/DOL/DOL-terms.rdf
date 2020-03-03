@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE rdf:RDF [
-	<!ENTITY AnnotationVocabulary "https://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/">
 	<!ENTITY dct "http://purl.org/dc/terms/">
 	<!ENTITY dol "http://www.omg.org/spec/DOL/DOL-terms/">
 	<!ENTITY fibo-fnd-utl-av "http://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/">
@@ -12,8 +11,6 @@
 	<!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
 ]>
 <rdf:RDF xml:base="http://www.omg.org/spec/DOL/DOL-terms/"
-	xmlns="http://www.omg.org/spec/DOL/DOL-terms/"
-	xmlns:AnnotationVocabulary="https://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/"
 	xmlns:dct="http://purl.org/dc/terms/"
 	xmlns:dol="http://www.omg.org/spec/DOL/DOL-terms/"
 	xmlns:fibo-fnd-utl-av="http://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/"
@@ -602,7 +599,7 @@ Copyright (c) 2014-2017 Athan Services</sm:copyright>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&dol;HeterogeneousEnvironment">
-		<rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-krr/PivotalKnowledgeEnvironment"/>
+		<rdfs:subClassOf rdf:resource="&dol;MathematicalEntity"/>
 		<rdfs:subClassOf>
 			<owl:Restriction>
 				<owl:onProperty rdf:resource="&dol;hasPart"/>
@@ -2013,7 +2010,6 @@ Copyright (c) 2014-2017 Athan Services</sm:copyright>
 				</owl:unionOf>
 			</owl:Class>
 		</rdfs:range>
-		<owl:inverseOf rdf:resource="&dol;isEntailedBy"/>
 		<skos:definition>relation of logical entailment, expressing that all realizations of the subject are also realizations of the object</skos:definition>
 	</owl:ObjectProperty>
 	
@@ -2070,7 +2066,6 @@ Copyright (c) 2014-2017 Athan Services</sm:copyright>
 		<rdfs:label>has language aspect</rdfs:label>
 		<rdfs:domain rdf:resource="&dol;OMSLanguage"/>
 		<rdfs:range rdf:resource="&dol;LanguageAspect"/>
-		<owl:inverseOf rdf:resource="&dol;isLanguageAspectOf"/>
 		<skos:definition>relation between an OMS language and its language aspects</skos:definition>
 	</owl:ObjectProperty>
 	
@@ -2099,7 +2094,6 @@ SubPropertyChain: semanticallyDenotes o hasLogic</fibo-fnd-utl-av:usageNote>
 		<rdfs:subPropertyOf rdf:resource="&dol;isLinguisticallyRelatedTo"/>
 		<rdfs:label>has mapping</rdfs:label>
 		<rdfs:range rdf:resource="&dol;OMSMapping"/>
-		<owl:inverseOf rdf:resource="&dol;isMappingIn"/>
 		<skos:definition>subject is a DOL library, in which the object is a mapping between two participating OMS</skos:definition>
 	</owl:ObjectProperty>
 	
@@ -2117,7 +2111,6 @@ SubPropertyChain: semanticallyDenotes o hasLogic</fibo-fnd-utl-av:usageNote>
 		<rdfs:subPropertyOf rdf:resource="&dol;isLinguisticallyRelatedTo"/>
 		<rdfs:label>has OMS</rdfs:label>
 		<rdfs:range rdf:resource="&dol;OMS"/>
-		<owl:inverseOf rdf:resource="&dol;isOmsIn"/>
 		<skos:definition>subject is a DOL library, in which the object is a participating heterogeneous OMS</skos:definition>
 	</owl:ObjectProperty>
 	
@@ -2341,6 +2334,7 @@ SubPropertyChain: semanticallyDenotes o hasLogic</fibo-fnd-utl-av:usageNote>
 				</owl:unionOf>
 			</owl:Class>
 		</rdfs:range>
+		<owl:inverseOf rdf:resource="&dol;entails"/>
 		<skos:definition>inverse of relation of logical entailment</skos:definition>
 	</owl:ObjectProperty>
 	
@@ -2407,6 +2401,7 @@ SubPropertyChain: semanticallyDenotes o hasLogic</fibo-fnd-utl-av:usageNote>
 	<owl:ObjectProperty rdf:about="&dol;isLanguageAspectOf">
 		<rdfs:subPropertyOf rdf:resource="&dol;isLinguisticallyRelatedTo"/>
 		<rdfs:label>is language aspect of</rdfs:label>
+		<owl:inverseOf rdf:resource="&dol;hasLanguageAspect"/>
 		<skos:definition>set of language constructs of a given language, not necessarily forming a sublanguage</skos:definition>
 	</owl:ObjectProperty>
 	
@@ -2456,14 +2451,12 @@ SubPropertyChain: serialization o serializes</fibo-fnd-utl-av:usageNote>
 		<rdfs:subPropertyOf rdf:resource="&dol;isLinguisticallyRelatedTo"/>
 		<rdfs:subPropertyOf rdf:resource="&dol;isRelatedAsPartOfMapsTo"/>
 		<rdfs:label>mappable from language</rdfs:label>
-		<owl:inverseOf rdf:resource="&dol;isMappableToLanguage"/>
 		<skos:definition>indicates that there is a mapping from the object language to the subject language</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&dol;isMappableFromLogic">
 		<rdfs:subPropertyOf rdf:resource="&dol;isMathematicallyRelatedTo"/>
 		<rdfs:label>mappable from logic</rdfs:label>
-		<owl:inverseOf rdf:resource="&dol;isMappableToLogic"/>
 		<skos:definition>indicates that there is a mapping from the object logic to the subject logic</skos:definition>
 	</owl:ObjectProperty>
 	
@@ -2494,6 +2487,7 @@ SubPropertyChain: serialization o serializes</fibo-fnd-utl-av:usageNote>
 		<rdfs:subPropertyOf rdf:resource="&dol;isMappableTo"/>
 		<rdfs:subPropertyOf rdf:resource="&dol;isRelatedAsPartOfMapsTo"/>
 		<rdfs:label>is mappable to language</rdfs:label>
+		<owl:inverseOf rdf:resource="&dol;isMappableFromLanguage"/>
 		<skos:definition>indicates that there is a mapping from the subject language to the object language</skos:definition>
 	</owl:ObjectProperty>
 	
@@ -2502,19 +2496,20 @@ SubPropertyChain: serialization o serializes</fibo-fnd-utl-av:usageNote>
 		<rdfs:subPropertyOf rdf:resource="&dol;isMappableTo"/>
 		<rdfs:subPropertyOf rdf:resource="&dol;isMathematicallyRelatedTo"/>
 		<rdfs:label>is mappable to logic</rdfs:label>
+		<owl:inverseOf rdf:resource="&dol;isMappableFromLogic"/>
 		<skos:definition>indicates that there is a mapping from the subject logic to the object logic</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&dol;isMappedBy">
 		<rdfs:subPropertyOf rdf:resource="&dol;isRelatedAsPartOfMapsTo"/>
 		<rdfs:label>is mapped by</rdfs:label>
-		<owl:inverseOf rdf:resource="&dol;mapsFrom"/>
 		<skos:definition>object mapping maps from the subject into something of the same type as the subject</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&dol;isMappingIn">
 		<rdfs:subPropertyOf rdf:resource="&dol;isLinguisticallyRelatedTo"/>
 		<rdfs:label>is mapping in</rdfs:label>
+		<owl:inverseOf rdf:resource="&dol;hasMapping"/>
 		<skos:definition>object is a DOL library, in which the subject is a mapping between two participating OMS</skos:definition>
 	</owl:ObjectProperty>
 	
@@ -2582,6 +2577,7 @@ SubPropertyChain: serialization o serializes</fibo-fnd-utl-av:usageNote>
 	<owl:ObjectProperty rdf:about="&dol;isOmsIn">
 		<rdfs:subPropertyOf rdf:resource="&dol;isLinguisticallyRelatedTo"/>
 		<rdfs:label>is OMS in</rdfs:label>
+		<owl:inverseOf rdf:resource="&dol;hasOMS"/>
 		<skos:definition>subject is an OMS participating in a DOL library, which is the object</skos:definition>
 	</owl:ObjectProperty>
 	
@@ -2621,7 +2617,6 @@ SubPropertyChain: serialization o serializes</fibo-fnd-utl-av:usageNote>
 	<owl:ObjectProperty rdf:about="&dol;isReducibleFrom">
 		<rdfs:subPropertyOf rdf:resource="&dol;isMappableFrom"/>
 		<rdfs:label>is reducible from</rdfs:label>
-		<owl:inverseOf rdf:resource="&dol;isReducibleTo"/>
 		<skos:definition>indicates that there is a reduction from the object to the subject</skos:definition>
 	</owl:ObjectProperty>
 	
@@ -2630,6 +2625,7 @@ SubPropertyChain: serialization o serializes</fibo-fnd-utl-av:usageNote>
 		<rdfs:subPropertyOf rdf:resource="&dol;isMappableTo"/>
 		<rdfs:subPropertyOf rdf:resource="&dol;isMathematicallyRelatedTo"/>
 		<rdfs:label>is reducible to</rdfs:label>
+		<owl:inverseOf rdf:resource="&dol;isReducibleFrom"/>
 		<skos:definition>indicates that there is a reduction from the subject to the object</skos:definition>
 	</owl:ObjectProperty>
 	
@@ -2671,6 +2667,7 @@ SubPropertyChain: serialization o serializes</fibo-fnd-utl-av:usageNote>
 		<rdfs:subPropertyOf rdf:resource="&dol;isLinguisticallyRelatedTo"/>
 		<rdfs:label>is sequence memberOf</rdfs:label>
 		<rdfs:range rdf:resource="&dol;Sequence"/>
+		<owl:inverseOf rdf:resource="&dol;hasSequenceMember"/>
 		<skos:definition>sequence membership relation</skos:definition>
 	</owl:ObjectProperty>
 	
@@ -2694,7 +2691,6 @@ SubPropertyChain: serialization o serializes</fibo-fnd-utl-av:usageNote>
 	<owl:ObjectProperty rdf:about="&dol;isSourceOfMapping">
 		<rdfs:subPropertyOf rdf:resource="&dol;isRelatedAsPartOfMapsTo"/>
 		<rdfs:label>is source of mapping</rdfs:label>
-		<owl:inverseOf rdf:resource="&dol;mapsFrom"/>
 		<skos:definition>object mapping maps from the subject into something of the same type as the subject</skos:definition>
 	</owl:ObjectProperty>
 	
@@ -2773,6 +2769,8 @@ SubPropertyChain: serialization o serializes</fibo-fnd-utl-av:usageNote>
 		<rdfs:comment xml:lang="en">The subject mapping maps from the object into something of the same type as the object.</rdfs:comment>
 		<fibo-fnd-utl-av:usageNote>Enforcing the constraint that a mapping must map into something of the same type goes beyond OWL.</fibo-fnd-utl-av:usageNote>
 		<rdfs:domain rdf:resource="&dol;Mapping"/>
+		<owl:inverseOf rdf:resource="&dol;isMappedBy"/>
+		<owl:inverseOf rdf:resource="&dol;isSourceOfMapping"/>
 		<skos:definition>relationship between a mapping and its domain</skos:definition>
 	</owl:ObjectProperty>
 	
@@ -2791,9 +2789,6 @@ SubPropertyChain: serialization o serializes</fibo-fnd-utl-av:usageNote>
 		<rdfs:range rdf:resource="&xsd;string"/>
 		<skos:definition>the media type (MIME type) of a serialization</skos:definition>
 	</owl:DatatypeProperty>
-	
-	<owl:ObjectProperty rdf:about="&dol;partOf">
-	</owl:ObjectProperty>
 	
 	<owl:DatatypeProperty rdf:about="&dol;prefFilenameExtension">
 		<rdf:type rdf:resource="&owl;FunctionalProperty"/>
@@ -2938,15 +2933,6 @@ SubPropertyChain: isProfileOf o supportsSerialization</fibo-fnd-utl-av:usageNote
 		<rdfs:label>uses language</rdfs:label>
 		<skos:definition>relation between something and a language used by one or more components of it</skos:definition>
 	</owl:ObjectProperty>
-	
-	<owl:AnnotationProperty rdf:about="&fibo-fnd-utl-av;explanatoryNote">
-	</owl:AnnotationProperty>
-	
-	<owl:AnnotationProperty rdf:about="&fibo-fnd-utl-av;usageNote">
-	</owl:AnnotationProperty>
-	
-	<owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-krr/PivotalKnowledgeEnvironment">
-	</owl:Class>
 	
 	<owl:AllDisjointClasses>
 		<owl:members rdf:parseType="Collection">
