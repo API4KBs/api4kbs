@@ -1,0 +1,297 @@
+swagger: '2.0'
+
+info:
+  description: |
+
+    ### Summary
+
+    **Knowledge-Driven Reasoning (web) Service that supports the (stateless) execution of
+    Inferences, Queries, and related information processing tasks on one or more Knowledge Bases
+    (aka 'Models').**
+
+    #### Identification
+    In this context, a 'Model' is a Knowledge Base - regardless of whether it consists of a known,
+    single Knowledge Asset, or is the result of an Assembly on-the-fly.
+    Knowledge Bases have a unique identifier: in this server, deployed Knowledge Base
+    (i.e. the instantiation of a Knowledge Base in some software) and possibly even deployments are
+    tracked with different IDs.
+
+
+  version: "4.0.0"
+  title: "Model Evaluation Reasoning Service"
+  contact:
+    name: Davide Sottara
+    email: Sottara.Davide@mayo.edu
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+tags:
+  - name: Model
+    description: "Endpoints that expose (metadata about) the deployed model itself"
+  - name: Introspection
+    description: "Extract Surrogates from Knowledge Artifacts"
+  - name: Inference
+    description: "Endpoints that expose a model's computation capabilities as a function"
+  - name: Query
+    description: "Query"
+  #- name: asynch
+  #  description: "Endpoints that expose the model's asynchronous computation"
+
+paths:
+
+  #TODO Harmonize Introspectors and Evaluators
+  
+
+  /introspectors:
+    get:
+      tags:
+        - Introspection
+      summary: 'List available introspectors'
+      description: |
+        Enumerates the currently available introspectors
+      operationId: listIntrospectors
+      responses:
+        200:
+          description: The ID of the introspector function
+          schema:
+            $ref: '#/definitions/Pointer2'
+
+    post:
+      tags:
+        - Introspection
+      summary: 'Initialize an Introspector'
+      description: |
+        Initializes an introspector with an optional piece of knowledge,
+        which provides addotional context for the metadata extraction. 
+        Conceptually, the server will use that artifact to seed/augment a knowledgebase,
+        which can be specific to the Artifact to be introspected
+        (thus making the introspector artifact-specific), or shared.
+        The process of metadata extraction, then, is conceptually an inference based
+        on the context knowledge and the content of the artifact itself
+      operationId: initIntrospector
+      parameters:
+        - $ref: '#/parameters/sourceArtifact'
+      responses:
+        200:
+          description: The ID of the introspector function
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+    
+
+  /introspectors/{lambdaId}:
+    get:
+      tags:
+        - Introspection
+      summary: 'Describes the Surrogate Extraction strategy'
+      operationId: getIntrospector
+      description: |
+        Provides information about a specific metadata extractor
+      parameters:
+        - $ref: '#/parameters/lambdaId'  
+      responses:
+        200:
+          description: OK
+          # schema : TODO
+    
+    post:
+      tags:
+        - Introspection
+      summary: 'Extract a Knowledge Asset Surrogate from a given Knowledge Artifact'
+      description: |
+        The operation abstracts the actual strategy, which can be initialized to be 
+        specific to an Artifact, or a class thereof, but is supposed to be stateless
+        and idempotent.
+        The operation is also independent of the actual metadata model used to carry
+        the results, but the client SHOULD be able to use content negotiation to
+        express their preference in terms of model, profile, serialization format, etc.
+      operationId: introspect
+      parameters:
+        - $ref: '#/parameters/lambdaId'
+        - $ref: '#/parameters/sourceArtifact'
+        - $ref: '#/parameters/xAccept'
+      responses:
+        200:
+          description: The Surrogate that results from the application of the operator
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+    delete:
+      summary: 'Disables an introspector'
+      tags:
+        - Introspection
+      description: |
+        Disables an introspector, which will no longer be available for use
+      parameters:
+        - $ref: '#/parameters/lambdaId'
+      responses:
+        200:
+          description: OK
+    
+
+  /models:
+    get:
+      tags:
+        - Model
+      summary: List Models
+      operationId: listModels
+      description: "List the Models running on this server."
+      produces:
+        - application/json
+        - application/xml
+      # TODO: Apply the pagination trait
+      # TODO: Apply the asset type filter trait - other search/filter parameters?
+      responses:
+        200:
+          description: "List of References to available Models"
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer2'
+
+  /models/{modelId}/versions/{versionTag}:
+    get:
+      tags:
+        - Model
+      summary: Describe Model
+      operationId: getModel
+      description: "Return descriptive metadata about a specific model"
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: '#/parameters/modelId'
+        - $ref: '#/parameters/versionTag'
+      responses:
+        200:
+          description: "Information about the computable knowledge that is being executed
+          as a service, including enough information to resolve the Knowledge Asset of
+          which the model is an instantiation."
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+  /models/{modelId}/versions/{versionTag}/logic:
+    post:
+      tags:
+        - Inference
+      summary: Evaluate / Infer
+      operationId: infer
+      description: "Submits a dataset for evaluation. The model will be applied to each item in
+      the dataset, returning a new dataset with the inferred values. Each evaluation will be
+      independent. The Dataset MUST contain all the FEATURES required for model evaluation, as
+      the server will not attempt to resolve any, ignoring the CONTEXT. If both DATA and FEATURES
+      are provided, the server MIGHT try to infer the FEATURES from the DATA; if, for a given data
+      concept, the provided and inferred values are not identical, the server will respond with an
+      exception. As a result of a successful evaluation, the server MUST respond with a DataSet that
+      contains the computed output FEATURES, and SHOULD also include the output DATA Concepts."
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/modelId'
+        - $ref: '#/parameters/versionTag'
+        - in: body
+          name: features
+          required: true
+          schema:
+            $ref: '#/definitions/Map'
+      responses:
+        200:
+          description: "The results of the computation, returned synchronously"
+          schema:
+            $ref: '#/definitions/Map'
+
+  ##########################################################################################
+
+
+  /models/{modelId}/versions/{versionTag}/oracle:
+    post:
+      tags:
+        - Query
+      operationId: askQuery
+      description: submits a query to a KnowledgeBase
+      parameters:
+        - $ref: '#/parameters/modelId'
+        - $ref: '#/parameters/versionTag'
+        - name: query
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+      responses:
+        200:
+          description: The bound expression
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Bindings'
+
+parameters:
+  modelId:
+    in: path
+    name: modelId
+    type: string
+    format: uuid
+    required: true
+    description: "The Identifier of a known Inferential Knowledge Asset (aka kao#Assessment) that
+    is deployed and executed as a Service. This identifier SHOULD be an ID of the Asset itself,
+    not of the manifestation of the Asset within the server."
+
+  versionTag:
+    in: path
+    name: versionTag
+    type: string
+    required: true
+    description: "The Identifier os a specific version of a Model, within the series identified
+    by a modelId."
+    
+  lambdaId:
+    in: path
+    name: lambdaId
+    description: TODO
+    required: true
+    type: string
+    format: uuid
+    
+  sourceArtifact:
+    name: sourceArtifact
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/KnowledgeCarrier'  
+      
+  xAccept:
+    in: query
+    name: xAccept
+    description: |
+      A formal MIME type used for content negotiation 
+    required: false
+    type: string    
+    
+
+definitions:
+  Pointer2:
+    type: object
+    description: "Compact proxy object that carries references to another Resource. This object
+    used in operations that browse and list collections."
+
+  KnowledgeCarrier:
+    type: object
+    description: "A Resource that describes a particular representation of a Knowledge Asset."
+
+  Map:
+    type: object
+    description: "A single table row, implemented by means of a map, where the 'column' keys
+    SHALL correspond to either the names or the concept URIs of one or more Data Concepts,
+    and the values is one array of uniform length."
+
+    
+  Bindings:
+    type: object
+
+# Added by API Auto Mocking Plugin
+schemes:
+  - https
+basePath: /kmdp.mayo.edu/reasoning/v4/
