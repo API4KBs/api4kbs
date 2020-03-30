@@ -102,8 +102,9 @@ paths:
         - application/json
         - application/xml
       parameters:
-        - $ref: '#/parameters/assetType'
-        - $ref: '#/parameters/assetAnnotation'
+        - $ref: '#/parameters/assetTypeTag'
+        - $ref: '#/parameters/assetAnnotationTag'
+        - $ref: '#/parameters/assetAnnotationConcept'
         # pageable # TODO inherit from common parameters shared across APIs
         - $ref: '#/parameters/offset'
         - $ref: '#/parameters/limit' 
@@ -716,7 +717,7 @@ paths:
       parameters:
         - $ref: '#/parameters/assetId'
         - $ref: '#/parameters/versionTag'
-        - $ref: '#/parameters/assetRelationship'
+        - $ref: '#/parameters/assetRelationshipTag'
         - $ref: '#/parameters/depth'
       produces:
         - "application/json"
@@ -754,7 +755,7 @@ paths:
       parameters:
         - $ref: '#/parameters/assetId'
         - $ref: '#/parameters/versionTag'
-        - $ref: '#/parameters/assetRelationship'
+        - $ref: '#/parameters/assetRelationshipTag'
         - $ref: '#/parameters/depth'
         - $ref: '#/parameters/extAccept'
       produces:
@@ -870,29 +871,41 @@ paths:
 
 parameters:
   
-  assetType:
+  assetTypeTag:
     in: query
-    name: assetType
+    name: assetTypeTag
     required: false
     type: string
     description: |
-      A codified term that identifies a type, category or class of Knowledge Assets defined in some ontology or classification scheme known to the server. For this reason, the term does not need to be fully qualified.
+      An unqualified, codified term ("tag") that identifies a type, category or class of Knowledge Assets defined in some ontology
+      or classification scheme known to the server.
   
-  assetAnnotation:
+  assetAnnotationTag:
     in: query
-    name: assetAnnotation
+    name: assetAnnotationTag
     required: false
     type: string
+    description: |
+      An unqualified, codified term ("tag") that identifies a relationship between a Knowledge Assets and a concept.
+      The relationship must be defined in some ontology known to the server.
+
+  assetAnnotationConcept:
+    in: query
+    name: assetAnnotationConcept
+    required: false
+    type: string
+    format: uri
     description: |
       A fully qualified (URI) term that denotes a concept that can be used to annotate assets.
 
-  assetRelationship:
+  assetRelationshipTag:
     in: query
-    name: assetRelationship
+    name: assetRelationshipTag
     required: false
     type: string
     description: |
-      A fully qualified (URI) term that denotes a relationship type that can be asserted between assets
+      An unqualified, codified term ("tag") that identifies a relationship between two Knowledge Assets.
+            The relationship must be defined in some ontology known to the server.
 
   assetId:
     in: path
