@@ -688,20 +688,23 @@ paths:
 ####################################################################################################  
 #TODO - Revision in progress      
       
-  /cat/assets/graphql:      
-    get:
+  /cat/assets/graph
+    post:
       tags:
         - Knowledge Asset Retrieval
       operationId: queryKnowledgeAssets
-      summary: GraphQL based retrieval
+      summary: Query based retrieval
       description: |
-        Queries the Knowledge Asset (Surrogate) Knowledge Base using GraphQL
+        Lets the client query the Knowledge Asset (Surrogate) Knowledge Base using a query language
+        supported by the server (e.g. GraphQL, SPARQL)
       parameters:
-        - $ref: '#/parameters/graphQLquery'
+        - $ref: '#/parameters/graphQuery'
       responses:
         200:
           description: |
             Success
+          schema:
+            type: Bindings
  
   /cat/assets/{assetId}/versions/{versionTag}/bundle:       
     get:
@@ -997,14 +1000,14 @@ parameters:
  
  
 #TODO - Should be moved to a common file
-  
-  graphQLquery:
-    in: query
-    name: query
+
+  graphQuery:
+    in: body
+    name: graphQuery
     required: true
-    type: string
+    type: KnowledgeCarrier
     description: |
-      The GraphQL query
+      The query, wrapped in a KnowledgeCarrier that must state in what language the query is expressed
  
   beforeTag:
     in: query
@@ -1012,14 +1015,16 @@ parameters:
     required: false
     type: string
     description: |
-      Restricts the series to include only versions before (included) a given version Tag. Assumes the underlying versioning scheme has at least a partial ordering defined.
+      Restricts the series to include only versions before (included) a given version Tag.
+      Assumes the underlying versioning scheme has at least a partial ordering defined.
   afterTag:
     in: query
     name: afterTag
     required: false
     type: string
     description: |
-      Restricts the series to include only versions after (included) a given version Tag. Assumes the underlying versioning scheme has at least a partial ordering defined.
+      Restricts the series to include only versions after (included) a given version Tag.
+      Assumes the underlying versioning scheme has at least a partial ordering defined.
   
   sort:
     in: query
@@ -1036,7 +1041,8 @@ parameters:
     type: integer
     required: false
     description: |
-      Filters elements in a collection, returning all elements after the 'offset' index included, ignoring all previous elements.
+      Filters elements in a collection, returning all elements after the 'offset' index included,
+      ignoring all previous elements.
   limit:
     in: query
     name: limit
@@ -1061,13 +1067,17 @@ definitions:
     title: Knowledge Asset Surrogate
     type: object
     description: |
-      A Resource that contains descriptive information about a specific version of a Knowledge Asset, as well as its known Representations and/or Manifestations. The actual content model is implementation specific, so the adopted language specification must be manifested by the Knowledge Asset Catalog.
+      A Resource that contains descriptive information about a specific version of a
+      Knowledge Asset, as well as its known Representations and/or Manifestations.
+      The actual content model is implementation specific, so the adopted language specification
+      must be manifested by the Knowledge Asset Catalog.
  
   KnowledgeAssetCatalog:
     title: Knowledge Asset Catalog
     type: object
     description: |
-      A Resource that provides a summary of the features of a Catalog at a given point in time, including the categories and types of Assets it supports, and the model/schema used to represent Assets' descriptions.
+      A Resource that provides a summary of the features of a Catalog at a given point in time,
+      including the categories and types of Assets it supports, and the model/schema used to represent Assets' descriptions.
 
 
 
