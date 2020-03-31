@@ -688,7 +688,7 @@ paths:
 ####################################################################################################  
 #TODO - Revision in progress      
       
-  /cat/assets/graph
+  /cat/assets/graph:
     post:
       tags:
         - Knowledge Asset Retrieval
@@ -702,10 +702,13 @@ paths:
       responses:
         200:
           description: |
-            Success
+            The query was executed successfully. Does not imply that any result will be returned,
+            nor that those results are correct
           schema:
-            type: Bindings
- 
+            type: array
+            items:
+              $ref: '#/definitions/Bindings'
+
   /cat/assets/{assetId}/versions/{versionTag}/bundle:       
     get:
       tags:
@@ -1005,7 +1008,8 @@ parameters:
     in: body
     name: graphQuery
     required: true
-    type: KnowledgeCarrier
+    schema: 
+      $ref: '#/definitions/KnowledgeCarrier'
     description: |
       The query, wrapped in a KnowledgeCarrier that must state in what language the query is expressed
  
@@ -1079,6 +1083,11 @@ definitions:
       A Resource that provides a summary of the features of a Catalog at a given point in time,
       including the categories and types of Assets it supports, and the model/schema used to represent Assets' descriptions.
 
+  Bindings:
+    title: Bindings
+    type: object
+    description: |
+      A key/value pair map that binds the variables of a query to the result answer
 
 
 schemes:
