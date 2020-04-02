@@ -444,7 +444,7 @@ paths:
       parameters:
         - $ref: '#/parameters/assetId'
         - $ref: '#/parameters/versionTag'
-        - $ref: '#/parameters/exemplarCarrier'
+        - $ref: '#/parameters/exemplar'
       responses:
         201:
           description: Success
@@ -526,7 +526,7 @@ paths:
         - $ref: '#/parameters/versionTag'
         - $ref: '#/parameters/artifactId'
         - $ref: '#/parameters/artifactVersionTag'
-        - $ref: '#/parameters/exemplarCarrier'
+        - $ref: '#/parameters/exemplar'
       responses:
         204:
           description: |
@@ -547,20 +547,91 @@ paths:
           description: |
             Not implemented     
     
+  
+  /cat/assets/{assetId}/versions/{versionTag}/surrogates:
+    get:
+      tags:
+      - Knowledge Asset Repository
+      summary: Lists the known Surrogates for a given Knowledge Asset
+      description: |
+        Retrieves Pointers to the various surrogates (metadata records) that
+        this server is aware of, for the given asset.
+        
+        Must include the Canonical Knowledge Asset Surrogate maintained
+        by this server, as returned by 'getCanonicalKnowledgeAssetSurrogate'
+      operationId: getKnowledgeAssetSurrogates
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+      responses:
+        200:
+          description: | 
+            Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer2'
+        403:  
+          description: |
+            The client does not have the adequate permissions
+        404:
+          description: |
+            Asset Version not found   
+        500:
+          description: |
+            Internal error     
+        501:
+          description: |
+            Not implemented.
+
+  /cat/assets/{assetId}/versions/{versionTag}/surrogates/{artifactId}/versions/{artifactVersionTag}:
+    get:
+      tags:
+      - Knowledge Asset Repository
+      summary: Retrieves a specific Surrogate for a given Knowledge Asset
+      description: |
+        Retrieves (a copy of) a specific version of an Asset's Surrogate Artifact. 
+      operationId: getKnowledgeAssetSurrogateVersion
+      produces:
+      - application/*
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/artifactId'
+        - $ref: '#/parameters/artifactVersionTag'
+      responses:
+        200:
+          description: |
+            The identifiers can be resolved
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        403:
+          description: |
+            The client does not have the necessary rights.  
+        404:
+          description: |
+            Asset or Artifact Version not found    
+        500:
+          description: |
+            Internal error  
+        
     
   /cat/assets/{assetId}/versions/{versionTag}/surrogate:
     get:
       tags:
       - Knowledge Asset Repository
-      summary: Retrieve the Knowledge Asset Surrogate, as a Knowledge Artifact. 
+      summary: Retrieve the primary Knowledge Asset Surrogate, as a Knowledge Artifact. 
       description: |
         Returns the Surrogate of the referenced Asset, wrapped in a Knowledge Carrier,
         to be consumed as a Knowledge Artifact. 
         
-        Supports content negotiation, allowing to retrieve the Surrogate in variant forms, if supported
+        Supports content negotiation, allowing to retrieve the Surrogate in variant forms, if supported. 
+        Notice that this endpoint should not be used for metadata federation, i.e. to link other surrogates than the primary one supported by this server, usually with different metadata content
         
-        If content negotiation is not used, the Surrogate in response Knowledge Carrier is identical
-        to the Surrogate returned invoking getAsset
+        If content negotiation is not used, the Surrogate in response Knowledge Carrier is identical to the Surrogate returned invoking getAsset
       operationId: getCanonicalKnowledgeAssetSurrogate
       produces:
       - application/xml
@@ -599,7 +670,53 @@ paths:
         501:
           description: |
             Not implemented    
-            
+    post:        
+      tags:
+        - Knowledge Asset Repository
+      summary: Initializes one (or more) Knowledge Assets.
+      description: |
+        Allows to client to publish a Surrogate for a given Asset, treating it
+        as a Knowledge Artifact, thus allowing e.g. pre-processing, negotiation and transformation
+        before the Surrogate is added to the Server.
+        
+        The KnowledgeCarrier must contain a valid Knowledge Asset Surrogate
+        for the given Knowledge Asset, which is either in the Canonical form
+        supported by this server (see getAsset), or mappable by means of translation
+        
+        The Asset must have been initialized. Once unwrapped and normalized, the actual Surrogate
+        is processed as if 'setVersionedKnowledgeAsset' had been invoked.
+        
+        This operation also supports Composite Surrogates, which must be TREE-based or GRAPH-based. The root of the tree/graph MUST be this Asset. 
+        Additional Assets that are part of the Composite will be processed recursively, invoking this 'publishKnowledgeAsset' operation.
+        
+      operationId: publishKnowledgeAsset
+      produces: 
+        - application/json
+      parameters: 
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/assetSurrogateCarrier'
+      responses:
+        201:
+          description: Success
+        403:
+          description: |
+            Client is not allowed to create new Assets
+        405:
+          description: |
+            Not supported - Repository is read only
+        406:
+          description: |
+            The server cannot translate the Carrier into a canonical Surrogate
+        409: 
+          description: |
+            The identifiers on the Carrier and the provided Surrogate do not match this asset
+        500:
+          description: |
+            Internal error     
+        501: 
+          description: |
+            Not implemented     
       
   /cat/assets/{assetId}/versions/{versionTag}/surrogate/versions:
     get:
@@ -608,7 +725,7 @@ paths:
       summary: Lists the version history of the Knowledge Asset Surrogate. 
       description: |
         Returns Pointers to all the Versions of the Knowledge Asset Surrogate
-      operationId: getKnowledgeAssetSurrogateVersions
+      operationId: getCanonicalKnowledgeAssetSurrogateVersions
       produces:
       - application/xml
       - application/json
@@ -646,7 +763,7 @@ paths:
         
         Notice that the history of the Surrogate as a metadata record is different from the history
         of the Asset that the Surrogate is about.
-      operationId: getKnowledgeAssetSurrogateVersion
+      operationId: getCanonicalKnowledgeAssetSurrogateVersion
       produces:
       - application/xml
       - application/json
@@ -708,7 +825,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Bindings'
-
+ 
   /cat/assets/{assetId}/versions/{versionTag}/bundle:       
     get:
       tags:
@@ -990,8 +1107,18 @@ parameters:
       $ref: '#/definitions/KnowledgeAsset2'
     description: |
       The Surrogate of a Knowledge Asset.
+
+  assetSurrogateCarrier:
+    in: body
+    name: assetSurrogateCarrier
+    required: true
+    schema:
+      $ref: '#/definitions/KnowledgeCarrier'
+    description: |
+      The Surrogate of a Knowledge Asset, wrapped in a Knowledge Carrier.
+
     
-  exemplarCarrier:  
+  exemplar:  
     in: body
     name: exemplar
     required: false
