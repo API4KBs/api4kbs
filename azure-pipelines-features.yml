@@ -18,6 +18,16 @@ steps:
     echo Project :: API4KP
   displayName: 'Pipeline Steps Started'
 
+# Set JDK 11 and MVN Validate Project
+- task: Maven@3
+  displayName: 'Set Maven JDK 11'
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'validate'
+    options: '-ntp'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+
 # Read Root POM File and Set GAV Variables
 - task: PowerShell@2
   displayName: 'Read POM/Set GAV Variables'
@@ -77,6 +87,7 @@ steps:
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.11'
     jdkArchitectureOption: 'x64'
+    options: '-ntp'
 
 # ------------------ END PIPELINE  ------------------
 - script: |
