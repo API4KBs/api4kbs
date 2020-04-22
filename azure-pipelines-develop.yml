@@ -5,8 +5,14 @@
 # !! Downstream Build: kmdp-bom; develop !!
 
 trigger: 
-    - develop
-
+  branches:
+    include:
+      - develop
+  paths:
+    exclude:
+      - azure-pipelines-develop.yml
+      - azure-pipelines-features.yml
+      
 pool:
   vmImage: 'ubuntu-latest'
 
