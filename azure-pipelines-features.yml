@@ -5,8 +5,14 @@
 
 # !! No Downstream Builds !!
 
-trigger:
-- feature*
+trigger: 
+  branches:
+    include:
+      - feature*
+  paths:
+    exclude:
+      - azure-pipelines-develop.yml
+      - azure-pipelines-features.yml
 
 pool:
   vmImage: 'ubuntu-latest'
