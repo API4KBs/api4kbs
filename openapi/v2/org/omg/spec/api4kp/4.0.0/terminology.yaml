@@ -1,9 +1,23 @@
 swagger: '2.0'
 info:
   description: |
-    This is a demo terminology API built on top of the API4KP framework
+    This is a Terminology API built on top of the API4KP framework that provides 
+    access to Terminologies and Concepts.
+    
+    In this context, 
+    
+    Terminologies are loosely defined as sets of Concepts, e.g. in the sense 
+    of SKOS ConceptSchemes or Collections, or OWL Ontology Documents.
+    Concepts are atomic units of knowledge that can be described/defined, can
+    be related to each other, and can be evoked by means of linguistic terms.
+  
+    Implementations of this API can be more formal in their definition, e.g.
+    by enforcing the separation of Class and Concept.
+    
+    This API is designed for Knowledge-Based implementations
+    
   version: "4.0.0"
-  title: Demo Terminology Server API
+  title: Terminology Server API
   # put the contact info for your development or API team
   contact:
     email: dsotty@gmail.com
@@ -20,36 +34,40 @@ tags:
 #TODO revisit the path naming strategy
 
 paths:
-  /vocabularies:
+  /terminologies:
     get:
-      # priority: high
       tags:
       - Terms
       summary: Lists available terminologies
       operationId: listTerminologies
       description: |
-        Enumerates the terminologies currently managed by this server
+        Enumerates the Terminologies currently managed by this server
       produces:
       - application/json
       - application/xml
       responses:
         200:
-          description: search results matching criteria
+          description: |
+            Returns a list of Pointers to the known Terminologies
           schema:
             type: array
             items:
-              $ref: '#/definitions/Pointer'
+              $ref: '#/definitions/Pointer2'
+        501:
+          description: |
+            Internal error
               
               
               
-  /vocabularies/{vocabularyId}/versions/{versionTag}:
+  /terminologies/{vocabularyId}/versions/{versionTag}:
     get:
       # priority: medium-low
       tags:
       - Terms
-      summary: Returns a representation of a vocabulary
+      summary: Retrieves some representation of a terminology system
       description: |
-        Returns a representation of this version of the vocabulary.
+        Returns a representation of a specific version of the given terminology.
+        The terminology is supposed to define
         Supports content negotiation to handle e.g. RDF vs FHIR
       operationId: getVocabulary
       produces:
@@ -91,7 +109,7 @@ paths:
         400:
           description: vocabulary not found           
               
-  /vocabularies/{vocabularyId}/versions/{versionTag}/terms:
+  /terminologies/{vocabularyId}/versions/{versionTag}/terms:
     get:
       # priority: high
       tags:
@@ -118,11 +136,11 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/ConceptIdentifier'
+              $ref: '#/definitions/ConceptDescriptor'
         400:
           description: vocabulary not found
 
-  /vocabularies/{vocabularyId}/versions/{versionTag}/terms/{conceptId}:
+  /terminologies/{vocabularyId}/versions/{versionTag}/terms/{conceptId}:
     get:
       # priority: high
       tags:
@@ -140,16 +158,19 @@ paths:
         200:
           description: success
           schema:
-            $ref: '#/definitions/ConceptIdentifier'
+            $ref: '#/definitions/ConceptDescriptor'
         400:
           description: vocabulary or concept not found
 
-    post:
+
+  /terminologies/{vocabularyId}/versions/{versionTag}/terms/{conceptId}/ancestors:
+
+    get:
       # priority: low
       tags:
       - Terms
-      summary: Determines if two concepts are related - default by subsumption (isA)
-      operationId: relatesTo
+      summary: List the ancestor(s) of the selected concept
+      operationId: listAncestors
       produces:
       - application/json
       - application/xml
@@ -157,13 +178,38 @@ paths:
         - $ref: '#/parameters/vocabularyId'
         - $ref: '#/parameters/versionTag'
         - $ref: '#/parameters/conceptId'
-        - $ref: '#/parameters/relationshipId'
-
+      responses:
+        200:
+          description: The query was executed successfully.  Does not imply that any result will be returned.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ConceptDescriptor'
+        400:
+          description: vocabulary not found
+    post:
+      # priority: low
+      tags:
+      - Terms
+      summary: Determines the target concept is an ancestor of the selected concept
+      operationId: isAncestor
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+        - $ref: '#/parameters/vocabularyId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/conceptId'
+        
+        - $ref: '#/parameters/testConceptId'
       responses:
         200:
           description: success
+          schema:
+            $ref: '#/definitions/boolean'
         400:
           description: vocabulary not found     
+  
           
 parameters:
 
@@ -181,6 +227,15 @@ parameters:
     description: The id of a concept
     required: true
     type: string
+    
+        
+  testConceptId:
+    name: testConceptId
+    in: query
+    description: The id of a concept
+    required: true
+    type: string
+
 
     
   conceptExpression:
@@ -193,7 +248,7 @@ parameters:
   relationshipId:
     name: relationshipId
     in: query
-    description: The id of a concept relationsho[]
+    description: The id of a concept relationship
     required: false
     type: string
 
@@ -214,15 +269,15 @@ parameters:
 
 
 definitions:
-  Pointer:
+  Pointer2:
     type: object
-  ConceptIdentifier:
+  ConceptDescriptor:
     type: object
   KnowledgeCarrier:
     type: object
     
 # Added by API Auto Mocking Plugin
 host: virtserver.swaggerhub.com
-basePath: /kmdp.mayo.edu/terms/v3/
+basePath: /kmdp.mayo.edu/terms/v4/
 schemes:
  - https
