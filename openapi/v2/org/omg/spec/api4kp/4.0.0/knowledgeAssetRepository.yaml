@@ -1,7 +1,7 @@
 swagger: '2.0'
 
 info:
-  version: "4.0.0"
+  version: "4.0.1"
   title: 'Knowledge Asset Repository API'
   contact:
     name: Davide Sottara
@@ -56,7 +56,7 @@ info:
     Atomic Resources can be created from their Composite counterparts by means of _flattening_.
 
 
-    **#Service Boundaries**
+    **Service Boundaries**
     Unlike Knowledge Artifact Repositories, for which Artifacts are black boxes, Knowledge _Asset_ Repositories consider Assets and their Carriers as gray boxes.
     A Knowledge Asset Repository SHOULD delegate to a Language Service the ability to parse/serialize, validate and otherwise analyze the content of a Knowledge Carriers associated to an Asset. Language Trans*ion services SHOULD also be leveraged for Content Negotiation Purposes.
     A Knowledge Asset Repository SHOULD leverage a Knowledge Base Construction Service to manipulate artifacts, especially for the purpose of constructing, deconstructing, flattening and generating metadata.
@@ -829,9 +829,14 @@ paths:
 
         This operation is atomically equivalent to (initKnowledgeAsset o setKnowledgeAssetVersion).
 
-        The operation MUST also supports Composite Assets. The client MUST provide a CompositeKnowledgeCarrier, which must be TREE-based or GRAPH-based, and the root of the tree/graph MUST be the given Asset.
-        If these conditions are met, addKnowledgeAssetVersion is invoked recursively on the components, which MUST all contain canonical Knowledge Asset Surrogates.
+        The operation MUST also supports Composite Assets. The client MUST provide a CompositeKnowledgeCarrier, which can be SET-based, TREE-based or GRAPH-based.
+          The root of the (set/)tree/graph, if any, MUST NOT be the given Asset, to preserve
+          the distinction between the Composite and its Components.
+
+        If these conditions are met, the operation is invoked recursively on the components, which MUST all contain canonical Knowledge Asset Surrogates.
         The Struct MUST be merged with the repository's Knowledge Graph, and should not be inconsistent with any relationship that can be inferred from the individual Surrogates during their registration.
+
+        Anonymous Composite Assets are treated like other Assets. The components, and relatioships thereof, will be persisted. However, the Composite itself, and the 'hasPart' relationship, will not.
 
       operationId: addCanonicalKnowledgeAssetSurrogate
       produces:
@@ -1174,7 +1179,7 @@ paths:
           description: |
             Success
           schema:
-            $ref: '#/definitions/KnowledgeCarrier'
+            $ref: '#/definitions/CompositeKnowledgeCarrier'
         300:
           description: |
             The Composite Asset cannot be assembled in the desired format, but alternatives are available
@@ -1191,6 +1196,42 @@ paths:
         406:
           description: |
             The Artifact(s) cannot be delivered using the desired representation(s), and no alternatives are available
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+    post:
+      tags:
+        - Knowledge Asset Repository
+      summary: Assembles an Anonymous Composite Knowledge Asset Surrogate using an Asset and its relationships as a seed
+      description: |
+        Given an existing Knowledge Asset, executes a query that selects one or more Assets
+        based on a posted query.
+        The query's result bindings are treated as Asset Ids, resolved, and used to construct
+        an Anonymous Composite Knowledge Asset Surrogate
+      operationId: getAnonymousCompositeKnowledgeAssetSurrogate
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/graphQuery'
+        - $ref: '#/parameters/extAccept'
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            $ref: '#/definitions/CompositeKnowledgeCarrier'
+        403:
+          description: |
+            The client cannot access the Asset
+        404:
+          description: |
+            Asset Version not found
         500:
           description: |
             Internal error
@@ -1228,7 +1269,7 @@ paths:
           description: |
             Success
           schema:
-            $ref: '#/definitions/KnowledgeCarrier'
+            $ref: '#/definitions/CompositeKnowledgeCarrier'
         300:
           description: |
             The Composite Artifact cannot be assembled in the desired format, but alternatives are available
@@ -1251,7 +1292,42 @@ paths:
         501:
           description: |
             Not implemented
-
+    post:
+      tags:
+        - Knowledge Asset Repository
+      summary: Assembles an Anonymous Composite Knowledge Asset Carrier using an Asset and its relationships as a seed
+      description: |
+        Given an existing Knowledge Asset, executes a query that selects one or more Assets
+        based on a posted query.
+        The query's result bindings are treated as Asset Ids, resolved, mapped to a Carrier
+        Artifact, and used to construct an Anonymous Composite Knowledge Artifact
+      operationId: getAnonymousCompositeKnowledgeAssetCarrier
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/graphQuery'
+        - $ref: '#/parameters/extAccept'
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            $ref: '#/definitions/CompositeKnowledgeCarrier'
+        403:
+          description: |
+            The client cannot access the Asset
+        404:
+          description: |
+            Asset Version not found
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
 
 
 
@@ -1474,6 +1550,12 @@ definitions:
     type: object
     description: |
       A Resource that wraps a Serialized, Encoded Knowledge Artifact
+
+  CompositeKnowledgeCarrier:
+    type: object
+    description: |
+      A Specialized KnowledgeCarrier for composite Artifacts (Surrogates and Carriers)
+
 
   KnowledgeAsset2:
     title: Knowledge Asset Surrogate
