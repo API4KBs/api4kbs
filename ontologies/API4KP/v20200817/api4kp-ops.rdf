@@ -67,9 +67,6 @@
 		<owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/20200801/api4kp-ops/"/>
 	</owl:Ontology>
 	
-	<owl:Class rdf:about="&api4kp-krr;WorkingKnowledgeBase">
-	</owl:Class>
-	
 	<owl:Class rdf:about="&api4kp-ops;AbridgmentTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;ParaphraseTask"/>
 		<rdfs:label>abdrigment task</rdfs:label>
@@ -117,7 +114,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp-krr;ComputationalComplexityClass"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -153,7 +150,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;EncodedKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -170,7 +167,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;ConcreteKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -180,10 +177,6 @@
 		</rdfs:subClassOf>
 		<rdfs:label>decoding task</rdfs:label>
 		<skos:definition>the act of recreating a concrete expression from its encoded version</skos:definition>
-		<api4kp:has-aspect rdf:resource="&api4kp;atomic-operation"/>
-		<api4kp:has-aspect rdf:resource="&api4kp;chainable-operation"/>
-		<api4kp:has-aspect rdf:resource="&api4kp;pure-operation"/>
-		<api4kp:has-aspect rdf:resource="&api4kp;single-output-operation"/>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;DependencyResolutionTask">
@@ -197,7 +190,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -214,7 +207,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -243,7 +236,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp-lang;Encoding"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -260,7 +253,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;ConcreteKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -277,7 +270,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;EncodedKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -314,7 +307,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp-lang;AbstractSyntax"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -331,7 +324,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp-lang;Lexicon"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -348,7 +341,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;WorkOfKnowledge"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -365,7 +358,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;AbstractKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -414,7 +407,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -431,7 +424,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -461,7 +454,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -478,8 +471,8 @@
 							<rdf:Description rdf:about="&api4kp-ops;Substrate">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
-								<owl:someValuesFrom rdf:resource="&api4kp-krr;WorkingKnowledgeBase"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
+								<owl:someValuesFrom rdf:resource="&api4kp-krr;KnowledgeBase"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
 					</owl:Class>
@@ -515,7 +508,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp-lang;AbstractSyntaxTree"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -532,7 +525,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;WorkOfKnowledge"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -543,10 +536,6 @@
 		<rdfs:label>interpretation task</rdfs:label>
 		<skos:altLabel>conceptualization task</skos:altLabel>
 		<skos:definition>The act of extracting the information content expressed by a knowledge expression, by means of analyzing the AST of that expression</skos:definition>
-		<api4kp:has-aspect rdf:resource="&api4kp;atomic-operation"/>
-		<api4kp:has-aspect rdf:resource="&api4kp;chainable-operation"/>
-		<api4kp:has-aspect rdf:resource="&api4kp;pure-operation"/>
-		<api4kp:has-aspect rdf:resource="&api4kp;single-output-operation"/>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeAnalyticTask">
@@ -566,10 +555,10 @@
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom>
 									<owl:Restriction>
-										<owl:onProperty rdf:resource="&api4kp-ops;copyOf"/>
+										<owl:onProperty rdf:resource="&api4kp-ops;isCopyOf"/>
 										<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeArtifact"/>
 									</owl:Restriction>
 								</owl:someValuesFrom>
@@ -594,7 +583,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp-series;VersionIdentifier"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -611,7 +600,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;KnowledgeProcessingTaskRole">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeArtifact"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -635,10 +624,10 @@
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom>
 									<owl:Restriction>
-										<owl:onProperty rdf:resource="&api4kp-ops;copyOf"/>
+										<owl:onProperty rdf:resource="&api4kp-ops;isCopyOf"/>
 										<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeAssetSurrogate"/>
 									</owl:Restriction>
 								</owl:someValuesFrom>
@@ -663,7 +652,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Substrate">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeAsset"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -686,8 +675,8 @@
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
-								<owl:someValuesFrom rdf:resource="&api4kp-krr;WorkingKnowledgeBase"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
+								<owl:someValuesFrom rdf:resource="&api4kp-krr;KnowledgeBase"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
 					</owl:Class>
@@ -703,8 +692,8 @@
 							<rdf:Description rdf:about="&api4kp-ops;Substrate">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
-								<owl:someValuesFrom rdf:resource="&api4kp-krr;WorkingKnowledgeBase"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
+								<owl:someValuesFrom rdf:resource="&api4kp-krr;KnowledgeBase"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
 					</owl:Class>
@@ -726,7 +715,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&lcc-lr;Identifier"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -743,10 +732,10 @@
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom>
 									<owl:Restriction>
-										<owl:onProperty rdf:resource="&api4kp-ops;copyOf"/>
+										<owl:onProperty rdf:resource="&api4kp-ops;isCopyOf"/>
 										<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeArtifact"/>
 									</owl:Restriction>
 								</owl:someValuesFrom>
@@ -758,7 +747,6 @@
 		</rdfs:subClassOf>
 		<rdfs:label>knowledge carrier retrieval task</rdfs:label>
 		<skos:definition>retrieves a knowledge artifact that is the carrier of (a given version of) a knowledge asset, possibly choosing between variant carriers using content negotiation</skos:definition>
-		<api4kp:has-aspect rdf:resource="&api4kp;single-output-operation"/>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeProcessingActivity">
@@ -779,7 +767,7 @@
 							<rdf:Description rdf:about="&api4kp-ops;KnowledgeProcessingTaskRole">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -818,8 +806,8 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 				<owl:onProperty rdf:resource="&api4kp-ops;involvesRole"/>
 				<owl:someValuesFrom>
 					<owl:Restriction>
-						<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
-						<owl:someValuesFrom rdf:resource="&api4kp-krr;WorkingKnowledgeBase"/>
+						<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
+						<owl:someValuesFrom rdf:resource="&api4kp-krr;KnowledgeBase"/>
 					</owl:Restriction>
 				</owl:someValuesFrom>
 			</owl:Restriction>
@@ -839,7 +827,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -856,7 +844,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -873,7 +861,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Substrate">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeFragment"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -908,7 +896,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -925,7 +913,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;StructuringKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -942,7 +930,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;CompositeKnowledgeResource"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -967,7 +955,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 				<owl:onProperty rdf:resource="&api4kp-ops;involvesRole"/>
 				<owl:someValuesFrom>
 					<owl:Restriction>
-						<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+						<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 						<owl:someValuesFrom rdf:resource="&api4kp;StructuringKnowledgeExpression"/>
 					</owl:Restriction>
 				</owl:someValuesFrom>
@@ -988,7 +976,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1005,7 +993,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;StructuringKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1034,7 +1022,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1051,7 +1039,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;StructuringKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1074,7 +1062,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1091,7 +1079,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResourceDescription"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1121,7 +1109,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;CompositeKnowledgeResource"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1138,7 +1126,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;StructuringKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1155,7 +1143,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1184,7 +1172,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1201,7 +1189,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1220,7 +1208,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 				<owl:onProperty rdf:resource="&api4kp-ops;involvesRole"/>
 				<owl:someValuesFrom>
 					<owl:Restriction>
-						<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+						<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 						<owl:someValuesFrom rdf:resource="&api4kp;StructuringKnowledgeExpression"/>
 					</owl:Restriction>
 				</owl:someValuesFrom>
@@ -1235,7 +1223,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;CompositeKnowledgeResource"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1252,7 +1240,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1276,7 +1264,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;StructuringKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1293,7 +1281,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;StructuringKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1337,10 +1325,10 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:allValuesFrom>
 									<owl:Restriction>
-										<owl:onProperty rdf:resource="&api4kp-ops;copyOf"/>
+										<owl:onProperty rdf:resource="&api4kp-ops;isCopyOf"/>
 										<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeAssetSurrogate"/>
 									</owl:Restriction>
 								</owl:allValuesFrom>
@@ -1371,7 +1359,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&dol;Profile"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1388,7 +1376,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp-lang;Serialization"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1405,7 +1393,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&lcc-lr;Language"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1440,7 +1428,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&dol;Logic"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1470,7 +1458,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1487,7 +1475,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1519,7 +1507,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;ConcreteKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1536,7 +1524,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;AbstractKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1546,10 +1534,6 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 		</rdfs:subClassOf>
 		<rdfs:label>parsing task</rdfs:label>
 		<skos:definition>the act of creating an AST (of an abstract knowldge expression) from a concrete knowledge expression</skos:definition>
-		<api4kp:has-aspect rdf:resource="&api4kp;chainable-operation"/>
-		<api4kp:has-aspect rdf:resource="&api4kp;composite-operation"/>
-		<api4kp:has-aspect rdf:resource="&api4kp;pure-operation"/>
-		<api4kp:has-aspect rdf:resource="&api4kp;single-output-operation"/>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;PartitionTask">
@@ -1596,7 +1580,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&dol;Query"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1613,7 +1597,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1636,7 +1620,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;ExternalizedKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1653,7 +1637,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;EncodedKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1670,7 +1654,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Substrate">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeArtifact"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1713,10 +1697,6 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;KnowledgeArtifactRepositoryTask"/>
 		<rdfs:label>retrieve artifact from location task</rdfs:label>
 		<skos:definition>returns (a copy of) an artifact stored at a given location</skos:definition>
-		<api4kp:has-aspect rdf:resource="&api4kp;atomic-operation"/>
-		<api4kp:has-aspect rdf:resource="&api4kp;idempotent-operation"/>
-		<api4kp:has-aspect rdf:resource="&api4kp;pure-operation"/>
-		<api4kp:has-aspect rdf:resource="&api4kp;single-output-operation"/>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;SatisfiabilityCheckTask">
@@ -1746,7 +1726,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 				<owl:onProperty rdf:resource="&api4kp-ops;involvesRole"/>
 				<owl:someValuesFrom>
 					<owl:Restriction>
-						<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+						<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 						<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResourceDescription"/>
 					</owl:Restriction>
 				</owl:someValuesFrom>
@@ -1795,7 +1775,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp-lang;Serialization"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1812,7 +1792,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;AbstractKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1829,7 +1809,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;ConcreteKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1852,7 +1832,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp-lang;Lexicon"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1881,7 +1861,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeArtifact"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1923,7 +1903,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp-lang;ConcreteSyntaxTree"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1940,7 +1920,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp-lang;AbstractSyntaxTree"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1950,10 +1930,6 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 		</rdfs:subClassOf>
 		<rdfs:label>syntactic analysis task</rdfs:label>
 		<skos:definition>the act of deriving an AST from a parse tree</skos:definition>
-		<api4kp:has-aspect rdf:resource="&api4kp;atomic-operation"/>
-		<api4kp:has-aspect rdf:resource="&api4kp;chainable-operation"/>
-		<api4kp:has-aspect rdf:resource="&api4kp;pure-operation"/>
-		<api4kp:has-aspect rdf:resource="&api4kp;single-output-operation"/>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;SyntacticKnowledgeProcessingTask">
@@ -1967,7 +1943,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -1990,7 +1966,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;ConcreteKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -2007,7 +1983,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp-lang;ConcreteSyntaxTree"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -2017,10 +1993,6 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 		</rdfs:subClassOf>
 		<rdfs:label>syntactic parsing task</rdfs:label>
 		<skos:definition>the act of creating a parse tree from a concrete knowledge expression. scanning and tokenization are considered sub-atomic parts of this task</skos:definition>
-		<api4kp:has-aspect rdf:resource="&api4kp;atomic-operation"/>
-		<api4kp:has-aspect rdf:resource="&api4kp;chainable-operation"/>
-		<api4kp:has-aspect rdf:resource="&api4kp;pure-operation"/>
-		<api4kp:has-aspect rdf:resource="&api4kp;single-output-operation"/>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;TranscreationTask">
@@ -2034,7 +2006,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -2051,7 +2023,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom>
 									<owl:Class>
 										<owl:intersectionOf rdf:parseType="Collection">
@@ -2085,7 +2057,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp-lang;Serialization"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -2102,7 +2074,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -2119,7 +2091,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -2148,7 +2120,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -2165,7 +2137,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&lcc-lr;Language"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -2182,7 +2154,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -2211,7 +2183,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -2228,7 +2200,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -2263,7 +2235,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&lcc-lr;Language"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -2286,8 +2258,8 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
-								<owl:someValuesFrom rdf:resource="&api4kp-krr;WorkingKnowledgeBase"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
+								<owl:someValuesFrom rdf:resource="&api4kp-krr;KnowledgeBase"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
 					</owl:Class>
@@ -2309,7 +2281,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Input">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;EncodedKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -2326,7 +2298,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Product">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;ExternalizedKnowledgeExpression"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -2343,7 +2315,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 							<rdf:Description rdf:about="&api4kp-ops;Substrate">
 							</rdf:Description>
 							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;filledBy"/>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
 								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeArtifact"/>
 							</owl:Restriction>
 						</owl:intersectionOf>
@@ -2356,18 +2328,6 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 		<skos:definition>lowering task that imprints an encoded expression on a carrier artifact</skos:definition>
 		<skos:example>writing a stream of ASCII characters to a (text) file</skos:example>
 	</owl:Class>
-	
-	<owl:ObjectProperty rdf:about="&api4kp-ops;copyOf">
-		<rdfs:label>copy of</rdfs:label>
-		<skos:definition>distinct individual that, at creation time, replicates all the qualities/characteristics of</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp-ops;filledBy">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;archetypes"/>
-		<rdfs:label>filled by</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp-ops;KnowledgeProcessingTaskRole"/>
-		<skos:definition>abstracts the characteristics of, with respect to the participation in a knowledge processing activity of a given type</skos:definition>
-	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-ops;hasSubtask">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;hasProperPart"/>
@@ -2386,16 +2346,22 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 		<skos:note>tasks (activity definitions) involve roles, and roles are filled by entities that participate in the activities of the given type</skos:note>
 	</owl:ObjectProperty>
 	
+	<owl:ObjectProperty rdf:about="&api4kp-ops;isCopyOf">
+		<rdfs:label>is copy of</rdfs:label>
+		<skos:definition>distinct individual that, at creation time, replicates all the qualities/characteristics of</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-ops;isFilledBy">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;archetypes"/>
+		<rdfs:label>is filled by</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp-ops;KnowledgeProcessingTaskRole"/>
+		<skos:definition>abstracts the characteristics of, with respect to the participation in a knowledge processing activity of a given type</skos:definition>
+	</owl:ObjectProperty>
+	
 	<owl:ObjectProperty rdf:about="&api4kp-ops;retains">
 		<rdfs:label>retains</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp-ops;KnowledgeProcessingTask"/>
 		<skos:definition>does not impact an (invariant) characteristic shared by its inputs and outputs</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:AnnotationProperty rdf:about="&api4kp;has-aspect">
-	</owl:AnnotationProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;structured-with">
 	</owl:ObjectProperty>
 
 </rdf:RDF>
