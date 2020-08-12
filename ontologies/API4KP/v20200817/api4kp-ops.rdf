@@ -70,31 +70,31 @@
 	<owl:Class rdf:about="&api4kp-ops;AbridgmentTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;ParaphraseTask"/>
 		<rdfs:label>abdrigment task</rdfs:label>
-		<skos:definition>paraphrase that eliminates element of an expression that are not essential to reconstruct its meaning</skos:definition>
+		<skos:definition>act of paraphrasing that eliminates elements of an expression that are not essential to reconstruct its meaning</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;CarvingTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;SelectionTask"/>
 		<rdfs:label>carving task</rdfs:label>
-		<skos:definition>selection based on the inclusion of fragments that evoke certain concepts</skos:definition>
+		<skos:definition>selection task involoving inclusion of fragments that evoke certain concepts</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;CherryPickingTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;SelectionTask"/>
 		<rdfs:label>cherry-picking task</rdfs:label>
-		<skos:definition>selection task where the concepts to be included are enumerated explicitly</skos:definition>
+		<skos:definition>selection task whereby the concepts to be included are enumerated explicitly</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;ClassificationTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;LogicBasedReasoningTask"/>
 		<rdfs:label>classification task</rdfs:label>
-		<skos:note>reasoning Task such that, given an individual and a set of concepts (classes), determines which concepts (classes) that individual is an instance (member) of</skos:note>
+		<skos:note>reasoning task such that, given an individual and a set of concepts (classes), determines which concepts (classes) that individual is an instance (member) of</skos:note>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;ClearRepositoryLocationTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;KnowledgeArtifactRepositoryTask"/>
 		<rdfs:label>clear repository location task</rdfs:label>
-		<skos:definition>ensures that no artifact is stored at a given location</skos:definition>
+		<skos:definition>repository task that ensures that no artifact is stored at a given location</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;ComplexityDetectionTask">
@@ -281,7 +281,7 @@
 		<rdfs:label>encoding task</rdfs:label>
 		<skos:definition></skos:definition>
 		<skos:definition>lowering task that applies an encoding to a concrete expression</skos:definition>
-		<skos:example>converting characters into sequences of bits, according to an encoding method, so that they can be written to a RAM, ROM or magnetic disk</skos:example>
+		<skos:example>Converting characters into sequences of bits, according to an encoding method, so that they can be written to a RAM, ROM or magnetic disk.</skos:example>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;EntailmentCheckTask">
@@ -488,7 +488,7 @@
 	<owl:Class rdf:about="&api4kp-ops;InjectionTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;FusionTask"/>
 		<rdfs:label>injection task</rdfs:label>
-		<skos:definition>fusion in terms of an implicit tree-oriented structure.</skos:definition>
+		<skos:definition>fusion task involving an implicit tree-oriented structure</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;Input">
@@ -535,7 +535,7 @@
 		</rdfs:subClassOf>
 		<rdfs:label>interpretation task</rdfs:label>
 		<skos:altLabel>conceptualization task</skos:altLabel>
-		<skos:definition>The act of extracting the information content expressed by a knowledge expression, by means of analyzing the AST of that expression</skos:definition>
+		<skos:definition>act of extracting the information content expressed by a knowledge expression, by means of analyzing the AST of that expression</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeAnalyticTask">
@@ -569,7 +569,7 @@
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>knowledge artifact registration task</rdfs:label>
-		<skos:definition>knowledge asset repository task that involves the association of a knowledge artifact (and/or surrogate) with a knowledge asset</skos:definition>
+		<skos:definition>knowledge asset repository task that involves the association of a knowledge artifact (and/or surrogate) with a knowledge asset, and potentially assigning some registration-specific identifier</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeArtifactRepositoryTask">
@@ -638,7 +638,7 @@
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>knowledge asset registration task</rdfs:label>
-		<skos:definition>knowledge asset repository task that adds a Knowledge Asset to the repository, creating a Surrogate in the process</skos:definition>
+		<skos:definition>knowledge asset repository task that adds a knowledge asset to the repository, creating a Surrogate in the process</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeAssetRepositoryTask">
@@ -661,7 +661,7 @@
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>knowledge asset repository task</rdfs:label>
-		<skos:definition>knowledge processing task focused on the indexing, storage and retrieval of Knowledge Assets, manifested through their carriers and/or surrogates</skos:definition>
+		<skos:definition>knowledge processing task focused on the indexing, storage and retrieval of knowledge assets, manifested through their carriers and/or surrogates</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeBaseBuildingTask">
@@ -702,6 +702,29 @@
 		</rdfs:subClassOf>
 		<rdfs:label>knowledge base building task</rdfs:label>
 		<skos:definition>incremental assembly task that operates on a knowledge base, to produce a new knowledge base that incorporates some additional knowledge resource</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-ops;KnowledgeBaseCreationTask">
+		<rdfs:subClassOf rdf:resource="&api4kp-ops;KnowledgeResourceAssemblyTask"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp-ops;involvesRole"/>
+				<owl:someValuesFrom>
+					<owl:Class>
+						<owl:intersectionOf rdf:parseType="Collection">
+							<rdf:Description rdf:about="&api4kp-ops;Product">
+							</rdf:Description>
+							<owl:Restriction>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
+								<owl:someValuesFrom rdf:resource="&api4kp-krr;KnowledgeBase"/>
+							</owl:Restriction>
+						</owl:intersectionOf>
+					</owl:Class>
+				</owl:someValuesFrom>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:label>knowledge base creation task</rdfs:label>
+		<skos:definition>assembly task that initializes a working knowledge base, possibly using a knowledge resource as initial content</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeCarrierRetrievalTask">
@@ -776,20 +799,16 @@
 		</rdfs:subClassOf>
 		<rdfs:label>knowledge processing task</rdfs:label>
 		<skos:definition>archetypical abstraction of a class of knowledge processing activities that are executed according to a common method, and involve resources of the same nature</skos:definition>
-		<skos:editorialNote>The notion of &apos;task&apos;, &apos;activity&apos;, and &apos;method&apos; is informed by the DOLCE DnS ontology</skos:editorialNote>
-		<skos:note>A Knowledge Processing Task abstracts, defining it, the role that different types of Knowledge Resources play in a Knowledge Processing Activity</skos:note>
-		<skos:note>A Knowledge Processing Task includes a Goal, i.e. a formal description of the expected situation that is the outcome of the execution of an Activity of the type defined by the Task.
-When the outcome matches the Goal - i.e. the description of the outcome is subsumed by the Goal - the activity is considered to be successful. Otherwise, it is considered to be failed.</skos:note>
-		<skos:note>Knowledge Processing Tasks are associated to Constructive Definitions that are (Knowledge Processing) Methods which specify how to execute the Task.</skos:note>
-		<skos:note>Knowledge Processing Tasks executed according to a method that has some degrees of freedom, can be configured using Parameters</skos:note>
-		<skos:note>The execution of a Knowledge Processing Task may involve the generation of an &apos;explanation&apos;</skos:note>
+		<skos:editorialNote>The notion of &apos;task&apos;, &apos;activity&apos;, and &apos;method&apos; is informed by the DOLCE DnS ontology.</skos:editorialNote>
+		<skos:note>A knowledge processing task abstracts and defines the role that different types of knowledge resources play in a knowledge processing activity.  Such a task includes a goal, i.e. a formal description of the expected situation that is the outcome of the execution of an activity of the type defined by the task. When the outcome matches the goal - i.e. the description of the outcome is subsumed by the goal - the activity is considered to be successful. Otherwise, it is considered to be failed.</skos:note>
+		<skos:note>Knowledge processing tasks are associated with constructive definitions that are (knowledge processing) methods which specify how to execute the task. Tasks executed according to a method that has some degrees of freedom, can be configured using parameters. Execution of a task may involve the generation of an &apos;explanation&apos;.</skos:note>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeProcessingTaskRole">
 		<rdfs:subClassOf rdf:resource="&api4kp;DefinedConcept"/>
 		<rdfs:label>knowledge processing task role</rdfs:label>
-		<skos:definition>role type that is played by a resource in the context of a knowledge processing activity</skos:definition>
-		<skos:editorialNote>Individual Task Roles allow to define specific roles tailored to specific Knowledge Processing Tasks, and those are the roles &apos;filled by&apos; the individual resources involved in individual activities</skos:editorialNote>
+		<skos:definition>role that is played by a resource in the context of a knowledge processing activity</skos:definition>
+		<skos:editorialNote>Individual task-specific roles allow to define specific roles tailored to specific knowledge processing tasks, and those are the roles &apos;filled by&apos; the individual resources involved in individual activities.</skos:editorialNote>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeReasoningTask">
@@ -806,7 +825,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>knowledge reasoning task</rdfs:label>
-		<skos:definition>knowledge processing task involving an agent with reasoning capabilities, that derives new information leveraging the formal semantics of a working knowledge base</skos:definition>
+		<skos:definition>processing task involving an agent with reasoning capabilities, that derives new information leveraging the formal semantics of a knowledge base</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeReshapingTask">
@@ -875,7 +894,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeResourceAggregationTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;KnowledgeResourceConstructionTask"/>
 		<rdfs:label>knowledge resource aggregation task</rdfs:label>
-		<skos:definition>task involving the construction of a set-oriented or other combined structure</skos:definition>
+		<skos:definition>task involving the construction of a set-oriented structure</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeResourceAssemblyTask">
@@ -1081,8 +1100,8 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>knowledge resource description extraction task</rdfs:label>
-		<skos:definition>Reasoning Task that infers a Knowledge Resource Description from a Knowledge Expression</skos:definition>
-		<skos:note>The produced description is manifested as a Knowlege Asset Surrogate</skos:note>
+		<skos:definition>reasoning task that infers a knowledge resource description from a knowledge expression</skos:definition>
+		<skos:note>The produced description is manifested as a knowledge asset surrogate.</skos:note>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeResourceDisaggregationTask">
@@ -1243,7 +1262,7 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 		</rdfs:subClassOf>
 		<rdfs:label>knowledge resource flattening task</rdfs:label>
 		<skos:definition>compositional task that produces a single, flattened knowledge resource from a composite knowledge resource, respecting the composite&apos;s structure</skos:definition>
-		<skos:note>The flattening may require some manipulation of the component resources before they can be merged</skos:note>
+		<skos:note>The flattening may require some manipulation of the component resources before they can be merged.</skos:note>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeResourceRearrangementTask">
@@ -1284,8 +1303,8 @@ When the outcome matches the Goal - i.e. the description of the outcome is subsu
 		</rdfs:subClassOf>
 		<rdfs:label>knowledge resource rearrangement task</rdfs:label>
 		<skos:definition>compositional task that retains the identity and type of the components, but alters the mutual relationships</skos:definition>
-		<skos:note>That is, the corresponding Composites have the same atomic components, but the underlying set-tree organization is different</skos:note>
-		<skos:note>The operation generates a new structure, that is a versioned revision of the input structure</skos:note>
+		<skos:note>That is, the corresponding composites have the same atomic components, but the underlying set-tree organization is different.</skos:note>
+		<skos:note>The operation generates a new structure, that is a versioned revision of the input structure.</skos:note>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeResourceStructuringTask">
@@ -1430,14 +1449,14 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>logic detection task</rdfs:label>
-		<skos:definition>Analytic task that detects the (simplest) logic that is expressive enough to formalize the given Knowledge Expression.</skos:definition>
+		<skos:definition>analytic task that detects the (simplest) logic that is expressive enough to formalize the given knowledge expression</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;LoweringTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;VerticalKnowledgeProcessingTask"/>
 		<rdfs:label>lowering task</rdfs:label>
 		<skos:definition>vertical knowledge processing task that produces a resource at a lower level of abstraction that its input</skos:definition>
-		<skos:note>with respect to a lowering, there is usually a 1:N relationship between the resource at the higher level and the resource(s) at the lower level</skos:note>
+		<skos:note>With respect to a lowering, there is usually a 1:N relationship between the resource at the higher level and the resource(s) at the lower level.</skos:note>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;ParaphraseTask">
@@ -1483,10 +1502,9 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>paraphrase task</rdfs:label>
-		<skos:definition>horizontal translation task that creates an alternative expression (concrete or abstract) that carries the same meaning, but uses different fragments (sentences and/or linguistic elements).</skos:definition>
-		<skos:note>Meaning (work of knowledge), language and format are preserved, but not the internal structure of an expression.</skos:note>
-		<skos:note>Paraphrase is only admissible in languages that are redundant, i.e. allow alternative, different expressions of the same meaning</skos:note>
-		<skos:scopeNote>Interesting &apos;paraphrases&apos; are the ones that cast an expression, in a given language, within the boundaries of a profile of that language</skos:scopeNote>
+		<skos:definition>horizontal translation task that creates an alternative expression (concrete or abstract) that carries the same meaning, but uses different fragments (sentences and/or linguistic elements)</skos:definition>
+		<skos:note>Meaning (work of knowledge), language and format are preserved through paraphrasing, but not the internal structure of an expression. Paraphrase is only admissible in languages that are redundant, i.e. allow alternative, different expressions of the same meaning.</skos:note>
+		<skos:scopeNote>Interesting &apos;paraphrases&apos; are the ones that cast an expression, in a given language, within the boundaries of a profile of that language.</skos:scopeNote>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;ParsingTask">
@@ -1526,13 +1544,13 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>parsing task</rdfs:label>
-		<skos:definition>the act of creating an AST (of an abstract knowldge expression) from a concrete knowledge expression</skos:definition>
+		<skos:definition>act of creating an AST (of an abstract knowldge expression) from a concrete knowledge expression</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;PartitionTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;SeparationTask"/>
 		<rdfs:label>partition task</rdfs:label>
-		<skos:definition>A separation based on a set-oriented deconstruction</skos:definition>
+		<skos:definition>separation based on a set-oriented deconstruction</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;Product">
@@ -1559,7 +1577,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>proof generation task</rdfs:label>
-		<skos:definition>Reasoning Tasks that produces a proof, i.e. an Explanation of how a Knowledge Base is entailed by another Knowledge Base</skos:definition>
+		<skos:definition>reasoning task that produces a proof, i.e. an explanation, of how a knowledge base is entailed by another knowledge base</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;QueryAnswerTask">
@@ -1599,7 +1617,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>query answering task</rdfs:label>
-		<skos:definition>Reasoning Task that, given a Working Knowledge Base and a Query, (expressed by means of a proper knowledge expression that contains variables), returns an &apos;answer&apos; in terms of bindings of those variables with respect to the contents of the Knowledge Base</skos:definition>
+		<skos:definition>reasoning task that, given a knowledge base and a query, (question expressed by means of a proper knowledge expression that contains variables), returns an &apos;answer&apos; in terms of bindings of those variables with respect to the contents of the knowledge base</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;ReadTask">
@@ -1655,35 +1673,35 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 				</owl:someValuesFrom>
 			</owl:Restriction>
 		</rdfs:subClassOf>
-		<rdfs:label>I/O read task</rdfs:label>
+		<rdfs:label>read task</rdfs:label>
 		<skos:altLabel>extraction task</skos:altLabel>
-		<skos:definition>A task that extracts an encoded knowledge expression from a carrier</skos:definition>
+		<skos:definition>task that extracts an encoded knowledge expression from a carrier</skos:definition>
 		<skos:example>opening a file and reading the stream of Unicode-encoded characters</skos:example>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;RedactionTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;SimplificationTask"/>
-		<rdfs:label>syntactic redaction task</rdfs:label>
-		<skos:definition>simplification that removes concepts by means of removing the entire fragments that evoke them</skos:definition>
+		<rdfs:label>redaction task</rdfs:label>
+		<skos:definition>simplification that removes concepts by means of removing fragments that evoke them</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;ReductionTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;SimplificationTask"/>
 		<rdfs:label>reduction task</rdfs:label>
-		<skos:definition>Simplification that removes one or more classes of concepts</skos:definition>
+		<skos:definition>simplification that removes one or more classes of concepts</skos:definition>
 		<skos:note>reductions can be performed in preparation of a translation or a profile projection, removing concepts that would not be expressible in the target language</skos:note>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;RemovalTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;SeparationTask"/>
 		<rdfs:label>removal task</rdfs:label>
-		<skos:definition>separation based on a tree-oriented deconstruction, where the Resources that are part of a subtree of the underlying Structure are discarded.</skos:definition>
+		<skos:definition>separation based on a tree-oriented deconstruction, where the resources that are part of a subtree of the underlying Structure are discarded</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;ReplicationTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;HorizontalKnowledgeProcessingTask"/>
 		<rdfs:label>replication task</rdfs:label>
-		<skos:definition>horizontal translation task that creates a new, equal, copy of the input resource.</skos:definition>
+		<skos:definition>horizontal translation task that creates a new, equal, copy of the input resource</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;RetrieveArtifactFromRepositoryLocationTask">
@@ -1696,13 +1714,13 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;LogicBasedReasoningTask"/>
 		<rdfs:label>satisfiability check task</rdfs:label>
 		<rdfs:seeAlso>https://en.wikipedia.org/wiki/Satisfiability</rdfs:seeAlso>
-		<skos:definition>Reasoning Tasks that determines whether a knowledge base with open variables is satisfiable or not, i.e. there is at least one binding of those variables that is not inconsistent</skos:definition>
+		<skos:definition>reasoning task that determines whether a knowledge base with open variables is satisfiable or not, i.e. there is at least one binding of those variables that is not inconsistent</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;SelectionTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;KnowledgeReshapingTask"/>
 		<rdfs:label>selection task</rdfs:label>
-		<skos:definition>reshaping task that results in (the expression of) a Work of Knowledge that uses a subset of the concepts used by the original Knowledge Resource, where the subset is defined by inclusion</skos:definition>
+		<skos:definition>reshaping task that results in (the expression of) a work of knowledge that uses a subset of the concepts used by the original knowledge resource, where the subset is defined by inclusion</skos:definition>
 		<skos:note>Selection is additive (to the target WoK), whereas simplification is subtractive (to the source WoK)</skos:note>
 	</owl:Class>
 	
@@ -1726,7 +1744,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>semantic knowledge management task</rdfs:label>
-		<skos:definition>Knowledge Asset Repository Task that is a Reasoning Task applied to the Knowledge Base constituted by the Surrogates managed in the Repository</skos:definition>
+		<skos:definition>knowledge asset repository task that is a reasoning task applied to the knowledge base constituted by the surrogates managed in the repository</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;SemanticTranslationTask">
@@ -1746,15 +1764,14 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 			</owl:Class>
 		</rdfs:subClassOf>
 		<rdfs:label>semantic translation task</rdfs:label>
-		<skos:definition>translation task leverages the interpretation of the input expression</skos:definition>
+		<skos:definition>translation task that leverages the interpretation of the input expression</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;SeparationTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;KnowledgeReshapingTask"/>
 		<rdfs:label>separation task</rdfs:label>
 		<skos:definition>reshaping task that breaks a knowledge resource into components, which are returned as individual resources</skos:definition>
-		<skos:note>Conceptually equivalent to a deconstruction followed by a disassembly</skos:note>
-		<skos:note>deconstructable knowledge resources are perfectly separable, i.e. the resulting resources carry, globally, the same information as the source one</skos:note>
+		<skos:note>Separation is conceptually equivalent to a deconstruction followed by a disassembly. Deconstructable knowledge resources are perfectly separable, i.e. the resulting resources carry, globally, the same information as the source one.</skos:note>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;SerializationTask">
@@ -1834,7 +1851,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>signature detection task</rdfs:label>
-		<skos:definition>Analytic task that detects the non-logical symbols (aka &quot;terms&quot; - concretizations of linguistic elements that express domain concepts) used in an expression, identifying the lexicon they have been extracted from</skos:definition>
+		<skos:definition>analytic task that detects the non-logical symbols (a.k.a. &quot;terms&quot; - concretizations of linguistic elements that express domain concepts) used in an expression, identifying the lexicon they have been extracted from</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;SimplificationTask">
@@ -1863,20 +1880,19 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>store artifact at location task</rdfs:label>
-		<skos:definition>ensures that an artifact is available at a given location</skos:definition>
+		<skos:definition>task ensuring that an artifact is available at a given location</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;Substrate">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;KnowledgeProcessingTaskRole"/>
 		<rdfs:label>substrate</rdfs:label>
-		<skos:altLabel>input/output</skos:altLabel>
 		<skos:definition>role played by a resource that is used in an activity of a given type, exists before the activity is started, and is available to the agent executing the activity before the activity is started</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;SubsumptionTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;LogicBasedReasoningTask"/>
 		<rdfs:label>subsumption task</rdfs:label>
-		<skos:note>Reasoning Task that, given two concepts (classes), determines whether one is necessarily broader than (a subclass of) the other</skos:note>
+		<skos:note>reasoning task that, given two concepts (classes), determines whether one is necessarily broader than (a subclass of) the other</skos:note>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;SummarizationTask">
@@ -1922,7 +1938,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>syntactic analysis task</rdfs:label>
-		<skos:definition>the act of deriving an AST from a parse tree</skos:definition>
+		<skos:definition>act of deriving an AST from a parse tree</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;SyntacticKnowledgeProcessingTask">
@@ -1945,7 +1961,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>syntactic knowledge processing task</rdfs:label>
-		<skos:definition>Knowledge Processing Task that leverages the syntactic aspects of a Knowledge Expression, as determined by the grammar of the language(s) used in the Expression, without impacting the Knowledge Content of the Resource.</skos:definition>
+		<skos:definition>task that leverages the syntactic aspects of a knowledge expression, as determined by the grammar of the language(s) used in the expression, without impacting the knowledge content of the resource</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;SyntacticParsingTask">
@@ -1985,7 +2001,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>syntactic parsing task</rdfs:label>
-		<skos:definition>the act of creating a parse tree from a concrete knowledge expression. scanning and tokenization are considered sub-atomic parts of this task</skos:definition>
+		<skos:definition>act of creating a parse tree from a concrete knowledge expression. scanning and tokenization are considered sub-atomic parts of this task</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;TranscreationTask">
@@ -2162,7 +2178,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 	<owl:Class rdf:about="&api4kp-ops;UnionTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;FusionTask"/>
 		<rdfs:label>union task</rdfs:label>
-		<skos:definition>Fusion in terms of a set-oriented implicit structure</skos:definition>
+		<skos:definition>fusion task in terms of a set-oriented implicit structure</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;VerticalKnowledgeProcessingTask">
@@ -2208,13 +2224,13 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>vertical knowledge processing task</rdfs:label>
-		<skos:definition>syntactic knowledge processing task that produces Knowledge Resources at higher or lower level of abstraction along the &quot;artifact - asset&quot; chain</skos:definition>
+		<skos:definition>syntactic knowledge processing task that produces knowledge resources at higher or lower level of abstraction along the &quot;artifact - asset&quot; chain</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;WeavingTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;KnowledgeReshapingTask"/>
 		<rdfs:label>weaving task</rdfs:label>
-		<skos:definition>a reshaping such that fragments of one or more expressions are embedded in a target expression</skos:definition>
+		<skos:definition>reshaping such that fragments of one or more expressions are embedded in a target expression</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;WellFormednessCheckTask">
@@ -2237,30 +2253,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>well-formedness check task</rdfs:label>
-		<skos:definition>Analytic task that detects whether a Knowledge Expression is a valid sentence according to the syntax - abstract and/or concrete - of some language, or profile thereof.</skos:definition>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&api4kp-ops;WorkingKnowledgeBaseCreationTask">
-		<rdfs:subClassOf rdf:resource="&api4kp-ops;KnowledgeResourceAssemblyTask"/>
-		<rdfs:subClassOf>
-			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp-ops;involvesRole"/>
-				<owl:someValuesFrom>
-					<owl:Class>
-						<owl:intersectionOf rdf:parseType="Collection">
-							<rdf:Description rdf:about="&api4kp-ops;Product">
-							</rdf:Description>
-							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
-								<owl:someValuesFrom rdf:resource="&api4kp-krr;KnowledgeBase"/>
-							</owl:Restriction>
-						</owl:intersectionOf>
-					</owl:Class>
-				</owl:someValuesFrom>
-			</owl:Restriction>
-		</rdfs:subClassOf>
-		<rdfs:label>create working knowledge base task</rdfs:label>
-		<skos:definition>assembly task that initializes a working knowledge base, possibly using a knowledge resource as initial content</skos:definition>
+		<skos:definition>analytic task that detects whether a knowledge expression is a valid sentence according to the syntax - abstract and/or concrete - of some language, or profile thereof</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;WriteTask">
@@ -2316,7 +2309,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 				</owl:someValuesFrom>
 			</owl:Restriction>
 		</rdfs:subClassOf>
-		<rdfs:label>I/O write task</rdfs:label>
+		<rdfs:label>write task</rdfs:label>
 		<skos:altLabel>engraving task</skos:altLabel>
 		<skos:definition>lowering task that imprints an encoded expression on a carrier artifact</skos:definition>
 		<skos:example>writing a stream of ASCII characters to a (text) file</skos:example>
@@ -2324,19 +2317,19 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 	
 	<owl:ObjectProperty rdf:about="&api4kp-ops;hasSubtask">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;hasProperPart"/>
-		<rdfs:label>has subTask</rdfs:label>
+		<rdfs:label>has subtask</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp-ops;KnowledgeProcessingTask"/>
 		<rdfs:range rdf:resource="&api4kp-ops;KnowledgeProcessingTask"/>
-		<skos:definition>the relationship between a task T and a task S, such that an activity of kind T will have an activity of type S as a sub-activity, i.e. as a (temporal) proper process part</skos:definition>
+		<skos:definition>relationship between a task T and a task S, such that an activity of kind T will have an activity of type S as a sub-activity, i.e. as a (temporal) proper process part</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-ops;involvesRole">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;hasProperPart"/>
-		<rdfs:label>has role</rdfs:label>
+		<rdfs:label>involves role</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp-ops;KnowledgeProcessingTask"/>
 		<rdfs:range rdf:resource="&api4kp-ops;KnowledgeProcessingTaskRole"/>
 		<skos:definition>has a definition, part of which is the given role</skos:definition>
-		<skos:note>tasks (activity definitions) involve roles, and roles are filled by entities that participate in the activities of the given type</skos:note>
+		<skos:note>Tasks (activity definitions) involve roles, and roles are filled by entities that participate in the activities of the given type.</skos:note>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-ops;isCopyOf">
