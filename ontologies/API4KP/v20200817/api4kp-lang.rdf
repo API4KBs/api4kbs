@@ -165,6 +165,7 @@
 	
 	<owl:Class rdf:about="&api4kp-lang;Alphabet">
 		<rdfs:subClassOf rdf:resource="&lcc-lr;Arrangement"/>
+		<rdfs:subClassOf rdf:resource="&lcc-lr;Collection"/>
 		<rdfs:label>alphabet</rdfs:label>
 		<skos:definition>set of graphemes used to construct symbols, terms and sentences in a language</skos:definition>
 		<skos:scopeNote>not limited to written languages - in fact, includes musical alphabets and pictorial alphabets</skos:scopeNote>
@@ -248,7 +249,7 @@
 	<owl:Class rdf:about="&api4kp-lang;Encoding">
 		<rdfs:subClassOf rdf:resource="&lcc-lr;Arrangement"/>
 		<rdfs:label>encoding</rdfs:label>
-		<skos:definition>a system for the encoding elements of an alphabet using a second alphabet</skos:definition>
+		<skos:definition>system for the encoding elements of an alphabet using a second alphabet</skos:definition>
 		<skos:example>a ZIP compression</skos:example>
 		<skos:example>the ASCII encoding of basic western alphabet characters using 7 bit binary symbols</skos:example>
 		<skos:example>the trivial encoding that preserves the original symbols</skos:example>
@@ -272,7 +273,6 @@
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>formal grammar</rdfs:label>
-		<skos:altLabel>(formal) syntax</skos:altLabel>
 		<skos:altLabel>generative grammar</skos:altLabel>
 		<skos:definition>prescriptive grammar that consists in a collection of (production) rules that define, intensionally, all and only the possible sentences of a language</skos:definition>
 		<skos:scopeNote>one may distinguish between formal grammar - grammars that allow to recognize if a sentence is part of the language - and generative grammars - grammars with rules that allow to construct new sentences</skos:scopeNote>
@@ -281,7 +281,7 @@
 	<owl:Class rdf:about="&api4kp-lang;Grammar">
 		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
 		<rdfs:label>grammar</rdfs:label>
-		<skos:definition>the set of rules and constraints that allow to recognize and/or construct the valid sentences of a language</skos:definition>
+		<skos:definition>set of rules and constraints that allow to recognize and/or construct the valid sentences of a language</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-lang;GrammarSpecification">
@@ -329,7 +329,6 @@
 				<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeExpression"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
-		<rdfs:label xml:lang="en">KRR Language</rdfs:label>
 		<rdfs:label>knowledge representation and reasoning language</rdfs:label>
 		<skos:definition>machine executable language used in knowledge expressions, to express works of knowledge</skos:definition>
 		<skos:example>Prolog</skos:example>
@@ -358,6 +357,7 @@
 	
 	<owl:Class rdf:about="&api4kp-lang;Lexicon">
 		<rdfs:subClassOf rdf:resource="&lcc-lr;Arrangement"/>
+		<rdfs:subClassOf rdf:resource="&lcc-lr;Collection"/>
 		<rdfs:label>lexicon</rdfs:label>
 		<dct:source>https://en.wikipedia.org/wiki/Lexicon</dct:source>
 		<owl:equivalentClass>
@@ -452,7 +452,7 @@
 	
 	<owl:Class rdf:about="&api4kp-lang;MetaSyntax">
 		<rdfs:subClassOf rdf:resource="&api4kp-lang;FormalGrammar"/>
-		<rdfs:label>metasyntax</rdfs:label>
+		<rdfs:label>meta-syntax</rdfs:label>
 		<dct:source>https://en.wikipedia.org/wiki/Metasyntax</dct:source>
 		<skos:definition>formal grammar used to define languages that are used in the expression of formal grammars</skos:definition>
 		<skos:example>The ANTLR meta-grammar</skos:example>
@@ -539,9 +539,9 @@
 				<owl:someValuesFrom rdf:resource="&api4kp-lang;AbstractSyntax"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
-		<rdfs:label xml:lang="en">concrete syntax</rdfs:label>
-		<skos:altLabel>serialization</skos:altLabel>
-		<skos:definition>a formal grammar that includes at least one rule that impacts the structural aspects of the conformant sentences, but not the semantics</skos:definition>
+		<rdfs:label xml:lang="en">serialization</rdfs:label>
+		<skos:altLabel>concrete syntax</skos:altLabel>
+		<skos:definition>formal grammar that includes at least one rule that impacts the structural aspects of the conformant sentences, but not the semantics</skos:definition>
 		<skos:note>In computer science, abstract syntaxes are used to construct Parsers and Lexers</skos:note>
 	</owl:Class>
 	
@@ -553,8 +553,8 @@
 	
 	<owl:Class rdf:about="&api4kp-lang;SymbolSequence">
 		<rdfs:subClassOf rdf:resource="&api4kp-lang;ParsingStructure"/>
-		<rdfs:label>sequence of symbols</rdfs:label>
-		<skos:definition>sequence of symbols that is reconstructed from the inscriptions on an artifact</skos:definition>
+		<rdfs:label>symbol sequence</rdfs:label>
+		<skos:definition>sequence of symbols reconstructed from the inscriptions on an artifact</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-lang;TokenSequence">
@@ -583,13 +583,6 @@
 		<skos:definition>allows expressions in the target language to be part of expressions in this language</skos:definition>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp-lang;has-wordstock">
-		<rdfs:label>has wordstock</rdfs:label>
-		<rdfs:domain rdf:resource="&lcc-lr;Language"/>
-		<rdfs:range rdf:resource="&api4kp-lang;Lexicon"/>
-		<skos:definition>has a set of linguistic elements that can be formed into valid sentences of the language according to the language&apos;s grammar</skos:definition>
-	</owl:ObjectProperty>
-	
 	<owl:ObjectProperty rdf:about="&api4kp-lang;hasDelegateSublanguage">
 		<rdfs:subPropertyOf rdf:resource="&api4kp-lang;hasSublanguage"/>
 		<rdfs:label>has delegate sublanguage</rdfs:label>
@@ -609,6 +602,13 @@
 		<rdfs:domain rdf:resource="&dol;Language"/>
 		<rdfs:range rdf:resource="&dol;Language"/>
 		<skos:definition>has a grammar with an identifiable, closed subset of rules that define the target sub-language</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-lang;hasWordstock">
+		<rdfs:label>has wordstock</rdfs:label>
+		<rdfs:domain rdf:resource="&lcc-lr;Language"/>
+		<rdfs:range rdf:resource="&api4kp-lang;Lexicon"/>
+		<skos:definition>has a set of linguistic elements that can be formed into valid sentences of the language according to the language&apos;s grammar</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-lang;serializes">
@@ -671,7 +671,7 @@
 		<owl:propertyChainAxiom rdf:parseType="Collection">
 			<rdf:Description rdf:about="&dol;usesLanguage">
 			</rdf:Description>
-			<rdf:Description rdf:about="&api4kp-lang;has-wordstock">
+			<rdf:Description rdf:about="&api4kp-lang;hasWordstock">
 			</rdf:Description>
 		</owl:propertyChainAxiom>
 		<skos:definition>uses terms that are defined (linguistically and semantically) in the target lexicon</skos:definition>
@@ -705,9 +705,7 @@
 		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
 		<rdfs:range rdf:resource="&lcc-lr;Language"/>
 		<skos:definition>contains an expression in the target language that is proper part of an expression in a different language</skos:definition>
-		<skos:scopeNote>if a language L embeds another language S, every expression in L can potentially contain fragments in S (e.g. DMN vs FEEL).
-
-if an expression in L embeds a fragment in S, there exist at least one expression in L that uses S as a sub-language</skos:scopeNote>
+		<skos:scopeNote>If a language L embeds another language S, every expression in L can potentially contain fragments in S (e.g. DMN vs FEEL). In other words, if an expression in L embeds a fragment in S, there exist at least one expression in L that uses S as a sub-language.</skos:scopeNote>
 	</owl:ObjectProperty>
 	
 	<owl:Class rdf:about="&api4kp;AbstractKnowledgeExpression">
@@ -789,20 +787,20 @@ if an expression in L embeds a fragment in S, there exist at least one expressio
 	<owl:Class rdf:about="&lcc-lr;Language">
 		<rdfs:subClassOf>
 			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp-lang;has-wordstock"/>
-				<owl:someValuesFrom rdf:resource="&api4kp-lang;Lexicon"/>
+				<owl:onProperty rdf:resource="&api4kp-lang;hasGrammar"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-lang;Grammar"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:subClassOf>
 			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp-lang;hasGrammar"/>
-				<owl:someValuesFrom rdf:resource="&api4kp-lang;Grammar"/>
+				<owl:onProperty rdf:resource="&api4kp-lang;hasWordstock"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-lang;Lexicon"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<skos:example>Contemporary Italian, as of 2017, as established by the Italian &apos;Accademia della Crusca&apos;</skos:example>
 		<skos:example>The 2nd officially released version of the Ontology Web Language</skos:example>
 		<skos:note>The extension of a language is the class of sentences that is defined by the grammar of the language, using the supported lexicon/a</skos:note>
-		<skos:scopeNote>in API4KP languages are Knowledge, to the extent that they can be learned and used by agents</skos:scopeNote>
+		<skos:scopeNote>in API4KP languages are knowledge, to the extent that they can be learned and used by agents</skos:scopeNote>
 	</owl:Class>
 
 </rdf:RDF>

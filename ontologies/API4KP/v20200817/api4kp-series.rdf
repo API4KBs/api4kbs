@@ -4,8 +4,6 @@
 	<!ENTITY api4kp-series "https://www.omg.org/spec/API4KP/api4kp-series/">
 	<!ENTITY dct "http://purl.org/dc/terms/">
 	<!ENTITY dol "http://www.omg.org/spec/DOL/DOL-terms/">
-	<!ENTITY fibo-fnd-arr-arr "https://www.omg.org/spec/EDMC-FIBO/FND/Arrangements/Arrangements/">
-	<!ENTITY fibo-fnd-dt-fd "https://www.omg.org/spec/EDMC-FIBO/FND/DatesAndTimes/FinancialDates/">
 	<!ENTITY lcc-lr "https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/">
 	<!ENTITY owl "http://www.w3.org/2002/07/owl#">
 	<!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -19,8 +17,6 @@
 	xmlns:api4kp-series="https://www.omg.org/spec/API4KP/api4kp-series/"
 	xmlns:dct="http://purl.org/dc/terms/"
 	xmlns:dol="http://www.omg.org/spec/DOL/DOL-terms/"
-	xmlns:fibo-fnd-arr-arr="https://www.omg.org/spec/EDMC-FIBO/FND/Arrangements/Arrangements/"
-	xmlns:fibo-fnd-dt-fd="https://www.omg.org/spec/EDMC-FIBO/FND/DatesAndTimes/FinancialDates/"
 	xmlns:lcc-lr="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"
 	xmlns:owl="http://www.w3.org/2002/07/owl#"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -45,7 +41,6 @@
 		<sm:copyright>Copyright (c) 2020 Micro Focus</sm:copyright>
 		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/API4KP/api4kp/</sm:dependsOn>
 		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/DOL/</sm:dependsOn>
-		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/EDMC-FIBO/FND/Arrangements/Arrangements/</sm:dependsOn>
 		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/EDMC-FIBO/FND/DatesAndTimes/FinancialDates/</sm:dependsOn>
 		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/LCC/</sm:dependsOn>
 		<sm:fileAbbreviation>api4kp-series</sm:fileAbbreviation>
@@ -53,11 +48,28 @@
 		<owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
 		<owl:imports rdf:resource="https://www.omg.org/spec/API4KP/api4kp/"/>
 		<owl:imports rdf:resource="https://www.omg.org/spec/DOL/20171106/DOL-terms.rdf"/>
-		<owl:imports rdf:resource="https://www.omg.org/spec/EDMC-FIBO/FND/Arrangements/Arrangements/"/>
-		<owl:imports rdf:resource="https://www.omg.org/spec/EDMC-FIBO/FND/DatesAndTimes/FinancialDates/"/>
 		<owl:imports rdf:resource="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
 		<owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/20200801/api4kp-series/"/>
 	</owl:Ontology>
+	
+	<rdfs:Datatype rdf:about="&api4kp-series;CombinedDateTime">
+		<rdfs:label>combined date time</rdfs:label>
+		<owl:equivalentClass>
+			<rdfs:Datatype>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&xsd;string">
+					</rdf:Description>
+					<rdf:Description rdf:about="&xsd;dateTime">
+					</rdf:Description>
+					<rdf:Description rdf:about="&xsd;dateTimeStamp">
+					</rdf:Description>
+				</owl:unionOf>
+			</rdfs:Datatype>
+		</owl:equivalentClass>
+		<skos:definition>datatype that maps to several base types for dates and times</skos:definition>
+		<skos:note>Valid values must use the ISO 8601 representation for a date, or the corresponding XML Schema Datatypes representation for a date and time, or date and time including the time zone.</skos:note>
+		<skos:scopeNote>There are many cases where the representation of a date may or may not include a time, and where the underlying data representation varies.  This composite datatype should only be used in cases where a standard representation using one of the options in the union for date or date and time value specification does not work, for example, when resolution beyond microseconds is needed.</skos:scopeNote>
+	</rdfs:Datatype>
 	
 	<owl:Class rdf:about="&api4kp-series;ImmutableEntity">
 		<rdfs:label>immutable</rdfs:label>
@@ -72,7 +84,7 @@
 	
 	<owl:Class rdf:about="&api4kp-series;Series">
 		<rdfs:subClassOf rdf:resource="&api4kp-series;MutableEntity"/>
-		<rdfs:subClassOf rdf:resource="&fibo-fnd-dt-fd;DatedStructuredCollection"/>
+		<rdfs:subClassOf rdf:resource="&lcc-lr;Collection"/>
 		<rdfs:subClassOf>
 			<owl:Restriction>
 				<owl:onProperty rdf:resource="&dol;hasPart"/>
@@ -87,7 +99,7 @@
 		</rdfs:subClassOf>
 		<rdfs:subClassOf>
 			<owl:Restriction>
-				<owl:onProperty rdf:resource="&fibo-fnd-arr-arr;hasConstituent"/>
+				<owl:onProperty rdf:resource="&lcc-lr;hasMember"/>
 				<owl:someValuesFrom rdf:resource="&api4kp-series;Version"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
@@ -98,7 +110,6 @@
 	
 	<owl:Class rdf:about="&api4kp-series;Snapshot">
 		<rdfs:subClassOf rdf:resource="&api4kp-series;ImmutableEntity"/>
-		<rdfs:subClassOf rdf:resource="&fibo-fnd-dt-fd;DatedCollectionConstituent"/>
 		<rdfs:label>snapshot</rdfs:label>
 		<rdfs:seeAlso>https://en.wikipedia.org/wiki/Snapshot_(computer_storage)</rdfs:seeAlso>
 		<skos:definition>immutable entity that reflects and maintains the state of a mutable entity at a particular point in time</skos:definition>
@@ -116,10 +127,14 @@
 						<owl:onProperty rdf:resource="&lcc-lr;isIdentifiedBy"/>
 						<owl:someValuesFrom rdf:resource="&lcc-lr;Identifier"/>
 					</owl:Restriction>
+					<owl:Restriction>
+						<owl:onProperty rdf:resource="&api4kp-series;hasObservedDateTime"/>
+						<owl:someValuesFrom rdf:resource="&api4kp-series;CombinedDateTime"/>
+					</owl:Restriction>
 				</owl:intersectionOf>
 			</owl:Class>
 		</owl:equivalentClass>
-		<skos:definition>snapshot that is assigned an identifier in some social context</skos:definition>
+		<skos:definition>snapshot was observed at some point in time and that is assigned an identifier in some context</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-series;VersionIdentifier">
@@ -155,6 +170,13 @@
 		<skos:altLabel>has next immediate version</skos:altLabel>
 		<skos:definition>is a version V1 that has successor version V2, and there is no other distinct version that is successor of V1 and predecessor of V2</skos:definition>
 	</owl:ObjectProperty>
+	
+	<owl:DatatypeProperty rdf:about="&api4kp-series;hasObservedDateTime">
+		<rdf:type rdf:resource="&owl;FunctionalProperty"/>
+		<rdfs:label>has observed date and time</rdfs:label>
+		<rdfs:range rdf:resource="&api4kp-series;CombinedDateTime"/>
+		<skos:definition>indicates a date and time for an event, measurement, snapshot or other observation</skos:definition>
+	</owl:DatatypeProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-series;hasPredecessorVersion">
 		<rdfs:subPropertyOf rdf:resource="&api4kp-series;isInSeriesWith"/>
