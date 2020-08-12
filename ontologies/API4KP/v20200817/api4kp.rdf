@@ -137,7 +137,7 @@
 		<rdfs:subClassOf rdf:resource="&api4kp;Agent"/>
 		<rdfs:subClassOf>
 			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp;productOf"/>
+				<owl:onProperty rdf:resource="&api4kp;isProductOf"/>
 				<owl:someValuesFrom rdf:resource="&api4kp;Activity"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
@@ -222,7 +222,7 @@
 		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeExpression"/>
 		<rdfs:subClassOf>
 			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp;concretizationOf"/>
+				<owl:onProperty rdf:resource="&api4kp;isConcretizationOf"/>
 				<owl:someValuesFrom rdf:resource="&api4kp;AbstractKnowledgeExpression"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
@@ -304,13 +304,13 @@
 		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeCarrier"/>
 		<rdfs:subClassOf>
 			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp;inscribedWith"/>
+				<owl:onProperty rdf:resource="&api4kp;isInscribedWith"/>
 				<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeExpression"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:subClassOf>
 			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp;productOf"/>
+				<owl:onProperty rdf:resource="&api4kp;isProductOf"/>
 				<owl:someValuesFrom rdf:resource="&api4kp;Activity"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
@@ -400,7 +400,7 @@
 					<rdf:Description rdf:about="&api4kp;KnowledgeResource">
 					</rdf:Description>
 					<owl:Restriction>
-						<owl:onProperty rdf:resource="&api4kp;properPartOf"/>
+						<owl:onProperty rdf:resource="&api4kp;isProperPartOf"/>
 						<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeExpression"/>
 					</owl:Restriction>
 				</owl:intersectionOf>
@@ -546,7 +546,7 @@
 		</rdfs:subClassOf>
 		<rdfs:subClassOf>
 			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp;productOf"/>
+				<owl:onProperty rdf:resource="&api4kp;isProductOf"/>
 				<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeProcessingActivity"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
@@ -566,7 +566,7 @@
 	</owl:Class>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;abbreviates">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;associatedTo"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isAssociatedWith"/>
 		<rdfs:label>abbreviates</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
 		<rdfs:range rdf:resource="&api4kp;KnowledgeExpression"/>
@@ -581,13 +581,6 @@
 		<skos:definition>abstracts the common qualities of a class of individuals</skos:definition>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp;associatedTo">
-		<rdfs:label>associated to</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
-		<skos:definition>generically related to</skos:definition>
-	</owl:ObjectProperty>
-	
 	<owl:ObjectProperty rdf:about="&api4kp;captures">
 		<rdfs:label>captures</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp;WorkOfKnowledge"/>
@@ -596,19 +589,8 @@
 		<skos:scopeNote>knowledge can be tacit or explicit, and due to its graph-oriented nature, it may not have a definitive boundary. The curation act of a work of knowledge consists in scoping and externalizing a piece of that knowledge.</skos:scopeNote>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp;carriedBy">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;manifestedIn"/>
-		<rdfs:label xml:lang="en">carried by</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeAsset"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeCarrier"/>
-		<owl:inverseOf rdf:resource="&api4kp;carries"/>
-		<skos:altLabel>has carrier</skos:altLabel>
-		<skos:altLabel>is content of</skos:altLabel>
-		<skos:definition>has some expression that is serialized and inscribed on a knowledge carrier, of which this asset is (part of) its content</skos:definition>
-	</owl:ObjectProperty>
-	
 	<owl:ObjectProperty rdf:about="&api4kp;carries">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;manifestationOf"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isManifestationOf"/>
 		<rdfs:label>carries</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp;KnowledgeCarrier"/>
 		<rdfs:range rdf:resource="&api4kp;KnowledgeAsset"/>
@@ -619,15 +601,15 @@
 			</rdf:Description>
 		</owl:propertyChainAxiom>
 		<owl:propertyChainAxiom rdf:parseType="Collection">
-			<rdf:Description rdf:about="&api4kp;inscribedWith">
+			<rdf:Description rdf:about="&api4kp;isInscribedWith">
 			</rdf:Description>
-			<rdf:Description rdf:about="&api4kp;encodingOf">
+			<rdf:Description rdf:about="&api4kp;isEncodingOf">
 			</rdf:Description>
-			<rdf:Description rdf:about="&api4kp;externalizationOf">
+			<rdf:Description rdf:about="&api4kp;isExternalizationOf">
 			</rdf:Description>
-			<rdf:Description rdf:about="&api4kp;concretizationOf">
+			<rdf:Description rdf:about="&api4kp;isConcretizationOf">
 			</rdf:Description>
-			<rdf:Description rdf:about="&api4kp;realizationOf">
+			<rdf:Description rdf:about="&api4kp;isRealizationOf">
 			</rdf:Description>
 		</owl:propertyChainAxiom>
 		<skos:definition>is inscribed with a (serialized) expression of a knowledge asset</skos:definition>
@@ -648,14 +630,6 @@
 		<skos:definition>provides a formalization of the necessary aspects of</skos:definition>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp;concretizationOf">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;manifestationOf"/>
-		<rdfs:label xml:lang="en">concretization of</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;ConcreteKnowledgeExpression"/>
-		<rdfs:range rdf:resource="&api4kp;AbstractKnowledgeExpression"/>
-		<skos:definition>can be parsed into (the) abstract knowledge expression</skos:definition>
-	</owl:ObjectProperty>
-	
 	<owl:ObjectProperty rdf:about="&api4kp;defines">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;captures"/>
 		<rdfs:label>defines</rdfs:label>
@@ -673,28 +647,18 @@
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;dependsOn">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;associatedTo"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isAssociatedWith"/>
 		<rdfs:label xml:lang="en">depends on</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
 		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
 		<skos:altLabel>leverages</skos:altLabel>
-		<skos:definition>such that its use is impacted by the availability of the target resource</skos:definition>
-		<skos:note>an asset may depend on another asset if the latter is background knowledge that facilitates the understanding of the former.</skos:note>
-		<skos:scopeNote>includes mandatory vs optional dependencies, named vs type-based dependencies, and early vs late resolution</skos:scopeNote>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;embodiedIn">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;manifestedIn"/>
-		<rdfs:label>embodied in</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeCarrier"/>
-		<owl:inverseOf rdf:resource="&api4kp;embodies"/>
-		<skos:definition>has a (serialized and encoded) copy inscribed in the target carrier</skos:definition>
-		<skos:scopeNote>a specialization of the upper ontology notion of &apos;inherence&apos;</skos:scopeNote>
+		<skos:definition>involves such that its use is impacted by the availability of the target resource</skos:definition>
+		<skos:note>An asset may depend on another asset if the latter is background knowledge that facilitates the understanding of the former.</skos:note>
+		<skos:scopeNote>includes mandatory vs. optional dependencies, named vs. type-based dependencies, and early vs. late resolution</skos:scopeNote>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;embodies">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;manifestationOf"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isManifestationOf"/>
 		<rdfs:label>embodies</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp;KnowledgeCarrier"/>
 		<rdfs:range rdf:resource="&api4kp;KnowledgeExpression"/>
@@ -702,29 +666,13 @@
 		<skos:scopeNote>a specialization of the upper ontology notion of &apos;bearing&apos;</skos:scopeNote>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp;encodingOf">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;manifestationOf"/>
-		<rdfs:label>encoding of</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;EncodedKnowledgeExpression"/>
-		<rdfs:range rdf:resource="&api4kp;ExternalizedKnowledgeExpression"/>
-		<skos:definition>can be decoded into (the) externalized knowledge expression</skos:definition>
-	</owl:ObjectProperty>
-	
 	<owl:ObjectProperty rdf:about="&api4kp;expresses">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;manifestationOf"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isManifestationOf"/>
 		<rdfs:label>expresses</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
 		<rdfs:range rdf:resource="&api4kp;KnowledgeAsset"/>
-		<owl:inverseOf rdf:resource="&api4kp;materializedIn"/>
+		<owl:inverseOf rdf:resource="&api4kp;isMaterializedIn"/>
 		<skos:definition>is the expression of a knowledge asset in a given language</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;externalizationOf">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;manifestationOf"/>
-		<rdfs:label>externalization of</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;ExternalizedKnowledgeExpression"/>
-		<rdfs:range rdf:resource="&api4kp;ConcreteKnowledgeExpression"/>
-		<skos:definition>can be parsed into (the) concrete knowledge expression</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;faithfullyExpresses">
@@ -747,7 +695,7 @@
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;hasAssetSurrogate">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;manifestedIn"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isManifestedIn"/>
 		<rdfs:label>has asset surrogate</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp;KnowledgeAsset"/>
 		<rdfs:range rdf:resource="&api4kp;KnowledgeAssetSurrogate"/>
@@ -765,13 +713,13 @@
 	<owl:ObjectProperty rdf:about="&api4kp;hasProperPart">
 		<rdfs:subPropertyOf rdf:resource="&dol;hasPart"/>
 		<rdfs:label>has proper part</rdfs:label>
-		<owl:inverseOf rdf:resource="&api4kp;properPartOf"/>
+		<owl:inverseOf rdf:resource="&api4kp;isProperPartOf"/>
 		<skos:definition>has part that is identifiable and distinct from the whole</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;hasStructuralComponent">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;associatedTo"/>
 		<rdfs:subPropertyOf rdf:resource="&api4kp;hasProperPart"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isAssociatedWith"/>
 		<rdfs:label>has structural component</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp;CompositeKnowledgeResource"/>
 		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
@@ -800,14 +748,6 @@
 		<skos:definition>is, expresses or carries knowledge of a specific aspect of the entities it has as a subject</skos:definition>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp;inscribedWith">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;manifestationOf"/>
-		<rdfs:label>inscribed with</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeCarrier"/>
-		<rdfs:range rdf:resource="&api4kp;EncodedKnowledgeExpression"/>
-		<skos:altLabel>engraved with</skos:altLabel>
-	</owl:ObjectProperty>
-	
 	<owl:ObjectProperty rdf:about="&api4kp;internallyRepresents">
 		<rdfs:label>has internal representation of</rdfs:label>
 		<rdfs:label>internalizes</rdfs:label>
@@ -815,13 +755,6 @@
 		<rdfs:domain rdf:resource="&api4kp;KnowledgeableAgent"/>
 		<rdfs:range rdf:resource="&api4kp;PieceOfKnowledge"/>
 		<skos:definition>carries an internal representation of the knowledge (e.g. neurons, but also digital memories) that enables reasoning and planning</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;involvedIn">
-		<rdfs:label>involved in</rdfs:label>
-		<rdfs:range rdf:resource="&api4kp;Activity"/>
-		<skos:altLabel>participates in</skos:altLabel>
-		<skos:definition>entity that participates, playing some role, in an activity</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;is-about">
@@ -836,8 +769,34 @@
 		<skos:definition>relates to a particular subject</skos:definition>
 	</owl:ObjectProperty>
 	
+	<owl:ObjectProperty rdf:about="&api4kp;isAssociatedWith">
+		<rdfs:label>is associated with</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<skos:definition>is generically related to</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;isCarriedBy">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isManifestedIn"/>
+		<rdfs:label xml:lang="en">is carried by</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeAsset"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeCarrier"/>
+		<owl:inverseOf rdf:resource="&api4kp;carries"/>
+		<skos:altLabel>has carrier</skos:altLabel>
+		<skos:altLabel>is content of</skos:altLabel>
+		<skos:definition>has some expression that is serialized and inscribed on a knowledge carrier, of which this asset is (part of) its content</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;isConcretizationOf">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isManifestationOf"/>
+		<rdfs:label xml:lang="en">concretization of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;ConcreteKnowledgeExpression"/>
+		<rdfs:range rdf:resource="&api4kp;AbstractKnowledgeExpression"/>
+		<skos:definition>can be parsed into (the) abstract knowledge expression</skos:definition>
+	</owl:ObjectProperty>
+	
 	<owl:ObjectProperty rdf:about="&api4kp;isDerivedFrom">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;associatedTo"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isAssociatedWith"/>
 		<rdfs:label>is derived from</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
 		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
@@ -845,10 +804,113 @@
 		<skos:note>a resource may be a derivative of any number of resources, all which need to contribute at least some concept.</skos:note>
 	</owl:ObjectProperty>
 	
+	<owl:ObjectProperty rdf:about="&api4kp;isEmbodiedIn">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isManifestedIn"/>
+		<rdfs:label>embodied in</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeCarrier"/>
+		<owl:inverseOf rdf:resource="&api4kp;embodies"/>
+		<skos:definition>has a (serialized and encoded) copy inscribed in the target carrier</skos:definition>
+		<skos:scopeNote>a specialization of the upper ontology notion of &apos;inherence&apos;</skos:scopeNote>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;isEncodingOf">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isManifestationOf"/>
+		<rdfs:label>is encoding of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;EncodedKnowledgeExpression"/>
+		<rdfs:range rdf:resource="&api4kp;ExternalizedKnowledgeExpression"/>
+		<skos:definition>can be decoded into (the) externalized knowledge expression</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;isExternalizationOf">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isManifestationOf"/>
+		<rdfs:label>is externalization of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;ExternalizedKnowledgeExpression"/>
+		<rdfs:range rdf:resource="&api4kp;ConcreteKnowledgeExpression"/>
+		<skos:definition>can be parsed into (the) concrete knowledge expression</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;isInscribedWith">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isManifestationOf"/>
+		<rdfs:label>inscribed with</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeCarrier"/>
+		<rdfs:range rdf:resource="&api4kp;EncodedKnowledgeExpression"/>
+		<skos:altLabel>engraved with</skos:altLabel>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;isInvolvedIn">
+		<rdfs:label>involved in</rdfs:label>
+		<rdfs:range rdf:resource="&api4kp;Activity"/>
+		<skos:altLabel>participates in</skos:altLabel>
+		<skos:definition>entity that participates, playing some role, in an activity</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;isManifestationOf">
+		<rdfs:label>manifestation of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<owl:inverseOf rdf:resource="&api4kp;isManifestedIn"/>
+		<skos:definition>is mappable to a knowledge resource that exists at a higher level of abstraction on the asset / artifact chain</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;isManifestedIn">
+		<rdfs:label>manifested in</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
+		<skos:definition>is mappable to a knowledge resource that exists at a lower level of abstraction on the asset / artifact chain</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;isMaterializedIn">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isManifestedIn"/>
+		<rdfs:label>is materialized in</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeAsset"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeExpression"/>
+		<skos:altLabel>has expression</skos:altLabel>
+		<skos:definition>can be reconstructed from the parsing and interpretation of</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;isProductOf">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isInvolvedIn"/>
+		<rdfs:label>s product of</rdfs:label>
+		<rdfs:range rdf:resource="&api4kp;Activity"/>
+		<skos:definition>exists as a consequence of the execution of an activity</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;isProperPartOf">
+		<rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+		<rdfs:subPropertyOf rdf:resource="&dol;partOf"/>
+		<rdfs:label>is proper part of</rdfs:label>
+		<skos:definition>is part of something distinct</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;isRealizationOf">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isManifestationOf"/>
+		<rdfs:label>is realization of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;AbstractKnowledgeExpression"/>
+		<rdfs:range rdf:resource="&api4kp;KnowledgeAsset"/>
+		<skos:definition>can be abstracted into (the) knowledge asset</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;isRecipientOf">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isInvolvedIn"/>
+		<rdfs:label>is recipient of</rdfs:label>
+		<rdfs:range rdf:resource="&api4kp;Activity"/>
+		<skos:altLabel>is patient of</skos:altLabel>
+		<skos:altLabel>is target of</skos:altLabel>
+		<skos:definition>participates passively, and is somehow affected, during the course of an activity</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;isUsedIn">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isInvolvedIn"/>
+		<rdfs:label>is used in</rdfs:label>
+		<rdfs:range rdf:resource="&api4kp;Activity"/>
+		<skos:definition>is employed under the control of an agent that performs an activity, for the purpose of achieving a goal</skos:definition>
+	</owl:ObjectProperty>
+	
 	<owl:ObjectProperty rdf:about="&api4kp;isVariantOf">
 		<rdf:type rdf:resource="&owl;SymmetricProperty"/>
 		<rdf:type rdf:resource="&owl;TransitiveProperty"/>
-		<rdfs:subPropertyOf rdf:resource="&api4kp;associatedTo"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isAssociatedWith"/>
 		<rdfs:label>is variant of</rdfs:label>
 		<rdfs:domain>
 			<owl:Class>
@@ -890,7 +952,6 @@
 	
 	<owl:ObjectProperty rdf:about="&api4kp;laconicallyExpresses">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;expresses"/>
-		<rdfs:label>consistently expresses</rdfs:label>
 		<rdfs:label>laconically expresses</rdfs:label>
 		<dct:source>(Weber, 1997): construct redundancy occurs when more than one grammatical construct can be used to represent the same ontological construct</dct:source>
 		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
@@ -901,35 +962,10 @@
 	<owl:ObjectProperty rdf:about="&api4kp;lucidlyExpresses">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;expresses"/>
 		<rdfs:label>lucidly expresses</rdfs:label>
-		<rdfs:label>unambiguously expresses</rdfs:label>
 		<dct:source>(Weber, 1997): &quot;construct overload occurs when a single grammatical construct can stand for two or more ontological constructs&quot;</dct:source>
 		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
 		<rdfs:range rdf:resource="&api4kp;KnowledgeAsset"/>
 		<skos:definition>such that every fragment of the expression has no more than one possible interpretation as a concept that is part of the knowledge asset</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;manifestationOf">
-		<rdfs:label>manifestation of</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
-		<owl:inverseOf rdf:resource="&api4kp;manifestedIn"/>
-		<skos:definition>is mappable to a knowledge resource that exists at a higher level of abstraction on the asset / artifact chain</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;manifestedIn">
-		<rdfs:label>manifested in</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeResource"/>
-		<skos:definition>is mappable to a knowledge resource that exists at a lower level of abstraction on the asset / artifact chain</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;materializedIn">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;manifestedIn"/>
-		<rdfs:label>materialized in</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeAsset"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeExpression"/>
-		<skos:altLabel>has expression</skos:altLabel>
-		<skos:definition>can be reconstructed from the parsing and interpretation of</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;models">
@@ -940,42 +976,11 @@
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;performs">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;involvedIn"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isInvolvedIn"/>
 		<rdfs:label>performs</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp;Agent"/>
 		<rdfs:range rdf:resource="&api4kp;Activity"/>
 		<skos:definition>actively contributes to the progress of the activity towards the achievement of its goals</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;productOf">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;involvedIn"/>
-		<rdfs:label>product of</rdfs:label>
-		<rdfs:range rdf:resource="&api4kp;Activity"/>
-		<skos:definition>exists as a consequence of the execution of an activity</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;properPartOf">
-		<rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
-		<rdfs:subPropertyOf rdf:resource="&dol;partOf"/>
-		<rdfs:label>proper part of</rdfs:label>
-		<skos:definition>part of something distinct</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;realizationOf">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;manifestationOf"/>
-		<rdfs:label>realization of</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;AbstractKnowledgeExpression"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeAsset"/>
-		<skos:definition>can be abstracted into (the) knowledge asset</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;recipientOf">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;involvedIn"/>
-		<rdfs:label>recipient of</rdfs:label>
-		<rdfs:range rdf:resource="&api4kp;Activity"/>
-		<skos:altLabel>patient of</skos:altLabel>
-		<skos:altLabel>target of</skos:altLabel>
-		<skos:definition>participates passively, and is somehow affected, during the course of an activity</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;soundlyExpresses">
@@ -1003,15 +1008,7 @@
 		<skos:definition>establishes (potential) components, roles and mutual relationships</skos:definition>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp;usedIn">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;involvedIn"/>
-		<rdfs:label>used in</rdfs:label>
-		<rdfs:range rdf:resource="&api4kp;Activity"/>
-		<skos:definition>employed under the control of an agent that performs an activity, for the purpose of achieving a goal</skos:definition>
-	</owl:ObjectProperty>
-	
 	<owl:ObjectProperty rdf:about="&api4kp;usesConcept">
-		<rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
 		<rdfs:label>uses concept</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
 		<rdfs:range rdf:resource="&api4kp;Concept"/>
