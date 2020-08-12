@@ -573,7 +573,7 @@
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeArtifactRepositoryTask">
-		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeProcessingTask"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-ops;KnowledgeProcessingTask"/>
 		<rdfs:subClassOf>
 			<owl:Restriction>
 				<owl:onProperty rdf:resource="&api4kp-ops;involvesRole"/>
@@ -642,7 +642,7 @@
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeAssetRepositoryTask">
-		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeProcessingTask"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-ops;KnowledgeProcessingTask"/>
 		<rdfs:subClassOf>
 			<owl:Restriction>
 				<owl:onProperty rdf:resource="&api4kp-ops;involvesRole"/>
@@ -749,11 +749,40 @@
 		<skos:definition>retrieves a knowledge artifact that is the carrier of (a given version of) a knowledge asset, possibly choosing between variant carriers using content negotiation</skos:definition>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&api4kp-ops;KnowledgeProcessingActivity">
-		<rdfs:subClassOf rdf:resource="&api4kp;Activity"/>
-		<rdfs:label>knowledge processing activity</rdfs:label>
-		<skos:definition>(planned) activity that realizes a knowledge processing task, according to a method that specifies how to execute the task</skos:definition>
-		<skos:note>knowledge processing activities involve knowledge resources, playing the role of inputs, outputs and substrates, and have reasoning agents as participants.</skos:note>
+	<owl:Class rdf:about="&api4kp-ops;KnowledgeProcessingTask">
+		<rdfs:subClassOf rdf:resource="&api4kp;DefinedConcept"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp-ops;involvesRole"/>
+				<owl:someValuesFrom>
+					<owl:Class>
+						<owl:intersectionOf rdf:parseType="Collection">
+							<rdf:Description rdf:about="&api4kp-ops;KnowledgeProcessingTaskRole">
+							</rdf:Description>
+							<owl:Restriction>
+								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
+								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
+							</owl:Restriction>
+						</owl:intersectionOf>
+					</owl:Class>
+				</owl:someValuesFrom>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp;archetypes"/>
+				<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeProcessingActivity"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:label>knowledge processing task</rdfs:label>
+		<skos:definition>archetypical abstraction of a class of knowledge processing activities that are executed according to a common method, and involve resources of the same nature</skos:definition>
+		<skos:editorialNote>The notion of &apos;task&apos;, &apos;activity&apos;, and &apos;method&apos; is informed by the DOLCE DnS ontology</skos:editorialNote>
+		<skos:note>A Knowledge Processing Task abstracts, defining it, the role that different types of Knowledge Resources play in a Knowledge Processing Activity</skos:note>
+		<skos:note>A Knowledge Processing Task includes a Goal, i.e. a formal description of the expected situation that is the outcome of the execution of an Activity of the type defined by the Task.
+When the outcome matches the Goal - i.e. the description of the outcome is subsumed by the Goal - the activity is considered to be successful. Otherwise, it is considered to be failed.</skos:note>
+		<skos:note>Knowledge Processing Tasks are associated to Constructive Definitions that are (Knowledge Processing) Methods which specify how to execute the Task.</skos:note>
+		<skos:note>Knowledge Processing Tasks executed according to a method that has some degrees of freedom, can be configured using Parameters</skos:note>
+		<skos:note>The execution of a Knowledge Processing Task may involve the generation of an &apos;explanation&apos;</skos:note>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeProcessingTaskRole">
@@ -764,7 +793,7 @@
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeReasoningTask">
-		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeProcessingTask"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-ops;KnowledgeProcessingTask"/>
 		<rdfs:subClassOf>
 			<owl:Restriction>
 				<owl:onProperty rdf:resource="&api4kp-ops;involvesRole"/>
@@ -1260,7 +1289,7 @@
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeResourceStructuringTask">
-		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeProcessingTask"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-ops;KnowledgeProcessingTask"/>
 		<rdfs:subClassOf>
 			<owl:Class>
 				<owl:complementOf>
@@ -1897,7 +1926,7 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;SyntacticKnowledgeProcessingTask">
-		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeProcessingTask"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-ops;KnowledgeProcessingTask"/>
 		<rdfs:subClassOf>
 			<owl:Restriction>
 				<owl:onProperty rdf:resource="&api4kp-ops;involvesRole"/>
@@ -2296,15 +2325,15 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 	<owl:ObjectProperty rdf:about="&api4kp-ops;hasSubtask">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;hasProperPart"/>
 		<rdfs:label>has subTask</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeProcessingTask"/>
-		<rdfs:range rdf:resource="&api4kp;KnowledgeProcessingTask"/>
+		<rdfs:domain rdf:resource="&api4kp-ops;KnowledgeProcessingTask"/>
+		<rdfs:range rdf:resource="&api4kp-ops;KnowledgeProcessingTask"/>
 		<skos:definition>the relationship between a task T and a task S, such that an activity of kind T will have an activity of type S as a sub-activity, i.e. as a (temporal) proper process part</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-ops;involvesRole">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;hasProperPart"/>
 		<rdfs:label>has role</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeProcessingTask"/>
+		<rdfs:domain rdf:resource="&api4kp-ops;KnowledgeProcessingTask"/>
 		<rdfs:range rdf:resource="&api4kp-ops;KnowledgeProcessingTaskRole"/>
 		<skos:definition>has a definition, part of which is the given role</skos:definition>
 		<skos:note>tasks (activity definitions) involve roles, and roles are filled by entities that participate in the activities of the given type</skos:note>
@@ -2324,44 +2353,8 @@ To remain aligned, in API4KP &apos;structuring&apos; denotes manipulations other
 	
 	<owl:ObjectProperty rdf:about="&api4kp-ops;retains">
 		<rdfs:label>retains</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeProcessingTask"/>
+		<rdfs:domain rdf:resource="&api4kp-ops;KnowledgeProcessingTask"/>
 		<skos:definition>does not impact an (invariant) characteristic shared by its inputs and outputs</skos:definition>
 	</owl:ObjectProperty>
-	
-	<owl:Class rdf:about="&api4kp;KnowledgeProcessingTask">
-		<rdfs:subClassOf rdf:resource="&api4kp;DefinedConcept"/>
-		<rdfs:subClassOf>
-			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp-ops;involvesRole"/>
-				<owl:someValuesFrom>
-					<owl:Class>
-						<owl:intersectionOf rdf:parseType="Collection">
-							<rdf:Description rdf:about="&api4kp-ops;KnowledgeProcessingTaskRole">
-							</rdf:Description>
-							<owl:Restriction>
-								<owl:onProperty rdf:resource="&api4kp-ops;isFilledBy"/>
-								<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
-							</owl:Restriction>
-						</owl:intersectionOf>
-					</owl:Class>
-				</owl:someValuesFrom>
-			</owl:Restriction>
-		</rdfs:subClassOf>
-		<rdfs:subClassOf>
-			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp;archetypes"/>
-				<owl:someValuesFrom rdf:resource="&api4kp-ops;KnowledgeProcessingActivity"/>
-			</owl:Restriction>
-		</rdfs:subClassOf>
-		<rdfs:label>knowledge processing task</rdfs:label>
-		<skos:definition>archetypical abstraction of a class of knowledge processing activities that are executed according to a common method, and involve resources of the same nature</skos:definition>
-		<skos:editorialNote>The notion of &apos;task&apos;, &apos;activity&apos;, and &apos;method&apos; is informed by the DOLCE DnS ontology</skos:editorialNote>
-		<skos:note>A Knowledge Processing Task abstracts, defining it, the role that different types of Knowledge Resources play in a Knowledge Processing Activity</skos:note>
-		<skos:note>A Knowledge Processing Task includes a Goal, i.e. a formal description of the expected situation that is the outcome of the execution of an Activity of the type defined by the Task.
-When the outcome matches the Goal - i.e. the description of the outcome is subsumed by the Goal - the activity is considered to be successful. Otherwise, it is considered to be failed.</skos:note>
-		<skos:note>Knowledge Processing Tasks are associated to Constructive Definitions that are (Knowledge Processing) Methods which specify how to execute the Task.</skos:note>
-		<skos:note>Knowledge Processing Tasks executed according to a method that has some degrees of freedom, can be configured using Parameters</skos:note>
-		<skos:note>The execution of a Knowledge Processing Task may involve the generation of an &apos;explanation&apos;</skos:note>
-	</owl:Class>
 
 </rdf:RDF>
