@@ -138,7 +138,6 @@
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-series;VersionIdentifier">
-		<rdfs:subClassOf rdf:resource="&api4kp-series;ImmutableEntity"/>
 		<rdfs:subClassOf rdf:resource="&lcc-lr;Identifier"/>
 		<rdfs:subClassOf>
 			<owl:Restriction>
@@ -163,10 +162,19 @@
 		<skos:example>the IRI / versionIRI pair used to identify versions of an OWL ontology</skos:example>
 	</owl:Class>
 	
+	<owl:ObjectProperty rdf:about="&api4kp-series;hasLatest">
+		<rdfs:subPropertyOf rdf:resource="&lcc-lr;hasMember"/>
+		<rdfs:label>has latest</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp-series;Series"/>
+		<rdfs:range rdf:resource="&api4kp-series;Version"/>
+		<skos:definition>has member version that is the successor of every other member of the series, and does not have any successor itself</skos:definition>
+		<skos:note>this property is mutable as the series mutates over time</skos:note>
+	</owl:ObjectProperty>
+	
 	<owl:ObjectProperty rdf:about="&api4kp-series;hasNextVersion">
 		<rdfs:subPropertyOf rdf:resource="&api4kp-series;hasSuccesorVersion"/>
 		<rdfs:label>has next version</rdfs:label>
-		<owl:inverseOf rdf:resource="&api4kp;hasPreviousVersion"/>
+		<owl:inverseOf rdf:resource="&api4kp-series;hasPreviousVersion"/>
 		<skos:altLabel>has next immediate version</skos:altLabel>
 		<skos:definition>is a version V1 that has successor version V2, and there is no other distinct version that is successor of V1 and predecessor of V2</skos:definition>
 	</owl:ObjectProperty>
@@ -178,6 +186,14 @@
 		<skos:definition>indicates a date and time for an event, measurement, snapshot or other observation</skos:definition>
 	</owl:DatatypeProperty>
 	
+	<owl:ObjectProperty rdf:about="&api4kp-series;hasOriginal">
+		<rdfs:subPropertyOf rdf:resource="&lcc-lr;hasMember"/>
+		<rdfs:label>has original</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp-series;Series"/>
+		<rdfs:range rdf:resource="&api4kp-series;Version"/>
+		<skos:definition>has member version that is the predecessor of every other member of the series, and it is not possible for it to have any predecessor itself</skos:definition>
+	</owl:ObjectProperty>
+	
 	<owl:ObjectProperty rdf:about="&api4kp-series;hasPredecessorVersion">
 		<rdfs:subPropertyOf rdf:resource="&api4kp-series;isInSeriesWith"/>
 		<rdfs:label>has predecessor version</rdfs:label>
@@ -186,6 +202,13 @@
 		<owl:inverseOf rdf:resource="&api4kp-series;hasSuccesorVersion"/>
 		<skos:altLabel>has prior version</skos:altLabel>
 		<skos:definition>is in the same series with a version whose timestamp is before the timestamp of this version</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-series;hasPreviousVersion">
+		<rdfs:subPropertyOf rdf:resource="&api4kp-series;hasPredecessorVersion"/>
+		<rdfs:label>has previous version</rdfs:label>
+		<skos:altLabel>has previous immediate version</skos:altLabel>
+		<skos:definition>is a version V1 that has predecessor version V2, and there is no other distinct version that is predecessor of V1 and successor of V2</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-series;hasSnapshot">
@@ -245,29 +268,13 @@
 		<rdfs:subClassOf rdf:resource="&api4kp-series;Version"/>
 	</owl:Class>
 	
-	<owl:ObjectProperty rdf:about="&api4kp;hasLatest">
-		<rdfs:subPropertyOf rdf:resource="&lcc-lr;hasMember"/>
-		<rdfs:label>has latest</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp-series;Series"/>
-		<rdfs:range rdf:resource="&api4kp-series;Version"/>
-		<skos:definition>has member version that is the successor of every other member of the series, and does not have any successor itself</skos:definition>
-		<skos:note>this property is mutable as the series mutates over time</skos:note>
-	</owl:ObjectProperty>
+	<owl:Class rdf:about="&lcc-lr;CodeElement">
+		<rdfs:subClassOf rdf:resource="&api4kp-series;ImmutableEntity"/>
+	</owl:Class>
 	
-	<owl:ObjectProperty rdf:about="&api4kp;hasOriginal">
-		<rdfs:subPropertyOf rdf:resource="&lcc-lr;hasMember"/>
-		<rdfs:label>has original</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp-series;Series"/>
-		<rdfs:range rdf:resource="&api4kp-series;Version"/>
-		<skos:definition>has member version that is the predecessor of every other member of the series, and it is not possible for it to have any predecessor itself</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;hasPreviousVersion">
-		<rdfs:subPropertyOf rdf:resource="&api4kp-series;hasPredecessorVersion"/>
-		<rdfs:label>has previous version</rdfs:label>
-		<skos:altLabel>has previous immediate version</skos:altLabel>
-		<skos:definition>is a version V1 that has predecessor version V2, and there is no other distinct version that is predecessor of V1 and successor of V2</skos:definition>
-	</owl:ObjectProperty>
+	<owl:Class rdf:about="&lcc-lr;Identifier">
+		<rdfs:subClassOf rdf:resource="&api4kp-series;ImmutableEntity"/>
+	</owl:Class>
 	
 	<owl:Class rdf:about="&lcc-lr;Language">
 		<rdfs:subClassOf>
