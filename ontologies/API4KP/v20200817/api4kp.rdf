@@ -78,7 +78,7 @@
 		</rdfs:subClassOf>
 		<rdfs:subClassOf>
 			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp;knowledge-representation-of"/>
+				<owl:onProperty rdf:resource="&api4kp;represents"/>
 				<owl:someValuesFrom rdf:resource="&api4kp;Knowledge"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
@@ -105,7 +105,7 @@
 	</owl:Class>
 	
 	<owl:ObjectProperty rdf:about="&dol;formalizes">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;knowledge-representation-of"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;represents"/>
 		<skos:note>faithfully, concisely, consistently and unambiguously expresses a knowledge asset using a formal language, if not a knowledge representation language</skos:note>
 	</owl:ObjectProperty>
 	
@@ -282,7 +282,7 @@
 		</rdfs:subClassOf>
 		<rdfs:subClassOf>
 			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp;is-about"/>
+				<owl:onProperty rdf:resource="&api4kp;isAbout"/>
 				<owl:someValuesFrom rdf:resource="&owl;Thing"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
@@ -445,7 +445,7 @@
 					<rdf:Description rdf:about="&api4kp;KnowledgeAsset">
 					</rdf:Description>
 					<owl:Restriction>
-						<owl:onProperty rdf:resource="&api4kp;is-about"/>
+						<owl:onProperty rdf:resource="&api4kp;isAbout"/>
 						<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
 					</owl:Restriction>
 				</owl:intersectionOf>
@@ -574,7 +574,7 @@
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;archetypes">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;is-about"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isAbout"/>
 		<rdfs:label>archetypes</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp;DefinedConcept"/>
 		<rdfs:seeAlso>http://www.w3.org/ns/lemon/ontolex#isConceptOf</rdfs:seeAlso>
@@ -757,16 +757,9 @@
 		<skos:definition>carries an internal representation of the knowledge (e.g. neurons, but also digital memories) that enables reasoning and planning</skos:definition>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp;is-about">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;isAbout"/>
-		<rdfs:label>knowledge of</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;Knowledge"/>
-		<skos:definition>is about who, what, how, when, where or why a referent entity is and/or behaves</skos:definition>
-	</owl:ObjectProperty>
-	
 	<owl:ObjectProperty rdf:about="&api4kp;isAbout">
 		<rdfs:label>is about</rdfs:label>
-		<skos:definition>relates to a particular subject</skos:definition>
+		<skos:definition>relates something to a particular subject or topic - who, what, how, when, where or why a referent entity is and/or behaves</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;isAssociatedWith">
@@ -935,21 +928,6 @@
 		<skos:definition>expresses or carries the same knowledge asset as, but differs in at least one of language, serialization, lexicon, alphabet, encoding, or internal arrangement thereof</skos:definition>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp;knowledge-representation-of">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;isAbout"/>
-		<rdfs:label>knowledge representation of</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
-		<owl:propertyChainAxiom rdf:parseType="Collection">
-			<rdf:Description rdf:about="&api4kp;expresses">
-			</rdf:Description>
-			<rdf:Description rdf:about="&api4kp;captures">
-			</rdf:Description>
-			<rdf:Description rdf:about="&api4kp;is-about">
-			</rdf:Description>
-		</owl:propertyChainAxiom>
-		<skos:definition>expresses knowledge about something, usually in a formal way</skos:definition>
-	</owl:ObjectProperty>
-	
 	<owl:ObjectProperty rdf:about="&api4kp;laconicallyExpresses">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;expresses"/>
 		<rdfs:label>laconically expresses</rdfs:label>
@@ -981,6 +959,20 @@
 		<rdfs:domain rdf:resource="&api4kp;Agent"/>
 		<rdfs:range rdf:resource="&api4kp;Activity"/>
 		<skos:definition>actively contributes to the progress of the activity towards the achievement of its goals</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;represents">
+		<rdfs:label>represents</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
+		<owl:propertyChainAxiom rdf:parseType="Collection">
+			<rdf:Description rdf:about="&api4kp;expresses">
+			</rdf:Description>
+			<rdf:Description rdf:about="&api4kp;captures">
+			</rdf:Description>
+			<rdf:Description rdf:about="&api4kp;isAbout">
+			</rdf:Description>
+		</owl:propertyChainAxiom>
+		<skos:definition>expresses knowledge about something, usually in a formal way</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;soundlyExpresses">
