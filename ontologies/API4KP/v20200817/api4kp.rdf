@@ -105,7 +105,10 @@
 	</owl:Class>
 	
 	<owl:ObjectProperty rdf:about="&dol;formalizes">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;faithfullyExpresses"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;laconicallyExpresses"/>
 		<rdfs:subPropertyOf rdf:resource="&api4kp;represents"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp;soundlyExpresses"/>
 		<skos:note>faithfully, concisely, consistently and unambiguously expresses a knowledge asset using a formal language, if not a knowledge representation language</skos:note>
 	</owl:ObjectProperty>
 	
@@ -624,7 +627,7 @@
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;conceptualizes">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;formallyRepresents"/>
+		<rdfs:subPropertyOf rdf:resource="&dol;formalizes"/>
 		<rdfs:label>conceptualizes</rdfs:label>
 		<rdfs:domain rdf:resource="&dol;Ontology"/>
 		<skos:definition>provides a formalization of the necessary aspects of</skos:definition>
@@ -682,16 +685,6 @@
 		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
 		<rdfs:range rdf:resource="&api4kp;KnowledgeAsset"/>
 		<skos:definition>expresses correctly and completely</skos:definition>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;formallyRepresents">
-		<rdfs:subPropertyOf rdf:resource="&dol;formalizes"/>
-		<rdfs:subPropertyOf rdf:resource="&api4kp;faithfullyExpresses"/>
-		<rdfs:subPropertyOf rdf:resource="&api4kp;laconicallyExpresses"/>
-		<rdfs:subPropertyOf rdf:resource="&api4kp;soundlyExpresses"/>
-		<rdfs:label>formally represents</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;KnowledgeExpression"/>
-		<skos:definition>is an expression that represents something using principles based in logics and mathematics</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;hasAssetSurrogate">
@@ -947,7 +940,7 @@
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;models">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;formallyRepresents"/>
+		<rdfs:subPropertyOf rdf:resource="&dol;formalizes"/>
 		<rdfs:label>models</rdfs:label>
 		<rdfs:domain rdf:resource="&dol;Model"/>
 		<skos:definition>provides a descriptive formalization of the necessary and contigent aspects of</skos:definition>
@@ -987,7 +980,7 @@
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;specifies">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;formallyRepresents"/>
+		<rdfs:subPropertyOf rdf:resource="&dol;formalizes"/>
 		<rdfs:label>specifies</rdfs:label>
 		<rdfs:domain rdf:resource="&dol;Specification"/>
 		<skos:definition>provides a prescriptive formalization of the normative and informative aspects of</skos:definition>
