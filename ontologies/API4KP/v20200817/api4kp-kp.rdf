@@ -54,7 +54,7 @@
 	<owl:Class rdf:about="&api4kp-kp;Algorithm">
 		<rdfs:subClassOf rdf:resource="&api4kp;WorkOfKnowledge"/>
 		<rdfs:label>algorithm</rdfs:label>
-		<skos:definition>a finite sequence of well-defined, computer-implementable instructions, typically to solve a class of problems or to perform a computation</skos:definition>
+		<skos:definition>finite sequence of well-defined, computer-implementable instructions, typically to solve a class of problems or to perform a computation</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-kp;ComputerProgram">
@@ -75,17 +75,11 @@
 		<skos:scopeNote>includes physical and virtual machines, operating systems, containers and other computing platform/infrastructure components</skos:scopeNote>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&api4kp-kp;DLReasoner">
-		<rdfs:subClassOf rdf:resource="&api4kp-kp;Reasoner"/>
-		<rdfs:label>description logic reasoner</rdfs:label>
-		<skos:definition>reasoner optimized for logic based classification, subsumption and query answering tasks</skos:definition>
-	</owl:Class>
-	
 	<owl:Class rdf:about="&api4kp-kp;DeployedSoftware">
 		<rdfs:subClassOf rdf:resource="&api4kp;ArtificialAgent"/>
 		<rdfs:subClassOf>
 			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp-kp;deployment-of"/>
+				<owl:onProperty rdf:resource="&api4kp-kp;isDeploymentOf"/>
 				<owl:someValuesFrom rdf:resource="&api4kp-kp;Software"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
@@ -97,7 +91,13 @@
 		</rdfs:subClassOf>
 		<rdfs:label>deployed software</rdfs:label>
 		<skos:altLabel>deployed software module</skos:altLabel>
-		<skos:definition>the result of installing a Software into some computing environment</skos:definition>
+		<skos:definition>the result of installing a particular software application or agent into some computing environment</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kp;DescriptionLogicReasoner">
+		<rdfs:subClassOf rdf:resource="&api4kp-kp;Reasoner"/>
+		<rdfs:label>description logic reasoner</rdfs:label>
+		<skos:definition>reasoner optimized for logic based classification, subsumption and query answering tasks that conforms to one or more description logic(s)</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-kp;KnowledgeBasedExecution">
@@ -145,25 +145,24 @@
 		</rdfs:subClassOf>
 		<rdfs:subClassOf>
 			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp;performs"/>
-				<owl:someValuesFrom rdf:resource="&api4kp-kp;KnowledgeBasedExecution"/>
+				<owl:onProperty rdf:resource="&api4kp;isProperPartOf"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-kp;KnowledgePlatform"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:subClassOf>
 			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp;properPartOf"/>
-				<owl:someValuesFrom rdf:resource="&api4kp-kp;KnowledgePlatform"/>
+				<owl:onProperty rdf:resource="&api4kp;performs"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-kp;KnowledgeBasedExecution"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
-		<rdfs:label>knowledge platform component</rdfs:label>
-		<skos:altLabel>knowledge platform module</skos:altLabel>
-		<skos:definition>deployed software that is part of a knowledge platform, and performs knowledge based executions</skos:definition>
+		<rdfs:label>knowledge platform module</rdfs:label>
+		<skos:definition>deployed software component that is part of a knowledge platform and performs knowledge-based tasks</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-kp;ProcessEngine">
 		<rdfs:subClassOf rdf:resource="&api4kp-kp;Reasoner"/>
 		<rdfs:label>process engine</rdfs:label>
-		<skos:definition>reasoner that supports stateful, temporal reasoning centered on tasks, roles and events.</skos:definition>
+		<skos:definition>reasoner that supports stateful, temporal reasoning centered on tasks, roles and events</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-kp;ProductionRuleEngine">
@@ -176,7 +175,7 @@
 		<rdfs:subClassOf rdf:resource="&api4kp-kp;Software"/>
 		<rdfs:label>reasoner</rdfs:label>
 		<rdfs:comment>software that has the capability of performing reasoning operations</rdfs:comment>
-		<skos:altLabel>engine</skos:altLabel>
+		<skos:altLabel>reasoning engine</skos:altLabel>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-kp;RuleEngine">
@@ -205,25 +204,18 @@
 		<skos:scopeNote>at a minimum, a software execution is a knowledge processing activity in the sense that the computing machine follows the &quot;plan&quot; stated by the computer program</skos:scopeNote>
 	</owl:Class>
 	
-	<owl:ObjectProperty rdf:about="&api4kp-kp;deployment-of">
-		<rdfs:label>deployment of</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp-kp;DeployedSoftware"/>
-		<rdfs:range rdf:resource="&api4kp-kp;Software"/>
-	</owl:ObjectProperty>
-	
 	<owl:ObjectProperty rdf:about="&api4kp-kp;hosts">
+		<rdfs:label>hosts</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp-kp;ComputingEnvironment"/>
 		<rdfs:range rdf:resource="&api4kp-kp;DeployedSoftware"/>
-		<skos:definition>The relationship between an execution environment, and a software that has been launched and/or deployed in that environment</skos:definition>
+		<skos:definition>relationship between an execution environment, and a software component that has been launched and/or deployed in that environment</skos:definition>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp;internallyRepresents">
-		<rdfs:label>internally represents</rdfs:label>
-		<rdfs:comment>maintains a private, explicit, symbolic structure that holds the information content of, used for processing</rdfs:comment>
+	<owl:ObjectProperty rdf:about="&api4kp-kp;isDeploymentOf">
+		<rdfs:label>is deployment of</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp-kp;DeployedSoftware"/>
-	</owl:ObjectProperty>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;properPartOf">
+		<rdfs:range rdf:resource="&api4kp-kp;Software"/>
+		<skos:definition>relationship between a a software component that has been launched and/or deployed in some environment and its basic form</skos:definition>
 	</owl:ObjectProperty>
 
 </rdf:RDF>
