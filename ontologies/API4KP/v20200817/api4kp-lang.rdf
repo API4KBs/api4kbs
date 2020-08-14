@@ -2,6 +2,7 @@
 <!DOCTYPE rdf:RDF [
 	<!ENTITY api4kp "https://www.omg.org/spec/API4KP/api4kp/">
 	<!ENTITY api4kp-lang "https://www.omg.org/spec/API4KP/api4kp-lang/">
+	<!ENTITY api4kp-series "https://www.omg.org/spec/API4KP/api4kp-series/">
 	<!ENTITY dct "http://purl.org/dc/terms/">
 	<!ENTITY dol "http://www.omg.org/spec/DOL/DOL-terms/">
 	<!ENTITY lcc-lr "https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/">
@@ -15,6 +16,7 @@
 <rdf:RDF xml:base="https://www.omg.org/spec/API4KP/api4kp-lang/"
 	xmlns:api4kp="https://www.omg.org/spec/API4KP/api4kp/"
 	xmlns:api4kp-lang="https://www.omg.org/spec/API4KP/api4kp-lang/"
+	xmlns:api4kp-series="https://www.omg.org/spec/API4KP/api4kp-series/"
 	xmlns:dct="http://purl.org/dc/terms/"
 	xmlns:dol="http://www.omg.org/spec/DOL/DOL-terms/"
 	xmlns:lcc-lr="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"
@@ -39,11 +41,14 @@
 		<sm:copyright>Copyright (c) 2015-2020 Object Management Group, Inc.</sm:copyright>
 		<sm:copyright>Copyright (c) 2019-2020 Universität Leipzig</sm:copyright>
 		<sm:copyright>Copyright (c) 2020 Micro Focus</sm:copyright>
+		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/API4KP/api4kp-series/</sm:dependsOn>
+		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/API4KP/api4kp/</sm:dependsOn>
 		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/DOL/</sm:dependsOn>
 		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/LCC/</sm:dependsOn>
 		<sm:fileAbbreviation>api4kp-lang</sm:fileAbbreviation>
 		<sm:filename>api4kp-lang.rdf</sm:filename>
 		<owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
+		<owl:imports rdf:resource="https://www.omg.org/spec/API4KP/api4kp-series/"/>
 		<owl:imports rdf:resource="https://www.omg.org/spec/API4KP/api4kp/"/>
 		<owl:imports rdf:resource="https://www.omg.org/spec/DOL/20171106/DOL-terms.rdf"/>
 		<owl:imports rdf:resource="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
@@ -124,7 +129,7 @@
 		<rdfs:subClassOf rdf:resource="&api4kp-lang;ParsingStructure"/>
 		<rdfs:subClassOf>
 			<owl:Restriction>
-				<owl:onProperty rdf:resource="&dol;formalizes"/>
+				<owl:onProperty rdf:resource="&api4kp;conveysFormalStructure"/>
 				<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeAsset"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
@@ -470,7 +475,7 @@
 		<rdfs:subClassOf rdf:resource="&dol;LinguisticEntity"/>
 		<rdfs:subClassOf>
 			<owl:Restriction>
-				<owl:onProperty rdf:resource="&dol;formalizes"/>
+				<owl:onProperty rdf:resource="&api4kp;conveysFormalStructure"/>
 				<owl:someValuesFrom rdf:resource="&dol;LinguisticEntity"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
