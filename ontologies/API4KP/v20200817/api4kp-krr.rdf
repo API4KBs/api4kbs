@@ -209,7 +209,7 @@ This ontology differs from other versions of the series only in the natural lang
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>hybrid knowledge base</rdfs:label>
-		<skos:definition>A knowledge base composed by multiple parts that have different computational semantics and pragmatics, and thus are likely based on different logics</skos:definition>
+		<skos:definition>knowledge base composed by multiple parts that have different computational semantics and pragmatics, and thus are likely based on different logics</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-krr;HybridKnowledgeEnvironment">
@@ -228,22 +228,22 @@ This ontology differs from other versions of the series only in the natural lang
 			</owl:Class>
 		</rdfs:subClassOf>
 		<rdfs:label>hybrid knowledge environment</rdfs:label>
-		<rdfs:comment>categorical, preserving language environment where multiple KRR languages, and mappings thereof, are supported</rdfs:comment>
+		<skos:note>categorical, preserving language environment where multiple KRR languages, and mappings thereof, are supported</skos:note>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-krr;ImmutableKnowledgeBase">
 		<rdfs:subClassOf rdf:resource="&api4kp-krr;KnowledgeBase"/>
 		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
 		<rdfs:label>immutable knowledgebase</rdfs:label>
-		<rdfs:comment>An KB can be immutable by nature. Otherwise, any snapshot of a KB at a given point in time (including the time of its creation) is considered immutable.</rdfs:comment>
 		<skos:definition>knowledge base that cannot be changed</skos:definition>
+		<skos:note>An KB can be immutable by nature. Otherwise, any snapshot of a KB at a given point in time (including the time of its creation) is considered immutable.</skos:note>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-krr;KnowledgeBase">
 		<rdfs:subClassOf rdf:resource="&api4kp;WorkOfKnowledge"/>
 		<rdfs:label>knowledge base</rdfs:label>
-		<rdfs:comment>A knowledge base is formed by one or more pieces of knowledge, related in different way, such that each piece plays some kind of role.</rdfs:comment>
-		<skos:definition>A work of knowledge designed to support reasoning activities</skos:definition>
+		<skos:definition>work of knowledge designed to support reasoning activities</skos:definition>
+		<skos:note>A knowledge base is formed by one or more pieces of knowledge, related in different way, such that each piece plays some kind of role.</skos:note>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-krr;LanguageEnvironment">
@@ -268,13 +268,11 @@ This ontology differs from other versions of the series only in the natural lang
 		</rdfs:subClassOf>
 		<rdfs:label>machine-readable knowledge resource</rdfs:label>
 		<skos:definition>set of expressions in one or more machine readable languages, in the context of a logical environment that determines how these expressions are jointly interpreted.</skos:definition>
-		<skos:example>Examples;
-Example A: OWL Ground fact expressing that Socrates is a philosopher.
-Example B: Common Logic sentence expressing that Socrates is a philosopher.
-Example C: RDF graph expressing that the author of Moby Dick is Herman Melville.
-Example D: SPARQL query for the names of philosphers.
-
-Example E: A and B, together with a mapping that allows OWL to be converted to Common Logic.</skos:example>
+		<skos:example>Example A: OWL Ground fact expressing that Socrates is a philosopher.</skos:example>
+		<skos:example>Example B: Common Logic sentence expressing that Socrates is a philosopher.</skos:example>
+		<skos:example>Example C: RDF graph expressing that the author of Moby Dick is Herman Melville.</skos:example>
+		<skos:example>Example D: SPARQL query for the names of philosphers.</skos:example>
+		<skos:example>Example E: A and B, together with a mapping that allows OWL to be converted to Common Logic.</skos:example>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-krr;MutableKnowledgeBase">
@@ -348,12 +346,6 @@ Example E: A and B, together with a mapping that allows OWL to be converted to C
 		<skos:definition>environment where every mapping preserves a specified property</skos:definition>
 	</owl:Class>
 	
-	<owl:ObjectProperty rdf:about="&api4kp-krr;accordingTo">
-		<rdfs:label>according to</rdfs:label>
-		<rdfs:range rdf:resource="&api4kp-krr;Environment"/>
-		<skos:definition>relationship between a collection and an environment whereby the results of application of a mapping of the environment to a member of the collection are also members of the environment</skos:definition>
-	</owl:ObjectProperty>
-	
 	<owl:ObjectProperty rdf:about="&api4kp-krr;allPreserve">
 		<rdfs:label>all preserve</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp-krr;PreservingEnvironment"/>
@@ -376,17 +368,23 @@ Example E: A and B, together with a mapping that allows OWL to be converted to C
 		<rdfs:label>has focus member</rdfs:label>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp-krr;hasSubenvironment">
+	<owl:ObjectProperty rdf:about="&api4kp-krr;hasSubEnvironment">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;hasProperPart"/>
 		<rdfs:label>has sub-environment</rdfs:label>
-		<owl:inverseOf rdf:resource="&api4kp-krr;isSubenvironmentOf"/>
+		<owl:inverseOf rdf:resource="&api4kp-krr;isSubEnvironmentOf"/>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-krr;isAccordingTo">
+		<rdfs:label>according to</rdfs:label>
+		<rdfs:range rdf:resource="&api4kp-krr;Environment"/>
+		<skos:definition>relationship between a collection and an environment whereby the results of application of a mapping of the environment to a member of the collection are also members of the environment</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-krr;isEnvironmentMappingOf">
 		<rdfs:label>is environment mapping of</rdfs:label>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp-krr;isSubenvironmentOf">
+	<owl:ObjectProperty rdf:about="&api4kp-krr;isSubEnvironmentOf">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;isProperPartOf"/>
 		<rdfs:label xml:lang="en">is sub-environment of</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp-krr;Environment"/>
