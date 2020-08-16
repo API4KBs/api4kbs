@@ -144,6 +144,7 @@ This ontology differs from other versions of the series only in the natural lang
 		</rdfs:subClassOf>
 		<rdfs:label>empty environment</rdfs:label>
 		<owl:disjointWith rdf:resource="&api4kp-krr;NonEmptyEnvironment"/>
+		<skos:definition>environment with no members or mappings</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-krr;Environment">
@@ -328,6 +329,7 @@ This ontology differs from other versions of the series only in the natural lang
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:label>non-empty environment</rdfs:label>
+		<skos:definition>environment with at least one member and one mapping</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-krr;PivotalKnowledgeEnvironment">
@@ -349,29 +351,34 @@ This ontology differs from other versions of the series only in the natural lang
 	<owl:ObjectProperty rdf:about="&api4kp-krr;allPreserve">
 		<rdfs:label>all preserve</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp-krr;PreservingEnvironment"/>
+		<skos:definition>contains only mappings that preserve</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-krr;hasEnvironmentMapping">
 		<rdfs:label>has environment mapping</rdfs:label>
 		<rdfs:range rdf:resource="&dol;Mapping"/>
 		<owl:inverseOf rdf:resource="&api4kp-krr;isEnvironmentMappingOf"/>
+		<skos:definition>contains mapping</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-krr;hasEnvironmentMember">
 		<rdfs:subPropertyOf rdf:resource="&lcc-lr;hasMember"/>
 		<rdfs:label>has environment member</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp-krr;NonEmptyEnvironment"/>
+		<skos:definition>contains member</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-krr;hasFocusMember">
 		<rdfs:subPropertyOf rdf:resource="&api4kp-krr;hasEnvironmentMember"/>
 		<rdfs:label>has focus member</rdfs:label>
+		<skos:definition>is the sole member of</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-krr;hasSubEnvironment">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;hasProperPart"/>
 		<rdfs:label>has sub-environment</rdfs:label>
 		<owl:inverseOf rdf:resource="&api4kp-krr;isSubEnvironmentOf"/>
+		<skos:definition>has a closed subset of members and mappings that make up an environment</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-krr;isAccordingTo">
@@ -382,6 +389,7 @@ This ontology differs from other versions of the series only in the natural lang
 	
 	<owl:ObjectProperty rdf:about="&api4kp-krr;isEnvironmentMappingOf">
 		<rdfs:label>is environment mapping of</rdfs:label>
+		<skos:definition>is mapping member of</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-krr;isSubEnvironmentOf">
@@ -389,7 +397,7 @@ This ontology differs from other versions of the series only in the natural lang
 		<rdfs:label xml:lang="en">is sub-environment of</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp-krr;Environment"/>
 		<rdfs:range rdf:resource="&api4kp-krr;Environment"/>
-		<skos:definition>relationship between two environments that is a partial order where the language and logic graphs of the first enviroment are subgraphs, resp., of the language and logic graphs of the second environment</skos:definition>
+		<skos:definition>contains a subset of members and mappings with respect to the target environment that is a partial order, where the language and logic graphs of the source enviroment are subgraphs, respectively, of the language and logic graphs of the target environment</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-krr;preserves">
@@ -401,6 +409,7 @@ This ontology differs from other versions of the series only in the natural lang
 			<rdf:Description rdf:about="&api4kp-krr;allPreserve">
 			</rdf:Description>
 		</owl:propertyChainAxiom>
+		<skos:definition>when applied, ensures that a property of the source entity is also a property of the target entity</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:Class rdf:about="&api4kp;ComputableKnowledgeArtifact">
