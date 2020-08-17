@@ -233,9 +233,9 @@
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp;DecoratedKnowledgeExpression">
-		<rdfs:subClassOf rdf:resource="&api4kp;ExternalizedKnowledgeExpression"/>
+		<rdfs:subClassOf rdf:resource="&api4kp;SerializedKnowledgeExpression"/>
 		<rdfs:label>decorated knowledge expression</rdfs:label>
-		<skos:definition>externalized knowledge expression that includes extra symbols used for presentation, but otherwise does not impact the recognition and/or the interpretation of the expression</skos:definition>
+		<skos:definition>serialized knowledge expression that includes extra symbols used for presentation, but otherwise does not impact the recognition and/or the interpretation of the expression</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp;DefinedConcept">
@@ -264,10 +264,10 @@
 		<skos:note>knowledge expression such that its symbols have been further processed to be inscribed on a specific knowledge carrier</skos:note>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&api4kp;ExternalizedKnowledgeExpression">
+	<owl:Class rdf:about="&api4kp;SerializedKnowledgeExpression">
 		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeExpression"/>
-		<rdfs:label>externalized knowledge expression</rdfs:label>
-		<skos:definition>knowledge expression that manifests a concrete knowledge  expression using a specific choice of symbols</skos:definition>
+		<rdfs:label>serialized knowledge expression</rdfs:label>
+		<skos:definition>knowledge expression that manifests a concrete knowledge expression using a specific choice of symbols</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp;Knowledge">
@@ -594,7 +594,7 @@
 			</rdf:Description>
 			<rdf:Description rdf:about="&api4kp;isEncodingOf">
 			</rdf:Description>
-			<rdf:Description rdf:about="&api4kp;isExternalizationOf">
+			<rdf:Description rdf:about="&api4kp;isSerializationOf">
 			</rdf:Description>
 			<rdf:Description rdf:about="&api4kp;isConcretizationOf">
 			</rdf:Description>
@@ -795,14 +795,14 @@
 		<rdfs:subPropertyOf rdf:resource="&api4kp;isManifestationOf"/>
 		<rdfs:label>is encoding of</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp;EncodedKnowledgeExpression"/>
-		<rdfs:range rdf:resource="&api4kp;ExternalizedKnowledgeExpression"/>
-		<skos:definition>can be decoded into (the) externalized knowledge expression</skos:definition>
+		<rdfs:range rdf:resource="&api4kp;SerializedKnowledgeExpression"/>
+		<skos:definition>can be decoded into (the) serialized knowledge expression</skos:definition>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp;isExternalizationOf">
+	<owl:ObjectProperty rdf:about="&api4kp;isSerializationOf">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;isManifestationOf"/>
-		<rdfs:label>is externalization of</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;ExternalizedKnowledgeExpression"/>
+		<rdfs:label>is serialization of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;SerializedKnowledgeExpression"/>
 		<rdfs:range rdf:resource="&api4kp;ConcreteKnowledgeExpression"/>
 		<skos:definition>can be parsed into (the) concrete knowledge expression</skos:definition>
 	</owl:ObjectProperty>

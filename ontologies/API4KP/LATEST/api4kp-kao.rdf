@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE rdf:RDF [
-	<!ENTITY AnnotationVocabulary "https://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/">
-	<!ENTITY AnnotationVocabulary1 "http://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/">
-	<!ENTITY DOL-terms "http://www.omg.org/spec/DOL/DOL-terms/">
 	<!ENTITY api4kp "https://www.omg.org/spec/API4KP/api4kp/">
+	<!ENTITY api4kp-kao "https://www.omg.org/spec/API4KP/api4kp-kao/">
 	<!ENTITY dct "http://purl.org/dc/terms/">
-	<!ENTITY kao "https://www.omg.org/spec/API4KP/api4kp-kao/">
+	<!ENTITY dol "http://www.omg.org/spec/DOL/DOL-terms/">
 	<!ENTITY lcc-lr "https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/">
 	<!ENTITY owl "http://www.w3.org/2002/07/owl#">
 	<!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -15,13 +13,10 @@
 	<!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
 ]>
 <rdf:RDF xml:base="https://www.omg.org/spec/API4KP/api4kp-kao/"
-	xmlns="https://www.omg.org/spec/API4KP/api4kp-kao/"
-	xmlns:AnnotationVocabulary="https://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/"
-	xmlns:AnnotationVocabulary1="http://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/"
-	xmlns:DOL-terms="http://www.omg.org/spec/DOL/DOL-terms/"
 	xmlns:api4kp="https://www.omg.org/spec/API4KP/api4kp/"
+	xmlns:api4kp-kao="https://www.omg.org/spec/API4KP/api4kp-kao/"
 	xmlns:dct="http://purl.org/dc/terms/"
-	xmlns:kao="https://www.omg.org/spec/API4KP/api4kp-kao/"
+	xmlns:dol="http://www.omg.org/spec/DOL/DOL-terms/"
 	xmlns:lcc-lr="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"
 	xmlns:owl="http://www.w3.org/2002/07/owl#"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -32,710 +27,168 @@
 	
 	<owl:Ontology rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/">
 		<rdfs:label>API4KP Knowledge Asset Type Ontology</rdfs:label>
-		<dct:abstract>This ontology provides a classification scheme for Knowledge Assets based on the logical and mathematical constructs that would be used in the formalization of the Assets themselves.
-The classification, in turn, determines (i) what (knowledge representation) languages are suitable to express the Assets, and (ii) the kind of reasoning activities that can be performed using the Assets</dct:abstract>
-		<dct:creator xml:lang="mayo.edu)">Davide Sottara (sottara.davide</dct:creator>
+		<dct:abstract>This ontology provides a classification scheme for Knowledge Assets based on the logical and mathematical constructs that would be used in the formalization of the Assets themselves. The classification, in turn, determines (i) what (knowledge representation) languages are suitable to express the Assets, and (ii) the kind of reasoning activities that can be performed using the Assets.</dct:abstract>
+		<dct:creator>Davide Sottara (sottara.davide at mayo.edu)</dct:creator>
 		<dct:license rdf:datatype="&xsd;anyURI">http://opensource.org/licenses/MIT</dct:license>
-		<sm:contentLanguage rdf:datatype="&xsd;anyURI">http://www.w3.org/standards/techs/owl#w3c_all</sm:contentLanguage>
-		<sm:copyright>Copyright (c) 2014-2020 88 Solutions</sm:copyright>
-		<sm:copyright>Copyright (c) 2014-2020 Adaptive</sm:copyright>
-		<sm:copyright>Copyright (c) 2014-2020 Arizona State University</sm:copyright>
+		<sm:contentLanguage rdf:datatype="&xsd;anyURI">https://www.w3.org/TR/owl2-quick-reference/</sm:contentLanguage>
 		<sm:copyright>Copyright (c) 2014-2020 Athan Services</sm:copyright>
-		<sm:copyright>Copyright (c) 2014-2020 Fraunhofer FOKUS</sm:copyright>
-		<sm:copyright>Copyright (c) 2014-2020 Freie Universitat Berlin</sm:copyright>
-		<sm:copyright>Copyright (c) 2014-2020 Mayo Clinic</sm:copyright>
-		<sm:copyright>Copyright (c) 2014-2020 Model Driven Solutions</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2020 Fraunhofer Gesellschaft</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2020 Freie Universität Berlin</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2020 Mayo Foundation for Medical Education and Research (MFMER)</sm:copyright>
 		<sm:copyright>Copyright (c) 2014-2020 Thematix Partners LLC</sm:copyright>
 		<sm:copyright>Copyright (c) 2015-2020 Object Management Group, Inc.</sm:copyright>
-		<sm:copyright>Copyright (c) 2019-2020 Micro Focus</sm:copyright>
+		<sm:copyright>Copyright (c) 2019-2020 Universität Leipzig</sm:copyright>
+		<sm:copyright>Copyright (c) 2020 Micro Focus</sm:copyright>
 		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/API4KP/api4kp/</sm:dependsOn>
+		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/DOL/</sm:dependsOn>
 		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/LCC/</sm:dependsOn>
 		<sm:fileAbbreviation>api4kp-kao</sm:fileAbbreviation>
 		<sm:filename>api4kp-kao.rdf</sm:filename>
 		<owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
 		<owl:imports rdf:resource="https://www.omg.org/spec/API4KP/api4kp/"/>
+		<owl:imports rdf:resource="https://www.omg.org/spec/DOL/20171106/DOL-terms.rdf"/>
 		<owl:imports rdf:resource="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
 		<owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/SNAPSHOT/api4kp-kao/"/>
 	</owl:Ontology>
 	
-	<owl:Class rdf:about="&kao;AdaptiveProcessDefinition">
-		<rdfs:subClassOf rdf:resource="&kao;BusinessProcessKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;Alert">
-		<rdfs:subClassOf rdf:resource="&kao;ReactiveRule"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ApplicabilityCriteria">
-		<rdfs:subClassOf rdf:resource="&kao;AssessmentKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;AssertionalKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;SemanticKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;AssessmentKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;InferenceKnowledgeAsset"/>
-		<rdfs:label>Assessment Model</rdfs:label>
-		<rdfs:comment>knowledge that allows to infer an otherwise unknown or not directly observable state or situation</rdfs:comment>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;BusinessProcessKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;ProcessKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;BusinessRule">
-		<rdfs:subClassOf rdf:resource="&kao;GuidelineKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;CaseDefinition">
-		<rdfs:subClassOf rdf:resource="&kao;AdaptiveProcessDefinition"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;CategorizedKnowledgeAsset">
+	<owl:Class rdf:about="&api4kp-kao;ComponentKnowledgeAsset">
 		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
-		<rdfs:comment>categories are defined very loosely, with the intent to be refined into sub-categories, types and even domain-specific types</rdfs:comment>
-		<rdfs:comment>some constructs - e.g. &apos;numbers&apos;, &apos;truth/falsehood&apos;, &apos;sequencing&apos;, &apos;identity&apos; - are truly foundational and used across all categories of knowledge assets: as such, they are not particularly useful for classification, unless a category either gives a construct special importance, or deliberately leaves it out of scope.</rdfs:comment>
-		<rdfs:seeAlso>http://slidegur.com/doc/5719791/presentation</rdfs:seeAlso>
-		<skos:definition>knowledge asset that is classified according to the categories of logical and mathematical constructs that are (not) used specifically by assets, or parts thereof, in that category</skos:definition>
-		<skos:prefLabel>formally categorized knowledge asset</skos:prefLabel>
-		<skos:scopeNote>as kinds of knowledge assets, these categories do not cover expressions of the assets in any representation language. So, &apos;Ontology *in* OWL2-DL&apos; is not a subclass of &apos;Ontology knowledge asset&apos;, but &apos;Ontology *in the sense of* OWL2-DL&apos; is.</skos:scopeNote>
-		<skos:scopeNote>the classification is incomplete and overlapping: it is quite possible for a given knowledge asset, especially if composite, to belong to multiple categories.</skos:scopeNote>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;CausalModel">
-		<rdfs:subClassOf rdf:resource="&kao;DynamicSystemModel"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;CognitiveProcessDefinition">
-		<rdfs:subClassOf rdf:resource="&kao;InformationProcessDefinition"/>
 		<rdfs:subClassOf>
 			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp;has-part"/>
-				<owl:someValuesFrom rdf:resource="&kao;DecisionModel"/>
+				<owl:onProperty rdf:resource="&api4kp;isProperPartOf"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-kao;CompositeKnowledgeAsset"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
-		<rdfs:label>Cognitive Process Model</rdfs:label>
-		<rdfs:comment>Knowledge Asset that captures how information is processed internally by an intelligent agent</rdfs:comment>
+		<rdfs:label>component knowledge asset</rdfs:label>
+		<skos:definition>knowledge asset that is proper part of some other (composite) knowledge asset</skos:definition>
+		<skos:note>A component asset is likely to play more specific roles based on its function and the type of the composite.</skos:note>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&kao;CohortDefinition">
-		<rdfs:subClassOf rdf:resource="&api4kp;Definition"/>
-		<rdfs:label>Cohort Definition</rdfs:label>
-		<rdfs:comment>Definition used to classify persons into classes defined by some common characteristic</rdfs:comment>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;CommunicationProtocolDefinition">
-		<rdfs:subClassOf rdf:resource="&kao;InteractionProcessKnowledgeAsset"/>
-		<rdfs:subClassOf rdf:resource="&kao;ProtocolDefinition"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ComponentKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;ExplicitRoleKnowledgeAsset"/>
-		<rdfs:comment>a component asset is likely to play more specific roles based on its function and the type of the composite</rdfs:comment>
-		<skos:definition>knowledge asset that is proper part of some other (composite) knowledge asset.</skos:definition>
-		<skos:prefLabel>component knowledge asset</skos:prefLabel>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;CompositeKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;ExplicitRoleKnowledgeAsset"/>
+	<owl:Class rdf:about="&api4kp-kao;CompositeKnowledgeAsset">
 		<rdfs:subClassOf rdf:resource="&api4kp;CompositeKnowledgeResource"/>
-		<rdfs:comment>both composite and components are distinct individuals (i.e. with different IDs)</rdfs:comment>
-		<skos:definition>knowledge asset that has other knowledge assets as proper parts</skos:definition>
-		<skos:prefLabel>composite knowledge asset</skos:prefLabel>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ComputableKnowledge">
-		<rdfs:subClassOf rdf:resource="&kao;QualifiedKnowledge"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ComputationalTechnique">
-		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeProcessingTechnique"/>
-		<rdfs:label>computational technique</rdfs:label>
-		<owl:disjointWith rdf:resource="&kao;NaturalisticTechnique"/>
-		<skos:definition>Technique used in some knowledge processing task method specification that can be faithfully expressed in some machine-computable language</skos:definition>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ConceptualModel">
-		<rdfs:subClassOf rdf:resource="&kao;OntologyKnowledgeAsset"/>
-		<rdfs:label>Conceptual (Domain) Model</rdfs:label>
-		<rdfs:comment>Abstraction of the structure and/or behavior of the entities in a given domain</rdfs:comment>
-		<skos:altLabel>domain conceptualization</skos:altLabel>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ConnectionistModel">
-		<rdfs:subClassOf rdf:resource="&kao;PredictiveKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;Constraint">
-		<rdfs:subClassOf rdf:resource="&kao;RuleKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ConstructiveDefinition">
-		<rdfs:subClassOf rdf:resource="&api4kp;Definition"/>
-		<skos:definition>definition that can be expressed by means of an explicit specification which allows to recognize and/or construct instances of the defined type</skos:definition>
-		<skos:prefLabel>constructive definition</skos:prefLabel>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ContextualizabledKnowledge">
-		<rdfs:subClassOf rdf:resource="&kao;QualifiedKnowledge"/>
-		<rdfs:label>Contextualizable Knowledge</rdfs:label>
-		<rdfs:comment>Conceptual Work of Knowledge that has been adapted for a given context</rdfs:comment>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;DataCaptureKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;InformationAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;DataDictionary">
-		<rdfs:subClassOf rdf:resource="&kao;StructuralDefinitionKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;Dataset">
-		<rdfs:subClassOf rdf:resource="&kao;AssertionalKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;DecisionMakingTask">
-		<rdfs:subClassOf rdf:resource="&api4kp;InformationProcessingTask"/>
-		<rdfs:label>decision making task</rdfs:label>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;DecisionModel">
-		<rdfs:subClassOf rdf:resource="&kao;AssessmentKnowledgeAsset"/>
-		<rdfs:label>Decision Model</rdfs:label>
-		<rdfs:comment>Assessment that can be abstracted by means of a question, which requires to select one out of a set of admissible options</rdfs:comment>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;DecisionTable">
-		<rdfs:subClassOf rdf:resource="&kao;DecisionModel"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;DecisionTree">
-		<rdfs:subClassOf rdf:resource="&kao;DecisionModel"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;DefinitionalKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;InferenceKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;DocumentationTemplate">
-		<rdfs:subClassOf rdf:resource="&kao;DataCaptureKnowledgeAsset"/>
-		<rdfs:label>Documentation Template</rdfs:label>
-		<rdfs:comment>An organized collection of determinable concepts, possibly associated to questions, which are meant to be resolved in a particular context</rdfs:comment>
-		<skos:scopeNote>more general than questionnaires, whose questions are meant to be answered by a human agent (possibly with computer aid), documentation templates can be used  by software agents as well</skos:scopeNote>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;DomainOntology">
-		<rdfs:subClassOf rdf:resource="&kao;OntologyKnowledgeAsset"/>
-		<rdfs:label>Formal Ontology</rdfs:label>
-		<rdfs:comment>conceptual model that is based on formal principles, such as that allow to make inferences and/or verify the consistency of the model</rdfs:comment>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;DynamicSystemModel">
-		<rdfs:subClassOf rdf:resource="&kao;NaturalProcessKnowledgeAsset"/>
-		<skos:definition>(partially) controllable natural process</skos:definition>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ExplicitRoleKnowledgeAsset">
 		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
-		<skos:definition>knowledge asset that is categorized in terms of its relationship(s) to one or more different knowledge assets</skos:definition>
-		<skos:prefLabel>knowledge asset with explicit role</skos:prefLabel>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ExtensionalValueSet">
-		<rdfs:subClassOf rdf:resource="&kao;ValueSet"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;FactualKnowledge">
-		<rdfs:subClassOf rdf:resource="&kao;QualifiedKnowledge"/>
-		<rdfs:label>Factual Knowledge</rdfs:label>
-		<rdfs:comment>Facts are suitable to be asserted</rdfs:comment>
-		<rdfs:comment>Knowledge that is held to be a faithful conceptualization of the state of affairs in a given domain by all agents that share (and understand) it.</rdfs:comment>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;FunctionalExpression">
-		<rdfs:subClassOf rdf:resource="&kao;AssessmentKnowledgeAsset"/>
-		<rdfs:label>Functional Expression</rdfs:label>
-		<rdfs:comment>Knowledge about the application of well-known information processing methods, possibly chained together, which are stateless, functional and idempotent in nature.</rdfs:comment>
-		<skos:example>&apos;mass&apos; times the square of the speed of light</skos:example>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;FuzzyRule">
-		<rdfs:subClassOf rdf:resource="&kao;NondeterministicRule"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;GoalKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;MetricKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;GuidelineKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;ImperativeKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ImperativeKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;CategorizedKnowledgeAsset"/>
-		<rdfs:label>rule-oriented knowledge asset</rdfs:label>
-		<rdfs:comment>assets in this category are typically expressed using &quot;business&quot; or &quot;production&quot; rule languages.</rdfs:comment>
-		<rdfs:comment>assets in this category describe or specify how to guide an agent&apos;s actions, to prevent undesirable behaviors, in favor of more desirable ones - especially when responsibility, accountability and liability are involved.</rdfs:comment>
-		<rdfs:comment>assets of this kind are often formalized using flavors of modal logic such as deontic logic</rdfs:comment>
-		<rdfs:comment>rule knowledge can be used to drive - or at least constrain - an agent&apos;s behavior at a particular point in time</rdfs:comment>
-		<skos:definition>assets that reflect &apos;social&apos;, &apos;behavioral&apos; knowledge using &apos;action&apos;, &apos;deontic&apos; and &apos;constraint&apos; oriented constructs</skos:definition>
-		<skos:prefLabel>rules, policies and guidelines</skos:prefLabel>
-		<skos:scopeNote>assets in this category may depend on inferential knowledge and, indirectly, on semantic and data assets. 
-In fact, it is quite common for a business rule language to be, or delegate, to an inferential rule language as well.
-
-assets in this category affect, but are not themselves, process knowledge; assets in this category often have dual counterparts in metric assets.</skos:scopeNote>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ImperativeProcessDefinition">
-		<rdfs:subClassOf rdf:resource="&kao;BusinessProcessKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;InferenceKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;CategorizedKnowledgeAsset"/>
-		<rdfs:label xml:lang="en">inference-oriented knowledge asset</rdfs:label>
-		<rdfs:comment>an agent can use inferential knowledge to assess or predict the past, current, or future state of a variable, quality or other characteristic of a system which may not be directly observable/measurable, but can be estimated on the basis of other more primitive pieces of data.</rdfs:comment>
-		<rdfs:comment>assets of this kind are often formalized using first order and/or probabilistic logic with evaluated functions</rdfs:comment>
-		<rdfs:comment>reasoning driven by inferential assets is functional, stateless and idempotent: inferential assets are better expressed using expression languages, mathematical/statistical languages, or (sub-languages of) logic languages that focus on logical implications.</rdfs:comment>
-		<skos:definition>knowledge asset that uses &apos;implication&apos; and/or &apos;equivalence&apos; to draw &apos;necessary&apos; or &apos;contingent&apos; conclusions based on the evaluation of &apos;functions&apos;, which leverage operators that can be &apos;qualitiative&apos; or &apos;quantitative&apos;, and may involve &apos;confidence&apos;, &apos;certainty&apos; and/or &apos;probability&apos;</skos:definition>
-		<skos:prefLabel xml:lang="en">assessment, predictive and inferential models</skos:prefLabel>
-		<skos:scopeNote>inferential assets may depend on semantic knowledge assets as background knowledge, and be a dependency/component of rule, process and measure assets, as well as composed (recursively) with other inferential assets.</skos:scopeNote>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;InformationAsset">
-		<rdfs:subClassOf rdf:resource="&kao;CategorizedKnowledgeAsset"/>
-		<rdfs:label>information-oriented knowledge asset</rdfs:label>
-		<rdfs:comment>assets in this category are expressed using &apos;modeling&apos; languages, query languages, schema (definition) languages</rdfs:comment>
-		<rdfs:comment>assets of this kind are often formalized using frame logic</rdfs:comment>
-		<rdfs:comment>assets that leverage constructs such as &apos;frame&apos;, &apos;slot&apos;, &apos;datatypes&apos;, &apos;variables&apos;, as well as constrain-related constructs</rdfs:comment>
-		<rdfs:comment>knowledge used by agents to acquire, represent, organize, exchange, store, retrieve and distribute data, about some domain of interest, using structured formats.</rdfs:comment>
-		<skos:prefLabel>information capture, exchange and retrieval models</skos:prefLabel>
-		<skos:scopeNote>from an ISO11179-3 perspective, information assets are the counterparts of semantic assets, where the former are &apos;model of representation&apos; and the latter are &apos;model of meaning&apos;</skos:scopeNote>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;InformationModel">
-		<rdfs:subClassOf rdf:resource="&kao;StructuralDefinitionKnowledgeAsset"/>
-		<rdfs:label>Information Model</rdfs:label>
-		<rdfs:comment>(Meta) model that defines which information should be captured about some kind of domain</rdfs:comment>
-		<skos:altLabel>logical data model</skos:altLabel>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;InformationProcessDefinition">
-		<rdfs:subClassOf rdf:resource="&kao;ImperativeProcessDefinition"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;InformationRetrievalKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;InformationAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;Inquiry">
-		<rdfs:subClassOf rdf:resource="&kao;InformationRetrievalKnowledgeAsset"/>
-		<rdfs:label>Inquiry Specification</rdfs:label>
-		<rdfs:comment>The definition of how (and possibly when and where) to ask a question, following some kind of protocol, for the purpose of receiving a specific answer, with the goal of gaining information in the process</rdfs:comment>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;IntensionalValueSet">
-		<rdfs:subClassOf rdf:resource="&kao;ValueSet"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;InteractionProcessKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;ProcessKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;InteractiveTechnique">
-		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeProcessingTechnique"/>
 		<rdfs:subClassOf>
 			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp;has-part"/>
-				<owl:someValuesFrom rdf:resource="&kao;ComputationalTechnique"/>
+				<owl:onProperty rdf:resource="&api4kp;hasProperPart"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-kao;ComponentKnowledgeAsset"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:label>composite knowledge asset</rdfs:label>
+		<skos:definition>knowledge asset that has other knowledge assets as proper parts</skos:definition>
+		<skos:note>Note that any composite and its components are considered distinct individuals (i.e., they may be uniquely identified).</skos:note>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;ComputationalTechnique">
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;Technique"/>
+		<rdfs:label>computational technique</rdfs:label>
+		<owl:disjointWith rdf:resource="&api4kp-kao;NaturalTechnique"/>
+		<skos:definition>technique used in some knowledge processing task specification that can be faithfully expressed in some machine-computable language</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;ImperativeAsset">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
+		<rdfs:label>imperative asset</rdfs:label>
+		<skos:definition>knowledge asset that reflects &apos;social&apos;, &apos;behavioral&apos; knowledge using &apos;action&apos;, &apos;deontic&apos; and &apos;constraint&apos; oriented constructs</skos:definition>
+		<skos:note>Assets in this category are typically expressed using &quot;business&quot; or &quot;production&quot; rule languages. They describe or specify how to guide an agent&apos;s actions to prevent undesirable behaviors in favor of more desirable ones - especially when responsibility, accountability and/or liability are involved. Guidelines, policies, and business rules, which all fall under this classification, are often specified in terms of modal logic, such as deontic logic.</skos:note>
+		<skos:note>Imperative knowledge can be used to drive - or at least constrain - an agent&apos;s behavior at a particular point in time.</skos:note>
+		<skos:scopeNote>Assets in this category may depend on inferential knowledge and, indirectly, on semantic and data assets. In fact, it is quite common for a business rule language to be, or delegate to, an inferential rule language. Assets in this category affect, but are not themselves, process knowledge, and often have counterparts that are metric assets.</skos:scopeNote>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;InferenceAsset">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
+		<rdfs:label xml:lang="en">inference asset</rdfs:label>
+		<skos:definition>knowledge asset that uses &apos;implication&apos; and/or &apos;equivalence&apos; to draw &apos;necessary&apos; or &apos;contingent&apos; conclusions based on the evaluation of &apos;functions&apos; that leverage operations that may be &apos;qualitiative&apos; or &apos;quantitative&apos;, and may involve &apos;confidence&apos;, &apos;certainty&apos; and/or &apos;probability&apos;.</skos:definition>
+		<skos:note>An agent can use inferential knowledge to assess or predict the past, current, or future state of a variable, quality or other characteristic of a system which may not be directly observable/measurable, but can be estimated on the basis of other more primitive pieces of data.</skos:note>
+		<skos:note>Assets of this kind, including assessment, predictive, and inferential models, are often formalized using first order and/or probabilistic logic with evaluated functions. Reasoning driven by inferential assets is functional, stateless and idempotent; inferential assets are better expressed using expression languages, mathematical/statistical languages, or (sub-languages of) logic languages that focus on logical implications.</skos:note>
+		<skos:scopeNote>Inferential assets may depend on semantic knowledge assets as background knowledge, and be a dependency/component of rule, process and measure assets, as well as composed (recursively) with other inferential assets.</skos:scopeNote>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;InformationAsset">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
+		<rdfs:label>information asset</rdfs:label>
+		<skos:definition>knowledge asset used by agents to acquire, represent, organize, exchange, store, retrieve and distribute data, about some domain of interest, using structured formats</skos:definition>
+		<skos:note>Assets in this category, including information capture, exchange and retrieval models, are expressed using &apos;modeling&apos; languages, query languages, schema (definition) languages. They are often formalized using frame logic. Assets that leverage constructs such as &apos;frame&apos;, &apos;slot&apos;, &apos;datatypes&apos;, &apos;variables&apos;, as well as constraint-related constructs fall under this classification.</skos:note>
+		<skos:scopeNote>From an ISO11179-3 perspective, information assets are the counterparts of semantic assets, where the former are &apos;models of representation&apos; and the latter are &apos;models of meaning&apos;.</skos:scopeNote>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;InteractiveTechnique">
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;Technique"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&dol;hasPart"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-kao;ComputationalTechnique"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
 		<rdfs:subClassOf>
 			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp;has-part"/>
-				<owl:someValuesFrom rdf:resource="&kao;NaturalisticTechnique"/>
+				<owl:onProperty rdf:resource="&dol;hasPart"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-kao;NaturalTechnique"/>
 			</owl:Restriction>
 		</rdfs:subClassOf>
-		<rdfs:label>HCI interactive technique</rdfs:label>
-		<skos:definition>Technique that is based on the interaction of a Human and a Computer, in the context of a task where at least one of each participates as an agent</skos:definition>
+		<rdfs:label>interactive technique</rdfs:label>
+		<skos:definition>technique that involves interactions between people and computational devices, with at least one person and one device influencing or having an effect on the other</skos:definition>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&kao;InvariantKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;MetricKnowledgeAsset"/>
+	<owl:Class rdf:about="&api4kp-kao;MetricAsset">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
+		<rdfs:label>metric asset</rdfs:label>
+		<skos:definition>knowledge asset, such as a performance indicator, measurement, or  metric, that leverages constructs such as &apos;distance&apos;, &apos;similarity&apos; and &apos;aggregation&apos; and, indirectly, &apos;classification&apos; and &apos;filtering&apos; to map (sub)sets of entities to quantitative, summary &apos;features&apos;</skos:definition>
+		<skos:note>Assets of this category are expressed using langauges designed for analytics, which combine aspects of query and functional expression languages with optimized support for &apos;map/reduce&apos; style evaluations. They specify how certain features (qualitative and/or quantitative) of a system can be observed, quantified, aggregated, compared to a baseline and objective values and ultimately used to evaluate the performance of (parts of) that system and its processes.</skos:note>
+		<skos:scopeNote>Assets of this kind are counterparts of rules and processes, and enable establishment of conformance, impact, effectiveness and efficiency. measure-related assets. They build on inferential assets to provide, for example, inclusion/exclusion criteria, as well as to extract the quantitative features that may be aggregated by the measure.</skos:scopeNote>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&kao;KnowledgeGraph">
-		<rdfs:subClassOf rdf:resource="&kao;AssertionalKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;Law">
-		<rdfs:subClassOf rdf:resource="&kao;Norm"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;LinearRegressionModel">
-		<rdfs:subClassOf rdf:resource="&kao;RegressionModel"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;LogicBasedTechnique">
-		<rdfs:subClassOf rdf:resource="&kao;QualitativeTechnique"/>
-		<rdfs:label>logic based technique</rdfs:label>
-		<rdfs:comment>Technique based on formal logic</rdfs:comment>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;LogicalInformationModel">
-		<rdfs:subClassOf rdf:resource="&kao;InformationModel"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;MarkovModel">
-		<rdfs:subClassOf rdf:resource="&kao;DynamicSystemModel"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;MeasureKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;MetricKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;MetricKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;CategorizedKnowledgeAsset"/>
-		<rdfs:label>metric-oriented knowledge asset</rdfs:label>
-		<rdfs:comment>assets of this category are expressed using langauges designed for analytics, which combine aspects of query and functional expression languages with optimized support for &apos;map/reduce&apos; style evaluations</rdfs:comment>
-		<rdfs:comment>knowledge of this category specifies how certain features (qualitative and/or quantitative) of a system can be observed, quantified, aggregated, compared to a baseline and objective values and ultimately used to evaluate the performance of (parts of) that system and its processes</rdfs:comment>
-		<skos:definition>knowledge assets that leverage constructs such as &apos;distance&apos;, &apos;similarity&apos; and &apos;aggregation&apos; and, indirectly, &apos;classification&apos; and &apos;filtering&apos; to map (sub)sets of entities to quantitative, summary &apos;features&apos;</skos:definition>
-		<skos:prefLabel>performance indicators, measurements and metrics</skos:prefLabel>
-		<skos:scopeNote>assets of this kind and are the dual counterpart of rules and processes, and allow to establish conformance, impact, effectiveness and efficiency. measure-related assets. 
-assets of this kind build on top of inferential assets to provide e.g. inclusion/eclusion criteria, as well as to extract the quantitative features that will be aggregated by the measure</skos:scopeNote>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;NLPTechnique">
-		<rdfs:subClassOf rdf:resource="&kao;ComputationalTechnique"/>
+	<owl:Class rdf:about="&api4kp-kao;NaturalLanguageProcessingTechnique">
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;ComputationalTechnique"/>
 		<rdfs:label>natural language processing technique</rdfs:label>
-		<skos:definition>Computational Technique based on computations applied to expressions in natural language</skos:definition>
+		<skos:definition>computational technique typically involving rule-based and/or statistical inference (machine learning) applied to expressions in natural language, including, but not limited to speech recognition, natural language understanding, and natural-language generation</skos:definition>
+		<skos:note>Natural language processing (NLP) is a subfield of linguistics, computer science, information engineering, and artificial intelligence concerned with the interactions between computers and human (natural) languages, in particular how to program computers to process and analyze large amounts of natural language data.</skos:note>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&kao;NaturalKnowledge">
-		<rdfs:subClassOf rdf:resource="&kao;QualifiedKnowledge"/>
+	<owl:Class rdf:about="&api4kp-kao;NaturalTechnique">
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;Technique"/>
+		<rdfs:label>natural technique</rdfs:label>
+		<skos:definition>technique that requires involvement of a person</skos:definition>
+		<skos:note>A natural technique is one that requires some aspect of human-nature, or creativity, spontaneity, ingenuity, or other complex intellectual reasoning, such that a computational engine is incapable of accomplishing a similar task using this technique.</skos:note>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&kao;NaturalLaw">
-		<rdfs:subClassOf rdf:resource="&kao;OntologyKnowledgeAsset"/>
+	<owl:Class rdf:about="&api4kp-kao;ProcessAsset">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
+		<rdfs:label>process asset</rdfs:label>
+		<skos:definition>knowledge asset, such as a plan, process, pathway, or protocol, that uses &apos;temporal&apos; and &apos;state&apos; constructs, and possibly &apos;action&apos; and &apos;goal&apos; related constructs, involving &apos;planning&apos;, &apos;scheduling&apos; and &apos;interaction&apos; patterns.</skos:definition>
+		<skos:note>Assets in this category are typically expressed using &quot;process&quot; and &quot;worfklow&quot; languages. They involve knowledge that applies over spans of time, and thus requires agents to maintain some form of state. on top of driving actions directly, the knowledge can be use for analytics, scheduling and simulation tasks. They are often formalized using temporal and transactional logics.</skos:note>
+		<skos:scopeNote>Processes can be associated with goals and measures; rules can, at specific points in time, influence the evolution of a process from that point forward.</skos:scopeNote>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&kao;NaturalProcessKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;ProcessKnowledgeAsset"/>
+	<owl:Class rdf:about="&api4kp-kao;QualitativeTechnique">
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;ComputationalTechnique"/>
+		<rdfs:label>qualitative technique</rdfs:label>
+		<skos:definition>computational technique that is largely holistic, logic-based, symbolic, and/or non-statistical in nature, that uses qualitative characteristics in analyses</skos:definition>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&kao;NaturalisticTechnique">
-		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeProcessingTechnique"/>
-		<rdfs:label>naturalistic technique</rdfs:label>
-		<rdfs:comment>I.e. technique such that a computer would not be able to apply it, and achieve the goal of a task executed (following a method) using this technique</rdfs:comment>
-		<skos:definition>Technique that requires a human agent to be leveraged to full effectiveness</skos:definition>
+	<owl:Class rdf:about="&api4kp-kao;QuantitativeTechnique">
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;ComputationalTechnique"/>
+		<rdfs:label>quantitative technique</rdfs:label>
+		<skos:definition>computational technique that is grounded in mathematical, statistical and/or other numerical principles</skos:definition>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&kao;NeuralNetwork">
-		<rdfs:subClassOf rdf:resource="&kao;ConnectionistModel"/>
+	<owl:Class rdf:about="&api4kp-kao;QueryTechnique">
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;Technique"/>
+		<rdfs:label>query technique</rdfs:label>
+		<skos:definition>technique that involves question answering and/or requesting another agent to perform some aspect of a task, from which some result can be obtained</skos:definition>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&kao;NondeterministicRule">
-		<rdfs:subClassOf rdf:resource="&kao;RuleKnowledgeAsset"/>
+	<owl:Class rdf:about="&api4kp-kao;SemioticAsset">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
+		<rdfs:label>semiotic asset</rdfs:label>
+		<skos:definition>knowledge asset that uses semiotic constructs, i.e., whose constructs support the conceptualization of the relationships between signs and symbols, (intensional) concepts, and their (extensional) referents</skos:definition>
+		<skos:note>Constructs of this kind include &apos;class/type&apos;, &apos;membership/instantiation&apos;, &apos;denotation&apos;, &apos;subsumption (specialization)&apos;, &apos;parthood&apos;, &apos;relatedness&apos;. They may be used for consistency checking, (necessary) inference, classification/recognition, question answering, and other reasoning tasks. They are typically expressed using declarative &apos;ontology&apos; languages, such as description logics, or more general (first order) logic languages.</skos:note>
+		<skos:scopeNote>Assets in this category may depend on inferential assets to provide definitions, and may provide formal grounding for any asset with respect to some domain or area of interest.</skos:scopeNote>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&kao;Norm">
-		<rdfs:subClassOf rdf:resource="&kao;RegulatoryKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;OntologyKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;SemanticKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;OperationalConceptDefinition">
-		<rdfs:subClassOf rdf:resource="&api4kp;ConstructiveDefinition"/>
-		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeProcessingMethodSpecification"/>
-		<rdfs:subClassOf>
-			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp;defines"/>
-				<owl:someValuesFrom rdf:resource="&api4kp;ResolvableConcept"/>
-			</owl:Restriction>
-		</rdfs:subClassOf>
-		<rdfs:comment>TODO: move to definition
-some definitions have conditional applicability, i.e. they are associated to some constraint whose satisfaction is directly correlated to the confidence in the results of the application of the definition</rdfs:comment>
-		<skos:definition>constructive definition whose applicability is restricted to one or more situations
-TODO Situation as defined concept</skos:definition>
-		<skos:prefLabel>TODO operational concept definition</skos:prefLabel>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;OutcomeMeasureDefinition">
-		<rdfs:subClassOf rdf:resource="&kao;MeasureKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ParticularKnowledge">
-		<rdfs:subClassOf rdf:resource="&kao;QualifiedKnowledge"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;Pattern">
-		<rdfs:subClassOf rdf:resource="&kao;InformationRetrievalKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;PlanDefinition">
-		<rdfs:subClassOf rdf:resource="&kao;WorkflowDefinition"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;Policy">
-		<rdfs:subClassOf rdf:resource="&kao;RegulatoryKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;PredictiveKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;InferenceKnowledgeAsset"/>
-		<rdfs:label>Predictive Model</rdfs:label>
-		<rdfs:comment>assessment of some state that is unobservable due to being in the future</rdfs:comment>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ProbabilisticRule">
-		<rdfs:subClassOf rdf:resource="&kao;NondeterministicRule"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ProcessKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;CategorizedKnowledgeAsset"/>
-		<rdfs:label>process oriented knowledge asset</rdfs:label>
-		<rdfs:comment>assets in this category are expressed using &quot;process&quot; and &quot;worfklow&quot; languages</rdfs:comment>
-		<rdfs:comment>assets of this category involve knowledge that applies over spans of time, and thus requires agents to maintain some form of state. on top of driving actions directly, the knowledge can be use for analytics, scheduling and simulation tasks.</rdfs:comment>
-		<rdfs:comment>assets of this kind are often formalized using temporal and transactional logics</rdfs:comment>
-		<skos:definition>assets that use &apos;temporal&apos; and &apos;state&apos; constructs, and possibly &apos;action&apos; and &apos;goal&apos; related constructs, involving &apos;planning&apos;, &apos;scheduling&apos; and &apos;interaction&apos; patterns.</skos:definition>
-		<skos:prefLabel>plans, processes, pathways and protocol definitions</skos:prefLabel>
-		<skos:scopeNote>processes can be associated to goals and measures; rules can, at specific points in time, influence the evolution of a process from that point forward.</skos:scopeNote>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ProcessMeasureDefinition">
-		<rdfs:subClassOf rdf:resource="&kao;MeasureKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ProductionRule">
-		<rdfs:subClassOf rdf:resource="&kao;RuleKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ProtocolDefinition">
-		<rdfs:subClassOf rdf:resource="&kao;PlanDefinition"/>
-		<rdfs:label>Protocol</rdfs:label>
-		<rdfs:comment>A shared, endorsed, justified, imperative specification of the expected behavior of one or more agents in a specific situation</rdfs:comment>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;PublicGoal">
-		<rdfs:subClassOf rdf:resource="&kao;GoalKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;PublicObjective">
-		<rdfs:subClassOf rdf:resource="&kao;GoalKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;QualifiedKnowledge">
+	<owl:Class rdf:about="&api4kp-kao;Technique">
 		<rdfs:subClassOf rdf:resource="&api4kp;Knowledge"/>
+		<rdfs:label xml:lang="en">technique</rdfs:label>
+		<skos:definition>knowledge about a way of carrying out a particular task, especially the execution or performance of an artistic work or a scientific procedure</skos:definition>
 	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;QualitativeKnowledge">
-		<rdfs:subClassOf rdf:resource="&kao;QualifiedKnowledge"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;QualitativeTechnique">
-		<rdfs:subClassOf rdf:resource="&kao;ComputationalTechnique"/>
-		<rdfs:label>qualitative computational technique</rdfs:label>
-		<skos:altLabel>Symbolic Technique</skos:altLabel>
-		<skos:definition>Computational Technique based on symbolic and/or logic-based principles</skos:definition>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;QuantitativeKnowledge">
-		<rdfs:subClassOf rdf:resource="&kao;QualifiedKnowledge"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;QuantitativeTechnique">
-		<rdfs:subClassOf rdf:resource="&kao;ComputationalTechnique"/>
-		<rdfs:label>quantitative computational technique</rdfs:label>
-		<skos:altLabel>Subsymbolic Technique</skos:altLabel>
-		<skos:definition>Computational Technique that is based on mathematical, statistical and/or numerical principles</skos:definition>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;QueryTechnique">
-		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeProcessingTechnique"/>
-		<rdfs:label>query based technique</rdfs:label>
-		<skos:definition>Technique that involves requesting another agent to actually perform the task, from which the products can be obtained</skos:definition>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;Questionnaire">
-		<rdfs:subClassOf rdf:resource="&kao;DocumentationTemplate"/>
-		<rdfs:label xml:lang="en">Questionnaire</rdfs:label>
-		<rdfs:comment xml:lang="en">An organized collection of questions intended to solicit information from patients, providers or other individuals in the healthcare domain</rdfs:comment>
-		<skos:example xml:lang="en">First Visit Questionnaire</skos:example>
-		<skos:prefLabel xml:lang="en">Questionnaire</skos:prefLabel>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ReactiveRule">
-		<rdfs:subClassOf rdf:resource="&kao;BusinessRule"/>
-		<rdfs:subClassOf rdf:resource="&kao;RuleKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;RegressionModel">
-		<rdfs:subClassOf rdf:resource="&kao;ConnectionistModel"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;RegulatoryKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;ImperativeKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;Reminder">
-		<rdfs:subClassOf rdf:resource="&kao;BusinessRule"/>
-		<rdfs:subClassOf rdf:resource="&kao;ReactiveRule"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;RuleKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;ImperativeKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;Schema">
-		<rdfs:subClassOf rdf:resource="&kao;InformationModel"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;SemanticDecisionModel">
-		<rdfs:subClassOf rdf:resource="&kao;DecisionModel"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;SemanticInformationModel">
-		<rdfs:subClassOf rdf:resource="&kao;InformationModel"/>
-		<rdfs:subClassOf>
-			<owl:Restriction>
-				<owl:onProperty rdf:resource="&api4kp;has-part"/>
-				<owl:someValuesFrom rdf:resource="&kao;SemanticInformationModel"/>
-			</owl:Restriction>
-		</rdfs:subClassOf>
-		<rdfs:label>Semantic Information Model</rdfs:label>
-		<rdfs:comment>Information Model designed such that instances have one and only one interpretation</rdfs:comment>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;SemanticKnowledge">
-		<rdfs:subClassOf rdf:resource="&kao;QualifiedKnowledge"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;SemanticKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;CategorizedKnowledgeAsset"/>
-		<rdfs:label>semantic-oriented knowledge asset</rdfs:label>
-		<rdfs:comment>assets in this category are used for consistency checking, (necessary) inference, classification/recognition and query reasoning tasks</rdfs:comment>
-		<rdfs:comment>assets of this category are expressed using declarative &apos;ontology&apos; languages, or more general (first order) logic languages</rdfs:comment>
-		<rdfs:comment>assets of this kind are often formalized using description logic</rdfs:comment>
-		<skos:definition>knowledge that uses semiotic constructs, i.e. that constructs support the conceptualization of the relationships between signs/symbols, (intensional) concepts and their (extensional) referents. 
 
-Constructs of this kind include &apos;class/type&apos;, &apos;membership/instantiation&apos;, &apos;denotation&apos;, &apos;subsumption (specialization)&apos;, &apos;parthood&apos;, &apos;relatedness&apos;</skos:definition>
-		<skos:prefLabel>terminology, ontology and assertional knowledgebases</skos:prefLabel>
-		<skos:scopeNote>assets in this category may depend on inferential assets to provide definitions, and can be dependencies of any asset that needs to be grounded in some domain of interest.</skos:scopeNote>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ServiceBasedTechnique">
-		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeProcessingTechnique"/>
-		<rdfs:label>service based technique</rdfs:label>
-		<rdfs:comment>Technique based on delegation to another entity</rdfs:comment>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ServiceInvocationProfile">
-		<rdfs:subClassOf rdf:resource="&kao;ServiceOrchestration"/>
-		<rdfs:label>Service Profile</rdfs:label>
-		<rdfs:comment>Service Description that refines (by constraint), and thus depends on, some Service Description</rdfs:comment>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ServiceOrchestration">
-		<rdfs:subClassOf rdf:resource="&kao;InteractionProcessKnowledgeAsset"/>
-		<rdfs:label>Service Description</rdfs:label>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;Situation">
-		<rdfs:subClassOf rdf:resource="&api4kp;ResolvableConcept"/>
-		<skos:prefLabel>TODO - Situation</skos:prefLabel>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;SocialKnowledge">
-		<rdfs:subClassOf rdf:resource="&kao;QualifiedKnowledge"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;StatisticalPredictiveModel">
-		<rdfs:subClassOf rdf:resource="&kao;PredictiveKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;StructuralDefinitionKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;InformationAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;SupportVectorMachine">
-		<rdfs:subClassOf rdf:resource="&kao;ConnectionistModel"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;TaskDefinition">
-		<rdfs:subClassOf rdf:resource="&kao;BusinessProcessKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;Taxonomy">
-		<rdfs:subClassOf rdf:resource="&kao;TerminologyKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;TerminologyKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&kao;SemanticKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;Thesaurus">
-		<rdfs:subClassOf rdf:resource="&kao;TerminologyKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;UniversalKnowledge">
-		<rdfs:subClassOf rdf:resource="&kao;QualifiedKnowledge"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ValueSet">
-		<rdfs:subClassOf rdf:resource="&kao;TerminologyKnowledgeAsset"/>
-		<rdfs:label xml:lang="en">Value Set</rdfs:label>
-		<rdfs:comment xml:lang="en">A set of pairs of &quot;codes&quot;, drawn from one or more code systems, and human-readable terms that represent clinical concepts (e.g. &quot;diabetes type II&quot;)</rdfs:comment>
-		<skos:example xml:lang="en">The Asthma Value Set</skos:example>
-		<skos:prefLabel xml:lang="en">Value Set</skos:prefLabel>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;ViewDefinition">
-		<rdfs:subClassOf rdf:resource="&kao;InformationRetrievalKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&kao;WorkflowDefinition">
-		<rdfs:subClassOf rdf:resource="&kao;ImperativeProcessDefinition"/>
-	</owl:Class>
-	
-	<rdf:Description rdf:about="&api4kp;Definition">
-		<rdfs:subClassOf rdf:resource="&kao;DefinitionalKnowledgeAsset"/>
-		<rdfs:subClassOf rdf:resource="&kao;ExplicitRoleKnowledgeAsset"/>
-	</rdf:Description>
-	
-	<owl:Class rdf:about="&api4kp;Grammar">
-		<rdfs:subClassOf rdf:resource="&kao;StructuralDefinitionKnowledgeAsset"/>
-	</owl:Class>
-	
-	<owl:Class rdf:about="&api4kp;InformationProcessingTask">
-	</owl:Class>
-	
-	<owl:Class rdf:about="&api4kp;Knowledge">
-	</owl:Class>
-	
-	<owl:Class rdf:about="&api4kp;KnowledgeProcessingMethodSpecification">
-	</owl:Class>
-	
-	<owl:Class rdf:about="&api4kp;KnowledgeProcessingTechnique">
-	</owl:Class>
-	
-	<owl:Class rdf:about="&api4kp;ResolvableConcept">
-		<skos:prefLabel>TODO - Resolvable concept</skos:prefLabel>
-	</owl:Class>
-	
-	<owl:ObjectProperty rdf:about="&api4kp;has-part">
-	</owl:ObjectProperty>
-	
-	<owl:Axiom>
-		<rdfs:seeAlso rdf:resource="http://ckm.ontology.mayo.edu/ontology/%5C%5Cmfad.mfroot.org%5Crchdept%5CTerms%5CTerminology%20Web%5C2_ValueSets%5CMCBT_ClinicalProblemAsthma.pdf"/>
-		<owl:annotatedProperty rdf:resource="&skos;example"/>
-		<owl:annotatedSource rdf:resource="&kao;ValueSet"/>
-		<owl:annotatedTarget xml:lang="en">The Asthma Value Set</owl:annotatedTarget>
-	</owl:Axiom>
-	<owl:Axiom>
-		<rdfs:seeAlso rdf:resource="http://mayoweb.mayo.edu/sp-forms/mc20600-mc20699/mchs20617.pdf"/>
-		<owl:annotatedProperty rdf:resource="&skos;example"/>
-		<owl:annotatedSource rdf:resource="&kao;Questionnaire"/>
-		<owl:annotatedTarget xml:lang="en">First Visit Questionnaire</owl:annotatedTarget>
-	</owl:Axiom>
 </rdf:RDF>

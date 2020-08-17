@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE rdf:RDF [
 	<!ENTITY api4kp "https://www.omg.org/spec/API4KP/api4kp/">
-	<!ENTITY kp "https://www.omg.org/spec/API4KP/api4kp-kp/">
+	<!ENTITY api4kp-kp "https://www.omg.org/spec/API4KP/api4kp-kp/">
 	<!ENTITY dct "http://purl.org/dc/terms/">
+	<!ENTITY dol "http://www.omg.org/spec/DOL/DOL-terms/">
 	<!ENTITY lcc-lr "https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/">
+	<!ENTITY owl "http://www.w3.org/2002/07/owl#">
 	<!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 	<!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
-	<!ENTITY owl "http://www.w3.org/2002/07/owl#">
 	<!ENTITY skos "http://www.w3.org/2004/02/skos/core#">
 	<!ENTITY sm "http://www.omg.org/techprocess/ab/SpecificationMetadata/">
 	<!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
 ]>
-
 <rdf:RDF xml:base="https://www.omg.org/spec/API4KP/api4kp-kp/"
+	xmlns:api4kp="https://www.omg.org/spec/API4KP/api4kp/"
+	xmlns:api4kp-kp="https://www.omg.org/spec/API4KP/api4kp-kp/"
 	xmlns:dct="http://purl.org/dc/terms/"
-    xmlns:api4kp="https://www.omg.org/spec/API4KP/api4kp/"
-	xmlns:kp="https://www.omg.org/spec/API4KP/api4kp-kp/"
-    xmlns:lcc-lr="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"
+	xmlns:dol="http://www.omg.org/spec/DOL/DOL-terms/"
+	xmlns:lcc-lr="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"
 	xmlns:owl="http://www.w3.org/2002/07/owl#"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
@@ -26,250 +27,195 @@
 	
 	<owl:Ontology rdf:about="https://www.omg.org/spec/API4KP/api4kp-kp/">
 		<rdfs:label>API4KP Ontology of Knowledge Platforms</rdfs:label>
-        <dct:abstract>This ontology formalizes the notion of a Knowledge Platform.</dct:abstract>
-        <dct:creator>Davide Sottara (sottara.davide@mayo.edu)</dct:creator>
+		<dct:abstract>This ontology formalizes the notion of a Knowledge Platform.</dct:abstract>
+		<dct:creator>Davide Sottara (sottara.davide at mayo.edu)</dct:creator>
 		<dct:license rdf:datatype="&xsd;anyURI">http://opensource.org/licenses/MIT</dct:license>
-        <sm:copyright>Copyright (c) 2014-2020 88 Solutions</sm:copyright>
-		<sm:copyright>Copyright (c) 2014-2020 Adaptive</sm:copyright>
-        <sm:copyright>Copyright (c) 2014-2020 Athan Services</sm:copyright>
-        <sm:copyright>Copyright (c) 2014-2020 Arizona State University</sm:copyright>
-	    <sm:copyright>Copyright (c) 2014-2020 Fraunhofer FOKUS</sm:copyright>
-        <sm:copyright>Copyright (c) 2014-2020 Freie Universitat Berlin</sm:copyright>
-		<sm:copyright>Copyright (c) 2014-2020 Mayo Clinic</sm:copyright>
-	    <sm:copyright>Copyright (c) 2019-2020 Micro Focus</sm:copyright>
-		<sm:copyright>Copyright (c) 2014-2020 Model Driven Solutions</sm:copyright>
+		<sm:contentLanguage rdf:datatype="&xsd;anyURI">https://www.w3.org/TR/owl2-quick-reference/</sm:contentLanguage>
+		<sm:copyright>Copyright (c) 2014-2020 Athan Services</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2020 Fraunhofer Gesellschaft</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2020 Freie Universität Berlin</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2020 Mayo Foundation for Medical Education and Research (MFMER)</sm:copyright>
 		<sm:copyright>Copyright (c) 2014-2020 Thematix Partners LLC</sm:copyright>
 		<sm:copyright>Copyright (c) 2015-2020 Object Management Group, Inc.</sm:copyright>
-		<sm:contentLanguage rdf:datatype="&xsd;anyURI">http://www.w3.org/standards/techs/owl#w3c_all</sm:contentLanguage>
-		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/LCC/</sm:dependsOn>
+		<sm:copyright>Copyright (c) 2019-2020 Universität Leipzig</sm:copyright>
+		<sm:copyright>Copyright (c) 2020 Micro Focus</sm:copyright>
 		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/API4KP/api4kp/</sm:dependsOn>
+		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/DOL/</sm:dependsOn>
+		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/LCC/</sm:dependsOn>
+		<sm:fileAbbreviation>api4kp-kp</sm:fileAbbreviation>
 		<sm:filename>api4kp-kp.rdf</sm:filename>
-		<sm:fileAbbreviation>kp</sm:fileAbbreviation>
-        <owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
-        <owl:imports rdf:resource="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
-        <owl:imports rdf:resource="https://www.omg.org/spec/API4KP/api4kp/"/>
-        <owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/SNAPSHOT/api4kp-kp/"/>
-   </owl:Ontology>
+		<owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
+		<owl:imports rdf:resource="https://www.omg.org/spec/API4KP/api4kp/"/>
+		<owl:imports rdf:resource="https://www.omg.org/spec/DOL/20171106/DOL-terms.rdf"/>
+		<owl:imports rdf:resource="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+		<owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/SNAPSHOT/api4kp-kp/"/>
+	</owl:Ontology>
+	
+	<owl:Class rdf:about="&api4kp-kp;Algorithm">
+		<rdfs:subClassOf rdf:resource="&api4kp;WorkOfKnowledge"/>
+		<rdfs:label>algorithm</rdfs:label>
+		<skos:definition>finite sequence of well-defined, computer-implementable instructions, typically to solve a class of problems or to perform a computation</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kp;ComputerProgram">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeExpression"/>
+		<rdfs:label>computer program</rdfs:label>
+		<skos:definition>the expression of an algorithm in some programming language</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kp;ComputingEnvironment">
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp-kp;hosts"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-kp;DeployedSoftware"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:label>computing environment</rdfs:label>
+		<skos:definition>combination of general purpose hardware and software designed to interpret programs that drive the execution of information processing tasks</skos:definition>
+		<skos:scopeNote>includes physical and virtual machines, operating systems, containers and other computing platform/infrastructure components</skos:scopeNote>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kp;DeployedSoftware">
+		<rdfs:subClassOf rdf:resource="&api4kp;ArtificialAgent"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp-kp;isDeploymentOf"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-kp;Software"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp;performs"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-kp;SoftwareExecution"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:label>deployed software</rdfs:label>
+		<skos:altLabel>deployed software module</skos:altLabel>
+		<skos:definition>the result of installing a particular software application or agent into some computing environment</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kp;DescriptionLogicReasoner">
+		<rdfs:subClassOf rdf:resource="&api4kp-kp;Reasoner"/>
+		<rdfs:label>description logic reasoner</rdfs:label>
+		<skos:definition>reasoner optimized for logic based classification, subsumption and query answering tasks that conforms to one or more description logic(s)</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kp;KnowledgeBasedExecution">
+		<rdfs:subClassOf rdf:resource="&api4kp-kp;SoftwareExecution"/>
+		<rdfs:label>knowledge based execution</rdfs:label>
+		<skos:definition>software execution that uses and/or generates some knowledge artfact</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kp;KnowledgePlatform">
+		<rdfs:subClassOf rdf:resource="&api4kp-kp;ComputingEnvironment"/>
+		<rdfs:label>knowledge platform</rdfs:label>
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:intersectionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&api4kp-kp;ComputingEnvironment">
+					</rdf:Description>
+					<owl:Restriction>
+						<owl:onProperty rdf:resource="&api4kp-kp;hosts"/>
+						<owl:someValuesFrom>
+							<owl:Class>
+								<owl:intersectionOf rdf:parseType="Collection">
+									<rdf:Description rdf:about="&api4kp-kp;KnowledgePlatformModule">
+									</rdf:Description>
+									<owl:Restriction>
+										<owl:onProperty rdf:resource="&api4kp;performs"/>
+										<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeProcessingActivity"/>
+									</owl:Restriction>
+								</owl:intersectionOf>
+							</owl:Class>
+						</owl:someValuesFrom>
+					</owl:Restriction>
+				</owl:intersectionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<skos:definition>computing environment designed to host reasoners, and consume knowledge artifacts</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kp;KnowledgePlatformModule">
+		<rdfs:subClassOf rdf:resource="&api4kp-kp;DeployedSoftware"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp;internallyRepresents"/>
+				<owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp;isProperPartOf"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-kp;KnowledgePlatform"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp;performs"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-kp;KnowledgeBasedExecution"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:label>knowledge platform module</rdfs:label>
+		<skos:definition>deployed software component that is part of a knowledge platform and performs knowledge-based tasks</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kp;ProcessEngine">
+		<rdfs:subClassOf rdf:resource="&api4kp-kp;Reasoner"/>
+		<rdfs:label>process engine</rdfs:label>
+		<skos:definition>reasoner that supports stateful, temporal reasoning centered on tasks, roles and events</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kp;ProductionRuleEngine">
+		<rdfs:subClassOf rdf:resource="&api4kp-kp;RuleEngine"/>
+		<rdfs:label>production rule engine</rdfs:label>
+		<skos:definition>rule engine optimized for production (condition-action) rules</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kp;Reasoner">
+		<rdfs:subClassOf rdf:resource="&api4kp-kp;Software"/>
+		<rdfs:label>reasoner</rdfs:label>
+		<rdfs:comment>software that has the capability of performing reasoning operations</rdfs:comment>
+		<skos:altLabel>reasoning engine</skos:altLabel>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kp;RuleEngine">
+		<rdfs:subClassOf rdf:resource="&api4kp-kp;Reasoner"/>
+		<rdfs:label>rule engine</rdfs:label>
+		<skos:definition>reasoner that supports inferences performed on rule bases</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kp;Server">
+		<rdfs:subClassOf rdf:resource="&api4kp-kp;DeployedSoftware"/>
+		<rdfs:label>server</rdfs:label>
+		<skos:definition>deployed software that can perform computations as a service, on a client&apos;s request</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kp;Software">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeArtifact"/>
+		<rdfs:label>software</rdfs:label>
+		<skos:definition>distributable application or library that carries a computer program</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kp;SoftwareExecution">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeProcessingActivity"/>
+		<rdfs:label>software execution</rdfs:label>
+		<rdfs:comment>The process by which a (virtual) machine interpretes and executes the instructions that are fragments of a computer program.</rdfs:comment>
+		<skos:altLabel>software run</skos:altLabel>
+		<skos:scopeNote>at a minimum, a software execution is a knowledge processing activity in the sense that the computing machine follows the &quot;plan&quot; stated by the computer program</skos:scopeNote>
+	</owl:Class>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-kp;hosts">
+		<rdfs:label>hosts</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp-kp;ComputingEnvironment"/>
+		<rdfs:range rdf:resource="&api4kp-kp;DeployedSoftware"/>
+		<skos:definition>relationship between an execution environment, and a software component that has been launched and/or deployed in that environment</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-kp;isDeploymentOf">
+		<rdfs:label>is deployment of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp-kp;DeployedSoftware"/>
+		<rdfs:range rdf:resource="&api4kp-kp;Software"/>
+		<skos:definition>relationship between a a software component that has been launched and/or deployed in some environment and its basic form</skos:definition>
+	</owl:ObjectProperty>
 
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Object Properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    <owl:ObjectProperty rdf:about="&kp;deployment-of">
-        <rdfs:domain rdf:resource="&kp;DeployedSoftware"/>
-        <rdfs:range rdf:resource="&api4kp;Software"/>
-        <rdfs:label>deployment of</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="&kp;executes">
-        <rdfs:domain rdf:resource="&kp;ExecutionEnvironment"/>
-        <rdfs:range rdf:resource="&kp;SoftwareExecution"/>
-        <rdfs:label>executes</rdfs:label>
-        <skos:definition>The relationship between an environment that provides the computational resources (e.g. CPU, memory, I/O) which enable the act of executing the instructions specified by some software, and that act.</skos:definition>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="&kp;hosts">
-        <rdfs:domain rdf:resource="&kp;ExecutionEnvironment"/>
-        <rdfs:range rdf:resource="&kp;DeployedSoftware"/>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&kp;executes"/>
-            <rdf:Description rdf:about="&kp;sustains"/>
-        </owl:propertyChainAxiom>
-        <skos:definition>The relationship between an execution environment, and a software that has been launched and/or deployed in that environment</skos:definition>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="&kp;instantiation-of">
-        <rdfs:domain rdf:resource="&kp;SoftwareExecution"/>
-        <rdfs:range rdf:resource="&api4kp;Software"/>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&kp;sustains"/>
-            <rdf:Description rdf:about="&kp;deployment-of"/>
-        </owl:propertyChainAxiom>
-        <rdfs:comment>The relationship between a Software Execution, and the Software that was run during that execution</rdfs:comment>
-        <rdfs:label>instantiation of</rdfs:label>
-    </owl:ObjectProperty>
-    
-    <owl:ObjectProperty rdf:about="&kp;runs">
-        <rdfs:domain rdf:resource="&kp;ExecutionEnvironment"/>
-        <rdfs:range rdf:resource="&api4kp;Software"/>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&kp;executes"/>
-            <rdf:Description rdf:about="&kp;instantiation-of"/>
-        </owl:propertyChainAxiom>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&kp;executes"/>
-            <rdf:Description rdf:about="&kp;sustains"/>
-            <rdf:Description rdf:about="&kp;deployment-of"/>
-        </owl:propertyChainAxiom>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&kp;hosts"/>
-            <rdf:Description rdf:about="&kp;deployment-of"/>
-        </owl:propertyChainAxiom>
-        <skos:definition>The relationship that holds between an execution environment, and any software (code) that is being run on that environment at a given point in time.
-
-More specifically, an environment runs a software if there is an execution activity in progress that uses computational resources of that environment to execute a program, as specified by the instructions in the software source code.</skos:definition>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="&kp;sustains">
-        <rdfs:domain rdf:resource="&kp;SoftwareExecution"/>
-        <rdfs:range rdf:resource="&kp;DeployedSoftware"/>
-        <rdfs:comment>The relationship between the execution of a software by a (virtual) machine, and its &quot;phenotypical&quot; manifestation</rdfs:comment>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="&api4kp;internally-represents">
-        <rdfs:domain rdf:resource="&kp;DeployedSoftware"/>
-    </owl:ObjectProperty>
-    
- 
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Classes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    <owl:Class rdf:about="&kp;AgentiveRole"/>
-
-    <owl:Class rdf:about="&kp;DLReasoner">
-        <rdfs:subClassOf rdf:resource="&kp;Reasoner"/>
-        <rdfs:label>description logic reasoner</rdfs:label>
-        <skos:definition>reasoner that supports reasoning operations with expressions that use a language that supports some of, and only, the aspects of description logics</skos:definition>
-    </owl:Class>
-
-    <owl:Class rdf:about="&kp;DeployedSoftware">
-        <rdfs:subClassOf rdf:resource="&api4kp;KnowledgeArtifact"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&kp;deployment-of"/>
-                <owl:someValuesFrom rdf:resource="&api4kp;Software"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment>test</rdfs:comment>
-        <rdfs:label>Deployed Software</rdfs:label>
-        <rdfs:label>Deployed Software Module</rdfs:label>
-        <skos:definition>A packaged copy of a Software, which has been deployed (installed) on some Execution Environment</skos:definition>
-    </owl:Class>
-    
-    <owl:Class rdf:about="&kp;ExecutionEnvironment">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&kp;hosts"/>
-                <owl:someValuesFrom rdf:resource="&kp;DeployedSoftware"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&kp;runs"/>
-                <owl:someValuesFrom rdf:resource="&api4kp;Software"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:label>Execution Environment</rdfs:label>
-        <skos:definition>General concept that abstracts hardware, OS, Virtual Machines, Containers, or combinations thereof</skos:definition>
-    </owl:Class>
-
-    <owl:Class rdf:about="&kp;KnowledgePlatform">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&kp;ExecutionEnvironment"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&kp;hosts"/>
-                        <owl:someValuesFrom>
-                            <owl:Class>
-                                <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="&kp;KnowledgePlatformModule"/>
-                                    <owl:Restriction>
-                                        <owl:onProperty rdf:resource="&api4kp;performs"/>
-                                        <owl:someValuesFrom rdf:resource="&api4kp;KnowledgeActivity"/>
-                                    </owl:Restriction>
-                                </owl:intersectionOf>
-                            </owl:Class>
-                        </owl:someValuesFrom>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&kp;ExecutionEnvironment"/>
-        <rdfs:label>Knowledge Platform</rdfs:label>
-    </owl:Class>
-
-    <owl:Class rdf:about="&kp;KnowledgePlatformModule">
-        <rdfs:subClassOf rdf:resource="&kp;Server"/>
-        <rdfs:subClassOf rdf:resource="&api4kp;Agent"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&api4kp;internally-represents"/>
-                <owl:someValuesFrom rdf:resource="&api4kp;KnowledgeResource"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&api4kp;part-of"/>
-                <owl:someValuesFrom rdf:resource="&kp;KnowledgePlatform"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&api4kp;performs"/>
-                <owl:someValuesFrom rdf:resource="&api4kp;KnowledgeActivity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:label>Knowledge Platform Component</rdfs:label>
-        <rdfs:label>Knowledge Platform Module</rdfs:label>
-    </owl:Class>
-
-    <owl:Class rdf:about="&kp;ProductionRuleEngine">
-        <rdfs:subClassOf rdf:resource="&kp;RuleEngine"/>
-        <rdfs:label>production rule engine</rdfs:label>
-        <skos:definition>rule engine optimized for production (condition-action) rules</skos:definition>
-    </owl:Class>
-
-    <owl:Class rdf:about="&kp;Reasoner">
-        <rdfs:subClassOf rdf:resource="&api4kp;Software"/>
-        <rdfs:comment>software that has the capability of performing reasoning operations</rdfs:comment>
-        <rdfs:label>reasoner</rdfs:label>
-        <skos:altLabel>engine</skos:altLabel>
-    </owl:Class>
-
-    <owl:Class rdf:about="&kp;RuleEngine">
-        <rdfs:subClassOf rdf:resource="&kp;Reasoner"/>
-        <rdfs:label>rule engine</rdfs:label>
-        <skos:definition>reasoner that supports reasoning operations performed on rule bases - structured knowldege bases whose elements are expressed in some rule language that supports logic aspects commonly used to construct &apos;if-then&apos; rules</skos:definition>
-    </owl:Class>
-
-    <owl:Class rdf:about="&kp;Server">
-        <rdfs:subClassOf rdf:resource="&kp;AgentiveRole"/>
-        <rdfs:subClassOf rdf:resource="&kp;DeployedSoftware"/>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&kp;AgentiveRole"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&api4kp;archetypes"/>
-                        <owl:someValuesFrom rdf:resource="&api4kp;Software"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:label>TODO server</rdfs:label>
-    </owl:Class>
-
-    <owl:Class rdf:about="&kp;SoftwareExecution">
-        <rdfs:subClassOf rdf:resource="&api4kp;Activity"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&kp;sustains"/>
-                <owl:someValuesFrom rdf:resource="&kp;DeployedSoftware"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment>The process by which a (virtual) machine interpretes and executes the instructions that are fragments of a Software.</rdfs:comment>
-        <rdfs:label>Software Execution</rdfs:label>
-    </owl:Class>
-    
 </rdf:RDF>
