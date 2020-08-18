@@ -10,6 +10,8 @@ info:
     name: Apache License, Version 2.0 
     url: https://www.apache.org/licenses/LICENSE-2.0.html  
   description: |
+    Maturity - STABLE
+
     API that expose the functional capabilities of a Knowledge Artifact Repository Service (KAR), as defined in the OMG API4KP specification. 
     
     Knowledge Artifact Repositories allow to store and retrieve (copies of) Digital Knowledge Artifacts (KA). KARs treat KAs as black-box binary objects, so there is no limitation nor expectation on the nature of the content, or the requirements to consume it. However, identity and versioning must be supported. 
@@ -109,7 +111,7 @@ paths:
     get:
       tags:
       - Knowledge Artifact Repository
-      summary: Describe Knowledge Artifact Respository
+      summary: Describe Knowledge Artifact Repository
       description: |
         Retrieves the state, as known at the time the operation is invoked, of a specific Knowledge Artifact Repository.
         
@@ -135,7 +137,7 @@ paths:
     put:
       tags:
       - Knowledge Artifact Repository
-      summary: Configure a Knowledge Artifact Respository 
+      summary: Configure a Knowledge Artifact Repository 
       description: |
         Ensure a Knowledge Artifact Repository with the given identifier is enabled and accessible. If not, will attempt to create one. The identifier must be acceptable to the server. If optional descriptive information is provided, it will be used to initialize or update the state of the Repository. 
         
@@ -171,7 +173,7 @@ paths:
     delete:
       tags:
       - Knowledge Artifact Repository
-      summary: Disables an empty Knowledge Artifact Respository 
+      summary: Disables an empty Knowledge Artifact Repository 
       description: |
         Ensure a Knowledge Artifact Repository with the given identifier is no longer accessible. 
         The Repository MUST be empty for this operation to succeed. 
@@ -197,7 +199,7 @@ paths:
     head:
       tags:
       - Knowledge Artifact Repository
-      summary: Check Knowledge Artifact Respository
+      summary: Check Knowledge Artifact Repository
       description: |
         Checks for the existence of a Knowledge Artifact Repository with the given identifier 
       operationId: isKnowledgeArtifactRepository
@@ -401,7 +403,7 @@ paths:
         This operation is functionally equivalent to invoking deleteKnowledgeArtifactSeries(repositoryId,artifactId,deleted),
         to clear the series, AND then removing the Artifact from the Repository.  
         
-        In any case, The server SHOULD keep a record of the artifactID.
+        In any case, The server SHOULD keep a record of the artifactId.
       operationId: deleteKnowledgeArtifact
       parameters:
         - $ref: '#/parameters/repositoryId'
@@ -862,6 +864,6 @@ definitions:
   KnowledgeArtifactRepository:
     type: object
 
-basePath: /kmdp.mayo.edu/repository/artifact/v4/
+basePath: /omg.org/spec/API4KP/20200801/api/repository/artifact/v4
 schemes:
  - https

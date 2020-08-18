@@ -10,6 +10,8 @@ info:
     name: Apache License, Version 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   description: |
+    Maturity - HIGH (possibly subject to extensions)
+
     APIs for a Semantic Knowledge Asset Repository.
 
     **Knowledge Assets**
@@ -48,9 +50,9 @@ info:
     Standard OpenAPI content negotiation is applied to any API return type, including KnowledgeCarriers, at a later stage.
 
     **Composites**
-    A Composite Resource (Asset or Artifact) is a resource that consists in components, which are either Composite Resources of the same type, or regular atomic Resources. Composites are also defined by the relationshisp between the parts. For this reason, each Composite has a special Component, a Struct(ure), which is a graph-oriented Artifact which establishes types, roles and relationships and is normally a subset of the Knowledge Asset Graph.
+    A Composite Resource (Asset or Artifact) is a resource that consists in components, which are either Composite Resources of the same type, or regular atomic Resources. Composites are also defined by the relationships between the parts. For this reason, each Composite has a special Component, a Struct(ure), which is a graph-oriented Artifact which establishes types, roles and relationships and is normally a subset of the Knowledge Asset Graph.
     Composites are implicitly manifested through their identifier and Structure. The components can be resolved and assembled into a Composite Surrogate or into a Composite Artifact.
-    The Composite is distinct from each of its componenets, even when one of the components has a prominent role with respect to the others.
+    The Composite is distinct from each of its components, even when one of the components has a prominent role with respect to the others.
     As such, Composites can have their own independent Canonical Surrogate, and have one or more variant Carriers.
     Notice that, in general, a Composite Asset can be carried by an atomic Carrier, and an atomic Asset can be carried by a Composite Artifact.
     Atomic Resources can be created from their Composite counterparts by means of _flattening_.
@@ -61,7 +63,7 @@ info:
     A Knowledge Asset Repository SHOULD delegate to a Language Service the ability to parse/serialize, validate and otherwise analyze the content of a Knowledge Carriers associated to an Asset. Language Trans*ion services SHOULD also be leveraged for Content Negotiation Purposes.
     A Knowledge Asset Repository SHOULD leverage a Knowledge Base Construction Service to manipulate artifacts, especially for the purpose of constructing, deconstructing, flattening and generating metadata.
     A Knowledge Asset Repository MIGHT also interact with a Reasoning Service, which SHOULD treat the Knowledge Asset Graph as a Knowledge Base, performing inferences and answering queries.
-    A Knowledge Asset Repository SHALL NOT, instead, leverage a Reasoning Service to reason _with_ the Artifacts' content for any other reason that the extraction/validation of the Asset metadata. This choice is motivated by the different SLA constraints (e.g.security, traffic/load) involved when knowledge is 'in motion' rather than 'at rest'.
+    A Knowledge Asset Repository SHALL NOT, instead, leverage a Reasoning Service to reason _with_ the Artifacts' content for any other reason that the extraction/validation of the Asset metadata. This choice is motivated by the different SLA constraints (e.g. security, traffic/load) involved when knowledge is 'in motion' rather than 'at rest'.
 
 
 tags:
@@ -113,7 +115,7 @@ paths:
             $ref: '#/definitions/KnowledgeAssetCatalog'
         403:
           description: |
-            The client cannot acces this repository
+            The client cannot access this repository
         500:
           description: |
             Internal Error
@@ -219,7 +221,7 @@ paths:
               $ref: '#/definitions/Pointer2'
         403:
           description: |
-            The client cannot acces this repository
+            The client cannot access this repository
         500:
           description: |
             Internal error
@@ -924,7 +926,7 @@ paths:
         which MUST not exist, or a Conflict will be raised.
 
         In particular, this operation MUST not try to update the Canonical Surrogate,
-        and will reject an alternative Surroagate that uses the canonical surrogate metamodel.
+        and will reject an alternative Surrogate that uses the canonical surrogate metamodel.
         (clients should use setKnowledgeAssetVersion instead)
 
         The server MUST register the new Surrogate in the Knowledge Graph, and update the Canonical
@@ -1160,7 +1162,7 @@ paths:
         retrieve the Surrogate for each Component, and _assemble_ them into a Composite Knowledge Carrier.
 
         The Surrogate SHOULD be the Canonical surrogate, unless Content Negotiation is used, and better alternatives
-        can fit the client's requet. Content Negotiation can also be used to apply some trans*tion to the
+        can fit the client's request. Content Negotiation can also be used to apply some trans*tion to the
         Canonical Surrogates before returning them (e.g. projection by profile, or transcription between JSON vs XML).
 
         The server MIGHT also support the _flattening_ of the Surrogates into a single Surrogate, if such an operation
@@ -1583,4 +1585,4 @@ definitions:
 schemes:
   - https
 # Added by API Auto Mocking Plugin
-basePath: /kmdp.mayo.edu/repository/asset/v4/
+basePath: /omg.org/spec/API4KP/20200801/api/repository/asset/v4
