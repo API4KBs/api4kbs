@@ -264,12 +264,6 @@
 		<skos:note>knowledge expression such that its symbols have been further processed to be inscribed on a specific knowledge carrier</skos:note>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&api4kp;SerializedKnowledgeExpression">
-		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeExpression"/>
-		<rdfs:label>serialized knowledge expression</rdfs:label>
-		<skos:definition>knowledge expression that manifests a concrete knowledge expression using a specific choice of symbols</skos:definition>
-	</owl:Class>
-	
 	<owl:Class rdf:about="&api4kp;Knowledge">
 		<rdfs:subClassOf>
 			<owl:Restriction>
@@ -486,6 +480,12 @@
 		<rdfs:label>primitive concept</rdfs:label>
 		<skos:definition>fundamental concept that cannot be broken down into simpler concepts</skos:definition>
 		<skos:scopeNote>The notion of &apos;primitive&apos; concept is useful to define &apos;common&apos; vs &apos;background&apos; knowledge and, in particular, the requirements for an agent&apos;s ability to internalize a shared piece of knowledge. The more philosophical discussion on &apos;innate concepts&apos; - concepts such that NO explicit, shared definition (needs to) exists - is instead irrelevant.</skos:scopeNote>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp;SerializedKnowledgeExpression">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeExpression"/>
+		<rdfs:label>serialized knowledge expression</rdfs:label>
+		<skos:definition>knowledge expression that manifests a concrete knowledge expression using a specific choice of symbols</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp;StructuringKnowledgeExpression">
@@ -799,14 +799,6 @@
 		<skos:definition>can be decoded into (the) serialized knowledge expression</skos:definition>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp;isSerializationOf">
-		<rdfs:subPropertyOf rdf:resource="&api4kp;isManifestationOf"/>
-		<rdfs:label>is serialization of</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp;SerializedKnowledgeExpression"/>
-		<rdfs:range rdf:resource="&api4kp;ConcreteKnowledgeExpression"/>
-		<skos:definition>can be parsed into (the) concrete knowledge expression</skos:definition>
-	</owl:ObjectProperty>
-	
 	<owl:ObjectProperty rdf:about="&api4kp;isInscribedWith">
 		<rdfs:subPropertyOf rdf:resource="&api4kp;isManifestationOf"/>
 		<rdfs:label>is inscribed with</rdfs:label>
@@ -875,6 +867,14 @@
 		<skos:altLabel>is patient of</skos:altLabel>
 		<skos:altLabel>is target of</skos:altLabel>
 		<skos:definition>participates passively, and is somehow affected, during the course of an activity</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp;isSerializationOf">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isManifestationOf"/>
+		<rdfs:label>is serialization of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp;SerializedKnowledgeExpression"/>
+		<rdfs:range rdf:resource="&api4kp;ConcreteKnowledgeExpression"/>
+		<skos:definition>can be parsed into (the) concrete knowledge expression</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp;isUsedIn">

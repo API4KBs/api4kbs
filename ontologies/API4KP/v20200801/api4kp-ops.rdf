@@ -219,6 +219,12 @@
 		<skos:definition>knowledge resource discovery task that resolves dependency relationships between knowledge resources</skos:definition>
 	</owl:Class>
 	
+	<owl:Class rdf:about="&api4kp-ops;DescriptionTask">
+		<rdfs:subClassOf rdf:resource="&api4kp-ops;KnowledgeReasoningTask"/>
+		<rdfs:label>description task</rdfs:label>
+		<skos:definition>reasoning task that produces some description for a given individual</skos:definition>
+	</owl:Class>
+	
 	<owl:Class rdf:about="&api4kp-ops;DiffingTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;KnowledgeAnalyticTask"/>
 		<rdfs:label>diffing task</rdfs:label>
@@ -1064,6 +1070,12 @@
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeResourceDescriptionExtractionTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;SemanticKnowledgeManagementTask"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp-ops;hasSubtask"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-ops;DescriptionTask"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
 		<rdfs:subClassOf>
 			<owl:Restriction>
 				<owl:onProperty rdf:resource="&api4kp-ops;involvesRole"/>
