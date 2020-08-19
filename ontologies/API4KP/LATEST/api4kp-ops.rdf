@@ -62,9 +62,9 @@
 		<owl:imports rdf:resource="https://www.omg.org/spec/API4KP/api4kp-rel/"/>
 		<owl:imports rdf:resource="https://www.omg.org/spec/API4KP/api4kp-series/"/>
 		<owl:imports rdf:resource="https://www.omg.org/spec/API4KP/api4kp/"/>
-		<owl:imports rdf:resource="https://www.omg.org/spec/DOL/20171106/DOL-terms.rdf"/>
+		<owl:imports rdf:resource="https://www.omg.org/spec/DOL/DOL-terms/"/>
 		<owl:imports rdf:resource="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
-		<owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/SNAPSHOT/api4kp-ops/"/>
+		<owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/20200801/api4kp-ops/"/>
 	</owl:Ontology>
 	
 	<owl:Class rdf:about="&api4kp-ops;AbridgmentTask">
@@ -217,6 +217,12 @@
 		</rdfs:subClassOf>
 		<rdfs:label>dependency resolution task</rdfs:label>
 		<skos:definition>knowledge resource discovery task that resolves dependency relationships between knowledge resources</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-ops;DescriptionTask">
+		<rdfs:subClassOf rdf:resource="&api4kp-ops;KnowledgeReasoningTask"/>
+		<rdfs:label>description task</rdfs:label>
+		<skos:definition>reasoning task that produces some description for a given individual</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ops;DiffingTask">
@@ -1064,6 +1070,12 @@
 	
 	<owl:Class rdf:about="&api4kp-ops;KnowledgeResourceDescriptionExtractionTask">
 		<rdfs:subClassOf rdf:resource="&api4kp-ops;SemanticKnowledgeManagementTask"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp-ops;hasSubtask"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-ops;DescriptionTask"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
 		<rdfs:subClassOf>
 			<owl:Restriction>
 				<owl:onProperty rdf:resource="&api4kp-ops;involvesRole"/>
