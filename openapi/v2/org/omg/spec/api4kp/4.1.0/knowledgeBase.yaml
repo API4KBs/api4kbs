@@ -1,23 +1,20 @@
 swagger: '2.0'
 info:
   description: |
-    Maturity - VERY LOW (highly subject to disruptive changes)
 
-    The Knowledge Base (KB) Construction APIs allow to compose one or more Knowledge Assets into 
-    Knowledge Bases that are suitable for processing/reasoning. 
-    The process, which is driven by metadata (surrogates), involves the retrieval, normalization, 
+    The Knowledge Base (KB) Construction APIs allow to compose one or more Knowledge Assets into
+    Knowledge Bases that are suitable for processing/reasoning.
+    The process, which is driven by metadata (surrogates), involves the retrieval, normalization,
     and structuring of Knowledge Artifacts that manifest the components of the Knowledge Base itself.
-    
-    As such, implementations of this API are likely to depend on the API4KP Knowledge Trans*ion APIs 
-    and, more loosely, on the API4KP Knowledge Asset Repository API.
+
+    As such, implementations of this API are likely to depend on the API4KP Knowledge Trans*ion APIs and, more loosely, on the API4KP Knowledge Asset Repository API.
     This API, in turn, is designed to be a dependency of the API4PK Reasoning/Inference APIs.
-    
-    The API is inspired by the State monad. Knowledge Bases are incubated within the server from their
-    initialization, through their construction, until their finalization and retrieval. 
-    As operations are applied to manipulate the KB, new versions are constructed ensuring reproducibility
-    and traceabiilty.
-    
+
+    The API is inspired by the State monad. Knowledge Bases are incubated within the server from their initialization, through their construction, until their finalization and retrieval.
+    As operations are applied to manipulate the KB, new versions are constructed ensuring reproducibility and traceabiilty.
     Implementations, however, are not required nor guaranteed to be transactional.
+
+
   version: "4.1.0"
   title: KnowledgeBase API
 
@@ -29,7 +26,7 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 
 tags:
-  
+
   - name: Compositional
     description: |
       APIs for the manipulation of Composite Assets and Artifacts, including Knowledge Bases
@@ -43,17 +40,17 @@ tags:
 paths:
 
 
-##########################################################################################
+  ##########################################################################################
 
   #/composers:
-    
+
   /constructors:
     post:
       tags:
         - Compositional
       operationId: constructCompositeAsset
       summary: 'Constructs a Composite Knowledge Asset'
-      description: | 
+      description: |
         Creates a new Composite Knowledge Asset (with a new AssetID), which is manifested
         by means of its 'structure'.
         The client is responsible to provide a 'definition', expressed in some query language
@@ -61,10 +58,10 @@ paths:
         (i.e. query proper) ways to select component assets and their relationships.
         The server is expected to run that definition against a substrate, such as a Knowledge
         Asset Repository.
-        The server will return a KnowledgeCarrier, wrapping the graph that results from the 
+        The server will return a KnowledgeCarrier, wrapping the graph that results from the
         application of the definition with minimal asset metadata (id, version) and information
         on how the graph itself is represented.
-        
+
         The client can use the structure to assemble a Composite Asset Surrogate, or a Composite
         Artifact, which in turn could be fed to an Introspector to infer an overall Surrogate
         for the composite itself
@@ -73,19 +70,19 @@ paths:
       responses:
         200:
           description: |
-            A knowledge carrier that wraps a Structuring Artifact 
+            A knowledge carrier that wraps a Structuring Artifact
             - a (manifestation of a) graph that describes how other Assets are
             organized and related to each other in a Composite Asset
           schema:
             $ref: '#/definitions/KnowledgeCarrier'
-            
+
   /constructors/assemblers:
     post:
       tags:
         - Compositional
       operationId: assembleCompositeArtifact
       summary: 'Constructs a Composite Knowledge Artifact'
-      description: | 
+      description: |
         TODO
       parameters:
         - $ref: '#/parameters/struct'
@@ -94,15 +91,52 @@ paths:
           description: |
             TODO
           schema:
-            $ref: '#/definitions/KnowledgeCarrier'   
-            
+            $ref: '#/definitions/KnowledgeCarrier'
+
+  /constructors/deconstructors:
+    post:
+      tags:
+        - Compositional
+      operationId: deconstructCompositeAsset
+      summary: 'Deconstructs a Knowledge Artifact into a Composite Knowledge Asset (structure)'
+      description: |
+        TODO
+      parameters:
+        - $ref: '#/parameters/artifact'
+      responses:
+        200:
+          description: |
+            A struct that defines a Composite Knowledge Asset
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+  /constructors/disassemblers:
+    post:
+      tags:
+        - Compositional
+      operationId: disassembleCompositeArtifact
+      summary: 'Deconstructs a (Composite) Knowledge Artifact into its component Artifacts'
+      description: |
+        TODO
+      parameters:
+        - $ref: '#/parameters/artifact'
+      responses:
+        200:
+          description: |
+            A struct that defines a Composite Knowledge Asset
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/KnowledgeCarrier'
+
+
   /constructors/flatteners:
     post:
       tags:
         - Compositional
       operationId: flattenArtifact
       summary: 'Flattens a (Composite) Knowledge Artifact'
-      description: | 
+      description: |
         TODO
       parameters:
         - $ref: '#/parameters/kbaseComponent'
@@ -112,11 +146,11 @@ paths:
           description: |
             TODO
           schema:
-            $ref: '#/definitions/KnowledgeCarrier'             
-            
-  
+            $ref: '#/definitions/KnowledgeCarrier'
 
-##########################################################################################
+
+
+  ##########################################################################################
 
   /knowledgebases:
     post:
@@ -126,32 +160,38 @@ paths:
       summary: 'Create empty Knowledge Base'
       description: |
         Creates an empty knowledge base, returning a pointer to the new KB.
-        Version tags are used by the server to denote the states of the KB 
+        Version tags are used by the server to denote the states of the KB
         at each construction stage.
+        Optionally, a client can provide an initial component. If so,
+        populateKnowledgeBase will be invoked using that component.
       parameters:
-        - $ref: '#/parameters/asset'
+        - name: initialComponent
+          in: body
+          required: false
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
       responses:
         200:
           description: A reference to a newly created knowledgebase
           schema:
             $ref: '#/definitions/Pointer2'
-  
-  
+
+
   /knowledgebases/{kbaseId}:
     get:
       tags:
         - KnowledgeBase
       operationId: getKnowledgeBaseSeries
       summary: 'Get a history of the Knowledge Base'
-      description: | 
-        Returns a trace of the history of a KB's construction process, by means of 
+      description: |
+        Returns a trace of the history of a KB's construction process, by means of
         pointers to each state.
       parameters:
         - $ref: '#/parameters/kbaseId'
       responses:
         200:
           description: The knowledgebase
-          schema: 
+          schema:
             type: array
             items:
               $ref: '#/definitions/Pointer2'
@@ -163,13 +203,13 @@ paths:
       parameters:
         - $ref: '#/parameters/kbaseId'
       description: |
-          Removes all the states of a KnowledgeBase from the server 
-          - usually after the client has obtained a desired snapshot.
-          Can be invoked for 'cleanup' purposes.
+        Removes all the states of a KnowledgeBase from the server
+        - usually after the client has obtained a desired snapshot.
+        Can be invoked for 'cleanup' purposes.
       responses:
         200:
           description: Success
-      
+
 
   /knowledgebases/{kbaseId}/versions/{versionTag}:
     get:
@@ -177,10 +217,10 @@ paths:
         - KnowledgeBase
       operationId: getKnowledgeBase
       summary: 'Get a snapshot of a Knowledge Base'
-      description: | 
+      description: |
         Returns the state of a KnowledgeBase, manifested as a (possibly composite)
-        Knowledge Artifact. 
-        #TODO - Should the client be able to negotiate the language/format? 
+        Knowledge Artifact.
+        #TODO - Should the client be able to negotiate the language/format?
       parameters:
         - $ref: '#/parameters/kbaseId'
         - $ref: '#/parameters/versionTag'
@@ -208,14 +248,14 @@ paths:
           description: The ID of the newly created knowledgebase
           schema:
             $ref: '#/definitions/Pointer2'
-            
+
   /knowledgebases/{kbaseId}/versions/{versionTag}/struct:
     get:
       tags:
         - KnowledgeBase
       operationId: getKnowledgeBaseStructure
       summary: 'Gets the Structure of a Knowledge Base'
-      description: | 
+      description: |
         Given a Knowledge Base (or a root asset that is interpreted as the 'seed' of a KB),
         returns a graph that describes the internal relationships
       parameters:
@@ -226,14 +266,34 @@ paths:
           description: |
             A KnowledgeCarrier carrying the relationship graph
           schema:
-            $ref: '#/definitions/KnowledgeCarrier'          
-            
-            
+            $ref: '#/definitions/KnowledgeCarrier'
 
-  /knowledgebases/{kbaseId}/versions/{versionTag}/binders:
+  /knowledgebases/{kbaseId}/versions/{versionTag}/carrier:
+    get:
+      tags:
+        - KnowledgeBase
+      operationId: getKnowledgeBaseManifestation
+      summary: 'Gets (a Carrier of) a Manifestation of a Knowledge Base'
+      description: |
+        Given a Knowledge Base (or a root asset that is interpreted as the 'seed' of a KB),
+        returns a manifestation of the KnowledgeBase, in the form of a (Composite) Knowledge Carrier
+      parameters:
+        - $ref: '#/parameters/kbaseId'
+        - $ref: '#/parameters/versionTag'
+      responses:
+        200:
+          description: |
+            A (Composite) KnowledgeCarrier carrying a Manifestation of the KnowledgeBase
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+
+
+
+  /knowledgebases/{kbaseId}/versions/{versionTag}/ops/binders:
     post:
       tags:
-        - Binding
+        - KnowledgeBase
       summary: 'Bind values to a formula with open variables'
       operationId: bind
       parameters:
@@ -249,12 +309,34 @@ paths:
           description: The bound expression
           schema:
             $ref: '#/definitions/Pointer2'
-            
-  /knowledgebases/{kbaseId}/versions/{versionTag}/weavers:
+
+
+  /knowledgebases/{kbaseId}/versions/{versionTag}/ops/binders/{operatorId}:
     post:
       tags:
-        - Binding
-      summary: 'Weave (fragments of) and artifact into a KB'
+        - KnowledgeBase
+      summary: 'Bind values to a formula with open variables'
+      operationId: namedBind
+      parameters:
+        - $ref: '#/parameters/kbaseId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/operatorId'
+        - name: bindings
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Bindings'
+      responses:
+        200:
+          description: The bound expression
+          schema:
+            $ref: '#/definitions/Pointer2'
+
+  /knowledgebases/{kbaseId}/versions/{versionTag}/ops/weavers:
+    post:
+      tags:
+        - KnowledgeBase
+      summary: 'Weave (fragments of) an artifact into a KB'
       operationId: weave
       parameters:
         - $ref: '#/parameters/kbaseId'
@@ -269,7 +351,29 @@ paths:
           description: |
             The new Knowledge Base resulting from the weaving
           schema:
-            $ref: '#/definitions/Pointer2'          
+            $ref: '#/definitions/Pointer2'
+
+  /knowledgebases/{kbaseId}/versions/{versionTag}/ops/weavers/{operatorId}:
+    post:
+      tags:
+        - KnowledgeBase
+      summary: 'Weave (fragments of) an artifact into a KB'
+      operationId: namedWeave
+      parameters:
+        - $ref: '#/parameters/kbaseId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/operatorId'
+        - name: aspects
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+      responses:
+        200:
+          description: |
+            The new Knowledge Base resulting from the weaving
+          schema:
+            $ref: '#/definitions/Pointer2'
 
 definitions:
 
@@ -281,10 +385,10 @@ definitions:
 
   KnowledgeBase:
     type: object
-    
+
   Bindings:
     type: object
-    
+
   Pointer2:
     type: object
 
@@ -298,6 +402,12 @@ parameters:
     schema:
       $ref: '#/definitions/KnowledgeAsset2'
 
+  artifact:
+    name: artifact
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/KnowledgeCarrier'
 
   rootAssetId:
     in: query
@@ -332,27 +442,36 @@ parameters:
     type: string
     format: uuid
 
-  kbaseComponent:    
+  kbaseComponent:
     name: kbaseComponent
     in: body
     required: true
     schema:
       $ref: '#/definitions/KnowledgeCarrier'
 
-  structDefinition:    
+  structDefinition:
     name: structDefinition
     in: body
     required: true
     schema:
       $ref: '#/definitions/KnowledgeCarrier'
 
-  struct:    
+  struct:
     name: struct
     in: body
     required: true
     schema:
       $ref: '#/definitions/KnowledgeCarrier'
 
+  operatorId:
+    in: path
+    name: operatorId
+    description: |
+      The id of an Operator, implementing one of the operations
+      offered by a Component.
+    required: true
+    type: string
+    format: uuid
 
   versionTag:
     in: path
