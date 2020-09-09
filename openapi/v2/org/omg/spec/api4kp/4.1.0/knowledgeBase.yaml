@@ -174,7 +174,7 @@ paths:
         200:
           description: A reference to a newly created knowledgebase
           schema:
-            $ref: '#/definitions/Pointer2'
+            $ref: '#/definitions/Pointer'
 
 
   /knowledgebases/{kbaseId}:
@@ -194,7 +194,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Pointer2'
+              $ref: '#/definitions/Pointer'
     delete:
       tags:
         - KnowledgeBase
@@ -247,7 +247,7 @@ paths:
         200:
           description: The ID of the newly created knowledgebase
           schema:
-            $ref: '#/definitions/Pointer2'
+            $ref: '#/definitions/Pointer'
 
   /knowledgebases/{kbaseId}/versions/{versionTag}/struct:
     get:
@@ -308,7 +308,7 @@ paths:
         200:
           description: The bound expression
           schema:
-            $ref: '#/definitions/Pointer2'
+            $ref: '#/definitions/Pointer'
 
 
   /knowledgebases/{kbaseId}/versions/{versionTag}/ops/binders/{operatorId}:
@@ -330,7 +330,7 @@ paths:
         200:
           description: The bound expression
           schema:
-            $ref: '#/definitions/Pointer2'
+            $ref: '#/definitions/Pointer'
 
   /knowledgebases/{kbaseId}/versions/{versionTag}/ops/weavers:
     post:
@@ -351,7 +351,7 @@ paths:
           description: |
             The new Knowledge Base resulting from the weaving
           schema:
-            $ref: '#/definitions/Pointer2'
+            $ref: '#/definitions/Pointer'
 
   /knowledgebases/{kbaseId}/versions/{versionTag}/ops/weavers/{operatorId}:
     post:
@@ -373,11 +373,11 @@ paths:
           description: |
             The new Knowledge Base resulting from the weaving
           schema:
-            $ref: '#/definitions/Pointer2'
+            $ref: '#/definitions/Pointer'
 
 definitions:
 
-  KnowledgeAsset2:
+  KnowledgeAsset:
     type: object
 
   KnowledgeCarrier:
@@ -389,18 +389,10 @@ definitions:
   Bindings:
     type: object
 
-  Pointer2:
+  Pointer:
     type: object
 
 parameters:
-
-  asset:
-    in: body
-    name: asset
-    description: TODO
-    required: false
-    schema:
-      $ref: '#/definitions/KnowledgeAsset2'
 
   artifact:
     name: artifact
