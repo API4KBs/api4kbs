@@ -1,2 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_88mWEH6LEeq9QvEuereayA" name="transrepresentation"/>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_88mWEH6LEeq9QvEuereayA" name="transrepresentation">
+  <packagedElement xmi:type="uml:Class" xmi:id="_pGd4oPdqEeqTgeWrjCFZ1A" name="TransRepresentationBroker" visibility="public"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_rxFEwPdqEeqTgeWrjCFZ1A" name="TransRepresentationOperator" visibility="public">
+    <ownedAttribute xmi:id="_uG4egPdqEeqTgeWrjCFZ1A" name="id" visibility="public" type="_61EBUPdqEeqTgeWrjCFZ1A">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uG4egfdqEeqTgeWrjCFZ1A" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uG4egvdqEeqTgeWrjCFZ1A" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_yz5nQPdqEeqTgeWrjCFZ1A" name="Parameters" visibility="public"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_1ipsgPdqEeqTgeWrjCFZ1A" name="supports" memberEnd="_1ipsgfdqEeqTgeWrjCFZ1A _1ipshPdqEeqTgeWrjCFZ1A" navigableOwnedEnd="_1ipshPdqEeqTgeWrjCFZ1A">
+    <ownedEnd xmi:id="_1ipsgfdqEeqTgeWrjCFZ1A" name="opType" type="_rxFEwPdqEeqTgeWrjCFZ1A" association="_1ipsgPdqEeqTgeWrjCFZ1A">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1ipsgvdqEeqTgeWrjCFZ1A"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1ipsg_dqEeqTgeWrjCFZ1A" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_1ipshPdqEeqTgeWrjCFZ1A" name="params" type="_yz5nQPdqEeqTgeWrjCFZ1A" association="_1ipsgPdqEeqTgeWrjCFZ1A">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1ipshfdqEeqTgeWrjCFZ1A"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1ipshvdqEeqTgeWrjCFZ1A" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_61EBUPdqEeqTgeWrjCFZ1A" name="URI" visibility="public"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_M578APdrEeqTgeWrjCFZ1A" name="operators" memberEnd="_M578AfdrEeqTgeWrjCFZ1A _M58jEvdrEeqTgeWrjCFZ1A" navigableOwnedEnd="_M58jEvdrEeqTgeWrjCFZ1A">
+    <ownedEnd xmi:id="_M578AfdrEeqTgeWrjCFZ1A" name="broker" type="_pGd4oPdqEeqTgeWrjCFZ1A" association="_M578APdrEeqTgeWrjCFZ1A">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_M58jEPdrEeqTgeWrjCFZ1A"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_M58jEfdrEeqTgeWrjCFZ1A" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_M58jEvdrEeqTgeWrjCFZ1A" name="operator" type="_rxFEwPdqEeqTgeWrjCFZ1A" aggregation="shared" association="_M578APdrEeqTgeWrjCFZ1A">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_M58jE_drEeqTgeWrjCFZ1A"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_M58jFPdrEeqTgeWrjCFZ1A" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ZIvbMPdrEeqTgeWrjCFZ1A" name="Detector" visibility="public">
+    <generalization xmi:id="_hG0sEPdrEeqTgeWrjCFZ1A" general="_pGd4oPdqEeqTgeWrjCFZ1A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_aH7AQPdrEeqTgeWrjCFZ1A" name="Validator" visibility="public">
+    <generalization xmi:id="_hrth0PdrEeqTgeWrjCFZ1A" general="_pGd4oPdqEeqTgeWrjCFZ1A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_cuI0kPdrEeqTgeWrjCFZ1A" name="DeSerializer" visibility="public">
+    <generalization xmi:id="_iUD7QPdrEeqTgeWrjCFZ1A" general="_pGd4oPdqEeqTgeWrjCFZ1A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_dx8a8PdrEeqTgeWrjCFZ1A" name="Translator" visibility="public">
+    <generalization xmi:id="_ixbzwPdrEeqTgeWrjCFZ1A" general="_pGd4oPdqEeqTgeWrjCFZ1A"/>
+  </packagedElement>
+</uml:Model>

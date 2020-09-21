@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_EMrOwPdcEeqTgeWrjCFZ1A" name="artifactRepository">
+  <packagedElement xmi:type="uml:Class" xmi:id="_JPHN4PdcEeqTgeWrjCFZ1A" name="Repository" visibility="public"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_KW8_sPdcEeqTgeWrjCFZ1A" name="Artifact" visibility="public">
+    <ownedAttribute xmi:id="_c5Wj4PdcEeqTgeWrjCFZ1A" name="seriesId" visibility="public" type="_6HTr0PdcEeqTgeWrjCFZ1A">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_c5Wj4fdcEeqTgeWrjCFZ1A" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_c5Wj4vdcEeqTgeWrjCFZ1A" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_LcMJcPdcEeqTgeWrjCFZ1A" name="ArtifactVersion" visibility="public">
+    <ownedAttribute xmi:id="_pdwfoPdcEeqTgeWrjCFZ1A" name="versionId" visibility="public" type="_6HTr0PdcEeqTgeWrjCFZ1A">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pdwfofdcEeqTgeWrjCFZ1A" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pdwfovdcEeqTgeWrjCFZ1A" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_UZUcgPdcEeqTgeWrjCFZ1A" name="artifacts" memberEnd="_UZUcgfdcEeqTgeWrjCFZ1A _UZUchPdcEeqTgeWrjCFZ1A" navigableOwnedEnd="_UZUchPdcEeqTgeWrjCFZ1A">
+    <ownedEnd xmi:id="_UZUcgfdcEeqTgeWrjCFZ1A" name="repo" type="_JPHN4PdcEeqTgeWrjCFZ1A" association="_UZUcgPdcEeqTgeWrjCFZ1A">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UZUcgvdcEeqTgeWrjCFZ1A"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UZUcg_dcEeqTgeWrjCFZ1A" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_UZUchPdcEeqTgeWrjCFZ1A" name="artifacts" type="_KW8_sPdcEeqTgeWrjCFZ1A" association="_UZUcgPdcEeqTgeWrjCFZ1A">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UZUchfdcEeqTgeWrjCFZ1A"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UZUchvdcEeqTgeWrjCFZ1A" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_xj0n0PdcEeqTgeWrjCFZ1A" name="versions" memberEnd="_xj0n0fdcEeqTgeWrjCFZ1A _xj0n1PdcEeqTgeWrjCFZ1A" navigableOwnedEnd="_xj0n1PdcEeqTgeWrjCFZ1A">
+    <ownedEnd xmi:id="_xj0n0fdcEeqTgeWrjCFZ1A" name="artifacts" type="_KW8_sPdcEeqTgeWrjCFZ1A" association="_xj0n0PdcEeqTgeWrjCFZ1A">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xj0n0vdcEeqTgeWrjCFZ1A"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xj0n0_dcEeqTgeWrjCFZ1A" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_xj0n1PdcEeqTgeWrjCFZ1A" name="version" type="_LcMJcPdcEeqTgeWrjCFZ1A" association="_xj0n0PdcEeqTgeWrjCFZ1A">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xj0n1fdcEeqTgeWrjCFZ1A"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xj0n1vdcEeqTgeWrjCFZ1A" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_6HTr0PdcEeqTgeWrjCFZ1A" name="URI" visibility="public"/>
+</uml:Model>
