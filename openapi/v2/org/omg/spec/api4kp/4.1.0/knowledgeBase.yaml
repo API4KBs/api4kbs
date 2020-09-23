@@ -40,6 +40,7 @@ tags:
 paths:
 
 
+
   ##########################################################################################
 
   #/composers:
@@ -212,6 +213,20 @@ paths:
 
 
   /knowledgebases/{kbaseId}/versions/{versionTag}:
+    head:
+      tags:
+        - KnowledgeBase
+      operationId: hasKnowledgeBase
+      summary: 'Determines if a Knowledge Base is present'
+      parameters:
+        - $ref: '#/parameters/kbaseId'
+        - $ref: '#/parameters/versionTag'
+      responses:
+        200:
+          description: The knowledgebase
+        404:
+          description: Not found
+
     get:
       tags:
         - KnowledgeBase
@@ -551,6 +566,43 @@ paths:
 
 
 
+  /knowledgebases/{kbaseId}/versions/{versionTag}/transcreators/introspectors/{operatorId}:
+    post:
+      tags:
+        - KnowledgeBase
+      summary: Derives a metadata surrogate for (the root of) a given knowledgebase
+      operationId: namedIntrospect
+      parameters:
+        - $ref: '#/parameters/kbaseId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/operatorId'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: |
+            The Surrogate Component
+          schema:
+            $ref: '#/definitions/Pointer'
+
+  /knowledgebases/{kbaseId}/versions/{versionTag}/introspectors/flatteners:
+    post:
+      tags:
+        - KnowledgeBase
+      summary: Derives a metadata surrogate for (the root of) a given knowledgebase
+      operationId: introspect
+      parameters:
+        - $ref: '#/parameters/kbaseId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: |
+            The Surrogate Component
+          schema:
+            $ref: '#/definitions/Pointer'
+
+
+
 
 
   /transcreators/binders/{operatorId}:
@@ -637,6 +689,27 @@ paths:
         200:
           description: |
             The new Knowledge Base resulting from the selection
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+  /transcreators/introspectors/{operatorId}:
+    post:
+      tags:
+        - Transcreate
+      summary: 'Extract a Knowledge Asset Surrogate from a given Knowledge Artifact'
+      description: |
+        The operation abstracts the actual strategy, which can be initialized to be
+        specific to an Artifact, or a class thereof, but is supposed to be stateless
+        and idempotent.
+      operationId: applyNamedIntrospect
+      parameters:
+        - $ref: '#/parameters/kbaseIdRef'
+        - $ref: '#/parameters/versionTagRef'
+        - $ref: '#/parameters/operatorId'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: The Surrogate that results from the application of the operator
           schema:
             $ref: '#/definitions/KnowledgeCarrier'
 

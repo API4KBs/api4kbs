@@ -18,7 +18,7 @@ info:
     tracked with different IDs.
 
 
-  version: "4.1.0"
+  version: 4.1.0
   title: "Model Evaluation Reasoning Service"
   contact:
     name: Davide Sottara
@@ -31,105 +31,12 @@ info:
 tags:
   - name: Model
     description: "Endpoints that expose (metadata about) the deployed model itself"
-  - name: Introspection
-    description: "Extract Surrogates from Knowledge Artifacts"
-  - name: Inference
+  - name: Reasoning
     description: "Endpoints that expose a model's computation capabilities as a function"
-  - name: Query
-    description: "Query"
   #- name: asynch
   #  description: "Endpoints that expose the model's asynchronous computation"
 
 paths:
-
-  #TODO Harmonize Introspectors and Evaluators
-  
-
-  /introspectors:
-    get:
-      tags:
-        - Introspection
-      summary: 'List available introspectors'
-      description: |
-        Enumerates the currently available introspectors
-      operationId: listIntrospectors
-      responses:
-        200:
-          description: The ID of the introspector function
-          schema:
-            $ref: '#/definitions/Pointer'
-
-    post:
-      tags:
-        - Introspection
-      summary: 'Initialize an Introspector'
-      description: |
-        Initializes an introspector with an optional piece of knowledge,
-        which provides additional context for the metadata extraction.
-        Conceptually, the server will use that artifact to seed/augment a knowledgebase,
-        which can be specific to the Artifact to be introspected
-        (thus making the introspector artifact-specific), or shared.
-        The process of metadata extraction, then, is conceptually an inference based
-        on the context knowledge and the content of the artifact itself
-      operationId: initIntrospector
-      parameters:
-        - $ref: '#/parameters/sourceArtifact'
-      responses:
-        200:
-          description: The ID of the introspector function
-          schema:
-            $ref: '#/definitions/KnowledgeCarrier'
-    
-
-  /introspectors/{lambdaId}:
-    get:
-      tags:
-        - Introspection
-      summary: 'Describes the Surrogate Extraction strategy'
-      operationId: getIntrospector
-      description: |
-        Provides information about a specific metadata extractor
-      parameters:
-        - $ref: '#/parameters/lambdaId'  
-      responses:
-        200:
-          description: OK
-          # schema : TODO
-    
-    post:
-      tags:
-        - Introspection
-      summary: 'Extract a Knowledge Asset Surrogate from a given Knowledge Artifact'
-      description: |
-        The operation abstracts the actual strategy, which can be initialized to be 
-        specific to an Artifact, or a class thereof, but is supposed to be stateless
-        and idempotent.
-        The operation is also independent of the actual metadata model used to carry
-        the results, but the client SHOULD be able to use content negotiation to
-        express their preference in terms of model, profile, serialization format, etc.
-      operationId: introspect
-      parameters:
-        - $ref: '#/parameters/lambdaId'
-        - $ref: '#/parameters/sourceArtifact'
-        - $ref: '#/parameters/xAccept'
-      responses:
-        200:
-          description: The Surrogate that results from the application of the operator
-          schema:
-            $ref: '#/definitions/KnowledgeCarrier'
-
-    delete:
-      summary: 'Disables an introspector'
-      tags:
-        - Introspection
-      description: |
-        Disables an introspector, which will no longer be available for use
-      parameters:
-        - $ref: '#/parameters/lambdaId'
-      responses:
-        200:
-          description: OK
-    
 
   /models:
     get:
@@ -172,20 +79,15 @@ paths:
           schema:
             $ref: '#/definitions/KnowledgeCarrier'
 
-  /models/{modelId}/versions/{versionTag}/logic:
+
+  ##########################################################################################
+
+  /models/{modelId}/versions/{versionTag}/reasoners/inferences:
     post:
       tags:
-        - Inference
-      summary: Evaluate / Infer
+        - Reasoning
       operationId: infer
-      description: "Submits a dataset for evaluation. The model will be applied to each item in
-      the dataset, returning a new dataset with the inferred values. Each evaluation will be
-      independent. The Dataset MUST contain all the FEATURES required for model evaluation, as
-      the server will not attempt to resolve any, ignoring the CONTEXT. If both DATA and FEATURES
-      are provided, the server MIGHT try to infer the FEATURES from the DATA; if, for a given data
-      concept, the provided and inferred values are not identical, the server will respond with an
-      exception. As a result of a successful evaluation, the server MUST respond with a DataSet that
-      contains the computed output FEATURES, and SHOULD also include the output DATA Concepts."
+      summary: performs an inference, deriving all logical consequences of the KB
       consumes:
         - application/json
       produces:
@@ -197,22 +99,69 @@ paths:
           name: features
           required: true
           schema:
-            $ref: '#/definitions/Map'
+            $ref: '#/definitions/Bindings'
       responses:
         200:
           description: "The results of the computation, returned synchronously"
           schema:
-            $ref: '#/definitions/Map'
-
-  ##########################################################################################
+            $ref: '#/definitions/KnowledgeCarrier'
 
 
-  /models/{modelId}/versions/{versionTag}/oracle:
+  /models/{modelId}/versions/{versionTag}/reasoners/inferences/consequents:
     post:
       tags:
-        - Query
+        - Reasoning
+      operationId: evaluate
+      summary: performs an inference, and returns the derived facts as bound variables
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/modelId'
+        - $ref: '#/parameters/versionTag'
+        - in: body
+          name: features
+          required: true
+          schema:
+            $ref: '#/definitions/Bindings'
+      responses:
+        200:
+          description: "The results of the computation, returned synchronously"
+          schema:
+            $ref: '#/definitions/Bindings'
+
+
+  /models/{modelId}/versions/{versionTag}/reasoners/inferences/entailments:
+    post:
+      tags:
+        - Reasoning
+      operationId: entails
+      summary: performs an inference, testing whether a set of statements is derived in the process
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/modelId'
+        - $ref: '#/parameters/versionTag'
+        - in: body
+          name: potentialConsequence
+          required: true
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+      responses:
+        200:
+          description: "The results of the computation, returned synchronously"
+
+
+
+  /models/{modelId}/versions/{versionTag}/reasoners/queryanswers:
+    post:
+      tags:
+        - Reasoning
       operationId: askQuery
-      description: submits a query to a KnowledgeBase
+      summary: queries the KB, returning bindings to the query's variables
       parameters:
         - $ref: '#/parameters/modelId'
         - $ref: '#/parameters/versionTag'
@@ -229,6 +178,106 @@ paths:
             items:
               $ref: '#/definitions/Bindings'
 
+
+
+  /models/{modelId}/versions/{versionTag}/reasoners/checks:
+    post:
+      tags:
+        - Reasoning
+      operationId: checkConsistency
+      summary: determines whether the KB is internally logically consistent
+      parameters:
+        - $ref: '#/parameters/modelId'
+        - $ref: '#/parameters/versionTag'
+      responses:
+        200:
+          description: The bound expression
+
+
+  /models/{modelId}/versions/{versionTag}/reasoners/sats:
+    post:
+      tags:
+        - Reasoning
+      operationId: checkSatisfiability
+      description: determines whether the KB is satisfiable
+      parameters:
+        - $ref: '#/parameters/modelId'
+        - $ref: '#/parameters/versionTag'
+      responses:
+        200:
+          description: The bound expression
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Bindings'
+
+
+  /models/{modelId}/versions/{versionTag}/reasoners/classifiers/individuals/{entityId}:
+    get:
+      tags:
+        - Reasoning
+      operationId: listMembership
+      description: lists all the classes that an individual is member of
+      parameters:
+        - $ref: '#/parameters/modelId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/entityId'
+      responses:
+        200:
+          description: The bound expression
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+    post:
+      tags:
+        - Reasoning
+      operationId: checkMembership
+      description: determines if an individual is member of a class
+      parameters:
+        - $ref: '#/parameters/modelId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/entityId'
+        - $ref: '#/parameters/classId'
+      responses:
+        200:
+          description: Success
+
+  /models/{modelId}/versions/{versionTag}/reasoners/classifiers/classes/{entityId}:
+    get:
+      tags:
+        - Reasoning
+      operationId: listSubsumptions
+      description: lists all the superclasses of a given Class
+      parameters:
+        - $ref: '#/parameters/modelId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/entityId'
+      responses:
+        200:
+          description: The bound expression
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+    post:
+      tags:
+        - Reasoning
+      operationId: checkSubsumption
+      description: determines if a Class is a subclass of another class
+      parameters:
+        - $ref: '#/parameters/modelId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/entityId'
+        - $ref: '#/parameters/classId'
+      responses:
+        200:
+          description: Success
+
+
+
+
+
 parameters:
   modelId:
     in: path
@@ -240,6 +289,8 @@ parameters:
     is deployed and executed as a Service. This identifier SHOULD be an ID of the Asset itself,
     not of the manifestation of the Asset within the server."
 
+
+
   versionTag:
     in: path
     name: versionTag
@@ -247,7 +298,23 @@ parameters:
     required: true
     description: "The Identifier os a specific version of a Model, within the series identified
     by a modelId."
-    
+
+  entityId:
+    in: path
+    name: entityId
+    type: string
+    format: uuid
+    required: true
+
+  classId:
+    in: query
+    name: classId
+    type: string
+    format: uuid
+    required: true
+
+
+
   lambdaId:
     in: path
     name: lambdaId
@@ -255,22 +322,22 @@ parameters:
     required: true
     type: string
     format: uuid
-    
+
   sourceArtifact:
     name: sourceArtifact
     in: body
     required: true
     schema:
-      $ref: '#/definitions/KnowledgeCarrier'  
-      
+      $ref: '#/definitions/KnowledgeCarrier'
+
   xAccept:
     in: query
     name: xAccept
     description: |
-      A formal MIME type used for content negotiation 
+      A formal MIME type used for content negotiation
     required: false
-    type: string    
-    
+    type: string
+
 
 definitions:
   Pointer:
@@ -288,7 +355,6 @@ definitions:
     SHALL correspond to either the names or the concept URIs of one or more Data Concepts,
     and the values is one array of uniform length."
 
-    
   Bindings:
     type: object
 
