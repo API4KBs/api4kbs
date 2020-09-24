@@ -605,7 +605,7 @@ paths:
 
 
 
-  /transcreators/binders/{operatorId}:
+  /transcreators/binders/{operatorId}/kbases:
     post:
       tags:
         - Transcreate
@@ -627,7 +627,28 @@ paths:
           schema:
             $ref: '#/definitions/KnowledgeCarrier'
 
-  /transcreators/weavers/{operatorId}:
+  /transcreators/binders/{operatorId}:
+    post:
+      tags:
+        - Transcreate
+      summary: 'Bind values to a formula with open variables'
+      operationId: applyNamedBindDirect
+      parameters:
+        - $ref: '#/parameters/operatorId'
+        - $ref: '#/parameters/artifact'
+        - name: bindings
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Bindings'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: The bound expression
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+  /transcreators/weavers/{operatorId}/kbases:
     post:
       tags:
         - Transcreate
@@ -650,7 +671,29 @@ paths:
           schema:
             $ref: '#/definitions/KnowledgeCarrier'
 
-  /transcreators/selectors/{operatorId}:
+  /transcreators/weavers/{operatorId}:
+    post:
+      tags:
+        - Transcreate
+      summary: 'Weave (fragments of) and artifact into a KB'
+      operationId: applyNamedWeaveDirect
+      parameters:
+        - $ref: '#/parameters/operatorId'
+        - $ref: '#/parameters/artifact'
+        - name: aspects
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: |
+            The new Knowledge Base resulting from the weaving
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+  /transcreators/selectors/{operatorId}/kbases:
     post:
       tags:
         - Transcreate
@@ -673,7 +716,29 @@ paths:
           schema:
             $ref: '#/definitions/KnowledgeCarrier'
 
-  /transcreators/extractors/{operatorId}:
+  /transcreators/selectors/{operatorId}:
+    post:
+      tags:
+        - Transcreate
+      summary: 'Projects a KnowledgeBase into a proper subset of content'
+      operationId: applyNamedSelectDirect
+      parameters:
+        - $ref: '#/parameters/operatorId'
+        - $ref: '#/parameters/artifact'
+        - name: Definition
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: |
+            The new Knowledge Base resulting from the selection
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+  /transcreators/extractors/{operatorId}/kbases:
     post:
       tags:
         - Transcreate
@@ -692,7 +757,25 @@ paths:
           schema:
             $ref: '#/definitions/KnowledgeCarrier'
 
-  /transcreators/introspectors/{operatorId}:
+  /transcreators/extractors/{operatorId}:
+    post:
+      tags:
+        - Transcreate
+      summary: 'Projects a KnowledgeBase into a proper subset of components'
+      operationId: applyNamedExtractDirect
+      parameters:
+        - $ref: '#/parameters/operatorId'
+        - $ref: '#/parameters/artifact'
+        - $ref: '#/parameters/rootAssetId'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: |
+            The new Knowledge Base resulting from the selection
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+  /transcreators/introspectors/{operatorId}/kbases:
     post:
       tags:
         - Transcreate
@@ -706,6 +789,26 @@ paths:
         - $ref: '#/parameters/kbaseIdRef'
         - $ref: '#/parameters/versionTagRef'
         - $ref: '#/parameters/operatorId'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: The Surrogate that results from the application of the operator
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+  /transcreators/introspectors/{operatorId}:
+    post:
+      tags:
+        - Transcreate
+      summary: 'Extract a Knowledge Asset Surrogate from a given Knowledge Artifact'
+      description: |
+        The operation abstracts the actual strategy, which can be initialized to be
+        specific to an Artifact, or a class thereof, but is supposed to be stateless
+        and idempotent.
+      operationId: applyNamedIntrospectDirect
+      parameters:
+        - $ref: '#/parameters/operatorId'
+        - $ref: '#/parameters/artifact'
         - $ref: '#/parameters/params'
       responses:
         200:
