@@ -209,7 +209,33 @@ paths:
             $ref: '#/definitions/boolean'
         400:
           description: vocabulary not found     
-  
+
+  /terminologies/terms/{conceptId}:
+    get:
+      # priority: high
+      tags:
+        - Terms
+      summary: Looks up a concept across terminology systems
+      description: |
+        Tries to resolve a concept, by id, across all known terminologies.
+        Returns the most recent description of that concept, as represented by _any_ terminology
+        in which the concept was (re)defined. If there are multiple definitions that cannot be sorted
+        temporally, the server SHOULD validate that all the definitions are consistent.
+        If not, the server MAY reconcile the descriptions, but COULD also
+        return any one of the representations, non-deterministically
+      operationId: lookupTerm
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: '#/parameters/conceptId'
+      responses:
+        200:
+          description: concept resolved in at least one terminology
+          schema:
+            $ref: '#/definitions/ConceptDescriptor'
+        400:
+          description: concept not found in any terminology
           
 parameters:
 
@@ -235,8 +261,6 @@ parameters:
     description: The id of a concept
     required: true
     type: string
-
-
     
   conceptExpression:
     name: conceptExpression
