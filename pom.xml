@@ -1,16 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
-  <!-- GAV -->
+  <modelVersion>4.0.0</modelVersion>
+  
   <groupId>org.omg.spec</groupId>
   <artifactId>API4KP</artifactId>
   <version>8.0.0-SNAPSHOT</version>
   
   <packaging>jar</packaging>
-  <modelVersion>4.0.0</modelVersion>
 
-  <name>API4KP :: API Specs - UML Models - OWL Ontologies</name>
-  <description>Machine-consumable artifacts for the OMG API4KP standard specification</description>
+  <!-- Project Information -->
+  <properties>
+    <java.version>11</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <s>${file.separator}</s>
+    <apiFolder>openapi/v2/org/omg/spec/api4kp</apiFolder>
+    <ontoFolder>ontologies</ontoFolder>
+    <umlFolder>uml</umlFolder>
+    <github.global.server>github</github.global.server>
+  </properties>
+
+  <!-- Build Settings -->
+  <build>
+    <resources>
+      <resource>
+        <directory>${project.basedir}/${apiFolder}</directory>
+        <targetPath>${project.build.outputDirectory}/${apiFolder}</targetPath>
+      </resource>
+      <resource>
+        <directory>${project.basedir}/${ontoFolder}</directory>
+        <targetPath>${project.build.outputDirectory}/${ontoFolder}</targetPath>
+      </resource>
+      <resource>
+        <directory>${project.basedir}/${umlFolder}</directory>
+        <targetPath>${project.build.outputDirectory}/${umlFolder}</targetPath>
+      </resource>
+    </resources>
+  </build>
+  
+  <!-- More Project Information -->
+  <name>API4KP - API for Knowledge Platforms</name>
+  <description>This repository contains the technical documents that constitute the response to the OMG API4KP standard RFP</description>
   <url>http://www.omgwiki.org/API4KB/doku.php</url>
 
   <licenses>
@@ -19,7 +50,7 @@
       <url>http://www.opensource.org/licenses/mit-license.php</url>
     </license>
   </licenses>
-
+  
   <developers>
     <developer>
       <name>Davide Sottara</name>
@@ -35,48 +66,12 @@
     </developer>
   </developers>
 
-  <properties>
-    <java.version>11</java.version>
-    <maven.compiler.source>${java.version}</maven.compiler.source>
-    <maven.compiler.target>${java.version}</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-    <s>${file.separator}</s>
-
-    <apiFolder>openapi/v2/org/omg/spec/api4kp</apiFolder>
-    <ontoFolder>ontologies</ontoFolder>
-    <umlFolder>uml</umlFolder>
-
-    <github.global.server>github</github.global.server>
-  </properties>
-
+  <!-- Environment Settings -->
   <scm>
     <connection>scm:git:git://github.com/API4KBs/api4kbs.git</connection>
     <developerConnection>scm:git:ssh://github.com:API4KBs/api4kbs.git</developerConnection>
     <url>https://github.com/API4KBs/api4kbs/tree/master</url>
   </scm>
-
-  <build>
-    <resources>
-
-      <resource>
-        <directory>${project.basedir}/${apiFolder}</directory>
-        <targetPath>${project.build.outputDirectory}/${apiFolder}</targetPath>
-      </resource>
-
-      <resource>
-        <directory>${project.basedir}/${ontoFolder}</directory>
-        <targetPath>${project.build.outputDirectory}/${ontoFolder}</targetPath>
-      </resource>
-
-      <resource>
-        <directory>${project.basedir}/${umlFolder}</directory>
-        <targetPath>${project.build.outputDirectory}/${umlFolder}</targetPath>
-      </resource>
-
-    </resources>
-
-  </build>
 
   <profiles>
     <profile>
@@ -84,7 +79,6 @@
       <activation>
         <activeByDefault>false</activeByDefault>
       </activation>
-
       <distributionManagement>
         <repository>
           <id>bintray-api4kbs-API4KP-Mvn-Repo</id>
@@ -93,7 +87,6 @@
         </repository>
       </distributionManagement>
     </profile>
-
     <profile>
       <id>swaggerhub-download</id>
       <activation>
@@ -190,4 +183,3 @@
   </profiles>
 
 </project>
-

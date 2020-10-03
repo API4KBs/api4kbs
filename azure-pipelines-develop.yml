@@ -1,8 +1,8 @@
 ### Develop Pipeline
-### Develop Snapshot Branch X.X.X-SNAPSHOT
-### Project :: KMDP API4KP
+### Snapshot Branch Versioning Stategy: X.X.X-SNAPSHOT
+### Project :: API4KP
 
-# !! Downstream Build: kmdp-bom; develop !!
+# !! Downstream Build: kmdp-bom; develop !! #
 
 trigger: 
   branches:
@@ -12,74 +12,53 @@ trigger:
     exclude:
       - azure-pipelines-develop.yml
       - azure-pipelines-features.yml
-      
+      - release-notes.md
+      - README.md
+     
+# Sets Virtual Machine to Run Pipeline on
 pool:
   vmImage: 'ubuntu-latest'
 
+# Gets Variables from Azure DevOps Library
+variables: 
+  - group: kmdp-platform-variables
+
 # ------------------ PIPELINE STEPS  ------------------
 steps:
+# Outputs pipeline steps have started
 - script: |
-    echo Starting KMDP Develop Branch!
-    echo Project :: KMDP API4KP
-  displayName: 'Pipeline Steps Started'
+    echo Starting Develop Branch Build Pipeline!
+    echo Project :: API4KP
+  displayName: 'Starting Pipeline Steps'
 
-# Set JDK 11 and MVN Validate Project
-- task: Maven@3
-  displayName: 'Set Maven JDK 11'
-  inputs:
-    mavenPomFile: 'pom.xml'
-    goals: 'validate'
-    options: '-ntp'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.11'
-
-# Read Root POM File and Set GAV Variables
+# Reads Root pom.xml File
+# Gets/Sets GAV from POM to Pipeline Variables
 - task: PowerShell@2
-  displayName: 'Read POM/Set GAV Variables'
-  inputs:
-    targetType: 'inline'
-    script: |
-      [xml]$pomXml = Get-Content .\pom.xml
-      Write-Host ---- Group Id, Artifact Id, Version ----
-      Write-Host GroupId: $pomXml.project.groupId
-      Write-Host ArtifactId: $pomXml.project.artifactId
-      Write-Host Version: $pomXml.project.version
-      # Write GAV to local task variables
-      $groupId=$pomXml.project.groupId
-      $artifactId=$pomXml.project.artifactId
-      $version=$pomXml.project.version
-      # Set GAV to pipeline variables
-      Write-Host "##vso[task.setvariable variable=projectSnapShotVersion]$version"
-      Write-Host "##vso[task.setvariable variable=projectGroupId]$groupId"
-      Write-Host "##vso[task.setvariable variable=projectArtifactId]$artifactId"
+displayName: 'Get/Set POM Variables'
+inputs:
+  targetType: 'inline'
+  script: |
+    [xml]$pomXml = Get-Content .\pom.xml
+    Write-Host --------------------------------
+    Write-Host POM Variables:
+    Write-Host GroupId: $pomXml.project.groupId
+    Write-Host ArtifactId: $pomXml.project.artifactId
+    Write-Host Version: $pomXml.project.version
+    Write-Host --------------------------------
+    Write-Host Setting GAV to local task variables
+    $groupId=$pomXml.project.groupId
+    $artifactId=$pomXml.project.artifactId
+    $version=$pomXml.project.version
+    Write-Host --------------------------------
+    Write-Host Setting GAV to pipeline variables
+    Write-Host "##vso[task.setvariable variable=projectSnapShotVersion]$version"
+    Write-Host "##vso[task.setvariable variable=projectGroupId]$groupId"
+    Write-Host "##vso[task.setvariable variable=projectArtifactId]$artifactId"
 
-# Write GAV variables for validation
-- task: PowerShell@2
-  displayName: 'Validate Env Variables'
-  inputs:
-    targetType: 'inline'
-    script: |
-      Write-Host --------------------------------
-      Write-Host POM Variables:
-      Write-Host Project Group ID: $env:GROUP_ID
-      Write-Host Project Artifact ID: $env:ARTIFACT_ID
-      Write-Host Project Snapshot Version: $env:PROJECT_SNAPSHOT_VERSION
-  env: 
-    ARTIFACT_ID: $(projectArtifactId)
-    PROJECT_SNAPSHOT_VERSION: $(projectSnapShotVersion)
-    GROUP_ID: $(projectGroupId)
-
-# SLM Versioning Policy (No Version Change)
-- task: AlmVersioning@4
-  displayName: 'SLM Update Version/Build #'
-  inputs:
-    projectType: java
-    versionFilePath: pom.xml
-    versionTransformation: none
-
-# Download Secure Settings m2 File
+# Gets .m2 Settings File from Azure DevOps Library
+# Downloads File for use in Pipeline
 - task: DownloadSecureFile@1
-  displayName: 'Download Secure m2'
+  displayName: 'Downloads Secure .m2 Settings File'
   name: settingsxml
   inputs:
     secureFile: settings-dev.xml
@@ -99,18 +78,40 @@ steps:
   inputs:
     artifactsFeeds: 'KMD'
 
-# Maven Deploy to AzDo KMD Artifacts
+# Sets JDK 11 for Pipeline
+# Runs Maven Goal: validate
 - task: Maven@3
-  displayName: 'Maven Deploy to KMD Artifacts'
+  displayName: 'Sets Pipeline to JDK 11'
   inputs:
     mavenPomFile: 'pom.xml'
-    goals: 'deploy'
+    goals: 'validate'
+    options: '-ntp'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.11'
-    jdkArchitectureOption: 'x64'
-    options: '-DaltDeploymentRepository=KMD::default::https://pkgs.dev.azure.com/mclm/_packaging/KMD/maven/v1 -ntp'
+
+# Sets ALM/SLM Versioning Policy 
+# Sets Version Tranformation: none
+- task: AlmVersioning@4
+  displayName: 'SLM Update Version/Build #'
+  inputs:
+    projectType: java
+    versionFilePath: pom.xml
+    versionTransformation: none
+
+# Runs Maven Goal: deploy 
+# Deploys to Azure DevOps Artifacts
+- task: PowerShell@2
+  displayName: 'Maven Deploy to Artifacts'
+  inputs:
+    targetType: 'inline'
+    script: |
+      mvn deploy "-DaltDeploymentRepository=$env:DEPLOY_REPO::default::$env:DEPLOY_REPO_PATH" -ntp
+  env:
+    DEPLOY_REPO: $(deploymentRepo)
+    DEPLOY_REPO_PATH: $(deploymentRepoPath)
 
 # ------------------ END PIPELINE  ------------------
+# Outputs pipeline steps have ended
 - script: |
     echo Ending Develop Branch Pipeline!
-  displayName: 'Pipeline Steps Ended' 
+  displayName: 'Ending Pipeline Steps' 
