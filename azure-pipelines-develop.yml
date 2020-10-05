@@ -34,26 +34,26 @@ steps:
 # Reads Root pom.xml File
 # Gets/Sets GAV from POM to Pipeline Variables
 - task: PowerShell@2
-displayName: 'Get/Set POM Variables'
-inputs:
-  targetType: 'inline'
-  script: |
-    [xml]$pomXml = Get-Content .\pom.xml
-    Write-Host --------------------------------
-    Write-Host POM Variables:
-    Write-Host GroupId: $pomXml.project.groupId
-    Write-Host ArtifactId: $pomXml.project.artifactId
-    Write-Host Version: $pomXml.project.version
-    Write-Host --------------------------------
-    Write-Host Setting GAV to local task variables
-    $groupId=$pomXml.project.groupId
-    $artifactId=$pomXml.project.artifactId
-    $version=$pomXml.project.version
-    Write-Host --------------------------------
-    Write-Host Setting GAV to pipeline variables
-    Write-Host "##vso[task.setvariable variable=projectSnapShotVersion]$version"
-    Write-Host "##vso[task.setvariable variable=projectGroupId]$groupId"
-    Write-Host "##vso[task.setvariable variable=projectArtifactId]$artifactId"
+  displayName: 'Get/Set POM Variables'
+  inputs:
+    targetType: 'inline'
+    script: |
+      [xml]$pomXml = Get-Content .\pom.xml
+      Write-Host --------------------------------
+      Write-Host POM Variables:
+      Write-Host GroupId: $pomXml.project.groupId
+      Write-Host ArtifactId: $pomXml.project.artifactId
+      Write-Host Version: $pomXml.project.version
+      Write-Host --------------------------------
+      Write-Host Setting GAV to local task variables
+      $groupId=$pomXml.project.groupId
+      $artifactId=$pomXml.project.artifactId
+      $version=$pomXml.project.version
+      Write-Host --------------------------------
+      Write-Host Setting GAV to pipeline variables
+      Write-Host "##vso[task.setvariable variable=projectSnapShotVersion]$version"
+      Write-Host "##vso[task.setvariable variable=projectGroupId]$groupId"
+      Write-Host "##vso[task.setvariable variable=projectArtifactId]$artifactId"
 
 # Gets .m2 Settings File from Azure DevOps Library
 # Downloads File for use in Pipeline
