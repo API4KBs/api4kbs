@@ -584,7 +584,7 @@ paths:
           schema:
             $ref: '#/definitions/Pointer'
 
-  /knowledgebases/{kbaseId}/versions/{versionTag}/introspectors/flatteners:
+  /knowledgebases/{kbaseId}/versions/{versionTag}/transcreators/introspectors:
     post:
       tags:
         - KnowledgeBase
@@ -601,6 +601,41 @@ paths:
           schema:
             $ref: '#/definitions/Pointer'
 
+
+  /knowledgebases/{kbaseId}/versions/{versionTag}/transcreators/transformers/{operatorId}:
+    post:
+      tags:
+        - KnowledgeBase
+      summary: Transforms the content of a KnowledgeBase (syntactically and/or semantically), possibly creating a new Asset
+      operationId: namedTransform
+      parameters:
+        - $ref: '#/parameters/kbaseId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/operatorId'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: |
+            The product of the transformation
+          schema:
+            $ref: '#/definitions/Pointer'
+
+  /knowledgebases/{kbaseId}/versions/{versionTag}/transcreators/transformers:
+    post:
+      tags:
+        - KnowledgeBase
+      summary: Transforms the content of a KnowledgeBase (syntactically and/or semantically), possibly creating a new Asset
+      operationId: transform
+      parameters:
+        - $ref: '#/parameters/kbaseId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: |
+            The Surrogate Component
+          schema:
+            $ref: '#/definitions/Pointer'
 
 
 
@@ -636,12 +671,6 @@ paths:
       parameters:
         - $ref: '#/parameters/operatorId'
         - $ref: '#/parameters/artifact'
-        - name: bindings
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/Bindings'
-        - $ref: '#/parameters/params'
       responses:
         200:
           description: The bound expression
@@ -815,6 +844,41 @@ paths:
           description: The Surrogate that results from the application of the operator
           schema:
             $ref: '#/definitions/KnowledgeCarrier'
+
+
+  /transcreators/transformers/{operatorId}/kbases:
+    post:
+      tags:
+        - Transcreate
+      summary: Transforms the content of a KnowledgeBase (syntactically and/or semantically), possibly creating a new Asset
+      operationId: applyNamedTransform
+      parameters:
+        - $ref: '#/parameters/kbaseIdRef'
+        - $ref: '#/parameters/versionTagRef'
+        - $ref: '#/parameters/operatorId'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: A Carrier of the result from the application of the operator
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+  /transcreators/transformers/{operatorId}:
+    post:
+      tags:
+        - Transcreate
+      summary: Transforms the content of a KnowledgeBase (syntactically and/or semantically), possibly creating a new Asset
+      operationId: applyNamedTransformDirect
+      parameters:
+        - $ref: '#/parameters/operatorId'
+        - $ref: '#/parameters/artifact'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: A Carrier of the result from the application of the operator
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
 
 definitions:
 
