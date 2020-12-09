@@ -452,6 +452,66 @@ paths:
 
   ####################################################################################################
 
+  /cat/assets/{assetId}/carrier:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Retrieve the best Knowledge Carrier for the LATEST version of a given Knowledge Asset.
+      description: |
+        Retrieves a Knowledge Artifact that is a Carrier of the given Asset, selecting between the variants using server-driven Content Negotiation.
+
+        For the given Knowledge Asset:
+        * retrieves the LATEST version of the Knowledge Asset
+        * retrieves the LATEST Canonical surrogate for that version of the Asset
+        * consults the representation metadata for each associated Carrier
+        * selects the one that matches the preferences of the client
+        * returns/redirects the client to a copy of the (LATEST version of the) chosen Artifact itself.
+
+      operationId: getKnowledgeAssetCanonicalCarrier
+      produces:
+        - application/json
+        - application/xml
+        - text/html
+      parameters:
+        - $ref: '#/parameters/assetId'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: |
+            A suitable Knowledge Artifact could be retrieved
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        300:
+          description: |
+            Negotiation failed, but suitable alternatives are present
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        303:
+          description: |
+            Redirects the client to a URL where the chosen Artifact can be retrieved
+          headers:
+            Location:
+              type: string
+        403:
+          description: |
+            The client does not have the adequate permissions
+        404:
+          description: |
+            Asset Version not found
+        406:
+          description: |
+            No suitable variant is available
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+
   /cat/assets/{assetId}/versions/{versionTag}/carrier:
     get:
       tags:
@@ -466,7 +526,7 @@ paths:
         * selects the one that matches the preferences of the client
         * returns/redirects the client to a copy of the (LATEST version of the) chosen Artifact itself.
 
-      operationId: getCanonicalKnowledgeAssetCarrier
+      operationId: getKnowledgeAssetVersionCanonicalCarrier
       produces:
         - application/json
         - application/xml
