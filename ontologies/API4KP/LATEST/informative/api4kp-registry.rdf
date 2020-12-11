@@ -177,17 +177,17 @@
     
 
 
-    <!-- http://hl7.org/ELM/1.2 -->
+    <!-- http://hl7.org/ELM -->
 
-    <owl:NamedIndividual rdf:about="http://hl7.org/ELM/1.2">
+    <owl:NamedIndividual rdf:about="http://cql.hl7.org/ELM">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
         <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/ConstructedLanguage"/>
         <dol:supportsSerialization rdf:resource="urn:hl7-org:elm:r1"/>
         <dct:identifier>elm</dct:identifier>
-        <dct:source>https://cql.hl7.org/</dct:source>
-        <rdfs:comment>Clinical Quality Language, Expression Language Metamodel 1.2</rdfs:comment>
+        <dct:source>https://cql.hl7.org/ELM</dct:source>
+        <rdfs:comment>Clinical Quality Language, Expression Language Metamodel</rdfs:comment>
         <rdfs:label>HL7 ELM</rdfs:label>
-        <owl:versionInfo>v12</owl:versionInfo>
+        <owl:versionInfo>v1</owl:versionInfo>
         <skos:prefLabel>HL7 ELM</skos:prefLabel>
     </owl:NamedIndividual>
     
@@ -245,7 +245,22 @@
         <owl:versionInfo>v3</owl:versionInfo>
         <skos:prefLabel>FHIR STU3</skos:prefLabel>
     </owl:NamedIndividual>
-    
+
+
+    <owl:NamedIndividual rdf:about="http://hl7.org/fhir/R4">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/ConstructedLanguage"/>
+        <api4kp:uses-lexicon rdf:resource="http://loinc.org/"/>
+        <api4kp:uses-lexicon rdf:resource="http://snomed.info/sct/900000000000207008/version/20180731"/>
+        <api4kp:uses-lexicon rdf:resource="https://www.nlm.nih.gov/research/umls/rxnorm/"/>
+        <dct:identifier>fhir</dct:identifier>
+        <dct:source>http://hl7.org/fhir/R4</dct:source>
+        <rdfs:comment>Fast Healthcare Interoperability Resources R4</rdfs:comment>
+        <rdfs:label>FHIR R4</rdfs:label>
+        <owl:versionInfo>v4</owl:versionInfo>
+        <skos:prefLabel>FHIR R4</skos:prefLabel>
+    </owl:NamedIndividual>
+
 
 
     <!-- http://hl7.org/fhir/json -->
@@ -307,7 +322,7 @@
 
     <owl:NamedIndividual rdf:about="http://kmdp.mayo.edu/CQL/1.3/essentials">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Profile"/>
-        <dol:isProfileOf rdf:resource="https://cql.hl7.org"/>
+        <dol:isProfileOf rdf:resource="https://cql.hl7.org/STU3"/>
         <dct:identifier>cql-exx</dct:identifier>
         <dct:source>http://cql.hl7.org</dct:source>
         <rdfs:comment>Essential elements of CQL, scoped to simple expressions, used to evalute context variables</rdfs:comment>
@@ -719,30 +734,88 @@
 
     <!-- https://cql.hl7.org -->
 
-    <owl:NamedIndividual rdf:about="https://cql.hl7.org">
+    <owl:NamedIndividual rdf:about="https://cql.hl7.org/STU3">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
         <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/ConstructedLanguage"/>
-        <dol:supportsSerialization rdf:resource="https://cql.hl7.org/2018May/grammar"/>
+        <dol:supportsSerialization rdf:resource="https://cql.hl7.org/STU3/grammar"/>
+        <dol:supportsSerialization rdf:resource="urn:hl7-org:elm:r1"/>
         <dct:identifier>cql</dct:identifier>
         <dct:source>https://cql.hl7.org/</dct:source>
-        <rdfs:comment>Clinical Quality Language 1.2</rdfs:comment>
+        <rdfs:comment>Clinical Quality Language 1.3</rdfs:comment>
         <rdfs:label>HL7 CQL</rdfs:label>
-        <owl:versionInfo>v12</owl:versionInfo>
-        <skos:prefLabel>HL7 CQL</skos:prefLabel>
+        <owl:versionInfo>v130</owl:versionInfo>
+        <skos:prefLabel>HL7 CQL 1.3</skos:prefLabel>
     </owl:NamedIndividual>
     
 
 
-    <!-- https://cql.hl7.org/2018May/grammar -->
+    <!-- https://cql.hl7.org/STU3/grammar -->
 
-    <owl:NamedIndividual rdf:about="https://cql.hl7.org/2018May/grammar">
+    <owl:NamedIndividual rdf:about="https://cql.hl7.org/STU3/grammar">
         <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
         <api4kp:depends-on rdf:resource="https://tools.ietf.org/html/rfc1341/7"/>
         <dct:identifier>cql+txt</dct:identifier>
-        <dct:source>https://cql.hl7.org/grammar.html</dct:source>
-        <rdfs:comment>CQL Syntax</rdfs:comment>
-        <rdfs:label>CQL Syntax</rdfs:label>
-        <skos:prefLabel>CQL Syntax</skos:prefLabel>
+        <dct:source>https://cql.hl7.org/STU3/grammar.html</dct:source>
+        <rdfs:comment>CQL 1.3 Syntax</rdfs:comment>
+        <rdfs:label>CQL 1.3 Syntax</rdfs:label>
+        <skos:prefLabel>CQL 1.3 Syntax</skos:prefLabel>
+    </owl:NamedIndividual>    <!-- https://cql.hl7.org -->
+
+
+
+    <owl:NamedIndividual rdf:about="https://cql.hl7.org/STU4">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/ConstructedLanguage"/>
+        <dol:supportsSerialization rdf:resource="https://cql.hl7.org/STU4/grammar"/>
+        <dol:supportsSerialization rdf:resource="urn:hl7-org:elm:r1"/>
+        <dct:identifier>cql</dct:identifier>
+        <dct:source>https://cql.hl7.org/</dct:source>
+        <rdfs:comment>Clinical Quality Language 1.4.1</rdfs:comment>
+        <rdfs:label>HL7 CQL</rdfs:label>
+        <owl:versionInfo>v141</owl:versionInfo>
+        <skos:prefLabel>HL7 CQL 1.4.1</skos:prefLabel>
+    </owl:NamedIndividual>
+
+
+
+    <!-- https://cql.hl7.org/STU4/grammar -->
+
+    <owl:NamedIndividual rdf:about="https://cql.hl7.org/STU4/grammar">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <api4kp:depends-on rdf:resource="https://tools.ietf.org/html/rfc1341/7"/>
+        <dct:identifier>cql+txt</dct:identifier>
+        <dct:source>https://cql.hl7.org/STU4/grammar.html</dct:source>
+        <rdfs:comment>CQL 1.4.1 Syntax</rdfs:comment>
+        <rdfs:label>CQL 1.4.1 Syntax</rdfs:label>
+        <skos:prefLabel>CQL 1.4.1 Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
+
+
+    <owl:NamedIndividual rdf:about="https://cql.hl7.org/2020May">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/ConstructedLanguage"/>
+        <dol:supportsSerialization rdf:resource="https://cql.hl7.org/2020May/grammar"/>
+        <dol:supportsSerialization rdf:resource="urn:hl7-org:elm:r1"/>
+        <dct:identifier>cql</dct:identifier>
+        <dct:source>https://cql.hl7.org/</dct:source>
+        <rdfs:comment>Clinical Quality Language 1.5.0</rdfs:comment>
+        <rdfs:label>HL7 CQL</rdfs:label>
+        <owl:versionInfo>v150</owl:versionInfo>
+        <skos:prefLabel>HL7 CQL 1.5.0</skos:prefLabel>
+    </owl:NamedIndividual>
+
+
+
+    <!-- https://cql.hl7.org/2020May/grammar -->
+
+    <owl:NamedIndividual rdf:about="https://cql.hl7.org/2020May/grammar">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <api4kp:depends-on rdf:resource="https://tools.ietf.org/html/rfc1341/7"/>
+        <dct:identifier>cql+txt</dct:identifier>
+        <dct:source>https://cql.hl7.org/2020May/grammar.html</dct:source>
+        <rdfs:comment>CQL 1.5.0 Syntax</rdfs:comment>
+        <rdfs:label>CQL 1.5.0 Syntax</rdfs:label>
+        <skos:prefLabel>CQL 1.5.0 Syntax</skos:prefLabel>
     </owl:NamedIndividual>
     
 
@@ -1109,7 +1182,35 @@
         <rdfs:label>OpenAPI 2 YAML Syntax</rdfs:label>
         <skos:prefLabel>OpenAPI 2 YAML Syntax</skos:prefLabel>
     </owl:NamedIndividual>
-    
+
+
+
+    <!-- https://www.w3.org/TR/wsdl20/ -->
+
+    <owl:NamedIndividual rdf:about="https://www.w3.org/TR/wsdl20/">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/OMSLanguage"/>
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/ConstructedLanguage"/>
+        <dol:supportsSerialization rdf:resource="https://www.w3.org/2007/06/wsdl/wsdl20.xsd"/>
+        <dct:identifier>WSDL</dct:identifier>
+        <dct:source>https://www.w3.org/TR/wsdl20/</dct:source>
+        <rdfs:comment>Web Service Description Language 2.0</rdfs:comment>
+        <rdfs:label>WSDL 2.0</rdfs:label>
+        <owl:versionInfo>v2</owl:versionInfo>
+        <skos:prefLabel>WSDL 2.0</skos:prefLabel>
+    </owl:NamedIndividual>
+
+
+    <!-- https://www.w3.org/2007/06/wsdl/wsdl20.xsd -->
+
+    <owl:NamedIndividual rdf:about="https://www.w3.org/2007/06/wsdl/wsdl20.xsd">
+        <rdf:type rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/Serialization"/>
+        <api4kp:depends-on rdf:resource="http://www.w3.org/TR/xml11"/>
+        <dct:identifier>wsdl+xml</dct:identifier>
+        <dct:source>https://www.w3.org/2007/06/wsdl/wsdl20.xsd</dct:source>
+        <rdfs:comment>WSDL 2 XML Syntax</rdfs:comment>
+        <rdfs:label>WSDL 2 XML Syntax</rdfs:label>
+        <skos:prefLabel>WSDL 2 XML Syntax</skos:prefLabel>
+    </owl:NamedIndividual>
 
 
     <!-- https://tools.ietf.org/html/rfc1341/7 -->
@@ -1559,6 +1660,32 @@
         <owl:versionInfo>v52</owl:versionInfo>
         <skos:prefLabel>HTML</skos:prefLabel>
     </owl:NamedIndividual>
+
+
+    <!-- DITA 1.3 -->
+
+    <owl:NamedIndividual rdf:about="urn:oasis:names:tc:dita:1.3">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/ConstructedLanguage"/>
+        <dct:identifier>dita</dct:identifier>
+        <dct:source>http://docs.oasis-open.org/dita/dita/v1.3/dita-v1.3-part3-all-inclusive.html</dct:source>
+        <rdfs:comment>DITA 1.3</rdfs:comment>
+        <rdfs:label>DITA 1.3</rdfs:label>
+        <owl:versionInfo>v13</owl:versionInfo>
+        <skos:prefLabel>DITA 1.3</skos:prefLabel>
+    </owl:NamedIndividual>
+
+
+    <!-- LwDITA -->
+
+    <owl:NamedIndividual rdf:about="urn:oasis:names:tc:lwdita:1.0">
+        <rdf:type rdf:resource="https://www.omg.org/spec/API4KP/api4kp/ConstructedLanguage"/>
+        <dct:identifier>lwdita</dct:identifier>
+        <dct:source>https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=dita-lightweight-dita</dct:source>
+        <rdfs:comment>LwDITA 1.0</rdfs:comment>
+        <rdfs:label>LwDITA 1.0</rdfs:label>
+        <owl:versionInfo>v10</owl:versionInfo>
+        <skos:prefLabel>LwDITA 1.0</skos:prefLabel>
+    </owl:NamedIndividual>
     
 
 
@@ -1686,7 +1813,7 @@
         <api4kp:depends-on rdf:resource="http://www.w3.org/TR/xml11"/>
         <dct:identifier>cql+xml</dct:identifier>
         <dct:source>https://cql.hl7.org/elm.html</dct:source>
-        <rdfs:comment>CQL/ELM 1.2 XML Syntax</rdfs:comment>
+        <rdfs:comment>CQL/ELM XML Syntax</rdfs:comment>
         <rdfs:label>CQL/ELM XML Syntax</rdfs:label>
         <skos:prefLabel>CQL-ELM XML Syntax</skos:prefLabel>
     </owl:NamedIndividual>
