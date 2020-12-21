@@ -830,6 +830,54 @@ paths:
             Not implemented
 
 
+  /cat/assets/{assetId}/surrogate:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Retrieve the Canonical Knowledge Asset Surrogate, for the latest version of an Asset, as a Knowledge Artifact.
+      description: |
+        Returns the LATEST version of the Canonical Surrogate of the LATEST referenced Asset, wrapped in a Knowledge Carrier, so that it can be consumed as a Knowledge Artifact.
+
+        Supports content negotiation, allowing to retrieve this Surrogate in variant forms, if supported.
+
+        If content negotiation is not used, the Surrogate in response Knowledge Carrier is identical to the Surrogate returned invoking getKnowledgeAssetVersion for the same Asset ID and version.
+      operationId: getKnowledgeAssetCanonicalSurrogate
+      produces:
+        - application/json
+        - application/xml
+        - text/html
+      parameters:
+        - $ref: '#/parameters/assetId'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: |
+            A suitable representation of the Knowledge Surrogate could be retrieved
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        300:
+          description: |
+            Negotiation failed, but suitable alternatives are present
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        403:
+          description: |
+            The client does not have the adequate permissions
+        404:
+          description: |
+            Asset not found
+        406:
+          description: |
+            No suitable variant is available
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
 
 
   /cat/assets/{assetId}/versions/{versionTag}/surrogate:
@@ -843,7 +891,7 @@ paths:
         Supports content negotiation, allowing to retrieve this Surrogate in variant forms, if supported.
 
         If content negotiation is not used, the Surrogate in response Knowledge Carrier is identical to the Surrogate returned invoking getKnowledgeAssetVersion for the same Asset ID and version.
-      operationId: getCanonicalKnowledgeAssetSurrogate
+      operationId: getKnowledgeAssetVersionCanonicalSurrogate
       produces:
         - application/json
         - application/xml
@@ -939,7 +987,7 @@ paths:
       description: |
         Retrieves Pointers to the various Surrogates for the given Asset version.
 
-        The response MUST include the Canonical Knowledge Asset Surrogate, as returned by 'getCanonicalKnowledgeAssetSurrogate'
+        The response MUST include the Canonical Knowledge Asset Surrogate, as returned by 'getKnowledgeAssetCanonicalSurrogate'
       operationId: listKnowledgeAssetSurrogates
       produces:
         - application/json
