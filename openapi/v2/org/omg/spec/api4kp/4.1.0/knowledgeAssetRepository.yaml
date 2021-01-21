@@ -1221,25 +1221,17 @@ paths:
     post:
       tags:
         - Knowledge Asset Repository
-      operationId: initCompositeKnowledgeAsset
-      summary: Initializes a new Composite Knowledge Asset
+      operationId: getAnonymousCompositeKnowledgeAssetStructure
+      summary: Initializes a new Composite Knowledge Asset Struct
       description: |
-        Creates a new Composite Knowledge Asset, creating a new Structure using the given Asset and its relationships as a seed.
-        More specifically, this operation behaves as follows
-        (i) creates a brand new asset ID and version, as if initKnowledgeAsset had been invoked, to denote the new Composite Asset
-        (ii) queries the Knowledge Asset Graph using the given Asset as a root, and traversing the transitive closure of the relationship type specified by the client (possibly up to a certain number of arcs)
-        (iii) constructs a Struct graph from the result of the query, including the assertion of the 'part of' relationships
-        (iv) assemble the Canonical Surrogates of the components into a result Composite Knowledge Carrier
-        (v) optionally, use _introspection_ to generate a candidate Surrogate for the Composite Asset itself, which is also added to the CompositeKnowledgeCarrier
-
-
-        Notice that this operation SHALL NOT persist the Surrogate for the new Composite Asset, nor update the Knowledge Asset Graph. Instead, it creates an empty Knowledge Asset Series (as per initKnowledgeAsset), and returns a candidate Composite Structure that the client can review and validate.
-        If deemed adequate, the client can invoke 'addKnowledgeAssetVersion' to persist the results back
+       Given an existing Knowledge Asset, executes a query that selects one or more Assets
+        based on the transitive closure of a (dependency) relationship.
+        The query's result triples are returned as the implicit structure of a (tree-based)
+        Anonymous Composite Knowledge Asset Surrogate
       parameters:
         - $ref: '#/parameters/assetId'
         - $ref: '#/parameters/versionTag'
-        - $ref: '#/parameters/assetRelationshipTag'
-        - $ref: '#/parameters/depth'
+        - $ref: '#/parameters/extAccept'
       produces:
         - "application/json"
         - "application/xml"
@@ -1247,9 +1239,7 @@ paths:
         200:
           description: Success
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/KnowledgeCarrier'
+            $ref: '#/definitions/KnowledgeCarrier'
         403:
           description: |
             The client cannot access the Asset
@@ -1321,14 +1311,13 @@ paths:
       summary: Assembles an Anonymous Composite Knowledge Asset Surrogate using an Asset and its relationships as a seed
       description: |
         Given an existing Knowledge Asset, executes a query that selects one or more Assets
-        based on a posted query.
+        based on the transitive closure of a (dependency) relationship.
         The query's result bindings are treated as Asset Ids, resolved, and used to construct
         an Anonymous Composite Knowledge Asset Surrogate
       operationId: getAnonymousCompositeKnowledgeAssetSurrogate
       parameters:
         - $ref: '#/parameters/assetId'
         - $ref: '#/parameters/versionTag'
-        - $ref: '#/parameters/graphQuery'
         - $ref: '#/parameters/extAccept'
       produces:
         - application/json
@@ -1411,14 +1400,13 @@ paths:
       summary: Assembles an Anonymous Composite Knowledge Asset Carrier using an Asset and its relationships as a seed
       description: |
         Given an existing Knowledge Asset, executes a query that selects one or more Assets
-        based on a posted query.
+        based on the transitive closure of a (dependency) relationship
         The query's result bindings are treated as Asset Ids, resolved, mapped to a Carrier
         Artifact, and used to construct an Anonymous Composite Knowledge Artifact
       operationId: getAnonymousCompositeKnowledgeAssetCarrier
       parameters:
         - $ref: '#/parameters/assetId'
         - $ref: '#/parameters/versionTag'
-        - $ref: '#/parameters/graphQuery'
         - $ref: '#/parameters/extAccept'
       produces:
         - application/json
@@ -1472,15 +1460,6 @@ parameters:
     format: uri
     description: |
       A fully qualified (URI) term that denotes a concept that can be used to annotate assets.
-
-  assetRelationshipTag:
-    in: query
-    name: assetRelationshipTag
-    required: false
-    type: string
-    description: |
-      An unqualified, codified term ("tag") that identifies a relationship between two Knowledge Assets.
-            The relationship must be defined in some ontology known to the server.
 
   assetId:
     in: path
