@@ -511,6 +511,64 @@ paths:
           description: |
             Not implemented
 
+  /cat/assets/{assetId}/carrier/content:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Retrieve the best Knowledge Carrier for the LATEST version of a given Knowledge Asset.
+      description: |
+        Retrieves a Knowledge Artifact that is a Carrier of the given Asset, selecting between the variants using server-driven Content Negotiation.
+
+        For the given Knowledge Asset:
+        * retrieves the LATEST version of the Knowledge Asset
+        * retrieves the LATEST Canonical surrogate for that version of the Asset
+        * consults the representation metadata for each associated Carrier
+        * selects the one that matches the preferences of the client
+        * returns/redirects the client to a copy of the (LATEST version of the) chosen Artifact itself.
+
+      operationId: getKnowledgeAssetCanonicalCarrierContent
+      produces:
+        - application/octet-stream
+      parameters:
+        - $ref: '#/parameters/assetId'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            type: string
+            format: binary
+        300:
+          description: |
+            Negotiation failed, but suitable alternatives are present
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        303:
+          description: |
+            Redirects the client to a URL where the chosen Artifact can be retrieved
+          headers:
+            Location:
+              type: string
+        403:
+          description: |
+            The client does not have the adequate permissions
+        404:
+          description: |
+            Asset not found
+        406:
+          description: |
+            No suitable variant is available
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
 
   /cat/assets/{assetId}/versions/{versionTag}/carrier:
     get:
@@ -542,6 +600,64 @@ paths:
             A suitable Knowledge Artifact could be retrieved
           schema:
             $ref: '#/definitions/KnowledgeCarrier'
+        300:
+          description: |
+            Negotiation failed, but suitable alternatives are present
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        303:
+          description: |
+            Redirects the client to a URL where the chosen Artifact can be retrieved
+          headers:
+            Location:
+              type: string
+        403:
+          description: |
+            The client does not have the adequate permissions
+        404:
+          description: |
+            Asset Version not found
+        406:
+          description: |
+            No suitable variant is available
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+  /cat/assets/{assetId}/versions/{versionTag}/carrier/content:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Retrieve the best Knowledge Carrier for a given Knowledge Asset.
+      description: |
+        Retrieves a Knowledge Artifact that is a Carrier of the given Asset, selecting between the variants using server-driven Content Negotiation.
+
+        For a given version of a Knowledge Asset,
+        * retrieves the LATEST Canonical surrogate for that version of the Asset
+        * consults the representation metadata for each associated Carrier
+        * selects the one that matches the preferences of the client
+        * returns/redirects the client to a copy of the (LATEST version of the) chosen Artifact itself.
+
+      operationId: getKnowledgeAssetVersionCanonicalCarrierContent
+      produces:
+        - application/octet-stream
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            type: string
+            format: binary
         300:
           description: |
             Negotiation failed, but suitable alternatives are present
@@ -786,6 +902,47 @@ paths:
             Internal error
 
   /cat/assets/{assetId}/versions/{versionTag}/carriers/{artifactId}/versions/{artifactVersionTag}/content:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Retrieves a specific Carrier for a given Knowledge Asset in binary form
+      description: |
+        Retrieves (a copy of) a specific version of an Artifact that carries a specific version of a Knowledge Asset, in binary form.
+        This method must return the same data as getKnowledgeAssetCarrierVersionContent, unwrapped
+      operationId: getKnowledgeAssetCarrierVersionContent
+      consumes:
+        - application/octet-stream
+      produces:
+        - application/octet-stream
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/artifactId'
+        - $ref: '#/parameters/artifactVersionTag'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            type: string
+            format: binary
+        403:
+          description: |
+            The user does not have the required permissions
+        404:
+          description: |
+            Asset and/or Artifact Version not found
+        409:
+          description: |
+            The provided Artifact is inconsistent with the current Asset metadata
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
     put:
       tags:
         - Knowledge Asset Repository
