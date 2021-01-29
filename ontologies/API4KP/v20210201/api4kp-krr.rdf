@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+	<!ENTITY api4kp "https://www.omg.org/spec/API4KP/api4kp/">
+	<!ENTITY api4kp-krr "https://www.omg.org/spec/API4KP/api4kp-krr/">
+	<!ENTITY api4kp-lang "https://www.omg.org/spec/API4KP/api4kp-lang/">
+	<!ENTITY api4kp-series "https://www.omg.org/spec/API4KP/api4kp-series/">
+	<!ENTITY dct "http://purl.org/dc/terms/">
+	<!ENTITY dol "http://www.omg.org/spec/DOL/DOL-terms/">
+	<!ENTITY lcc-lr "https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/">
+	<!ENTITY owl "http://www.w3.org/2002/07/owl#">
+	<!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+	<!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+	<!ENTITY skos "http://www.w3.org/2004/02/skos/core#">
+	<!ENTITY sm "http://www.omg.org/techprocess/ab/SpecificationMetadata/">
+	<!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+]>
+<rdf:RDF xml:base="https://www.omg.org/spec/API4KP/api4kp-krr/"
+	xmlns:api4kp="https://www.omg.org/spec/API4KP/api4kp/"
+	xmlns:api4kp-krr="https://www.omg.org/spec/API4KP/api4kp-krr/"
+	xmlns:api4kp-lang="https://www.omg.org/spec/API4KP/api4kp-lang/"
+	xmlns:api4kp-series="https://www.omg.org/spec/API4KP/api4kp-series/"
+	xmlns:dct="http://purl.org/dc/terms/"
+	xmlns:dol="http://www.omg.org/spec/DOL/DOL-terms/"
+	xmlns:lcc-lr="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"
+	xmlns:owl="http://www.w3.org/2002/07/owl#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:sm="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+	
+	<owl:Ontology rdf:about="https://www.omg.org/spec/API4KP/api4kp-krr/">
+		<rdfs:label>API4KP Knowledge Representation and Reasoning Terminology Ontology</rdfs:label>
+		<dct:abstract>This ontology covers the primary knowledge representation and reasoning (KRR) terminology used for describing the concepts used by the API4KP specification.</dct:abstract>
+		<dct:creator>Davide Sottara (sottara.davide at mayo.edu)</dct:creator>
+		<dct:license rdf:datatype="&xsd;anyURI">http://opensource.org/licenses/MIT</dct:license>
+		<sm:contentLanguage rdf:datatype="&xsd;anyURI">https://www.w3.org/TR/owl2-quick-reference/</sm:contentLanguage>
+		<sm:copyright>Copyright (c) 2014-2020 Athan Services</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2020 Fraunhofer Gesellschaft</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2020 Freie Universität Berlin</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2020 Mayo Foundation for Medical Education and Research (MFMER)</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2020 Thematix Partners LLC</sm:copyright>
+		<sm:copyright>Copyright (c) 2015-2020 Object Management Group, Inc.</sm:copyright>
+		<sm:copyright>Copyright (c) 2019-2020 Universität Leipzig</sm:copyright>
+		<sm:copyright>Copyright (c) 2020 Micro Focus</sm:copyright>
+		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/API4KP/api4kp-lang/</sm:dependsOn>
+		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/API4KP/api4kp-series/</sm:dependsOn>
+		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/API4KP/api4kp/</sm:dependsOn>
+		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/DOL/</sm:dependsOn>
+		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/LCC/</sm:dependsOn>
+		<sm:fileAbbreviation>api4pk-krr</sm:fileAbbreviation>
+		<sm:filename>api4kp-krr.rdf</sm:filename>
+		<owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
+		<owl:imports rdf:resource="https://www.omg.org/spec/API4KP/api4kp-lang/"/>
+		<owl:imports rdf:resource="https://www.omg.org/spec/API4KP/api4kp-series/"/>
+		<owl:imports rdf:resource="https://www.omg.org/spec/API4KP/api4kp/"/>
+		<owl:imports rdf:resource="https://www.omg.org/spec/DOL/DOL-terms/"/>
+		<owl:imports rdf:resource="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+		<owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/SNAPSHOT/api4kp-krr/"/>
+	</owl:Ontology>
+	
+	<owl:Class rdf:about="&dol;StructuredOMS">
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;CompositeComputableKnowledgeResource"/>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;BasicEnvironment">
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;FocusedEnvironment"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp-krr;hasEnvironmentMapping"/>
+				<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:label>basic environment</rdfs:label>
+		<skos:definition>focused environment having exactly one member</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;BasicMachineReadableKnowledgeResource">
+		<rdfs:subClassOf rdf:resource="&api4kp;BasicKnowledgeResource"/>
+		<rdfs:label>basic machine-readable knowledge resource</rdfs:label>
+		<owl:disjointWith rdf:resource="&api4kp-krr;CompositeComputableKnowledgeResource"/>
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:intersectionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&api4kp-krr;MachineReadableKnowledgeResource">
+					</rdf:Description>
+					<owl:Restriction>
+						<owl:onProperty rdf:resource="&api4kp;hasStructuringComponent"/>
+						<owl:onClass rdf:resource="&api4kp;StructuringKnowledgeExpression"/>
+						<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:qualifiedCardinality>
+					</owl:Restriction>
+				</owl:intersectionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<skos:altLabel>unstructured (KRR) knowledge resource</skos:altLabel>
+		<skos:definition>unstructured native machine-readable knowledge resource</skos:definition>
+		<skos:example>KE1: the instance of the OWL 2 DL abstract syntax for the latest version of a biomedical ontology from an ontology series KA1 defining observable entities, such as the 2015 international version of the SNOMED-CT knowledge base\footnote{http://browser.ihtsdotools.org/} (see also the definition of Basic Knowledge Asset).
+This ontology differs from other versions of the series only in the natural language definitions.</skos:example>
+		<skos:note>well-formed, stand-alone formula in the abstract syntax of a machine-readable language</skos:note>
+		<skos:scopeNote>The use of &quot;basic&quot; in API4KP differs from its usage in DOL - a DOL basic OMS  (ontologies, models and specifications) is a set, and corresponds to a Set-structured piece of knowledge in API4KP.</skos:scopeNote>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;CategoricalEnvironment">
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;EnvironmentWithIdentity"/>
+		<rdfs:label>categorical environment</rdfs:label>
+		<skos:definition>environment with an associative composition operation for mappings, that is closed under composition and contains an identity mapping for every member</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;ComposableEnvironment">
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;Environment"/>
+		<rdfs:label>composable environment</rdfs:label>
+		<skos:definition>an environment having a composition operation where the composition of its mappings is a mapping of the environment whenever the composition is well-defined</skos:definition>
+		<skos:editorialNote>The composition M2 o M1 of two mappings M1 and M2 is well-defined when M1 maps to the same thing that M2 maps from. (The codomain of M1 is the domain of M2).</skos:editorialNote>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;CompositeComputableKnowledgeResource">
+		<rdfs:subClassOf rdf:resource="&api4kp;CompositeKnowledgeResource"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp;hasStructuralComponent"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-krr;MachineReadableKnowledgeResource"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:label>composite computable knowledge resource</rdfs:label>
+		<skos:definition>collection of machine readable knowledge resources, which are not necessarily in the same language and may themselves have structure.</skos:definition>
+		<skos:example>KE2: a heterogeneous collection of streaming data and RDF graphs, together with static OWL ontologies and CL texts, and ECA rules describing actions of a CDS</skos:example>
+		<skos:example>KE3: the OWL 2 DL ontology series KA1, viewed as a collection of expressions rather than an equivalence class</skos:example>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;ComputationalComplexityClass">
+		<rdfs:subClassOf rdf:resource="&api4kp;DefinedConcept"/>
+		<rdfs:label>computational complexity class</rdfs:label>
+		<rdfs:seeAlso>https://complexityzoo.uwaterloo.ca/Complexity_Zoo</rdfs:seeAlso>
+		<rdfs:seeAlso>https://en.wikipedia.org/wiki/List_of_complexity_classes</rdfs:seeAlso>
+		<skos:definition>abstraction that relates the size of a problem to the amount of resources (space and time) needed to solve the problem using a given algorithm</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;EmptyEnvironment">
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;Environment"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp-krr;hasEnvironmentMapping"/>
+				<owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:cardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:label>empty environment</rdfs:label>
+		<owl:disjointWith rdf:resource="&api4kp-krr;NonEmptyEnvironment"/>
+		<skos:definition>environment with no members or mappings</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;Environment">
+		<rdfs:subClassOf rdf:resource="&api4kp-series;ImmutableEntity"/>
+		<rdfs:label>environment</rdfs:label>
+		<skos:definition>mathematical structure of mappings and members, where the domain and codomains of the mappings are members of the environment</skos:definition>
+		<skos:example>a KRR language environment containing semantics-preserving translations from RDF and OWL into CL, assisting in the integrated interpretation of a stream of RDF graphs and OWL ontologies</skos:example>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;EnvironmentWithIdentity">
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;ComposableEnvironment"/>
+		<rdfs:label>environment with identity</rdfs:label>
+		<skos:definition>composable environment having an identity mapping for each member</skos:definition>
+		<skos:editorialNote>an identity mapping is a mapping whose domain and codomain are the same, and when composed with another mapping is equal to the original mapping</skos:editorialNote>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;FocusedEnvironment">
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;NonEmptyEnvironment"/>
+		<rdfs:label>focused environment</rdfs:label>
+		<skos:definition>non-empty environment which has a member F (called the focus or focus member) such that for every other member A, there is a mapping in the environment from A to F</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;HeterogeneousComputableKnowledgeResource">
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;MachineReadableKnowledgeResource"/>
+		<rdfs:label>heterogeneous computable knowledge resource</rdfs:label>
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:intersectionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&api4kp-krr;HeterogeneousKnowledgeResource">
+					</rdf:Description>
+					<rdf:Description rdf:about="&api4kp-krr;MachineReadableKnowledgeResource">
+					</rdf:Description>
+				</owl:intersectionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<skos:definition>heterogeneous knowledge resource that uses a machine readable language as primary language</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;HeterogeneousKnowledgeResource">
+		<rdfs:label>heterogeneous knowledge resource</rdfs:label>
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:intersectionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&api4kp;KnowledgeResource">
+					</rdf:Description>
+					<owl:Restriction>
+						<owl:onProperty rdf:resource="&dol;usesLanguage"/>
+						<owl:onClass rdf:resource="&lcc-lr;Language"/>
+						<owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">2</owl:minQualifiedCardinality>
+					</owl:Restriction>
+				</owl:intersectionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<skos:definition>knowledge resource expressed by means of 2 or more languages</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;HybridKnowledgeBase">
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;ImmutableKnowledgeBase"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp;isManifestedIn"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-krr;CompositeComputableKnowledgeResource"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:label>hybrid knowledge base</rdfs:label>
+		<skos:definition>knowledge base composed by multiple parts that have different computational semantics and pragmatics, and thus are likely based on different logics</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;HybridKnowledgeEnvironment">
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;CategoricalEnvironment"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;LanguageEnvironment"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;PreservingEnvironment"/>
+		<rdfs:subClassOf>
+			<owl:Class>
+				<owl:intersectionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&api4kp-krr;LanguageEnvironment">
+					</rdf:Description>
+					<owl:Class>
+						<owl:complementOf rdf:resource="&api4kp-krr;FocusedEnvironment"/>
+					</owl:Class>
+				</owl:intersectionOf>
+			</owl:Class>
+		</rdfs:subClassOf>
+		<rdfs:label>hybrid knowledge environment</rdfs:label>
+		<skos:note>categorical, preserving language environment where multiple KRR languages, and mappings thereof, are supported</skos:note>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;ImmutableKnowledgeBase">
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;KnowledgeBase"/>
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
+		<rdfs:label>immutable knowledgebase</rdfs:label>
+		<skos:definition>knowledge base that cannot be changed</skos:definition>
+		<skos:note>An KB can be immutable by nature. Otherwise, any snapshot of a KB at a given point in time (including the time of its creation) is considered immutable.</skos:note>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;KnowledgeBase">
+		<rdfs:subClassOf rdf:resource="&api4kp;WorkOfKnowledge"/>
+		<rdfs:label>knowledge base</rdfs:label>
+		<skos:definition>work of knowledge designed to support reasoning activities</skos:definition>
+		<skos:note>A knowledge base is formed by one or more pieces of knowledge, related in different way, such that each piece plays some kind of role.</skos:note>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;LanguageEnvironment">
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;Environment"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp-krr;hasEnvironmentMember"/>
+				<owl:allValuesFrom rdf:resource="&api4kp-lang;KnowledgeRepresentationAndReasoningLanguage"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:label>language environment</rdfs:label>
+		<skos:definition>environment whose members are languages</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;MachineReadableKnowledgeResource">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeResource"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&dol;usesLanguage"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-lang;MachineReadableLanguage"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:label>machine-readable knowledge resource</rdfs:label>
+		<skos:definition>set of expressions in one or more machine readable languages, in the context of a logical environment that determines how these expressions are jointly interpreted.</skos:definition>
+		<skos:example>Example A: OWL Ground fact expressing that Socrates is a philosopher.</skos:example>
+		<skos:example>Example B: Common Logic sentence expressing that Socrates is a philosopher.</skos:example>
+		<skos:example>Example C: RDF graph expressing that the author of Moby Dick is Herman Melville.</skos:example>
+		<skos:example>Example D: SPARQL query for the names of philosphers.</skos:example>
+		<skos:example>Example E: A and B, together with a mapping that allows OWL to be converted to Common Logic.</skos:example>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;MutableKnowledgeBase">
+		<rdfs:subClassOf rdf:resource="&api4kp-series;Series"/>
+		<rdfs:label>mutable knowledge base</rdfs:label>
+		<skos:definition>knowledge base that evolves over time as structuring operations are applied to it, &apos;in place&apos;</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;NativeComputableKnowledgeResource">
+		<rdfs:label>native computable knowledge resource</rdfs:label>
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:intersectionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&api4kp-krr;MachineReadableKnowledgeResource">
+					</rdf:Description>
+					<rdf:Description rdf:about="&api4kp-krr;NativeKnowledgeResource">
+					</rdf:Description>
+					<owl:Restriction>
+						<owl:onProperty rdf:resource="&dol;usesLanguage"/>
+						<owl:onClass rdf:resource="&api4kp-lang;KnowledgeRepresentationAndReasoningLanguage"/>
+						<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+					</owl:Restriction>
+				</owl:intersectionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<skos:definition>computable knowledge resource that uses exactly 1 language that is a machine readable language</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;NativeKnowledgeResource">
+		<rdfs:label>native knowledge resource</rdfs:label>
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:intersectionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&api4kp;KnowledgeResource">
+					</rdf:Description>
+					<owl:Restriction>
+						<owl:onProperty rdf:resource="&dol;usesLanguage"/>
+						<owl:onClass rdf:resource="&lcc-lr;Language"/>
+						<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+					</owl:Restriction>
+				</owl:intersectionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<skos:definition>knowledge resource that uses exactly one language</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;NonEmptyEnvironment">
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;Environment"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp-krr;hasEnvironmentMapping"/>
+				<owl:someValuesFrom rdf:resource="&dol;Mapping"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:label>non-empty environment</rdfs:label>
+		<skos:definition>environment with at least one member and one mapping</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;PivotalKnowledgeEnvironment">
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;CategoricalEnvironment"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;FocusedEnvironment"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;LanguageEnvironment"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;PreservingEnvironment"/>
+		<rdfs:label>pivotal knowledge environment</rdfs:label>
+		<skos:definition>focused, categorical, preserving language environment where the focus is a KRR language</skos:definition>
+		<skos:scopeNote>The special case where all languages in an knowledge environment are KRR languages supporting model-theoretic semantics without side-effects (logics), and the preserving property is characterized by a logical graph reduces to a heterogeneous logical environment as defined in DOL.</skos:scopeNote>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-krr;PreservingEnvironment">
+		<rdfs:subClassOf rdf:resource="&api4kp-krr;Environment"/>
+		<rdfs:label>preserving environment</rdfs:label>
+		<skos:definition>environment where every mapping preserves a specified property</skos:definition>
+	</owl:Class>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-krr;allPreserve">
+		<rdfs:label>all preserve</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp-krr;PreservingEnvironment"/>
+		<skos:definition>contains only mappings that preserve</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-krr;hasEnvironmentMapping">
+		<rdfs:label>has environment mapping</rdfs:label>
+		<rdfs:range rdf:resource="&dol;Mapping"/>
+		<owl:inverseOf rdf:resource="&api4kp-krr;isEnvironmentMappingOf"/>
+		<skos:definition>contains mapping</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-krr;hasEnvironmentMember">
+		<rdfs:subPropertyOf rdf:resource="&lcc-lr;hasMember"/>
+		<rdfs:label>has environment member</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp-krr;NonEmptyEnvironment"/>
+		<skos:definition>contains member</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-krr;hasFocusMember">
+		<rdfs:subPropertyOf rdf:resource="&api4kp-krr;hasEnvironmentMember"/>
+		<rdfs:label>has focus member</rdfs:label>
+		<skos:definition>is the sole member of</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-krr;hasSubEnvironment">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;hasProperPart"/>
+		<rdfs:label>has sub-environment</rdfs:label>
+		<owl:inverseOf rdf:resource="&api4kp-krr;isSubEnvironmentOf"/>
+		<skos:definition>has a closed subset of members and mappings that make up an environment</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-krr;isAccordingTo">
+		<rdfs:label>according to</rdfs:label>
+		<rdfs:range rdf:resource="&api4kp-krr;Environment"/>
+		<skos:definition>relationship between a collection and an environment whereby the results of application of a mapping of the environment to a member of the collection are also members of the environment</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-krr;isEnvironmentMappingOf">
+		<rdfs:label>is environment mapping of</rdfs:label>
+		<skos:definition>is mapping member of</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-krr;isSubEnvironmentOf">
+		<rdfs:subPropertyOf rdf:resource="&api4kp;isProperPartOf"/>
+		<rdfs:label xml:lang="en">is sub-environment of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp-krr;Environment"/>
+		<rdfs:range rdf:resource="&api4kp-krr;Environment"/>
+		<skos:definition>contains a subset of members and mappings with respect to the target environment that is a partial order, where the language and logic graphs of the source enviroment are subgraphs, respectively, of the language and logic graphs of the target environment</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="&api4kp-krr;preserves">
+		<rdfs:label>preserves</rdfs:label>
+		<rdfs:domain rdf:resource="&dol;Mapping"/>
+		<owl:propertyChainAxiom rdf:parseType="Collection">
+			<rdf:Description rdf:about="&api4kp-krr;isEnvironmentMappingOf">
+			</rdf:Description>
+			<rdf:Description rdf:about="&api4kp-krr;allPreserve">
+			</rdf:Description>
+		</owl:propertyChainAxiom>
+		<skos:definition>when applied, ensures that a property of the source entity is also a property of the target entity</skos:definition>
+	</owl:ObjectProperty>
+	
+	<owl:Class rdf:about="&api4kp;ComputableKnowledgeArtifact">
+		<skos:example>Example: my copy in my Download folder of the encoding in UTF-8 of the serialization in Manchester syntax of an OWL ontology.</skos:example>
+	</owl:Class>
+
+</rdf:RDF>
