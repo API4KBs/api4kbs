@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE rdf:RDF [
-	<!ENTITY AnnotationVocabulary "https://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/">
-	<!ENTITY AnnotationVocabulary1 "http://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/">
 	<!ENTITY api4kp "https://www.omg.org/spec/API4KP/api4kp/">
-	<!ENTITY ckao "https://www.omg.org/spec/API4KP/api4kp-ckao/">
+	<!ENTITY api4kp-ckao "https://www.omg.org/spec/API4KP/api4kp-ckao/">
+	<!ENTITY api4kp-kao "https://www.omg.org/spec/API4KP/api4kp-kao/">
 	<!ENTITY dct "http://purl.org/dc/terms/">
-	<!ENTITY dol "http://www.omg.org/spec/DOL/DOL-terms/">
-	<!ENTITY kao "https://www.omg.org/spec/API4KP/api4kp-kao/">
-	<!ENTITY lcc-lr "https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/">
 	<!ENTITY owl "http://www.w3.org/2002/07/owl#">
 	<!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 	<!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
@@ -16,15 +12,10 @@
 	<!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
 ]>
 <rdf:RDF xml:base="https://www.omg.org/spec/API4KP/api4kp-ckao/"
-	xmlns="https://www.omg.org/spec/API4KP/api4kp-ckao/"
-	xmlns:AnnotationVocabulary="https://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/"
-	xmlns:AnnotationVocabulary1="http://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/"
 	xmlns:api4kp="https://www.omg.org/spec/API4KP/api4kp/"
-	xmlns:ckao="https://www.omg.org/spec/API4KP/api4kp-ckao/"
+	xmlns:api4kp-ckao="https://www.omg.org/spec/API4KP/api4kp-ckao/"
+	xmlns:api4kp-kao="https://www.omg.org/spec/API4KP/api4kp-kao/"
 	xmlns:dct="http://purl.org/dc/terms/"
-	xmlns:dol="http://www.omg.org/spec/DOL/DOL-terms/"
-	xmlns:kao="https://www.omg.org/spec/API4KP/api4kp-kao/"
-	xmlns:lcc-lr="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"
 	xmlns:owl="http://www.w3.org/2002/07/owl#"
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
@@ -35,230 +26,194 @@
 	<owl:Ontology rdf:about="https://www.omg.org/spec/API4KP/api4kp-ckao/">
 		<rdfs:label>API4KP Clinical Knowledge Assets Ontology</rdfs:label>
 		<dct:abstract>TODO</dct:abstract>
-		<dct:creator>Davide Sottara (sottara.davide@mayo.edu)</dct:creator>
+		<dct:contributor>Elisa Kendall (ekendall at thematix.com)</dct:contributor>
+		<dct:creator>Davide Sottara (sottara.davide at mayo.edu)</dct:creator>
 		<dct:license rdf:datatype="&xsd;anyURI">http://opensource.org/licenses/MIT</dct:license>
-		<sm:contentLanguage rdf:datatype="&xsd;anyURI">http://www.w3.org/standards/techs/owl#w3c_all</sm:contentLanguage>
-		<sm:copyright>Copyright (c) 2014-2020 88 Solutions</sm:copyright>
-		<sm:copyright>Copyright (c) 2014-2020 Adaptive</sm:copyright>
-		<sm:copyright>Copyright (c) 2014-2020 Arizona State University</sm:copyright>
-		<sm:copyright>Copyright (c) 2014-2020 Athan Services</sm:copyright>
-		<sm:copyright>Copyright (c) 2014-2020 Fraunhofer FOKUS</sm:copyright>
-		<sm:copyright>Copyright (c) 2014-2020 Freie Universitat Berlin</sm:copyright>
-		<sm:copyright>Copyright (c) 2014-2020 Mayo Clinic</sm:copyright>
-		<sm:copyright>Copyright (c) 2014-2020 Model Driven Solutions</sm:copyright>
-		<sm:copyright>Copyright (c) 2014-2020 Thematix Partners LLC</sm:copyright>
-		<sm:copyright>Copyright (c) 2015-2020 Object Management Group, Inc.</sm:copyright>
-		<sm:copyright>Copyright (c) 2019-2020 Micro Focus</sm:copyright>
+		<sm:contentLanguage rdf:datatype="&xsd;anyURI">https://www.w3.org/TR/owl2-quick-reference/</sm:contentLanguage>
+		<sm:copyright>Copyright (c) 2014-2021 Athan Services</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2021 Fraunhofer Gesellschaft</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2021 Freie Universität Berlin</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2021 Mayo Foundation for Medical Education and Research (MFMER)</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2021 Thematix Partners LLC</sm:copyright>
+		<sm:copyright>Copyright (c) 2015-2021 Object Management Group, Inc.</sm:copyright>
+		<sm:copyright>Copyright (c) 2019-2021 Universität Leipzig</sm:copyright>
+		<sm:copyright>Copyright (c) 2020-2021 Micro Focus</sm:copyright>
+		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/API4KP/api4kp-kao/</sm:dependsOn>
 		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/API4KP/api4kp/</sm:dependsOn>
-		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/DOL/</sm:dependsOn>
-		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/LCC/</sm:dependsOn>
-		<sm:fileAbbreviation>ckao</sm:fileAbbreviation>
+		<sm:fileAbbreviation>api4kp-ckao</sm:fileAbbreviation>
 		<sm:filename>api4kp-ckao.rdf</sm:filename>
 		<owl:imports rdf:resource="http://www.omg.org/spec/DOL/DOL-terms/"/>
 		<owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
 		<owl:imports rdf:resource="https://www.omg.org/spec/API4KP/api4kp-kao/"/>
 		<owl:imports rdf:resource="https://www.omg.org/spec/API4KP/api4kp/"/>
-		<owl:imports rdf:resource="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
-		<owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/SNAPSHOT/api4kp-ckao/"/>
+		<owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/20210201/api4kp-ckao/"/>
 	</owl:Ontology>
 	
-	<owl:Class rdf:about="&ckao;CareProcessModel">
-		<rdfs:subClassOf rdf:resource="&ckao;ClinicalKnowledgeAsset"/>
-		<rdfs:subClassOf rdf:resource="&kao;ProcessAsset"/>
-		<rdfs:label xml:lang="en">Care Process Model</rdfs:label>
-		<rdfs:comment>Adaptive specification of how to perform (complex) clinical activities, properly orchestrated over time, so to achieve certain objectives and goals</rdfs:comment>
+	<owl:Class rdf:about="&api4kp-ckao;CareProcessModel">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalKnowledgeAsset"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;ProcessAsset"/>
+		<rdfs:label xml:lang="en">care process model</rdfs:label>
+		<rdfs:seeAlso rdf:resource="https://clinicalknowledgemanagement.mayo.edu/topic/clinical-answers/CNT-20141231/CPM-20211573"/>
 		<skos:altLabel xml:lang="en">CPM</skos:altLabel>
+		<skos:definition>adaptive specification of how to perform (complex) clinical activities, properly orchestrated over time, so to achieve certain objectives and goals</skos:definition>
 		<skos:example xml:lang="en">The Mayo Clinic Rectal Adenocarcinoma CPM</skos:example>
 		<skos:scopeNote xml:lang="en">Includes AME Care Process Models (CPM)</skos:scopeNote>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;CaseEnrichmentRule">
-		<rdfs:subClassOf rdf:resource="&ckao;ClinicalRule"/>
-		<rdfs:label>Case Enrichment Rule</rdfs:label>
-		<rdfs:comment>Rule, or set thereof, that uses summarization, inference, guidance and contextualization logic to augment a patient&apos;s case, with respect to a disorder that the case is centered on</rdfs:comment>
+	<owl:Class rdf:about="&api4kp-ckao;CaseEnrichmentRule">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalRule"/>
+		<rdfs:label>case enrichment rule</rdfs:label>
+		<skos:definition>clinical rule, or set thereof, that uses summarization, inference, guidance and contextualization logic to augment a patient&apos;s case, with respect to a disorder that the case is centered on</skos:definition>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;CaseSummarizationRule">
-		<rdfs:subClassOf rdf:resource="&ckao;CaseEnrichmentRule"/>
-		<rdfs:label>Case Summarization Rule</rdfs:label>
-		<rdfs:comment>Clinical rule, or set thereof, that extracts salient &apos;features&apos; out of a patient case.</rdfs:comment>
+	<owl:Class rdf:about="&api4kp-ckao;CaseSummarizationRule">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;CaseEnrichmentRule"/>
+		<rdfs:label>case summarization rule</rdfs:label>
+		<skos:definition>clinical rule, or set thereof, that extracts salient &apos;features&apos; from a patient case</skos:definition>
 		<skos:scopeNote>A summarization rule does not generate new information, but rather selects information that is already present.</skos:scopeNote>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;ClinicalCalculationRule">
-		<rdfs:subClassOf rdf:resource="&ckao;ClinicalInferenceRule"/>
-		<rdfs:label>Clinical Calculation Rule</rdfs:label>
-		<rdfs:comment>Inference Rule that determines a single, derived, &apos;Observed&apos; value</rdfs:comment>
+	<owl:Class rdf:about="&api4kp-ckao;ClinicalCalculationRule">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalInferenceRule"/>
+		<rdfs:label>clinical calculation rule</rdfs:label>
+		<skos:definition>clinical inference rule that determines a single, derived, &apos;observed&apos; value</skos:definition>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;ClinicalContextualizationRule">
-		<rdfs:subClassOf rdf:resource="&ckao;ClinicalInferenceRule"/>
-		<rdfs:label>Clinical Contextualization Rule</rdfs:label>
-		<rdfs:comment>Inference rule that &quot;projects&quot; the patient&apos;s state around a set of (usually related) concepts, effectively creating a focused context</rdfs:comment>
+	<owl:Class rdf:about="&api4kp-ckao;ClinicalContextualizationRule">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalInferenceRule"/>
+		<rdfs:label>clinical contextualization rule</rdfs:label>
+		<skos:definition>clinical inference rule that &quot;projects&quot; the patient&apos;s state around a set of (usually related) concepts, effectively creating a focused context</skos:definition>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;ClinicalEligibilityRule">
-		<rdfs:subClassOf rdf:resource="&ckao;ClinicalRule"/>
-		<rdfs:label>Clinical Eligibility Rule</rdfs:label>
-		<rdfs:comment>Rule that determines whether a treatment, or study thereof, is potentially administrable to a patient (cohort), based on the patient&apos;s characteristics</rdfs:comment>
+	<owl:Class rdf:about="&api4kp-ckao;ClinicalEligibilityRule">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalRule"/>
+		<rdfs:label>clinical eligibility rule</rdfs:label>
+		<skos:definition>clinical rule that determines whether a treatment, or study thereof, is potentially administrable to a patient (cohort), based on the patient&apos;s characteristics</skos:definition>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;ClinicalEnrollmentRule">
-		<rdfs:subClassOf rdf:resource="&ckao;ClinicalRule"/>
-		<rdfs:label>Clinical Enrollment Rule</rdfs:label>
-		<rdfs:comment>Rule that determines whether a patient will be administered care, as specified by a care process, pathway or protocol</rdfs:comment>
+	<owl:Class rdf:about="&api4kp-ckao;ClinicalEnrollmentRule">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalRule"/>
+		<rdfs:label>clinical enrollment rule</rdfs:label>
+		<skos:definition>clinical rule that determines whether a patient will be administered care, as specified by a care process, pathway or protocol</skos:definition>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;ClinicalGuidanceRule">
-		<rdfs:subClassOf rdf:resource="&ckao;CaseEnrichmentRule"/>
-		<rdfs:label>Clinical Guidance Rule</rdfs:label>
-		<rdfs:comment>Clinical Rule, or set thereof, that uses a patient&apos;s (possibly summarized) Case, to produce a recommendation,
-i.e. a proposed strategy to address a gap between the current and desired state</rdfs:comment>
-		<skos:scopeNote>The information generated by Guidance rules is generally meant to be a (partial) intervention plan, and thus drive an agent&apos;s action</skos:scopeNote>
+	<owl:Class rdf:about="&api4kp-ckao;ClinicalGuidanceRule">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;CaseEnrichmentRule"/>
+		<rdfs:label>clinical guidance rule</rdfs:label>
+		<skos:definition>clinical rule, or set thereof, that uses a patient&apos;s (possibly summarized) case, to produce a recommendation, (i.e. a proposed strategy) to address a gap between the current and desired state</skos:definition>
+		<skos:scopeNote>The information generated by guidance rules is generally meant to be a (partial) intervention plan, and thus drive an agent&apos;s action.</skos:scopeNote>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;ClinicalInferenceRule">
-		<rdfs:subClassOf rdf:resource="&ckao;CaseEnrichmentRule"/>
-		<rdfs:label>Clinical Inference Rule</rdfs:label>
-		<rdfs:comment>Clinical rule, or set thereof, that uses a patient&apos;s (possibly summarized) Case, to assess the patient&apos;s state, predict the case&apos;s course, and/or
-determine (contra)indicated intervention options</rdfs:comment>
-		<skos:scopeNote>Inference rules generate new information based on the current state, and knowledge that dictates how to interpret that state.
-Inference rules, however, do not drive actions/interventions directly</skos:scopeNote>
+	<owl:Class rdf:about="&api4kp-ckao;ClinicalInferenceRule">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;CaseEnrichmentRule"/>
+		<rdfs:label>clinical inference rule</rdfs:label>
+		<skos:definition>clinical rule, or set thereof, that uses a patient&apos;s (possibly summarized) case, to assess the patient&apos;s state, predict the case&apos;s course, and/or determine (contra)indicated intervention options</skos:definition>
+		<skos:scopeNote>Inference rules generate new information based on the current state, and knowledge that dictates how to interpret that state. Inference rules, however, do not drive actions/interventions directly.</skos:scopeNote>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;ClinicalKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&ckao;DomainSpecificKnowledgeAsset"/>
+	<owl:Class rdf:about="&api4kp-ckao;ClinicalKnowledgeAsset">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;DomainSpecificKnowledgeAsset"/>
 		<rdfs:label>clinical knowledge asset</rdfs:label>
-		<skos:definition>knowledge asset that uses primarily concepts from the clinical business domain</skos:definition>
+		<skos:definition>domain-specific knowledge asset that uses primarily concepts from the clinical business domain</skos:definition>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;ClinicalPracticeGuideline">
-		<rdfs:subClassOf rdf:resource="&ckao;ClinicalKnowledgeAsset"/>
-		<rdfs:subClassOf rdf:resource="&kao;BusinessRuleAsset"/>
-		<rdfs:label xml:lang="en">Clinical Practice Guideline</rdfs:label>
-		<rdfs:comment xml:lang="en">Systematically developed statements to assist provider decisions about appropriate healthcare for specific clinical situations</rdfs:comment>
-		<skos:altLabel xml:lang="en">Clinical Practice Guideline</skos:altLabel>
+	<owl:Class rdf:about="&api4kp-ckao;ClinicalPracticeGuideline">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalKnowledgeAsset"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;BusinessRuleAsset"/>
+		<rdfs:label xml:lang="en">clinical practice guideline</rdfs:label>
+		<rdfs:seeAlso rdf:resource="http://mayoweb.mayo.edu/pmr/documents/PracticeGuidelineTemplateSternotomy.pdf"/>
+		<skos:altLabel xml:lang="en">clinical practice guideline</skos:altLabel>
+		<skos:definition xml:lang="en">systematically developed statement(s) that assist provider decisions about appropriate healthcare for specific clinical situations</skos:definition>
 		<skos:example xml:lang="en">The Mayo Clinic Sternotomy Guideline</skos:example>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;ClinicalProtocol">
-		<rdfs:subClassOf rdf:resource="&ckao;ClinicalKnowledgeAsset"/>
-		<rdfs:subClassOf rdf:resource="&kao;ProcessAsset"/>
-		<rdfs:label>Clinical Protocol</rdfs:label>
-		<rdfs:comment>Protocol applicable in a clinical situation, such that it directs the behavior of patients and/or providers</rdfs:comment>
+	<owl:Class rdf:about="&api4kp-ckao;ClinicalProtocol">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalKnowledgeAsset"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;ProcessAsset"/>
+		<rdfs:label>clinical protocol</rdfs:label>
+		<skos:definition>protocol applicable in a clinical situation, such that it directs the behavior of patients and/or providers</skos:definition>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;ClinicalRule">
-		<rdfs:subClassOf rdf:resource="&ckao;ClinicalKnowledgeAsset"/>
-		<rdfs:subClassOf rdf:resource="&kao;BusinessRuleAsset"/>
-		<rdfs:label xml:lang="en">Clinical Business Rule</rdfs:label>
-		<rdfs:comment xml:lang="en">Computational logic to direct clinical interventions that is typically expressed as if/then statements but may also be represented by a diagram, decision table or other representation language</rdfs:comment>
+	<owl:Class rdf:about="&api4kp-ckao;ClinicalRule">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalKnowledgeAsset"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;BusinessRuleAsset"/>
+		<rdfs:label xml:lang="en">clinical rule</rdfs:label>
+		<rdfs:seeAlso rdf:resource="https://clinicalknowledgemanagement.mayo.edu/mayo-clinic-rules-catalog/asset/km-asset/KAT-20323041"/>
 		<skos:altLabel xml:lang="en">CDS Rule</skos:altLabel>
+		<skos:altLabel xml:lang="en">clinical business rule</skos:altLabel>
+		<skos:definition xml:lang="en">computational logic to direct clinical interventions that are typically expressed as if/then statements but may also be represented by a diagram, decision table or other representation language</skos:definition>
 		<skos:example xml:lang="en">The &apos;HGB value prior to RBC transfusion&apos; Recommendation Rule</skos:example>
-		<skos:prefLabel xml:lang="en">Clinical Rule</skos:prefLabel>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;ClinicalTrialProtocol">
-		<rdfs:subClassOf rdf:resource="&ckao;ClinicalProtocol"/>
-		<rdfs:label>Clinical Trial Protocol</rdfs:label>
-		<rdfs:comment>Descriptions of the objectives, design, methodology, statistical considerations and aspects related to the organization of clinical trials.
-
-Trial protocols provide the background and rationale for conducting a study, highlighting specific research questions that are addressed, and taking into consideration ethical issues. Trial protocols must meet a standard that adheres to the principles of Good Clinical Practice, and are used to obtain ethics approval by local Ethics Committees or Institutional Review Boards.</rdfs:comment>
+	<owl:Class rdf:about="&api4kp-ckao;ClinicalTrialProtocol">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalProtocol"/>
+		<rdfs:label>clinical trial protocol</rdfs:label>
+		<rdfs:isDefinedBy>https://www.ncbi.nlm.nih.gov/pubmed/20815294</rdfs:isDefinedBy>
+		<skos:definition>descriptions of the objectives, design, methodology, statistical considerations and aspects related to the organization of clinical trials</skos:definition>
+		<skos:note>Trial protocols provide the background and rationale for conducting a study, highlighting specific research questions that are addressed, and taking into consideration ethical issues. Trial protocols must meet a standard that adheres to the principles of Good Clinical Practice, and are used to obtain ethics approval by local Ethics Committees or Institutional Review Boards.</skos:note>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;CognitiveCareProcessModel">
-		<rdfs:subClassOf rdf:resource="&ckao;CareProcessModel"/>
-		<rdfs:subClassOf rdf:resource="&kao;CognitiveProcessModel"/>
-		<rdfs:label>Cognitive Care Process Model</rdfs:label>
-		<rdfs:comment>Knowledge whose primary subject is the cognitive aspects of a Care Process</rdfs:comment>
+	<owl:Class rdf:about="&api4kp-ckao;CognitiveCareProcessModel">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;CareProcessModel"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;CognitiveProcessModel"/>
+		<rdfs:label>cognitive care process model</rdfs:label>
+		<skos:definition>knowledge whose primary subject covers the cognitive aspects of a care process</skos:definition>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;DomainSpecificKnowledgeAsset">
+	<owl:Class rdf:about="&api4kp-ckao;DomainSpecificKnowledgeAsset">
 		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
 		<rdfs:label>domain-specific knowledge asset</rdfs:label>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;InteractiveCaseSummarizationRule">
-		<rdfs:subClassOf rdf:resource="&ckao;CaseSummarizationRule"/>
-		<rdfs:label>Interactive Clinical Summarization Rule</rdfs:label>
-		<rdfs:comment>Clinical Summarization rule that presents the summary in a way that supports interactive communication</rdfs:comment>
-		<skos:altLabel>Questionnaire Pre-Population Rule</skos:altLabel>
+	<owl:Class rdf:about="&api4kp-ckao;InteractiveCaseSummarizationRule">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;CaseSummarizationRule"/>
+		<rdfs:label>interactive clinical summarization rule</rdfs:label>
+		<skos:altLabel>questionnaire pre-population rule</skos:altLabel>
+		<skos:definition>clinical summarization rule that presents the summary in a way that supports interactive communication</skos:definition>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;InteractiveClinicalGuidanceRule">
-		<rdfs:subClassOf rdf:resource="&ckao;ClinicalGuidanceRule"/>
-		<rdfs:label>Interactive Clinical Guidance Rule</rdfs:label>
-		<rdfs:comment>Clinical Guidance Rule that is meant to be executed as part of a bidirectional communication protocol
-
-Guidance rules, in general, require to &apos;deliver&apos; the guidance to an agent. This kind of rule also expects that the inputs/context used to derive the guidance will be acquired via an explicit interaction</rdfs:comment>
+	<owl:Class rdf:about="&api4kp-ckao;InteractiveClinicalGuidanceRule">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalGuidanceRule"/>
+		<rdfs:label>interactive clinical guidance rule</rdfs:label>
+		<skos:definition>clinical guidance rule that is meant to be executed as part of a bidirectional communication protocol</skos:definition>
+		<skos:note>Guidance rules, in general, require to &apos;deliver&apos; the guidance to an agent. This kind of rule also expects that the inputs/context used to derive the guidance will be acquired via an explicit interaction</skos:note>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;InteractiveClinicalInferenceRule">
-		<rdfs:subClassOf rdf:resource="&ckao;ClinicalInferenceRule"/>
-		<rdfs:label>Interactive Clinical Inference Rule</rdfs:label>
+	<owl:Class rdf:about="&api4kp-ckao;InteractiveClinicalInferenceRule">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalInferenceRule"/>
+		<rdfs:label>interactive clinical inference rule</rdfs:label>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;NursingProtocol">
-		<rdfs:subClassOf rdf:resource="&ckao;ClinicalProtocol"/>
-		<rdfs:label>Nursing Protocol</rdfs:label>
-		<rdfs:comment>Protocol that directs the behavior of nurses</rdfs:comment>
+	<owl:Class rdf:about="&api4kp-ckao;NursingProtocol">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalProtocol"/>
+		<rdfs:label>nursing protocol</rdfs:label>
+		<skos:definition>protocol that directs the behavior of nurses</skos:definition>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;OrderSet">
-		<rdfs:subClassOf rdf:resource="&ckao;ClinicalKnowledgeAsset"/>
-		<rdfs:subClassOf rdf:resource="&kao;ProcessAsset"/>
-		<rdfs:label xml:lang="en">Order Set</rdfs:label>
-		<rdfs:comment xml:lang="en">A standardized list of orders for a specific diagnosis</rdfs:comment>
-		<skos:editorialNote xml:lang="en">Verify the defintion that restricts the ordersets to be developed by OSPAG, vs produced or endorsed</skos:editorialNote>
+	<owl:Class rdf:about="&api4kp-ckao;OrderSet">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalKnowledgeAsset"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;ProcessAsset"/>
+		<rdfs:label xml:lang="en">order set</rdfs:label>
+		<rdfs:seeAlso rdf:resource="http://forms.mayo.edu/index.html?orderset#MC1156-1356"/>
+		<skos:definition xml:lang="en">a standardized list of orders for a specific diagnosis</skos:definition>
+		<skos:editorialNote xml:lang="en">Verify the defintion that restricts the order sets to be developed by OSPAG, vs produced or endorsed</skos:editorialNote>
 		<skos:example xml:lang="en">The Heart Failure Medication Titration Order Set</skos:example>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&ckao;QualityMeasure">
-		<rdfs:subClassOf rdf:resource="&ckao;ClinicalKnowledgeAsset"/>
-		<rdfs:subClassOf rdf:resource="&kao;MetricAsset"/>
-		<rdfs:comment>CQMs are tools that help measure or quantify healthcare processes, outcomes, patient
-perceptions and organizational structure and/or systems that are associated with the ability to provide high-
-quality healthcare and/or that relate to one or more quality goals</rdfs:comment>
+	<owl:Class rdf:about="&api4kp-ckao;QualityMeasure">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalKnowledgeAsset"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;MetricAsset"/>
+		<rdfs:label xml:lang="en">quality measure</rdfs:label>
 		<rdfs:seeAlso rdf:resource="https://www.cms.gov/Medicare/Quality-Initiatives-Patient-Assessment-Instruments/QualityMeasures/index.html"/>
-		<skos:prefLabel>Clinical Quality Measure</skos:prefLabel>
+		<skos:altLabel xml:lang="en">CDS Rule</skos:altLabel>
+		<skos:definition>tool that helps measure or quantify healthcare processes, outcomes, patient perceptions and organizational structure and/or systems that are associated with the ability to provide high-quality healthcare and/or that relate to one or more quality goals</skos:definition>
+		<skos:prefLabel>clinical quality measure</skos:prefLabel>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&kao;BusinessRuleAsset">
+	<owl:Class rdf:about="&api4kp-kao;BusinessRuleAsset">
 	</owl:Class>
 	
-	<owl:Class rdf:about="&kao;CognitiveProcessModel">
+	<owl:Class rdf:about="&api4kp-kao;CognitiveProcessModel">
 	</owl:Class>
-	
-	<owl:Axiom>
-		<rdfs:isDefinedBy>https://www.ncbi.nlm.nih.gov/pubmed/20815294</rdfs:isDefinedBy>
-		<owl:annotatedProperty rdf:resource="&rdfs;comment"/>
-		<owl:annotatedSource rdf:resource="&ckao;ClinicalTrialProtocol"/>
-		<owl:annotatedTarget>Descriptions of the objectives, design, methodology, statistical considerations and aspects related to the organization of clinical trials.
 
-Trial protocols provide the background and rationale for conducting a study, highlighting specific research questions that are addressed, and taking into consideration ethical issues. Trial protocols must meet a standard that adheres to the principles of Good Clinical Practice, and are used to obtain ethics approval by local Ethics Committees or Institutional Review Boards.</owl:annotatedTarget>
-	</owl:Axiom>
-	<owl:Axiom>
-		<rdfs:seeAlso rdf:resource="http://forms.mayo.edu/index.html?orderset#MC1156-1356"/>
-		<owl:annotatedProperty rdf:resource="&skos;example"/>
-		<owl:annotatedSource rdf:resource="&ckao;OrderSet"/>
-		<owl:annotatedTarget xml:lang="en">The Heart Failure Medication Titration Order Set</owl:annotatedTarget>
-	</owl:Axiom>
-	<owl:Axiom>
-		<rdfs:seeAlso rdf:resource="http://mayoweb.mayo.edu/pmr/documents/PracticeGuidelineTemplateSternotomy.pdf"/>
-		<owl:annotatedProperty rdf:resource="&skos;example"/>
-		<owl:annotatedSource rdf:resource="&ckao;ClinicalPracticeGuideline"/>
-		<owl:annotatedTarget xml:lang="en">The Mayo Clinic Sternotomy Guideline</owl:annotatedTarget>
-	</owl:Axiom>
-	<owl:Axiom>
-		<rdfs:seeAlso rdf:resource="https://clinicalknowledgemanagement.mayo.edu/mayo-clinic-rules-catalog/asset/km-asset/KAT-20323041"/>
-		<owl:annotatedProperty rdf:resource="&skos;example"/>
-		<owl:annotatedSource rdf:resource="&ckao;ClinicalRule"/>
-		<owl:annotatedTarget xml:lang="en">The &apos;HGB value prior to RBC transfusion&apos; Recommendation Rule</owl:annotatedTarget>
-	</owl:Axiom>
-	<owl:Axiom>
-		<rdfs:seeAlso rdf:resource="https://clinicalknowledgemanagement.mayo.edu/topic/clinical-answers/CNT-20141231/CPM-20211573"/>
-		<owl:annotatedProperty rdf:resource="&skos;example"/>
-		<owl:annotatedSource rdf:resource="&ckao;CareProcessModel"/>
-		<owl:annotatedTarget xml:lang="en">The Mayo Clinic Rectal Adenocarcinoma CPM</owl:annotatedTarget>
-	</owl:Axiom>
 </rdf:RDF>
