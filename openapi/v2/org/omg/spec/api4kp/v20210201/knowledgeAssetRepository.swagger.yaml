@@ -1,0 +1,1835 @@
+swagger: '2.0'
+
+info:
+  version: "5.0.0"
+  title: 'API4KP Knowledge Asset Repository API'
+  contact:
+    name: Davide Sottara
+    email: sottara.davide@mayo.edu
+  license:
+    name: Apache License, Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  description: |
+    Maturity - HIGH (possibly subject to extensions)
+
+    APIs for a Semantic Knowledge Asset Repository.
+
+    **Knowledge Assets**
+    Knowledge Assets are immutable, versioned works of knowledge (aka 'Piece of Knowledge', or 'Piece of Content'), which are expressible in any form that is fit for consumption by a designated audience.
+    Assets managed through a Knowledge Asset Catalog & Repository are usually, though not necessarily, _Enterprise_ Knowledge Assets, i.e. Assets whose content is endorsed by some Subject Matter Expert (party), and whose identification and life cycle is managed by an Authority.
+
+    **Knowledge Resources** - Assets vs Carriers vs Surrogates
+    Since Knowledge Assets themselves are immaterial entities, an Asset Repository can either store 'metadata' (Knowledge Asset Surrogates), or store/reference 'manifestations' (Knowledge Carriers). Both Surrogates and Carriers are actually Knowledge Artifacts, and differ in the role they play with respect to a given Asset.
+    The Asset Repository MIGHT be built on top of a Knowledge Artifact Repository, and internalize the storage of Carriers and Surrogates. An Asset Repository COULD _also_ be federated, and point to Carriers and Surrogates stored in external systems e.g. by means of URLs.
+    At a minimum, the Asset Repository MUST have direct access to at least one Surrogate, which is considered Canonical, and contains some core, mandatory information about the asset and its relationships to other assets and artifacts (including Carriers and other Surrogates), and some corollary information such as  pedigree/provenance, policies, applicability.
+    The Canonical Surrogate is a Resource that conforms to some standard adopted by the Repository, and is directly accessible through the Repository APIs.
+    The Canonical Surrogate is such that there cannot exist two distinct Surrogates of the same Asset that use the canonical metamodel (Knowledge Representation Language, or profile thereof) supported by the server.
+
+    Notice that all Carriers associated to an Asset MUST be iso-semantic, i.e. be _variant_ representation of the Asset knowledge content. Surrogates, on the other hand, can have different information content, as long as they refer to the same Asset, and are consistent with each other.
+
+    **Series**
+    All Resources are Versioned. Resources maintain a version-agnostic, (globally unique) ID, and a version tag which is implementation specific, even if semantic versioning is encouraged.
+    Versions in a series SHOULD be ordered by version tag, based on the natural order of the tags themselves (e.g. incremental numbers vs semantic versioning). Versions SHALL also be ordered by the timestamp each version was established on.
+    In particular, the LATEST version of a Resource SHALL be determined by tag ordering, and the timestamp will only be used to break any ties. (Implementations COULD use the timestamp itself as a version tag.)
+
+    **Knowledge Graph**
+    Collectively, the Canonical Surrogates constitute a Knowledge Base, of Graph-oriented nature, which is referre to as the Knowledge Asset Graph. The Graph, supports the indexing and querying of the Assets, and can be used to construct Knowledge Asset Catalogs.
+
+    **Search and Retrieval**
+    Assets (and their Carriers) MUST be discoverable through listing, and the individual Resources MUST be retrievable based on a combination of identifiers and version tags.
+    Filtering SHOULD be supported based on a limited category of metadata, namely types and semantic annotations.
+    Querying COULD be supported through the Knowledge Graph.
+    Text based searching MIGHT be supported, but is currently outside of the scope of this specification.
+
+    **Content Negotiation**
+    Given an Asset, its Carriers and Surrogates can also be selected through Content Negotiation. A client can use a formal MIME code (see extAccept later in the documentation) to choose between (i) the Carriers or (ii) the Surrogates of a given Asset, when multiple alternatives are present.
+    A client can also use Content Negotiation in combination with an Artifact identifier. In this case, the client declares their intent to access the information content of a specific Artifact (version), but asks that the Artifact be delivered in a certain format.
+    To support Content Negotiation, Asset Repositories SHOULD be able to provide Artifacts even when they are not materially stored/referenced, but can be derived on the fly at runtime using a Language service API (which internally could further delegate to KB/reasoning services for complex tasks such as assembling or semantic trans*tion).
+
+    Notice that the Asset Repository Content Negotiation is at a different level than the Content Negotiation provided by OpenAPI natively. (Formal) Content negotiation is applied _before_ a resulting Artifact (Carrier or Surrogate) is wrapped in a KnowledgeCarrier object and returned.
+    Standard OpenAPI content negotiation is applied to any API return type, including KnowledgeCarriers, at a later stage.
+
+    **Composites**
+    A Composite Resource (Asset or Artifact) is a resource that consists in components, which are either Composite Resources of the same type, or regular atomic Resources. Composites are also defined by the relationships between the parts. For this reason, each Composite has a special Component, a Struct(ure), which is a graph-oriented Artifact which establishes types, roles and relationships and is normally a subset of the Knowledge Asset Graph.
+    Composites are implicitly manifested through their identifier and Structure. The components can be resolved and assembled into a Composite Surrogate or into a Composite Artifact.
+    The Composite is distinct from each of its components, even when one of the components has a prominent role with respect to the others.
+    As such, Composites can have their own independent Canonical Surrogate, and have one or more variant Carriers.
+    Notice that, in general, a Composite Asset can be carried by an atomic Carrier, and an atomic Asset can be carried by a Composite Artifact.
+    Atomic Resources can be created from their Composite counterparts by means of _flattening_.
+
+
+    **Service Boundaries**
+    Unlike Knowledge Artifact Repositories, for which Artifacts are black boxes, Knowledge _Asset_ Repositories consider Assets and their Carriers as gray boxes.
+    A Knowledge Asset Repository SHOULD delegate to a Language Service the ability to parse/serialize, validate and otherwise analyze the content of a Knowledge Carriers associated to an Asset. Language Trans*ion services SHOULD also be leveraged for Content Negotiation Purposes.
+    A Knowledge Asset Repository SHOULD leverage a Knowledge Base Construction Service to manipulate artifacts, especially for the purpose of constructing, deconstructing, flattening and generating metadata.
+    A Knowledge Asset Repository MIGHT also interact with a Reasoning Service, which SHOULD treat the Knowledge Asset Graph as a Knowledge Base, performing inferences and answering queries.
+    A Knowledge Asset Repository SHALL NOT, instead, leverage a Reasoning Service to reason _with_ the Artifacts' content for any other reason that the extraction/validation of the Asset metadata. This choice is motivated by the different SLA constraints (e.g. security, traffic/load) involved when knowledge is 'in motion' rather than 'at rest'.
+
+
+tags:
+  - name: Knowledge Asset Catalog
+    description: |
+      A Knowledge Asset Catalog is an indexed collection of Knowledge Assets. A Catalog identifies, versions, types/categorizes, and relates Assets to each other.
+  - name: Knowledge Asset Repository
+    description: |
+      A Semantic Knowledge Repository provides access to Knowledge Artifacts based on their Asset content and representation thereof.
+  - name: Knowledge Asset Retrieval
+    description: |
+      A Knowledge Asset Retrieval faciilty offers query/search engines that treat the content of the Knowledge Asset Catalog itself as a Knowledge Base.
+
+
+
+#schemas:
+# - http
+
+# basePath: /www.omg.org/spec/API4KP/KnowledgeAssetRepository/v1.2
+
+
+paths:
+
+
+  ####################################################################################################
+  #
+  # Knowledge Asset Catalog
+  #
+  ####################################################################################################
+
+
+  /cat:
+    get:
+      tags:
+        - Knowledge Asset Catalog
+        #- core
+      summary: Describe Knowledge Asset Catalog.
+      description: |
+        Returns a Knowledge Asset Catalog Resource that summarizes the capabilities of the Asset Repository.
+        Dynamic information, such as the number of stored Assets, can be obtained querying the Knowledge Graph
+      operationId: getKnowledgeAssetCatalog
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/KnowledgeAssetCatalog'
+        403:
+          description: |
+            The client cannot access this repository
+        500:
+          description: |
+            Internal Error
+
+
+  ####################################################################################################
+
+
+  /cat/graph:
+    get:
+      tags:
+        - Knowledge Asset Catalog
+      summary: Get Knowledge Graph
+      description: |
+        Returns a copy of the graph that indexes the known Assets, Artifacts, their relationships, and semantic annotations, reflecting the state of the Repository at the moment the call is made.
+
+        The native representation of the Graph (e.g. RDF) is server specific, but can be negotiated.
+      operationId: getKnowledgeGraph
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: |
+            A Knowledge Carrier that wrap the Knowledge Graph, as a Knowledge Artifact, with representation metadata.
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        403:
+          description: |
+            The client does not have the necessary permissions
+        500:
+          description: |
+            Internal Error
+    post:
+      tags:
+        - Knowledge Asset Catalog
+      operationId: queryKnowledgeAssetGraph
+      summary: Query Knowledge Graph
+      description: |
+        Allows the client to submit a query to the Knowledge Asset Graph using a query language supported by the server (e.g. GraphQL, SPARQL)
+      parameters:
+        - $ref: '#/parameters/graphQuery'
+      responses:
+        200:
+          description: |
+            The query was executed successfully.
+            Does not imply that any result will be returned
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Bindings'
+        400:
+          description: |
+            The query contains errors
+        403:
+          description: |
+            The client does not have the necessary permissions
+        500:
+          description: |
+            Internal Error
+        501:
+          description: |
+            Not implemented
+
+
+  ####################################################################################################
+
+
+  /cat/assets:
+    get:
+      tags:
+        - Knowledge Asset Catalog
+      summary: List Knowledge Assets.
+      description: |
+        Returns a collection of Pointers to the Assets managed under this Catalog,
+        i.e. such that a Canonical Knowledge Asset Surrogate has been registered.
+        The collection will be empty if the repository is empty, or if only empty Knowledge Asset series have been created.
+
+        Basic Filtering is allowed on asset type and annotations.
+        The collection should also not include any Asset that the client does not have the permissions to access (i.e. getKnowledgeAsset would fail with a 403 status code). If the client has access to the repository, but does not have access to any of the assets currently contained, the returned collection will be empty.
+
+        Pagination parameters are optionally supported.
+      operationId: listKnowledgeAssets
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: '#/parameters/assetTypeTag'
+        - $ref: '#/parameters/assetAnnotationTag'
+        - $ref: '#/parameters/assetAnnotationConcept'
+        # pageable # TODO inherit from common parameters shared across APIs
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+      responses:
+        200:
+          description: |
+            Returns a list of Pointers to Assets that the client has access to.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        403:
+          description: |
+            The client cannot access this repository
+        500:
+          description: |
+            Internal error
+    post:
+      tags:
+        - Knowledge Asset Catalog
+      summary: Create a new Knowledge Asset.
+      description: |
+        Creates a new empty Knowledge Asset (Series), assigning an asset ID in the process.
+      operationId: initKnowledgeAsset
+      produces:
+        - application/json
+      responses:
+        201:
+          description: Success
+          headers:
+            Content-Location:
+              type: string
+              format: uri
+              description: |
+                URL where the new Knowledge Asset Series can be accessed
+          schema:
+            description: |
+              The identifier of the newly created Knowledge Asset
+            type: string
+            format: uuid
+        403:
+          description: |
+            Client is not allowed to create new Assets
+        405:
+          description: |
+            Not supported - Repository is read only
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+
+
+
+
+  ####################################################################################################
+
+  /cat/assets/{assetId}:
+    get:
+      tags:
+        - Knowledge Asset Catalog
+      summary: Retrieve a Knowledge Asset.
+      #TODO "published" state is not yet supported
+      description: |
+        Retrieves the LATEST version of a Knowledge Asset.
+
+        In particular, the server SHALL return the LATEST version of the Canonical Surrogate for the LATEST version of the Asset.
+        Content negotiation SHALL be only supported for text/html variants of the Surrogate.
+        Support for more general forms of Surrogates, and negotiation thereof, is provided by getKnowledgeAssetSurrogate and its related operations.
+
+      operationId: getKnowledgeAsset
+      produces:
+        - application/json
+        - application/xml
+        - text/html
+      parameters:
+        - $ref: '#/parameters/assetId'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/KnowledgeAsset'
+        303:
+          description: |
+            Redirects the client to a URL where the Canonical Surrogate,
+            or its HTML variant, can be retrieved
+          headers:
+            Location:
+              type: string
+        403:
+          description: |
+            Client is not allowed to access the Assets
+        404:
+          description: |
+            Asset not found
+        406:
+          description: |
+            The requested format is not supported
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+
+
+
+
+
+
+
+
+
+          ####################################################################################################
+
+  /cat/assets/{assetId}/versions:
+    get:
+      tags:
+        - Knowledge Asset Catalog
+      summary: Get all versions of a Knowledge Asset Surrogate.
+      description: |
+        Returns a list of all the available versions of a Knowledge Asset that a user is allowed to access.
+        An Asset Series may be empty if no versions have been established.
+
+        For each Asset version, returns a pointer to the LATEST Canonical Surrogate for that Asset version
+      operationId: listKnowledgeAssetVersions
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: '#/parameters/assetId'
+        # pageable
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+        #series
+        - $ref: '#/parameters/beforeTag'
+        - $ref: '#/parameters/afterTag'
+        #sortable
+        - $ref: '#/parameters/sort'
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        403:
+          description: |
+            Client is not allowed to access the Asset
+        404:
+          description: |
+            Asset not found
+        500:
+          description: |
+            Internal error
+
+
+  /cat/assets/{assetId}/versions/{versionTag}:
+    get:
+      tags:
+        - Knowledge Asset Catalog
+      summary: Retrieves a specific version of a Knowledge Asset.
+      description: |
+        Retrieves the LATEST version of the Canonical Surrogate that describes the given version of a Knowledge Asset.
+      operationId: getKnowledgeAssetVersion
+      produces:
+        - application/json
+        - application/xml
+        - text/html
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: |
+            The Asset Version has been located and retrieved.
+          schema:
+            $ref: '#/definitions/KnowledgeAsset'
+        403:
+          description: |
+            Client is not allowed to access the Asset
+        404:
+          description: |
+            Asset or Asset Version not found
+        500:
+          description: |
+            Internal error
+
+    put:
+      tags:
+        - Knowledge Asset Catalog
+      summary: Set/Initialize a specific version of a Knowledge Asset
+      description: |
+        Populates/updates the Canonical Surrogate for the given version of a Knowledge Asset.
+
+        The Client
+        * MUST provide a Valid Surrogate
+        * that Surrogate's declared Asset ID and version Tag MUST match the {assetId} and {versionTag} parameters
+        * the Surrogate MUST have an explicit version tag
+
+        The Server SHALL validate the Surrogate for syntactic and semantic correctness and consistency.
+
+        If an Asset version with the given ID does not exist, it will be created in the process, otherwise it will be updated.
+      operationId: setKnowledgeAssetVersion
+      consumes:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/assetSurrogate'
+      responses:
+        204:
+          description: |
+            The given Surrogate has been set to provide metadata for a specific version of the given Knowledge Asset.
+        403:
+          description: |
+            The client does not have the adequate permissions
+        409:
+          description: |
+            The information contained in the Surrogate is invalid/inconsistent (including not matching the {assetId}/{versionTag}), or is incompatible with the Artifacts associated to the Asset.
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+
+
+
+
+
+
+  ####################################################################################################
+
+  /cat/assets/{assetId}/carrier:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Retrieve the best Knowledge Carrier for the LATEST version of a given Knowledge Asset.
+      description: |
+        Retrieves a Knowledge Artifact that is a Carrier of the given Asset, selecting between the variants using server-driven Content Negotiation.
+
+        For the given Knowledge Asset:
+        * retrieves the LATEST version of the Knowledge Asset
+        * retrieves the LATEST Canonical surrogate for that version of the Asset
+        * consults the representation metadata for each associated Carrier
+        * selects the one that matches the preferences of the client
+        * returns/redirects the client to a copy of the (LATEST version of the) chosen Artifact itself.
+
+      operationId: getKnowledgeAssetCanonicalCarrier
+      produces:
+        - application/json
+        - application/xml
+        - text/html
+      parameters:
+        - $ref: '#/parameters/assetId'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: |
+            A suitable Knowledge Artifact could be retrieved
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        300:
+          description: |
+            Negotiation failed, but suitable alternatives are present
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        303:
+          description: |
+            Redirects the client to a URL where the chosen Artifact can be retrieved
+          headers:
+            Location:
+              type: string
+        403:
+          description: |
+            The client does not have the adequate permissions
+        404:
+          description: |
+            Asset not found
+        406:
+          description: |
+            No suitable variant is available
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+  /cat/assets/{assetId}/carrier/content:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Retrieve the best Knowledge Carrier for the LATEST version of a given Knowledge Asset.
+      description: |
+        Retrieves a Knowledge Artifact that is a Carrier of the given Asset, selecting between the variants using server-driven Content Negotiation.
+
+        For the given Knowledge Asset:
+        * retrieves the LATEST version of the Knowledge Asset
+        * retrieves the LATEST Canonical surrogate for that version of the Asset
+        * consults the representation metadata for each associated Carrier
+        * selects the one that matches the preferences of the client
+        * returns/redirects the client to a copy of the (LATEST version of the) chosen Artifact itself.
+
+      operationId: getKnowledgeAssetCanonicalCarrierContent
+      produces:
+        - application/octet-stream
+      parameters:
+        - $ref: '#/parameters/assetId'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            type: string
+            format: binary
+        300:
+          description: |
+            Negotiation failed, but suitable alternatives are present
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        303:
+          description: |
+            Redirects the client to a URL where the chosen Artifact can be retrieved
+          headers:
+            Location:
+              type: string
+        403:
+          description: |
+            The client does not have the adequate permissions
+        404:
+          description: |
+            Asset not found
+        406:
+          description: |
+            No suitable variant is available
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+
+  /cat/assets/{assetId}/versions/{versionTag}/carrier:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Retrieve the best Knowledge Carrier for a given Knowledge Asset.
+      description: |
+        Retrieves a Knowledge Artifact that is a Carrier of the given Asset, selecting between the variants using server-driven Content Negotiation.
+
+        For a given version of a Knowledge Asset,
+        * retrieves the LATEST Canonical surrogate for that version of the Asset
+        * consults the representation metadata for each associated Carrier
+        * selects the one that matches the preferences of the client
+        * returns/redirects the client to a copy of the (LATEST version of the) chosen Artifact itself.
+
+      operationId: getKnowledgeAssetVersionCanonicalCarrier
+      produces:
+        - application/json
+        - application/xml
+        - text/html
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: |
+            A suitable Knowledge Artifact could be retrieved
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        300:
+          description: |
+            Negotiation failed, but suitable alternatives are present
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        303:
+          description: |
+            Redirects the client to a URL where the chosen Artifact can be retrieved
+          headers:
+            Location:
+              type: string
+        403:
+          description: |
+            The client does not have the adequate permissions
+        404:
+          description: |
+            Asset Version not found
+        406:
+          description: |
+            No suitable variant is available
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+  /cat/assets/{assetId}/versions/{versionTag}/carrier/content:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Retrieve the best Knowledge Carrier for a given Knowledge Asset.
+      description: |
+        Retrieves a Knowledge Artifact that is a Carrier of the given Asset, selecting between the variants using server-driven Content Negotiation.
+
+        For a given version of a Knowledge Asset,
+        * retrieves the LATEST Canonical surrogate for that version of the Asset
+        * consults the representation metadata for each associated Carrier
+        * selects the one that matches the preferences of the client
+        * returns/redirects the client to a copy of the (LATEST version of the) chosen Artifact itself.
+
+      operationId: getKnowledgeAssetVersionCanonicalCarrierContent
+      produces:
+        - application/octet-stream
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            type: string
+            format: binary
+        300:
+          description: |
+            Negotiation failed, but suitable alternatives are present
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        303:
+          description: |
+            Redirects the client to a URL where the chosen Artifact can be retrieved
+          headers:
+            Location:
+              type: string
+        403:
+          description: |
+            The client does not have the adequate permissions
+        404:
+          description: |
+            Asset Version not found
+        406:
+          description: |
+            No suitable variant is available
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+  /cat/assets/{assetId}/versions/{versionTag}/carriers:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Lists the known Carriers for a given Knowledge Asset
+      description: |
+        Retrieves Pointers to all the (LATEST version of each) Knowledge Carriers of the given (version of) Knowledge Asset.
+        The list may be empty if no Artifact is known, or if the user does not have access to a given Artifact.
+
+        The list should be transparent with respect to Artifacts physically stored, linked or generated dynamically at runtime.
+      operationId: listKnowledgeAssetCarriers
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        # pageable
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+        #series
+        - $ref: '#/parameters/beforeTag'
+        - $ref: '#/parameters/afterTag'
+        #sortable
+        - $ref: '#/parameters/sort'
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        403:
+          description: |
+            The client does not have the adequate permissions
+        404:
+          description: |
+            Asset Version not found
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented.
+
+
+    post:
+      tags:
+        - Knowledge Asset Repository
+      summary: Registers a new Carrier for a given Knowledge Asset
+      description: |
+        Registers a new Carrier for a given Knowledge Asset.
+
+        The client-provided Carrier MUST match the Asset ID and version;
+        The server SHALL use the Artifact ID and version provided by the client, which MUST not exist (the client should use setKnowledgeAssetCarrierVersion instead).
+
+        The server MUST register the new Carrier in the Knowledge Graph, and update the Canonical
+        Surrogate for the given Asset, incrementing the version of the Surrogate.
+
+        The server COULD validate the new Carrier against the client-provided representation metadata.
+
+      operationId: addKnowledgeAssetCarrier
+      consumes:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/assetCarrier'
+      responses:
+        201:
+          description: Success
+          headers:
+            Content-Location:
+              type: string
+              format: uri
+              description: |
+                URL where the new version of the Knowledge Asset Carrier is accessible
+        403:
+          description: |
+            The client does not have permissions to add Artifacts to this Asset
+        404:
+          description: |
+            Asset Version not found
+        405:
+          description: |
+            The repository is read-only
+        406:
+          description: |
+            The provided Carrier (Artifact) cannot be inspected properly
+        409:
+          description: |
+            Artifact already exists with a different ID
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+  /cat/assets/{assetId}/versions/{versionTag}/carriers/{artifactId}:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Retrieves a specific Carrier for a given Knowledge Asset
+      description: |
+        Retrieves (a copy of) the LATEST version of the given Carrier of a given Asset.
+
+        Content Negotiation can be used to drive transrepresentations of the specific Artifact,
+        e.g. to ensure that the Artifact is transcribed between JSON and XML before being wrapped in the
+        KnowledgeCarrier to be returned.
+      operationId: getKnowledgeAssetCarrier
+      produces:
+        - application/json
+        - application/xml
+        - text/html
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/artifactId'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: |
+            The identifiers can be resolved
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        403:
+          description: |
+            The client does not have the necessary rights.
+        404:
+          description: |
+            Asset Version or Artifact not found
+        500:
+          description: |
+            Internal error
+
+  /cat/assets/{assetId}/versions/{versionTag}/carriers/{artifactId}/versions:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Lists the version history of the Knowledge Asset Carrier.
+      description: |
+        Returns Pointers to all the Versions of a Knowledge Asset Carrier, if any.
+      operationId: listKnowledgeAssetCarrierVersions
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/artifactId'
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        403:
+          description: |
+            The client does not have the adequate permissions
+        404:
+          description: |
+            Asset Version or Carrier not found
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented.
+
+  /cat/assets/{assetId}/versions/{versionTag}/carriers/{artifactId}/versions/{artifactVersionTag}:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Retrieves a specific Carrier for a given Knowledge Asset
+      description: |
+        Retrieves (a copy of) a specific version of an Artifact that carries a specific version of a Knowledge Asset.
+
+        Content Negotiation can be used to drive transrepresentations of the specific Artifact version,
+        e.g. to ensure that the Artifact is transcribed between JSON and XML before being wrapped in the
+        KnowledgeCarrier to be returned.
+      operationId: getKnowledgeAssetCarrierVersion
+      produces:
+        - application/json
+        - application/xml
+        - text/html
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/artifactId'
+        - $ref: '#/parameters/artifactVersionTag'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: |
+            The identifiers can be resolved
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        403:
+          description: |
+            The client does not have the necessary rights.
+        404:
+          description: |
+            Asset or Artifact Version not found
+        500:
+          description: |
+            Internal error
+
+  /cat/assets/{assetId}/versions/{versionTag}/carriers/{artifactId}/versions/{artifactVersionTag}/content:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Retrieves a specific Carrier for a given Knowledge Asset in binary form
+      description: |
+        Retrieves (a copy of) a specific version of an Artifact that carries a specific version of a Knowledge Asset, in binary form.
+        This method must return the same data as getKnowledgeAssetCarrierVersionContent, unwrapped
+      operationId: getKnowledgeAssetCarrierVersionContent
+      consumes:
+        - application/octet-stream
+      produces:
+        - application/octet-stream
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/artifactId'
+        - $ref: '#/parameters/artifactVersionTag'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            type: string
+            format: binary
+        403:
+          description: |
+            The user does not have the required permissions
+        404:
+          description: |
+            Asset and/or Artifact Version not found
+        409:
+          description: |
+            The provided Artifact is inconsistent with the current Asset metadata
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+    put:
+      tags:
+        - Knowledge Asset Repository
+      summary: Registers a (version of a) Carrier for a given Knowledge Asset
+      description: |
+        Registers a Knowledge Artifact as the Carrier of a Knowledge Asset, based on the raw content of the Artifact.
+
+        The Canonical Asset Surrogate SHOULD have been populated with metadata about the Artifac, but the server
+        COULD either validate or try to infer more metadata for the specific Artifact version.
+        If (and only if) the Surrogate is updated in the process, its version MUST be incremented.
+
+      operationId: setKnowledgeAssetCarrierVersion
+      consumes:
+        - application/octet-stream
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/artifactId'
+        - $ref: '#/parameters/artifactVersionTag'
+        - $ref: '#/parameters/exemplar'
+      responses:
+        204:
+          description: |
+            The Artifact has been uploaded correctly, and associated to the Knowledge Asset
+        403:
+          description: |
+            The user does not have the required permissions
+        404:
+          description: |
+            Asset and/or Artifact Version not found
+        409:
+          description: |
+            The provided Artifact is inconsistent with the current Asset metadata
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+
+  /cat/assets/{assetId}/surrogate:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Retrieve the Canonical Knowledge Asset Surrogate, for the latest version of an Asset, as a Knowledge Artifact.
+      description: |
+        Returns the LATEST version of the Canonical Surrogate of the LATEST referenced Asset, wrapped in a Knowledge Carrier, so that it can be consumed as a Knowledge Artifact.
+
+        Supports content negotiation, allowing to retrieve this Surrogate in variant forms, if supported.
+
+        If content negotiation is not used, the Surrogate in response Knowledge Carrier is identical to the Surrogate returned invoking getKnowledgeAssetVersion for the same Asset ID and version.
+      operationId: getKnowledgeAssetCanonicalSurrogate
+      produces:
+        - application/json
+        - application/xml
+        - text/html
+      parameters:
+        - $ref: '#/parameters/assetId'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: |
+            A suitable representation of the Knowledge Surrogate could be retrieved
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        300:
+          description: |
+            Negotiation failed, but suitable alternatives are present
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        403:
+          description: |
+            The client does not have the adequate permissions
+        404:
+          description: |
+            Asset not found
+        406:
+          description: |
+            No suitable variant is available
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+
+  /cat/assets/{assetId}/versions/{versionTag}/surrogate:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Retrieve the Canonical Knowledge Asset Surrogate, as a Knowledge Artifact.
+      description: |
+        Returns the LATEST version of the Canonical Surrogate of the referenced Asset (version), wrapped in a Knowledge Carrier, so that it can be consumed as a Knowledge Artifact.
+
+        Supports content negotiation, allowing to retrieve this Surrogate in variant forms, if supported.
+
+        If content negotiation is not used, the Surrogate in response Knowledge Carrier is identical to the Surrogate returned invoking getKnowledgeAssetVersion for the same Asset ID and version.
+      operationId: getKnowledgeAssetVersionCanonicalSurrogate
+      produces:
+        - application/json
+        - application/xml
+        - text/html
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: |
+            A suitable representation of the Knowledge Surrogate could be retrieved
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        300:
+          description: |
+            Negotiation failed, but suitable alternatives are present
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        403:
+          description: |
+            The client does not have the adequate permissions
+        404:
+          description: |
+            Asset Version not found
+        406:
+          description: |
+            No suitable variant is available
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+    post:
+      tags:
+        - Knowledge Asset Repository
+      summary: Adds a (Composite) Knowledge Asset.
+      description: |
+        Allows a client to initialize a (Composite) Knowledge Asset, publishing metadata and registering relationships in the process.
+
+        The client MUST provide a KnowledgeCarrier whose assetId coincides with the given Asset ID and version, and the Artifact MUST be a Canonical Knowledge Asset Surrogate for the given Asset.
+
+        This operation is atomically equivalent to (initKnowledgeAsset o setKnowledgeAssetVersion).
+
+        The operation MUST also supports Composite Assets. The client MUST provide a CompositeKnowledgeCarrier, which can be SET-based, TREE-based or GRAPH-based.
+          The root of the (set/)tree/graph, if any, MUST NOT be the given Asset, to preserve
+          the distinction between the Composite and its Components.
+
+        If these conditions are met, the operation is invoked recursively on the components, which MUST all contain canonical Knowledge Asset Surrogates.
+        The Struct MUST be merged with the repository's Knowledge Graph, and should not be inconsistent with any relationship that can be inferred from the individual Surrogates during their registration.
+
+        Anonymous Composite Assets are treated like other Assets. The components, and relatioships thereof, will be persisted. However, the Composite itself, and the 'hasPart' relationship, will not.
+
+      operationId: addCanonicalKnowledgeAssetSurrogate
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/surrogateCarrier'
+      responses:
+        201:
+          description: Success
+        403:
+          description: |
+            Client is not allowed to create new Assets
+        405:
+          description: |
+            Not supported - Repository is read only
+        406:
+          description: |
+            The server cannot translate the Carrier into a canonical Surrogate
+        409:
+          description: |
+            The identifiers on the Carrier and the provided Surrogate do not match this asset
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+  /cat/assets/{assetId}/versions/{versionTag}/surrogates:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Lists the known Surrogates for a given Knowledge Asset
+      description: |
+        Retrieves Pointers to the various Surrogates for the given Asset version.
+
+        The response MUST include the Canonical Knowledge Asset Surrogate, as returned by 'getKnowledgeAssetCanonicalSurrogate'
+      operationId: listKnowledgeAssetSurrogates
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        # pageable
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+        #series
+        - $ref: '#/parameters/beforeTag'
+        - $ref: '#/parameters/afterTag'
+        #sortable
+        - $ref: '#/parameters/sort'
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        403:
+          description: |
+            The client does not have the adequate permissions
+        404:
+          description: |
+            Asset Version not found
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented.
+
+    post:
+      tags:
+        - Knowledge Asset Repository
+      summary: Registers a new Surrogate for a given Knowledge Asset
+      description: |
+        Registers a new, alternative (non-canonical) Surrogate for a given Knowledge Asset.
+
+        The client-provided Carrier MUST match the Asset ID and version;
+        The server SHALL use the Artifact ID and version provided by the client as a Surrogate Id,
+        which MUST not exist, or a Conflict will be raised.
+
+        In particular, this operation MUST not try to update the Canonical Surrogate,
+        and will reject an alternative Surrogate that uses the canonical surrogate metamodel.
+        (clients should use setKnowledgeAssetVersion instead)
+
+        The server MUST register the new Surrogate in the Knowledge Graph, and update the Canonical
+        Surrogate for the given Asset, incrementing the version of the Surrogate.
+
+      operationId: addKnowledgeAssetSurrogate
+      consumes:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/surrogateCarrier'
+      responses:
+        201:
+          description: Success
+          headers:
+            Content-Location:
+              type: string
+              format: uri
+              description: |
+                URL where the new version of the Knowledge Asset Surrogate is accessible
+        403:
+          description: |
+            The client does not have permissions to add Surrogates to this Asset
+        404:
+          description: |
+            Asset Version not found
+        405:
+          description: |
+            The repository is read-only
+        406:
+          description: |
+            The provided Carrier (Surrogate) cannot be inspected properly
+        409:
+          description: |
+            A different Surrogate with the same ID and version already exists
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+  /cat/assets/{assetId}/versions/{versionTag}/surrogates/{surrogateId}/versions:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Lists the version history of the Knowledge Asset Surrogate.
+      description: |
+        Returns Pointers to all the Versions of a given Knowledge Asset Surrogate, for a given Asset
+      operationId: listKnowledgeAssetSurrogateVersions
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/surrogateId'
+        # pageable
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+        #series
+        - $ref: '#/parameters/beforeTag'
+        - $ref: '#/parameters/afterTag'
+        #sortable
+        - $ref: '#/parameters/sort'
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        403:
+          description: |
+            The client does not have the adequate permissions
+        404:
+          description: |
+            Asset Version not found
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented.
+
+  /cat/assets/{assetId}/versions/{versionTag}/surrogates/{surrogateId}/versions/{surrogateVersionTag}:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Gets a specific version of the Knowledge Asset Surrogate.
+      description: |
+        Returns a copy of a specific version of a Knowledge Asset Surrogate for the given Asset.
+
+      operationId: getKnowledgeAssetSurrogateVersion
+      produces:
+        - application/xml
+        - application/json
+        - text/html
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/surrogateId'
+        - $ref: '#/parameters/surrogateVersionTag'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: |
+            A suitable representation of the Knowledge Surrogate could be retrieved
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        300:
+          description: |
+            Negotiation failed, but suitable alternatives are present
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        403:
+          description: |
+            The client does not have the adequate permissions
+        404:
+          description: |
+            Asset Version not found
+        406:
+          description: |
+            No suitable variant is available
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+
+
+  /cat/assets/{assetId}/versions/{versionTag}/composite/struct:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Retrieve the Structure of a Composite Knowledge Asset.
+      description: |
+        Retrieves the Structure of the given Composite Knowledge Asset. The Structure is a Graph whose root node is a reference to the Composite Asset, and MUST contains 'has-part' relationships to other Assets.
+        The structure SHOULD also contain 'depends-on' relationships, and the types and roles of the component Assets.
+
+        All relationships in the Structure MUST reference specific versions of Knowledge Assets.
+
+        The Graph itself is a Knowledge Artifact (e.g. expressed using some form of RDF) and, as such, is negotiable.
+
+        If invoked on an atomic Knowledge Asset, returns a singleton Graph with one node corresponding to the Atomic Asset itself.
+      operationId: getCompositeKnowledgeAssetStructure
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        403:
+          description: |
+            The client cannot access the Asset
+        404:
+          description: |
+            Asset Version not found
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+    post:
+      tags:
+        - Knowledge Asset Repository
+      operationId: getAnonymousCompositeKnowledgeAssetStructure
+      summary: Initializes a new Composite Knowledge Asset Struct
+      description: |
+       Given an existing Knowledge Asset, executes a query that selects one or more Assets
+        based on the transitive closure of a (dependency) relationship.
+        The query's result triples are returned as the implicit structure of a (tree-based)
+        Anonymous Composite Knowledge Asset Surrogate
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/extAccept'
+      produces:
+        - "application/json"
+        - "application/xml"
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        403:
+          description: |
+            The client cannot access the Asset
+        404:
+          description: |
+            Asset Version not found
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+  /cat/assets/{assetId}/versions/{versionTag}/composite/surrogate:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Assembles a Composite Knowledge Asset Surrogate using the Surrogates of the components
+      description: |
+        Given a Composite Knowledge Asset, the server SHALL consult the Structure to determine its Components,
+        retrieve the Surrogate for each Component, and _assemble_ them into a Composite Knowledge Carrier.
+
+        The Surrogate SHOULD be the Canonical surrogate, unless Content Negotiation is used, and better alternatives
+        can fit the client's request. Content Negotiation can also be used to apply some trans*tion to the
+        Canonical Surrogates before returning them (e.g. projection by profile, or transcription between JSON vs XML).
+
+        The server MIGHT also support the _flattening_ of the Surrogates into a single Surrogate, if such an operation
+        is defined for the retrieved Surrogates.
+      operationId: getCompositeKnowledgeAssetSurrogate
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/flat'
+        - $ref: '#/parameters/extAccept'
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            $ref: '#/definitions/CompositeKnowledgeCarrier'
+        300:
+          description: |
+            The Composite Asset cannot be assembled in the desired format, but alternatives are available
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        403:
+          description: |
+            The client cannot access the Asset
+        404:
+          description: |
+            Asset Version not found
+        406:
+          description: |
+            The Artifact(s) cannot be delivered using the desired representation(s), and no alternatives are available
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+    post:
+      tags:
+        - Knowledge Asset Repository
+      summary: Assembles an Anonymous Composite Knowledge Asset Surrogate using an Asset and its relationships as a seed
+      description: |
+        Given an existing Knowledge Asset, executes a query that selects one or more Assets
+        based on the transitive closure of a (dependency) relationship.
+        The query's result bindings are treated as Asset Ids, resolved, and used to construct
+        an Anonymous Composite Knowledge Asset Surrogate
+      operationId: getAnonymousCompositeKnowledgeAssetSurrogate
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/extAccept'
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            $ref: '#/definitions/CompositeKnowledgeCarrier'
+        403:
+          description: |
+            The client cannot access the Asset
+        404:
+          description: |
+            Asset Version not found
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+
+  /cat/assets/{assetId}/versions/{versionTag}/composite/carrier:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Assembles a (Composite) Knowledge Artifact that is a manifestation of the given Composite Knowledge Asset.
+      description: |
+        Given a Composite Knowledge Asset, the server SHALL either
+        (i) determine if there is a (flat) Carrier for that Composite Asset, or
+        (ii) consult the Structure to determine the Components, retrieve a Carrier for each Component, and _assemble_ them into a Composite Knowledge Carrier.
+
+        The choice between (i) and (ii) is dictated by the flat parameter.
+        If true, (i) will be attempted first, then (ii), and finally a flattening will be attempted.
+        If false, (ii) will be executed
+
+        The server SHOULD honor Content Negotiation in the choice of artifacts, and respond with a 406 code if the client preferences (extAccept, flat) cannot be satisfied. The server MIGHT also be lenient, and fall back to either strategy if the other fails.
+      operationId: getCompositeKnowledgeAssetCarrier
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/flat'
+        - $ref: '#/parameters/extAccept'
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            $ref: '#/definitions/CompositeKnowledgeCarrier'
+        300:
+          description: |
+            The Composite Artifact cannot be assembled in the desired format, but alternatives are available
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        403:
+          description: |
+            The client cannot access the Asset
+        404:
+          description: |
+            Asset Version not found
+        406:
+          description: |
+            The Artifact(s) cannot be delivered using the desired representation(s), and no alternatives are available
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+    post:
+      tags:
+        - Knowledge Asset Repository
+      summary: Assembles an Anonymous Composite Knowledge Asset Carrier using an Asset and its relationships as a seed
+      description: |
+        Given an existing Knowledge Asset, executes a query that selects one or more Assets
+        based on the transitive closure of a (dependency) relationship
+        The query's result bindings are treated as Asset Ids, resolved, mapped to a Carrier
+        Artifact, and used to construct an Anonymous Composite Knowledge Artifact
+      operationId: getAnonymousCompositeKnowledgeAssetCarrier
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/extAccept'
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            $ref: '#/definitions/CompositeKnowledgeCarrier'
+        403:
+          description: |
+            The client cannot access the Asset
+        404:
+          description: |
+            Asset Version not found
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+
+
+parameters:
+
+  assetTypeTag:
+    in: query
+    name: assetTypeTag
+    required: false
+    type: string
+    description: |
+      An unqualified, codified term ("tag") that identifies a type, category or class of Knowledge Assets defined in some ontology
+      or classification scheme known to the server.
+
+  assetAnnotationTag:
+    in: query
+    name: assetAnnotationTag
+    required: false
+    type: string
+    description: |
+      An unqualified, codified term ("tag") that identifies a relationship between a Knowledge Assets and a concept.
+      The relationship must be defined in some ontology known to the server.
+
+  assetAnnotationConcept:
+    in: query
+    name: assetAnnotationConcept
+    required: false
+    type: string
+    format: uri
+    description: |
+      A fully qualified (URI) term that denotes a concept that can be used to annotate assets.
+
+  assetId:
+    in: path
+    name: assetId
+    required: true
+    type: string
+    format: uuid
+    description: |
+      The id of the Knowledge Asset (Series).
+
+  versionTag:
+    in: path
+    name: versionTag
+    required: true
+    type: string
+    description: |
+      The version tag of a Versioned Entity. \n Versioned Identifiers identify specific, Immutable Versions of Mutable Entities, which reflect the state of that Entity at a given point in time. Where a version(ed) identifier is universal, the Tag represents the local part of that identifier, under the scope of the identifier that denotes the Entity (series).
+
+  artifactId:
+    in: path
+    name: artifactId
+    required: true
+    type: string
+    format: uuid
+    description: |
+      The id of the Knowledge Artifact that carries a concrete expression of a Knowledge Asset.
+
+  surrogateId:
+    in: path
+    name: surrogateId
+    required: true
+    type: string
+    format: uuid
+    description: |
+      The id of the Knowledge Artifact that carries a metadata record about a Knowledge Asset.
+
+  artifactVersionTag:
+    in: path
+    name: artifactVersionTag
+    required: true
+    type: string
+    description: |
+      The version tag a (version of a) Knowledge Artifact
+
+
+  surrogateVersionTag:
+    in: path
+    name: surrogateVersionTag
+    required: true
+    type: string
+    description: |
+      The version tag a (version of a) Knowledge Asset Surrogate
+
+
+  depth:
+    in: query
+    name: depth
+    required: false
+    type: integer
+    description: |
+      The maximum allowed relationship-induced distance between two assets. Two assets X and Y have distance N if there exist other N-1 distinct assets W such that A is related to W1, W1 is related to W2, .., Wn-1 is related to Y.
+
+  flat:
+    in: query
+    name: flat
+    required: false
+    type: boolean
+    description: |
+      Determines whether a Composite Asset should be flattened into a single Asset, or its Component Assets should be maintained separate.
+
+
+  extAccept:
+    in: header
+    name: X-Accept
+    required: false
+    type: string
+    description: |
+      A MIME Type that codifies the syntactic representation of a Knowledge Artifact, as accepted by the client in a content negotiation sense.
+
+  assetSurrogate:
+    in: body
+    name: assetSurrogate
+    required: false
+    schema:
+      $ref: '#/definitions/KnowledgeAsset'
+    description: |
+      The Surrogate of a Knowledge Asset.
+
+  surrogateCarrier:
+    in: body
+    name: surrogateCarrier
+    required: true
+    schema:
+      $ref: '#/definitions/KnowledgeCarrier'
+    description: |
+      The Surrogate of a Knowledge Asset, wrapped in a Knowledge Carrier.
+
+  assetCarrier:
+    in: body
+    name: assetCarrier
+    required: true
+    schema:
+      $ref: '#/definitions/KnowledgeCarrier'
+    description: |
+      The manifestation of a Knowledge Asset, wrapped as a Knowledge Carrier.
+
+
+  exemplar:
+    in: body
+    name: exemplar
+    required: false
+    schema:
+      type: string
+      format: binary
+    description: |
+      A Knowledge Artifact that carries an exemplar of a Knowledge Assets.
+
+
+  #TODO - Should be moved to a common file
+
+  graphQuery:
+    in: body
+    name: graphQuery
+    required: true
+    schema:
+      $ref: '#/definitions/KnowledgeCarrier'
+    description: |
+      The query, wrapped in a KnowledgeCarrier that must state in what language the query is expressed
+
+  beforeTag:
+    in: query
+    name: beforeTag
+    required: false
+    type: string
+    description: |
+      Restricts the series to include only versions before (included) a given version Tag.
+      Assumes the underlying versioning scheme has at least a partial ordering defined.
+  afterTag:
+    in: query
+    name: afterTag
+    required: false
+    type: string
+    description: |
+      Restricts the series to include only versions after (included) a given version Tag.
+      Assumes the underlying versioning scheme has at least a partial ordering defined.
+
+  sort:
+    in: query
+    name: sort
+    required: false
+    type: string
+    default: "asc"
+    description: |
+      Allows to sort a collection by one ore more properties.
+
+  offset:
+    in: query
+    name: offset
+    type: integer
+    required: false
+    description: |
+      Filters elements in a collection, returning all elements after the 'offset' index included,
+      ignoring all previous elements.
+  limit:
+    in: query
+    name: limit
+    type: integer
+    required: false
+    description: |
+      Returns up to the given number of elements in a collection.
+
+
+
+definitions:
+
+  Pointer:
+    type: object
+
+  KnowledgeCarrier:
+    type: object
+    description: |
+      A Resource that wraps a Serialized, Encoded Knowledge Artifact
+
+  CompositeKnowledgeCarrier:
+    type: object
+    description: |
+      A Specialized KnowledgeCarrier for composite Artifacts (Surrogates and Carriers)
+
+
+  KnowledgeAsset:
+    title: Knowledge Asset Surrogate
+    type: object
+    description: |
+      A Resource that contains descriptive information about a specific version of a
+      Knowledge Asset, as well as its known Representations and/or Manifestations.
+      The actual content model is implementation specific, so the adopted language specification
+      must be manifested by the Knowledge Asset Catalog.
+
+  KnowledgeAssetCatalog:
+    title: Knowledge Asset Catalog
+    type: object
+    description: |
+      A Resource that provides a summary of the features of a Catalog at a given point in time,
+      including the categories and types of Assets it supports, and the model/schema used to represent Assets' descriptions.
+
+  Bindings:
+    title: Bindings
+    type: object
+    description: |
+      A key/value pair map that binds the variables of a query to the result answer
+
+
+schemes:
+  - https
+# Added by API Auto Mocking Plugin
+basePath: /omg.org/spec/API4KP/20200801/api/repository/asset/v5
