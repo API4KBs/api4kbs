@@ -9,24 +9,47 @@ info:
     name: Apache License, Version 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   description: |
-    Maturity - MEDIUM (may be subject to changes)
 
-    ### Summary
+    APIs that expose the information processing capabilities of Knowledge Platform Components,
+    usually known as engines or reasoners, which are able to apply "knowledge" to "data",
+    in order to derive new information.
 
-    ** Knowledge-Driven Reasoning (web) Service that supports the execution of
-    Inferences, Queries, and related information processing tasks on one or more Knowledge Bases
+    Knowledge Reasoning APIs are likely to provide an abstraction layer for the proprietary
+    API of existing engines, but could also be used to expose engine-less microservices designed
+    to work with individual, named knowledge bases.
 
-    #### Identification
-    In this context, a Knowledge Base deployed in a runtime environment that is paired
-    with an execution engine will also be summarily denoted with the term '(executable) Model'.
+    The APIs pivot on the notion of Knowledge Base _in motion_, and consider reasoners
+    as operators applied to the KBs.
+    In this context, Knowledge Bases prepared for Reasoning are also called Knowledge Models,
+    or "Models" for short, providing a connection to modern AI implementations.
 
+    The boundary between 'instance data' and 'universal knowledge' is fuzzy, and is abstracted
+    once the substrate Knowledge Base is bound to the reasoner. Knowledge Graphs are a primary example.
+    Some reasoning operations allow Clients to provide bindings for input variables.
 
+    ** Implementation patterns **
+    The binding between the Knowledge Base and the Reasoning service can be implemented in different ways.
+    Patterns include, but are not limited to,
+    (i) Knowledge Bases deployed within an engine backing the server; (ii) be implemented by the server directly,
+    through manual software development or trans-compilation process; (iii) references that can be
+    resolved by the server; (iv) support proxy/broker/adapter patterns where the server delegates
+    the execution to another service
+
+    ** Service Boundaries **
+    Reasoning APIs integrate with KnowledgeBase construction APIs to gather the knowledge,
+    and prepare it in a form that can be processed by the engine.
+    Reasoning APIs may produce Knowledge Base (components), and KnowledgeBase Construction APIs
+    can be used to construct augmented, inferred Knowledge Bases, which can be further processed using
+    the Reasoning APIs
+
+    **Maturity**
+    As of this version, this API is considered experimental.
+    Stateful, Incremental and/or Asynchronous reasoning APIs are not supported in this version
 
 tags:
-  - name: Model
-    description: "Endpoints that expose (metadata about) the deployed model itself"
   - name: Reasoning
-    description: "Endpoints that expose a model's computation capabilities as a function"
+    description: |
+      Endpoints that expose Reasoning capabilities as synchronous, stateless services
   #- name: asynch
   #  description: "Endpoints that expose the model's asynchronous computation"
 
@@ -38,15 +61,15 @@ paths:
         - Model
       summary: List Models
       operationId: listModels
-      description: "List the Models running on this server."
+      description: |
+        Lists the Knowledge Bases that are available to this server for reasoning.
       produces:
         - application/json
         - application/xml
-      # TODO: Apply the pagination trait
-      # TODO: Apply the asset type filter trait - other search/filter parameters?
       responses:
         200:
-          description: "List of References to available Models"
+          description: |
+            A List of pointers to the available Models
           schema:
             type: array
             items:
@@ -58,7 +81,11 @@ paths:
         - Model
       summary: Describe Model
       operationId: getModel
-      description: "Return descriptive metadata about a specific model"
+      description: |
+        Return descriptive metadata about a Model.
+        This operation may return a Surrogate, including a canonical API4KP
+        Surrogate associated to the Knowledge Base, but could also return
+        a runtime-oriented Surrogate that describes the Knowledge Base as an executable artifact.
       produces:
         - application/json
         - application/xml
@@ -67,9 +94,8 @@ paths:
         - $ref: '#/parameters/versionTag'
       responses:
         200:
-          description: "Information about the computable knowledge that is being executed
-          as a service, including enough information to resolve the Knowledge Asset of
-          which the model is an instantiation."
+          description: |
+              A runtime surrogate
           schema:
             $ref: '#/definitions/KnowledgeCarrier'
 
@@ -81,7 +107,11 @@ paths:
       tags:
         - Reasoning
       operationId: infer
-      summary: performs an inference, deriving all logical consequences of the KB
+      summary: Derives all logical consequences of a given KB
+      description: |
+        Derives the necessary, inferred consequences of a given (asserted) Knowledge Base,
+        by means of logical derivation.
+        The client may optionally provide some input Bindings
       consumes:
         - application/json
       produces:
@@ -91,12 +121,14 @@ paths:
         - $ref: '#/parameters/versionTag'
         - in: body
           name: features
-          required: true
+          required: false
           schema:
             $ref: '#/definitions/Bindings'
+        - $ref: '#/parameters/params'
       responses:
         200:
-          description: "The results of the computation, returned synchronously"
+          description: |
+            The inferred axioms
           schema:
             $ref: '#/definitions/KnowledgeCarrier'
 
@@ -106,7 +138,12 @@ paths:
       tags:
         - Reasoning
       operationId: evaluate
-      summary: performs an inference, and returns the derived facts as bound variables
+      summary: Derives inferred features, based on input bindings
+      description: |
+        Evaluates a 'model' against some user provided 'inputs'.
+        Binds the client-provided inputs to the proper Knowledge Base variables,
+        performs an inference (see: infer), and returns the values associated
+        to some output variables.
       consumes:
         - application/json
       produces:
@@ -114,14 +151,12 @@ paths:
       parameters:
         - $ref: '#/parameters/modelId'
         - $ref: '#/parameters/versionTag'
-        - in: body
-          name: features
-          required: true
-          schema:
-            $ref: '#/definitions/Bindings'
+        - $ref: '#/parameters/features'
+        - $ref: '#/parameters/params'
       responses:
         200:
-          description: "The results of the computation, returned synchronously"
+          description: |
+            The inferred values for the KB's output variables
           schema:
             $ref: '#/definitions/Bindings'
 
@@ -131,7 +166,11 @@ paths:
       tags:
         - Reasoning
       operationId: entails
-      summary: performs an inference, testing whether a set of statements is derived in the process
+      summary: tests whether a set of statements is a logical consequence of a KB
+      description: |
+        performs an inference using the given Knowledge Base as a substrate, then
+        verifies whether the client's provided Knowledge Base Component is a subset
+        of the substrate Knowledge Base, and/or its logical consequences.
       consumes:
         - application/json
       produces:
@@ -144,10 +183,13 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/KnowledgeCarrier'
+        - $ref: '#/parameters/params'
       responses:
         200:
-          description: "The results of the computation, returned synchronously"
-
+          description: |
+            Whether or not the target KB entails the client provided one
+          schema:
+            type: boolean
 
 
   /models/{modelId}/versions/{versionTag}/reasoners/queryanswers:
@@ -156,6 +198,10 @@ paths:
         - Reasoning
       operationId: askQuery
       summary: queries the KB, returning bindings to the query's variables
+      description: |
+        applies the client's provided Query to the target Knowledge Base.
+        If the query specifies any output variable, this operation will
+        return the inferred bindings for those variables.
       parameters:
         - $ref: '#/parameters/modelId'
         - $ref: '#/parameters/versionTag'
@@ -164,14 +210,15 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/KnowledgeCarrier'
+        - $ref: '#/parameters/params'
       responses:
         200:
-          description: The bound expression
+          description: |
+            The bindings of the query variables
           schema:
             type: array
             items:
               $ref: '#/definitions/Bindings'
-
 
 
   /models/{modelId}/versions/{versionTag}/reasoners/checks:
@@ -180,12 +227,19 @@ paths:
         - Reasoning
       operationId: checkConsistency
       summary: determines whether the KB is internally logically consistent
+      description: |
+        Determines the consistency of a Knowledge Base, usually by determining
+        whether 'false' is a logical consequence of the KB
       parameters:
         - $ref: '#/parameters/modelId'
         - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/params'
       responses:
         200:
-          description: The bound expression
+          description: |
+            Whether or not the target KB is logically consistent
+          schema:
+            type: boolean
 
 
   /models/{modelId}/versions/{versionTag}/reasoners/sats:
@@ -193,13 +247,22 @@ paths:
       tags:
         - Reasoning
       operationId: checkSatisfiability
-      description: determines whether the KB is satisfiable
+      summary: determines whether the KB is satisfiable
+      description: |
+        Determines whether the Knowledge Base is satisfiable, i.e. whether the KB is not inconsistent
+        and, if the KB has open variables, there is at least one binding of those variables
+        that would result in a KB that is still consistent.
       parameters:
         - $ref: '#/parameters/modelId'
         - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/params'
       responses:
         200:
-          description: The bound expression
+          description: |
+            A list of at least one Binding if the KB is satisfiable, or an empty list if the KB is not.
+            Notice that an empty list of Bindings denotes an unsatisfiable KB, while a list with
+            Bindings that are empty would denote a trivially satisfiable KB - a KB that is consistent
+            and has no free variables.
           schema:
             type: array
             items:
@@ -211,14 +274,23 @@ paths:
       tags:
         - Reasoning
       operationId: listMembership
-      description: lists all the classes that an individual is member of
+      summary: lists all the classes that an individual is member of
+      description: |
+        Given the id of an individual, and optional features that describe that individual,
+        returns all the classes that the individual is a member of, or all the types
+        that the individual is an instance of.
+
+        This operation supports both qualitative and quantitative classifications.
       parameters:
         - $ref: '#/parameters/modelId'
         - $ref: '#/parameters/versionTag'
         - $ref: '#/parameters/entityId'
+        - $ref: '#/parameters/features'
+        - $ref: '#/parameters/params'
       responses:
         200:
-          description: The bound expression
+          description: |
+            References to the class(es) that the individual is a member of
           schema:
             type: array
             items:
@@ -227,29 +299,40 @@ paths:
       tags:
         - Reasoning
       operationId: checkMembership
-      description: determines if an individual is member of a class
+      summary: determines if an individual is member of a class
+      description: |
+        Given the id of an individual, some optional features that describe that individual,
+        and the id of a specific class, determines whether the individual is a member of that class
       parameters:
         - $ref: '#/parameters/modelId'
         - $ref: '#/parameters/versionTag'
         - $ref: '#/parameters/entityId'
         - $ref: '#/parameters/classId'
+        - $ref: '#/parameters/params'
       responses:
         200:
-          description: Success
+          description: |
+            Whether or not the given individual is a member of the given class
+          schema:
+            type: boolean
 
   /models/{modelId}/versions/{versionTag}/reasoners/classifiers/classes/{entityId}:
     get:
       tags:
         - Reasoning
       operationId: listSubsumptions
-      description: lists all the superclasses of a given Class
+      summary: lists all the superclasses of a given Class
+      description: |
+        Given the identifier of a class, returns all the classes that the given class is a subclass of.
       parameters:
         - $ref: '#/parameters/modelId'
         - $ref: '#/parameters/versionTag'
         - $ref: '#/parameters/entityId'
+        - $ref: '#/parameters/params'
       responses:
         200:
-          description: The bound expression
+          description: |
+            References to the superclasses of the given class
           schema:
             type: array
             items:
@@ -258,17 +341,21 @@ paths:
       tags:
         - Reasoning
       operationId: checkSubsumption
-      description: determines if a Class is a subclass of another class
+      summary: determines if a Class is a subclass of another class
+      description: |
+        Given the identifiers of two classes, returns true if and only if the former is a subclass of the latter.
       parameters:
         - $ref: '#/parameters/modelId'
         - $ref: '#/parameters/versionTag'
         - $ref: '#/parameters/entityId'
         - $ref: '#/parameters/classId'
+        - $ref: '#/parameters/params'
       responses:
         200:
-          description: Success
-
-
+          description: |
+            Whether or not the given class (entity) is a subclass of the reference class
+          schema:
+            type: boolean
 
 
 
@@ -279,11 +366,9 @@ parameters:
     type: string
     format: uuid
     required: true
-    description: "The Identifier of a known Inferential Knowledge Asset (aka kao#Assessment) that
-    is deployed and executed as a Service. This identifier SHOULD be an ID of the Asset itself,
-    not of the manifestation of the Asset within the server."
-
-
+    description: |
+      The Identifier of a known Knowledge Base that is deployed and executed as a Service.
+      This identifier SHOULD be an ID of the Asset itself, not of the manifestation of the Asset within the server.
 
   versionTag:
     in: path
@@ -307,7 +392,12 @@ parameters:
     format: uuid
     required: true
 
-
+  features:
+    in: body
+    name: features
+    required: false
+    schema:
+      $ref: '#/definitions/Bindings'
 
   lambdaId:
     in: path
@@ -329,6 +419,14 @@ parameters:
     name: xAccept
     description: |
       A formal MIME type used for content negotiation
+    required: false
+    type: string
+
+  params:
+    in: header
+    name: X-params
+    description: |
+      Additional, operation-specific parameter
     required: false
     type: string
 
