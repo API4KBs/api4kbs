@@ -1,0 +1,307 @@
+swagger: '2.0'
+info:
+  description: |
+    This is a Terminology API built on top of the API4KP framework that provides 
+    access to Terminologies and Concepts.
+    
+    In this context, 
+    
+    Terminologies are loosely defined as sets of Concepts, e.g. in the sense 
+    of SKOS ConceptSchemes or Collections, or OWL Ontology Documents.
+    Concepts are atomic units of knowledge that can be described/defined, can
+    be related to each other, and can be evoked by means of linguistic terms.
+  
+    Implementations of this API can be more formal in their definition, e.g.
+    by enforcing the separation of Class and Concept.
+    
+    This API is designed for Knowledge-Based implementations
+    
+  version: "4.1.0"
+  title: Terminology Server API
+  # put the contact info for your development or API team
+  contact:
+    email: dsotty@gmail.com
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+# tags are used for organizing operations
+tags:
+- name: Terms
+  description: Terminology related operations
+
+#TODO revisit the path naming strategy
+
+paths:
+  /terminologies:
+    get:
+      tags:
+      - Terms
+      summary: Lists available terminologies
+      operationId: listTerminologies
+      description: |
+        Enumerates the Terminologies currently managed by this server
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        200:
+          description: |
+            Returns a list of Pointers to the known Terminologies
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        501:
+          description: |
+            Internal error
+              
+              
+              
+  /terminologies/{vocabularyId}/versions/{versionTag}:
+    get:
+      # priority: medium-low
+      tags:
+      - Terms
+      summary: Retrieves some representation of a terminology system
+      description: |
+        Returns a representation of a specific version of the given terminology.
+        The terminology is supposed to define
+        Supports content negotiation to handle e.g. RDF vs FHIR
+      operationId: getVocabulary
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+        - $ref: '#/parameters/vocabularyId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/xAccept'
+      responses:
+        200:
+          description: success
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        400:
+          description: vocabulary not found   
+          
+    post:
+      # priority: high for concept ids, low for post-coordinated expressions
+      tags:
+      - Terms
+      summary: Resolves a concept (expression) within a terminology system
+      operationId: isMember
+      description: |
+        Determines is a concept is a member of this vocabulary.
+        Implementations depend on whether the vocabulary is enumerated, vs having
+        a computable definition.
+        The client can provide either a concept identifier, or a post-coordinated expression
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+        - $ref: '#/parameters/vocabularyId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/conceptExpression'
+      responses:
+        200:
+          description: success
+        400:
+          description: vocabulary not found           
+              
+  /terminologies/{vocabularyId}/versions/{versionTag}/terms:
+    get:
+      # priority: high
+      tags:
+      - Terms
+      summary: Lists terms in a terminology system
+      operationId: getTerms
+      description: |
+        Lists the terms in a given Vocabulary. Supports simple search by filtering
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+        - $ref: '#/parameters/vocabularyId'
+        - $ref: '#/parameters/versionTag'
+        - name: label
+          in: query
+          description: Filters by terms with matching label
+          required: false
+          type: string
+          
+      responses:
+        200:
+          description: success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ConceptDescriptor'
+        400:
+          description: vocabulary not found
+
+  /terminologies/{vocabularyId}/versions/{versionTag}/terms/{conceptId}:
+    get:
+      # priority: high
+      tags:
+      - Terms
+      summary: Describes a concept
+      operationId: getTerm
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+        - $ref: '#/parameters/vocabularyId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/conceptId'
+      responses:
+        200:
+          description: success
+          schema:
+            $ref: '#/definitions/ConceptDescriptor'
+        400:
+          description: vocabulary or concept not found
+
+
+  /terminologies/{vocabularyId}/versions/{versionTag}/terms/{conceptId}/ancestors:
+
+    get:
+      # priority: low
+      tags:
+      - Terms
+      summary: List the ancestor(s) of the selected concept
+      operationId: listAncestors
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+        - $ref: '#/parameters/vocabularyId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/conceptId'
+      responses:
+        200:
+          description: The query was executed successfully.  Does not imply that any result will be returned.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ConceptDescriptor'
+        400:
+          description: vocabulary not found
+    post:
+      # priority: low
+      tags:
+      - Terms
+      summary: Determines the target concept is an ancestor of the selected concept
+      operationId: isAncestor
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+        - $ref: '#/parameters/vocabularyId'
+        - $ref: '#/parameters/versionTag'
+        - $ref: '#/parameters/conceptId'
+        
+        - $ref: '#/parameters/testConceptId'
+      responses:
+        200:
+          description: success
+          schema:
+            $ref: '#/definitions/boolean'
+        400:
+          description: vocabulary not found     
+
+  /terminologies/terms/{conceptId}:
+    get:
+      # priority: high
+      tags:
+        - Terms
+      summary: Looks up a concept across terminology systems
+      description: |
+        Tries to resolve a concept, by id, across all known terminologies.
+        Returns the most recent description of that concept, as represented by _any_ terminology
+        in which the concept was (re)defined. If there are multiple definitions that cannot be sorted
+        temporally, the server SHOULD validate that all the definitions are consistent.
+        If not, the server MAY reconcile the descriptions, but COULD also
+        return any one of the representations, non-deterministically
+      operationId: lookupTerm
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: '#/parameters/conceptId'
+      responses:
+        200:
+          description: concept resolved in at least one terminology
+          schema:
+            $ref: '#/definitions/ConceptDescriptor'
+        400:
+          description: concept not found in any terminology
+          
+parameters:
+
+  vocabularyId:
+    name: vocabularyId
+    in: path
+    description: The id of the terminology system
+    required: true
+    type: string
+    format: uuid
+    
+  conceptId:
+    name: conceptId
+    in: path
+    description: The id of a concept
+    required: true
+    type: string
+    
+        
+  testConceptId:
+    name: testConceptId
+    in: query
+    description: The id of a concept
+    required: true
+    type: string
+    
+  conceptExpression:
+    name: conceptExpression
+    in: query
+    description: The id of a concept
+    required: true
+    type: string
+    
+  relationshipId:
+    name: relationshipId
+    in: query
+    description: The id of a concept relationship
+    required: false
+    type: string
+
+  versionTag:
+    name: versionTag
+    in: path
+    description: The version of the terminology system
+    required: true
+    type: string
+
+  xAccept:
+    name: xAccept
+    in: query
+    description: A formal MIME type that express the client's preferences during content negotiation
+    required: false
+    type: string
+
+
+
+definitions:
+  Pointer:
+    type: object
+  ConceptDescriptor:
+    type: object
+  KnowledgeCarrier:
+    type: object
+    
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /omg.org/spec/API4KP/20200801/api/terminology/v4
+schemes:
+ - https

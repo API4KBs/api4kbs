@@ -1,0 +1,753 @@
+swagger: '2.0'
+info:
+  version: "5.0.0"
+  title: 'API4KP Knowledge Asset Transrepresentation API'
+  contact:
+    name: Davide Sottara
+    email: sottara.davide@mayo.edu
+  license:
+    name: Apache License, Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  description: |
+    This API defines "syntactic" manipulations of Knowledge Artifacts, based on the stratified representational aspects
+    of the Artifacts themselves (Language, profile, syntax/serialization, meta-format, encoding).
+
+    Supports both 'vertical' operations (parsing/serialization), which preserve the Asset and the Langauge,
+    and 'horizontal' operations (transrepresentations) which preserve the aspects up to a certain level,
+    but map across variants at the same level.
+
+    The API specializes the Knowledge Platform pattern. Components include one or more Operators, and each Operator
+    supports an API4KP Operation.
+    The Operator is the primary entity. For a given Operation type (detect, translate, etc), the server is expected
+    to index one more operators. If multiple operators of the same kind exist, the server will play a broker role and
+    use content negotiation to select the operator that is best fitting to satisfy a client's request.
+    The Operators can also be discovered, directly or through the Components. The APIs are overloaded so that
+    the client can interact with a specific Operator.
+
+    Syntactic Operations are curried to consume a Knowledge Artifact (wrapped in a Knowledge Carrier),
+    and return a wrapped KnowledgeCarrier, effectively behaving as functors in the functional programming sense.
+
+    The Operators can be addressed by identifier, or by pattern matching on the Syntactic Representations they consume or produce.
+    Patterns on the input will select operators that can process more equal or more general representations;
+    patterns on the output will select operators that can produce equal or more specific representations than the pattern itself.
+    Where necessary (e.g. as query/filter parameters), Syntactic Representations are encoded using formal MIME types.
+
+    **Maturity**
+    As of this version, this API is considered stable, but subject to extensions
+
+tags:
+  - name: discovery
+    description: Describe Server Capability
+  - name: transxion
+    description: Apply available cross-Language Transrepresentation Capabilities.
+  - name: detect
+    description: Detect Language(s) used in an Expression
+  - name: validate
+    description: Validate that an Expression conforms to a Language(s)
+  - name: deserialize
+    description: Lift (parse) or Lower (serialize) an Expression
+
+paths:
+
+  ###################################################################################################
+
+
+  /tranx/components:
+    get:
+      tags:
+        - discovery
+      summary: List available Transrepresentation Components
+      description: |
+        Enumerates the Transrepresentation Components that are supported by this server
+      operationId: listTxComponents
+      parameters:
+        - $ref: '#/parameters/from'
+        - $ref: '#/parameters/into'
+        - $ref: '#/parameters/methodTag'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Transrepresentator'
+
+  /tranx/components/{componentId}:
+    get:
+      tags:
+        - discovery
+      summary: Get Transrepresentation Component
+      description: |
+        Returns the description of a specific Transrepresentation Components,
+        including the Operators it provides and the software library that
+        this component is an instance of.
+      operationId: getTxComponent
+      parameters:
+        - $ref: '#/parameters/componentId'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/Transrepresentator'
+
+  /tranx/transxor:
+    post:
+      tags:
+        - transxion
+      summary: Applies a trans-representation operation.
+      operationId: applyTransrepresent
+      description: |
+        Applies a trans-representation operation to a KnowledgeCarrier,
+        selecting an Operator that supports the carrier's representation
+      parameters:
+        - $ref: '#/parameters/sourceArtifact'
+        - $ref: '#/parameters/extAccept'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: The transformed artifact
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+
+  /tranx/transxors:
+    get:
+      tags:
+        - transxion
+      summary: List available Transrepresentation Operators
+      description: |
+        Enumerates the Transrepresentation Operators that are supported by this server
+      operationId: listTxionOperators
+      parameters:
+        - $ref: '#/parameters/from'
+        - $ref: '#/parameters/into'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/TransrepresentationOperator'
+
+
+
+  /tranx/transxors/{operatorId}:
+    get:
+      tags:
+        - transxion
+      summary: Get Transrepresentation operator.
+      operationId: getTxionOperator
+      description: |
+        Returns the description of a specific Transrepresentation Operator,
+        including the kind of operation it provides, the representations
+        (consumed and produced) and the accepted parameters
+      parameters:
+        - $ref: '#/parameters/operatorId'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/TransrepresentationOperator'
+    post:
+      tags:
+        - transxion
+      summary: Applies a trans-representation operation.
+      operationId: applyNamedTransrepresent
+      description: |
+        Applies a known trans-representation operation to a KnowledgeCarrier
+      parameters:
+        - $ref: '#/parameters/operatorId'
+        - $ref: '#/parameters/sourceArtifact'
+        - $ref: '#/parameters/extAccept'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: The transformed artifact
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+
+
+
+  ###################################################################################################
+
+
+  /detect/components:
+    get:
+      tags:
+        - discovery
+      summary: List available Detector Components
+      description: |
+        Enumerates the Detection Components that are supported by this server
+      operationId: listDetectComponents
+      parameters:
+        - $ref: '#/parameters/into'
+        - $ref: '#/parameters/methodTag'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Detector'
+
+  /detect/components/{componentId}:
+    get:
+      tags:
+        - discovery
+      summary: Get Detector Component
+      description: |
+        Returns the description of a specific Detector Components,
+        including the Operators it provides and the software library that
+        this component is an instance of.
+      operationId: getDetectComponent
+      parameters:
+        - $ref: '#/parameters/componentId'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/Detector'
+
+  /detect/detector:
+    post:
+      tags:
+        - detect
+      summary: Sets the representation(s) used in a given Artifact
+      description: |
+        Detects various aspects of the representation used in a Knowledge Artifact,
+        and sets it on the Carrier itself. Will not attempt to re-evaluate any
+        representation information that is already present on the input Carrier.
+      operationId: applyDetect
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: '#/parameters/sourceArtifact'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: |
+            A Knowledge Carrier that contains the same as, or an identical copy of,
+            the input Artifact, enriched with the detected representation information
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+  /detect/detectors:
+    get:
+      tags:
+        - detect
+      summary: List available Detection Operators
+      description: |
+        Enumerates the Detection Operators that are supported by this server
+      operationId: listDetectionOperators
+      parameters:
+        - $ref: '#/parameters/into'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DetectionOperator'
+
+  /detect/detectors/{operatorId}:
+    get:
+      tags:
+        - detect
+      summary: Get Detection operator.
+      operationId: getDetectionOperator
+      description: |
+        Returns the description of a specific Transrepresentation Operator,
+        including the kind of operation it provides, the representations
+        (consumed and produced) and the accepted parameters
+      parameters:
+        - $ref: '#/parameters/operatorId'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/DetectionOperator'
+    post:
+      tags:
+        - detect
+      summary: Applies a trans-representation operation.
+      operationId: applyNamedDetect
+      description: |
+        Applies a known detection operation to a KnowledgeCarrier
+      parameters:
+        - $ref: '#/parameters/operatorId'
+        - $ref: '#/parameters/sourceArtifact'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: The transformed artifact
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+  ###################################################################################################
+
+
+  /valid/components:
+    get:
+      tags:
+        - discovery
+      summary: List available Validator Components
+      description: |
+        Enumerates the Validator Components that are supported by this server
+      operationId: listValidationComponents
+      parameters:
+        - $ref: '#/parameters/from'
+        - $ref: '#/parameters/methodTag'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Validator'
+
+  /valid/components/{componentId}:
+    get:
+      tags:
+        - discovery
+      summary: Get Validator Component
+      description: |
+        Returns the description of a specific Validator Components,
+        including the Operators it provides and the software library that
+        this component is an instance of.
+      operationId: getValidationComponent
+      parameters:
+        - $ref: '#/parameters/componentId'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/Validator'
+
+  /valid/validator:
+    post:
+      tags:
+        - validate
+      summary: Determines if a given Artifact conforms to a given representation
+      description: |
+        Attempts to establish whether a given Knowledge Artifact is a valid expression
+        of a given language, profile, lexicon and/or serialization"
+      operationId: applyValidate
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - $ref: '#/parameters/sourceArtifact'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: |
+            Success, if the validation succeeds
+
+
+  /valid/validators:
+    get:
+      tags:
+        - validate
+      summary: List available Validation Operators
+      description: |
+        Enumerates the Validation Operators that are supported by this server
+      operationId: listValidationOperators
+      parameters:
+        - $ref: '#/parameters/from'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ValidationOperator'
+
+  /valid/validators/{operatorId}:
+    get:
+      tags:
+        - validate
+      summary: Get Validation operator.
+      operationId: getValidationOperator
+      description: |
+        Returns the description of a specific Validation Operator,
+        including the kind of operation it provides, the representations
+        (consumed and produced) and the accepted parameters
+      parameters:
+        - $ref: '#/parameters/operatorId'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/ValidationOperator'
+    post:
+      tags:
+        - validate
+      summary: Applies a Validation operation.
+      operationId: applyNamedValidate
+      description: |
+        Applies a known validation operation to a KnowledgeCarrier
+      parameters:
+        - $ref: '#/parameters/operatorId'
+        - $ref: '#/parameters/sourceArtifact'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: |
+            Success, if the validation succeeds
+
+
+  ###################################################################################################
+
+  /deser/components:
+    get:
+      tags:
+        - discovery
+      summary: List available Deserialization Components
+      description: |
+        Enumerates the Deserialization Components that are supported by this server
+      operationId: listDeserializationComponents
+      parameters:
+        - $ref: '#/parameters/from'
+        - $ref: '#/parameters/into'
+        - $ref: '#/parameters/methodTag'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Deserializer'
+
+  /deser/components/{componentId}:
+    get:
+      tags:
+        - discovery
+      summary: Get Deserialization Component
+      description: |
+        Returns the description of a specific Deserialization Components,
+        including the Operators it provides and the software library that
+        this component is an instance of.
+      operationId: getDeserializationComponent
+      parameters:
+        - $ref: '#/parameters/componentId'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/Deserializer'
+
+  /deser/lifter:
+    post:
+      tags:
+        - deserialize
+      summary: Parses a Knowledge Artifact
+      description: |
+        Decodes, deserializes and/or parses a Knowledge Artifact, ensuring that
+        the resulting artifact is at the desired level.
+
+        The optional extAccept parameter further constrains the extent and details of the parsing
+        when multiple lifting alternatives are possible.
+
+        If the input artifact is already at the desired level, the same artifact will be returned.
+        If the input artifact is at a higher level, the operation will fail
+      operationId: applyLift
+      parameters:
+        - $ref: '#/parameters/sourceArtifact'
+        - $ref: '#/parameters/levelTag'
+        - $ref: '#/parameters/extAccept'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: A Knowledge Artifact that is the deserialized version of the source artifact.
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+  /deser/lifters:
+    get:
+      tags:
+        - deserialize
+      summary: List available Lifting Operators
+      description: |
+        Enumerates the Lifting Operators that are supported by this server
+      operationId: listLiftOperators
+      parameters:
+        - $ref: '#/parameters/from'
+        - $ref: '#/parameters/into'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DeserializationOperator'
+
+  /deser/lifters/{operatorId}:
+    get:
+      tags:
+        - deserialize
+      summary: Get Lifting operator.
+      operationId: getLiftOperator
+      description: |
+        Returns the description of a specific Lift Operator,
+        including the kind of operation it provides, the representations
+        (consumed and produced) and the accepted parameters
+      parameters:
+        - $ref: '#/parameters/operatorId'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/DeserializationOperator'
+    post:
+      tags:
+        - deserialize
+      summary: Parses a Knowledge Artifact
+      description: |
+        Decodes, deserializes and/or parses a Knowledge Artifact, ensuring that
+        the resulting artifact is at the desired level.
+
+        The optional extAccept parameter further constrains the extent and details of the parsing
+        when multiple lifting alternatives are possible.
+
+        If the input artifact is already at the desired level, the same artifact will be returned.
+        If the input artifact is at a higher level, the operation will fail
+      operationId: applyNamedLift
+      parameters:
+        - $ref: '#/parameters/operatorId'
+        - $ref: '#/parameters/sourceArtifact'
+        - $ref: '#/parameters/levelTag'
+        - $ref: '#/parameters/extAccept'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: A Knowledge Artifact that is the deserialized version of the source artifact.
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+
+  /deser/lowerer:
+    post:
+      tags:
+        - deserialize
+      summary: Serializes a Knowledge Artifact
+      description: |
+        Serializes and/or encodes a Knowledge Artifact, ensuring that
+        the resulting artifact is at the desired level.
+
+        The optional extAccept parameter further constrains the extent and details of the serialization
+        when multiple lifting alternatives are possible.
+
+        If the input artifact is already at the desired level, the same artifact will be returned.
+        If the input artifact is at a lower level, the operation will fail
+      operationId: applyLower
+      parameters:
+        - $ref: '#/parameters/sourceArtifact'
+        - $ref: '#/parameters/levelTag'
+        - $ref: '#/parameters/extAccept'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: A Knowledge Artifact that is the serialized version of the source artifact.
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+  /deser/lowerers:
+    get:
+      tags:
+        - deserialize
+      summary: List available Lowering Operators
+      description: |
+        Enumerates the Lowering Operators that are supported by this server
+      operationId: listLowerOperators
+      parameters:
+        - $ref: '#/parameters/from'
+        - $ref: '#/parameters/into'
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref:  '#/definitions/DeserializationOperator'
+
+  /deser/lowerers/{operatorId}:
+    get:
+      tags:
+        - deserialize
+      summary: Get Lowering operator.
+      operationId: getLowerOperator
+      description: |
+        Returns the description of a specific Lowering Operator,
+        including the kind of operation it provides, the representations
+        (consumed and produced) and the accepted parameters
+      parameters:
+        - $ref: '#/parameters/operatorId'
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/DeserializationOperator'
+    post:
+      tags:
+        - deserialize
+      summary: Parses a Knowledge Artifact
+      description: |
+        Serializes and/or encodes a Knowledge Artifact, ensuring that
+        the resulting artifact is at the desired level.
+
+        The optional extAccept parameter further constrains the extent and details of the serialization
+        when multiple lifting alternatives are possible.
+
+        If the input artifact is already at the desired level, the same artifact will be returned.
+        If the input artifact is at a lower level, the operation will fail
+      operationId: applyNamedLower
+      parameters:
+        - $ref: '#/parameters/operatorId'
+        - $ref: '#/parameters/sourceArtifact'
+        - $ref: '#/parameters/levelTag'
+        - $ref: '#/parameters/extAccept'
+        - $ref: '#/parameters/params'
+      responses:
+        200:
+          description: A Knowledge Artifact that is the deserialized version of the source artifact.
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+
+
+
+
+    ###################################################################################################
+
+
+
+parameters:
+
+  componentId:
+    in: path
+    name: componentId
+    description: |
+      The id of a Platform component that supports one or more operations.
+    required: true
+    type: string
+    format: uuid
+
+  operatorId:
+    in: path
+    name: operatorId
+    description: |
+      The id of an Operator, implementing one of the operations
+      offered by a Component.
+    required: true
+    type: string
+    format: uuid
+
+  sourceArtifact:
+    in: body
+    name: sourceArtifact
+    description: |
+      The Carrier of a Source Knowledge Artifact, which is generally expected to
+      provide information about the representation of the Artifact itself
+    required: true
+    schema:
+      $ref: '#/definitions/KnowledgeCarrier'
+
+  extAccept:
+    in: header
+    name: X-Accept
+    required: false
+    type: string
+    description: |
+      A MIME Type that codifies the client's desired representation as the output
+      of a syntactic operation
+
+  levelTag:
+    in: body
+    name: levelTag
+    description: Additional information that describes the desired (acceptable) resulting representation(s)
+    required: true
+    schema:
+      $ref: '#/definitions/ParsingLevel'
+
+  from:
+    in: query
+    name: from
+    description: |
+      formal MIME encoding of a Syntactic Representation pattern used to filter
+      components and operators that can consume specific representations
+    required: false
+    type: string
+
+  into:
+    in: query
+    name: into
+    description: |
+      formal MIME encoding of a Syntactic Representation pattern used to filter
+      components and operators that can produce specific representations
+    required: false
+    type: string
+
+  methodTag:
+    in: query
+    name: methodTag
+    description: |
+      Specifies the strategy by which a given operation is requested to be executed
+    required: false
+    type: string
+
+  params:
+    in: header
+    name: X-params
+    description: |
+      Additional, operation-specific parameter
+    required: false
+    type: string
+
+definitions:
+
+
+  KnowledgeCarrier:
+    type: object
+
+  ParsingLevel:
+    type: string
+    description: "A vertical level of absraction on the binary/string/parse tree/AST/ASG chain"
+
+
+  Transrepresentator:
+    type: object
+    description: "A (descriptor of a) Knowledge Platform Component that supports Transrepresentation Operators"
+
+  TransrepresentationOperator:
+    type: object
+    description: "A (descriptor of an) Operator that provides Transrepresentation Operations"
+
+  Detector:
+    type: object
+    description: "A (descriptor of a) Knowledge Platform Component that supports Detect Operators"
+
+  DetectionOperator:
+    type: object
+    description: "A (descriptor of an) Operator that provides Syntactic Detection Operations"
+
+  Validator:
+    type: object
+    description: "A (descriptor of a) Knowledge Platform Component that supports Validation Operators"
+
+  ValidationOperator:
+    type: object
+    description: "A (descriptor of an) Operator that provides Syntactic Validation Operations"
+
+  Deserializer:
+    type: object
+    description: "A (descriptor of a) Knowledge Platform Component that supports Deserialization Operators"
+
+  DeserializationOperator:
+    type: object
+    description: "A (descriptor of an) Operator that provides Deserialization Operations"
+
+
+basePath: /omg.org/spec/API4KP/20200801/api/transrepresentation/v5
+schemes:
+  - https
