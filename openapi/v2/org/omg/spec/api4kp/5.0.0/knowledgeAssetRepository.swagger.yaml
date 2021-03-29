@@ -116,7 +116,29 @@ paths:
         500:
           description: |
             Internal Error
-
+    delete:
+      tags:
+        - Knowledge Asset Catalog
+      summary: Clear Knowledge Asset Catalog.
+      description: |
+        Clears the Knowledge Asset Catalog.
+        This operation may not implemented, enabled via configuration, or require higher privileges
+      operationId: clearKnowledgeAssetCatalog
+      responses:
+        200:
+          description: Success
+        401:
+          description: |
+            Unauthenticated
+        403:
+          description: |
+            Unauthorized
+        500:
+          description: |
+            Internal Error
+        501:
+          description: |
+            Not Implemented
 
   ####################################################################################################
 
@@ -257,8 +279,42 @@ paths:
         501:
           description: |
             Not implemented
+    delete:
+      tags:
+        - Knowledge Asset Catalog
+      summary: Removes Knowledge Assets.
+      description: |
+        Ensures that no Knowledge Assets, possibly filtered by asset type, are available in the Catalog.
 
+        Selects all (matching) Assets, and for each Asset, invokes the deleteKnowledgeAsset operation,
+        subject to the limitations and constraints of that operation.
 
+        The operation is not transactional but is idempotent: the deletion of an Asset is not subject
+        to the successful deletion of any other Asset, and an attempt to delete an Asset that does
+        not exist (anymore) will likewise succeed.
+
+        Aggregates the results returning the minimally successful of the outcomes across all impacted Assets.
+      operationId: deleteKnowledgeAssets
+      parameters:
+        - $ref: '#/parameters/assetTypeTag'
+        - $ref: '#/parameters/assetAnnotationTag'
+        - $ref: '#/parameters/assetAnnotationConcept'
+      responses:
+        200:
+          description: |
+            Success
+        401:
+          description: |
+            Client is not authorized to delete Assets
+        403:
+          description: |
+            Deletion is not enabled
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Deletion is not implemented
 
 
 
@@ -313,14 +369,32 @@ paths:
         501:
           description: |
             Not implemented
-
-
-
-
-
-
-
-
+    delete:
+      tags:
+        - Knowledge Asset Catalog
+      summary: Removes all versions of a Knowledge Asset .
+      description: |
+        Ensures that no version of a given Knowledge Asset is available in the Catalog,
+        invoking deleteKnowledgeAssetVersion on each version of the Asset.
+      operationId: deleteKnowledgeAsset
+      parameters:
+        - $ref: '#/parameters/assetId'
+      responses:
+        200:
+          description: |
+            Success
+        401:
+          description: |
+            Client is not authorized to delete Assets
+        403:
+          description: |
+            Deletion is not enabled
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Deletion is not implemented
 
 
           ####################################################################################################
@@ -440,6 +514,41 @@ paths:
         501:
           description: |
             Not implemented
+    delete:
+      tags:
+        - Knowledge Asset Catalog
+      summary: Removes a specific version of a Knowledge Asset .
+      description: |
+        Removes a specific version of a Knowledge Asset.
+
+        Implementations may impose constraints on the semantics of a deletion, possibly leveraging
+        the soft-delete capabilities of an underlying Artifact Repository, on top of access control policies.
+        * Published Assets should not be deletable in PRODuction environments
+        * Archived Assets should be only soft-deletable in PRODuction environments
+        * Draft and Pre-published Assets should be deletable in pre-PRODuction environments
+
+        When the deletion of an Asset version is permitted and successful, all Surrogates and Carriers
+        associated to that version are removed from any internal Artifact Repository.
+      operationId: deleteKnowledgeAssetVersion
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+      responses:
+        200:
+          description: |
+            Success
+        401:
+          description: |
+            Client is not authorized to delete Assets
+        403:
+          description: |
+            Deletion is not enabled
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Deletion is not implemented
 
 
 
