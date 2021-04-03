@@ -53,11 +53,28 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Pointer'
-        501:
+        500:
           description: |
             Internal error
-              
-              
+    delete:
+      tags:
+        - Terms
+      summary: Clear the terminology content
+      operationId: clearTerminologies
+      description: |
+        Clears the server content.
+        For proxy-oriented servers, this request should invalidate the internal caches
+      responses:
+        200:
+          description: |
+            Success
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not Implemented
+
               
   /terminologies/{vocabularyId}/versions/{versionTag}:
     get:
