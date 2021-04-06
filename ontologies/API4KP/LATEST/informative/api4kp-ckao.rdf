@@ -48,12 +48,233 @@
 		<owl:imports rdf:resource="https://www.omg.org/spec/API4KP/api4kp/"/>
 		<owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/SNAPSHOT/api4kp-ckao/"/>
 	</owl:Ontology>
-	
+
+  <owl:Class rdf:about="&api4kp-kao;CategorizedKnowledgeAsset">
+    <rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-kao;ImperativeAsset">
+    <rdfs:subClassOf rdf:resource="&api4kp-kao;CategorizedKnowledgeAsset"/>
+    <skos:prefLabel>Rules, Policies and Guidelines</skos:prefLabel>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-kao;InferenceAsset">
+    <rdfs:subClassOf rdf:resource="&api4kp-kao;CategorizedKnowledgeAsset"/>
+    <rdfs:subClassOf rdf:resource="&api4kp;Definition"/>
+    <dct:identifier>d4b0e868-60c8-387d-a139-e3c35427bfb6</dct:identifier>
+    <skos:prefLabel xml:lang="en">Assessment, Predictive and Inferential Models</skos:prefLabel>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-kao;InformationAsset">
+    <rdfs:subClassOf rdf:resource="&api4kp-kao;CategorizedKnowledgeAsset"/>
+    <skos:prefLabel>Structured Information and Data Capture Models</skos:prefLabel>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-kao;SemioticAsset">
+    <rdfs:subClassOf rdf:resource="&api4kp-kao;CategorizedKnowledgeAsset"/>
+    <skos:prefLabel>Terminology, Ontology and Assertional KBs</skos:prefLabel>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-kao;MetricAsset">
+    <rdfs:subClassOf rdf:resource="&api4kp-kao;CategorizedKnowledgeAsset"/>
+    <skos:prefLabel>KPIs, Measurements and Metrics</skos:prefLabel>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-kao;ProcessAsset">
+    <rdfs:subClassOf rdf:resource="&api4kp-kao;CategorizedKnowledgeAsset"/>
+    <skos:prefLabel>Plans, Processes, Pathways and Protocol Definitions</skos:prefLabel>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-kao;OperationalConceptDefinition">
+    <rdfs:subClassOf rdf:resource="&api4kp;ConstructiveDefinition"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&api4kp;defines"/>
+        <owl:someValuesFrom rdf:resource="&api4kp;ResolvableConcept"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment>Constructive Definition of a (resolvable) Concept that specifies how to resolve that Concept in some context or situation.
+Some definitions have conditional applicability, limiting the class of situations in which they can be used</rdfs:comment>
+    <rdfs:label>Operational Concept Definition</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;AssessmentModel">
+    <rdfs:subClassOf rdf:resource="&api4kp-kao;InferenceAsset"/>
+    <rdfs:comment>knowledge that allows to infer an otherwise unknown or not directly observable state or situation</rdfs:comment>
+    <rdfs:label>Assessment Model</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;CognitiveProcessModel">
+    <rdfs:subClassOf rdf:resource="&api4kp-kao;ProcessAsset"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&api4kp;has-part"/>
+        <owl:someValuesFrom rdf:resource="&api4kp-ckao;DecisionModel"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment>Knowledge Asset that captures how information is processed internally by an intelligent agent</rdfs:comment>
+    <rdfs:label>Cognitive Process Model</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;CohortDefinition">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalKnowledgeAsset"/>
+    <rdfs:comment>Definition used to classify persons into classes defined by some common characteristic</rdfs:comment>
+    <rdfs:label>Cohort Definition</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;ComputableDecisionModel">
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;DecisionModel"/>
+    <rdfs:comment>Decision Model that includes an explicit specification of its decision making logic, suitable to be faithfully expressed in a computable language</rdfs:comment>
+    <rdfs:label>Computable Decision Model</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;ConceptualModel">
+    <rdfs:subClassOf rdf:resource="&api4kp-kao;SemioticAsset"/>
+    <rdfs:comment>Abstraction of the structure and/or behavior of the entities in a given domain</rdfs:comment>
+    <rdfs:label>Conceptual (Domain) Model</rdfs:label>
+    <skos:altLabel>domain conceptualization</skos:altLabel>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;ContextualizableKnowledge">
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;ConceptualModel"/>
+    <rdfs:comment>Conceptual Work of Knowledge that has been adapted for a given context</rdfs:comment>
+    <rdfs:label>Contextualizable Knowledge</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;DecisionModel">
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;AssessmentModel"/>
+    <rdfs:comment>Assessment that can be abstracted by means of a question, which requires to select one out of a set of admissible options</rdfs:comment>
+    <rdfs:label>Decision Model</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;DecisionTaskModel">
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;CognitiveProcessModel"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&api4kp;part-of"/>
+        <owl:someValuesFrom rdf:resource="&api4kp-ckao;CognitiveProcessModel"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment>Model of who, when, where and why a Decision is made, usually as part of a broader process. Also known as Decision Making Process Model, usually includes a Decision Model that specifies how to actually choose the optimal option</rdfs:comment>
+    <rdfs:label>Decision Task Model</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;DocumentationTemplate">
+    <rdfs:subClassOf rdf:resource="&api4kp-kao;InformationAsset"/>
+    <rdfs:comment>An organized collection of determinable concepts, possibly associated to questions, which are meant to be resolved in a particular context</rdfs:comment>
+    <rdfs:label>Documentation Template</rdfs:label>
+    <skos:scopeNote>more general than questionnaires, whose questions are meant to be answered by a human agent (possibly with computer aid), documentation templates can be used  by software agents as well</skos:scopeNote>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;Equation">
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;FunctionalExpression"/>
+    <rdfs:comment>A functional expression, defined in terms of two functional expressions connected by means of the well known equality operator.</rdfs:comment>
+    <rdfs:label>Equation</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;FactualKnowledge">
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;ConceptualModel"/>
+    <rdfs:comment>Facts are suitable to be asserted</rdfs:comment>
+    <rdfs:comment>Knowledge that is held to be a faithful conceptualization of the state of affairs in a given domain by all agents that share (and understand) it.</rdfs:comment>
+    <rdfs:label>Factual Knowledge</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;FormalOntology">
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;ConceptualModel"/>
+    <rdfs:comment>conceptual model that is based on formal principles, such as that allow to make inferences and/or verify the consistency of the model</rdfs:comment>
+    <rdfs:label>Formal Ontology</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;FunctionalExpression">
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;AssessmentModel"/>
+    <rdfs:comment>Knowledge about the application of well-known information processing methods, possibly chained together, which are stateless, functional and idempotent in nature.</rdfs:comment>
+    <rdfs:label>Functional Expression</rdfs:label>
+    <skos:example>&apos;mass&apos; times the square of the speed of light</skos:example>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;InformationModel">
+    <rdfs:subClassOf rdf:resource="&api4kp-kao;InformationAsset"/>
+    <rdfs:comment>(Meta) model that defines which information should be captured about some kind of domain</rdfs:comment>
+    <rdfs:label>Information Model</rdfs:label>
+    <skos:altLabel>logical data model</skos:altLabel>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;InquirySpecification">
+    <rdfs:subClassOf rdf:resource="&api4kp-kao;ProcessAsset"/>
+    <rdfs:comment>The definition of how (and possibly when and where) to ask a question, following some kind of protocol, for the purpose of receiving a specific answer, with the goal of gaining information in the process</rdfs:comment>
+    <rdfs:label>Inquiry Specification</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;MultiAgentDecisionTaskModel">
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;DecisionTaskModel"/>
+    <rdfs:comment>Decision Task Model that requires the participation of two or more agents</rdfs:comment>
+    <rdfs:label>Multi-Agent Decision Task Model</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;PredictiveModel">
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;AssessmentModel"/>
+    <rdfs:comment>assessment of some state that is unobservable due to being in the future</rdfs:comment>
+    <rdfs:label>Predictive Model</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;Protocol">
+    <rdfs:subClassOf rdf:resource="&api4kp-kao;ProcessAsset"/>
+    <rdfs:comment>A shared, endorsed, justified, imperative specification of the expected behavior of one or more agents in a specific situation</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://ontology.mayo.edu/ontology/KAO"/>
+    <rdfs:label>Protocol</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;Questionnaire">
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;DocumentationTemplate"/>
+    <rdfs:comment xml:lang="en">An organized collection of questions intended to solicit information from patients, providers or other individuals in the healthcare domain</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://ontology.mayo.edu/ontology/KAO"/>
+    <rdfs:label xml:lang="en">Questionnaire</rdfs:label>
+    <skos:example xml:lang="en">First Visit Questionnaire</skos:example>
+    <skos:prefLabel xml:lang="en">Questionnaire</skos:prefLabel>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;SemanticDecisionModel">
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;DecisionModel"/>
+    <rdfs:comment>Decision Model that includes an unambiguous definition of every concept involved</rdfs:comment>
+    <rdfs:label>Semantic Decision Model</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;SemanticInformationModel">
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;InformationModel"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="&api4kp;has-part"/>
+        <owl:someValuesFrom rdf:resource="&api4kp-ckao;SemanticInformationModel"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment>Information Model designed such that instances have one and only one interpretation</rdfs:comment>
+    <rdfs:label>Semantic Information Model</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;ServiceDescription">
+    <rdfs:subClassOf rdf:resource="&api4kp-kao;ProcessAsset"/>
+    <rdfs:label>Service Description</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;ServiceProfile">
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;ServiceDescription"/>
+    <rdfs:comment>Service Description that refines (by constraint), and thus depends on, some Service Description</rdfs:comment>
+    <rdfs:label>Service Profile</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;ValueSet">
+    <rdfs:subClassOf rdf:resource="&api4kp-kao;SemioticAsset"/>
+    <rdfs:comment xml:lang="en">A set of pairs of &quot;codes&quot;, drawn from one or more code systems, and human-readable terms that represent clinical concepts (e.g. &quot;diabetes type II&quot;)</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="http://ontology.mayo.edu/ontology/KAO"/>
+    <rdfs:label xml:lang="en">Value Set</rdfs:label>
+    <skos:example xml:lang="en">The Asthma Value Set</skos:example>
+    <skos:prefLabel xml:lang="en">Value Set</skos:prefLabel>
+  </owl:Class>
+
 	<owl:Class rdf:about="&api4kp-ckao;CareProcessModel">
 		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalKnowledgeAsset"/>
 		<rdfs:subClassOf rdf:resource="&api4kp-kao;ProcessAsset"/>
 		<rdfs:label xml:lang="en">care process model</rdfs:label>
-		<rdfs:seeAlso rdf:resource="https://clinicalknowledgemanagement.mayo.edu/topic/clinical-answers/CNT-20141231/CPM-20211573"/>
 		<skos:altLabel xml:lang="en">CPM</skos:altLabel>
 		<skos:definition>adaptive specification of how to perform (complex) clinical activities, properly orchestrated over time, so to achieve certain objectives and goals</skos:definition>
 		<skos:example xml:lang="en">The Mayo Clinic Rectal Adenocarcinoma CPM</skos:example>
@@ -119,7 +340,7 @@
 	
 	<owl:Class rdf:about="&api4kp-ckao;ClinicalPracticeGuideline">
 		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalKnowledgeAsset"/>
-		<rdfs:subClassOf rdf:resource="&api4kp-kao;BusinessRuleAsset"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;ImperativeAsset"/>
 		<rdfs:label xml:lang="en">clinical practice guideline</rdfs:label>
 		<rdfs:seeAlso rdf:resource="http://mayoweb.mayo.edu/pmr/documents/PracticeGuidelineTemplateSternotomy.pdf"/>
 		<skos:altLabel xml:lang="en">clinical practice guideline</skos:altLabel>
@@ -136,7 +357,7 @@
 	
 	<owl:Class rdf:about="&api4kp-ckao;ClinicalRule">
 		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalKnowledgeAsset"/>
-		<rdfs:subClassOf rdf:resource="&api4kp-kao;BusinessRuleAsset"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;ImperativeAsset"/>
 		<rdfs:label xml:lang="en">clinical rule</rdfs:label>
 		<rdfs:seeAlso rdf:resource="https://clinicalknowledgemanagement.mayo.edu/mayo-clinic-rules-catalog/asset/km-asset/KAT-20323041"/>
 		<skos:altLabel xml:lang="en">CDS Rule</skos:altLabel>
@@ -155,7 +376,7 @@
 	
 	<owl:Class rdf:about="&api4kp-ckao;CognitiveCareProcessModel">
 		<rdfs:subClassOf rdf:resource="&api4kp-ckao;CareProcessModel"/>
-		<rdfs:subClassOf rdf:resource="&api4kp-kao;CognitiveProcessModel"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;CognitiveProcessModel"/>
 		<rdfs:label>cognitive care process model</rdfs:label>
 		<skos:definition>knowledge whose primary subject covers the cognitive aspects of a care process</skos:definition>
 	</owl:Class>
@@ -194,7 +415,6 @@
 		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalKnowledgeAsset"/>
 		<rdfs:subClassOf rdf:resource="&api4kp-kao;ProcessAsset"/>
 		<rdfs:label xml:lang="en">order set</rdfs:label>
-		<rdfs:seeAlso rdf:resource="http://forms.mayo.edu/index.html?orderset#MC1156-1356"/>
 		<skos:definition xml:lang="en">a standardized list of orders for a specific diagnosis</skos:definition>
 		<skos:editorialNote xml:lang="en">Verify the defintion that restricts the order sets to be developed by OSPAG, vs produced or endorsed</skos:editorialNote>
 		<skos:example xml:lang="en">The Heart Failure Medication Titration Order Set</skos:example>
@@ -204,16 +424,35 @@
 		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalKnowledgeAsset"/>
 		<rdfs:subClassOf rdf:resource="&api4kp-kao;MetricAsset"/>
 		<rdfs:label xml:lang="en">quality measure</rdfs:label>
-		<rdfs:seeAlso rdf:resource="https://www.cms.gov/Medicare/Quality-Initiatives-Patient-Assessment-Instruments/QualityMeasures/index.html"/>
 		<skos:altLabel xml:lang="en">CDS Rule</skos:altLabel>
 		<skos:definition>tool that helps measure or quantify healthcare processes, outcomes, patient perceptions and organizational structure and/or systems that are associated with the ability to provide high-quality healthcare and/or that relate to one or more quality goals</skos:definition>
 		<skos:prefLabel>clinical quality measure</skos:prefLabel>
 	</owl:Class>
-	
-	<owl:Class rdf:about="&api4kp-kao;BusinessRuleAsset">
+
+  <owl:Class rdf:about="&api4kp;Lexicon">
+    <rdfs:subClassOf rdf:resource="&api4kp-kao;SemioticAsset"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp;Grammar">
+    <rdfs:subClassOf rdf:resource="&api4kp-kao;InformationAsset"/>
+  </owl:Class>
+
+	<owl:Class rdf:about="&api4kp-kao;ImperativeAsset">
 	</owl:Class>
-	
-	<owl:Class rdf:about="&api4kp-kao;CognitiveProcessModel">
+
+	<owl:Class rdf:about="&api4kp-ckao;CognitiveProcessModel">
 	</owl:Class>
+
+  <owl:Class rdf:about="&api4kp;ConstructiveDefinition">
+	</owl:Class>
+
+  <owl:Class rdf:about="&api4kp;Definition">
+	</owl:Class>
+
+  <owl:Class rdf:about="&api4kp;KnowledgeAsset">
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp;ResolvableConcept">
+  </owl:Class>
 
 </rdf:RDF>
