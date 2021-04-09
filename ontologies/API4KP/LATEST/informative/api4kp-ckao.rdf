@@ -49,39 +49,61 @@
 		<owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/SNAPSHOT/api4kp-ckao/"/>
 	</owl:Ontology>
 
+	<owl:Class rdf:about="&api4kp-ckao;DomainSpecificKnowledgeAsset">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
+		<rdfs:label>domain-specific knowledge asset</rdfs:label>
+	</owl:Class>
+
+	<owl:Class rdf:about="&api4kp-ckao;ClinicalKnowledgeAsset">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;DomainSpecificKnowledgeAsset"/>
+		<rdfs:label>clinical knowledge asset</rdfs:label>
+		<skos:definition>domain-specific knowledge asset that uses primarily concepts from the clinical business domain</skos:definition>
+	</owl:Class>
+
+	<owl:Class rdf:about="&api4kp-ckao;GeneralPurposeKnowledgeAsset">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;KnowledgeAsset"/>
+		<rdfs:label>general purpose knowledge asset</rdfs:label>
+		<skos:definition>knowledge asset that is not specific to any business domain</skos:definition>
+	</owl:Class>
+
   <owl:Class rdf:about="&api4kp-kao;CategorizedKnowledgeAsset">
     <rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
+    <rdfs:label>categorized knowledge asset</rdfs:label>
   </owl:Class>
 
   <owl:Class rdf:about="&api4kp-kao;ImperativeAsset">
     <rdfs:subClassOf rdf:resource="&api4kp-kao;CategorizedKnowledgeAsset"/>
+    <dct:identifier>7db1af1f-1703-356f-bddc-8cb0a81a442c</dct:identifier>
     <skos:prefLabel>Rules, Policies and Guidelines</skos:prefLabel>
   </owl:Class>
 
   <owl:Class rdf:about="&api4kp-kao;InferenceAsset">
     <rdfs:subClassOf rdf:resource="&api4kp-kao;CategorizedKnowledgeAsset"/>
-    <rdfs:subClassOf rdf:resource="&api4kp;Definition"/>
     <dct:identifier>d4b0e868-60c8-387d-a139-e3c35427bfb6</dct:identifier>
     <skos:prefLabel xml:lang="en">Assessment, Predictive and Inferential Models</skos:prefLabel>
   </owl:Class>
 
   <owl:Class rdf:about="&api4kp-kao;InformationAsset">
     <rdfs:subClassOf rdf:resource="&api4kp-kao;CategorizedKnowledgeAsset"/>
+    <dct:identifier>3f55a496-5ff3-3989-bf0a-15a61da8b09c</dct:identifier>
     <skos:prefLabel>Structured Information and Data Capture Models</skos:prefLabel>
   </owl:Class>
 
   <owl:Class rdf:about="&api4kp-kao;SemioticAsset">
     <rdfs:subClassOf rdf:resource="&api4kp-kao;CategorizedKnowledgeAsset"/>
+    <dct:identifier>64719ac1-415f-3747-843c-e1e8949071ff</dct:identifier>
     <skos:prefLabel>Terminology, Ontology and Assertional KBs</skos:prefLabel>
   </owl:Class>
 
   <owl:Class rdf:about="&api4kp-kao;MetricAsset">
     <rdfs:subClassOf rdf:resource="&api4kp-kao;CategorizedKnowledgeAsset"/>
+    <dct:identifier>2d705e5a-22d4-3368-98a6-e5ea7d52fd05</dct:identifier>
     <skos:prefLabel>KPIs, Measurements and Metrics</skos:prefLabel>
   </owl:Class>
 
   <owl:Class rdf:about="&api4kp-kao;ProcessAsset">
     <rdfs:subClassOf rdf:resource="&api4kp-kao;CategorizedKnowledgeAsset"/>
+    <dct:identifier>f9e2a69d-0f6e-3a2b-94c4-beaf6fdadaea</dct:identifier>
     <skos:prefLabel>Plans, Processes, Pathways and Protocol Definitions</skos:prefLabel>
   </owl:Class>
 
@@ -128,6 +150,19 @@ Some definitions have conditional applicability, limiting the class of situation
     <rdfs:label>Computable Decision Model</rdfs:label>
   </owl:Class>
 
+  <owl:Class rdf:about="&api4kp-ckao;ClinicalDecisionModel">
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;DecisionModel"/>
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalKnowledgeAsset"/>
+    <rdfs:comment>decision model capturing the knowledge used in the assessment of a patient's health status, or choice of intervention</rdfs:comment>
+    <rdfs:label>clinical decision model</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;NaturalisticDecisionModel">
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;DecisionModel"/>
+    <rdfs:comment>decision model capturing how people make decisions in real life</rdfs:comment>
+    <rdfs:label>naturalistic decision model</rdfs:label>
+  </owl:Class>
+
   <owl:Class rdf:about="&api4kp-ckao;ConceptualModel">
     <rdfs:subClassOf rdf:resource="&api4kp-kao;SemioticAsset"/>
     <rdfs:comment>Abstraction of the structure and/or behavior of the entities in a given domain</rdfs:comment>
@@ -135,10 +170,23 @@ Some definitions have conditional applicability, limiting the class of situation
     <skos:altLabel>domain conceptualization</skos:altLabel>
   </owl:Class>
 
+
+  <owl:Class rdf:about="&api4kp-ckao;AssertionalKnowledge">
+    <rdfs:subClassOf rdf:resource="&api4kp-kao;SemioticAsset"/>
+    <rdfs:comment>Knowledge that is held to be a faithful description of the state of affairs in a given domain by all agents that share (and understand) it.</rdfs:comment>
+    <rdfs:label>assertional knowledge</rdfs:label>
+  </owl:Class>
+
   <owl:Class rdf:about="&api4kp-ckao;ContextualizableKnowledge">
-    <rdfs:subClassOf rdf:resource="&api4kp-ckao;ConceptualModel"/>
-    <rdfs:comment>Conceptual Work of Knowledge that has been adapted for a given context</rdfs:comment>
-    <rdfs:label>Contextualizable Knowledge</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;AssertionalKnowledge"/>
+    <rdfs:comment>Assertional knowledge that is not completely ground, and can be specialized or adapted to a particular context</rdfs:comment>
+    <rdfs:label>contextualizable knowledge</rdfs:label>
+  </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;GroundedKnowledge">
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;AssertionalKnowledge"/>
+    <rdfs:comment>Assertional knowledge about specific individuals, entities and concepts</rdfs:comment>
+    <rdfs:label>grounded knowledge</rdfs:label>
   </owl:Class>
 
   <owl:Class rdf:about="&api4kp-ckao;DecisionModel">
@@ -162,8 +210,15 @@ Some definitions have conditional applicability, limiting the class of situation
   <owl:Class rdf:about="&api4kp-ckao;DocumentationTemplate">
     <rdfs:subClassOf rdf:resource="&api4kp-kao;InformationAsset"/>
     <rdfs:comment>An organized collection of determinable concepts, possibly associated to questions, which are meant to be resolved in a particular context</rdfs:comment>
-    <rdfs:label>Documentation Template</rdfs:label>
+    <rdfs:label>documentation template</rdfs:label>
     <skos:scopeNote>more general than questionnaires, whose questions are meant to be answered by a human agent (possibly with computer aid), documentation templates can be used  by software agents as well</skos:scopeNote>
+  </owl:Class>
+
+
+  <owl:Class rdf:about="&api4kp-ckao;InteractiveDocumentationTemplate">
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;DocumentationTemplate"/>
+    <rdfs:comment>Documentation template designed for human computer interaction, where the human fills a questionnaire, and a computer processes the gathered information to provide further insight to the human</rdfs:comment>
+    <rdfs:label>interactive documentation template</rdfs:label>
   </owl:Class>
 
   <owl:Class rdf:about="&api4kp-ckao;Equation">
@@ -172,12 +227,6 @@ Some definitions have conditional applicability, limiting the class of situation
     <rdfs:label>Equation</rdfs:label>
   </owl:Class>
 
-  <owl:Class rdf:about="&api4kp-ckao;FactualKnowledge">
-    <rdfs:subClassOf rdf:resource="&api4kp-ckao;ConceptualModel"/>
-    <rdfs:comment>Facts are suitable to be asserted</rdfs:comment>
-    <rdfs:comment>Knowledge that is held to be a faithful conceptualization of the state of affairs in a given domain by all agents that share (and understand) it.</rdfs:comment>
-    <rdfs:label>Factual Knowledge</rdfs:label>
-  </owl:Class>
 
   <owl:Class rdf:about="&api4kp-ckao;FormalOntology">
     <rdfs:subClassOf rdf:resource="&api4kp-ckao;ConceptualModel"/>
@@ -221,7 +270,7 @@ Some definitions have conditional applicability, limiting the class of situation
     <rdfs:subClassOf rdf:resource="&api4kp-kao;ProcessAsset"/>
     <rdfs:comment>A shared, endorsed, justified, imperative specification of the expected behavior of one or more agents in a specific situation</rdfs:comment>
     <rdfs:isDefinedBy rdf:resource="http://ontology.mayo.edu/ontology/KAO"/>
-    <rdfs:label>Protocol</rdfs:label>
+    <rdfs:label>protocol</rdfs:label>
   </owl:Class>
 
   <owl:Class rdf:about="&api4kp-ckao;Questionnaire">
@@ -253,14 +302,21 @@ Some definitions have conditional applicability, limiting the class of situation
 
   <owl:Class rdf:about="&api4kp-ckao;ServiceDescription">
     <rdfs:subClassOf rdf:resource="&api4kp-kao;ProcessAsset"/>
-    <rdfs:label>Service Description</rdfs:label>
+    <rdfs:label>service description</rdfs:label>
   </owl:Class>
 
   <owl:Class rdf:about="&api4kp-ckao;ServiceProfile">
     <rdfs:subClassOf rdf:resource="&api4kp-ckao;ServiceDescription"/>
     <rdfs:comment>Service Description that refines (by constraint), and thus depends on, some Service Description</rdfs:comment>
-    <rdfs:label>Service Profile</rdfs:label>
+    <rdfs:label>service profile</rdfs:label>
   </owl:Class>
+
+  <owl:Class rdf:about="&api4kp-ckao;ServiceSpecification">
+    <rdfs:subClassOf rdf:resource="&api4kp-ckao;ServiceDescription"/>
+    <rdfs:comment>Formal Service Description</rdfs:comment>
+    <rdfs:label>service specification</rdfs:label>
+  </owl:Class>
+
 
   <owl:Class rdf:about="&api4kp-ckao;ValueSet">
     <rdfs:subClassOf rdf:resource="&api4kp-kao;SemioticAsset"/>
@@ -331,13 +387,7 @@ Some definitions have conditional applicability, limiting the class of situation
 		<skos:definition>clinical rule, or set thereof, that uses a patient&apos;s (possibly summarized) case, to assess the patient&apos;s state, predict the case&apos;s course, and/or determine (contra)indicated intervention options</skos:definition>
 		<skos:scopeNote>Inference rules generate new information based on the current state, and knowledge that dictates how to interpret that state. Inference rules, however, do not drive actions/interventions directly.</skos:scopeNote>
 	</owl:Class>
-	
-	<owl:Class rdf:about="&api4kp-ckao;ClinicalKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&api4kp-ckao;DomainSpecificKnowledgeAsset"/>
-		<rdfs:label>clinical knowledge asset</rdfs:label>
-		<skos:definition>domain-specific knowledge asset that uses primarily concepts from the clinical business domain</skos:definition>
-	</owl:Class>
-	
+
 	<owl:Class rdf:about="&api4kp-ckao;ClinicalPracticeGuideline">
 		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalKnowledgeAsset"/>
 		<rdfs:subClassOf rdf:resource="&api4kp-kao;ImperativeAsset"/>
@@ -349,8 +399,7 @@ Some definitions have conditional applicability, limiting the class of situation
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-ckao;ClinicalProtocol">
-		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalKnowledgeAsset"/>
-		<rdfs:subClassOf rdf:resource="&api4kp-kao;ProcessAsset"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;Protocol"/>
 		<rdfs:label>clinical protocol</rdfs:label>
 		<skos:definition>protocol applicable in a clinical situation, such that it directs the behavior of patients and/or providers</skos:definition>
 	</owl:Class>
@@ -380,30 +429,26 @@ Some definitions have conditional applicability, limiting the class of situation
 		<rdfs:label>cognitive care process model</rdfs:label>
 		<skos:definition>knowledge whose primary subject covers the cognitive aspects of a care process</skos:definition>
 	</owl:Class>
-	
-	<owl:Class rdf:about="&api4kp-ckao;DomainSpecificKnowledgeAsset">
-		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
-		<rdfs:label>domain-specific knowledge asset</rdfs:label>
+
+	<owl:Class rdf:about="&api4kp-ckao;ClinicalPathway">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;CareProcessModel"/>
+		<rdfs:label>clinical pathway</rdfs:label>
+		<skos:definition>specification of a possible, ideal course of action for the diagnosis or treatment of a condition</skos:definition>
 	</owl:Class>
-	
-	<owl:Class rdf:about="&api4kp-ckao;InteractiveCaseSummarizationRule">
-		<rdfs:subClassOf rdf:resource="&api4kp-ckao;CaseSummarizationRule"/>
-		<rdfs:label>interactive clinical summarization rule</rdfs:label>
-		<skos:altLabel>questionnaire pre-population rule</skos:altLabel>
-		<skos:definition>clinical summarization rule that presents the summary in a way that supports interactive communication</skos:definition>
+
+	<owl:Class rdf:about="&api4kp-ckao;ClinicalCaseManagementModel">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;CareProcessModel"/>
+		<rdfs:label>clinical case management model</rdfs:label>
+		<skos:definition>knowledge of how to manage a person's diagnosis of a clinical condition</skos:definition>
 	</owl:Class>
+
 	
-	<owl:Class rdf:about="&api4kp-ckao;InteractiveClinicalGuidanceRule">
-		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalGuidanceRule"/>
-		<rdfs:label>interactive clinical guidance rule</rdfs:label>
-		<skos:definition>clinical guidance rule that is meant to be executed as part of a bidirectional communication protocol</skos:definition>
-		<skos:note>Guidance rules, in general, require to &apos;deliver&apos; the guidance to an agent. This kind of rule also expects that the inputs/context used to derive the guidance will be acquired via an explicit interaction</skos:note>
+	<owl:Class rdf:about="&api4kp-ckao;ClinicalDecisionSupportInteraction">
+		<rdfs:subClassOf rdf:resource="&api4kp-ckao;Protocol"/>
+		<rdfs:label>CDS interaction</rdfs:label>
+		<skos:definition>decision support interaction that delivers an alert, a reminder or a recommendation</skos:definition>
 	</owl:Class>
-	
-	<owl:Class rdf:about="&api4kp-ckao;InteractiveClinicalInferenceRule">
-		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalInferenceRule"/>
-		<rdfs:label>interactive clinical inference rule</rdfs:label>
-	</owl:Class>
+
 	
 	<owl:Class rdf:about="&api4kp-ckao;NursingProtocol">
 		<rdfs:subClassOf rdf:resource="&api4kp-ckao;ClinicalProtocol"/>
@@ -447,6 +492,7 @@ Some definitions have conditional applicability, limiting the class of situation
 	</owl:Class>
 
   <owl:Class rdf:about="&api4kp;Definition">
+  		<rdfs:subClassOf rdf:resource="&api4kp-kao;SemioticAsset"/>
 	</owl:Class>
 
   <owl:Class rdf:about="&api4kp;KnowledgeAsset">
