@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+	<!ENTITY api4kp "https://www.omg.org/spec/API4KP/api4kp/">
+	<!ENTITY api4kp-kao "https://www.omg.org/spec/API4KP/api4kp-kao/">
+	<!ENTITY dct "http://purl.org/dc/terms/">
+	<!ENTITY dol "http://www.omg.org/spec/DOL/DOL-terms/">
+	<!ENTITY lcc-lr "https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/">
+	<!ENTITY owl "http://www.w3.org/2002/07/owl#">
+	<!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+	<!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+	<!ENTITY skos "http://www.w3.org/2004/02/skos/core#">
+	<!ENTITY sm "http://www.omg.org/techprocess/ab/SpecificationMetadata/">
+	<!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+]>
+<rdf:RDF xml:base="https://www.omg.org/spec/API4KP/api4kp-kao/"
+	xmlns:api4kp="https://www.omg.org/spec/API4KP/api4kp/"
+	xmlns:api4kp-kao="https://www.omg.org/spec/API4KP/api4kp-kao/"
+	xmlns:dct="http://purl.org/dc/terms/"
+	xmlns:dol="http://www.omg.org/spec/DOL/DOL-terms/"
+	xmlns:lcc-lr="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"
+	xmlns:owl="http://www.w3.org/2002/07/owl#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	xmlns:sm="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+	
+	<owl:Ontology rdf:about="https://www.omg.org/spec/API4KP/api4kp-kao/">
+		<rdfs:label>API4KP Knowledge Asset Type Ontology</rdfs:label>
+		<dct:abstract>This ontology provides a classification scheme for Knowledge Assets based on the logical and mathematical constructs that would be used in the formalization of the Assets themselves. The classification, in turn, determines (i) what (knowledge representation) languages are suitable to express the Assets, and (ii) the kind of reasoning activities that can be performed using the Assets.</dct:abstract>
+		<dct:contributor>Elisa Kendall (ekendall at thematix.com)</dct:contributor>
+		<dct:creator>Davide Sottara (sottara.davide at mayo.edu)</dct:creator>
+		<dct:license rdf:datatype="&xsd;anyURI">http://opensource.org/licenses/MIT</dct:license>
+		<sm:contentLanguage rdf:datatype="&xsd;anyURI">https://www.w3.org/TR/owl2-quick-reference/</sm:contentLanguage>
+		<sm:copyright>Copyright (c) 2014-2021 Athan Services</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2021 Fraunhofer Gesellschaft</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2021 Freie Universität Berlin</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2021 Mayo Foundation for Medical Education and Research (MFMER)</sm:copyright>
+		<sm:copyright>Copyright (c) 2014-2021 Thematix Partners LLC</sm:copyright>
+		<sm:copyright>Copyright (c) 2015-2021 Object Management Group, Inc.</sm:copyright>
+		<sm:copyright>Copyright (c) 2019-2021 Universität Leipzig</sm:copyright>
+		<sm:copyright>Copyright (c) 2020-2021 Micro Focus</sm:copyright>
+		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/API4KP/api4kp/</sm:dependsOn>
+		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/DOL/</sm:dependsOn>
+		<sm:dependsOn rdf:datatype="&xsd;anyURI">https://www.omg.org/spec/LCC/</sm:dependsOn>
+		<sm:fileAbbreviation>api4kp-kao</sm:fileAbbreviation>
+		<sm:filename>api4kp-kao.rdf</sm:filename>
+		<owl:imports rdf:resource="http://www.omg.org/techprocess/ab/SpecificationMetadata/"/>
+		<owl:imports rdf:resource="https://www.omg.org/spec/API4KP/api4kp/"/>
+		<owl:imports rdf:resource="https://www.omg.org/spec/DOL/DOL-terms/"/>
+		<owl:imports rdf:resource="https://www.omg.org/spec/LCC/Languages/LanguageRepresentation/"/>
+		<owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/20210401/api4kp-kao/"/>
+	</owl:Ontology>
+	
+	<owl:Class rdf:about="&api4kp-kao;ComponentKnowledgeAsset">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp;isProperPartOf"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-kao;CompositeKnowledgeAsset"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:label>component knowledge asset</rdfs:label>
+		<skos:definition>knowledge asset that is proper part of some other (composite) knowledge asset</skos:definition>
+		<skos:note>A component asset is likely to play more specific roles based on its function and the type of the composite.</skos:note>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;CompositeKnowledgeAsset">
+		<rdfs:subClassOf rdf:resource="&api4kp;CompositeKnowledgeResource"/>
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&api4kp;hasProperPart"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-kao;ComponentKnowledgeAsset"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:label>composite knowledge asset</rdfs:label>
+		<skos:definition>knowledge asset that has other knowledge assets as proper parts</skos:definition>
+		<skos:note>Note that any composite and its components are considered distinct individuals (i.e., they may be uniquely identified).</skos:note>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;ComputationalTechnique">
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;Technique"/>
+		<rdfs:label>computational technique</rdfs:label>
+		<owl:disjointWith rdf:resource="&api4kp-kao;NaturalTechnique"/>
+		<skos:definition>technique used in some knowledge processing task specification that can be faithfully expressed in some machine-computable language</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;ImperativeAsset">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
+		<rdfs:label>imperative asset</rdfs:label>
+		<skos:definition>knowledge asset that reflects &apos;social&apos;, &apos;behavioral&apos; knowledge using &apos;action&apos;, &apos;deontic&apos; and &apos;constraint&apos; oriented constructs</skos:definition>
+		<skos:note>Assets in this category are typically expressed using &quot;business&quot; or &quot;production&quot; rule languages. They describe or specify how to guide an agent&apos;s actions to prevent undesirable behaviors in favor of more desirable ones - especially when responsibility, accountability and/or liability are involved. Guidelines, policies, and business rules, which all fall under this classification, are often specified in terms of modal logic, such as deontic logic.</skos:note>
+		<skos:note>Imperative knowledge can be used to drive - or at least constrain - an agent&apos;s behavior at a particular point in time.</skos:note>
+		<skos:scopeNote>Assets in this category may depend on inferential knowledge and, indirectly, on semantic and data assets. In fact, it is quite common for a business rule language to be, or delegate to, an inferential rule language. Assets in this category affect, but are not themselves, process knowledge, and often have counterparts that are metric assets.</skos:scopeNote>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;InferenceAsset">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
+		<rdfs:label xml:lang="en">inference asset</rdfs:label>
+		<skos:definition>knowledge asset that uses &apos;implication&apos; and/or &apos;equivalence&apos; to draw &apos;necessary&apos; or &apos;contingent&apos; conclusions based on the evaluation of &apos;functions&apos; that leverage operations that may be &apos;qualitiative&apos; or &apos;quantitative&apos;, and may involve &apos;confidence&apos;, &apos;certainty&apos; and/or &apos;probability&apos;.</skos:definition>
+		<skos:note>An agent can use inferential knowledge to assess or predict the past, current, or future state of a variable, quality or other characteristic of a system which may not be directly observable/measurable, but can be estimated on the basis of other more primitive pieces of data.</skos:note>
+		<skos:note>Assets of this kind, including assessment, predictive, and inferential models, are often formalized using first order and/or probabilistic logic with evaluated functions. Reasoning driven by inferential assets is functional, stateless and idempotent; inferential assets are better expressed using expression languages, mathematical/statistical languages, or (sub-languages of) logic languages that focus on logical implications.</skos:note>
+		<skos:scopeNote>Inferential assets may depend on semantic knowledge assets as background knowledge, and be a dependency/component of rule, process and measure assets, as well as composed (recursively) with other inferential assets.</skos:scopeNote>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;InformationAsset">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
+		<rdfs:label>information asset</rdfs:label>
+		<skos:definition>knowledge asset used by agents to acquire, represent, organize, exchange, store, retrieve and distribute data, about some domain of interest, using structured formats</skos:definition>
+		<skos:note>Assets in this category, including information capture, exchange and retrieval models, are expressed using &apos;modeling&apos; languages, query languages, schema (definition) languages. They are often formalized using frame logic. Assets that leverage constructs such as &apos;frame&apos;, &apos;slot&apos;, &apos;datatypes&apos;, &apos;variables&apos;, as well as constraint-related constructs fall under this classification.</skos:note>
+		<skos:scopeNote>From an ISO11179-3 perspective, information assets are the counterparts of semantic assets, where the former are &apos;models of representation&apos; and the latter are &apos;models of meaning&apos;.</skos:scopeNote>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;InteractiveTechnique">
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;Technique"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&dol;hasPart"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-kao;ComputationalTechnique"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&dol;hasPart"/>
+				<owl:someValuesFrom rdf:resource="&api4kp-kao;NaturalTechnique"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:label>interactive technique</rdfs:label>
+		<skos:definition>technique that involves interactions between people and computational devices, with at least one person and one device influencing or having an effect on the other</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;MetricAsset">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
+		<rdfs:label>metric asset</rdfs:label>
+		<skos:definition>knowledge asset, such as a performance indicator, measurement, or  metric, that leverages constructs such as &apos;distance&apos;, &apos;similarity&apos; and &apos;aggregation&apos; and, indirectly, &apos;classification&apos; and &apos;filtering&apos; to map (sub)sets of entities to quantitative, summary &apos;features&apos;</skos:definition>
+		<skos:note>Assets of this category are expressed using langauges designed for analytics, which combine aspects of query and functional expression languages with optimized support for &apos;map/reduce&apos; style evaluations. They specify how certain features (qualitative and/or quantitative) of a system can be observed, quantified, aggregated, compared to a baseline and objective values and ultimately used to evaluate the performance of (parts of) that system and its processes.</skos:note>
+		<skos:scopeNote>Assets of this kind are counterparts of rules and processes, and enable establishment of conformance, impact, effectiveness and efficiency. measure-related assets. They build on inferential assets to provide, for example, inclusion/exclusion criteria, as well as to extract the quantitative features that may be aggregated by the measure.</skos:scopeNote>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;NaturalLanguageProcessingTechnique">
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;ComputationalTechnique"/>
+		<rdfs:label>natural language processing technique</rdfs:label>
+		<skos:definition>computational technique typically involving rule-based and/or statistical inference (machine learning) applied to expressions in natural language, including, but not limited to speech recognition, natural language understanding, and natural-language generation</skos:definition>
+		<skos:note>Natural language processing (NLP) is a subfield of linguistics, computer science, information engineering, and artificial intelligence concerned with the interactions between computers and human (natural) languages, in particular how to program computers to process and analyze large amounts of natural language data.</skos:note>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;NaturalTechnique">
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;Technique"/>
+		<rdfs:label>natural technique</rdfs:label>
+		<skos:definition>technique that requires involvement of a person</skos:definition>
+		<skos:note>A natural technique is one that requires some aspect of human-nature, or creativity, spontaneity, ingenuity, or other complex intellectual reasoning, such that a computational engine is incapable of accomplishing a similar task using this technique.</skos:note>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;ProcessAsset">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
+		<rdfs:label>process asset</rdfs:label>
+		<skos:definition>knowledge asset, such as a plan, process, pathway, or protocol, that uses &apos;temporal&apos; and &apos;state&apos; constructs, and possibly &apos;action&apos; and &apos;goal&apos; related constructs, involving &apos;planning&apos;, &apos;scheduling&apos; and &apos;interaction&apos; patterns.</skos:definition>
+		<skos:note>Assets in this category are typically expressed using &quot;process&quot; and &quot;worfklow&quot; languages. They involve knowledge that applies over spans of time, and thus requires agents to maintain some form of state. on top of driving actions directly, the knowledge can be use for analytics, scheduling and simulation tasks. They are often formalized using temporal and transactional logics.</skos:note>
+		<skos:scopeNote>Processes can be associated with goals and measures; rules can, at specific points in time, influence the evolution of a process from that point forward.</skos:scopeNote>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;QualitativeTechnique">
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;ComputationalTechnique"/>
+		<rdfs:label>qualitative technique</rdfs:label>
+		<skos:definition>computational technique that is largely holistic, logic-based, symbolic, and/or non-statistical in nature, that uses qualitative characteristics in analyses</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;QuantitativeTechnique">
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;ComputationalTechnique"/>
+		<rdfs:label>quantitative technique</rdfs:label>
+		<skos:definition>computational technique that is grounded in mathematical, statistical and/or other numerical principles</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;QueryTechnique">
+		<rdfs:subClassOf rdf:resource="&api4kp-kao;Technique"/>
+		<rdfs:label>query technique</rdfs:label>
+		<skos:definition>technique that involves question answering and/or requesting another agent to perform some aspect of a task, from which some result can be obtained</skos:definition>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;SemioticAsset">
+		<rdfs:subClassOf rdf:resource="&api4kp;KnowledgeAsset"/>
+		<rdfs:label>semiotic asset</rdfs:label>
+		<skos:definition>knowledge asset that uses semiotic constructs, i.e., whose constructs support the conceptualization of the relationships between signs and symbols, (intensional) concepts, and their (extensional) referents</skos:definition>
+		<skos:note>Constructs of this kind include &apos;class/type&apos;, &apos;membership/instantiation&apos;, &apos;denotation&apos;, &apos;subsumption (specialization)&apos;, &apos;parthood&apos;, &apos;relatedness&apos;. They may be used for consistency checking, (necessary) inference, classification/recognition, question answering, and other reasoning tasks. They are typically expressed using declarative &apos;ontology&apos; languages, such as description logics, or more general (first order) logic languages.</skos:note>
+		<skos:scopeNote>Assets in this category may depend on inferential assets to provide definitions, and may provide formal grounding for any asset with respect to some domain or area of interest.</skos:scopeNote>
+	</owl:Class>
+	
+	<owl:Class rdf:about="&api4kp-kao;Technique">
+		<rdfs:subClassOf rdf:resource="&api4kp;Knowledge"/>
+		<rdfs:label xml:lang="en">technique</rdfs:label>
+		<skos:definition>knowledge about a way of carrying out a particular task, especially the execution or performance of an artistic work or a scientific procedure</skos:definition>
+	</owl:Class>
+
+</rdf:RDF>
