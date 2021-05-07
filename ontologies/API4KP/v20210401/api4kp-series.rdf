@@ -27,7 +27,7 @@
 	
 	<owl:Ontology rdf:about="https://www.omg.org/spec/API4KP/api4kp-series/">
 		<rdfs:label>API4KP Ontology of Series</rdfs:label>
-		<dct:abstract>This ontology extends the core API4KP ontology to incorporate notions of     20210401s and versions of knowledge artifacts as they change over time.</dct:abstract>
+		<dct:abstract>This ontology extends the core API4KP ontology to incorporate notions of snapshots and versions of knowledge artifacts as they change over time.</dct:abstract>
 		<dct:contributor>Elisa Kendall (ekendall at thematix.com)</dct:contributor>
 		<dct:creator>Davide Sottara (sottara.davide at mayo.edu)</dct:creator>
 		<dct:license rdf:datatype="&xsd;anyURI">http://opensource.org/licenses/MIT</dct:license>
@@ -105,23 +105,23 @@
 		</rdfs:subClassOf>
 		<rdfs:label>series</rdfs:label>
 		<skos:definition>set of all versions of the same entity</skos:definition>
-		<skos:note>The set is implicitly equipped with a total order determined by the points in time at which the     20210401s were taken, as well as an identification scheme that supports version identifiers.</skos:note>
+      <skos:note>The set is implicitly equipped with a total order determined by the points in time at which the snapshots were taken, as well as an identification scheme that supports version identifiers.</skos:note>
 	</owl:Class>
 	
-	<owl:Class rdf:about="&api4kp-series;    20210401">
+	<owl:Class rdf:about="&api4kp-series;Snapshot">
 		<rdfs:subClassOf rdf:resource="&api4kp-series;ImmutableEntity"/>
-		<rdfs:label>    20210401</rdfs:label>
-		<rdfs:seeAlso>https://en.wikipedia.org/wiki/20210401_(computer_storage)</rdfs:seeAlso>
+		<rdfs:label>snapshot</rdfs:label>
+		<rdfs:seeAlso>https://en.wikipedia.org/wiki/Snapshot_(computer_storage)</rdfs:seeAlso>
 		<skos:definition>immutable entity that reflects and maintains the state of a mutable entity at a particular point in time</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-series;Version">
-		<rdfs:subClassOf rdf:resource="&api4kp-series;    20210401"/>
+		<rdfs:subClassOf rdf:resource="&api4kp-series;Snapshot"/>
 		<rdfs:label>version</rdfs:label>
 		<owl:equivalentClass>
 			<owl:Class>
 				<owl:intersectionOf rdf:parseType="Collection">
-					<rdf:Description rdf:about="&api4kp-series;    20210401">
+					<rdf:Description rdf:about="&api4kp-series;Snapshot">
 					</rdf:Description>
 					<owl:Restriction>
 						<owl:onProperty rdf:resource="&lcc-lr;isIdentifiedBy"/>
@@ -134,7 +134,7 @@
 				</owl:intersectionOf>
 			</owl:Class>
 		</owl:equivalentClass>
-		<skos:definition>    20210401 was observed at some point in time and that is assigned an identifier in some context</skos:definition>
+		<skos:definition>snapshot was observed at some point in time and that is assigned an identifier in some context</skos:definition>
 	</owl:Class>
 	
 	<owl:Class rdf:about="&api4kp-series;VersionIdentifier">
@@ -183,7 +183,7 @@
 		<rdf:type rdf:resource="&owl;FunctionalProperty"/>
 		<rdfs:label>has observed date and time</rdfs:label>
 		<rdfs:range rdf:resource="&api4kp-series;CombinedDateTime"/>
-		<skos:definition>indicates a date and time for an event, measurement,     20210401 or other observation</skos:definition>
+		<skos:definition>indicates a date and time for an event, measurement, snapshot or other observation</skos:definition>
 	</owl:DatatypeProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-series;hasOriginal">
@@ -211,11 +211,11 @@
 		<skos:definition>is a version V1 that has predecessor version V2, and there is no other distinct version that is predecessor of V1 and successor of V2</skos:definition>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp-series;has    20210401">
-		<rdfs:label>has     20210401</rdfs:label>
+	<owl:ObjectProperty rdf:about="&api4kp-series;hasSnapshot">
+		<rdfs:label>has snapshot</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp-series;MutableEntity"/>
-		<rdfs:range rdf:resource="&api4kp-series;    20210401"/>
-		<owl:inverseOf rdf:resource="&api4kp-series;is    20210401Of"/>
+		<rdfs:range rdf:resource="&api4kp-series;Snapshot"/>
+		<owl:inverseOf rdf:resource="&api4kp-series;isSnapshotOf"/>
 		<skos:definition>had a state at some point in time that is reflected by the target immutable entity</skos:definition>
 	</owl:ObjectProperty>
 	
@@ -226,20 +226,20 @@
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-series;hasVersion">
-		<rdfs:subPropertyOf rdf:resource="&api4kp-series;has    20210401"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp-series;hasSnapshot"/>
 		<rdfs:label>has version</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp-series;MutableEntity"/>
 		<rdfs:range rdf:resource="&api4kp-series;Version"/>
 		<owl:inverseOf rdf:resource="&api4kp-series;isVersionOf"/>
-		<skos:definition>has a     20210401 that is explicitly identified</skos:definition>
+		<skos:definition>has a snapshot that is explicitly identified</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-series;isInSeriesWith">
 		<rdf:type rdf:resource="&owl;SymmetricProperty"/>
 		<rdfs:label>is in series with</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp-series;    20210401"/>
-		<rdfs:range rdf:resource="&api4kp-series;    20210401"/>
-		<skos:definition>is a different     20210401 of the same entity</skos:definition>
+		<rdfs:domain rdf:resource="&api4kp-series;Snapshot"/>
+		<rdfs:range rdf:resource="&api4kp-series;Snapshot"/>
+		<skos:definition>is a different snapshot of the same entity</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-series;isSeriesOf">
@@ -249,19 +249,19 @@
 		<skos:definition>is the set of all versions of the same mutable entity</skos:definition>
 	</owl:ObjectProperty>
 	
-	<owl:ObjectProperty rdf:about="&api4kp-series;is    20210401Of">
-		<rdfs:label>is     20210401 of</rdfs:label>
-		<rdfs:domain rdf:resource="&api4kp-series;    20210401"/>
+	<owl:ObjectProperty rdf:about="&api4kp-series;isSnapshotOf">
+		<rdfs:label>is snapshot of</rdfs:label>
+		<rdfs:domain rdf:resource="&api4kp-series;Snapshot"/>
 		<rdfs:range rdf:resource="&api4kp-series;MutableEntity"/>
 		<skos:definition>reflects the state of, at a particular point in time</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:ObjectProperty rdf:about="&api4kp-series;isVersionOf">
-		<rdfs:subPropertyOf rdf:resource="&api4kp-series;is    20210401Of"/>
+		<rdfs:subPropertyOf rdf:resource="&api4kp-series;isSnapshotOf"/>
 		<rdfs:label>is version of</rdfs:label>
 		<rdfs:domain rdf:resource="&api4kp-series;Version"/>
 		<rdfs:range rdf:resource="&api4kp-series;MutableEntity"/>
-		<skos:definition>is an explicitly identified     20210401 of the target entity</skos:definition>
+		<skos:definition>is an explicitly identified snapshot of the target entity</skos:definition>
 	</owl:ObjectProperty>
 	
 	<owl:Class rdf:about="&api4kp;KnowledgeResource">
