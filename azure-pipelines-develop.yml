@@ -133,7 +133,10 @@ steps:
     script: |
       mvn install -ntp
       chmod 777 "pipeline"
-      chmod 777 "../target/api4kp-$env:TIER1_REL_VERSION.jar"
+      cd target
+      dir
+      chmod 777 "api4kp-$env:TIER1_REL_VERSION.jar"
+      cd ..
       java -jar pipeline/pipeline-scan.jar --veracode_api_id "$env:VERACODE_API_ID" --veracode_api_key "$env:VERACODE_API_KEY" --file "../target/api4kp-$env:TIER1_REL_VERSION.jar" --fail_on_severity="Very High, High" --fail_on_cwe="80"
       # mvn deploy "-DaltDeploymentRepository=$env:DEPLOY_REPO::default::$env:DEPLOY_REPO_PATH" -ntp
   env:
