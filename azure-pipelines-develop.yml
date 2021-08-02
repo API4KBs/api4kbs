@@ -116,13 +116,39 @@ steps:
     script: |
       curl -O -L https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip
 
+# Make directory for veracode scan
+- task: PowerShell@2
+  displayName: 'Make directory for veracode scan'
+  inputs:
+    targetType: 'inline'
+    script: |
+        mkdir veracode
+
+
+# Runs Maven Goal: install
+- task: PowerShell@2
+  displayName: 'Maven Install'
+  inputs:
+    targetType: 'inline'
+    script: |
+      mvn install -ntp
+
+# Veracode Files to scan
+- task: CopyFiles@2
+  displayName: 'Copy Files to veracode folder'
+  inputs:
+      SourceFolder: '$(system.defaultworkingdirectory)'
+      Contents: |
+        **/API4KP-*.jar
+      TargetFolder: 'veracode'
+
 # Extract Veracode
 - task: ExtractFiles@1
   displayName: 'Extract Veracode Zip'
   inputs:
     archiveFilePatterns: "pipeline-scan-LATEST.zip"
-    destinationFolder: "pipeline"
-    cleanDestinationFolder: false
+    overwriteExistingFiles: false
+    destinationFolder: 'veracode'
 
 # Runs Maven Goal: deploy 
 # Deploys to Azure DevOps Artifacts
@@ -131,13 +157,12 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      mvn install -ntp
-      chmod 777 "pipeline"
-      cd target
+      cd veracode
       dir
-      chmod 777 "API4KP-$env:TIER1_REL_VERSION.jar"
       cd ..
-      java -jar pipeline/pipeline-scan.jar --veracode_api_id "$env:VERACODE_API_ID" --veracode_api_key "$env:VERACODE_API_KEY" --file "../target/API4KP-$env:TIER1_REL_VERSION.jar" --fail_on_severity="Very High, High" --fail_on_cwe="80"
+      # chmod 777 "veracode/"
+     
+      # java -Dpipeline.debug=true -jar veracode/pipeline-scan.jar --veracode_api_id "$env:VERACODE_API_ID" --veracode_api_key "$env:VERACODE_API_KEY" --file "veracode/" --fail_on_severity="Very High, High" --fail_on_cwe="80"
       # mvn deploy "-DaltDeploymentRepository=$env:DEPLOY_REPO::default::$env:DEPLOY_REPO_PATH" -ntp
   env:
     DEPLOY_REPO: $(deploymentRepo)
