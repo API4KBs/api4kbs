@@ -108,6 +108,22 @@ steps:
     versionFilePath: pom.xml
     versionTransformation: none
 
+# Download Veracode
+- task: PowerShell@2
+  displayName: 'Download Veracode'
+  inputs:
+    targetType: 'inline'
+    script: |
+      curl -O -L https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip
+
+# Extract Veracode
+- task: ExtractFiles@1
+  displayName: 'Extract Veracode Zip'
+  inputs:
+    archiveFilePatterns: "pipeline-scan-LATEST.zip"
+    destinationFolder: "pipeline"
+    cleanDestinationFolder: false
+
 # Runs Maven Goal: deploy 
 # Deploys to Azure DevOps Artifacts
 - task: PowerShell@2
@@ -115,10 +131,15 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      mvn deploy "-DaltDeploymentRepository=$env:DEPLOY_REPO::default::$env:DEPLOY_REPO_PATH" -ntp
+      mvn install -ntp
+      dir
+      java -jar pipeline\pipeline-scan.jar --veracode_api_id "$(VERACODE_API_ID)" --veracode_api_key "$(VERACODE_API_KEY)" --file "api4kp.jar" --fail_on_severity="Very High, High" --fail_on_cwe="80"
+      # mvn deploy "-DaltDeploymentRepository=$env:DEPLOY_REPO::default::$env:DEPLOY_REPO_PATH" -ntp
   env:
     DEPLOY_REPO: $(deploymentRepo)
     DEPLOY_REPO_PATH: $(deploymentRepoPath)
+    VERACODE_API_ID: $(veracodeApiId)
+    VERACODE_API_KEY: $(veracodeApiToken)
 
 # ------------------ END PIPELINE  ------------------
 # Outputs pipeline steps have ended
