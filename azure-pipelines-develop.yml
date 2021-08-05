@@ -154,21 +154,21 @@ steps:
 
 # Runs Maven Goal: deploy 
 # Deploys to Azure DevOps Artifacts
-- task: PowerShell@2
-  displayName: 'Maven Deploy to Artifacts'
-  inputs:
-    targetType: 'inline'
-    script: |
-      chmod 777 "veracode/pipeline-scan.jar"
-      chmod 777 "veracode/target/API4KP-$env:TIER1_DEV_VERSION.jar"
+# - task: PowerShell@2
+#   displayName: 'Maven Deploy to Artifacts'
+#   inputs:
+#     targetType: 'inline'
+#     script: |
+#       chmod 777 "veracode/pipeline-scan.jar"
+#       chmod 777 "veracode/target/API4KP-$env:TIER1_DEV_VERSION.jar"
      
-      java -jar veracode/pipeline-scan.jar --veracode_api_id "$env:VERACODE_API_ID" --veracode_api_key "$env:VERACODE_API_KEY" --file "veracode/target/API4KP-$env:TIER1_DEV_VERSION.jar" --fail_on_severity="Very High, High" --verbose="true"
-  env:
-    DEPLOY_REPO: $(deploymentRepo)
-    DEPLOY_REPO_PATH: $(deploymentRepoPath)
-    TIER1_DEV_VERSION: $(tier1NewDevelopVersion)
-    VERACODE_API_ID: $(veracodeApiId)
-    VERACODE_API_KEY: $(veracodeApiToken)
+#       java -jar veracode/pipeline-scan.jar --veracode_api_id "$env:VERACODE_API_ID" --veracode_api_key "$env:VERACODE_API_KEY" --file "veracode/target/API4KP-$env:TIER1_DEV_VERSION.jar" --fail_on_severity="Very High, High" --verbose="true"
+#   env:
+#     DEPLOY_REPO: $(deploymentRepo)
+#     DEPLOY_REPO_PATH: $(deploymentRepoPath)
+#     TIER1_DEV_VERSION: $(tier1NewDevelopVersion)
+#     VERACODE_API_ID: $(veracodeApiId)
+#     VERACODE_API_KEY: $(veracodeApiToken)
 
 # Runs Maven Goal: deploy 
 # Deploys to Azure DevOps Artifacts
