@@ -158,10 +158,10 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      chmod 777 "veracode/pipeline-scan-LATEST.zip"
+      chmod 777 "veracode/pipeline-scan.jar"
       chmod 777 "veracode/target/API4KP-$env:TIER1_DEV_VERSION.jar"
      
-      java -Dpipeline.debug=true -jar veracode/pipeline-scan.jar --veracode_api_id "$env:VERACODE_API_ID" --veracode_api_key "$env:VERACODE_API_KEY" --file "veracode/target/API4KP-$env:TIER1_DEV_VERSION.jar" --fail_on_severity="Very High, High" --fail_on_cwe="80"
+      java -jar veracode/pipeline-scan.jar --veracode_api_id "$env:VERACODE_API_ID" --veracode_api_key "$env:VERACODE_API_KEY" --file "veracode/target/API4KP-$env:TIER1_DEV_VERSION.jar" --fail_on_severity="Very High, High" --fail_on_cwe="80"
   env:
     DEPLOY_REPO: $(deploymentRepo)
     DEPLOY_REPO_PATH: $(deploymentRepoPath)
