@@ -160,7 +160,9 @@ steps:
     script: |
       cd veracode
       dir
-      cd ..
+      cd target
+      dir
+      cd ../..
       # chmod 777 "veracode/"
      
       # java -Dpipeline.debug=true -jar veracode/pipeline-scan.jar --veracode_api_id "$env:VERACODE_API_ID" --veracode_api_key "$env:VERACODE_API_KEY" --file "veracode/" --fail_on_severity="Very High, High" --fail_on_cwe="80"
