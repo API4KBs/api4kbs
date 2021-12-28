@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="https://www.omg.org/spec/API4KP/api4kp-ops/"
-     xml:base="https://www.omg.org/spec/API4KP/api4kp-ops/"
+<rdf:RDF xmlns="https://www.omg.org/spec/API4KP/api4kp-err/"
+     xml:base="https://www.omg.org/spec/API4KP/api4kp-err/"
      xmlns:sm="http://www.omg.org/techprocess/ab/SpecificationMetadata/"
      xmlns:dct="http://purl.org/dc/terms/"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
@@ -12,8 +12,8 @@
      xmlns:api4kp="https://www.omg.org/spec/API4KP/api4kp/"
      xmlns:DOL-terms="http://www.omg.org/spec/DOL/DOL-terms/"
      xmlns:api4kp-kp="https://www.omg.org/spec/API4KP/api4kp-kp/"
-     xmlns:api4kp-ops="https://www.omg.org/spec/API4KP/api4kp-ops/"
      xmlns:api4kp-kpc="https://www.omg.org/spec/API4KP/api4kp-kpc/"
+     xmlns:api4kp-ops="https://www.omg.org/spec/API4KP/api4kp-ops/"
      xmlns:AnnotationVocabulary="http://www.omg.org/spec/EDMC-FIBO/FND/Utilities/AnnotationVocabulary/">
     <owl:Ontology rdf:about="https://www.omg.org/spec/API4KP/api4kp-err/">
         <owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/SNAPSHOT/api4kp-err/"/>
@@ -95,11 +95,196 @@
     
 
 
-    <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Acceptance -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-err/Acceptance -->
 
-    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Acceptance">
-        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/KnowledgeResourceOutcome"/>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-err/Acceptance">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Quality"/>
         <rdfs:label>acceptance</rdfs:label>
+        <skos:definition>quality state based on constraints established in a contract between parties, where one of the parties is a potential user or stakeholder of the knowledge resource</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-err/Accessibility -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-err/Accessibility">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/FAIRTness"/>
+        <rdfs:label>accessbility</rdfs:label>
+        <skos:definition>FAIRTness state based on the ability to resolve designators to the location where the ((copy of a) manifestation of a) knowledge resource, and/or description thereof, can be acquired</skos:definition>
+        <skos:scopeNote>acquisition may involve localization, but also authorization</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-err/Canonicality -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-err/Canonicality">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/StyleConformance"/>
+        <rdfs:comment>For example, &quot;1+2+3&quot; and &quot;2+3+1&quot; are generally iso-semantic, but one may define a canonical form where the addends are sorted, making &quot;1+2+3&quot; canonical</rdfs:comment>
+        <rdfs:label>canonicality</rdfs:label>
+        <skos:definition>style conformance defined in terms of a (partial) order on the structure of iso-semantic sentences, where certain structures are preferred over others</skos:definition>
+        <rdfs:seeAlso>https://en.wikipedia.org/wiki/Canonicalization</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-err/Compatibility -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-err/Compatibility">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Quality"/>
+        <rdfs:label>compatibility</rdfs:label>
+        <skos:definition>outcome related to the ability of a knowledge platform to process a given knowledge resource</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-err/Composability -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-err/Composability">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/Semanticity"/>
+        <rdfs:label>composability</rdfs:label>
+        <skos:definition>outcome based on the ability of a knowledge resource to be composed (structured) into/with another knowledge resource, while preserving its semantic properties</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-err/Conciseness -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-err/Conciseness">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/StyleConformance"/>
+        <rdfs:comment>in a concise expression, every construct either evokes a distinct concept, or supports the structure of the expression.
+For example, &quot;3+3&quot; is concise, whereas &quot;3+3-1+1&quot; or &quot;(3+3)&quot; are not</rdfs:comment>
+        <rdfs:label>conciseness</rdfs:label>
+        <skos:definition>stylistic constraint that promotes minimal, laconic expressions, i.e. expressions where constructs cannot be removed without affecting the interpretation</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-err/Efficiency -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-err/Efficiency">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Quality"/>
+        <rdfs:label>efficiency</rdfs:label>
+        <skos:definition>quality outcome based on the ability to perform knowledge processing activities driven by the knowledge resources while satisfying constraints on the resources consumed by the execution (including time, memory, cpu cycles, etc.)</skos:definition>
+        <skos:scopeNote>in contrast with complexity, efficiency is practical (as opposed to theoretical) and relative (as opposed to absolute)</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-err/FAIRTness -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-err/FAIRTness">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/KnowledgeResourceOutcome"/>
+        <rdfs:label>FAIRT-ness</rdfs:label>
+        <skos:definition>social outcome defined in terms of constraints on the findability, accessibility, interoperability, reusability and trustworthiness of a knowledge resource, and descriptions (metadata) thereof</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-err/Findability -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-err/Findability">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/FAIRTness"/>
+        <rdfs:label>findability</rdfs:label>
+        <skos:definition>FAIRTness state based on the ability to resolve designators to an actual knowledge resource, and/or description thereof</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-err/Interoperability -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-err/Interoperability">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/FAIRTness"/>
+        <rdfs:label>interoperability</rdfs:label>
+        <skos:definition>FAIRTness state defined in terms of the ability of a knowledge resource to be part of, and processed by, different knowledge platforms</skos:definition>
+        <skos:scopeNote>implies, for example, the ability to work with other knowledge resources (e.g. in a composite knowledge base), to be applied to various data sources, and/or be processed by different knowledge platform components</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-err/Portability -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-err/Portability">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/Sharability"/>
+        <rdfs:label>portability</rdfs:label>
+        <skos:definition>sharability that is further constrained to yield the same behavior</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-err/Reusability -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-err/Reusability">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/FAIRTness"/>
+        <rdfs:label>reusability</rdfs:label>
+        <skos:definition>FAIRTness state based on the ability to be combined with different knowledge resources, in different knowledge bases</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-err/Semanticity -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-err/Semanticity">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/KnowledgeResourceOutcome"/>
+        <rdfs:comment>formal semantics is usually captured by the constructs of the expression language, while domain semantics is captured by the lexicon</rdfs:comment>
+        <rdfs:label>semanticity</rdfs:label>
+        <rdfs:seeAlso>https://en.wikipedia.org/wiki/Formal_semantics</rdfs:seeAlso>
+        <skos:definition>formal outcome defined in terms of the interpretation (domain semantics) and/or computational aspects  (formal semantics) underlying a knowledge resource</skos:definition>
+        <skos:scopeNote>semanticity, and formal semantics, are here used in a broader sense, compatible but more general, than formal semantics in logic</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-err/Sharability -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-err/Sharability">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/Interoperability"/>
+        <rdfs:label>sharability</rdfs:label>
+        <skos:definition>interoperability state based on the ability of two or more, distinct platforms to produce the same interpretation for the given resource</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-err/StandardsConformance -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-err/StandardsConformance">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/Interoperability"/>
+        <rdfs:comment>standards conformant resources are processed by standards compliant platforms</rdfs:comment>
+        <rdfs:comment>the standards specifications are expected to be FAIR-T resources themselves</rdfs:comment>
+        <rdfs:label>standards conformance</rdfs:label>
+        <skos:definition>adherence to the constraints published as a standard, endorsed by a standards defining organization</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-err/StyleConformance -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-err/StyleConformance">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Grammaticality"/>
+        <rdfs:label>style conformance</rdfs:label>
+        <skos:definition>grammaticality defined in terms of patterns and/or soft constraints on the internal structure of an expression</skos:definition>
+        <skos:scopeNote>style conformance is particularly relevant when a language supports iso-semantic expressions (i.e. alternative ways to evoke the same concepts)</skos:scopeNote>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-err/Trustworthiness -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-err/Trustworthiness">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/FAIRTness"/>
+        <rdfs:label>trustworthiness</rdfs:label>
+        <skos:definition>FAIRTness based on constraints on the pedigree, provenance and/or lineage of the knowledge resource</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://www.omg.org/spec/API4KP/api4kp-err/Validity -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-err/Validity">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/Semanticity"/>
+        <rdfs:label>validity</rdfs:label>
+        <skos:definition>outcome based on the (in)ability to derive inferences that are (in)consistent with  input assertions, for any input</skos:definition>
+        <skos:scopeNote>validity is necessary, but not sufficient, to determine correctness - especially when a resource is incomplete, i.e. unable to derive inferences for a given set of inputs</skos:scopeNote>
     </owl:Class>
     
 
@@ -113,11 +298,23 @@
     
 
 
+    <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Actuality -->
+
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Actuality">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/Findability"/>
+        <rdfs:label>actuality</rdfs:label>
+        <skos:definition>findability state based on the materialization of a knowledge resource in at least one manifestation</skos:definition>
+    </owl:Class>
+    
+
+
     <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Completeness -->
 
     <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Completeness">
-        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Compliance"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/Semanticity"/>
         <rdfs:label>completeness</rdfs:label>
+        <rdfs:seeAlso>https://en.wikipedia.org/wiki/Completeness_(logic)</rdfs:seeAlso>
+        <skos:definition>outcome based on the (in)ability to derive inferences for any possible combination of inputs</skos:definition>
     </owl:Class>
     
 
@@ -125,27 +322,11 @@
     <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Complexity -->
 
     <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Complexity">
-        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Compliance"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/Semanticity"/>
+        <rdfs:comment>Example: x^2 is computationally less complex than 2^x for large(r) values of x</rdfs:comment>
         <rdfs:label>complexity</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Compliance -->
-
-    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Compliance">
-        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/KnowledgeResourceOutcome"/>
-        <rdfs:label>compliance</rdfs:label>
-        <skos:definition>outcome related to the ability to reproduce an expected behavior</skos:definition>
-    </owl:Class>
-    
-
-
-    <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Conformance -->
-
-    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Conformance">
-        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/KnowledgeResourceOutcome"/>
-        <rdfs:label>conformance</rdfs:label>
+        <rdfs:seeAlso>https://en.wikipedia.org/wiki/Computational_complexity</rdfs:seeAlso>
+        <skos:definition>outcome based on the estimation of resources (time, space, cpu cycles, money, etc) necessary to perform knowledge processing activities with the given knowledge resource</skos:definition>
     </owl:Class>
     
 
@@ -153,8 +334,12 @@
     <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Consistency -->
 
     <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Consistency">
-        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Satisfiability"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/Semanticity"/>
+        <rdfs:comment>Example: { x = 3; x = 2 + 4 } is inconsistent under the usual formal rules of basic algebra</rdfs:comment>
         <rdfs:label>consistency</rdfs:label>
+        <rdfs:seeAlso>https://en.wikipedia.org/wiki/Consistency</rdfs:seeAlso>
+        <skos:definition>semantic outcome based on the assertion,or necessary inference/entailment/derivation, of a logical contradiction</skos:definition>
+        <skos:scopeNote>syntactic consistency can be determined throguh the analysis of an expression - e.g. &quot;X is A and not A&quot;, and inconsistency implies that no interpretation would make the resource consistent. Semantic consistency, conversely, requires an interepretation, and possibly background knowledge about the referents.</skos:scopeNote>
     </owl:Class>
     
 
@@ -162,8 +347,10 @@
     <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Currency -->
 
     <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Currency">
-        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Acceptance"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Quality"/>
         <rdfs:label>currency</rdfs:label>
+        <skos:definition>quality outcome based on the comparison of the resource&apos;s knowledge content (i.e. the carried asset) and the knowledge as of a specific point in time T, i.e. a faithful, possibly ideal, work of knowledge with the same subject and scope as if that work had been conceived at that point in time T.</skos:definition>
+        <skos:scopeNote>currency is often, but not always, evaluated with respect to the knowledge at that same point in time.</skos:scopeNote>
     </owl:Class>
     
 
@@ -186,15 +373,6 @@
     
 
 
-    <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Existence -->
-
-    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Existence">
-        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Resolvability"/>
-        <rdfs:label>existence</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- https://www.omg.org/spec/API4KP/api4kp-ops/FailureOutcome -->
 
     <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/FailureOutcome">
@@ -209,8 +387,9 @@
     <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Fitness -->
 
     <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Fitness">
-        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Acceptance"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Quality"/>
         <rdfs:label>fitness</rdfs:label>
+        <skos:definition>relative quality outcome based on the comparison between two knowledge resources, and/or quality thereof, when the resources share subject, scope and/or purpose</skos:definition>
     </owl:Class>
     
 
@@ -219,7 +398,15 @@
 
     <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Grammaticality">
         <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/KnowledgeResourceOutcome"/>
+        <rdfs:comment>Considerations
+- Artifacts carry expressions: the carrier per se is irrelevant
+- Assets are not grammatical until expressed in at least one language
+- If a language has multiple grammars, the outcome should not depend on the grammar, though the complexity or decidability thereof could</rdfs:comment>
         <rdfs:label>grammaticality</rdfs:label>
+        <rdfs:seeAlso></rdfs:seeAlso>
+        <rdfs:seeAlso>https://en.wikipedia.org/wiki/Constrained_writing</rdfs:seeAlso>
+        <skos:altLabel>syntactic conformance</skos:altLabel>
+        <skos:definition>formal outcome defined by linguistic rules, patterns and/or constraints, including but not limited to grammatical, syntactic, lexical, and/or stylistic ones.</skos:definition>
     </owl:Class>
     
 
@@ -227,8 +414,9 @@
     <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Identifiability -->
 
     <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Identifiability">
-        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Resolvability"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/Findability"/>
         <rdfs:label>identifiability</rdfs:label>
+        <skos:definition>findability based on the ability to map an identifier to the resource that it identifies, and vice versa</skos:definition>
     </owl:Class>
     
 
@@ -238,7 +426,7 @@
     <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/KnowledgeResourceOutcome">
         <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Outcome"/>
         <rdfs:label>knowledge resource outcome</rdfs:label>
-        <skos:definition>oucome state defined in terms of the state of syntactic (linguistic), semantic (domain/model) and/or pragmatic (formal) properties of a knowledge resource</skos:definition>
+        <skos:definition>oucome state defined in terms of formal or social properties of a knowledge resource</skos:definition>
     </owl:Class>
     
 
@@ -246,37 +434,33 @@
     <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Locatability -->
 
     <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Locatability">
-        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Resolvability"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/Accessibility"/>
         <rdfs:label>locatability</rdfs:label>
-        <skos:definition>state related to the ability to acquire a given knowledge resource (version), pointer to, or copy thereof.</skos:definition>
+        <skos:definition>accessibility state related to the ability to map a resource (identifier) to a location, and vice-versa</skos:definition>
         <skos:scopeNote>may be impacted by the derefencing process, but also to the relocation, or even non-existence of the knowledge base</skos:scopeNote>
     </owl:Class>
     
 
 
-    <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Performance -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Outcome -->
 
-    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Performance">
-        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Complexity"/>
-        <rdfs:label>performance</rdfs:label>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Outcome">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/State"/>
+        <rdfs:label>outcome</rdfs:label>
+        <skos:definition>state of a system that is the consequence of the execution of an activity, at the point in time the activity has been completed</skos:definition>
+        <skos:scopeNote>the state is associated to, but not the same as, the point-in-time event of reaching that state, or the period of time over which the state holds</skos:scopeNote>
     </owl:Class>
     
 
 
-    <!-- https://www.omg.org/spec/API4KP/api4kp-ops/ProfileConformance -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Quality -->
 
-    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/ProfileConformance">
-        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Grammaticality"/>
-        <rdfs:label>profile conformance</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Resolvability -->
-
-    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Resolvability">
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Quality">
         <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/KnowledgeResourceOutcome"/>
-        <rdfs:label>resolvability</rdfs:label>
+        <rdfs:label>quality</rdfs:label>
+        <skos:definition>social outcome based on constraints applied to a similarity/distance measure applied to (properties of) the knowledge resource compared to some reference goal state that is considered desirable, according to a utility measure</skos:definition>
+        <skos:scopeNote>note that a quality outcome state is determined by, but not itself, a quality measure (which is a knowledge resource in itself). An instance of this class should not be &quot;Q is 78%&quot;, but rather &quot;good quality&quot; or &quot;(state such that) Q &gt;= 75%&quot;</skos:scopeNote>
+        <skos:scopeNote>the definition correlates quality to relative utility, compared to an optimum which may or may not exist.</skos:scopeNote>
     </owl:Class>
     
 
@@ -284,10 +468,12 @@
     <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Satisfiability -->
 
     <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Satisfiability">
-        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Conformance"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/Semanticity"/>
+        <rdfs:comment>Example: { x = 3; y = x + 2 } is satisfiable for x = 3 and y = 5</rdfs:comment>
         <rdfs:label>satisfiability</rdfs:label>
         <rdfs:seeAlso>http://www.cs.swansea.ac.uk/~csmarkus/ProcessesAndData/sites/default/files/uploads/papers/catesbeiana09.pdf</rdfs:seeAlso>
-        <skos:definition>outcome related to the possibility of selecting and/or deriving the information necessary to bind one or more variables</skos:definition>
+        <rdfs:seeAlso>https://en.wikipedia.org/wiki/Satisfiability</rdfs:seeAlso>
+        <skos:definition>outcome related to ability of having at least one interpretation that is true in the domain of reference, for an assignment of the knowledge resource&apos;s variables</skos:definition>
     </owl:Class>
     
 
@@ -295,8 +481,11 @@
     <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Soundness -->
 
     <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Soundness">
-        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Compliance"/>
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-err/Validity"/>
         <rdfs:label>soundness</rdfs:label>
+        <rdfs:seeAlso>https://en.wikipedia.org/wiki/Soundness</rdfs:seeAlso>
+        <skos:altLabel>correctness</skos:altLabel>
+        <skos:definition>outcome defined in terms of validity when applied to true facts (inputs)</skos:definition>
     </owl:Class>
     
 
@@ -322,20 +511,14 @@
     
 
 
-    <!-- https://www.omg.org/spec/API4KP/api4kp-ops/TheoreticalComplexity -->
+    <!-- https://www.omg.org/spec/API4KP/api4kp-ops/SyntacticProfileConformance -->
 
-    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/TheoreticalComplexity">
-        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Complexity"/>
-        <rdfs:label>theoretical complexity</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Utility -->
-
-    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Utility">
-        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Acceptance"/>
-        <rdfs:label>utility</rdfs:label>
+    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/SyntacticProfileConformance">
+        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Grammaticality"/>
+        <rdfs:comment>Syntactic profiles can, e.g., restrict the allowed constructs, or further constrain the grammar rules.
+For example, consider the language of basic algebra restricted to only using &quot;+&quot; and single digit integer numbers</rdfs:comment>
+        <rdfs:label>syntactic profile conformance</rdfs:label>
+        <skos:definition>grammaticality based on the rules of a syntactic language profile, i.e. a (sub)language derived from another language by means of restricting the set of valid sentences</skos:definition>
     </owl:Class>
     
 
@@ -344,20 +527,13 @@
 
     <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/WellFormedness">
         <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/Grammaticality"/>
+        <rdfs:comment>For example, &quot;1 + 2&quot; and &quot;+ 2 1&quot; follow the grammar of basic algebra, using different concrete syntaxes (infix vs prefix notation), but &quot;1 +&quot; is syntactically ill-formed</rdfs:comment>
         <rdfs:label>well formedness</rdfs:label>
-        <skos:definition>state defined by linguistic rules, including grammatical, syntactic and/or lexical constraints</skos:definition>
-        <skos:scopeNote>this definition combines e.g. the XML-based notion of &apos;well-formedness&apos; vs &apos;validity&apos;, where the former is merely based on the concrete syntax/orthography rules, while the latter is based on the notion of abstract syntax/grammatical rules</skos:scopeNote>
-    </owl:Class>
-    
-
-
-    <!-- https://www.omg.org/spec/API4KP/api4kp-ops/Outcome -->
-
-    <owl:Class rdf:about="https://www.omg.org/spec/API4KP/api4kp-ops/Outcome">
-        <rdfs:subClassOf rdf:resource="https://www.omg.org/spec/API4KP/api4kp-ops/State"/>
-        <rdfs:label>outcome</rdfs:label>
-        <skos:definition>state of a system that is the consequence of the execution of an activity, at the point in time the activity has been completed</skos:definition>
-        <skos:scopeNote>the state is associated to, but not the same as, the point-in-time event of reaching that state, or the period of time over which the state holds</skos:scopeNote>
+        <rdfs:seeAlso>https://en.wikipedia.org/wiki/Formal_language</rdfs:seeAlso>
+        <rdfs:seeAlso>https://en.wikipedia.org/wiki/Well-formedness</rdfs:seeAlso>
+        <skos:definition>grammaticality defined by the rules of the concrete syntax of a language (grammar + orthography), determining to what extent a resource is, or carries, an expression recognized to be in a given, possibly formal, language</skos:definition>
+        <skos:scopeNote>this notion of well-formedness is broader than the notion of XML well-formedness</skos:scopeNote>
+        <skos:scopeNote>well formedness is more specific than grammaticality, to the extent that there may be other ways to determine syntactic properties other than using grammar rules</skos:scopeNote>
     </owl:Class>
     
 
