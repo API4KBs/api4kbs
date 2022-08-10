@@ -1198,4 +1198,24 @@ i.e.: not Standalone or not Broadly Understandable</skos:definition>
 		<rdfs:subPropertyOf rdf:resource="&api4kp-kmdo;associated-with"/>
 	</owl:ObjectProperty>
 
+  <owl:ObjectProperty rdf:about="&api4kp-kmdo;isApplicableTo">
+    <rdfs:subPropertyOf rdf:resource="&api4kp-kmdo;associated-with"/>
+    <rdfs:domain rdf:resource="&api4kp;KnowledgeResource"/>
+    <rdfs:range rdf:resource="&api4kp;DefinedConcept"/>
+    <rdfs:label>is applicable to</rdfs:label>
+    <skos:definition>is pertinent and useful in the context of</skos:definition>
+    <skos:scopeNote>restricted to Knowledge that is applicable to a Situation (type). Given an Agent in a Situation of that type, with Goal (types) that depend on that Situation (type): if the Agent possesses that piece of  Knowledge, the Agent can devise a Plan that is more efficient and/or effective at achieving the Goals, compared to not having that Knowledge</skos:scopeNote>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&api4kp-kmdo;isApplicandTo">
+    <rdfs:subPropertyOf rdf:resource="&api4kp-kmdo;isApplicableTo"/>
+    <rdfs:label>is to be applied to</rdfs:label>
+    <skos:definition>is applicable to, and there exist a moral, social and/or legal obligation to apply it to</skos:definition>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="&api4kp-kmdo;isAppliedTo">
+    <rdfs:subPropertyOf rdf:resource="&api4kp-kmdo;isApplicableTo"/>
+    <rdfs:label>is applied to</rdfs:label>
+    <skos:definition>is applicable to, and there is evidence that it has been applied at least once</skos:definition>
+  </owl:ObjectProperty>
 </rdf:RDF>
