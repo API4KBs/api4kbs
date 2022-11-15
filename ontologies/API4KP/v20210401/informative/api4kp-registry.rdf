@@ -47,7 +47,30 @@
 		<owl:imports rdf:resource="https://www.omg.org/spec/API4KP/api4kp/"/>
 		<owl:versionIRI rdf:resource="https://www.omg.org/spec/API4KP/20210401/api4kp-registry/"/>
 	</owl:Ontology>
-	
+
+
+  <owl:NamedIndividual rdf:about="http://snomed.org/scg">
+  	<rdf:type rdf:resource="&dol;OMSLanguage"/>
+  	<rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
+ 		<rdfs:label>SNOMED Compositional Grammar</rdfs:label>
+ 		<rdfs:comment>SNOMED-CT Compositional Grammar</rdfs:comment>
+ 		<dct:identifier>scg</dct:identifier>
+ 		<dct:source>http://snomed.org/scg</dct:source>
+ 		<dol:supportsSerialization rdf:resource="http://snomed.info/syntax/scg/version/2.1"/>
+ 		<owl:versionInfo>2</owl:versionInfo>
+ 		<skos:prefLabel>SCG</skos:prefLabel>
+ 	</owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:about="http://snomed.info/syntax/scg/version/2.1">
+		<rdf:type rdf:resource="&dol;Serialization"/>
+		<rdfs:label>SCG Syntax</rdfs:label>
+		<rdfs:comment>SCG Syntax</rdfs:comment>
+		<dct:identifier>scgs</dct:identifier>
+		<dct:source>http://snomed.org/scg</dct:source>
+		<skos:prefLabel>SNOMED Compositional Grammar Text Syntax</skos:prefLabel>
+		<api4kp:depends-on rdf:resource="https://tools.ietf.org/html/rfc1341/7"/>
+	</owl:NamedIndividual>
+
 	<owl:NamedIndividual rdf:about="http://cql.hl7.org/ELM">
 		<rdf:type rdf:resource="&dol;OMSLanguage"/>
 		<rdf:type rdf:resource="&api4kp;ConstructedLanguage"/>
