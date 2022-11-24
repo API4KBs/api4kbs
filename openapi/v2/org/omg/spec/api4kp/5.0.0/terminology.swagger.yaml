@@ -90,6 +90,7 @@ paths:
       produces:
       - application/json
       - application/xml
+      - text/html
       parameters:
         - $ref: '#/parameters/vocabularyId'
         - $ref: '#/parameters/versionTag'
@@ -227,6 +228,28 @@ paths:
         400:
           description: vocabulary not found     
 
+  /terminologies/terms/{vocabularyTag}/{conceptId}:
+    get:
+      tags:
+        - Terms
+      summary: Looks up a concept in the context of a given vocabulary
+      operationId: lookupTermInVocabulary
+      produces:
+        - application/json
+        - application/xml
+        - text/html
+      parameters:
+        - $ref: '#/parameters/vocabularyTag'
+        - $ref: '#/parameters/conceptId'
+        - $ref: '#/parameters/xAccept'
+      responses:
+        200:
+          description: concept resolved in at least one terminology
+          schema:
+            $ref: '#/definitions/KnowledgeCarrier'
+        400:
+          description: concept not found in any terminology
+
   /terminologies/terms/{conceptId}:
     get:
       # priority: high
@@ -263,6 +286,13 @@ parameters:
     required: true
     type: string
     format: uuid
+
+  vocabularyTag:
+    name: vocabularyTag
+    in: path
+    description: The id of the terminology system
+    required: true
+    type: string
     
   conceptId:
     name: conceptId
@@ -301,8 +331,8 @@ parameters:
     type: string
 
   xAccept:
-    name: xAccept
-    in: query
+    name: X-Accept
+    in: header
     description: A formal MIME type that express the client's preferences during content negotiation
     required: false
     type: string
