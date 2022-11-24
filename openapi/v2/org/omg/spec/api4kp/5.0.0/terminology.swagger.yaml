@@ -228,6 +228,26 @@ paths:
         400:
           description: vocabulary not found     
 
+  /terminologies/terms:
+    post:
+      tags:
+        - Terms
+      summary: Searches for concepts by label
+      operationId: searchTerms
+      produces:
+        - application/json
+        - application/xml
+        - text/html
+      parameters:
+        - $ref: '#/parameters/searchQuery'
+      responses:
+        200:
+          description: "Matching terms"
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+
   /terminologies/terms/{vocabularyTag}/{conceptId}:
     get:
       tags:
@@ -267,8 +287,10 @@ paths:
       produces:
         - application/json
         - application/xml
+        - text/html
       parameters:
         - $ref: '#/parameters/conceptId'
+        - $ref: '#/parameters/xAccept'
       responses:
         200:
           description: concept resolved in at least one terminology
@@ -327,6 +349,13 @@ parameters:
     name: versionTag
     in: path
     description: The version of the terminology system
+    required: true
+    type: string
+
+  searchQuery:
+    name: searchQuery
+    in: query
+    description: The search query
     required: true
     type: string
 
