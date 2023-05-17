@@ -1146,6 +1146,54 @@ paths:
           description: |
             Not implemented
 
+  /cat/assets/{assetId}/surrogate/content:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Retrieve the Canonical Knowledge Asset Surrogate, for the latest version of an Asset
+      description: |
+        Returns the LATEST version of the Canonical Surrogate of the LATEST referenced Asset, in raw binary form
+
+        Supports content negotiation, allowing to retrieve this Surrogate in variant forms, if supported.
+
+      operationId: getKnowledgeAssetCanonicalSurrogateContent
+      produces:
+        - application/json
+        - application/xml
+        - text/html
+      parameters:
+        - $ref: '#/parameters/assetId'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            type: string
+            format: binary
+        300:
+          description: |
+            Negotiation failed, but suitable alternatives are present
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        403:
+          description: |
+            The client does not have the adequate permissions
+        404:
+          description: |
+            Asset not found
+        406:
+          description: |
+            No suitable variant is available
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
 
   /cat/assets/{assetId}/versions/{versionTag}/surrogate:
     get:
@@ -1239,6 +1287,57 @@ paths:
         409:
           description: |
             The identifiers on the Carrier and the provided Surrogate do not match this asset
+        500:
+          description: |
+            Internal error
+        501:
+          description: |
+            Not implemented
+
+  /cat/assets/{assetId}/versions/{versionTag}/surrogate/content:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Retrieve the Canonical Knowledge Asset Surrogate.
+      description: |
+        Returns the LATEST version of the Canonical Surrogate of the referenced Asset (version).
+
+        Supports content negotiation, allowing to retrieve this Surrogate in variant forms, if supported.
+
+        If content negotiation is not used, the Surrogate in response Knowledge Carrier is identical to the Surrogate returned invoking getKnowledgeAssetVersion for the same Asset ID and version.
+      operationId: getKnowledgeAssetVersionCanonicalSurrogateContent
+      produces:
+        - application/json
+        - application/xml
+        - text/html
+      parameters:
+        - $ref: '#/parameters/assetId'
+        - $ref: '#/parameters/versionTag'
+        # negotiable
+        - $ref: '#/parameters/extAccept'
+      responses:
+        200:
+          description: |
+            Success
+          schema:
+            type: string
+            format: binary
+        300:
+          description: |
+            Negotiation failed, but suitable alternatives are present
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pointer'
+        403:
+          description: |
+            The client does not have the adequate permissions
+        404:
+          description: |
+            Asset Version not found
+        406:
+          description: |
+            No suitable variant is available
         500:
           description: |
             Internal error
