@@ -1164,7 +1164,7 @@ paths:
       parameters:
         - $ref: '#/parameters/assetId'
         # negotiable
-        - $ref: '#/parameters/extAccept'
+        - $ref: '#/parameters/qAccept'
       responses:
         200:
           description: |
@@ -1314,7 +1314,7 @@ paths:
         - $ref: '#/parameters/assetId'
         - $ref: '#/parameters/versionTag'
         # negotiable
-        - $ref: '#/parameters/extAccept'
+        - $ref: '#/parameters/qAccept'
       responses:
         200:
           description: |
@@ -1902,6 +1902,15 @@ parameters:
   extAccept:
     in: header
     name: X-Accept
+    required: false
+    type: string
+    description: |
+      A MIME Type that codifies the syntactic representation of a Knowledge Artifact, as accepted by the client in a content negotiation sense.
+
+
+  qAccept:
+    in: query
+    name: qAccept
     required: false
     type: string
     description: |
