@@ -151,7 +151,11 @@ paths:
       parameters:
         - $ref: '#/parameters/modelId'
         - $ref: '#/parameters/versionTag'
-        - $ref: '#/parameters/features'
+        - in: body
+          name: features
+          required: false
+          schema:
+            $ref: '#/definitions/Bindings'
         - $ref: '#/parameters/params'
       responses:
         200:
@@ -285,7 +289,11 @@ paths:
         - $ref: '#/parameters/modelId'
         - $ref: '#/parameters/versionTag'
         - $ref: '#/parameters/entityId'
-        - $ref: '#/parameters/features'
+        - in: body
+          name: features
+          required: false
+          schema:
+            $ref: '#/definitions/Bindings'
         - $ref: '#/parameters/params'
       responses:
         200:
@@ -392,12 +400,6 @@ parameters:
     format: uuid
     required: true
 
-  features:
-    in: body
-    name: features
-    required: false
-    schema:
-      $ref: '#/definitions/Bindings'
 
   lambdaId:
     in: path

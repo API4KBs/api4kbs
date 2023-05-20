@@ -647,7 +647,7 @@ paths:
             Success
           schema:
             type: string
-            format: binary
+            format: byte
         300:
           description: |
             Negotiation failed, but suitable alternatives are present
@@ -765,7 +765,7 @@ paths:
             Success
           schema:
             type: string
-            format: binary
+            format: byte
         300:
           description: |
             Negotiation failed, but suitable alternatives are present
@@ -1037,7 +1037,7 @@ paths:
             Success
           schema:
             type: string
-            format: binary
+            format: byte
         403:
           description: |
             The user does not have the required permissions
@@ -1171,7 +1171,7 @@ paths:
             Success
           schema:
             type: string
-            format: binary
+            format: byte
         300:
           description: |
             Negotiation failed, but suitable alternatives are present
@@ -1321,7 +1321,7 @@ paths:
             Success
           schema:
             type: string
-            format: binary
+            format: byte
         300:
           description: |
             Negotiation failed, but suitable alternatives are present
@@ -1808,8 +1808,7 @@ parameters:
     required: false
     type: string
     description: |
-      An unqualified, codified term ("tag") that identifies a type, category or class of Knowledge Assets defined in some ontology
-      or classification scheme known to the server.
+      An unqualified, codified term ("tag") that identifies a type, category or class of Knowledge Assets defined in some ontology or classification scheme known to the server.
 
   assetAnnotationTag:
     in: query
@@ -1817,8 +1816,7 @@ parameters:
     required: false
     type: string
     description: |
-      An unqualified, codified term ("tag") that identifies a relationship between a Knowledge Assets and a concept.
-      The relationship must be defined in some ontology known to the server.
+      An unqualified, codified term ("tag") that identifies a relationship between a Knowledge Assets and a concept. The relationship must be defined in some ontology known to the server.
 
   assetAnnotationConcept:
     in: query
@@ -1907,7 +1905,6 @@ parameters:
     description: |
       A MIME Type that codifies the syntactic representation of a Knowledge Artifact, as accepted by the client in a content negotiation sense.
 
-
   qAccept:
     in: query
     name: qAccept
@@ -1922,8 +1919,7 @@ parameters:
     required: false
     schema:
       $ref: '#/definitions/KnowledgeAsset'
-    description: |
-      The Surrogate of a Knowledge Asset.
+    description: "The Surrogate of a Knowledge Asset."
 
   surrogateCarrier:
     in: body
@@ -1931,8 +1927,7 @@ parameters:
     required: true
     schema:
       $ref: '#/definitions/KnowledgeCarrier'
-    description: |
-      The Surrogate of a Knowledge Asset, wrapped in a Knowledge Carrier.
+    description: "The Surrogate of a Knowledge Asset, wrapped in a Knowledge Carrier."
 
   assetCarrier:
     in: body
@@ -1940,8 +1935,7 @@ parameters:
     required: true
     schema:
       $ref: '#/definitions/KnowledgeCarrier'
-    description: |
-      The manifestation of a Knowledge Asset, wrapped as a Knowledge Carrier.
+    description: "The manifestation of a Knowledge Asset, wrapped as a Knowledge Carrier."
 
 
   exemplar:
@@ -1950,12 +1944,8 @@ parameters:
     required: false
     schema:
       type: string
-      format: binary
-    description: |
-      A Knowledge Artifact that carries an exemplar of a Knowledge Assets.
-
-
-  #TODO - Should be moved to a common file
+      format: byte
+    description: "A Knowledge Artifact that carries an exemplar of a Knowledge Assets."
 
   graphQuery:
     in: body
@@ -1963,8 +1953,7 @@ parameters:
     required: true
     schema:
       $ref: '#/definitions/KnowledgeCarrier'
-    description: |
-      The query, wrapped in a KnowledgeCarrier that must state in what language the query is expressed
+    description: "The query, wrapped in a KnowledgeCarrier that must state in what language the query is expressed"
 
   beforeTag:
     in: query
@@ -1972,16 +1961,15 @@ parameters:
     required: false
     type: string
     description: |
-      Restricts the series to include only versions before (included) a given version Tag.
-      Assumes the underlying versioning scheme has at least a partial ordering defined.
+      Restricts the series to include only versions before (included) a given version Tag. Assumes the underlying versioning scheme has at least a partial ordering defined.
+
   afterTag:
     in: query
     name: afterTag
     required: false
     type: string
     description: |
-      Restricts the series to include only versions after (included) a given version Tag.
-      Assumes the underlying versioning scheme has at least a partial ordering defined.
+      Restricts the series to include only versions after (included) a given version Tag. Assumes the underlying versioning scheme has at least a partial ordering defined.
 
   sort:
     in: query
@@ -1998,8 +1986,8 @@ parameters:
     type: integer
     required: false
     description: |
-      Filters elements in a collection, returning all elements after the 'offset' index included,
-      ignoring all previous elements.
+      Filters elements in a collection, returning all elements after the 'offset' index included, ignoring all previous elements.
+
   limit:
     in: query
     name: limit
@@ -2030,17 +2018,13 @@ definitions:
     title: Knowledge Asset Surrogate
     type: object
     description: |
-      A Resource that contains descriptive information about a specific version of a
-      Knowledge Asset, as well as its known Representations and/or Manifestations.
-      The actual content model is implementation specific, so the adopted language specification
-      must be manifested by the Knowledge Asset Catalog.
+      A Resource that contains descriptive information about a specific version of a Knowledge Asset, as well as its known Representations and/or Manifestations. The actual content model is implementation specific, so the adopted language specification must be manifested by the Knowledge Asset Catalog.
 
   KnowledgeAssetCatalog:
     title: Knowledge Asset Catalog
     type: object
     description: |
-      A Resource that provides a summary of the features of a Catalog at a given point in time,
-      including the categories and types of Assets it supports, and the model/schema used to represent Assets' descriptions.
+      A Resource that provides a summary of the features of a Catalog at a given point in time, including the categories and types of Assets it supports, and the model/schema used to represent Assets' descriptions.
 
   Bindings:
     title: Bindings

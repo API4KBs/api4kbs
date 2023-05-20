@@ -388,7 +388,7 @@ paths:
             Success
           schema:
               type: string
-              format: binary
+              format: byte
         204:
           description: |
             Artifact known but either not available, or no versions are available.
@@ -585,9 +585,9 @@ paths:
           name: document
           required: true
           type: string
-          format: binary 
+          format: byte
           description: |
-            The binary serialization of the document that carries the new version of the Knowledge Artifact 
+            The binary serialization of the document that carries the new version of the Knowledge Artifact
       consumes:
       - multipart/form-data
       responses: 
@@ -642,7 +642,7 @@ paths:
             A copy of the given artifact's version can be retrieved
           schema:
               type: string
-              format: binary 
+              format: byte
         204:
           description: |
             The version is known but currently unavailable.
@@ -741,7 +741,7 @@ paths:
           name: document
           required: true
           type: string
-          format: binary 
+          format: byte
           description: | 
             The version of the Knowledge Artifact to be set in the repository.
       responses:
@@ -802,22 +802,16 @@ parameters:
     required: true
     type: string
     description: |
-      The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. 
-      
-      In general, the ID is qualified and scoped by a scheme owned by the server.
-      When the server guarantees to federate repositories from a single known namespace, and repository IDs
-      are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted
-      as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable."
+      The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
   
   repositoryDescr:
     in: body
     name: repositoryDescr
     required: false
+    description: "A representation of the current state of a given Knowledge Artifact Repository"
     schema:
-      $ref: '#/definitions/KnowledgeArtifactRepository' 
-    description: |
-      A representation of the current state of a given Knowledge Artifact Repository
-  
+      $ref: '#/definitions/KnowledgeArtifactRepository'
+
   artifactId:
     in: path
     name: artifactId
@@ -825,11 +819,7 @@ parameters:
     type: string
     format: uuid
     description: |
-      The (qualified) identifier of a Knowledge Artifact. 
-      
-      The server stores a 'Master Copy', from which other Knowledge Artifacts are derived by replication. MUST be used in the context of a Knowledge Artifact Repository
-      
-      Since Master Copies can be mutable, unless further qualified, the identifier will denote a Series in general, and identify the LATEST version within the series.  
+      The (qualified) identifier of a Knowledge Artifact.  The server stores a 'Master Copy', from which other Knowledge Artifacts are derived by replication. MUST be used in the context of a Knowledge Artifact Repository Since Master Copies can be mutable, unless further qualified, the identifier will denote a Series in general, and identify the LATEST version within the series.  
     
   versionTag:
     in: path
@@ -837,9 +827,7 @@ parameters:
     required: true
     type: string
     description: |
-      The version tag of a Versioned Entity Identifier. 
-      
-      Versioned Identifiers identify specific, Immutable Versions of Mutable Entities, which reflect the state of that Entity at a given point in time. Version(ed) identifier SHOULD be universal, but version Tags are not, and MUST always be interpreted within the context of their associated Entity (identifier).  
+      The version tag of a Versioned Entity Identifier.   Versioned Identifiers identify specific, Immutable Versions of Mutable Entities, which reflect the state of that Entity at a given point in time. Version(ed) identifier SHOULD be universal, but version Tags are not, and MUST always be interpreted within the context of their associated Entity (identifier).  
 
   deleted:
     in: query
@@ -857,13 +845,16 @@ parameters:
     name: beforeTag
     required: false
     type: string
-    description: "Restricts the series to include only versions before (included) a given version Tag. Assumes the underlying versioning scheme has at least a partial ordering defined."
+    description: |
+      Restricts the series to include only versions before (included) a given version Tag. Assumes the underlying versioning scheme has at least a partial ordering defined
+
   afterTag:
     in: query
     name: afterTag
     required: false
     type: string
-    description: "Restricts the series to include only versions after (included) a given version Tag. Assumes the underlying versioning scheme has at least a partial ordering defined."
+    description: |
+      Restricts the series to include only versions after (included) a given version Tag. Assumes the underlying versioning scheme has at least a partial ordering defined.
      
   sort:
     in: query
@@ -871,20 +862,24 @@ parameters:
     required: false
     type: string
     default: "asc"
-    description: "Allows to sort a collection by one ore more properties."   
+    description: |
+      Allows to sort a collection by one ore more properties
     
   offset:
     in: query
     name: offset
     type: integer
     required: false
-    description: "Filters elements in a collection, returning all elements after the 'offset' index included, ignoring all previous elements." 
+    description: |
+      Filters elements in a collection, returning all elements after the 'offset' index included, ignoring all previous elements.
+
   limit:
     in: query
     name: limit
     type: integer
     required: false
-    description: "Returns up to the given number of elements in a collection."
+    description: |
+      Returns up to the given number of elements in a collection.
 
 
 definitions:
