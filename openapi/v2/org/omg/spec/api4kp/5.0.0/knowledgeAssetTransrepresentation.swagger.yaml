@@ -660,12 +660,16 @@ parameters:
       A MIME Type that codifies the client's desired representation as the output of a syntactic operation
 
   levelTag:
-    in: body
+    in: query
     name: levelTag
     description: "Additional information that describes the desired (acceptable) resulting representation(s)"
     required: true
-    schema:
-      $ref: '#/definitions/ParsingLevel'
+    type: string
+    enum:
+      - Abstract_Knowledge_Expression
+      - Concrete_Knowledge_Expression
+      - Serialized_Knowledge_Expression
+      - Encoded_Knowledge_Expression
 
   from:
     in: query
@@ -704,11 +708,6 @@ definitions:
 
   KnowledgeCarrier:
     type: object
-
-  ParsingLevel:
-    type: string
-    description: "A vertical level of absraction on the binary/string/parse tree/AST/ASG chain"
-
 
   Transrepresentator:
     type: object
