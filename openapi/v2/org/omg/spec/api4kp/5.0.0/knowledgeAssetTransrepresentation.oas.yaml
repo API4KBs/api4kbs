@@ -1,0 +1,1152 @@
+openapi: 3.0.1
+info:
+  title: API4KP Knowledge Asset Transrepresentation API
+  description: |
+    This API defines "syntactic" manipulations of Knowledge Artifacts, based on the stratified representational aspects
+    of the Artifacts themselves (Language, profile, syntax/serialization, meta-format, encoding).
+
+    Supports both 'vertical' operations (parsing/serialization), which preserve the Asset and the Langauge,
+    and 'horizontal' operations (transrepresentations) which preserve the aspects up to a certain level,
+    but map across variants at the same level.
+
+    The API specializes the Knowledge Platform pattern. Components include one or more Operators, and each Operator
+    supports an API4KP Operation.
+    The Operator is the primary entity. For a given Operation type (detect, translate, etc), the server is expected
+    to index one more operators. If multiple operators of the same kind exist, the server will play a broker role and
+    use content negotiation to select the operator that is best fitting to satisfy a client's request.
+    The Operators can also be discovered, directly or through the Components. The APIs are overloaded so that
+    the client can interact with a specific Operator.
+
+    Syntactic Operations are curried to consume a Knowledge Artifact (wrapped in a Knowledge Carrier),
+    and return a wrapped KnowledgeCarrier, effectively behaving as functors in the functional programming sense.
+
+    The Operators can be addressed by identifier, or by pattern matching on the Syntactic Representations they consume or produce.
+    Patterns on the input will select operators that can process more equal or more general representations;
+    patterns on the output will select operators that can produce equal or more specific representations than the pattern itself.
+    Where necessary (e.g. as query/filter parameters), Syntactic Representations are encoded using formal MIME types.
+
+    **Maturity**
+    As of this version, this API is considered stable, but subject to extensions
+  contact:
+    name: Davide Sottara
+    email: sottara.davide@mayo.edu
+  license:
+    name: Apache License, Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 5.0.0
+servers:
+  - url: /omg.org/spec/API4KP/20200801/api/transrepresentation/v5
+tags:
+  - name: discovery
+    description: Describe Server Capability
+  - name: transxion
+    description: Apply available cross-Language Transrepresentation Capabilities.
+  - name: detect
+    description: Detect Language(s) used in an Expression
+  - name: validate
+    description: Validate that an Expression conforms to a Language(s)
+  - name: deserialize
+    description: Lift (parse) or Lower (serialize) an Expression
+paths:
+  /tranx/components:
+    get:
+      tags:
+        - discovery
+      summary: List available Transrepresentation Components
+      description: |
+        Enumerates the Transrepresentation Components that are supported by this server
+      operationId: listTxComponents
+      parameters:
+        - name: from
+          in: query
+          description: |
+            formal MIME encoding of a Syntactic Representation pattern used to filter components and operators that can consume specific representations
+          schema:
+            type: string
+        - name: into
+          in: query
+          description: |
+            formal MIME encoding of a Syntactic Representation pattern used to filter components and operators that can produce specific representations
+          schema:
+            type: string
+        - name: methodTag
+          in: query
+          description: |
+            Specifies the strategy by which a given operation is requested to be executed
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transrepresentator'
+  /tranx/components/{componentId}:
+    get:
+      tags:
+        - discovery
+      summary: Get Transrepresentation Component
+      description: |
+        Returns the description of a specific Transrepresentation Components,
+        including the Operators it provides and the software library that
+        this component is an instance of.
+      operationId: getTxComponent
+      parameters:
+        - name: componentId
+          in: path
+          description: |
+            The id of a Platform component that supports one or more operations.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Transrepresentator'
+  /tranx/transxor:
+    post:
+      tags:
+        - transxion
+      summary: Applies a trans-representation operation.
+      description: |
+        Applies a trans-representation operation to a KnowledgeCarrier,
+        selecting an Operator that supports the carrier's representation
+      operationId: applyTransrepresent
+      parameters:
+        - name: X-Accept
+          in: header
+          description: |
+            A MIME Type that codifies the client's desired representation as the output of a syntactic operation
+          schema:
+            type: string
+        - name: X-params
+          in: header
+          description: |
+            Additional, operation-specific parameter
+          schema:
+            type: string
+      requestBody:
+        description: The Carrier of a Source Knowledge Artifact, which is generally
+          expected to provide information about the representation of the Artifact
+          itself
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/KnowledgeCarrier'
+        required: true
+      responses:
+        200:
+          description: The transformed artifact
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/KnowledgeCarrier'
+      x-codegen-request-body-name: sourceArtifact
+  /tranx/transxors:
+    get:
+      tags:
+        - transxion
+      summary: List available Transrepresentation Operators
+      description: |
+        Enumerates the Transrepresentation Operators that are supported by this server
+      operationId: listTxionOperators
+      parameters:
+        - name: from
+          in: query
+          description: |
+            formal MIME encoding of a Syntactic Representation pattern used to filter components and operators that can consume specific representations
+          schema:
+            type: string
+        - name: into
+          in: query
+          description: |
+            formal MIME encoding of a Syntactic Representation pattern used to filter components and operators that can produce specific representations
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TransrepresentationOperator'
+  /tranx/transxors/{operatorId}:
+    get:
+      tags:
+        - transxion
+      summary: Get Transrepresentation operator.
+      description: |
+        Returns the description of a specific Transrepresentation Operator,
+        including the kind of operation it provides, the representations
+        (consumed and produced) and the accepted parameters
+      operationId: getTxionOperator
+      parameters:
+        - name: operatorId
+          in: path
+          description: |
+            The id of an Operator, implementing one of the operations
+            offered by a Component.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TransrepresentationOperator'
+    post:
+      tags:
+        - transxion
+      summary: Applies a trans-representation operation.
+      description: |
+        Applies a known trans-representation operation to a KnowledgeCarrier
+      operationId: applyNamedTransrepresent
+      parameters:
+        - name: operatorId
+          in: path
+          description: |
+            The id of an Operator, implementing one of the operations
+            offered by a Component.
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Accept
+          in: header
+          description: |
+            A MIME Type that codifies the client's desired representation as the output of a syntactic operation
+          schema:
+            type: string
+        - name: X-params
+          in: header
+          description: |
+            Additional, operation-specific parameter
+          schema:
+            type: string
+      requestBody:
+        description: The Carrier of a Source Knowledge Artifact, which is generally
+          expected to provide information about the representation of the Artifact
+          itself
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/KnowledgeCarrier'
+        required: true
+      responses:
+        200:
+          description: The transformed artifact
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/KnowledgeCarrier'
+      x-codegen-request-body-name: sourceArtifact
+  /detect/components:
+    get:
+      tags:
+        - discovery
+      summary: List available Detector Components
+      description: |
+        Enumerates the Detection Components that are supported by this server
+      operationId: listDetectComponents
+      parameters:
+        - name: into
+          in: query
+          description: |
+            formal MIME encoding of a Syntactic Representation pattern used to filter components and operators that can produce specific representations
+          schema:
+            type: string
+        - name: methodTag
+          in: query
+          description: |
+            Specifies the strategy by which a given operation is requested to be executed
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Detector'
+  /detect/components/{componentId}:
+    get:
+      tags:
+        - discovery
+      summary: Get Detector Component
+      description: |
+        Returns the description of a specific Detector Components,
+        including the Operators it provides and the software library that
+        this component is an instance of.
+      operationId: getDetectComponent
+      parameters:
+        - name: componentId
+          in: path
+          description: |
+            The id of a Platform component that supports one or more operations.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Detector'
+  /detect/detector:
+    post:
+      tags:
+        - detect
+      summary: Sets the representation(s) used in a given Artifact
+      description: |
+        Detects various aspects of the representation used in a Knowledge Artifact,
+        and sets it on the Carrier itself. Will not attempt to re-evaluate any
+        representation information that is already present on the input Carrier.
+      operationId: applyDetect
+      parameters:
+        - name: X-params
+          in: header
+          description: |
+            Additional, operation-specific parameter
+          schema:
+            type: string
+      requestBody:
+        description: The Carrier of a Source Knowledge Artifact, which is generally
+          expected to provide information about the representation of the Artifact
+          itself
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/KnowledgeCarrier'
+        required: true
+      responses:
+        200:
+          description: |
+            A Knowledge Carrier that contains the same as, or an identical copy of,
+            the input Artifact, enriched with the detected representation information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KnowledgeCarrier'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/KnowledgeCarrier'
+      x-codegen-request-body-name: sourceArtifact
+  /detect/detectors:
+    get:
+      tags:
+        - detect
+      summary: List available Detection Operators
+      description: |
+        Enumerates the Detection Operators that are supported by this server
+      operationId: listDetectionOperators
+      parameters:
+        - name: into
+          in: query
+          description: |
+            formal MIME encoding of a Syntactic Representation pattern used to filter components and operators that can produce specific representations
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DetectionOperator'
+  /detect/detectors/{operatorId}:
+    get:
+      tags:
+        - detect
+      summary: Get Detection operator.
+      description: |
+        Returns the description of a specific Transrepresentation Operator,
+        including the kind of operation it provides, the representations
+        (consumed and produced) and the accepted parameters
+      operationId: getDetectionOperator
+      parameters:
+        - name: operatorId
+          in: path
+          description: |
+            The id of an Operator, implementing one of the operations
+            offered by a Component.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DetectionOperator'
+    post:
+      tags:
+        - detect
+      summary: Applies a trans-representation operation.
+      description: |
+        Applies a known detection operation to a KnowledgeCarrier
+      operationId: applyNamedDetect
+      parameters:
+        - name: operatorId
+          in: path
+          description: |
+            The id of an Operator, implementing one of the operations
+            offered by a Component.
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-params
+          in: header
+          description: |
+            Additional, operation-specific parameter
+          schema:
+            type: string
+      requestBody:
+        description: The Carrier of a Source Knowledge Artifact, which is generally
+          expected to provide information about the representation of the Artifact
+          itself
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/KnowledgeCarrier'
+        required: true
+      responses:
+        200:
+          description: The transformed artifact
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/KnowledgeCarrier'
+      x-codegen-request-body-name: sourceArtifact
+  /valid/components:
+    get:
+      tags:
+        - discovery
+      summary: List available Validator Components
+      description: |
+        Enumerates the Validator Components that are supported by this server
+      operationId: listValidationComponents
+      parameters:
+        - name: from
+          in: query
+          description: |
+            formal MIME encoding of a Syntactic Representation pattern used to filter components and operators that can consume specific representations
+          schema:
+            type: string
+        - name: methodTag
+          in: query
+          description: |
+            Specifies the strategy by which a given operation is requested to be executed
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Validator'
+  /valid/components/{componentId}:
+    get:
+      tags:
+        - discovery
+      summary: Get Validator Component
+      description: |
+        Returns the description of a specific Validator Components,
+        including the Operators it provides and the software library that
+        this component is an instance of.
+      operationId: getValidationComponent
+      parameters:
+        - name: componentId
+          in: path
+          description: |
+            The id of a Platform component that supports one or more operations.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Validator'
+  /valid/validator:
+    post:
+      tags:
+        - validate
+      summary: Determines if a given Artifact conforms to a given representation
+      description: |
+        Attempts to establish whether a given Knowledge Artifact is a valid expression
+        of a given language, profile, lexicon and/or serialization"
+      operationId: applyValidate
+      parameters:
+        - name: X-params
+          in: header
+          description: |
+            Additional, operation-specific parameter
+          schema:
+            type: string
+      requestBody:
+        description: The Carrier of a Source Knowledge Artifact, which is generally
+          expected to provide information about the representation of the Artifact
+          itself
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/KnowledgeCarrier'
+        required: true
+      responses:
+        200:
+          description: |
+            Success, if the validation succeeds
+          content: {}
+      x-codegen-request-body-name: sourceArtifact
+  /valid/validators:
+    get:
+      tags:
+        - validate
+      summary: List available Validation Operators
+      description: |
+        Enumerates the Validation Operators that are supported by this server
+      operationId: listValidationOperators
+      parameters:
+        - name: from
+          in: query
+          description: |
+            formal MIME encoding of a Syntactic Representation pattern used to filter components and operators that can consume specific representations
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ValidationOperator'
+  /valid/validators/{operatorId}:
+    get:
+      tags:
+        - validate
+      summary: Get Validation operator.
+      description: |
+        Returns the description of a specific Validation Operator,
+        including the kind of operation it provides, the representations
+        (consumed and produced) and the accepted parameters
+      operationId: getValidationOperator
+      parameters:
+        - name: operatorId
+          in: path
+          description: |
+            The id of an Operator, implementing one of the operations
+            offered by a Component.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ValidationOperator'
+    post:
+      tags:
+        - validate
+      summary: Applies a Validation operation.
+      description: |
+        Applies a known validation operation to a KnowledgeCarrier
+      operationId: applyNamedValidate
+      parameters:
+        - name: operatorId
+          in: path
+          description: |
+            The id of an Operator, implementing one of the operations
+            offered by a Component.
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-params
+          in: header
+          description: |
+            Additional, operation-specific parameter
+          schema:
+            type: string
+      requestBody:
+        description: The Carrier of a Source Knowledge Artifact, which is generally
+          expected to provide information about the representation of the Artifact
+          itself
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/KnowledgeCarrier'
+        required: true
+      responses:
+        200:
+          description: |
+            Success, if the validation succeeds
+          content: {}
+      x-codegen-request-body-name: sourceArtifact
+  /deser/components:
+    get:
+      tags:
+        - discovery
+      summary: List available Deserialization Components
+      description: |
+        Enumerates the Deserialization Components that are supported by this server
+      operationId: listDeserializationComponents
+      parameters:
+        - name: from
+          in: query
+          description: |
+            formal MIME encoding of a Syntactic Representation pattern used to filter components and operators that can consume specific representations
+          schema:
+            type: string
+        - name: into
+          in: query
+          description: |
+            formal MIME encoding of a Syntactic Representation pattern used to filter components and operators that can produce specific representations
+          schema:
+            type: string
+        - name: methodTag
+          in: query
+          description: |
+            Specifies the strategy by which a given operation is requested to be executed
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Deserializer'
+  /deser/components/{componentId}:
+    get:
+      tags:
+        - discovery
+      summary: Get Deserialization Component
+      description: |
+        Returns the description of a specific Deserialization Components,
+        including the Operators it provides and the software library that
+        this component is an instance of.
+      operationId: getDeserializationComponent
+      parameters:
+        - name: componentId
+          in: path
+          description: |
+            The id of a Platform component that supports one or more operations.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Deserializer'
+  /deser/lifter:
+    post:
+      tags:
+        - deserialize
+      summary: Parses a Knowledge Artifact
+      description: |
+        Decodes, deserializes and/or parses a Knowledge Artifact, ensuring that
+        the resulting artifact is at the desired level.
+
+        The optional extAccept parameter further constrains the extent and details of the parsing
+        when multiple lifting alternatives are possible.
+
+        If the input artifact is already at the desired level, the same artifact will be returned.
+        If the input artifact is at a higher level, the operation will fail
+      operationId: applyLift
+      parameters:
+        - name: levelTag
+          in: query
+          description: Additional information that describes the desired (acceptable)
+            resulting representation(s)
+          required: true
+          schema:
+            type: string
+            enum:
+              - Abstract_Knowledge_Expression
+              - Concrete_Knowledge_Expression
+              - Serialized_Knowledge_Expression
+              - Encoded_Knowledge_Expression
+        - name: X-Accept
+          in: header
+          description: |
+            A MIME Type that codifies the client's desired representation as the output of a syntactic operation
+          schema:
+            type: string
+        - name: X-params
+          in: header
+          description: |
+            Additional, operation-specific parameter
+          schema:
+            type: string
+      requestBody:
+        description: The Carrier of a Source Knowledge Artifact, which is generally
+          expected to provide information about the representation of the Artifact
+          itself
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/KnowledgeCarrier'
+        required: true
+      responses:
+        200:
+          description: A Knowledge Artifact that is the deserialized version of the
+            source artifact.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/KnowledgeCarrier'
+      x-codegen-request-body-name: sourceArtifact
+  /deser/lifters:
+    get:
+      tags:
+        - deserialize
+      summary: List available Lifting Operators
+      description: |
+        Enumerates the Lifting Operators that are supported by this server
+      operationId: listLiftOperators
+      parameters:
+        - name: from
+          in: query
+          description: |
+            formal MIME encoding of a Syntactic Representation pattern used to filter components and operators that can consume specific representations
+          schema:
+            type: string
+        - name: into
+          in: query
+          description: |
+            formal MIME encoding of a Syntactic Representation pattern used to filter components and operators that can produce specific representations
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeserializationOperator'
+  /deser/lifters/{operatorId}:
+    get:
+      tags:
+        - deserialize
+      summary: Get Lifting operator.
+      description: |
+        Returns the description of a specific Lift Operator,
+        including the kind of operation it provides, the representations
+        (consumed and produced) and the accepted parameters
+      operationId: getLiftOperator
+      parameters:
+        - name: operatorId
+          in: path
+          description: |
+            The id of an Operator, implementing one of the operations
+            offered by a Component.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeserializationOperator'
+    post:
+      tags:
+        - deserialize
+      summary: Parses a Knowledge Artifact
+      description: |
+        Decodes, deserializes and/or parses a Knowledge Artifact, ensuring that
+        the resulting artifact is at the desired level.
+
+        The optional extAccept parameter further constrains the extent and details of the parsing
+        when multiple lifting alternatives are possible.
+
+        If the input artifact is already at the desired level, the same artifact will be returned.
+        If the input artifact is at a higher level, the operation will fail
+      operationId: applyNamedLift
+      parameters:
+        - name: operatorId
+          in: path
+          description: |
+            The id of an Operator, implementing one of the operations
+            offered by a Component.
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: levelTag
+          in: query
+          description: Additional information that describes the desired (acceptable)
+            resulting representation(s)
+          required: true
+          schema:
+            type: string
+            enum:
+              - Abstract_Knowledge_Expression
+              - Concrete_Knowledge_Expression
+              - Serialized_Knowledge_Expression
+              - Encoded_Knowledge_Expression
+        - name: X-Accept
+          in: header
+          description: |
+            A MIME Type that codifies the client's desired representation as the output of a syntactic operation
+          schema:
+            type: string
+        - name: X-params
+          in: header
+          description: |
+            Additional, operation-specific parameter
+          schema:
+            type: string
+      requestBody:
+        description: The Carrier of a Source Knowledge Artifact, which is generally
+          expected to provide information about the representation of the Artifact
+          itself
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/KnowledgeCarrier'
+        required: true
+      responses:
+        200:
+          description: A Knowledge Artifact that is the deserialized version of the
+            source artifact.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/KnowledgeCarrier'
+      x-codegen-request-body-name: sourceArtifact
+  /deser/lowerer:
+    post:
+      tags:
+        - deserialize
+      summary: Serializes a Knowledge Artifact
+      description: |
+        Serializes and/or encodes a Knowledge Artifact, ensuring that
+        the resulting artifact is at the desired level.
+
+        The optional extAccept parameter further constrains the extent and details of the serialization
+        when multiple lifting alternatives are possible.
+
+        If the input artifact is already at the desired level, the same artifact will be returned.
+        If the input artifact is at a lower level, the operation will fail
+      operationId: applyLower
+      parameters:
+        - name: levelTag
+          in: query
+          description: Additional information that describes the desired (acceptable)
+            resulting representation(s)
+          required: true
+          schema:
+            type: string
+            enum:
+              - Abstract_Knowledge_Expression
+              - Concrete_Knowledge_Expression
+              - Serialized_Knowledge_Expression
+              - Encoded_Knowledge_Expression
+        - name: X-Accept
+          in: header
+          description: |
+            A MIME Type that codifies the client's desired representation as the output of a syntactic operation
+          schema:
+            type: string
+        - name: X-params
+          in: header
+          description: |
+            Additional, operation-specific parameter
+          schema:
+            type: string
+      requestBody:
+        description: The Carrier of a Source Knowledge Artifact, which is generally
+          expected to provide information about the representation of the Artifact
+          itself
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/KnowledgeCarrier'
+        required: true
+      responses:
+        200:
+          description: A Knowledge Artifact that is the serialized version of the
+            source artifact.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/KnowledgeCarrier'
+      x-codegen-request-body-name: sourceArtifact
+  /deser/lowerers:
+    get:
+      tags:
+        - deserialize
+      summary: List available Lowering Operators
+      description: |
+        Enumerates the Lowering Operators that are supported by this server
+      operationId: listLowerOperators
+      parameters:
+        - name: from
+          in: query
+          description: |
+            formal MIME encoding of a Syntactic Representation pattern used to filter components and operators that can consume specific representations
+          schema:
+            type: string
+        - name: into
+          in: query
+          description: |
+            formal MIME encoding of a Syntactic Representation pattern used to filter components and operators that can produce specific representations
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeserializationOperator'
+  /deser/lowerers/{operatorId}:
+    get:
+      tags:
+        - deserialize
+      summary: Get Lowering operator.
+      description: |
+        Returns the description of a specific Lowering Operator,
+        including the kind of operation it provides, the representations
+        (consumed and produced) and the accepted parameters
+      operationId: getLowerOperator
+      parameters:
+        - name: operatorId
+          in: path
+          description: |
+            The id of an Operator, implementing one of the operations
+            offered by a Component.
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Success
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeserializationOperator'
+    post:
+      tags:
+        - deserialize
+      summary: Parses a Knowledge Artifact
+      description: |
+        Serializes and/or encodes a Knowledge Artifact, ensuring that
+        the resulting artifact is at the desired level.
+
+        The optional extAccept parameter further constrains the extent and details of the serialization
+        when multiple lifting alternatives are possible.
+
+        If the input artifact is already at the desired level, the same artifact will be returned.
+        If the input artifact is at a lower level, the operation will fail
+      operationId: applyNamedLower
+      parameters:
+        - name: operatorId
+          in: path
+          description: |
+            The id of an Operator, implementing one of the operations
+            offered by a Component.
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: levelTag
+          in: query
+          description: Additional information that describes the desired (acceptable)
+            resulting representation(s)
+          required: true
+          schema:
+            type: string
+            enum:
+              - Abstract_Knowledge_Expression
+              - Concrete_Knowledge_Expression
+              - Serialized_Knowledge_Expression
+              - Encoded_Knowledge_Expression
+        - name: X-Accept
+          in: header
+          description: |
+            A MIME Type that codifies the client's desired representation as the output of a syntactic operation
+          schema:
+            type: string
+        - name: X-params
+          in: header
+          description: |
+            Additional, operation-specific parameter
+          schema:
+            type: string
+      requestBody:
+        description: The Carrier of a Source Knowledge Artifact, which is generally
+          expected to provide information about the representation of the Artifact
+          itself
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/KnowledgeCarrier'
+        required: true
+      responses:
+        200:
+          description: A Knowledge Artifact that is the deserialized version of the
+            source artifact.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/KnowledgeCarrier'
+      x-codegen-request-body-name: sourceArtifact
+components:
+  schemas:
+    KnowledgeCarrier:
+      type: object
+    Transrepresentator:
+      type: object
+      description: A (descriptor of a) Knowledge Platform Component that supports
+        Transrepresentation Operators
+    TransrepresentationOperator:
+      type: object
+      description: A (descriptor of an) Operator that provides Transrepresentation
+        Operations
+    Detector:
+      type: object
+      description: A (descriptor of a) Knowledge Platform Component that supports
+        Detect Operators
+    DetectionOperator:
+      type: object
+      description: A (descriptor of an) Operator that provides Syntactic Detection
+        Operations
+    Validator:
+      type: object
+      description: A (descriptor of a) Knowledge Platform Component that supports
+        Validation Operators
+    ValidationOperator:
+      type: object
+      description: A (descriptor of an) Operator that provides Syntactic Validation
+        Operations
+    Deserializer:
+      type: object
+      description: A (descriptor of a) Knowledge Platform Component that supports
+        Deserialization Operators
+    DeserializationOperator:
+      type: object
+      description: A (descriptor of an) Operator that provides Deserialization Operations
+  parameters:
+    componentId:
+      name: componentId
+      in: path
+      description: |
+        The id of a Platform component that supports one or more operations.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    operatorId:
+      name: operatorId
+      in: path
+      description: |
+        The id of an Operator, implementing one of the operations
+        offered by a Component.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    extAccept:
+      name: X-Accept
+      in: header
+      description: |
+        A MIME Type that codifies the client's desired representation as the output of a syntactic operation
+      schema:
+        type: string
+    levelTag:
+      name: levelTag
+      in: query
+      description: Additional information that describes the desired (acceptable)
+        resulting representation(s)
+      required: true
+      schema:
+        type: string
+        enum:
+          - Abstract_Knowledge_Expression
+          - Concrete_Knowledge_Expression
+          - Serialized_Knowledge_Expression
+          - Encoded_Knowledge_Expression
+    from:
+      name: from
+      in: query
+      description: |
+        formal MIME encoding of a Syntactic Representation pattern used to filter components and operators that can consume specific representations
+      schema:
+        type: string
+    into:
+      name: into
+      in: query
+      description: |
+        formal MIME encoding of a Syntactic Representation pattern used to filter components and operators that can produce specific representations
+      schema:
+        type: string
+    methodTag:
+      name: methodTag
+      in: query
+      description: |
+        Specifies the strategy by which a given operation is requested to be executed
+      schema:
+        type: string
+    params:
+      name: X-params
+      in: header
+      description: |
+        Additional, operation-specific parameter
+      schema:
+        type: string
+  requestBodies:
+    sourceArtifact:
+      description: The Carrier of a Source Knowledge Artifact, which is generally
+        expected to provide information about the representation of the Artifact itself
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/KnowledgeCarrier'
+      required: true

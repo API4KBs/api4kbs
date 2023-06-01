@@ -1,0 +1,1311 @@
+openapi: 3.0.1
+info:
+  title: API4KP Knowledge Artifact Repository API
+  description: "API that expose the functional capabilities of a Knowledge Artifact\
+    \ Repository Service (KAR), as defined in the OMG API4KP specification. \n\nKnowledge\
+    \ Artifact Repositories allow to store and retrieve (copies of) Digital Knowledge\
+    \ Artifacts (KA).\nKARs treat KAs as black-box binary objects, so there is no\
+    \ limitation nor expectation on the nature of the content, or the requirements\
+    \ to consume it.\nHowever, identity and versioning must be supported.\n\nIdentifiers\
+    \ must be universal, unique and opaque, so they MUST be UUID v4 compliant.\nVersion\
+    \ tags can follow different patterns (semantic versioning, calendar versioning,\
+    \ incremental numbering, date/time stamps, etc...).\n\nSpecial considerations\
+    \ involve the _deletion_ of an Artifact. For traceability and safety purposes,\n\
+    KARs SHOULD NOT allow Artifacts to be deleted in an unrecoverable way. Deletion\
+    \ itself is defined as making an Artifact no longer accessible to a client (i.e.\
+    \ status 404).\nA server SHOULD allow a deletion operation to be undone, e.g.\
+    \ using mechanisms conceptually similar to 'trash bins',\nand SHOULD at a minimum\
+    \ keep track of the IDs of Artifacts that were at some point managed in each Repository.\n\
+    For this reason, a two phase deletion is recommended. Deleted Artifacts transition\
+    \ into a 'deleted' status\nin which they cannot be discovered nor retrieved, unless\
+    \ a dedicated flag is set. Once in a deleted state, Artifacts MAY be deleted permanently.\n\
+    \nThe API also supports the (logical) federation of Repositories. A server instance\
+    \ MAY expose different repositories to a client,\nwho should expect each repository\
+    \ to be independent. Whether these repositories map to actual physical repositories\
+    \ (e.g. different DBs),\nfolder-like structures or logic tags/collections is left\
+    \ to the implementation.\nThe same artifact (as defined by having the same ID)\
+    \ COULD be stored in more than one repository, but all copies MUST be identical\
+    \ to each other\n\nWith adequate rights, and if supported by the implementation,\
+    \ repositories can be _enabled_ or _disabled_. \nEnabled (resp. disabled) repositories\
+    \ are (resp. not) available to a client, regardless of whether the (de)allocation\
+    \ of actual resources is involved at the implementation level.\n\n**Maturity**\n\
+    As of this version, this API is considered stable\n"
+  contact:
+    name: Davide Sottara
+    email: sottara.davide@mayo.edu
+  license:
+    name: Apache License, Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 5.0.0
+servers:
+  - url: /omg.org/spec/API4KP/20200801/api/repository/artifact/v5
+tags:
+  - name: Knowledge Artifact
+    description: |
+      Store/Retrieve specific versions of specific Knowledge Artifacts.
+  - name: Knowledge Artifact Series
+    description: "Manage different versions of a given Knowledge Artifact.     \n"
+  - name: Knowledge Artifact Repository
+    description: |
+      Discover/Administer federated Knowledge Artifact Repositories.
+paths:
+  /repos:
+    get:
+      tags:
+        - Knowledge Artifact Repository
+      summary: List federated Knowledge Artifact Repositories
+      description: |
+        Retrieves a browsable list of known Knowledge Artifact Repositories, federated under this manager.
+
+        A KAR MUST always have at least one repository, which COULD be accessed under a 'DEFAULT'
+        well known ID, in addition to the specific ID that the repository should have.
+        This default repository MUST be enabled at startup. As a consequence, this operation SHOULD alway return at least one resource.
+      operationId: listKnowledgeArtifactRepositories
+      responses:
+        200:
+          description: |
+            A list of Resources describing each enabled repository is returned. The default repository SHOULD be the first element in the list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KnowledgeArtifactRepository'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KnowledgeArtifactRepository'
+        500:
+          description: |
+            No repository is available, including the 'default' repository that the server MUST provide.
+          content: {}
+    post:
+      tags:
+        - Knowledge Artifact Repository
+      summary: Enable Knowledge Artifact Repository
+      description: "Ensures that a new, empty Knowledge Artifact Repository is enabled,\
+        \ assigning an identifier in the process. \n\nA client may not be allowed\
+        \ to enable (additional) repositories, or the server may not support the dynamic\
+        \ enabling of new repositories altogether.\n"
+      operationId: initKnowledgeArtifactRepository
+      responses:
+        201:
+          description: |
+            Repository successfully enabled. Returns a URL where the newly created repository can be accessed (e.g. to GET a repository descriptor), together with a descriptor of the current state.
+          headers:
+            Content-Location:
+              schema:
+                type: string
+                format: uri
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/KnowledgeArtifactRepository'
+        403:
+          description: |
+            The client does not have the rights to enable additional repositories.
+          content: {}
+        500:
+          description: "Internal error.  \n"
+          content: {}
+        501:
+          description: |
+            The server does not provide this capability.
+          content: {}
+  /repos/{repositoryId}:
+    get:
+      tags:
+        - Knowledge Artifact Repository
+      summary: Describe Knowledge Artifact Repository
+      description: |
+        Retrieves the state, as known at the time the operation is invoked, of a specific Knowledge Artifact Repository.
+
+        This operation is always expected to succeed if the 'DEFAULT' repository is addressed.
+      operationId: getKnowledgeArtifactRepository
+      parameters:
+        - name: repositoryId
+          in: path
+          description: |
+            The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: |
+            The given repository is enabled, and some information can be returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KnowledgeArtifactRepository'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/KnowledgeArtifactRepository'
+        404:
+          description: |
+            No repository with the given ID is currently enabled
+          content: {}
+        500:
+          description: "Internal error  \n"
+          content: {}
+    put:
+      tags:
+        - Knowledge Artifact Repository
+      summary: Configure a Knowledge Artifact Repository
+      description: |
+        Ensure a Knowledge Artifact Repository with the given identifier is enabled and accessible.
+        If not, will attempt to create one. The identifier must be acceptable to the server.
+        If optional descriptive information is provided, it will be used to initialize or update the state of the Repository.
+
+        Clients may not be authorized, and servers may not support this operation.
+      operationId: setKnowledgeArtifactRepository
+      parameters:
+        - name: repositoryId
+          in: path
+          description: |
+            The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: A representation of the current state of a given Knowledge Artifact
+          Repository
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KnowledgeArtifactRepository'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/KnowledgeArtifactRepository'
+        required: false
+      responses:
+        201:
+          description: |
+            A repository has been enabled in the process. Returns the actual state of the repository
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/KnowledgeArtifactRepository'
+        204:
+          description: |
+            The repository is enabled, and its state reflects the client-provided information
+          content: {}
+        403:
+          description: |
+            Repositories cannot be enabled, or their status cannot be updated by the client.
+          content: {}
+        405:
+          description: |
+            The target repository status cannot be updated
+          content: {}
+        500:
+          description: |
+            Internal error
+          content: {}
+        501:
+          description: |
+            Not implemented
+          content: {}
+      x-codegen-request-body-name: repositoryDescr
+    delete:
+      tags:
+        - Knowledge Artifact Repository
+      summary: Disables an empty Knowledge Artifact Repository
+      description: "Ensure a Knowledge Artifact Repository with the given identifier\
+        \ is no longer accessible. \nThe Repository MUST be empty for this operation\
+        \ to succeed. \n\nThe 'DEFAULT' repository CAN NOT be disabled.\n"
+      operationId: disableKnowledgeArtifactRepository
+      parameters:
+        - name: repositoryId
+          in: path
+          description: |
+            The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: |
+            The repository was successfully disabled (or no repository was found).
+          content: {}
+        403:
+          description: |
+            The repository is not empty and cannot be disabled.
+          content: {}
+        500:
+          description: |
+            Internal error
+          content: {}
+        501:
+          description: |
+            Not implemented
+          content: {}
+    head:
+      tags:
+        - Knowledge Artifact Repository
+      summary: Check Knowledge Artifact Repository
+      description: "Checks for the existence of a Knowledge Artifact Repository with\
+        \ the given identifier \n"
+      operationId: isKnowledgeArtifactRepository
+      parameters:
+        - name: repositoryId
+          in: path
+          description: |
+            The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: |
+            Success
+          content: {}
+        500:
+          description: "Internal error \n"
+          content: {}
+        501:
+          description: "Not implemented  \n"
+          content: {}
+  /repos/{repositoryId}/artifacts:
+    get:
+      tags:
+        - Knowledge Artifact Series
+      summary: List stored Knowledge Artifacts
+      description: "Retrieves a browsable list of references to the Knowledge Artifacts\
+        \ that are stored in a given Knowledge Artifact Repository. \n*If the repository\
+        \ is empty, the operation should still succeed, returning an empty list.\n\
+        *The returned references SHOULD, at a minimum, reference each Artifact's version\
+        \ series, and MUST also carry the identifier of the latest version. \n\nThis\
+        \ operation should support paging.\n"
+      operationId: listKnowledgeArtifacts
+      parameters:
+        - name: repositoryId
+          in: path
+          description: |
+            The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
+          required: true
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: |
+            Filters elements in a collection, returning all elements after the 'offset' index included, ignoring all previous elements.
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: |
+            Returns up to the given number of elements in a collection.
+          schema:
+            type: integer
+        - name: deleted
+          in: query
+          description: |
+            Flag that grants access to soft-deleted Artifacts, allowing to retrieve them, or even delete them permanently. To do so, the flag MUST be set explicitly to true.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        200:
+          description: |
+            Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pointer'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pointer'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pointer'
+        204:
+          description: |
+            Series is initialized, but no versions are available.
+            (If deleted=true, this can only happen if there are no versions yet, or all are gone)
+          content: {}
+        403:
+          description: |
+            Client not authorized to browse this repository
+          content: {}
+        404:
+          description: |
+            Repository not found
+          content: {}
+        500:
+          description: "Internal error  \n"
+          content: {}
+    post:
+      tags:
+        - Knowledge Artifact Series
+      summary: Initialize new Artifact series
+      description: "Creates a new Knowledge Artifact. \nAssigns an ID to the Artifact\
+        \ in the process, and creates a new empty series.\"\n"
+      operationId: initKnowledgeArtifact
+      parameters:
+        - name: repositoryId
+          in: path
+          description: |
+            The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
+          required: true
+          schema:
+            type: string
+      responses:
+        201:
+          description: Success
+          headers:
+            Content-Location:
+              description: |
+                URL where the new Knowledge Artifact Series can be accessed
+              schema:
+                type: string
+                format: uri
+          content:
+            application/json:
+              schema:
+                type: string
+                description: |
+                  The identifier of the newly created Knowledge Artifact
+                format: uuid
+        403:
+          description: |
+            Client is not allowed to create new Artifacts
+          content: {}
+        404:
+          description: |
+            Repository not found
+          content: {}
+        405:
+          description: |
+            Not supported - Repository is read only
+          content: {}
+        500:
+          description: "Internal error     \n"
+          content: {}
+        501:
+          description: "Not implemented \n"
+          content: {}
+    delete:
+      tags:
+        - Knowledge Artifact Series
+      summary: Clear Knowledge Artifact Repository
+      description: "Clears a Knowledge Artifact Repository, deleting each Artifact\
+        \ that is contained therein.\n\nFunctionally equivalent to invoking, atomically,\
+        \ \nlistKnowledgeArtifacts(repositoryId).forEach(x->deleteKnowledgeArtifactSeries(x,deleted))\n\
+        In particular, it must adhere to the constraints of deleteKnowledgeArtifact.\n\
+        \nThis operation does not disable the Repository. \nAfter invoking this operation,\
+        \ listKnowledgeArtifacts MUST return an empty list.\n\nA client MUST have\
+        \ the appropriate privileges, which SHOULD only be granted to a super-user.\n\
+        In particular, the repository-scoped hard deletion (i.e. invoking this operation\
+        \ with deleted=true) \nMAY NOT be supported. \n"
+      operationId: clearKnowledgeRepository
+      parameters:
+        - name: repositoryId
+          in: path
+          description: |
+            The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
+          required: true
+          schema:
+            type: string
+        - name: deleted
+          in: query
+          description: |
+            Flag that grants access to soft-deleted Artifacts, allowing to retrieve them, or even delete them permanently. To do so, the flag MUST be set explicitly to true.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        204:
+          description: |
+            The repository content has been cleared
+          content: {}
+        403:
+          description: |
+            Client does not have the privileges
+          content: {}
+        404:
+          description: |
+            Repository not found
+          content: {}
+        405:
+          description: |
+            Not supported by the Repository
+          content: {}
+        500:
+          description: "Internal error     \n"
+          content: {}
+        501:
+          description: "Not implemented             \n  \n"
+          content: {}
+  /repos/{repositoryId}/artifacts/{artifactId}:
+    get:
+      tags:
+        - Knowledge Artifact Series
+      summary: Retrieves the LATEST version of a Knowledge Artifact
+      description: "Gets a copy of a (Digital) Knowledge Artifact, based on the LATEST\
+        \ version \nwithin the series identified by the given artifact ID.\n\nIf invoked\
+        \ with 'deleted=true', it will access Artifacts that are current \nOR that\
+        \ have been soft-deleted.\n"
+      operationId: getLatestKnowledgeArtifact
+      parameters:
+        - name: repositoryId
+          in: path
+          description: |
+            The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
+          required: true
+          schema:
+            type: string
+        - name: artifactId
+          in: path
+          description: "The (qualified) identifier of a Knowledge Artifact.  The server\
+          \ stores a 'Master Copy', from which other Knowledge Artifacts are derived\
+          \ by replication. MUST be used in the context of a Knowledge Artifact Repository\
+          \ Since Master Copies can be mutable, unless further qualified, the identifier\
+          \ will denote a Series in general, and identify the LATEST version within\
+          \ the series.  \n"
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: deleted
+          in: query
+          description: |
+            Flag that grants access to soft-deleted Artifacts, allowing to retrieve them, or even delete them permanently. To do so, the flag MUST be set explicitly to true.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        200:
+          description: |
+            Success
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: byte
+        204:
+          description: |
+            Artifact known but either not available, or no versions are available.
+          content: {}
+        403:
+          description: |
+            The client does not have the privileges to access the given Artifact
+          content: {}
+        404:
+          description: |
+            Repository not found, or the Artifact is not resolvable within the given Repository.
+            When invoked with 'deleted=true', it implies that the server does not recognize the ID,
+            otherwise it may also be the case that the desired artifact has been deleted.
+          content: {}
+        410:
+          description: "The Artifact used to be known to this server, but has been\
+            \ deleted.\nReversible deletions should return 410 if 'deleted=false'\
+            \ and 200 if 'deleted=true'\nPermanent deletions should return 410 in\
+            \ any case, leaving code 404 for Artifact IDs \nthat are not recognized\
+            \ by the server \n"
+          content: {}
+        500:
+          description: "Internal error    \n"
+          content: {}
+    post:
+      tags:
+        - Knowledge Artifact Series
+      summary: Enable Knowledge Artifact Series
+      description: |
+        Ensures a Knowledge Artifact (series) is available, even if the series may be empty.
+        Will create a new series with the given ID if the Artifact is not known or GONE.
+
+        May restore an unavailable Artifact, and/or all its unavailable versions.
+      operationId: enableKnowledgeArtifact
+      parameters:
+        - name: repositoryId
+          in: path
+          description: |
+            The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
+          required: true
+          schema:
+            type: string
+        - name: artifactId
+          in: path
+          description: "The (qualified) identifier of a Knowledge Artifact.  The server\
+          \ stores a 'Master Copy', from which other Knowledge Artifacts are derived\
+          \ by replication. MUST be used in the context of a Knowledge Artifact Repository\
+          \ Since Master Copies can be mutable, unless further qualified, the identifier\
+          \ will denote a Series in general, and identify the LATEST version within\
+          \ the series.  \n"
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        201:
+          description: |
+            An artifact series with the given ID is now available.
+            May have restored unavailable versions if 'deleted=true'
+          content: {}
+        403:
+          description: "The client does not have the necessary privileges  \n"
+          content: {}
+        404:
+          description: "No repository with the given ID can be found    \n"
+          content: {}
+        405:
+          description: |
+            The given Artifact cannot be created/restored.
+          content: {}
+        500:
+          description: "Internal error   \n"
+          content: {}
+        501:
+          description: "Not implemented \n"
+          content: {}
+    delete:
+      tags:
+        - Knowledge Artifact Series
+      summary: Removes a Knowledge Artifact from the Repository
+      description: "Individual Knowledge Artifacts are considered removed from a Repository,\
+        \ if and only if any\nattempt to resolve that Artifact identifier within the\
+        \ given Knowledge Repository will not succeeed.\nRemoving an Artifact that\
+        \ is not (any longer) in a Repository will result in a trivial success.\n\n\
+        This operation is functionally equivalent to invoking deleteKnowledgeArtifactSeries(repositoryId,artifactId,deleted),\n\
+        to clear the series, AND then removing the Artifact from the Repository. \
+        \ \n\nIn any case, The server SHOULD keep a record of the artifactId.\n"
+      operationId: deleteKnowledgeArtifact
+      parameters:
+        - name: repositoryId
+          in: path
+          description: |
+            The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
+          required: true
+          schema:
+            type: string
+        - name: artifactId
+          in: path
+          description: "The (qualified) identifier of a Knowledge Artifact.  The server\
+          \ stores a 'Master Copy', from which other Knowledge Artifacts are derived\
+          \ by replication. MUST be used in the context of a Knowledge Artifact Repository\
+          \ Since Master Copies can be mutable, unless further qualified, the identifier\
+          \ will denote a Series in general, and identify the LATEST version within\
+          \ the series.  \n"
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: deleted
+          in: query
+          description: |
+            Flag that grants access to soft-deleted Artifacts, allowing to retrieve them, or even delete them permanently. To do so, the flag MUST be set explicitly to true.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        204:
+          description: "Success\nThis code is returned even if the artifact has already\
+            \ been (permanently) deleted, \nas long as the artifact ID is known to\
+            \ the server.\n"
+          content: {}
+        403:
+          description: "The client does not have the necessary privileges  \n"
+          content: {}
+        404:
+          description: "No repository with the given ID can be found, \nor the Artifact\
+            \ is not known to this server      \n"
+          content: {}
+        405:
+          description: |
+            The given Artifact cannot be deleted.
+          content: {}
+        500:
+          description: "Internal error   \n"
+          content: {}
+        501:
+          description: "Not implemented   \n"
+          content: {}
+    head:
+      tags:
+        - Knowledge Artifact Series
+      summary: Check Knowledge Artifact
+      description: "Checks for the existence of a Knowledge Artifact Series within\
+        \ the scope of a Repository. \n\nFor the operation to succeeed, the Artifact\
+        \ must have been initialized but not deleted \n(permanently - if deleted is\
+        \ true), even if the version series is empty.\n"
+      operationId: isKnowledgeArtifactSeries
+      parameters:
+        - name: repositoryId
+          in: path
+          description: |
+            The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
+          required: true
+          schema:
+            type: string
+        - name: artifactId
+          in: path
+          description: "The (qualified) identifier of a Knowledge Artifact.  The server\
+          \ stores a 'Master Copy', from which other Knowledge Artifacts are derived\
+          \ by replication. MUST be used in the context of a Knowledge Artifact Repository\
+          \ Since Master Copies can be mutable, unless further qualified, the identifier\
+          \ will denote a Series in general, and identify the LATEST version within\
+          \ the series.  \n"
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: deleted
+          in: query
+          description: |
+            Flag that grants access to soft-deleted Artifacts, allowing to retrieve them, or even delete them permanently. To do so, the flag MUST be set explicitly to true.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        204:
+          description: |
+            The artifact is known to the Repository
+          content: {}
+        404:
+          description: "Repository or Artifact not found    \n"
+          content: {}
+        500:
+          description: "Internal error  \n"
+          content: {}
+        501:
+          description: |
+            Not implemented
+          content: {}
+  /repos/{repositoryId}/artifacts/{artifactId}/versions:
+    get:
+      tags:
+        - Knowledge Artifact Series
+      summary: List versions of a Knowledge Artifact.
+      description: |
+        Provides access to an Artifact's historical series, i.e. the list of immutable versions of
+        the Artifact maintained in the given Knowledge Artifact Repository. Optionally, allows to sort the series, filter by version range and supports pagination.
+
+        The list may be empty, either because an Artifact series has been initialized without adding
+        any particular version (see POST), or because all versions have been deleted, without deleting the artifact itself.
+      operationId: getKnowledgeArtifactSeries
+      parameters:
+        - name: repositoryId
+          in: path
+          description: |
+            The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
+          required: true
+          schema:
+            type: string
+        - name: artifactId
+          in: path
+          description: "The (qualified) identifier of a Knowledge Artifact.  The server\
+          \ stores a 'Master Copy', from which other Knowledge Artifacts are derived\
+          \ by replication. MUST be used in the context of a Knowledge Artifact Repository\
+          \ Since Master Copies can be mutable, unless further qualified, the identifier\
+          \ will denote a Series in general, and identify the LATEST version within\
+          \ the series.  \n"
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: deleted
+          in: query
+          description: |
+            Flag that grants access to soft-deleted Artifacts, allowing to retrieve them, or even delete them permanently. To do so, the flag MUST be set explicitly to true.
+          schema:
+            type: boolean
+            default: false
+        - name: offset
+          in: query
+          description: |
+            Filters elements in a collection, returning all elements after the 'offset' index included, ignoring all previous elements.
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: |
+            Returns up to the given number of elements in a collection.
+          schema:
+            type: integer
+        - name: beforeTag
+          in: query
+          description: |
+            Restricts the series to include only versions before (included) a given version Tag. Assumes the underlying versioning scheme has at least a partial ordering defined
+          schema:
+            type: string
+        - name: afterTag
+          in: query
+          description: |
+            Restricts the series to include only versions after (included) a given version Tag. Assumes the underlying versioning scheme has at least a partial ordering defined.
+          schema:
+            type: string
+        - name: sort
+          in: query
+          description: |
+            Allows to sort a collection by one ore more properties
+          schema:
+            type: string
+            default: asc
+      responses:
+        200:
+          description: "Returns a possibly empty list of Pointers to each version\
+            \ of the given Artifact. \nBy definition, all pointers must reference\
+            \ Artifacts with the same ArtifactID, and different version tags.\n\n\
+            The list may contain versions that have been deleted, if 'deleted=true'.\n"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pointer'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pointer'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pointer'
+        204:
+          description: |
+            Artifact known, but not available.
+          content: {}
+        403:
+          description: |
+            The client does not have the necessary permissions
+          content: {}
+        404:
+          description: |
+            Repository or Artifact not known
+          content: {}
+        410:
+          description: |
+            The artifact has been permanently deleted
+          content: {}
+        500:
+          description: "Internal error          \n"
+          content: {}
+    post:
+      tags:
+        - Knowledge Artifact Series
+      summary: Add a (new version) of a Knowledge Artifact.
+      description: |
+        Adds a new version of a given Artifact to the Artifact's series, making this version the LATEST.
+        The client is required to provide the content, but the server is expected to provide the version tagging,
+        according to the version scheme that is implemented internally. When successful, the server will return the URL where that version can be accessed."
+      operationId: addKnowledgeArtifactVersion
+      parameters:
+        - name: repositoryId
+          in: path
+          description: |
+            The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
+          required: true
+          schema:
+            type: string
+        - name: artifactId
+          in: path
+          description: "The (qualified) identifier of a Knowledge Artifact.  The server\
+          \ stores a 'Master Copy', from which other Knowledge Artifacts are derived\
+          \ by replication. MUST be used in the context of a Knowledge Artifact Repository\
+          \ Since Master Copies can be mutable, unless further qualified, the identifier\
+          \ will denote a Series in general, and identify the LATEST version within\
+          \ the series.  \n"
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - document
+              properties:
+                document:
+                  type: string
+                  description: |
+                    The binary serialization of the document that carries the new version of the Knowledge Artifact
+                  format: byte
+        required: true
+      responses:
+        201:
+          description: "The given document has been set as the latest version of the\
+            \ specified Knowledge Artifact, \nand is available at the returned URL.\
+            \ When possible, servers should actually return a URI that can be \ndereferenced\
+            \ to the URL where the new version can be retrieved.\n"
+          headers:
+            Content-Location:
+              description: |
+                URL where the new version of the Knowledge Artifact is accessible
+              schema:
+                type: string
+                format: uri
+          content: {}
+        403:
+          description: "Client does not have the necessary privileges  \n"
+          content: {}
+        404:
+          description: "Repository or Artifact not found   \n"
+          content: {}
+        405:
+          description: |
+            New versions cannot be created, e.g. because the Artifact or the Repository is read-only
+          content: {}
+        500:
+          description: "Internal error  \n"
+          content: {}
+        501:
+          description: "Not implemented      \n"
+          content: {}
+  /repos/{repositoryId}/artifacts/{artifactId}/versions/{versionTag}:
+    get:
+      tags:
+        - Knowledge Artifact
+      summary: Retrieve a specific version of a Knowledge Artifact
+      description: "Provides the client with a copy of a specific version of a Knowledge\
+        \ Artifact. \nMay provide access to 'deleted' artifacts if the dedicated flag\
+        \ is set.\n"
+      operationId: getKnowledgeArtifactVersion
+      parameters:
+        - name: repositoryId
+          in: path
+          description: |
+            The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
+          required: true
+          schema:
+            type: string
+        - name: artifactId
+          in: path
+          description: "The (qualified) identifier of a Knowledge Artifact.  The server\
+          \ stores a 'Master Copy', from which other Knowledge Artifacts are derived\
+          \ by replication. MUST be used in the context of a Knowledge Artifact Repository\
+          \ Since Master Copies can be mutable, unless further qualified, the identifier\
+          \ will denote a Series in general, and identify the LATEST version within\
+          \ the series.  \n"
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: versionTag
+          in: path
+          description: "The version tag of a Versioned Entity Identifier.   Versioned\
+          \ Identifiers identify specific, Immutable Versions of Mutable Entities,\
+          \ which reflect the state of that Entity at a given point in time. Version(ed)\
+          \ identifier SHOULD be universal, but version Tags are not, and MUST always\
+          \ be interpreted within the context of their associated Entity (identifier).\
+          \  \n"
+          required: true
+          schema:
+            type: string
+        - name: deleted
+          in: query
+          description: |
+            Flag that grants access to soft-deleted Artifacts, allowing to retrieve them, or even delete them permanently. To do so, the flag MUST be set explicitly to true.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        200:
+          description: |
+            A copy of the given artifact's version can be retrieved
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: byte
+        204:
+          description: |
+            The version is known but currently unavailable.
+          content: {}
+        403:
+          description: |
+            The client cannot access the artifact version
+          content: {}
+        404:
+          description: "Repository or Artifact Version not found \n"
+          content: {}
+        410:
+          description: |
+            The artifact has been deleted permanently
+          content: {}
+        500:
+          description: "Internal error       \n"
+          content: {}
+    put:
+      tags:
+        - Knowledge Artifact
+      summary: Sets a Version of a specific Knowledge Artifact
+      description: |
+        Ensures that a Knowledge Artifact is available in the given Repository, and that an attempt
+        to resolve a version with the given tag will succeed, returning a copy of the provided payload.
+
+        Creates an Artifact series if not present, and overwrites the stored copy for the given version if already present.
+        This operation can reverse a deletion.
+      operationId: setKnowledgeArtifactVersion
+      parameters:
+        - name: repositoryId
+          in: path
+          description: |
+            The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
+          required: true
+          schema:
+            type: string
+        - name: artifactId
+          in: path
+          description: "The (qualified) identifier of a Knowledge Artifact.  The server\
+          \ stores a 'Master Copy', from which other Knowledge Artifacts are derived\
+          \ by replication. MUST be used in the context of a Knowledge Artifact Repository\
+          \ Since Master Copies can be mutable, unless further qualified, the identifier\
+          \ will denote a Series in general, and identify the LATEST version within\
+          \ the series.  \n"
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: versionTag
+          in: path
+          description: "The version tag of a Versioned Entity Identifier.   Versioned\
+          \ Identifiers identify specific, Immutable Versions of Mutable Entities,\
+          \ which reflect the state of that Entity at a given point in time. Version(ed)\
+          \ identifier SHOULD be universal, but version Tags are not, and MUST always\
+          \ be interpreted within the context of their associated Entity (identifier).\
+          \  \n"
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - document
+              properties:
+                document:
+                  type: string
+                  description: |
+                    The version of the Knowledge Artifact to be set in the repository.
+                  format: byte
+        required: true
+      responses:
+        204:
+          description: |
+            The given document has been set as the specific version of the specified Knowledge Artifact.
+          content: {}
+        403:
+          description: |
+            The client does not have the adequate permissions
+          content: {}
+        404:
+          description: "Repository not found    \n"
+          content: {}
+        500:
+          description: |
+            Internal error
+          content: {}
+        501:
+          description: "Not implemented  \n"
+          content: {}
+    post:
+      tags:
+        - Knowledge Artifact
+      summary: Ensure a specific version of a Knowledge Artifact is available
+      description: "Ensures that a specific version of a given Knowledge Artifact\
+        \ can be retrieved. \nNotice that the user is not required to provide the\
+        \ actual artifact payload.\nFor this reason, the oepration will succeed if\
+        \ and only if the version is either already available, or in a soft deletion\
+        \ status.\nThis operation may restore an unavailable version.\n"
+      operationId: enableKnowledgeArtifactVersion
+      parameters:
+        - name: repositoryId
+          in: path
+          description: |
+            The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
+          required: true
+          schema:
+            type: string
+        - name: artifactId
+          in: path
+          description: "The (qualified) identifier of a Knowledge Artifact.  The server\
+          \ stores a 'Master Copy', from which other Knowledge Artifacts are derived\
+          \ by replication. MUST be used in the context of a Knowledge Artifact Repository\
+          \ Since Master Copies can be mutable, unless further qualified, the identifier\
+          \ will denote a Series in general, and identify the LATEST version within\
+          \ the series.  \n"
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: versionTag
+          in: path
+          description: "The version tag of a Versioned Entity Identifier.   Versioned\
+          \ Identifiers identify specific, Immutable Versions of Mutable Entities,\
+          \ which reflect the state of that Entity at a given point in time. Version(ed)\
+          \ identifier SHOULD be universal, but version Tags are not, and MUST always\
+          \ be interpreted within the context of their associated Entity (identifier).\
+          \  \n"
+          required: true
+          schema:
+            type: string
+        - name: deleted
+          in: query
+          description: |
+            Flag that grants access to soft-deleted Artifacts, allowing to retrieve them, or even delete them permanently. To do so, the flag MUST be set explicitly to true.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        204:
+          description: |
+            The given version is available.
+          content: {}
+        403:
+          description: |
+            The client does not have the necessary permissions.
+          content: {}
+        404:
+          description: |
+            Repository not found, or the Artifact (and/or its version) is not known to the Repository
+          content: {}
+        500:
+          description: |
+            Internal error
+          content: {}
+        501:
+          description: |
+            Not implemented
+          content: {}
+    delete:
+      tags:
+        - Knowledge Artifact
+      summary: Remove a specific version of a Knowledge Artifact
+      description: |
+        Ensures that a specific version of a given Knowledge Artifact is not resolvable anymore
+        within the Knowledge Artifact version series. If the version cannot be found, the operations succeeds trivially.
+
+        If the deleted flag is set, this operation MAY delete a version permanently.
+      operationId: deleteKnowledgeArtifactVersion
+      parameters:
+        - name: repositoryId
+          in: path
+          description: |
+            The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
+          required: true
+          schema:
+            type: string
+        - name: artifactId
+          in: path
+          description: "The (qualified) identifier of a Knowledge Artifact.  The server\
+          \ stores a 'Master Copy', from which other Knowledge Artifacts are derived\
+          \ by replication. MUST be used in the context of a Knowledge Artifact Repository\
+          \ Since Master Copies can be mutable, unless further qualified, the identifier\
+          \ will denote a Series in general, and identify the LATEST version within\
+          \ the series.  \n"
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: versionTag
+          in: path
+          description: "The version tag of a Versioned Entity Identifier.   Versioned\
+          \ Identifiers identify specific, Immutable Versions of Mutable Entities,\
+          \ which reflect the state of that Entity at a given point in time. Version(ed)\
+          \ identifier SHOULD be universal, but version Tags are not, and MUST always\
+          \ be interpreted within the context of their associated Entity (identifier).\
+          \  \n"
+          required: true
+          schema:
+            type: string
+        - name: deleted
+          in: query
+          description: |
+            Flag that grants access to soft-deleted Artifacts, allowing to retrieve them, or even delete them permanently. To do so, the flag MUST be set explicitly to true.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        204:
+          description: |
+            The given version is no longer available.
+          content: {}
+        403:
+          description: |
+            The client does not have the necessary permissions.
+          content: {}
+        404:
+          description: |
+            Repository not found, or the Artifact is not known to the Repository
+          content: {}
+        500:
+          description: |
+            Internal error
+          content: {}
+        501:
+          description: |
+            Not implemented
+          content: {}
+    head:
+      tags:
+        - Knowledge Artifact
+      summary: Check Knowledge Artifact Version
+      description: "Checks for the existence of a specific version of a Knowledge\
+        \ Artifact \n"
+      operationId: isKnowledgeArtifactVersion
+      parameters:
+        - name: repositoryId
+          in: path
+          description: |
+            The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
+          required: true
+          schema:
+            type: string
+        - name: artifactId
+          in: path
+          description: "The (qualified) identifier of a Knowledge Artifact.  The server\
+          \ stores a 'Master Copy', from which other Knowledge Artifacts are derived\
+          \ by replication. MUST be used in the context of a Knowledge Artifact Repository\
+          \ Since Master Copies can be mutable, unless further qualified, the identifier\
+          \ will denote a Series in general, and identify the LATEST version within\
+          \ the series.  \n"
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: versionTag
+          in: path
+          description: "The version tag of a Versioned Entity Identifier.   Versioned\
+          \ Identifiers identify specific, Immutable Versions of Mutable Entities,\
+          \ which reflect the state of that Entity at a given point in time. Version(ed)\
+          \ identifier SHOULD be universal, but version Tags are not, and MUST always\
+          \ be interpreted within the context of their associated Entity (identifier).\
+          \  \n"
+          required: true
+          schema:
+            type: string
+        - name: deleted
+          in: query
+          description: |
+            Flag that grants access to soft-deleted Artifacts, allowing to retrieve them, or even delete them permanently. To do so, the flag MUST be set explicitly to true.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        204:
+          description: |
+            The given version of the given artifact is found within the given repository
+          content: {}
+        403:
+          description: |
+            The client cannot access the artifact version
+          content: {}
+        404:
+          description: "Repository or Artifact Version not found \n"
+          content: {}
+        410:
+          description: |
+            The artifact has been deleted permanently
+          content: {}
+        500:
+          description: |
+            Internal error
+          content: {}
+        510:
+          description: |
+            Not implemented
+          content: {}
+components:
+  schemas:
+    Pointer:
+      type: object
+    KnowledgeArtifactRepository:
+      type: object
+  parameters:
+    repositoryId:
+      name: repositoryId
+      in: path
+      description: |
+        The id of a Knowledge Artifact Repository, in the context of the server that provides operations on the Repository. In general, the ID is qualified and scoped by a scheme owned by the server. When the server guarantees to federate repositories from a single known namespace, and repository IDs are required to be scoped by that namespace, either the fully qualified name or the local part should be accepted as a valid repositoryId; otherwise, only the fully qualified ID will be acceptable.
+      required: true
+      schema:
+        type: string
+    artifactId:
+      name: artifactId
+      in: path
+      description: "The (qualified) identifier of a Knowledge Artifact.  The server\
+        \ stores a 'Master Copy', from which other Knowledge Artifacts are derived\
+        \ by replication. MUST be used in the context of a Knowledge Artifact Repository\
+        \ Since Master Copies can be mutable, unless further qualified, the identifier\
+        \ will denote a Series in general, and identify the LATEST version within\
+        \ the series.  \n"
+      required: true
+      schema:
+        type: string
+        format: uuid
+    versionTag:
+      name: versionTag
+      in: path
+      description: "The version tag of a Versioned Entity Identifier.   Versioned\
+        \ Identifiers identify specific, Immutable Versions of Mutable Entities, which\
+        \ reflect the state of that Entity at a given point in time. Version(ed) identifier\
+        \ SHOULD be universal, but version Tags are not, and MUST always be interpreted\
+        \ within the context of their associated Entity (identifier).  \n"
+      required: true
+      schema:
+        type: string
+    deleted:
+      name: deleted
+      in: query
+      description: |
+        Flag that grants access to soft-deleted Artifacts, allowing to retrieve them, or even delete them permanently. To do so, the flag MUST be set explicitly to true.
+      schema:
+        type: boolean
+        default: false
+    beforeTag:
+      name: beforeTag
+      in: query
+      description: |
+        Restricts the series to include only versions before (included) a given version Tag. Assumes the underlying versioning scheme has at least a partial ordering defined
+      schema:
+        type: string
+    afterTag:
+      name: afterTag
+      in: query
+      description: |
+        Restricts the series to include only versions after (included) a given version Tag. Assumes the underlying versioning scheme has at least a partial ordering defined.
+      schema:
+        type: string
+    sort:
+      name: sort
+      in: query
+      description: |
+        Allows to sort a collection by one ore more properties
+      schema:
+        type: string
+        default: asc
+    offset:
+      name: offset
+      in: query
+      description: |
+        Filters elements in a collection, returning all elements after the 'offset' index included, ignoring all previous elements.
+      schema:
+        type: integer
+    limit:
+      name: limit
+      in: query
+      description: |
+        Returns up to the given number of elements in a collection.
+      schema:
+        type: integer
+  requestBodies:
+    repositoryDescr:
+      description: A representation of the current state of a given Knowledge Artifact
+        Repository
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/KnowledgeArtifactRepository'
+      required: false
