@@ -177,6 +177,12 @@ paths:
       summary: Query Knowledge Graph
       description: |
         Allows the client to submit a query to the Knowledge Asset Graph using a query language supported by the server (e.g. GraphQL, SPARQL)
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/json
+        - application/xml
       parameters:
         - $ref: '#/parameters/graphQuery'
       responses:
@@ -1266,6 +1272,8 @@ paths:
         Anonymous Composite Assets are treated like other Assets. The components, and relatioships thereof, will be persisted. However, the Composite itself, and the 'hasPart' relationship, will not.
 
       operationId: addCanonicalKnowledgeAssetSurrogate
+      consumes:
+        - application/json
       produces:
         - application/json
       parameters:
