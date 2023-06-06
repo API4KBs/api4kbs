@@ -37,7 +37,7 @@ This directory contains the OpenAPI / Swagger v2 specifications of the API4KP
 
 Recommended: Open with [SwaggerHub](https://swagger.io/tools/swaggerhub/)
 
-See official [README](./openapi/v2/org/omg/spec/api4kp/README.md)
+See official [README](./openapi/v3/org/omg/spec/api4kp/README.md)
 
 OpenAPI specifications include:
 - Inference
