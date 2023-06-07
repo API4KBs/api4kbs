@@ -32,7 +32,6 @@ pool:
 # Gets Variables from Azure DevOps Library
 variables: 
   - group: kmdp-platform-variables
-  - group: kmd-veracode
 
 # ------------------ PIPELINE STEPS  ------------------
 steps:
@@ -109,66 +108,6 @@ steps:
     versionFilePath: pom.xml
     versionTransformation: none
 
-# Download Veracode
-- task: PowerShell@2
-  displayName: 'Download Veracode'
-  inputs:
-    targetType: 'inline'
-    script: |
-      curl -O -L https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip
-
-# Make directory for veracode scan
-- task: PowerShell@2
-  displayName: 'Make directory for veracode scan'
-  inputs:
-    targetType: 'inline'
-    script: |
-        mkdir veracode
-
-
-# Runs Maven Goal: install
-- task: PowerShell@2
-  displayName: 'Maven Install'
-  inputs:
-    targetType: 'inline'
-    script: |
-      mvn install -ntp
-
-# Veracode Files to scan
-- task: CopyFiles@2
-  displayName: 'Copy Files to veracode folder'
-  inputs:
-      SourceFolder: '$(system.defaultworkingdirectory)'
-      Contents: |
-        **/API4KP-*.jar
-      TargetFolder: 'veracode'
-
-# Extract Veracode
-- task: ExtractFiles@1
-  displayName: 'Extract Veracode Zip'
-  inputs:
-    archiveFilePatterns: "pipeline-scan-LATEST.zip"
-    overwriteExistingFiles: false
-    cleanDestinationFolder: false
-    destinationFolder: 'veracode'
-
-# Runs Maven Goal: deploy 
-# Deploys to Azure DevOps Artifacts
-# - task: PowerShell@2
-#   displayName: 'Maven Deploy to Artifacts'
-#   inputs:
-#     targetType: 'inline'
-#     script: |
-#       chmod 777 "veracode/pipeline-scan.jar"
-#       chmod 777 "veracode/target/API4KP-$env:TIER1_DEV_VERSION.jar"
-     
-#       java -jar veracode/pipeline-scan.jar --veracode_api_id "$env:VERACODE_API_ID" --veracode_api_key "$env:VERACODE_API_KEY" --file "veracode/target/API4KP-$env:TIER1_DEV_VERSION.jar" --fail_on_severity="Very High, High" --verbose="true"
-#   env:
-#     DEPLOY_REPO: $(deploymentRepo)
-#     DEPLOY_REPO_PATH: $(deploymentRepoPath)
-#     TIER1_DEV_VERSION: $(tier1NewDevelopVersion)
-#     VERACODE_API_ID: $(veracodeApiId)
-#     VERACODE_API_KEY: $(veracodeApiToken)
 
 # Runs Maven Goal: deploy 
 # Deploys to Azure DevOps Artifacts
