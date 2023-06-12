@@ -1,0 +1,268 @@
+openapi: 3.0.1
+info:
+  title: Glossary Library Service
+  contact:
+    email: Sottara.Davide@mayo.edu
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 3.0.0
+servers:
+  - url: /ccg/library/v3/
+  - url: /ccg/library/v3/
+tags:
+  - name: GlossaryLibrary
+
+paths:
+
+  /glossaries:
+    get:
+      tags:
+        - GlossaryLibrary
+      summary: Enumerates the Glossaries
+      operationId: listGlossaries
+      responses:
+        200:
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Glossary'
+        500:
+          description: "Internal error"
+          content: { }
+
+  /glossaries/{glossaryId}:
+    get:
+      tags:
+        - GlossaryLibrary
+      summary: Retrieves a Glossary
+      operationId: getGlossary
+      parameters:
+        - $ref: '#/components/parameters/glossaryId'
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Glossary'
+          links:
+            entries:
+              $ref: '#/components/links/glossaryEntries'
+        404:
+          description: "Not found"
+          content: { }
+        500:
+          description: "Internal error"
+          content: { }
+
+
+  /glossaries/{glossaryId}/entries:
+    get:
+      tags:
+        - GlossaryLibrary
+      summary: Enumerates the Entries in this Glossary
+      operationId: listGlossaryEntries
+      parameters:
+        - $ref: '#/components/parameters/glossaryId'
+        - $ref: '#/components/parameters/scope'
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GlossaryEntry'
+        500:
+          description: "Internal error"
+          content: { }
+
+  /glossaries/{glossaryId}/entries/{definedConceptId}:
+    get:
+      tags:
+        - GlossaryLibrary
+      summary: Looks up an Entry by Concept
+      operationId: getGlossaryEntry
+      parameters:
+        - $ref: '#/components/parameters/glossaryId'
+        - $ref: '#/components/parameters/definedConceptId'
+        - $ref: '#/components/parameters/scope'
+        - $ref: '#/components/parameters/method'
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlossaryEntry'
+        404:
+          description: "Not found"
+          content: { }
+        500:
+          description: "Internal error"
+          content: { }
+
+
+
+
+components:
+  links:
+    glossaryEntries:
+      operationId: getEntriesForGlossary
+      parameters:
+        glossaryId: $response.body#/glossaryId
+
+  parameters:
+    glossaryId:
+      name: glossaryId
+      in: path
+      required: true
+      schema:
+        type: string
+    scope:
+      name: scope
+      in: query
+      schema:
+        type: string
+        format: uuid
+    definedConceptId:
+      name: definedConceptId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    method:
+      name: method
+      in: query
+      schema:
+        type: string
+
+
+  schemas:
+    Glossary:
+      type: object
+      properties:
+        glossaryId:
+          type: string
+          format: uri
+        name:
+          type: string
+        description:
+          type: string
+        vocabulary:
+          type: string
+          format: uri
+        entries:
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/GlossaryEntry'
+
+    GlossaryEntry:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        defines:
+          type: string
+          format: uri
+        focus:
+          type: string
+          format: uri
+        semanticDefinition:
+          type: string
+          format: uri
+        def:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/OperationalDefinition'
+        relatedEntries:
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+
+    OperationalDefinition:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        default:
+          type: boolean
+        defines:
+          type: string
+          format: uri
+        inTermsOf:
+          type: array
+          items:
+            type: string
+            format: uri
+        applicabilityScope:
+          type: array
+          items:
+            type: string
+            format: uri
+        processingMethod:
+          type: array
+          items:
+            type: string
+            format: uri
+        computableSpec:
+          $ref: '#/components/schemas/KnowledgeResourceRef'
+        includes:
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/OperationalDefinition'
+        effectuates:
+          type: string
+          format: uri
+        asCollection:
+          type: boolean
+
+
+    KnowledgeResourceRef:
+      type: object
+      properties:
+        assetId:
+          type: string
+          format: uri
+        artifactId:
+          type: string
+          format: uri
+        href:
+          type: string
+          format: uri
+        assetType:
+          type: array
+          items:
+            type: string
+            format: uri
+        mimeCode:
+          type: string
+        inlinedExpr:
+          type: string
+
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          format: uri
+        href:
+          type: string
+          format: uri
+
+
