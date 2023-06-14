@@ -70,6 +70,8 @@ paths:
         - $ref: '#/components/parameters/glossaryId'
         - $ref: '#/components/parameters/scopingConceptId'
         - $ref: '#/components/parameters/processingMethod'
+        - $ref: '#/components/parameters/publishedOnly'
+        - $ref: '#/components/parameters/greatestOnly'
         - $ref: '#/components/parameters/qAccept'
       responses:
         200:
@@ -95,6 +97,8 @@ paths:
         - $ref: '#/components/parameters/definedConceptId'
         - $ref: '#/components/parameters/scopingConceptId'
         - $ref: '#/components/parameters/processingMethod'
+        - $ref: '#/components/parameters/publishedOnly'
+        - $ref: '#/components/parameters/greatestOnly'
         - $ref: '#/components/parameters/qAccept'
       responses:
         200:
@@ -152,6 +156,22 @@ components:
       schema:
         type: string
 
+    publishedOnly:
+      name: publishedOnly
+      in: query
+      required: false
+      default: false
+      schema:
+        type: boolean
+
+    greatestOnly:
+      name: greatestOnly
+      in: query
+      required: false
+      default: false
+      schema:
+        type: boolean
+
 
   schemas:
     Glossary:
@@ -208,8 +228,6 @@ components:
           type: string
         description:
           type: string
-        default:
-          type: boolean
         defines:
           type: string
           format: uri
