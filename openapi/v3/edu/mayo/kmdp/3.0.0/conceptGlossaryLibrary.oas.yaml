@@ -1,6 +1,7 @@
 openapi: 3.0.1
 info:
   title: Glossary Library Service
+  description: Service that provides acccess to collections of Knowledge Assets, as Operational Definition of resolvable Concepts, organized into collections called Glossaries, and grouped by defined Concept.
   contact:
     email: Sottara.Davide@mayo.edu
   license:
@@ -20,6 +21,7 @@ paths:
       tags:
         - GlossaryLibrary
       summary: Enumerates the Glossaries
+      description: Lists the Glossaries available to this server.
       operationId: listGlossaries
       responses:
         200:
@@ -39,6 +41,7 @@ paths:
       tags:
         - GlossaryLibrary
       summary: Retrieves a Glossary
+      description: Retrieves information about a specific Glossary.
       operationId: getGlossary
       parameters:
         - $ref: '#/components/parameters/glossaryId'
@@ -65,6 +68,7 @@ paths:
       tags:
         - GlossaryLibrary
       summary: Enumerates the Entries in this Glossary
+      description: Returns all the Entries, as Concept to Definition mappings, currently available in a Given Glossary. The Operational Definitions in each Entry may be filtered semantically by applicability, technically by computational method, or by management criteria such as publication status and version precedence. The entries may also include an inlined representation of the definitions, in a form that can be content negotiated.
       operationId: listGlossaryEntries
       parameters:
         - $ref: '#/components/parameters/glossaryId'
@@ -91,6 +95,7 @@ paths:
       tags:
         - GlossaryLibrary
       summary: Looks up an Entry by Concept
+      description: Retrieves a specific Entry, as all and only the Operational Definitions of a specific concept that are listed in a given Glossary. The Operational definitions can be filtered semantically by applicability, technically by computational method, or by management criteria such as publication status and version precedence. The entry may also include an inlined representation of the definitions, in a form that can be content negotiated.
       operationId: getGlossaryEntry
       parameters:
         - $ref: '#/components/parameters/glossaryId'
@@ -115,8 +120,6 @@ paths:
           content: { }
 
 
-
-
 components:
   links:
     glossaryEntries:
@@ -124,15 +127,18 @@ components:
       parameters:
         glossaryId: $response.body#/glossaryId
 
+
   parameters:
     glossaryId:
       name: glossaryId
+      description: The unique idenntifier of a Glossary. May be global, or server scoped.
       in: path
       required: true
       schema:
         type: string
     definedConceptId:
       name: definedConceptId
+      description: The UUID associated to a defined Concept, i.e. a Concept for which Operational Definitions may be available in a Glossary.
       in: path
       required: true
       schema:
@@ -140,6 +146,7 @@ components:
         format: uuid
     scopingConceptId:
       name: scopingConceptId
+      description: The UUID of a concept associated to an Operational Definition, with the intent to capture the applicability criteria of that definition, semantically.
       in: query
       schema:
         type: string
@@ -147,28 +154,30 @@ components:
 
     processingMethod:
       name: processingMethod
+      description: A code that denotes the high level categorization of an Operational Definition, hinting at the computatonal capabilities required by any processor of the Definition.
       in: query
       schema:
         type: string
     qAccept:
       name: qAccept
+      description: a formal MIME code used to negotiate the form of an Operational Definition, if inlined into a Glossary Entry.
       in: query
       schema:
         type: string
 
     publishedOnly:
       name: publishedOnly
+      description: Flag. When true, will restrict the Operational Definitions to the ones with publication status of Published.
       in: query
       required: false
-      default: false
       schema:
         type: boolean
 
     greatestOnly:
       name: greatestOnly
+      description: Flag. When true, if multiple versions of the same Operational Definition exists, only the greatest version will be included, according to the versioning scheme ordering.
       in: query
       required: false
-      default: false
       schema:
         type: boolean
 
@@ -176,73 +185,98 @@ components:
   schemas:
     Glossary:
       type: object
+      description: The representation of a Glossary, as a collection of Entries
       properties:
         glossaryId:
           type: string
-          format: uri
+          description: the unique identifier of the Glossary
         name:
           type: string
+          description: a human oriented designator of the Glossary
         description:
           type: string
+          description: human orienteed general information about the Glossary, used when browsing
         vocabulary:
           type: string
+          description: the default namespace of the defined Concepts in this Glossary
           format: uri
         entries:
           minItems: 0
           type: array
+          description: the Glossary Entries included in this Glossary
           items:
             $ref: '#/components/schemas/GlossaryEntry'
+      required:
+        - glossaryId
 
     GlossaryEntry:
       type: object
+      description: A Glossary Entry, which maps a single defined Concept to one or more Operational Definitions of that Concept.
       properties:
         id:
           type: string
+          description: the internal id of a glossary entry
           format: uuid
         defines:
           type: string
+          description: the URI that uniquely denotes the defined Concept
           format: uri
         focus:
           type: string
+          description: the URI that denotes a focal aka subject concept associated with the defined Concept
           format: uri
         semanticDefinition:
           type: string
+          description: a URI that is exppected to dereference to a semantic, e.g. ontology based, definition of the defined Concept
           format: uri
         def:
           minItems: 0
+          description: the Operational Definitions grouped by this Glossary Entry
           type: array
           items:
             $ref: '#/components/schemas/OperationalDefinition'
         relatedEntries:
           minItems: 0
+          description: references to other related Glossary Entries
           type: array
           items:
             $ref: '#/components/schemas/Link'
+      required:
+        - id
+        - defines
 
     OperationalDefinition:
       type: object
+      description: the descriptor of the semantic interface of a piece of knowledge that defines a given Concept
       properties:
         id:
           type: string
+          description: the internal id of the OperationalDefinition
         name:
           type: string
+          description: a human oriented designator of the Operational Definition
         description:
           type: string
+          description: a human oriented description of the Operational Definition, used for browsing
         defines:
           type: string
-          format: uri
+          format: uuid
+          description: a unique UUID associated to the defined concept, which must be the same as, or closely related in a hierarchical sense, to the concept defeined by the Glossary Entry of which this OperationalDefinition is part of
         inTermsOf:
           type: array
+          description: the URIs of the Concepts defined by the inputs of this OperationalDefinition, if any
           items:
             type: string
             format: uri
         applicabilityScope:
           type: array
+          description: the URI of any Concepts that provide applicability context for this OperationalDefinition
           items:
             type: string
             format: uri
         processingMethod:
           type: array
+          description: Tags associated with the KnowledgeAssetProcessingTechnique category concepts that hint at the required capabilities of an agent trying to use this OperationalDefinition
           items:
             type: string
         computableSpec:
@@ -250,43 +284,57 @@ components:
         includes:
           minItems: 0
           type: array
+          description: collection of sub-definitions which are included by this OperationalDefinition
           items:
             $ref: '#/components/schemas/OperationalDefinition'
         effectuates:
+          description: a reference to the schema, shape or grammar that describes the format of the OperationalDefinition output
           type: string
+          format: uri
         asCollection:
+          description: flag, when true denotes an OperationalDefinition that returns zero or more instances of the effectuated type
           type: boolean
 
 
     KnowledgeResourceRef:
       type: object
+      description: the descriptor of a formal specification of an OperationalDefinition
       properties:
         assetId:
+          description: the asset Id of the OperationalDefinition
           type: string
         artifactId:
+          description: the artifact Id of the OperationalDefinition
           type: string
         href:
           type: string
+          description: a URL that allows to retrieve the specification
           format: uri
         publicationStatus:
+          description: the publication status of the specification, as an asset
           type: string
         assetType:
           type: array
+          description: Tags associated to the KnowledgeAssetType categorizations of the specification
           items:
             type: string
         mimeCode:
+          description: a formal MIME code that summarizes the representation of the specification
           type: string
         inlinedExpr:
+          description: an inlined copy of the specification
           type: string
 
     Link:
       type: object
+      description: a typed relationsthip between two Glossary Entries
       properties:
         rel:
           type: string
+          description: the relationship type
           format: uri
         href:
           type: string
-          format: uri
+          description: the id of the referenced Glossary Entry
 
 
