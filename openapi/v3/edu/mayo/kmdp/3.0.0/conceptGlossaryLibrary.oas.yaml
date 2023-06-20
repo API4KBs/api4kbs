@@ -51,7 +51,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Glossary'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Glossary'
           links:
             entries:
               $ref: '#/components/links/glossaryEntries'
@@ -135,7 +137,9 @@ components:
       in: path
       required: true
       schema:
-        type: string
+        type: array
+        items:
+          type: string
     definedConceptId:
       name: definedConceptId
       description: The UUID associated to a defined Concept, i.e. a Concept for which Operational Definitions may be available in a Glossary.
@@ -258,6 +262,11 @@ components:
         description:
           type: string
           description: a human oriented description of the Operational Definition, used for browsing
+        declaringGlossaries:
+          type: array
+          description: the Glossary(s) of which this Operational Definition is a member
+          items:
+            type: string
         defines:
           type: string
           format: uuid
