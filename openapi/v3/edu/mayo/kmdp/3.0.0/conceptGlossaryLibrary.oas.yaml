@@ -91,6 +91,40 @@ paths:
         500:
           description: "Internal error"
           content: { }
+    post:
+      tags:
+        - GlossaryLibrary
+      summary: Selects the Entries in this Glossary
+      description: Returns the chosen the Entries, as Concept to Definition mappings, currently available in a Given Glossary. The Operational Definitions in each Entry may be filtered semantically by applicability, technically by computational method, or by management criteria such as publication status and version precedence. The entries may also include an inlined representation of the definitions, in a form that can be content negotiated.
+      operationId: pickGlossaryEntries
+      parameters:
+        - $ref: '#/components/parameters/glossaryId'
+        - $ref: '#/components/parameters/scopingConceptId'
+        - $ref: '#/components/parameters/processingMethod'
+        - $ref: '#/components/parameters/publishedOnly'
+        - $ref: '#/components/parameters/greatestOnly'
+        - $ref: '#/components/parameters/qAccept'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GlossaryEntry'
+        500:
+          description: "Internal error"
+          content: { }
 
   /glossaries/{glossaryId}/entries/{definedConceptId}:
     get:
