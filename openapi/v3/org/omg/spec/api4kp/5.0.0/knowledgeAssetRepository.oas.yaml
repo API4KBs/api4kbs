@@ -219,6 +219,30 @@ paths:
             Not implemented
           content: {}
       x-codegen-request-body-name: graphQuery
+  /cat/graph/content:
+    get:
+      tags:
+        - Knowledge Asset Catalog
+      summary: Get Knowledge Graph Content
+      description: |
+        Returns
+      operationId: getKnowledgeGraphContent
+      parameters:
+        - name: X-Accept
+          in: header
+          description: |
+            A MIME Type that codifies the syntactic representation of a Knowledge Artifact, as accepted by the client in a content negotiation sense.
+          schema:
+            type: string
+      responses:
+        200:
+          description: |
+            A Knowledge Carrier that wrap the Knowledge Graph, as a Knowledge Artifact, with representation metadata.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: byte
   /cat/assets:
     get:
       tags:
