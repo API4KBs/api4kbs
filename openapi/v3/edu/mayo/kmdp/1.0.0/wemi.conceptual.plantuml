@@ -1,0 +1,111 @@
+@startuml
+
+skin rose
+
+title WEMI Coceptual Model
+
+
+enum WEMKind {
+ Work
+ Expression
+ Manifestation
+ Surrogate
+}
+
+
+
+class DID << (D,orchid) >>
+class ID << (D,orchid) >>
+class POCID << (D,orchid) >>
+class URI << (D,orchid) >>
+URI <|-down- DID
+ID <|-down- URI
+ID <|-down- POCID
+interface Primary << Role >>
+Primary <|-up- DID
+
+
+
+abstract class Concept << (D,orange) >> {
+	URI conceptId
+	String label
+	String code
+}
+class Language << (D,orange) >>
+class ContentType << (D,orange) >>
+class Format << (D,orange) >>
+Concept <|-down- Language
+Concept <|-up- ContentType
+Concept <|-down- Format
+
+
+
+class Designator << (D,orchid) >>
+class Code << (D,orchid) >>
+class MimeCode << (D,orchid) >>
+Code <|-down- MimeCode
+Designator <|-down- Code
+Designator <|-down- ID
+
+
+
+
+abstract class Endeavor {
+  String name
+  WEMKind kind
+}
+Primary <-- Endeavor: primaryId
+ID "*" <-- Endeavor: aliases
+ID "*" <-- Endeavor: tags
+
+
+
+class Work
+
+class Expression {
+	String title
+	Code languageCode
+}
+Work <-- Expression : realizes 
+
+class Manifestation {
+	MimeCode format 
+}
+Expression <-- Manifestation: embodies 
+Work "content" <-- "carrier" Manifestation: /carries 
+
+Endeavor <|-down- Work
+Endeavor <|-down- Expression
+Endeavor <|-down- Manifestation
+Manifestation <|-down- Surrogate
+
+class Surrogate
+Work <-- Surrogate: about 
+
+
+Concept <.left. Work: subject
+ContentType <.. Work: contentType
+Language <.left. Expression: localization
+Format <.. Manifestation: form
+Manifestation <--> Manifestation: /variantOf
+
+
+
+abstract class Composite <<Trait>> {
+}
+
+abstract class Versioned <<Trait>> {
+	String versionTag
+}
+Versioned <|-down  Endeavor
+Endeavor <-up- Versioned: versionOf
+
+Versioned <|-down  Composite
+Versioned <-up- Composite: hasComponent
+Versioned <-up- Composite: hasStructure
+
+Endeavor <-- Endeavor: derivedFrom
+Endeavor <-- Endeavor: dependsOn
+
+
+@enduml

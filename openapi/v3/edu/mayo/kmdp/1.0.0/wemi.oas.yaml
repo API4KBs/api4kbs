@@ -1,0 +1,967 @@
+openapi: 3.0.1
+info:
+  title: Work/Expression/Manifestation Registry Interface
+  description: |
+    
+    #### Introduction
+    This service provides the backbone capabilities of a semantic, Knowledge Graph-based catalog
+    of Content Assets. 
+    
+    The capabilities support Assets that vary in scope/subject (including clinical, medical but also 
+    technical), audience (consumers, patients, medical professionals), origin (curated, acquired 
+    or machine generated), and form (including media, models and software).
+    
+    The capabilities provided by this service are focused on the identification, registration and 
+    basic correlation of these Assets. While these functions imply a minimal view on a Knowledge 
+    Graph, it is assumed that additional services will be used to augment that Graph, and provide
+    additional capabilities such as search/indexing, analytics/insights and visualization/presentation.
+    
+    #### Design Principles
+    This service is built around the following principles
+    
+    ###### Identification
+    In this context, iodentifiers (IDs) are unique sequences of characters that denote one entity.
+    
+    As strings, identifiers conform to some scheme that provides the syntactic rules for the generation ("minting") 
+    and validation of the identifiers themselves. Standard, well-known schemes include URI/URL/URN, UUID and OID.
+    
+    Identifiers are assigned and subsequently registered to an entity, which becomes identified by that identifier.
+    Note that an entity may be identified by zero or more identifiers, while an identifier can identify
+    at most one entity - and exactly one once it is registered.
+    
+    Among other characteristics, identifiers should be:
+    * globally unique
+    * persistent: once assigned, never reassigned
+    * distributed: registered centrally, but minted anywhere
+    * resolvable: the identifier can lead to the identified entity, or a description thereof
+    * transparent to location: independent of an entity's location at any point in time
+    
+    ###### Work / Expression / Manifestation Primer
+    
+    The 'Functional Requirements for Bibliographic Records' (FRBR) is a standard originated in 
+    library science. In FRBR, distinctions are made between 'Works', 'Expressions', 'Manifestations'
+    and 'Items' - collectively called 'Endeavors'.
+    * (Intellectual) Works consist of pure subject matter, focused on a subject and arranged for a purpose.   
+    Examples include: a lecture on the anatomy of the heart; an algorithm to extract the square root of an integer number;
+    the instructions on how to self care when diagnosed with the flu; a recipe for grilled fish
+    * Expressions are the realization of a Work in some language - natural, formal or combination thereof.
+    Examples include: the lecture in English; the algorithm in C++; the self-care instructions in Spanish;
+    the recipe in Italian, with HTML markup.
+    * Manifestations embody Expressions concretized in some form, such as text, audio or video. 
+    Examples: a video of the lecture; the C++ source file, zipped; the instructions as a pamphlet;
+    the recipe as a web page.
+    
+    Further, Manifestations are carriers of Works, where the Works are the content of the Manifestation.
+    Works can be classified according to Content Types, based on patterns of conceptual arrangements.
+    Expressions can conform to Content Models, which are patterns and/or constraints on the syntax and structure
+    of the Expression. Manifestations have forms and formats based on the medium, and techniques used
+    to imprint the Expression on the medium.
+    Example: 'Recipe' is a content type. A linguistic realization could follow a content model where
+    the ingredients are present first as a list, followed by the process as an algorithmic collection
+    of steps. The content model may also allow for a summary of the author's life, to be included before the ingredients.
+    The content may be narrated and recorded as voice media, encoded as an mp3 digital file. 
+    
+    The WEM framework applies to physical and digital artifacts, and generalizes to formal content 
+    such as models and software.
+    Related WEM entities are tightly coupled, but distinct: for example, the Expression of a Work
+    realizes that Work, but is not the same as that Work. As a consequence, each entity can be assigned
+    an independent (primary) identifier, and the same identifier should not be used identify two or more entities.
+    
+    ![Conceptual](./wemi.conceptual.png)
+    
+    ####### Versioning
+    WEM Entities can mutate over time while maintaining some level of identity or continuity. 
+    Each mutation creates a new version: a distinct individual of the same type. The versions of an 
+    entity can be organized into a 'series': the set of versions, ordered temporally.
+    Each versions can be assigned a primary identifier, and the versions can be related to each other.
+    Moreover, or in alternative, each version can be identified using the combination of a primary
+    identifier assigned to the series, plus a version 'tag'. Version tags are often structured identifiers
+    that conform to sequential numbers, semantic versions (SemVer), and/or calendar versions (CalVer)
+    
+    ####### Composites, Components, Structures and Fragments
+    WEM Entities can be aggregated or decomposed into Entities of the same Kind. A Composite Work
+    consists of other distinct Works, which are the components of that composite. The same principle
+    applies to Expressions and Manifestations. However, heterogeneous composites are not allowed: 
+    a Work cannot be part of an Expression nor a Manifestation, and vice versa.
+    While there is no theoretical limit to composition, decomposition is bounded. If an Entity is
+    decomposed to a degree where the parts are not independently viable, those parts will be considered Fragments.
+    
+    Moreover, Composites are usually functional complexes: in addition to having their native types,
+    components play roles and have relationships to the other components of the same composite. 
+    The identity, types, and mutual roles and relationships of the components defines the Structure
+    of the Composite.
+    Example: a DITA Map structures two or more DITA topics.
+    
+    ####### Dependencies
+    Composition provides a way to reuse entire entities, according to design-time decisions. 
+    Composition also assumes access and control over the components. 
+    However, strong and complete reuse is not always necessary. A web page may contain a link to an 
+    external video that is curated by a third party and is supplemental material to the page itself.
+    A software program may use one routine out of a different library, and only at runtime based on input values.
+    In these scenarios, the entities involved may not have been composed together into a higher order
+    composite, but would still be related one another through a relationship of dependency.
+    
+    ####### Derivation (Pedigree)
+    Provenance (custodianship) and Pedigree (lineage) are important aspects used to establish trust
+    in a piece of content. Provenance is based on relationship between an Entity and one or more Parties:
+    while provenance information is part of a broader notion of metadata, and should be linked in the
+    underlying knowledge graph, it is outside the scope of this service.
+    
+    Conversely, pedigree is based on derivation relationships between Entities. Derived entities are distinct
+    and, unlike composition and dependency, derivation usually implies independence.
+    Entities in a series might be such that a later version derives from a previous versions (and possibly
+    other entities), but derivation usually generates brand new entities. 
+        
+    ####### Variance
+    Defined only for Expressions and Manifestations, variance is a symmetric relationship between two
+    distinct Entities that realize or carry the same Work, but expressed in different combinations
+    of languages and forms.
+    
+    Variants can originate from the same intellectual Work. More often, a variant is derived from a 
+    previous Expression (or Manifestation thereof) of the work of interest. When the derivation
+    focuses primarily on the natural language elements of an expression, it is commonly called 'translation'.
+    
+    Variance is also the underlying principle of content negotiation: instead of exchanging a known
+    manifestation (e.g. by identifier, or as the result of a search), client and server use a Work-level
+    identifier, and compare the languages and forms of the variants that the server has available,
+    vs the variants that the client can process.
+    
+    
+    #### Use Cases
+    
+    ###### UC1
+    There is the need for a system to generate one or multiple (as a batch process) DIDs for 
+    purposes of the local system. These purposes can be independent of creating content for any 
+    catalog or library in the ecosystem, or it can be for content in early stages of development 
+    that will enter the catalog at a later stage.
+
+        return mintMcDidIdentifier(n)
+    
+    
+    ###### UC2
+    When a new Expression of a piece of content (PoC) is created in a CMS, e.g. as a DITA topic or map, 
+    there is a need to generate and obtain a DID as primary identifier, and register the new Expression 
+    together with the full WEM set in the catalog, including new legacy PoC IDs required for compatibility.
+
+    The CMS is going to provide essential charateristics (title, content type, language, format), 
+    together with the catalog in which the new work should be created. 
+    Assuming that the Work does not exist yet, a Work needs to be created with the requested content 
+    type, an Expression with the requested language, and a manifestation with the requested title and format. 
+    Each of the entities will receive a DID as a primary ID, and legacy PoC ID will be created as needed. 
+    The entities must be connected according to the appropriate semantic properties (realization, embodiment). 
+    A representation of the newly asserted information is returned to the Client.
+
+        mid = mintMcDidIdentifier()
+        eid = mintMcDidIdentifier()
+        wid = mintMcDidIdentifier()
+        m = new M(mid, mainTitle, format, eid)
+        e = new E(eid, language, wid)
+        w = new W(wid, contentType)
+        wem = new W(w, new E(e, new M(m, poc))) 
+        setEndeavor(wid, w)
+        setEndeavor(eid, e)
+        setEndeavor(mid, m)
+        poc = mintLegacyId(contentType)
+        addAlias(mid, poc)
+        return wem 
+    
+    ###### UC3
+    New Expressions for existing Works can be created in a CMS through translations of content. 
+    These translations need to be created as new Expressions for the same Work.
+    When a translated DITA Map or Topic is created, the CMS provides the DID of the Work and 
+    the DID of the originating Expression, together with metadata details of the newly generated Expression. 
+    
+    The Expression is created as an additional realization of the existing Work, with the requested 
+    language, and needs to be connected to the originating Expression with the 'has translation'
+    relationship, which is a form of derivation. A new Manifestation will be created for the new Expression,
+    with the requested title. This new Manifestation could be inferred to be a variant of the Manifestation
+    of the source Expression.
+
+    The created Expression will receive a DID, and the created Manifestation will receive a DID and 
+    a PoCID. A representation of the newly asserted information is returned to the Client.
+
+        hasEndeavor(workId)
+        eid = mintMcDidIdentifier()
+        mid = mintMcDidIdentifier()
+        m = new M(mid, mainTitle, eid)
+        e = new E(eid, language, workId)
+        addEndeavor(eid, e)
+        addEndeavor(mid, m)
+        poc = mintLegacyId(contentType)
+        addAlias(mid, poc)
+        addRelationship(eid, sourceExpression, 'isTranslationOf')
+        return new E(e, new M(m, poc)))
+    
+    
+    
+    ###### UC4
+    Content creators, administrators and user/software agents thereof need to look up and map between primary and 
+    secondary identifiers. An application needs to be able to search in the content catalog with a 
+    full or truncated secondary identifier and receive the primary identifier (a DID) together with 
+    basic metadata about the connected entities (e.g. titles, languages). 
+
+        return getEndeavor(aliasPattern)
+    
+    
+    
+    ###### UC50
+    As a client, I want to engage in content negotiation. Given a Work of interest, I want to know
+    what Expressions/Manifestations are available, including the ones that could be derived, but have
+    not been materialzed yet (e.g.: the ability to translate a piece of content into a different language on demand).
+    I may be interested in that information for use at a later time, or I may be trying to access a
+    certain form at that point time. Ultimately, I need to confirm my ability to process a given artifact,
+    especially when multiple alternatives exist, but not all of them are useful or usable by me.
+    
+    
+    ###### UC99 (out of scope)
+    Content creators, administrators and user/software agents thereof need to search, browse and/or query
+    the catalog records for discovery and/or analytics purposes, leveraging descriptive
+    metadata (e.g. title, description), technical metadata, semantic annotations (e.g. subject, 
+    audience, applicability), provenance (e.g. creator, owner) and pedigree (e.g. derivation, 
+    bibliography, dependencies).
+    
+    This use case requires the broader Knowledge Graph, and the capabilities should be provided
+    by dedicated query APIs (e.g. SPARQL or GraphQL based), and a proper semantic/cognitive search engine.
+
+  contact:
+    email: Sottara.Davide@mayo.edu
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.0.0
+
+tags:
+  - name: WEMI
+    description: WEMI Registry Services
+  - name: Mint
+    description: Identifier Generation Services
+
+paths:
+
+  # --------------------------------------------  Identifier Mint Service
+
+  /mint/did/mcid:
+    post:
+      tags:
+        - Mint
+      summary: Create MC DID
+      operationId: mintMcDidIdentifier
+      description: |
+        Creates one or more MC DID, as brand new URI that follow the pattern 'did:mcid:{id}', 
+        where id is a UUIDv4 globally unique identifier, converted to string with hyphens removed, 
+        then encoded in Base58.
+        DIDs are meant to be used as primary identifiers of Endeavors, but there is no other specific 
+        connection 
+
+        Note that this operation does not associate the new IDs to any entity - WEM or otherwise. 
+        It is functional, not idempotent, and not cacheable: each invocation will generate new identifier(s).
+      parameters:
+        - in: query
+          name: num
+          description: Number of identifiers to generate
+          required: false
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+      responses:
+        200:
+          description: |
+            On Success, returns a JSON list of strings, where each element is a newly minted UUIDv4 identifier, without hypens, encoded in Base58"
+          content:
+            application/json:
+              examples:
+                single:
+                  value: '["did:mcid:4K1bvHYjzQGLreTPPGUQjrCmBUCstEKQ2RjHNGd4Bs8T"]'
+                  summary: num = 1 (default)
+                multiple:
+                  value:
+                    '["did:mcid:4nP7jRJknV2ffrcwN12J84uZ6DaQKs7np2uyDwo7V5WQ", 
+                      "did:mcid:4eYYVH8go6rBTh5Fy6edJN2aNkrBB6ZcAKCzv4cvNW82"]'
+                  summary: num > 1
+              schema:
+                type: array
+                minimum: 1
+                items:
+                  type: string
+        501:
+          description: |
+            Not implemented
+
+  /mint/legacy/pocid:
+    post:
+      tags:
+        - Mint
+      summary: Create Legacy POC ID
+      operationId: mintLegacyPocId
+      description: |
+        Creates a POC ID, for an Endeavor that has, realizes or carries a given Content Type. 
+        POC IDs conform to the pattern '{code}-{num}', where code is a 3-letter code for a given content type,
+        and num is an 8 digit sequential number. 
+        
+        POC IDs are semi-transparent to the content type, and consequently not persistent with respect 
+        to re-classification of an Endeavor, and/or re-codification of a content type. POC IDs are 
+        sequential and scarce: their generation must be centralized to avoid clashes, and can only
+        be performed by authorized clients.
+        
+        Note that, historically, POC IDs have been associated to endeavors as both identifiers proper,
+        but also as 'tags'. For example, two or more localized expressions sharing the same POC ID, 
+        as the identifier of a common implicit Work. 
+        For all these reasons, POC IDs should be used only for compatibility reasons, and their role
+        with respect to an Endeavor should be clarified.
+      parameters:
+        - in: query
+          name: contentTypeCode
+          description: |
+            A code that evokes a concept which, in turn, classifies an Endeavor's Content Type
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: |
+            On Success, returns a POC ID
+          content:
+            application/json:
+              example: XYZ-12345678
+        403:
+          description: |
+            Forbidden, only selected clients can invoke this operation
+        404:
+          description: |
+            Unknown Content Type
+        500:
+          description: |
+            Internal Error
+        501:
+          description: |
+            Not implemented
+
+
+  # --------------------------------------------  WEM Registry Service
+
+  /registry/backbone/endeavors:
+    get:
+      tags:
+        - WEMI
+      summary: List Existing Endeavors
+      operationId: listEndeavors
+      description: |
+        Returns a list of registered Endeavors, possibly filtered by Endeavor kind and/or content type
+      parameters:
+        - in: query
+          name: aliasPattern
+          description: |
+            if provided, returns only Endeavors that are identified by a (secondary) identifier
+            whose value matches the given regular expression
+          required: false
+          schema:
+            type: string
+            format: regex
+        - in: query
+          name: endeavorTypeFilter
+          description: |
+            if provided, only returns Endeavors of the given kind
+          required: false
+          schema:
+            $ref: '#/components/schemas/EndeavorKind'
+        - in: query
+          name: contentTypeCodeFilter
+          description: |
+            The Code of a concept that denotes a Content Type
+            If provided, only returns Endeavors that either are, realize, or embody the realization 
+            of, a Work of the given type
+          required: false
+          schema:
+            type: string
+            format: uri
+      responses:
+        200:
+          description: |
+            On Success, returns the registered Endeavors. If filtering criteria are provided, only 
+            returns endeavors that match all the given criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EndeavorReference'
+          links:
+            Get Endeavor:
+              operationId: getEndeavor
+              description: |
+                Retrieve details for a specific Endeavor
+              parameters:
+                primaryId: '$response.body#primaryId'
+
+    post:
+      tags:
+        - WEMI
+      summary: Create a new Endeavor
+      operationId: newEndeavor
+      description: |
+        Creates a new, individual Work, Expression or Manifestation, based on the provided kind, 
+        registering a DID as its primary identifier in the process.
+        
+        The client may provide a resource descriptor with essential property values to initialize the
+        new Endeavor's description in the graph. The descriptor kind must be consistent with the given 
+        endeavorType, and must not have a primary identifier.
+        Assuming the preconditions are satisfied, the server will mint a new primary id, assign it
+        to the descriptor, and proceed as if 'setEndeavor' had been invoked with the provided descriptor
+        and the newly minted identifier.
+      parameters:
+        - $ref: '#/components/parameters/endeavorType'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WEM'
+      responses:
+        201:
+          description: |
+            On Success, returns a descriptor of the created resource, as if 'getEndeavor' had been 
+            invoked with the newly minted identifier.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WEM'
+          links:
+            Get Endeavor:
+              operationId: getEndeavor
+              description: |
+                Retrieve details for a specific Endeavor
+              parameters:
+                primaryId: '$response.body#primaryId'
+        400:
+          description: |
+            The request contains a primary identifier
+        409:
+          description: |
+            The endeavor kind is not consistent with the provided descriptor
+        501:
+          description: |
+            Not implemented
+  
+  
+
+  /registry/backbone/endeavors/{primaryId}:
+    head:
+      tags:
+        - WEMI
+      summary: Checks for the existence of an Endeavor
+      operationId: hasEndeavor
+      description: |
+        Determines whether the given ID matches a registered Endeavor
+      parameters:
+        - $ref: '#/components/parameters/primaryId'
+      responses:
+        200:
+          description: Success, Endeavor exists
+        404:
+          description: Not found
+
+    get:
+      tags:
+        - WEMI
+      summary: Get Existing Endeavor by primary identifier
+      operationId: getEndeavor
+      description: |
+        Retrieves the description of an endeavor, given its primary identifier. 
+        
+        To match the full identifiers, the server is expected to re-add the prefix 'did:mcid:', then 
+        look up the named individual and its essential properties, in order to construct the descriptor.
+        
+        Note that descriptors are expanded downward the WEM hierarchy (e.g. Work descriptors include
+        Expression descriptors, which in turn include Manifestation descriptors), while upward links
+        are only included by reference (e.g. a Manifestation descriptor for a given Work/Expression 
+        may also contain references to other embodied Expressions/Works)
+      parameters:
+        - $ref: '#/components/parameters/primaryId'
+      responses:
+        200:
+          description: Sucecss
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WEM'
+        404:
+          description: Not found
+
+
+    patch:
+      tags:
+        - WEMI
+      summary: Ensures a known Endeavor is registered and described
+      operationId: setEndeavor
+      description: |
+        Ensures that an Endeavor of the given type, with the given DID, is present in the Registry.
+        Uses the client-provided metadata to ensure that the underlying graph contains statements
+        about the essential properties of the Endeavor, as described below.
+        
+        This operation is idempotent: it will (re)assert the triples inferred from the client payload,
+        as long as they are already existing and/or consistent with the current state of the graph.
+        
+        Consistency is defined according to the following rules:
+        1. The primary identifier must not identify an entity of a different WEM kind
+        2. Secondary identifiers must not be associated to distinct Endeavors (see 'hasAlias')
+        3. Tags must resolve to existing Endeavors, or aliases thereof, including Endeavors that 
+        would be created as a consequence of this request
+        4. Given the Work associated to the current Endeavor, that Work's content type must not be
+        inconsistent with the provided content type. Note that a Work may have multiple content type,
+        but some content types may be mutually exclusive (disjoint) according to the content type ontology.
+        5. Labels are never inconsistent, and assumed to be in the given localization language
+        6. For Manifestations and/or Expression Endeavors only, the language is inconsistent if none of the 
+        associated Expressions are localized in the given language.
+        (Note: this definition considers that Works do not yet have a specific language, while covering 
+        the edge case of multi-lingual Manifestations that contain various translations of the same content)
+        7. For Manifestations only, format is inconsistent if a different format has already been
+        asserted for the same Manifestation.
+        
+        When consistency is verified, the graph is updated as follows:
+        1. Unless already existing, the Endeavor is created as an individual with the given primary identifier.
+        2. Assertion of aliases is executed as if 'addAlias' had been invoked for each alias
+        3. Tags are added if not already existing
+        4. Associated Works are resolved (if the current Endeavor is not a Work, navigate the realizedBy/carriedBy
+        references). Non existent Works are created with the referenced primary ids. For each Work, 
+        Content Type is asserted if not already present.
+        5. Labels are added if not already existing
+        6. Associated Expressions are resolved (does not apply if the current Endeavor is a Work. For Manifestations,
+        navigate the embodiedBy references). Non existent Expressions are created with the referenced primary ids.
+        For each Expresson, assert the language if not already present.
+        7. For Manifestations only, format is asserted if not already present.
+        FUTURE: format may be decoded, and all the resulting triples are also assrted (TODO - discuss)
+      parameters:
+        - $ref: '#/components/parameters/primaryId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WEM'
+      responses:
+        200:
+          description: |
+            On Success, returns the newly created Endeavor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WEM'
+        409:
+          description: |
+            Conflict
+        501:
+          description: |
+            Not implemented
+
+    delete:
+      tags:
+        - WEMI
+      summary: Ensures an Endeavor is no longer registered
+      operationId: removeEndeavor
+      description: |
+        Ensures that an Endeavor is not registered in the graph, including any assertion involving 
+        that Endeavor.
+        
+        Note that this operation is defined to be idempotent, and consequently will not return 404
+        when clients provide identifiers that do not correspond to an actual Endeavor
+      parameters:
+        - $ref: '#/components/parameters/primaryId'
+      responses:
+        200:
+          description: |
+            On Success, the Endeavor is not (anymore) registered
+        403:
+          description: |
+            Forbidden, cannot unregister an Endeavor
+        501:
+          description: |
+            Not implemented
+
+
+
+
+
+    #TODO: Revisit aliases; Need to work on 'relateds', maybe to include composite?
+    #TODO: Need to work versioning in.
+    #TODO: Figure out the 'added surrogate' part
+
+
+
+  /registry/backbone/endeavors/{primaryId}/aliases:
+    post:
+      tags:
+        - WEMI
+      summary: Ensures that an Endeavor is identified by a Secondary Identifier
+      operationId: addAlias
+      parameters:
+        - $ref: '#/components/parameters/primaryId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/secondaryId'
+      responses:
+        200:
+          description: |
+            Alias is present
+          content:
+            { }
+    head:
+      tags:
+        - WEMI
+      summary: Checks whether an Endeavor is identified by the given secondary Identifier
+      operationId: hasAlias
+      parameters:
+        - $ref: '#/components/parameters/primaryId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/secondaryId'
+      responses:
+        200:
+          description: |
+            Alias is present
+          content:
+            { }
+
+
+#  /registry/backbone/endeavors/{primaryId}/Triples:
+#    post:
+#      tags:
+#        - WEMI
+#      summary: Adds a secondary Identifier to an Endeavor
+#      operationId: addTriple
+#      parameters:
+#        - $ref: '#/components/parameters/primaryId'
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/parameters/assertion'
+#      responses:
+#        200:
+#          description: |
+#            On success, returns the Triple as materialized, as well as any additional Triple inferred in the process
+#          content:
+#            application/json:
+#              schema:
+#                type: array
+#                items:
+#                  $ref: '#/components/schemas/Triple'
+
+components:
+
+  parameters:
+
+    primaryId:
+      in: path
+      name: primaryId
+      description: |
+        The primary identifier of the Endeavor to be processed. 
+        More precisely, this is the value of the primary identifier, without the 'did:mcid:' prefix,
+        corresponding to a base58-encoded UUIDv4
+      required: true
+      schema:
+        $ref: '#/components/schemas/PrimaryIdentifier'
+
+    secondaryId:
+      in: body
+      name: secondaryId
+      description: An Identifier, possibly associated to an Endeavor as one of its secondary Identifiers
+      required: true
+      $ref: '#/components/schemas/SecondaryIdentifier'
+
+    #    assertion:
+    #      in: body
+    #      name: assertion
+    #      description: an asserted relationship between two Endeavors
+    #      required: true
+    #      $ref: '#/components/schemas/Quad'
+
+    endeavorType:
+      in: query
+      name: endeavorType
+      description: A code that discriminates the kind of Endeavor(s) to be processed
+      required: true
+      schema:
+        $ref: '#/components/schemas/EndeavorKind'
+
+  schemas:
+
+    EndeavorKind:
+      type: string
+      description: Discriminates between sub-types of Endeavor
+      enum:
+        - Work
+        - Expression
+        - Manifestation
+        - Surrogate
+
+    IdentifierKind:
+      type: string
+      description: |
+        Declares the identifier scheme that an identifier conforms to.
+        
+        URIs, including URLs and URNs are defined in RFC3986; DIDs are specialized URIs described
+        in https://www.w3.org/TR/did-core/; OIDs are specialized URNs defined in RFC 3601; UUIDs are
+        defined in RFC 4122; POCID are legacy local identifiers.
+      enum:
+        - URI
+        - DID
+        - OID
+        - UUID
+        - POCID
+        - Other
+
+    LanguageCode:
+      type: string
+      description: |
+        An ISO-639 code that denotes a Natural language
+      example: en
+
+    MimeCode:
+      type: string
+      description: |
+        A MIME code that denotes the representational aspects of an Expression/Manifestation, 
+        including markup/modeling/programming languages, and serializations thereof, used to represent 
+        the Work content.
+        
+        Common MIME codes can be deconstructed in three parts: a 'mime type', denoting content form;
+        a 'mime subtype' that codifies language/schema, serialization and (meta)format; extra parameters
+        that add details such as charset and transport encoding.
+      example: text/html;charset=UTF-8;encoding=base64
+
+    PrimaryIdentifier:
+      type: string
+      description: |
+        The primary Identifier of an Endeavor.
+        Primary IDs are universal, opaque, permanent identifiers that conform to the DID specification.
+        Moreover, primary IDs are expected to be Base58-encodings of the (UTF-16) string form of a UUIDv4
+        (RFC 4122), without the dashes.
+      format: did
+      example: did:mcid:4nP7jRJknV2ffrcwN12J84uZ6DaQKs7np2uyDwo7V5WQ
+
+    SecondaryIdentifier:
+      type: object
+      description: |
+        A secondary Identifier of an Entity. Secondary Identifiers are required to be functional
+        (the same Identifier cannot identify more than one entity), and have a String-based representation,
+        but are not otherwise constrained. In particular, secondary identifiers may be global or local,
+        opaque or transparent, and follow a variety of schemes such as URIs, URNs, URLs, OIDs, UUIDs, etc.
+      properties:
+        value:
+          description: the string-based representation of the Identifier
+          type: string
+        format:
+          description: |
+            A controlled term that denotes the format that the value conforms to
+          $ref: '#/components/schemas/IdentifierKind'
+      required:
+        - value
+      example:
+        format: uuid
+        value: 25d6a55f-19fe-43be-bcd5-74adc7bc5bf7
+
+    ContentType:
+      type: object
+      description: |
+        A Concept that denotes a universal classifier of a Work's content type
+      properties:
+        label:
+          type: string
+        code:
+          type: string
+        uri:
+          type: string
+          format: uri
+      required:
+        - uri
+      example:
+        uri: http://mock.edu/ontology/SomeType
+        label: 'Some Type'
+
+    #    Quad:
+    #      type: object
+    #      description: |
+    #        A Quad, in the RDF sense of a subject/predicate/object statement, plus an optional scoping graph
+    #      properties:
+    #        graph:
+    #          description: The graph to assert the triple into
+    #          type: string
+    #          format: uri
+    #        subject:
+    #          description: The subject of the assertion
+    #          type: string
+    #          format: uri
+    #        property:
+    #          description: The property/relationship of the assertion
+    #          type: string
+    #          format: uri
+    #        object:
+    #          description: The object/target of the assertion
+    #          type: string
+    #          format: uri
+    #      required:
+    #        - subject
+    #        - property
+    #        - object
+    #      example:
+    #        subject: '#a'
+    #        property: '#rel'
+    #        object: '#b'
+
+
+    Endeavor:
+      type: object
+      description: |
+        A representation of the common, essential traits of Works, Expressions and Manifestations, 
+        flattened to describe any one WEM entity
+      properties:
+        primaryId:
+          type: string
+          description: |
+            The primary identifier of the represented Endeavor, mapped to the URI of the NamedIndividual that 
+            represents the Endeavor in the underlying Knowledge Graph.
+            
+            Note: this is the Identifier of the Resource itself, not the id of 'this' instance of 
+            (e.g. JSON) object that is involved in the API exchange
+          format: did
+        aliases:
+          type: array
+          description: |
+            Zero or more alternative identifiers of the represented Endeavor. 
+            Given the primary id, for each alias, it holds that (alias owl:sameAs primaryId)
+          items:
+            type: string
+          minItems: 0
+          format: uri
+        tags:
+          type: array
+          description: |
+            Zero or more identifiers (primary or secondary) of other, distinct Endeavors associated 
+            to this Endeavor by means of a realization, embodiment and/or carry relationship
+          items:
+            type: string
+          minItems: 0
+          format: uri
+        kind:
+          description: |
+            The kind of Endeavor
+          $ref: '#/components/schemas/EndeavorKind'
+        localization:
+          description: |
+            The (human) language used in the Endeavor
+          $ref: '#/components/schemas/LanguageCode'
+        contentType:
+          type: array
+          description: |
+            The classifiers of this Endeavor's content type. 
+            For Works, it is that Work's content type. For Expressions, it is the content type of
+            the realized Work. For Manifestations, it is the type(s) of the Work(s) realized by the 
+            embodied Expression(s)
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/ContentType'
+        name:
+          description: |
+            A humman readable designator of this Endeavor.
+            Should bind to the first of dc:title, skos:prefLabel, rdfs:label, restricted to the value(s)
+            matching this Endeavor's language
+          type: string
+      required:
+        - kind
+      discriminator:
+        propertyName: kind
+
+    EndeavorReference:
+      type: object
+      description: |
+        A reference to a Work, Expression or Manifestation
+      properties:
+        primaryId:
+          type: string
+          description: |
+            The primary identifier of the referenced Endeavor
+          format: did
+        kind:
+          description: |
+            The kind of Endeavor
+          $ref: '#/components/schemas/EndeavorKind'
+        label:
+          description: |
+            A humman readable designator of the referenced Endeavor, as per rdfs:label
+          type: string
+      required:
+        - primaryId
+
+
+    Work:
+      description: |
+        (The descriptor of) An intellectual Work, as conceived by a subject matter expert.
+        
+        Works are classified based on their Content Type, which depends on semantic aspects such as 
+        subject, focus, scope and modality
+      allOf:
+        - $ref: '#/components/schemas/Endeavor'
+        - type: object
+          properties:
+            realizedBy:
+              type: array
+              items:
+                $ref: '#/components/schemas/Expression'
+
+    Expression:
+      description: |
+        (The descriptor of) The realization of a Work, using a commbination of natural and/or 
+        technical language(s).
+        The primary natural language determines the localization of the expression.
+        Technical languages include markup, modeling and/or programming languages.
+        
+        Expressions are associated to a Content Model, which corresponds to a specific way of 
+        using the languages, in conformance with the languages grammar, for the purpose of expressing
+        information content of a given content type.
+      allOf:
+        - $ref: '#/components/schemas/Endeavor'
+        - type: object
+          properties:
+            realizes:
+              $ref: '#/components/schemas/EndeavorReference'
+            embodiedBy:
+              type: array
+              items:
+                $ref: '#/components/schemas/Manifestation'
+
+    Manifestation:
+      description: |
+        (The descriptor of) A class of replicable Artifacts, digital or physical, where each exemplar 
+        embodies one or more expressions, carrying their realized work(s) as Content.
+
+        Manifestations are categorized by form (e.g. text, audio, etc.) and format, as a concretization
+        of the embodied expressions.
+      allOf:
+        - $ref: '#/components/schemas/Endeavor'
+        - type: object
+          properties:
+            format:
+              description: |
+                A structured MIME code that denotes the form and format of the manifestation
+              $ref: '#/components/schemas/MimeCode'
+            embodies:
+              type: array
+              items:
+                $ref: '#/components/schemas/EndeavorReference'
+            carries:
+              type: array
+              items:
+                $ref: '#/components/schemas/EndeavorReference'
+
+    WEM:
+      anyOf:
+        - $ref: '#/components/schemas/Work'
+        - $ref: '#/components/schemas/Expression'
+        - $ref: '#/components/schemas/Manifestation'
