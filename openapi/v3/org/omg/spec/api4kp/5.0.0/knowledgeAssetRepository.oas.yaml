@@ -228,18 +228,13 @@ paths:
         Returns
       operationId: getKnowledgeGraphContent
       parameters:
-        - name: X-Accept
-          in: header
-          description: |
-            A MIME Type that codifies the syntactic representation of a Knowledge Artifact, as accepted by the client in a content negotiation sense.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/qAccept'
       responses:
         200:
           description: |
             A Knowledge Carrier that wrap the Knowledge Graph, as a Knowledge Artifact, with representation metadata.
           content:
-            application/octet-stream:
+            '*/*':
               schema:
                 type: string
                 format: byte
@@ -895,18 +890,13 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: X-Accept
-          in: header
-          description: |
-            A MIME Type that codifies the syntactic representation of a Knowledge Artifact, as accepted by the client in a content negotiation sense.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/qAccept'
       responses:
         200:
           description: |
             Success
           content:
-            application/octet-stream:
+            '*/*':
               schema:
                 type: string
                 format: byte
@@ -914,7 +904,7 @@ paths:
           description: |
             Negotiation failed, but suitable alternatives are present
           content:
-            application/octet-stream:
+            '*/*':
               schema:
                 type: array
                 items:
@@ -1074,18 +1064,13 @@ paths:
           required: true
           schema:
             type: string
-        - name: X-Accept
-          in: header
-          description: |
-            A MIME Type that codifies the syntactic representation of a Knowledge Artifact, as accepted by the client in a content negotiation sense.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/qAccept'
       responses:
         200:
           description: |
             Success
           content:
-            application/octet-stream:
+            '*/*':
               schema:
                 type: string
                 format: byte
@@ -1093,7 +1078,7 @@ paths:
           description: |
             Negotiation failed, but suitable alternatives are present
           content:
-            application/octet-stream:
+            '*/*':
               schema:
                 type: array
                 items:
@@ -1554,18 +1539,13 @@ paths:
           required: true
           schema:
             type: string
-        - name: X-Accept
-          in: header
-          description: |
-            A MIME Type that codifies the syntactic representation of a Knowledge Artifact, as accepted by the client in a content negotiation sense.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/qAccept'
       responses:
         200:
           description: |
             Success
           content:
-            application/octet-stream:
+            '*/*':
               schema:
                 type: string
                 format: byte
@@ -1767,12 +1747,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: qAccept
-          in: query
-          description: |
-            A MIME Type that codifies the syntactic representation of a Knowledge Artifact, as accepted by the client in a content negotiation sense.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/qAccept'
       responses:
         200:
           description: |
@@ -2016,12 +1991,7 @@ paths:
           required: true
           schema:
             type: string
-        - name: qAccept
-          in: query
-          description: |
-            A MIME Type that codifies the syntactic representation of a Knowledge Artifact, as accepted by the client in a content negotiation sense.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/qAccept'
       responses:
         200:
           description: |
