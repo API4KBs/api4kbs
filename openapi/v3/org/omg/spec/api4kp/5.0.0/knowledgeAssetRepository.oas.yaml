@@ -2422,6 +2422,94 @@ paths:
           description: |
             Not implemented
           content: {}
+  /cat/assets/{assetId}/versions/{versionTag}/surrogates/{surrogateId}/versions/{surrogateVersionTag}/content:
+    get:
+      tags:
+        - Knowledge Asset Repository
+      summary: Gets a specific version of the Knowledge Asset Surrogate.
+      description: |
+        Returns a copy of a specific version of a Knowledge Asset Surrogate for the given Asset.
+      operationId: getKnowledgeAssetSurrogateVersionContent
+      parameters:
+        - name: assetId
+          in: path
+          description: |
+            The id of the Knowledge Asset (Series).
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: versionTag
+          in: path
+          description: |
+            The version tag of a Versioned Entity. \n Versioned Identifiers identify specific, Immutable Versions of Mutable Entities, which reflect the state of that Entity at a given point in time. Where a version(ed) identifier is universal, the Tag represents the local part of that identifier, under the scope of the identifier that denotes the Entity (series).
+          required: true
+          schema:
+            type: string
+        - name: surrogateId
+          in: path
+          description: |
+            The id of the Knowledge Artifact that carries a metadata record about a Knowledge Asset.
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: surrogateVersionTag
+          in: path
+          description: |
+            The version tag a (version of a) Knowledge Asset Surrogate
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/qAccept'
+      responses:
+        200:
+          description: |
+            A suitable representation of the Knowledge Surrogate could be retrieved
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: byte
+        300:
+          description: |
+            Negotiation failed, but suitable alternatives are present
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pointer'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pointer'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pointer'
+        403:
+          description: |
+            The client does not have the adequate permissions
+          content: {}
+        404:
+          description: |
+            Asset Version not found
+          content: {}
+        406:
+          description: |
+            No suitable variant is available
+          content: {}
+        500:
+          description: |
+            Internal error
+          content: {}
+        501:
+          description: |
+            Not implemented
+          content: {}
   /cat/assets/{assetId}/versions/{versionTag}/composite/struct:
     get:
       tags:
